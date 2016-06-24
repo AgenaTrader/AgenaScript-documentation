@@ -7,32 +7,32 @@ AgenaScript allows you to execute any ideas/methods that are too complex for the
 
 Information contained in this help document:
 
-1. Handling bars and instruments
+1.  Handling bars and instruments
 
 You will find a detailed explanation of how AgenaScript reacts and interacts with individual bars or candles as well as various trading instruments.
 
-2. Events
+1.  Events
 
 AgenaScript is event-based and -driven. When (for example) a candle closes or a new candle opens, then an event has occurred. When a new price value is delivered by your data provider or a new order is executed by your broker, then these too are considered events. AgenaScript allows you to react to these events. You can read about the exact methodology in this and the following chapters.
 
-3. Indicators und oscillators
+1.  Indicators und oscillators
 
 This section explains the indicators already available for AgenaTrader users in detail. The help document presents the indicator itself as well as its usage, the interpretation of the signals and the source of the information.
 Each indicator and oscillator can be used on its own with AgenaScripts; the exact syntax and meaning of its parameters are also described here. You will also find several code snippets here.
 
-4. Strategy programming
+1.  Strategy programming
 
 AgenaScript allows you to create your own trading strategies and execute them live within the market. Information pertaining to prerequisites and how orders are sent to the broker and managed internally can be found here.
 
-5. Keywords
+1.  Keywords
 
 Like every other programming language, AgenaTrader has a set of commands that can be converted and used via Scripts. You should be relatively well versed in these if you wish to create your own indicators or trading systems.
 
-6. Drawing objects
+1.  Drawing objects
 
 All drawing objects that can be used within the chart can also be accessed using AgenaScript. In this way, you can turn on/off certain lines, arrows, rectangles and other objects with specified conditions.
 
-7. Tips and tricks
+1.  Tips and tricks
 
 This section provides solutions to problems of an unusual nature. To solve such problems, you need to be able to trace and understand source code and programming. More advanced programmers and users may find solutions and suggestions that could help them in their own programming.
 
@@ -43,16 +43,16 @@ Data is understood as information that is retrieved externally and uploaded to A
 
 Further detailed information can be found using the appropriate shortcuts:
 
--   [*Bars*](#bars-candles)
+[*Bars*](#bars-candles)
 
--   [*Data series*](#dataseries)
+[*Data series*](#dataseries)
 
--   [*Instrument*](#instruments)
+[*Instrument*](#instruments)
 
 Bars (Candles)
 --------------
 
-**Functionality**
+### Functionality
 
 A classical indicator calculates one or multiple values using an existing data series.
 
@@ -63,9 +63,9 @@ The following example is based on an indicator value, such as with a moving aver
 To calculate a smoothed moving average, AgenaTrader needs a data series. In this example we will use the closing prices. All closing prices of a bar (candle) that are represented in the chart will be saved in a list and indexed.
 The current closing price, meaning the closing price of the bar that is on the right-hand side of the chart, will be assigned an index of 0. The bar to the left of that will have an index of 1 and so on. The oldest bar displayed will have an index value of 500.
 Whenever a new bar is added within a session it will become the new index 0; the bar to the left of it, which previously had an index of 0, will become index 1 and so on. The oldest bar will become index 501.
-Within a script (a self-created program/algorithm) the [***Close***](#_topic_Close) will be representative for the array (list) of all closing prices.
-The last closing price is thus **Close \[0\]**; the closing price previous to this will become **Close \[1\]**, the value before that will become **Close \[2\]** and the oldest bar will be **Close \[501\]**. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago“ expression for this in general cases.
-Obviously, every bar will not only have a closing value but also a [*High*](#_topic_High), [*Low*](#_topic_Low), [*Open*](#_topic_Open), [*Median*](#_topic_Median), [*Typical*](#_topic_Typical), [*Weighted*](#_topic_Weighted), [*Time*](#_topic_Time) and *Volume*. Thus, the high of the candle that occurred 10 days ago will be **High \[10\]**, yesterday’s low **Low \[1\]**...
+Within a script (a self-created program/algorithm) the [***Close***](#close) will be representative for the array (list) of all closing prices.
+The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago“ expression for this in general cases.
+Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical), [*Weighted*](#weighted), [*Time*](#time) and *Volume*. Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
 
 **Important tip:**
 
@@ -77,9 +77,10 @@ If you wish to use the values of the currently forming candle then you will need
 In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.
 With close \[0\] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high \[0\], low \[0\]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open \[0\] value will not change.
 
-<span id="_topic_EigenschaftenvonBars" class="anchor"></span>**Properties of Bars**
+Properties of Bars
+------------------
 
-**Properties of Bars**
+### Properties of Bars
 
 "Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#bars-candles)).
 
@@ -87,92 +88,94 @@ Bars (**public** IBars Bars) can be used directly in a script and equates to Bar
 
 The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).
 
--   [*Bars.BarsSinceSession*](#_topic_BarsBarsSinceSession)
+[*Bars.BarsSinceSession*](#bars.barssincesession)
 
--   [*Bars.Count*](#_topic_BarsCount)
+[*Bars.Count*](#bars.count)
 
--   [*Bars.FirstBarOfSession*](#_topic_BarsFirstBarOfSession)
+[*Bars.FirstBarOfSession*](#bars.firstbarofsession)
 
--   [*Bars.GetBar*](#_topic_BarsGetBar)
+[*Bars.GetBar*](#bars.getbar)
 
--   [*Bars.GetBarsAgo*](#_topic_BarsGetBarsAgo)
+[*Bars.GetBarsAgo*](#bars.getbarsago)
 
--   [*Bars.GetByIndex*](#_topic_BarsGetByIndex)
+[*Bars.GetByIndex*](#bars.getbyindex)
 
--   [*Bars.GetIndex*](#_topic_BarsGetIndex)
+[*Bars.GetIndex*](#bars.getindex)
 
--   [*Bars.GetNextBeginEnd*](#_topic_BarsGetNextBeginEnd)
+[*Bars.GetNextBeginEnd*](#bars.getnextbeginend)
 
--   [*Bars.GetOpen*](#_topic_BarsGetOpen) (+ GetHigh, GetLow, GetClose, GetTime and GetVolume)
+[*Bars.GetOpen*](#bars.getopen) (+ GetHigh, GetLow, GetClose, GetTime and GetVolume)
 
--   [*Bars.Instrument*](#_topic_BarsInstrument)
+[*Bars.Instrument*](#bars.instrument)
 
--   [*Bars.IsIntraDay*](#_topic_BarsIsIntraDay)
+[*Bars.IsIntraDay*](#bars.isintraday)
 
--   [*Bars.PercentComplete*](#_topic_BarsPercentComplete)
+[*Bars.PercentComplete*](#bars.percentcomplete)
 
--   [*Bars.SessionBegin*](#_topic_BarsSessionBegin)
+[*Bars.SessionBegin*](#bars.sessionbegin)
 
--   [*Bars.SessionEnd*](#_topic_BarsSessionEnd)
+[*Bars.SessionEnd*](#bars.sessionend)
 
--   [*Bars.SessionNextBegin*](#_topic_BarsSessionNextBegin)
+[*Bars.SessionNextBegin*](#bars.sessionnextbegin)
 
--   [*Bars.SessionNextEnd*](#_topic_BarsSessionNextEnd)
+[*Bars.SessionNextEnd*](#bars.sessionnextend)
 
--   [*Bars.TickCount*](#_topic_BarsTickCount)
+[*Bars.TickCount*](#bars.tickcount)
 
--   [*Bars.TimeFrame*](#_topic_BarsTimeFrame)
+[*Bars.TimeFrame*](#bars.timeframe)
 
--   [*Bars.TotalTicks*](#_topic_BarsTotalTicks)
+-   [*Bars.TotalTicks*](#bars.totalticks)
 
 With the **OnBarUpdate** () method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnBarUpdate** () is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate** () then you should first perform a test for null references using **if** (Bars != **null**).
 
-<span id="_topic_BarsBarsSinceSession" class="anchor"></span>Bars.BarsSinceSession
+Bars.BarsSinceSession
+---------------------
 
-**Description**
+### Description
 
 Bars.BarsSinceSession outputs the amount of bars that have occurred since the beginning of the current trading session.
 
-See further [*Properties*](#_topic_EigenschaftenvonBars) of bars.
+See further [*Properties*](#properties-of-bars) of bars.
 
-**Return Value**
-
-Type int **Amount of Bars**
-
-A value of -1 indicates a problem with referencing the correct session beginning.
-
-**Usage**
-
-Bars.BarsSinceSession
-
-**Further Information**
-
-Within [*OnBarUpdate ()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate () method is called up by AgenaScript, the object will become available.
-
-If this property is used outside of OnBarUpdate () then you should test for a null reference before executing it. You can test using **if** (Bars!= **null**) .
-
-**Example**
-
-**Print** ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
-
-<span id="_topic_BarsCount" class="anchor"></span>Bars.Count
-
-**Description**
-
-Bars.Count gives you the amount of bars in a data series.
-
-See [*Properties*](#_topic_EigenschaftenvonBars) for additional information.
-
-**Return Value**
+### Return Value
 
 Type int Amount of Bars
 
-**Usage**
+A value of -1 indicates a problem with referencing the correct session beginning.
+
+### Usage
+
+Bars.BarsSinceSession
+
+### Further Information
+
+Within [*OnBarUpdate ()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate () method is called up by AgenaScript, the object will become available.
+
+If this property is used outside of OnBarUpdate () then you should test for a null reference before executing it. You can test using *if* (Bars!= *null*) .
+
+### Example
+
+**Print** ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
+
+Bars.Count
+----------
+
+### Description
+
+Bars.Count gives you the amount of bars in a data series.
+
+See [*Properties*](#properties-of-bars) for additional information.
+
+### Return Value
+
+Type int Amount of Bars
+
+### Usage
 
 Bars.Count
 
-**More Information**
+### More Information
 
 The value of *CurrentBar* can only be lesser than or equal to Bars.Count - 1
 
@@ -180,171 +183,178 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 
 <img src="./media/image1.png" width="296" height="363" />
 
-**Example**
+### Example
 
 **Print** ("There are a total of” + Bars.Count + “bars available.");
 
-<span id="_topic_BarsFirstBarOfSession" class="anchor"></span>Bars.FirstBarOfSession
+Bars.FirstBarOfSession
+----------------------
 
-**Description**
+### Description
 
 With Bars.FirstBarOfSession you can determine whether the current bar is the first bar of the trading session.
 
-See [*Properties*](#_topic_EigenschaftenvonBars) of bars for more information.
+See [*Properties*](#properties-of-bars) of bars for more information.
 
-**Return Value**
+### Return Value
 
 Type bool
 
 **true**: The bar is the first bar of the current trading session
 **false**: The bar is not the first bar of the current trading session
 
-**Usage**
+### Usage
 
 Bars.FirstBarOfSession
 
-**More Information**
+### More Information
 
 With [*OnBarUpdate ()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate () method is called up, an object will become available.
 If this property is called up outside of OnBarUpdate () you should test for a null reference using if (Bars != null).
 
-**Example**
+### Example
 
 **if** (Bars.FirstBarOfSession)
 
 **Print** ("The current trading session started at” + Time \[0\]);
 
-<span id="_topic_BarsGetBar" class="anchor"></span>Bars.GetBar
+Bars.GetBar
+-----------
 
-**Description**
+### Description
 
 Bars.GetBar outputs the first bars (from oldest to newest) that correspond to the specified date/time.
 
-See [*Bars.GetBarsAgo*](#_topic_BarsGetBarsAgo), [*Bars.GetByIndex*](#_topic_BarsGetByIndex), [*Bars.GetIndex*](#_topic_BarsGetIndex).
+See [*Bars.GetBarsAgo*](#bars.getbarsago), [*Bars.GetByIndex*](#bars.getbyindex), [*Bars.GetIndex*](#bars.getindex).
 
-**Parameter**
+### Parameter
 
 Type DateTime
 
-**Return Value**
+### Return Value
 
 Type IBar Bar Object, for the bars corresponding to the timestamp
 
 For a timestamp older than the oldest bar: 0 (null)
 For a timestamp younger than the newest bar: index of the last bar
 
-**Usage**
+### Usage
 
 Bars.**GetBar**(DateTime time)
 
-**More Information**
+### More Information
 
 For the indexing of bars please see [*Functionality*](#bars-candles)
 
 For more information about using DateTime see [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
-**Example**
+### Example
 
 **Print** ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.**GetBar**(**new DateTime**(2012, 01, 03, 18, 0, 0)).Close);
 
-<span id="_topic_BarsGetBarsAgo" class="anchor"></span>Bars.GetBarsAgo
+Bars.GetBarsAgo
+---------------
 
-**Description**
+### Description
 
 Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.
 
-See: [*Bars.GetBar*](#_topic_BarsGetBar), [*Bars.GetByIndex*](#_topic_BarsGetByIndex), [*Bars.GetIndex*](#_topic_BarsGetIndex).
+See: [*Bars.GetBar*](#bars.getbar), [*Bars.GetByIndex*](#bars.getbyindex), [*Bars.GetIndex*](#bars.getindex).
 
-**Parameter**
+### Parameter
 
 Type DateTime
 
-**Return Value**
+### Return Value
 
 Type int Index of the bar that corresponds to the timestamp
 
 With a timestamp older than the oldest bar: 0 (null)
 With a timestamp newer than the youngest bar: index of the last bar
 
-**Usage**
+### Usage
 
 Bars.**GetBarsAgo**(DateTime time)
 
-**More Information**
+### More Information
 
 For more information about indexing please see [*Functionality*](#bars-candles)
 
 For more information about using DateTime see [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
-**Example**
+### Example
 
 **Print**("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.**GetBarsAgo**(**new DateTime**(2012, 01, 03, 18, 0, 0)));
 
-<span id="_topic_BarsGetClose" class="anchor"></span>Bars.GetClose
+Bars.GetClose
+-------------
 
-Bars.GetClose(int index) – see [*Bars.GetOpen*](#_topic_BarsGetOpen).
+Bars.GetClose(int index) – see [*Bars.GetOpen*](#bars.getopen).
 
-<span id="_topic_BarsGetHigh" class="anchor"></span>Bars.GetHigh
+Bars.GetHigh
+------------
 
-Bars.GetHigh(int index) – see [*Bars.GetOpen*](#_topic_BarsGetOpen).
+Bars.GetHigh(int index) – see [*Bars.GetOpen*](#bars.getopen).
 
-<span id="_topic_BarsGetByIndex" class="anchor"></span>Bars.GetByIndex
+Bars.GetByIndex
+---------------
 
-**Description**
+### Description
 
 Bars.GetByIndex outputs the index for the specified bar object
 
-See [*Bars.GetBar*](#_topic_BarsGetBar), [*Bars.GetBarsAgo*](#_topic_BarsGetBarsAgo), [*Bars.GetIndex*](#_topic_BarsGetIndex).
+See [*Bars.GetBar*](#bars.getbar), [*Bars.GetBarsAgo*](#bars.getbarsago), [*Bars.GetIndex*](#bars.getindex).
 
-**Parameter**
+### Parameter
 
 Type int Index
 
-**Return Value**
+### Return Value
 
 Type IBar Bar object for the specified index
 
-**Usage**
+### Usage
 
 Bars.**GetByIndex** (int Index)
 
-**More Information**
+### More Information
 
 For indexing of bars see [*Functionality*](#bars-candles)
 
-**Example**
+### Example
 
 **Print**(Close\[0\] + " and " + Bars.**GetByIndex**(CurrentBar).Close + " are equal in this example.");
 
-<span id="_topic_BarsGetIndex" class="anchor"></span>Bars.GetIndex
+Bars.GetIndex
+-------------
 
-**Description**
+### Description
 
 Bars.GetIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
 
-See [*Bars.GetBar*](#_topic_BarsGetBar), [*Bars.GetBarsAgo*](#_topic_BarsGetBarsAgo), [*Bars.GetByIndex*](#_topic_BarsGetByIndex).
+See [*Bars.GetBar*](#bars.getbar), [*Bars.GetBarsAgo*](#bars.getbarsago), [*Bars.GetByIndex*](#bars.getbyindex).
 
-**Parameter**
+### Parameter
 
 Type IBar bar
 or
 Type DateTime
 
-**Return Value**
+### Return Value
 
 Type int The bar index of the specified bar object or DateTime object
 
-**Usage**
+### Usage
 
 Bars.**GetIndex** (IBar bar)
 
 Bars.**GetIndex** (DateTime dt)
 
-**More Information**
+### More Information
 
 For more information about indexing see [*Functionality*](#bars-candles)
 
-**Example**
+### Example
 
 **int** barsAgo = 5;
 
@@ -352,19 +362,21 @@ IBar bar = Bars.**GetBar**(Time\[barsAgo\]);
 
 **Print**(barsAgo + " and " + Bars.**GetIndex**(bar) + " are equal in this example.");
 
-<span id="_topic_BarsGetLow" class="anchor"></span>Bars.GetLow
+Bars.GetLow
+-----------
 
-Bars.GetLow(int index) – see [*Bars.GetOpen*](#_topic_BarsGetOpen).
+Bars.GetLow(int index) – see [*Bars.GetOpen*](#bars.getopen).
 
-<span id="_topic_BarsGetNextBeginEnd" class="anchor"></span>Bars.GetNextBeginEnd
+Bars.GetNextBeginEnd
+--------------------
 
-**Description**
+### Description
 
 Bars.GetNextBeginEnd outputs the date and time for the beginning and end of a trading session.
 
-See [*Bars.SessionBegin*](#_topic_BarsSessionBegin), [*Bars.SessionEnd*](#_topic_BarsSessionEnd), [*Bars.SessionNextBegin*](#_topic_BarsSessionNextBegin), [*Bars.SessionNextEnd*](#_topic_BarsSessionNextEnd).
+See [*Bars.SessionBegin*](#bars.sessionbegin), [*Bars.SessionEnd*](#bars.sessionend), [*Bars.SessionNextBegin*](#bars.sessionnextbegin), [*Bars.SessionNextEnd*](#bars.sessionnextend).
 
-**Parameter**
+### Parameter
 
 |          |         |                                                                                            |
 |----------|---------|--------------------------------------------------------------------------------------------|
@@ -372,7 +384,7 @@ See [*Bars.SessionBegin*](#_topic_BarsSessionBegin), [*Bars.SessionEnd*](#_topic
 | iBars    | bars    | Bar object for which the data will be scanned/searched.                                    |
 | int      | barsago | Number of days in the past for which the data will be searched/scanned.                    |
 
-**Return Value**
+### Return Value
 
 DateTime session begin
 DateTime session end
@@ -380,13 +392,13 @@ DateTime session end
 **Note:
 **The date for the beginning and the end of a trading session are connected components. If the specified date corresponds to the end date of the current trading session then the returned value for the beginning of a trading session may already be in the past. In this case the date for the following trading session cannot be returned.
 
-**Usage**
+### Usage
 
 Bars.**GetNextBeginEnd**(Bars bars, **int** barsAgo, **out** DateTime sessionBegin, **out** DateTime sessionEnd)
 
 Bars.**GetNextBeginEnd**(DateTime time, **out** DateTime sessionBegin, **out** DateTime sessionEnd)
 
-**More Information**
+### More Information
 
 The two signatures will not necessarily output the same result.
 When using the bar signature, the supplied bar will be inspected for its session template association. The beginning and end of the next session will be taken from this template.
@@ -395,7 +407,7 @@ When using the time signature, a timestamp is transmitted that corresponds exact
 
 More information can be found here [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
-**Example**
+### Example
 
 DateTime sessionBegin;
 
@@ -412,16 +424,18 @@ Bars.**GetNextBeginEnd**(Bars, 0, **out** sessionBegin, **out** sessionEnd);
 }
 
 Bars.GetSessionDate
+-------------------
 
-**Description**
+### Description
 
 Bars.GetSessionDate provides the date and the time of the start of a particular trading session.
 
 The date and time for the start of the current trading session are also displayed correctly even if the function is used on a bar in the past.
 
-<span id="_topic_BarsGetOpen" class="anchor"></span>Bars.GetOpen
+Bars.GetOpen
+------------
 
-**Description**
+### Description
 
 For reasons of compatibility, the following methods are available.
 
@@ -450,49 +464,52 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 
 }
 
-**Parameter**
+### Parameter
 
 int index (0 .. Bars.Count-1)
 
-**Return Value**
+### Return Value
 
 Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume
 
 Type DateTime for GetTime
 
-<span id="_topic_BarsGetTime" class="anchor"></span>Bars.GetTime
+Bars.GetTime
+------------
 
-Bars.GetTime(int index) – see [*Bars.GetOpen*](#_topic_BarsGetOpen).
+Bars.GetTime(int index) – see [*Bars.GetOpen*](#bars.getopen).
 
-<span id="_topic_BarsGetVolume" class="anchor"></span>Bars.GetVolume
+Bars.GetVolume
+--------------
 
-Bars.GetVolume(int index) – see [*Bars.GetOpen*](#_topic_BarsGetOpen).
+Bars.GetVolume(int index) – see [*Bars.GetOpen*](#bars.getopen).
 
-<span id="_topic_BarsInstrument" class="anchor"></span>Bars.Instrument
+Bars.Instrument
+---------------
 
-**Description**
+### Description
 
 Bars.Instrument outputs an instrument object for the trading instrument displayed within the chart.
 
-See [*Properties*](#_topic_EigenschaftenvonBars) for more information.
+See [*Properties*](#properties-of-bars) for more information.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type Instrument
 
-**Usage**
+### Usage
 
 Bars.Instrument
 
-**More Information**
+### More Information
 
 For more information regarding the trading instruments please see [*Instrument*](#instruments).
 
-**Example**
+### Example
 
 // both outputs will provide the same result
 
@@ -502,7 +519,8 @@ Instrument i = Bars.Instrument;
 
 **Print**("The currently displayed trading instrument has the symbol " + i.Symbol);
 
-<span id="_topic_BarsIsIntraDay" class="anchor"></span>Bars.IsIntraDay
+Bars.IsIntraDay
+---------------
 
 This function is not yet implemented.
 
@@ -510,31 +528,32 @@ We are working on this – please bear with us. Thank you for your patience.
 
 <img src="./media/image2.png" width="240" height="180" />
 
-<span id="_topic_BarsPercentComplete" class="anchor"></span>Bars.PercentComplete
+Bars.PercentComplete
+--------------------
 
-**Description**
+### Description
 
 Bars.PercentComplete outputs the value that displays what percentage a bar has already completed. A bar with a period of 10 minutes has completed 50% after 5 minutes.
 
 For non-time-based charts (Kagi, LineBreak, Renko, Range, P&F etc.) this will output 0 during backtesting.
 
-**Return Value**
+### Return Value
 
 **double**
 
 A percentage value; 30% will be outputted as 0.3
 
-**Usage**
+### Usage
 
 Bars.PercentComplete
 
-**More Information**
+### More Information
 
 With [*OnBarUpdate()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
-If this property is used outside of OnBarUpdate() you should test for a null reference before executing it. You can test using **if** (Bars != **null**)
+If this property is used outside of OnBarUpdate() you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
-**Example**
+### Example
 
 // A 60 minute chart is looked at from an intraday perspective
 
@@ -564,182 +583,188 @@ remind = **false**;
 
 }
 
-<span id="_topic_BarsSessionBegin" class="anchor"></span>Bars.SessionBegin
+Bars.SessionBegin
+-----------------
 
-**Description**
+### Description
 
 Bars.SessionBegin outputs the date and time for the beginning of the current trading session.
 
 Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type DateTime
 
-**Usage**
+### Usage
 
 Bars.GetSessionBegin
 
-**More Information**
+### More Information
 
-The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*](#_topic_InstrumentExchange) .
+The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*](#instrument.exchange) .
 
 <img src="./media/image3.png" width="291" height="330" />
 
-**Example**
+### Example
 
 **Print**("The currently running trading session started at " + Bars.SessionBegin );
 
-<span id="_topic_BarsSessionEnd" class="anchor"></span>Bars.SessionEnd
+Bars.SessionEnd
+---------------
 
-**Description**
+### Description
 
 Bars.SessionEnd outputs the time for the end of the currently running trading session.
 Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type DateTime
 
-**Usage**
+### Usage
 
 Bars.GetSessionEnd
 
-**More Information**
+### More Information
 
-The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#_topic_InstrumentExchange) function.
+The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrument.exchange) function.
 
 <img src="./media/image4.png" width="291" height="330" />
 
-**Example**
+### Example
 
 **Print**("The current trading session will end at " + Bars.SessionEnd);
 
-<span id="_topic_BarsSessionNextBegin" class="anchor"></span>Bars.SessionNextBegin
+Bars.SessionNextBegin
+---------------------
 
-**Description**
+### Description
 
 Bars.SessionNextBegin outputs the date and time for the start of the next trading session.
 Date and time for the next session will be correctly outputted when the function is used on a bar in the past.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type DateTime
 
-**Usage**
+### Usage
 
 Bars.GetSessionNextBegin
 
-**More Information**
+### More Information
 
-The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*](#_topic_InstrumentExchange) function.
+The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*](#instrument.exchange) function.
 
 <img src="./media/image3.png" width="291" height="330" />
 
-**Example**
+### Example
 
 **Print**("The next trading session starts at " + Bars.SessionNextBegin);
 
-<span id="_topic_BarsSessionNextEnd" class="anchor"></span>Bars.SessionNextEnd
+Bars.SessionNextEnd
+-------------------
 
-**Description**
+### Description
 
 Bars.SessionNextEnd outputs the date and time for the end of the next session.
-See [*Properties*](#_topic_EigenschaftenvonBars) for more information.
+See [*Properties*](#properties-of-bars) for more information.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type DateTime
 
-**Usage**
+### Usage
 
 Bars.GetSessionNextEnd
 
-**More Information**
+### More Information
 
-The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#_topic_InstrumentExchange) function.
+The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrument.exchange) function.
 
 <img src="./media/image4.png" width="291" height="330" />
 
-**Example**
+### Example
 
 **Print**("The next trading session ends at " + Bars.SessionNextEnd);
 
-<span id="_topic_BarsTickCount" class="anchor"></span>Bars.TickCount
+Bars.TickCount
+--------------
 
-**Description**
+### Description
 
 Bars.TickCount outputs the total numbers of ticks contained within a bar.
 
-More information can be found in [*Properties*](#_topic_EigenschaftenvonBars) of bars.
+More information can be found in [*Properties*](#properties-of-bars) of bars.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type int
 
-**Usage**
+### Usage
 
 Bars.TickCount
 
-**More Information**
+### More Information
 
 With [*OnBarUpdate()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
-If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using **if** (Bars != **null**)
+If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
-**Example**
+### Example
 
 **Print**("The current bar consists of " + Bars.TickCount + " Ticks.");
 
-<span id="_topic_BarsTimeFrame" class="anchor"></span>Bars.TimeFrame
+Bars.TimeFrame
+--------------
 
-**Description**
+### Description
 
 Bars.TimeFrame outputs the timeframe object containing information regarding the currently used timeframe.
 
-More information can be found here: [*Properties*](#_topic_EigenschaftenvonBars)
+More information can be found here: [*Properties*](#properties-of-bars)
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type ITimeFrame
 
-**Usage**
+### Usage
 
 Bars.TimeFrame
 
-**More Information**
+### More Information
 
 For more information about timeframe objects please see [*TimeFrame*](#timeframe).
 
 With [*OnBarUpdate()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
-If this property is used outside of OnBarUpdate(),you should test for a null reference before executing it. You can test using **if** (Bars != **null**)
+If this property is used outside of OnBarUpdate(),you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
-**Example**
+### Example
 
 //Usage within a 30 minute chart
 
@@ -751,87 +776,90 @@ TimeFrame tf = (TimeFrame) Bars.TimeFrame;
 
 **Print**(tf.PeriodicityValue); // outputs "30"
 
-<span id="_topic_BarsTotalTicks" class="anchor"></span>Bars.TotalTicks
+Bars.TotalTicks
+---------------
 
-**Description**
+### Description
 
 Bars.TotalTicks outputs the total number of ticks from the moment the function is called up.
 
-More information can be found here: [*Properties*](#_topic_EigenschaftenvonBars).
+More information can be found here: [*Properties*](#properties-of-bars).
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type int
 
-**Usage**
+### Usage
 
 Bars.TotalTicks
 
-**More Information**
+### More Information
 
 The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.
 
 With [*OnBarUpdate()*](#onbarupdate) this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
-If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using **if** (Bars != **null**)
+If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
-**Example**
+### Example
 
 **Print**("The total amount of ticks is " + Bars.TotalTicks);
 
-<span id="_topic_Datenserien1" class="anchor"></span>**Data Series**
+Data Series
+-----------
 
-**Description**
+### Description
 
 Data series are interpreted as freely usable data storage containers for your programs. Additionally, they an integrated component of AgenaTrader that saves the price changes for individual bars. We will be focusing on the latter function here.
 In the following section, the concept of data series will be explained in detail and understandably. All price data for the individual bars are organized and saved within data series.
 The following are available:
 
--   [*Open*](#_topic_Open) [*Opens*](#_topic_Opens)
+[*Open*](#open) [*Opens*](#opens)
 
--   [*High*](#_topic_High) [*Highs*](#_topic_Highs)
+[*High*](#high) [*Highs*](#highs)
 
--   [*Low*](#_topic_Low) [*Lows*](#_topic_Lows)
+[*Low*](#low) [*Lows*](#lows)
 
--   [*Close*](#_topic_Close) [*Closes*](#_topic_Closes)
+[*Close*](#close) [*Closes*](#closes)
 
--   [*Median*](#_topic_Median) [*Medians*](#_topic_Medians)
+[*Median*](#median) [*Medians*](#medians)
 
--   [*Typical*](#_topic_Typical) [*Typicals*](#_topic_Typicals)
+[*Typical*](#typical) [*Typicals*](#typicals)
 
--   [*Weighted*](#_topic_Weighted) [*Weighteds*](#_topic_Weighteds)
+[*Weighted*](#weighted) [*Weighteds*](#weighteds)
 
--   [*Time*](#_topic_Time) [*Times*](#_topic_Times)
+[*Time*](#time) [*Times*](#times)
 
--   [*TimeFrame*](#timeframe) [*TimeFrames*](#_topic_TimeFrames)
+[*TimeFrame*](#timeframe) [*TimeFrames*](#timeframes)
 
--   [*Volume*](#_topic_Volume) [*Volumes*](#_topic_Volumes)
+[*Volume*](#volume) [*Volumes*](#volumes)
 
-<span id="_topic_Open" class="anchor"></span>Open
+Open
+----
 
-**Description**
+### Description
 
-Open is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#_topic_DataSeries), in which the historical opening prices are saved.
+Open is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries-1), in which the historical opening prices are saved.
 
-**Parameter**
+### Parameter
 
 BarsAgo Index Value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Open
 
 Open\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property of [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 // Opening price for the current period
 
@@ -845,9 +873,10 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*](#ca
 
 **Print**("SMA(14) calculated using the opening prices: " + Instrument.**Round2TickSize**(**SMA**(Open, 14)\[0\]));
 
-<span id="_topic_Opens" class="anchor"></span>Opens
+Opens
+-----
 
-**Description**
+### Description
 
 Opens is an array of data series that contains all open data series.
 
@@ -864,46 +893,47 @@ Opens\[0\]\[0\] is equivalent to Open\[0\].
 
 In addition, please see [*MultiBars*](#multibars) for more information.
 
-**Parameter**
+### Parameter
 
 barsAgo Index value for the individual bars within the data series (see [*Bars*](#bars-candles))
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Opens\[**int** barSeriesIndex\]
 
 Opens\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property of [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example: [*Multibars*](#multibars).
 
-<span id="_topic_High" class="anchor"></span>High
+High
+----
 
-**Description**
+### Description
 
-High is a *[DataSerie](#dataseries)s* of the type [*DataSeries*](#_topic_DataSeries), in which the historical high prices are saved.
+High is a *[DataSerie](#dataseries)s* of the type [*DataSeries*](#dataseries-1), in which the historical high prices are saved.
 
-**Parameter**
+### Parameter
 
 barsAgo IndexValue (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 High
 
 High\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property of [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 // High values of the current period
 
@@ -917,11 +947,12 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*](#ca
 
 **Print**("SMA(14) Calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(High, 14)\[0\]));
 
-<span id="_topic_Highs" class="anchor"></span>Highs
+Highs
+-----
 
-**Description**
+### Description
 
-Highs is an array of [*DataSeries*](#_topic_Datenserien1) that contains all high data series.
+Highs is an array of [*DataSeries*](#data-series) that contains all high data series.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
 
@@ -937,46 +968,47 @@ Highs\[0\]\[0\] is equivalent to High\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value for the individual bars within the data series (see [*Bars*](#bars-candles))
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Highs\[**int** barSeriesIndex\]
 
 Highs\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property of [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 Please see examples under [*Multibars*](#multibars).
 
-<span id="_topic_Low" class="anchor"></span>Low
+Low
+---
 
-**Description**
+### Description
 
-Low is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#_topic_DataSeries), in which the historical low prices are saved.
+Low is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries-1), in which the historical low prices are saved.
 
-**Parameter**
+### Parameter
 
 barsAgo IndexValue (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Low
 
 Low\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property of [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 // Lowest value of the current period
 
@@ -990,11 +1022,12 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*](#ca
 
 **Print**("SMA(14) calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(Low, 14)\[0\]));
 
-<span id="_topic_Lows" class="anchor"></span>Lows
+Lows
+----
 
-**Description**
+### Description
 
-Lows is an array of [*DataSeries*](#_topic_Datenserien1) that contains all [*Low*](#_topic_Low) data series.
+Lows is an array of [*DataSeries*](#data-series) that contains all [*Low*](#low) data series.
 
 This array is only of value to indicators or strategies that use data from multiple time units.
 
@@ -1010,48 +1043,49 @@ Lows\[0\]\[0\] is equivalent to Low\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value for the individual bars within the data series
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Lows\[**int** barSeriesIndex\]
 
 Lows\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example [*Multibars*](#multibars).
 
-<span id="_topic_Close" class="anchor"></span>Close
+Close
+-----
 
-**Description**
+### Description
 
-Close is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#_topic_DataSeries), in which the historical closing prices are saved.
+Close is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries-1), in which the historical closing prices are saved.
 
-**Parameter**
+### Parameter
 
 barsAgo Index value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Close
 
 Close\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
 Indicators are usually calculated using the closing prices.
 
-**Example**
+### Example
 
 // Closing price of the current period
 
@@ -1069,11 +1103,12 @@ Indicators are usually calculated using the closing prices.
 
 **Print**("SMA(14) calculated using the closing prices: " + Instrument.**Round2TickSize**(**SMA**(14)\[0\]));
 
-<span id="_topic_Closes" class="anchor"></span>Closes
+Closes
+------
 
-**Description**
+### Description
 
-Closes is an array of [*DataSeries*](#_topic_Datenserien1) that contains all [*Low*](#_topic_Low) data series.
+Closes is an array of [*DataSeries*](#data-series) that contains all [*Low*](#low) data series.
 
 This array is only of importance to indicators or strategies that use data from multiple time units.
 
@@ -1089,53 +1124,54 @@ Closes\[0\]\[0\] is equivalent to Close\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value of the individual bars within the data series
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Closes\[**int** barSeriesIndex\]
 
 Closes\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example [*Multibars*](#multibars).
 
-<span id="_topic_Median" class="anchor"></span>Median
+Median
+------
 
-**Description**
+### Description
 
-Median is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#_topic_DataSeries), in which the historical median values are saved.
+Median is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries-1), in which the historical median values are saved.
 
 The median price of a bar is calculated using (high + low) / 2
 
-See [*Typical*](#_topic_Typical) & [*Weighted*](#_topic_Weighted).
+See [*Typical*](#typical) & [*Weighted*](#weighted).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Median
 
 Median\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
 Further information about median, typical und weighted:
 [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*](http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html)
 
-**Example**
+### Example
 
 // Median price for the current period
 
@@ -1149,11 +1185,12 @@ Further information about median, typical und weighted:
 
 **Print**("SMA(14) calculated using the median prices: " + Instrument.**Round2TickSize**(**SMA**(Median, 14)\[0\]));
 
-<span id="_topic_Medians" class="anchor"></span>Medians
+Medians
+-------
 
-**Description**
+### Description
 
-Medians is an array of [*DataSeries*](#_topic_Datenserien1) that contains all [*Median*](#_topic_Median) data series.
+Medians is an array of [*DataSeries*](#data-series) that contains all [*Median*](#median) data series.
 
 This array is only of value to indicators or strategies that use data from multiple timeframes.
 
@@ -1169,53 +1206,54 @@ Medians\[0\]\[0\] is equivalent to Medians\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value for the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Medians\[**int** barSeriesIndex\]
 
 Medians\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example in [*Multibars*](#multibars).
 
-<span id="_topic_Typical" class="anchor"></span>Typical
+Typical
+-------
 
-**Description**
+### Description
 
-Typical is a *DataSeries* of the type [*DataSeries*](#_topic_DataSeries), in which the historical typical values are saved.
+Typical is a *DataSeries* of the type [*DataSeries*](#dataseries-1), in which the historical typical values are saved.
 
 The typical price of a bar is calculated using (high + low + close) / 3.
 
-See [*Median*](#_topic_Median) and [*Weighted*](#_topic_Weighted).
+See [*Median*](#median) and [*Weighted*](#weighted).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Typical
 
 Typical\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
 Further information on median, typical and weighted:
 [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*](http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html)
 
-**Example**
+### Example
 
 // Typical price for the current period
 
@@ -1229,11 +1267,12 @@ Further information on median, typical and weighted:
 
 **Print**("SMA(14) calculated using the typical price: " + Instrument.**Round2TickSize**(**SMA**(Typical, 14)\[0\]));
 
-<span id="_topic_Typicals" class="anchor"></span>Typicals
+Typicals
+--------
 
-**Description**
+### Description
 
-Typicals is an array of *DataSeries* that contains all [*Typical*](#_topic_Typical) data series.
+Typicals is an array of *DataSeries* that contains all [*Typical*](#typical) data series.
 
 This array is only of value to indicators and strategies that make use of multiple timeframes.
 
@@ -1249,53 +1288,54 @@ Typicals\[0\]\[0\] is equivalent to Typicals\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value of the individual bars within a data series
 barSeriesIndex Index value of the various timeframes
 
-**Usage**
+### Usage
 
 Typicals\[**int** barSeriesIndex\]
 
 Typicals\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example [*Multibars*](#multibars).
 
-<span id="_topic_Weighted" class="anchor"></span>Weighted
+Weighted
+--------
 
-**Description**
+### Description
 
-Weighted is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#_topic_DataSeries), in which the historical weighted values are saved.
+Weighted is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries-1), in which the historical weighted values are saved.
 
 The weighted price of a bar is calculated using the formula (high + low + 2\*close) / 4 and then weighted on the closing price.
 
-See also [*Median*](#_topic_Median) and [*Typical*](#_topic_Typical).
+See also [*Median*](#median) and [*Typical*](#typical).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Weighted
 
 Weighted\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
 Information regarding median, typical und weighted:
 [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*](http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html)
 
-**Example**
+### Example
 
 // Weighted price for the current period
 
@@ -1309,11 +1349,12 @@ Information regarding median, typical und weighted:
 
 **Print**("SMA(14) calculated using the weighted price: " + Instrument.**Round2TickSize**(**SMA**(Weighted, 14)\[0\]));
 
-<span id="_topic_Weighteds" class="anchor"></span>Weighteds
+Weighteds
+---------
 
-**Description**
+### Description
 
-Weighteds is an array of [*DataSeries*](#_topic_Datenserien1) that contains all [*Weighted*](#_topic_Weighted) data series.
+Weighteds is an array of [*DataSeries*](#data-series) that contains all [*Weighted*](#weighted) data series.
 
 The array is only of value for indicators and strategies that use data from multiple timeframes.
 
@@ -1329,46 +1370,47 @@ Weighteds\[0\]\[0\] is equivalent to Weighteds\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value of the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Weighteds\[**int** barSeriesIndex\]
 
 Weighteds\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example under [*Multibars*](#multibars).
 
-<span id="_topic_Time" class="anchor"></span>Time
+Time
+----
 
-**Description**
+### Description
 
-Time is a [*DataSeries*](#dataseries) of the type [*DateTimeSeries*](#_topic_DateTimeSeries), in which the timestamps of the individual bars are saved.
+Time is a [*DataSeries*](#dataseries) of the type [*DateTimeSeries*](#datetimeseries), in which the timestamps of the individual bars are saved.
 
-**Parameter**
+### Parameter
 
 barsAgo Index value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Time
 
 Time\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 // Timestamp of the current period
 
@@ -1378,11 +1420,12 @@ The returned value is dependent upon the property [*CalculateOnBarClose*](#calcu
 
 **Print**(Time\[5\]);
 
-<span id="_topic_Times" class="anchor"></span>Times
+Times
+-----
 
-**Description**
+### Description
 
-Times is an array of *DataSeries* that contains all [*Time*](#_topic_Time) data series.
+Times is an array of *DataSeries* that contains all [*Time*](#time) data series.
 
 This array is only of value to indicators and strategies that make use of multiple timeframes.
 A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.
@@ -1397,49 +1440,50 @@ Times\[0\]\[0\] is equivalent to Times\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value for the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 Times\[**int** barSeriesIndex\]
 
 Times\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example [*Multibars*](#multibars).
 
-<span id="_topic_Volume" class="anchor"></span>Volume
+Volume
+------
 
-**Description**
+### Description
 
-Volume is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#_topic_DataSeries), in which the historical volume information is saved.
+Volume is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries-1), in which the historical volume information is saved.
 
-**Parameter**
+### Parameter
 
 barsAgo Index value (see [*Bars*](#bars-candles))
 
-**Usage**
+### Usage
 
 Volume
 
 Volume\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
 The value returned by the [*VOL()*](#_topic_VolumenVOL) indicator is identical with the volume described here;
 for example, Vol()\[3\] will have the same value as Volume\[3\].
 
-**Example**
+### Example
 
 // Volume for the current period
 
@@ -1453,11 +1497,12 @@ for example, Vol()\[3\] will have the same value as Volume\[3\].
 
 **Print**("SMA(14) calculated using the volume: " + Instrument.**Round2TickSize**(**SMA**(Volume, 14)\[0\]));
 
-<span id="_topic_Volumes" class="anchor"></span>Volumes
+Volumes
+-------
 
-**Description**
+### Description
 
-Volumes is an array of *DataSeries* that contains all [*Volume*](#_topic_Volume) data series.
+Volumes is an array of *DataSeries* that contains all [*Volume*](#volume) data series.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
 
@@ -1473,23 +1518,23 @@ Volumes\[0\]\[0\] is equivalent to Volumes\[0\].
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barsAgo Index value of the individual bars within a data series
 
 barSeriesIndex Index value of the various timeframes
 
-**Usage**
+### Usage
 
 Volumes\[**int** barSeriesIndex\]
 
 Volumes\[**int** barSeriesIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The returned value is dependent upon the property [*CalculateOnBarClose*](#calculateonbarclose).
 
-**Example**
+### Example
 
 See example [*Multibars*](#multibars).
 
@@ -1500,45 +1545,46 @@ The term "instrument" denotes a tradable value such as a stock, ETF, future etc.
 
 An instrument has various properties that can be used in AgenaScripts created by the user:
 
--   [*Instrument.Compare*](#_topic_InstrumentCompare)
+[*Instrument.Compare*](#instrument.compare)
 
--   [*Instrument.Currency*](#_topic_InstrumentCurrency)
+[*Instrument.Currency*](#instrument.currency)
 
--   [*Instrument.Digits*](#_topic_InstrumentDigits)
+[*Instrument.Digits*](#instrument.digits)
 
--   [*Instrument.ETF*](#_topic_InstrumentETF)
+[*Instrument.ETF*](#instrument.etf)
 
--   [*Instrument.Exchange*](#_topic_InstrumentExchange)
+[*Instrument.Exchange*](#instrument.exchange)
 
--   [*Instrument.Expiry*](#_topic_InstrumentExpiry)
+[*Instrument.Expiry*](#instrument.expiry)
 
--   [*Instrument.InstrumentType*](#_topic_InstrumentInstrumentType)
+[*Instrument.InstrumentType*](#instrument.instrumenttype)
 
--   [*Instrument.Name*](#_topic_InstrumentName)
+[*Instrument.Name*](#instrument.name)
 
--   [*Instrument.PointValue*](#_topic_InstrumentPointValue)
+[*Instrument.PointValue*](#instrument.pointvalue)
 
--   [*Instrument.Round2TickSize*](#_topic_InstrumentRound2TickSize)
+[*Instrument.Round2TickSize*](#instrument.round2ticksize)
 
--   [*Instrument.Symbol*](#_topic_InstrumentSymbol)
+[*Instrument.Symbol*](#instrument.symbol)
 
--   [*Instrument.TickSize*](#_topic_InstrumentTickSize)
+[*Instrument.TickSize*](#instrument.ticksize)
 
 With the **OnBarUpdate**() method you can use any properties you wish without having to test for a null reference.
 As soon as the **OnBarUpdate**() function is called up by AgenaScript, an object will become available. If you wish to use these properties outside of **OnBarUpdate**(), you should first perform a test for null references using **if** (Bars != **null**)
 
-<span id="_topic_InstrumentCompare" class="anchor"></span>**Instrument.Compare**
+Instrument.Compare
+------------------
 
-**Description**
+### Description
 
 The Instrument.Compare function compares two market prices whilst taking into account the correct number of decimal points. The smallest possible price change is displayed by the value TickSize. This function simplifies the otherwise time-consuming comparison using floating-point operations.
 
-**Parameter**
+### Parameter
 
 double value1
 double value2
 
-**Return value**
+### Return value
 
 Type int
 
@@ -1546,11 +1592,11 @@ Type int
 -1 - Value1 is smaller than value2
 0 - Value1 and value2 are equal
 
-**Usage**
+### Usage
 
 Instrument.**Compare**(**double** Value1, **double** Value2)
 
-**More Information**
+### More Information
 
 If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:
 
@@ -1559,91 +1605,94 @@ Compare(2, 2.000001) a 0, meaning the values are equal
 Compare(2, 1.999999) a 0, meaning the values are equal
 Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001
 
-**Example**
+### Example
 
 **Print**(Instrument.**Compare**(2, 1.999999));
 
-<span id="_topic_InstrumentCurrency" class="anchor"></span>**Instrument.Currency**
+Instrument.Currency
+-------------------
 
-**Description**
+### Description
 
 Instrument.Currency outputs a currency object that contains the corresponding currency in which the instrument is traded.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 A constant of the type “public enum currencies”
 
-**Usage**
+### Usage
 
 Instrument.Currency
 
-**More Information**
+### More Information
 
 The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.
 
-**Example**
+### Example
 
 **Print**(Instrument.Name + " is traded in " + Instrument.Currency
 
-<span id="_topic_InstrumentDigits" class="anchor"></span>**Instrument.Digits**
+Instrument.Digits
+-----------------
 
-**Description**
+### Description
 
 Instrument.Digits outputs the number of decimal points in which the market price of the instrument is traded.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 int Digits
 
-**Usage**
+### Usage
 
 Instrument.Digits
 
-**More Information**
+### More Information
 
 Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.
 
-This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*](#ticksize) and [*Instrument.Round2Ticks*](#_topic_InstrumentRound2TickSize).
+This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*](#ticksize) and [*Instrument.Round2Ticks*](#instrument.round2ticksize).
 
 More information can be found here: [*Formatting of Numbers*](#formatting-of-numbers).
 
-**Example**
+### Example
 
 **Print**("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
 
-<span id="_topic_InstrumentETF" class="anchor"></span>**Instrument.ETF**
+Instrument.ETF
+--------------
 
-**Description**
+### Description
 
 Instrument.ETF is used to differentiate between a stock and an ETF. This is necessary since ETFs are considered to be „stocks“ by some exchanges.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 Type bool
 
-**Usage**
+### Usage
 
 Instrument.ETF
 
-**More Information**
+### More Information
 
 What is an ETF?
 
 Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*](http://de.wikipedia.org/wiki/Exchange-traded_fund)
 
-**Example**
+### Example
 
 **if** (Instrument.InstrumentType == InstrumentType.Stock)
 
@@ -1655,141 +1704,146 @@ Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*](http://de.wiki
 
 **Print**("The value is a stock.");
 
-<span id="_topic_InstrumentExchange" class="anchor"></span>**Instrument.Exchange**
+Instrument.Exchange
+-------------------
 
-**Description**
+### Description
 
 Instrument.Exchange outputs the description/definition of the current exchange for the current instrument.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 An exchange object of the type “public enum exchanges”
 
-**Usage**
+### Usage
 
 Instrument.Exchange
 
-**More Information**
+### More Information
 
 An overview of various exchanges: [*http://www.boersen-links.de/boersen.htm*](http://www.boersen-links.de/boersen.htm)
 
-**Example**
+### Example
 
 **Print**("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
 
-<span id="_topic_InstrumentExpiry" class="anchor"></span>**Instrument.Expiry**
+Instrument.Expiry
+-----------------
 
-**Description**
+### Description
 
 Instrument.Expiry outputs the date (month and year) of the expiry of a financial instrument. Only derivative instruments such as options or futures will have an expiry date.
 
-**Parameter**
+### Parameter
 
 None
 
-**Return Value**
+### Return Value
 
 Type DateTime
 
 For instruments without an expiry date the returned value is set to DateTime.MaxValue(= 31.12.9999 23.59:59)
 
-**Usage**
+### Usage
 
 Instrument.Expiry
 
-**More Information**
+### More Information
 
 The expiry date (expiry) can also be seen within the Instrument Escort:
 
 <img src="./media/image5.png" width="564" height="409" />
 
-**Example**
+### Example
 
 **Print**("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
 
-<span id="_topic_InstrumentInstrumentType" class="anchor"></span>**Instrument.InstrumentType**
+Instrument.InstrumentType
+-------------------------
 
-**Description**
+### Description
 
 Instrument.InstrumentType outputs a type object of the trading instrument.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 Object of the type “public enum instrument”
 
-**Usage**
+### Usage
 
 Instrument.InstrumentType
 
-**More Information**
+### More Information
 
 Potential values are: future, stock, index, currency, option, CFD and unknown.
 
-There is no ETF type. ETFs are considered to be of the type “stock” – see [*Instrument.ETF*](#_topic_InstrumentETF).
+There is no ETF type. ETFs are considered to be of the type “stock” – see [*Instrument.ETF*](#instrument.etf).
 
 The instrument type can also be viewed within the Instrument Escort:
 
 <img src="./media/image6.png" width="564" height="409" />
 
-**Example**
+### Example
 
 **Print**("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
 
-<span id="_topic_InstrumentName" class="anchor"></span>**Instrument.Name**
+Instrument.Name
+---------------
 
-**Description**
+### Description
 
 Instrument.Name outputs the name/description of the trading instrument.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 Type string
 
-**Usage**
+### Usage
 
 Instrument.Name
 
-**More Information**
+### More Information
 
 The instrument name can also be seen within the Instrument Escort:
 
 <img src="./media/image7.png" width="564" height="409" />
 
-**Example**
+### Example
 
 **Print**("The currently loaded instrument inside the chart is named " + Instrument.Name);
 
-<span id="_topic_InstrumentPointValue" class="anchor"></span>**Instrument.PointValue**
+Instrument.PointValue
+---------------------
 
-**Description**
+### Description
 
 Instrument.PointValue outputs the monetary value for a full point movement of the instrument.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 double – point value
 
-**Usage**
+### Usage
 
 Instrument.PointValue
 
-**More Information**
+### More Information
 
 **Example for various point values** (per amount, CFD, futures contract, lot etc.)
 
@@ -1808,62 +1862,64 @@ The point value can also be viewed within the Instrument Escort:
 
 <img src="./media/image8.png" width="564" height="409" />
 
-**Example**
+### Example
 
 **Print**("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
 
-<span id="_topic_InstrumentRound2TickSize" class="anchor"></span>**Instrument.Round2TickSize**
+Instrument.Round2TickSize
+-------------------------
 
-**Description**
+### Description
 
 The function Instrument.Round2TickSize rounds the supplied market price to the smallest value divisible by the tick size of the instrument.
 
-**Parameter**
+### Parameter
 
 double – market value
 
-**Return value**
+### Return value
 
 double
 
-**Usage**
+### Usage
 
 Instrument.**Round2TickSize**(**double** MarketPrice)
 
-**More Information**
+### More Information
 
 The number of decimal places to which the price is rounded depends on the instrument.
 If, for example, an instrument is a stock, then the rounding will be performed to 2 decimal places. For a Forex instrument, it may be carried out to 4 or 5 decimal places.
 
-See [*TickSize*](#ticksize) and [*Instrument.Digits*](#_topic_InstrumentDigits).
+See [*TickSize*](#ticksize) and [*Instrument.Digits*](#instrument.digits).
 
 Example of professional [*Formatting*](#formatting-of-numbers).
 
-**Example**
+### Example
 
 **double** Price = 12.3456789;
 
 **Print**(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.**Round2TickSize**(Price));
 
-<span id="_topic_InstrumentSymbol" class="anchor"></span>**Instrument.Symbol**
+Instrument.Symbol
+-----------------
 
-**Description**
+### Description
 
 Instrument.Symbol outputs the symbol that identifies the trading instrument within AgenaTrader. Depending on the symbol, the mappings for the various data feed providers and brokers will be managed in different ways.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return value**
+### Return value
 
 Type string
 
-**Usage**
+### Usage
 
 Instrument.Symbol
 
-**More Information**
+### More Information
 
 By using symbols, identical stocks being traded on different exchanges can be identified and separated from each other. The symbol BMW.DE is the BMW stock on the XETRA exchange. BMW.CFG is the CFD for the BMW stock.
 
@@ -1871,60 +1927,64 @@ The instrument symbol can also be viewed within the Instrument Escort:
 
 <img src="./media/image9.png" width="564" height="409" />
 
-**Example**
+### Example
 
 **Print**("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
 
-<span id="_topic_InstrumentTickSize" class="anchor"></span>**Instrument.TickSize**
+Instrument.TickSize
+-------------------
 
-**Description**
+### Description
 
 The tick size is the smallest measurable unit that a financial instrument can move. This is usually called 1 tick.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 double
 
-**Usage**
+### Usage
 
 Instrument.TickSize or simply TickSize
 
-**More Information**
+### More Information
 
 The keyword [*TickSize*](#ticksize) is equivalent to Instrument.TickSize. Both information requests will produce the same value and are thus interchangeable.
 
-**Example**
+### Example
 
 Stock: 0.01
 ES future: 0.25
 EUR/USD: 0.00001
 
-See [*Instrument.PointValue*](#_topic_InstrumentPointValue) and [*Instrument.Digits*](#_topic_InstrumentDigits).
+See [*Instrument.PointValue*](#instrument.pointvalue) and [*Instrument.Digits*](#instrument.digits).
 
 Examples of professional [*Formatting*](#formatting-of-numbers).
 
-**Example**
+### Example
 
 **Print**("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");
 
-<span id="_topic_Collections" class="anchor"></span>**Collections**
+Collections
+-----------
 
-<span id="_topic_DrawObjects" class="anchor"></span>**DrawObjects**
+DrawObjects
+-----------
 
-**Description**
+### Description
 
 DrawObjects is a collection containing all drawing objects within the chart. All manually added drawings as well as those generated by scripts will be added within DrawObjects.
 The index for DrawObjects is the explicit name for the drawing object (string tag).
 
-**Usage**
+### Usage
 
 DrawObjects \[string tag\]
 
-**Example
+Example
+**
 Note:** To be able to use the interface definitions you must use the using method.
 
 **using** AgenaTrader.Plugins;
@@ -1965,11 +2025,12 @@ vline.Pen.Width = 3;
 
 }
 
-<span id="_topic_Input" class="anchor"></span>**Input**
+Input
+-----
 
-**Description**
+### Description
 
-Input is a [*DataSeries*](#_topic_DataSeries) object in which the input data for an indicator or strategy is stored.
+Input is a [*DataSeries*](#dataseries-1) object in which the input data for an indicator or strategy is stored.
 
 If the indicator is used without any explicit instructions for the input data, then the closing price for the current market prices will be used.
 
@@ -1986,19 +2047,20 @@ This way you can select which data series should be used for the calculation of 
 **double** d = **RSI**(**SMA**(20), 14, 3)\[0\]; calculates the 14 period RSI using the SMA(20) as the input data series.
 Input\[0\] = SMA(20)\[0\].
 
-**Usage**
+### Usage
 
 Input
 
 Input\[**int** barsAgo\]
 
-**Example**
+### Example
 
 **Print**("The input data for the indicators are " + Input\[0\]);
 
-<span id="_topic_Lines" class="anchor"></span>**Lines**
+Lines
+-----
 
-**Description**
+### Description
 
 Lines is a collection that contains all [*Line*](#line) objects of an indicator.
 
@@ -2006,13 +2068,13 @@ When a line object is added to the indicator using the [*Add()*](#add) method, t
 
 The order of the add commands determines how these lines are sorted. The first information request of Add() will create Lines\[0\], the next information request will be Lines\[1\] etc.
 
-See [*Plots*](#_topic_Plots).
+See [*Plots*](#plots).
 
-**Usage**
+### Usage
 
 Lines\[**int** index\]
 
-**Example**
+### Example
 
 // Add "using System.Drawing.Drawing2D;" for DashStyle
 
@@ -2058,9 +2120,10 @@ Lines\[**int** index\]
 
 }
 
-<span id="_topic_PlotColors" class="anchor"></span>**PlotColors**
+PlotColors
+----------
 
-**Description**
+### Description
 
 PlotColors is a collection that contains all color series of all plot objects.
 
@@ -2068,16 +2131,16 @@ When a plot is added using the [*Add()*](#add) method it automatically creates a
 
 The order of the add commands determines how the plot colors are sorted. The first information request of Add() will create PlotColors\[0\], the following information request will create PlotColors\[1\] etc.
 
-**Usage**
+### Usage
 
 PlotColors\[**int** PlotIndex\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 More information regarding the collection class:
 [*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*](http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx)
 
-**Example**
+### Example
 
 **using** System;
 
@@ -2183,9 +2246,10 @@ PlotColors\[2\]\[0\] = Color.DarkGray;
 
 }
 
-<span id="_topic_Plots" class="anchor"></span>**Plots**
+Plots
+-----
 
-**Description**
+### Description
 
 Plots is a collection that contains the plot objects of an indicator.
 
@@ -2193,13 +2257,13 @@ When a plot object is added to an indicator using the Add() method, it is also a
 
 The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots\[0\], the following information request will create Plots\[1\] etc.
 
-See [*Lines*](#_topic_Lines).
+See [*Lines*](#lines).
 
-**Usage**
+### Usage
 
 Plots\[**int** index\]
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -2227,9 +2291,10 @@ Value.**Set**(**SMA**(20)\[0\]);
 
 }
 
-<span id="_topic_Values" class="anchor"></span>**Values**
+Values
+------
 
-**Description**
+### Description
 
 Values is a collection that contains the data series objects of an indicator.
 
@@ -2239,20 +2304,20 @@ The order of the add commands determines how the values are sorted. The first in
 
 **Value** is always identical to Values\[0\].
 
-**Usage**
+### Usage
 
 Values\[**int** index\]
 
 Values\[**int** index\]\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The methods known for a collection, Set() Reset() and Count(), are applicable for values.
 
 Information on the class collection:
 [*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*](http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx)
 
-**Example**
+### Example
 
 // Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
 
@@ -2267,13 +2332,13 @@ Value.**Set**(High\[0\] - Close\[0\]);
 Multibars
 ---------
 
-**Description**
+### Description
 
 An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
 The same method applies for your self-programmed indicators. A 5 minute chart will call up the [*OnBarUpdate()*](#onbarupdate) for each 5 minute bar.
 If you want your self-created indicator to use a different timeframe, this is possible using multibars.
 
-**Example**
+### Example
 
 **using** System;
 
@@ -2347,16 +2412,16 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Additional Notes**
+### Additional Notes
 
-When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*](#_topic_Opens), [*Highs*](#_topic_Highs), [*Lows*](#_topic_Lows), [*Closes*](#_topic_Closes), [*Medians*](#_topic_Medians), [*Typicals*](#_topic_Typicals), [*Weighteds*](#_topic_Weighteds), [*Times*](#_topic_Times) and [*Volumes*](#_topic_Volumes). The indexing will occur in the order of the addition of the new timeframes.
+When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*](#opens), [*Highs*](#highs), [*Lows*](#lows), [*Closes*](#closes), [*Medians*](#medians), [*Typicals*](#typicals), [*Weighteds*](#weighteds), [*Times*](#times) and [*Volumes*](#volumes). The indexing will occur in the order of the addition of the new timeframes.
 Closes\[0\]\[0\] is equivalent to Close\[0\].
 Closes\[1\]\[0\] equals the current closing price for the daily data series
 Closes\[2\]\[0\] equals the current closing price for the weekly data series
 
 "Closes" is, of course, interchangeable with Opens, Highs, Lows etc.
 
-See [*CurrentBars*](#_topic_CurrentBars1), [*BarsInProgress*](#_topic_BarsInProgress), [*TimeFrames*](#_topic_TimeFrames), [*TimeFrameRequirements*](#_topic_TimeFrameRequirements).
+See [*CurrentBars*](#currentbars), [*BarsInProgress*](#barsinprogress), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](#timeframerequirements).
 
 Additional syntax methods are available for multibars:
 
@@ -2374,9 +2439,10 @@ Additional syntax methods are available for multibars:
 
 **double** w = MultiBars.**GetBarsItem**(TF\_Week).Close\[0\];
 
-<span id="_topic_CurrentBars1" class="anchor"></span>**CurrentBars**
+CurrentBars
+-----------
 
-**Description**
+### Description
 
 CurrentBars is an array of int values that contains the number of *[CurrentBar](#currentbar)s* for each bar.
 
@@ -2394,15 +2460,15 @@ CurrentBars\[0\] is equivalent to [*CurrentBar*](#currentbar).
 
 Also see [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 CurrentBars\[**int** barSeriesIndex\]
 
-**Example**
+### Example
 
 //Ensure that a minimum of 20 bars is loaded
 
@@ -2410,9 +2476,10 @@ CurrentBars\[**int** barSeriesIndex\]
 
 **if** (CurrentBars\[i\] &lt; 20) return;
 
-<span id="_topic_BarsInProgress" class="anchor"></span>**BarsInProgress**
+BarsInProgress
+--------------
 
-**Description**
+### Description
 
 Within a multibars script, multiple bars objects are available. The OnBarUpdate() method
 will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the BarsInProgress method.
@@ -2422,21 +2489,21 @@ With **\[TimeFrameRequirements("1 Day", "1 Week")\]** two timeframes will be add
 
 If OnBarUpdate() is called up by the primary data series, then BarsInProgress will equal zero. If OnBarUpdate() is called up by the daily bars, then BarsInProgress will equal 1. Weekly bars will have a value of 2.
 
-See [*Multibars*](#multibars) and [*CurrentBars*](#_topic_CurrentBars1).
+See [*Multibars*](#multibars) and [*CurrentBars*](#currentbars).
 
-**Parameter**
+### Parameter
 
 none
 
-**Usage**
+### Usage
 
 BarsInProgress
 
-**More Information**
+### More Information
 
 Within a script that only works with primary timeframes, the value will always equal zero.
 
-**Example**
+### Example
 
 // To demonstrate the methodology
 
@@ -2456,9 +2523,10 @@ Within a script that only works with primary timeframes, the value will always e
 
 }
 
-<span id="_topic_TimeFrames" class="anchor"></span>**TimeFrames**
+TimeFrames
+----------
 
-**Description**
+### Description
 
 TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.
 
@@ -2476,15 +2544,15 @@ TimeFrames \[0\] is equivalent to [*TimeFrame*](#timeframe).
 
 See [*MultiBars*](#multibars).
 
-**Parameter**
+### Parameter
 
 barSeriesIndex Index value for the various timeframes
 
-**Usage**
+### Usage
 
 TimeFrames \[**int** barSeriesIndex\]
 
-**Example**
+### Example
 
 **if** (BarsInProgress == 0 && CurrentBar == 0)
 
@@ -2492,8 +2560,8 @@ TimeFrames \[**int** barSeriesIndex\]
 
 > **Print**("The Indicator " + **this**.Name + " uses Bars of the Timeframe " + TimeFrames\[i\]);
 
- Events
-=======
+Events
+======
 
 AgenaTrader is an [*event-oriented*](http://de.wikipedia.org/wiki/Ereignis_%28Programmierung%29) application by definition.
 
@@ -2518,7 +2586,7 @@ The following methods can be used and therefore overwritten:
 OnBarUpdate()
 -------------
 
-**Description**
+### Description
 
 The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnBarClose*](#calculateonbarclose), this will happen upon every incoming tick or when the bar has completed/closed.
 OnBarUpdate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
@@ -2526,21 +2594,21 @@ The editing begins with the oldest bar and goes up to the newest bar within the 
 
 Caution: the numbering/indexing is different from the bar index – see [*Bars*](#bars-candles).
 
-More information can be found here: [*Events*](#events).
+More information can be found here: [*Events*](#_topic_EreignisseEvents).
 
-**Parameter**
-
-none
-
-**Return Value**
+### Parameter
 
 none
 
-**Usage**
+### Return Value
+
+none
+
+### Usage
 
 **protected** override void **OnBarUpdate**()
 
-**Example**
+### Example
 
 **protected** override void **OnBarUpdate**()
 
@@ -2553,28 +2621,28 @@ none
 OnExecution()
 -------------
 
-**Description**
+### Description
 
 The OnExecution() method is called up when an order is executed (filled).
 The status of a strategy can be changed by a strategy-managed order. This status change can be initiated by the changing of a volume, price or the status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for all events.
 
 OnExecution() will always be executed AFTER [*OnOrderUpdate()*](#onorderupdate).
 
-More information can be found here: [*Events*](#events)
+More information can be found here: [*Events*](#_topic_EreignisseEvents)
 
-**Parameter**
+### Parameter
 
 An execution object of the type IExecution
 
-**Return Value**
+### Return Value
 
 none
 
-**Usage**
+### Usage
 
 **protected** override void **OnExecution**(IExecution execution)
 
-**Example**
+### Example
 
 **private** IOrder entryOrder = **null**;
 
@@ -2609,12 +2677,12 @@ entryOrder = **EnterLong**();
 OnMarketData()
 --------------
 
-**Description**
+### Description
 
 The OnMarketData() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
 In a multibar indicator, the BarsInProgress method identifies the data series that was used for an information request for OnMarketData().
 OnMarketData() will not be called up for historical data.
-More information can be found here: [*Events*](#events).
+More information can be found here: [*Events*](#_topic_EreignisseEvents).
 
 **Notes regarding data from Yahoo (YFeed)**
 
@@ -2624,19 +2692,19 @@ The „MarketDataType“ field always equals the „last" value
 
 The fields "Volume", "BidSize" and "AskSize" are always 0.
 
-**Usage**
+### Usage
 
 protected **override void** OnMarketData**(MarketDataEventArgs e)**
 
-**Return Value**
+### Return Value
 
 none
 
-**Parameter**
+### Parameter
 
 [*MarketDataEventArgs*](#marketdataeventargs) e
 
-**Example**
+### Example
 
 **protected** override void **OnMarketData**(MarketDataEventArgs e)
 
@@ -2667,27 +2735,27 @@ none
 OnMarketDepth()
 ---------------
 
-**Description**
+### Description
 
 The OnMarketDepth() method is called up whenever there is a change in the level 2 data (market depth).
 In a multibar indicator, the BarsInProgress method identifies the data series for which the OnMarketDepth() method is called up.
 OnMarketDepth is not called up for historical data.
 
-More information can be found here: [*Events*](#events).
+More information can be found here: [*Events*](#_topic_EreignisseEvents).
 
-**Usage**
+### Usage
 
 protected **override void** OnMarketDepth**(MarketDepthEventArgs e)**
 
-**Return Value**
+### Return Value
 
 none
 
-**Parameter**
+### Parameter
 
 [*MarketDepthEventArgs*](#marketdeptheventargs) e
 
-**Example**
+### Example
 
 **protected** override void **OnMarketDepth**(MarketDepthEventArgs e)
 
@@ -2704,7 +2772,7 @@ none
 OnOrderUpdate()
 ---------------
 
-**Description**
+### Description
 
 The OnOrderUpdate() method is called up whenever the status is changed by a strategy-managed order.
 A status change can therefore occur due to a change in the volume, price or status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for the relevant events.
@@ -2712,21 +2780,21 @@ A status change can therefore occur due to a change in the volume, price or stat
 **Important note:
 **If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.
 
-More information can be found here: [*Events*](#events).
+More information can be found here: [*Events*](#_topic_EreignisseEvents).
 
-**Parameter**
+### Parameter
 
 An order object of the type IOrder
 
-**Return Value**
+### Return Value
 
 None
 
-**Usage**
+### Usage
 
 **protected** override void **OnOrderUpdate**(IOrder order)
 
-**Example**
+### Example
 
 **private** IOrder entryOrder = **null**;
 
@@ -2767,28 +2835,28 @@ entryOrder = **null**;
 OnStartUp()
 -----------
 
-**Description**
+### Description
 
 The OnStartUp() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
 OnStartUp() is only called up once at the beginning of the script, after [*Initialize()*](#initialize) and before [*OnBarUpdate()*](#onbarupdate) are called up.
 
 See [*OnTermination()*](#ontermination).
 
-More information can be found here: [*Events*](#events) .
+More information can be found here: [*Events*](#_topic_EreignisseEvents) .
 
-**Parameter**
-
-none
-
-**Return Value**
+### Parameter
 
 none
 
-**Usage**
+### Return Value
+
+none
+
+### Usage
 
 **protected** override void **OnStartUp**()
 
-**Example**
+### Example
 
 **private** myForm Window;
 
@@ -2811,32 +2879,32 @@ Window.**Show**();
 OnTermination()
 ---------------
 
-**Description**
+### Description
 
 The OnTermination() method can also be overridden in order to once again free up all the resources used in the script.
 
 See [*Initialize()*](#initialize) and [*OnStartUp()*](#onstartup).
 
-More information can be found here: [*Events*](#events).
+More information can be found here: [*Events*](#_topic_EreignisseEvents).
 
-**Parameter**
-
-none
-
-**Return Value**
+### Parameter
 
 none
 
-**Usage**
+### Return Value
+
+none
+
+### Usage
 
 **protected** override void **OnTermination**()
 
-**More Information**
+### More Information
 
-Caution:
-Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.
+**Caution:
+Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.**
 
-**Example**
+### Example
 
 **protected** override void **OnTermination**()
 
@@ -2861,7 +2929,7 @@ Window = **null**;
 Account
 -------
 
-**Description**
+### Description
 
 Account is an object containing information about the account with which the current strategy is working.
 
@@ -2906,7 +2974,7 @@ The individual properties are:
 -   **Account.RealizedProfitLoss
     **Realized profits and losses (double)
 
-**Example**
+### Example
 
 **Print**("AccountConnection " + Account.AccountConnection);
 
@@ -2937,11 +3005,11 @@ The individual properties are:
 BarsSinceEntry()
 ----------------
 
-**Description**
+### Description
 
 The property “BarsSinceEntry” returns the number of bars that have occurred since the last entry into the market.
 
-**Usage**
+### Usage
 
 **BarsSinceEntry**()
 
@@ -2951,7 +3019,7 @@ For multi-bar strategies
 
 **BarsSinceEntry**(**int** barsInProgressIndex, string signalName, **int** entriesAgo)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
@@ -2959,21 +3027,21 @@ For multi-bar strategies
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                  
                                                                                                                                   
                        Index for the data series for which the entry order was executed.                                          
-                       See *[BarsInProgress](#_topic_BarsInProgress).*                                                            |
+                       See *[BarsInProgress](#barsinprogress).*                                                                   |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
-**Example**
+### Example
 
 **Print**("The last entry was " + **BarsSinceEntry**() + " bars ago.");
 
 BarsSinceExit()
 ---------------
 
-**Description**
+### Description
 
 The property “BarsSinceExit” outputs the number of bars that have occurred since the last exit from the market.
 
-**Usage**
+### Usage
 
 **BarsSinceExit**()
 
@@ -2983,7 +3051,7 @@ For multi-bar strategies
 
 **BarsSinceExit**(**int** barsInProgressIndex, string signalName, **int** exitsAgo)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -2991,31 +3059,31 @@ For multi-bar strategies
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                  
                                                                                                                                                   
                        Index of the data series for which the exit order has been executed.                                                       
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                            |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                   |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
-**Example**
+### Example
 
 **Print**("The last exit was " + **BarsSinceExit**() + " bars ago.");
 
 CancelOrder()
 -------------
 
-**Description**
+### Description
 
 Cancel order deletes an order.
 
 A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*](#onorderupdate).
 
-**Usage**
+### Usage
 
 **CancelOrder**(IOrder order)
 
-**Parameter**
+### Parameter
 
 An order object of the type “IOrder”
 
-**Example**
+### Example
 
 **private** IOrder myEntryOrder = **null**;
 
@@ -3050,15 +3118,15 @@ CurrentBar &gt; barNumberOfOrder + 3)
 ChangeOrder()
 -------------
 
-**Description**
+### Description
 
 Change order, as the name suggests, changes an order.
 
-**Usage**
+### Usage
 
 **ChangeOrder**(IOrder iOrder, **int** quantity, **double** limitPrice, **double** stopPrice)
 
-**Parameter**
+### Parameter
 
 |            |                                          |
 |------------|------------------------------------------|
@@ -3067,7 +3135,7 @@ Change order, as the name suggests, changes an order.
 | limitPrice | Limit price. Set this to 0 if not needed |
 | stopPrice  | Stop price. Set this to 0 if not needed  |
 
-**Example**
+### Example
 
 **private** IOrder stopOrder = **null**;
 
@@ -3089,21 +3157,21 @@ DataSeriesConfigurable
 DefaultQuantity
 ---------------
 
-**Description**
+### Description
 
 Change order changes an order.
 
 Default quantity defines the amount to be used in a strategy. Default quantity is set within the [*Initialize()*](#initialize) method.
 
-**Usage**
+### Usage
 
 **ChangeOrder**(IOrder iOrder, **int** quantity, **double** limitPrice, **double** stopPrice)
 
-**Parameter**
+### Parameter
 
 an int value containing the amount (stocks, contracts etc.)
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -3116,7 +3184,7 @@ DefaultQuantity = 100;
 EnterLong()
 -----------
 
-**Description**
+### Description
 
 Enter long creates a long position (buy).
 
@@ -3124,7 +3192,7 @@ If a signature not containing an amount is used, the amount is set by the [*Defa
 
 See [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop), [*EnterLongStopLimit()*](#enterlongstoplimit).
 
-**Usage**
+### Usage
 
 **EnterLong**()
 
@@ -3138,20 +3206,20 @@ For multi-bar strategies
 
 **EnterLong**(**int** barsInProgressIndex, **int** quantity, string signalName)
 
-**Parameter**
+### Parameter
 
-|                     |                                                                                                                       |
-|---------------------|-----------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                   |
-| quantity            | The amount of stocks/contracts                                                                                        |
-| barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                              
-                       Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#_topic_BarsInProgress).  |
+|                     |                                                                                                                |
+|---------------------|----------------------------------------------------------------------------------------------------------------|
+| signalName          | An unambiguous name                                                                                            |
+| quantity            | The amount of stocks/contracts                                                                                 |
+| barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                       
+                       Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter a long position if the last entry is 10 bars in the past
 
@@ -3164,7 +3232,7 @@ an order object of the type “IOrder”
 EnterLongLimit()
 ----------------
 
-**Description**
+### Description
 
 Enter long limit creates a limit order for entering a long position (buy).
 
@@ -3172,7 +3240,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*EnterLong()*](#enterlong), [*EnterLongStop()*](#enterlongstop), [*EnterLongStopLimit()*](#enterlongstoplimit).
 
-**Usage**
+### Usage
 
 **EnterLongLimit**(**double** limitPrice)
 
@@ -3186,7 +3254,7 @@ For Multibar-Strategies
 
 **EnterLongLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3194,15 +3262,15 @@ For Multibar-Strategies
 | quantity            | Amount of stocks/contracts/etc.                                                                                                                                                                  |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                                                         
                        Index of the data series for which the entry order is to be executed.                                                                                                                             
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                                                                   |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                          |
 | limitPrice          | A double value for the limit price                                                                                                                                                               |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // A long position is placed if the last entry was 10 bars ago and the two SMAs have crossed each other
 
@@ -3213,7 +3281,7 @@ an order object of the type “IOrder”
 EnterLongStop()
 ---------------
 
-**Description**
+### Description
 
 Enter long stop creates a limit order for entering a long position (buy).
 
@@ -3221,7 +3289,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStopLimit()*](#enterlongstoplimit).
 
-**Usage**
+### Usage
 
 **EnterLongStop**(**double** stopPrice)
 
@@ -3235,7 +3303,7 @@ For multi-bar strategies
 
 **EnterLongStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                                                                                   |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3243,15 +3311,15 @@ For multi-bar strategies
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                                                |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies                                                                                                                                                                           
                        Index of the data series for which an entry order is to be executed.                                                                                                                                               
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                                                                                    |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                                                                                 |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 **private** IOrder myEntryOrder = **null**;
 
@@ -3264,7 +3332,7 @@ myEntryOrder = **EnterLongStop**(High\[0\], "Stop Long");
 EnterLongStopLimit()
 --------------------
 
-**Description**
+### Description
 
 Enter long stop limit creates a buy stop limit order for entering a long position.
 
@@ -3272,7 +3340,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop).
 
-**Usage**
+### Usage
 
 **EnterLongStopLimit**(**double** limitPrice, **double** stopPrice)
 
@@ -3286,7 +3354,9 @@ For multi-bar strategies
 
 **EnterLongStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName)
 
-**Parameter**
+### 
+
+### Parameter
 
 |                     |                                                                                                                                                                                             |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3294,16 +3364,16 @@ For multi-bar strategies
 | quantity            | Amount of stocks or contracts to be ordered                                                                                                                                                 |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                                                    
                        Index of the data series for which the entry order is to be executed.                                                                                                                        
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                                                              |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                     |
 | stopPrice           | A double value for the stop price                                                                                                                                                           |
 | limitPrice          | A double value for the limit price                                                                                                                                                          |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 **private** IOrder myEntryOrder = **null**;
 
@@ -3317,7 +3387,7 @@ myEntryOrder = **EnterLongStopLimit**(High\[0\]+2\*TickSize, High\[0\], "Stop Lo
 EnterShort()
 ------------
 
-**Description**
+### Description
 
 Enter short creates a market order for entering a short position (naked sell).
 
@@ -3325,7 +3395,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortstop), [*EnterShortStopLimit()*](#entershortstoplimit).
 
-**Usage**
+### Usage
 
 **EnterShort**()
 
@@ -3335,11 +3405,11 @@ See [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortsto
 
 **EnterShort**(**int** quantity, string signalName)
 
-For multi-bar strategies
+**For multi-bar strategies**
 
 **EnterShort**(**int** barsInProgressIndex, **int** quantity, string signalName)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
@@ -3347,13 +3417,13 @@ For multi-bar strategies
 | quantity            | Amount of stocks/contracts etc.                                      |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies                              
                        Index of the data series for which the entry order is to be executed  
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                       |
+                       See [*BarsInProgress*](#barsinprogress).                              |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // A short position will be placed if the last entry is 10 bars in the past and two SMAs have crossed each other
 
@@ -3364,7 +3434,7 @@ an order object of the type “IOrder”
 EnterShortLimit()
 -----------------
 
-**Description**
+### Description
 
 Enter short limit creates a limit order for entering a short position (naked short).
 
@@ -3372,7 +3442,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*EnterShort()*](#entershort), [*EnterShortStop()*](#entershortstop), [*EnterShortStopLimit()*](#entershortstoplimit).
 
-**Usage**
+### Usage
 
 **EnterShortLimit**(**double** limitPrice)
 
@@ -3386,7 +3456,7 @@ For Multibar-Strategies
 
 **EnterShortLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                                                            |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3394,15 +3464,15 @@ For Multibar-Strategies
 | quantity            | Amount to be ordered                                                                                                                                                                       |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                                                   
                        Index of the data series for which the entry order is to be executed.                                                                                                                       
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                                                             |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                    |
 | limitPrice          | A double value for the limit price                                                                                                                                                         |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter a short position if the last entry is 10 bars in the past and two SMAs have crossed each other
 
@@ -3413,13 +3483,13 @@ an order object of the type “IOrder”
 EnterShortStop()
 ----------------
 
-**Description**
+### Description
 
 Enter short stop creates a limit order for entering a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*EnterShortStopLimit()*](#entershortstoplimit).
 
-**Usage**
+### Usage
 
 **EnterShortStop**(**double** stopPrice)
 
@@ -3433,7 +3503,7 @@ For multi-bar strategies
 
 **EnterShortStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                               |
 |---------------------|---------------------------------------------------------------------------------------------------------------|
@@ -3441,15 +3511,15 @@ For multi-bar strategies
 | quantity            | Amount to be ordered                                                                                          |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                      
                        Index of the data series for which the entry order is to be executed.                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                |
+                       See [*BarsInProgress*](#barsinprogress).                                                                       |
 | stopPrice           | A double value for the stop price                                                                             |
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 **private** IOrder myEntryOrder = **null**;
 
@@ -3462,7 +3532,7 @@ myEntryOrder = **EnterShortStop**(Low\[0\], "stop short");
 EnterShortStopLimit()
 ---------------------
 
-**Description**
+### Description
 
 Enter short stop limit creates a sell stop limit order for entering a short position.
 
@@ -3470,7 +3540,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortstop).
 
-**Usage**
+### Usage
 
 **EnterShortStopLimit**(**double** limitPrice, **double** stopPrice)
 
@@ -3484,7 +3554,9 @@ For multi-bar strategies
 
 **EnterShortStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName)
 
-**Parameter**
+### 
+
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3492,16 +3564,16 @@ For multi-bar strategies
 | quantity            | Amount to be ordered                                                                                                                                         |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                     
                        Index of the data series for which an entry order is to be placed.                                                                                            
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 An order object of the type “IOrder”
 
-**Example**
+### Example
 
 **private** IOrder myEntryOrder = **null**;
 
@@ -3514,7 +3586,7 @@ myEntryOrder = **EnterShortStopLimit**(Low\[0\]-2\*TickSize, Low\[0\], "stop sho
 EntriesPerDirection
 -------------------
 
-**Description**
+### Description
 
 Entries per direction defines the maximum number of entries permitted in one direction (long or short).
 
@@ -3522,15 +3594,15 @@ Whether the name of the entry signal is taken into consideration or not is defin
 
 Entries per direction is defined with the [*Initialize()*](#initialize) method.
 
-**Usage**
+### Usage
 
 **EntriesPerDirection**
 
-**Parameter**
+### Parameter
 
 An int value for the maximum entries permitted in one direction.
 
-**Example**
+### Example
 
 // Example 1
 
@@ -3591,7 +3663,7 @@ EntryHandling = EntryHandling.UniqueEntries;
 EntryHandling
 -------------
 
-**Description**
+### Description
 
 Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*](#entriesperdirection)).
 
@@ -3608,11 +3680,11 @@ If entries per direction = 2, then enter long ("SMA crossover") and enter long (
 AgenaTrader continues to generate entry orders until the maximum number of entries (defined in entries per direction) in one direction (long or short) for the differently named entry signals has been reached.
 If entries per direction = 2, then it is possible for two signals for enter long ("SMA crossover") *and* 2 signals for enter long ("range breakout") to be traded.
 
-**Usage**
+### Usage
 
 **EntryHandling**
 
-**Example**
+### Example
 
 See [*EntriesPerDirection*](#entriesperdirection).
 
@@ -3622,7 +3694,7 @@ ExcludeTradeHistoryInBacktest
 ExitLong()
 ----------
 
-**Description**
+### Description
 
 Exit long creates a sell market order for closing a long position (sell).
 
@@ -3630,7 +3702,7 @@ If a signature not containing a set amount is used, the amount is set by [*Defau
 
 See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitlongstoplimit).
 
-**Usage**
+### Usage
 
 **ExitLong**()
 
@@ -3646,7 +3718,7 @@ For multi-bar strategies
 
 **ExitLong**(**int** barsInProgressIndex, **int** quantity, string signalName, string fromEntry signal)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
@@ -3654,14 +3726,14 @@ For multi-bar strategies
 | quantity            | The quantity to be sold                                              |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                             
                        Index of the data series for which the exit order is to be executed.  
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                       |
+                       See [*BarsInProgress*](#barsinprogress).                              |
 | fromEntry signal    | The name of the attached entry signal                                |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross each other
 
@@ -3678,14 +3750,14 @@ an order object of the type “IOrder”
 ExitLongLimit()
 ---------------
 
-**Description**
+### Description
 
 Exit long limit creates a sell limit order for closing a long position (i.e. for selling).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitlongstoplimit).
 
-**Usage**
+### Usage
 
 **ExitLongLimit**(**double** limitPrice)
 
@@ -3701,7 +3773,7 @@ For multi-bar strategies
 
 **ExitLongLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName, string fromEntry signal)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3710,15 +3782,15 @@ For multi-bar strategies
 | quantity            | Order quantity to be sold                                                                                                                                    |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                     
                        Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross each other
 
@@ -3735,14 +3807,14 @@ an order object of the type “IOrder”
 ExitLongStop()
 --------------
 
-**Description**
+### Description
 
 Exit long stop creates a sell stop order for closing a long position (short).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitlongstoplimit).
 
-**Usage**
+### Usage
 
 **ExitLongStop**(**int** quantity, **double** stopPrice)
 
@@ -3756,7 +3828,7 @@ For multi-bar strategies
 
 **ExitLongStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName, string fromEntry signal)ExitLongStop
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3765,15 +3837,15 @@ For multi-bar strategies
 | quantity            | The quantity to be sold                                                                                                                                      |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                     
                        Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross each other
 
@@ -3790,7 +3862,7 @@ an order object of the type “IOrder”
 ExitLongStopLimit()
 -------------------
 
-**Description**
+### Description
 
 Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).
 
@@ -3798,7 +3870,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitlongstoplimit).
 
-**Usage**
+### Usage
 
 **ExitLongStopLimit**(**double** limitPrice, **double** stopPrice)
 
@@ -3814,7 +3886,7 @@ For Multibar-Strategies
 
 **ExitLongStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3823,16 +3895,16 @@ For Multibar-Strategies
 | quantity            | The quantity to be sold                                                                                                                                      |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                     
                        Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross each other
 
@@ -3855,14 +3927,14 @@ ExitOnCloseSeconds
 ExitShort()
 -----------
 
-**Description**
+### Description
 
 Exit short creates a buy-to-cover market order for closing a short position (buy).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*ExitShort()*](#exitshort), [*ExitShortLimit()*](#exitshortlimit), [*ExitShortStop()*](#exitshortstop), [*ExitShortStopLimit()*](#exitshortstoplimit).
 
-**Usage**
+### Usage
 
 **ExitShort**()
 
@@ -3878,7 +3950,7 @@ For multi-bar strategies
 
 **ExitShort**(**int** barsInProgressIndex, **int** quantity, string signalName, string fromEntry signal)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
@@ -3886,14 +3958,14 @@ For multi-bar strategies
 | Quantity            | Order quantity to be bought                                          |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                             
                        Index of the data series for which the exit order is to be executed.  
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                       |
+                       See [*BarsInProgress*](#barsinprogress).                              |
 | fromEntry signal    | The name of the associated entry signal                              |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross each other
 
@@ -3910,7 +3982,7 @@ an order object of the type “IOrder”
 ExitShortLimit()
 ----------------
 
-**Description**
+### Description
 
 Exit short limit creates a buy-to-cover limit order for closing a short position (buy).
 
@@ -3918,7 +3990,7 @@ If a signature not containing a set amount is used, the amount is set by the [*D
 
 See [*ExitShort()*](#exitshort), [*ExitShortLimit()*](#exitshortlimit), [*ExitShortStop()*](#exitshortstop), [*ExitShortStopLimit()*](#exitshortstoplimit).
 
-**Usage**
+### Usage
 
 **ExitShortLimit**(**double** limitPrice)
 
@@ -3934,7 +4006,7 @@ For multi-bar strategies
 
 **ExitShortLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName, string fromEntry signal)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3943,15 +4015,15 @@ For multi-bar strategies
 | quantity            | Order quantity to be bought                                                                                                                                  |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies                                                                                                                      
                        Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross
 
@@ -3968,14 +4040,14 @@ an order object of the type “IOrder”
 ExitShortStop()
 ---------------
 
-**Description**
+### Description
 
 Exit short stop creates a buy-to-cover stop order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitShort()*](#exitshort), [*ExitShortLimit()*](#exitshortlimit), [*ExitShortStop()*](#exitshortstop), [*ExitShortStopLimit()*](#exitshortstoplimit).
 
-**Usage**
+### Usage
 
 **ExitShortStop**(**int** quantity, **double** stopPrice)
 
@@ -3989,7 +4061,7 @@ For multi-bar strategies
 
 **ExitShortStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName, string fromEntry signal)ExitLongStop
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3998,15 +4070,15 @@ For multi-bar strategies
 | quantity            | Order quantity to be bought                                                                                                                                  |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                     
                        Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs have crossed
 
@@ -4023,14 +4095,14 @@ an order object of the type “IOrder”
 ExitShortStopLimit()
 --------------------
 
-**Description**
+### Description
 
 Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitlongstoplimit).
 
-**Usage**
+### Usage
 
 **ExitShortStopLimit**(**double** limitPrice, **double** stopPrice)
 
@@ -4046,7 +4118,7 @@ For multi-bar strategies
 
 **ExitShortStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4055,16 +4127,16 @@ For multi-bar strategies
 | quantity            | Order quantity to be bought                                                                                                                                  |
 | barsInProgressIndex | For [*Multibar*](#multibars) strategies.                                                                                                                     
                        Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*](#_topic_BarsInProgress).                                                                                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                      |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 // Enter if two SMAs cross each other
 
@@ -4081,17 +4153,17 @@ an order object of the type “IOrder”
 GetAccountValue()
 -----------------
 
-**Description**
+### Description
 
 Get account value outputs information regarding the account for which the current strategy is being carried out.
 
 See [*GetProfitLoss()*](#getprofitloss).
 
-**Usage**
+### Usage
 
 **GetAccountValue**(AccountItem accountItem)
 
-**Parameter**
+### Parameter
 
 Possible values for account item are:
 
@@ -4101,13 +4173,13 @@ AccountItem.CashValue
 
 AccountItem.RealizedProfitLoss
 
-**Return Value**
+### Return Value
 
 a double value for the account item
 
 for historical bars, a zero (0) is returned
 
-**Example**
+### Example
 
 **Print**("The current account cash value is " + **GetAccountValue**(AccountItem.CashValue));
 
@@ -4118,17 +4190,17 @@ for historical bars, a zero (0) is returned
 GetProfitLoss()
 ---------------
 
-**Description**
+### Description
 
 Get profit loss outputs the currently unrealized profit or loss for a running position.
 
 See [*GetAccountValue()*](#getaccountvalue).
 
-**Usage**
+### Usage
 
 **GetProfitLoss**(**int** pLType);
 
-**Parameter**
+### Parameter
 
 Potential values for the P/L type are:
 
@@ -4140,11 +4212,11 @@ Potential values for the P/L type are:
 
 3 – P/L in ticks
 
-**Return Value**
+### Return Value
 
 a double value for the unrealized profit or loss
 
-**Example**
+### Example
 
 **Print**("The current risk for the strategy " + **this**.Name + " is " + **GetProfitLoss**(1) + " " + Instrument.Currency);
 
@@ -4158,13 +4230,13 @@ See [*Position.MarketPosition*](#position).
 Performance
 -----------
 
-**Description**
+### Description
 
 Performance is an object containing information regarding all trades that have been generated by a strategy.
 
 The trades are sorted into multiple lists. With the help of these lists it is easier to create a performance evaluation.
 
-See *Performance Characteristics*.
+See Performance Characteristics.
 
 The individual lists are:
 
@@ -4183,7 +4255,7 @@ The individual lists are:
 -   **Performance.LosingTrades
     **A [*Trade*](#trade) collection object containing all loss trades generated by a strategy
 
-**Example**
+### Example
 
 // When exiting a strategy, create a performance evaluation
 
@@ -4212,7 +4284,7 @@ The individual lists are:
 Position
 --------
 
-**Description**
+### Description
 
 Position is an object containing information regarding the position currently being managed by a strategy.
 
@@ -4251,7 +4323,7 @@ The individual properties are:
 -   **Position.Quantity
     **Amount of stocks, contracts, CFDs etc. within a position.
 
-**Example**
+### Example
 
 **if** (Position.MarketPosition != PositionType.Flat)
 
@@ -4280,19 +4352,21 @@ The individual properties are:
 Quantity
 --------
 
-See [*Position.Quantity*](#position)<span id="_topic_SetProfitTarget" class="anchor"></span>
+See [*Position.Quantity*](#position).
+
+<span id="_topic_SetProfitTarget" class="anchor"></span>
 
 SetProfitTarget()
 -----------------
 
-**Description**
+### Description
 
 Set profit target immediately creates a “take profit” order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.
 
 See [*SetStopLoss()*](#setstoploss), [*SetTrailStop()*](#settrailstop).
 
-**Usage**
+### Usage
 
 **SetProfitTarget**(**double** currency)
 
@@ -4300,7 +4374,7 @@ See [*SetStopLoss()*](#setstoploss), [*SetTrailStop()*](#settrailstop).
 
 **SetProfitTarget**(string fromEntry signal, CalculationMode mode, **double value**)
 
-**Parameter**
+### Parameter
 
 |                  |                                                                                                                                                                   |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4313,7 +4387,7 @@ See [*SetStopLoss()*](#setstoploss), [*SetTrailStop()*](#settrailstop).
 | value            | The distance between entry price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks. |
 | fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                 |
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -4328,7 +4402,7 @@ See [*SetStopLoss()*](#setstoploss), [*SetTrailStop()*](#settrailstop).
 SetStopLoss()
 -------------
 
-**Description**
+### Description
 
 Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.
 
@@ -4336,7 +4410,7 @@ If the stop loss is static, then SetStopLoss() can be defined with the Initializ
 
 See [*SetProfitTarget()*](#_topic_SetProfitTarget), [*SetTrailStop()*](#settrailstop).
 
-**Usage**
+### Usage
 
 **SetStopLoss**(**double** currency)
 
@@ -4346,7 +4420,7 @@ See [*SetProfitTarget()*](#_topic_SetProfitTarget), [*SetTrailStop()*](#settrail
 
 **SetStopLoss**(string fromEntry signal, CalculationMode mode, **double value**, **bool** simulated)
 
-**Parameter**
+### Parameter
 
 |                  |                                                                                                                                                                                                             |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4360,7 +4434,7 @@ See [*SetProfitTarget()*](#_topic_SetProfitTarget), [*SetTrailStop()*](#settrail
 | value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -4375,7 +4449,7 @@ See [*SetProfitTarget()*](#_topic_SetProfitTarget), [*SetTrailStop()*](#settrail
 SetTrailStop()
 --------------
 
-**Description**
+### Description
 
 Set trail stop creates a trail stop order after an entry order is generated. Its purpose is to protect you from losses, and after reaching break-even, to protect your gains.
 
@@ -4395,21 +4469,21 @@ In a short position, this behavior starts with the most recent low.
 
 **Tips:**
 
--   It is not possible to use SetStopLoss and SetTrailStop for the same position at the same time within one strategy. The SetStopLoss() method will always have precedence over the other methods.
+It is not possible to use SetStopLoss and SetTrailStop for the same position at the same time within one strategy. The SetStopLoss() method will always have precedence over the other methods.
 
--   However, it is possible to use both variants parallel to each other in the same strategy if they are referencing different entry signals.
+However, it is possible to use both variants parallel to each other in the same strategy if they are referencing different entry signals.
 
--   Partial executions of a single order will cause a separate trading stop for each partial position.
+Partial executions of a single order will cause a separate trading stop for each partial position.
 
--   If a SetProfitTarget() is used in addition to a SetTrailStop(), then both orders will be automatically linked to form an OCO order.
+If a SetProfitTarget() is used in addition to a SetTrailStop(), then both orders will be automatically linked to form an OCO order.
 
--   It is always a stop market order that is generated, and not a stop limit order.
+It is always a stop market order that is generated, and not a stop limit order.
 
--   If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.
+If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.
 
 See [*SetStopLoss()*](#setstoploss), [*SetProfitTarget()*](#_topic_SetProfitTarget).
 
-**Usage**
+### Usage
 
 **SetTrailStop**(**double** currency)
 
@@ -4419,7 +4493,7 @@ See [*SetStopLoss()*](#setstoploss), [*SetProfitTarget()*](#_topic_SetProfitTarg
 
 **SetTrailStop**(string fromEntry signal, CalculationMode mode, **double value**, **bool** simulated)
 
-**Parameter**
+### Parameter
 
 |                  |                                                                                                                                                                                                             |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4432,7 +4506,7 @@ See [*SetStopLoss()*](#setstoploss), [*SetProfitTarget()*](#_topic_SetProfitTarg
 | value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -4447,17 +4521,17 @@ See [*SetStopLoss()*](#setstoploss), [*SetProfitTarget()*](#_topic_SetProfitTarg
 SubmitOrder()
 -------------
 
-**Description**
+### Description
 
 Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
 
 See [*OnOrderUpdate()*](#onorderupdate), [*OnExecution()*](#onexecution).
 
-**Usage**
+### Usage
 
 **SubmitOrder**(**int** barsInProgressIndex, OrderAction orderAction, OrderType orderType, **int** quantity, **double** limitPrice, **double** stopPrice, string ocoId, string signalName)
 
-**Parameter**
+### Parameter
 
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
@@ -4466,37 +4540,37 @@ See [*OnOrderUpdate()*](#onorderupdate), [*OnExecution()*](#onexecution).
                        See BarsInProgress.                                                 |
 | orderAction         | Possible values are:                                               
                                                                                            
-                       -   OrderAction.Buy                                                 
-                           Buy order for a long entry                                      
+                       OrderAction.Buy                                                     
+                       Buy order for a long entry                                          
                                                                                            
-                       -   OrderAction.Sell                                                
-                           Sell order for closing a long position                          
+                       OrderAction.Sell                                                    
+                       Sell order for closing a long position                              
                                                                                            
-                       -   OrderAction.SellShort                                           
-                           Sell order for a short entry                                    
+                       OrderAction.SellShort                                               
+                       Sell order for a short entry                                        
                                                                                            
-                       -   OrderAction.BuyToCover                                          
-                           Buy order for closing a short position                          |
+                       OrderAction.BuyToCover                                              
+                       Buy order for closing a short position                              |
 | orderType           | Possible values:                                                   
                                                                                            
-                       -   OrderType.Limit                                                 
+                       OrderType.Limit                                                     
                                                                                            
-                       -   OrderType.Market                                                
+                       OrderType.Market                                                    
                                                                                            
-                       -   OrderType.Stop                                                  
+                       OrderType.Stop                                                      
                                                                                            
-                       -   OrderType.StopLimit                                             |
+                       OrderType.StopLimit                                                 |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
 | ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
 | signalName          | An unambiguous signal name (string)                                |
 
-**Return Value**
+### Return Value
 
 an order object of the type “IOrder”
 
-**Example**
+### Example
 
 **private** IOrder entryOrder = **null**;
 
@@ -4515,7 +4589,7 @@ entryOrder = **SubmitOrder**(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", 
 TimeInForce
 -----------
 
-**Description**
+### Description
 
 The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.
 
@@ -4527,11 +4601,11 @@ TimeInForce.GTC (GTC = good till canceled)
 
 **Default:** TimeInForce.GTC
 
-**Usage**
+### Usage
 
 **TimeInForce**
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -4544,45 +4618,45 @@ TimeInForce = TimeInForce.Day;
 TraceOrders
 -----------
 
-**Description**
+### Description
 
 The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
 Trace orders can be specified with the [*Initialize()*](#initialize) method.
 
 When TraceOrders is activated, each order will display the following values in the output window:
 
--   Instrument
+Instrument
 
--   Time frame
+Time frame
 
--   Action
+Action
 
--   Type
+Type
 
--   Limit price
+Limit price
 
--   Stop price
+Stop price
 
--   Quantity
+Quantity
 
--   Name
+Name
 
 This information is useful when creating and debugging strategies.
 
-**Usage**
+### Usage
 
 TraceOrders
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 **true** Tracing is currently switched on
 **false** Tracing is switched off
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -4597,7 +4671,7 @@ TraceOrders = **true**;
 Trade
 -----
 
-**Description**
+### Description
 
 Trade is an object containing information about trades that have been executed by a strategy or are currently running.
 
@@ -4665,7 +4739,7 @@ The individual properties are:
 -   **Trade.Url
     **URL for the snapshot of the chart at the moment of creation
 
-**Example**
+### Example
 
 **protected** override void **OnTermination**()
 
@@ -4725,7 +4799,8 @@ The individual properties are:
 
 }
 
-<span id="_topic_Unmanaged" class="anchor"></span>**Unmanaged**
+Unmanaged
+---------
 
 Backtesting and Optimization
 ============================
@@ -4809,23 +4884,23 @@ Keywords
 Add()
 -----
 
-**Description**
+### Description
 
 The add method allows you to add plots or line objects to the chart. When a new plot object is added using Add(), this automatically creates a data series of the type DataSeries, which is attached to this object. The value collection allows you to reference and access this data series.
 Add() can be used with the Initialize() and the OnBarUpdate() methods.
 
-**Parameter**
+### Parameter
 
 plot – a [*Plot*](#plot) object
 line – a [*Line*](#line) object
 
-**Usage**
+### Usage
 
 **Add**(Plot plot)
 
 **Add**(Line line)
 
-**Example**
+### Example
 
 \#**region** Usings
 
@@ -4930,11 +5005,11 @@ get { return Values\[1\]; }
 Alert()
 -------
 
-**Description**
+### Description
 
 The alert method creates an acoustic and/or visual alarm.
 
-**Usage**
+### Usage
 
 **Alert**(string message, **bool** showMessageBox, string soundLocation);
 
@@ -4942,11 +5017,13 @@ Due to compatability reasons, an old signature is still used here. When using th
 
 **Alert**(string id, AlertPriority priority, string message, string soundLocation, **int** rearmSeconds, Color backColor, Color forColor);
 
-**Return Value**
+### 
+
+### Return Value
 
 None
 
-**Parameter**
+### Parameter
 
 |                |                                                                                                                       |
 |----------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -4954,7 +5031,7 @@ None
 | soundLocation  | Name of a sound file in the \*.wav format. If no path is specified, then “My Documents\\AgenaTrader\\Sounds\\ is used |
 | showMessageBox | If set to “true”, a message box will be displayed in addition to the sound                                            |
 
-**Example**
+### Example
 
 // Message will be outputted if the SMA(20) crosses below the SMA(50)
 
@@ -4973,7 +5050,7 @@ string nameOfSoundFile = "MyAlertSoundFile.wav";
 AllowRemovalOfDrawObjects
 -------------------------
 
-**Description**
+### Description
 
 “AllowRemovalOfDrawObjects” is a property of indicators that can be set under [*Initialize()*](#initialize).
 
@@ -4987,11 +5064,11 @@ Drawing objects that have been created by a strategy or indicator CANNOT be manu
 
 This property can be queried and will return “true” or “false”.
 
-**Usage**
+### Usage
 
 AllowRemovalOfDrawObjects
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -5015,21 +5092,22 @@ Information regarding the usage of attributes can be found here:
 
 The most commonly used attributes in AgenaScript are:
 
--   [*Browsable*](#_topic_Browsable)
+-   [*Browsable*](#browsable)
 
--   [*Category*](#_topic_Category)
+-   [*Category*](#category)
 
--   [*ConditionalValue*](#_topic_ConditionalValue)
+-   [*ConditionalValue*](#conditionalvalue)
 
--   [*Description*](#_topic_Description)
+-   [*Description*](#description-105)
 
--   [*DisplayName*](#_topic_DisplayName)
+-   [*DisplayName*](#displayname)
 
--   [*TimeFrameRequirements*](#_topic_TimeFrameRequirements)
+-   [*TimeFrameRequirements*](#timeframerequirements)
 
--   [*XmlIgnore*](#_topic_XmlIgnore)
+-   [*XmlIgnore*](#xmlignore)
 
-<span id="_topic_Browsable" class="anchor"></span>**Browsable**
+Browsable
+---------
 
 Browsable is an *[Attribut](#attribute)e* within AgenaScript.
 
@@ -5073,7 +5151,8 @@ get { return Values\[0\]; }
 
 }
 
-<span id="_topic_Category" class="anchor"></span>**Category**
+Category
+--------
 
 Category is an *[Attribut](#attribute)e* in AgenaScript.
 
@@ -5098,7 +5177,8 @@ set { \_period = value; }
 
 <img src="./media/image11.png" width="520" height="565" />
 
-<span id="_topic_ConditionalValue" class="anchor"></span>**ConditionalValue**
+ConditionalValue
+----------------
 
 Conditional value is an *[Attribut](#attribute)e* in AgenaScript.
 
@@ -5128,7 +5208,8 @@ return \_internVariable;
 
 }
 
-<span id="_topic_Description" class="anchor"></span>**Description**
+Description
+-----------
 
 Description is an attribute in AgenaScript.
 
@@ -5161,7 +5242,8 @@ set { numStdDev = Math.Max(0, value); }
 
 The descriptions are displayed in the relevant properties dialog.
 
-<span id="_topic_DisplayName" class="anchor"></span>**DisplayName**
+DisplayName
+-----------
 
 Display name is an attribute in AgenaScript.
 
@@ -5183,7 +5265,8 @@ set { numStdDev = Math.Max(0, value); }
 
 }
 
-<span id="_topic_TimeFrameRequirements" class="anchor"></span>**TimeFrameRequirements**
+TimeFrameRequirements
+---------------------
 
 Timeframe requirements is an attribute in AgenaScripts.
 
@@ -5202,7 +5285,8 @@ See [*MultiBars*](#multibars).
 
 If a class uses a different indicator that requires one or more secondary timeframes, then the “TimeFrameRequirements” attribute must be set for the class retrieving the data. An example for this can be seen here: [*GetDayBar*](#_topic_GetDayBar).
 
-<span id="_topic_XmlIgnore" class="anchor"></span>**XMLIgnore**
+XMLIgnore
+---------
 
 XML ignore is an attribute in AgenaScript.
 
@@ -5270,7 +5354,7 @@ set { \_textFont = SerializableFont.FromString(value); }
 AutoScale
 ---------
 
-**Description**
+### Description
 
 Auto scale is a property of indicators that can be set within the Initialize() method.
 
@@ -5284,11 +5368,11 @@ Plots and lines of an indicator or strategy are not accounted for in the scaling
 
 This property can be queried and will return either “true” or “false”.
 
-**Usage**
+### Usage
 
 AutoScale
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -5305,7 +5389,7 @@ AutoScale = **true**;
 BarsRequired
 ------------
 
-**Description**
+### Description
 
 The property “BarsRequired” determines how many historical bars are required for an indicator or a strategy to call up the OnBarUpdate() method for the first time and thus begin the calculations. Bars required should be set within the Initialize() method.
 The setting should be chosen carefully. If you require 100 days for the calculation of a moving average, then you should ensure that at least 100 days of historical data are loaded.
@@ -5313,11 +5397,11 @@ The property can be queried in the script and will return an int value.
 
 When OnBarUpdate is called up for the first time, the CurrentBar property is 0 regardless of the value of BarsRequired.
 
-**Usage**
+### Usage
 
 BarsRequired
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -5334,7 +5418,7 @@ BarsRequired = 50;
 CalculateOnBarClose
 -------------------
 
-**Description**
+### Description
 
 The property “CalculateOnBarClose” determines the events for which AgenaTrader can call up the OnBarUpdate() method.
 
@@ -5349,15 +5433,15 @@ CalculateOnBarClose can be used within Initialize() and also within OnBarUpdate(
 OnBarUpdate is only called up for the closing price of each bar with historical data, even if CalculateOnBarClose is set to false.
 When an indicator is called up by another indicator, the CalculateOnBarClose property of the retrieved indicator overwrites the indicator performing the retrieving.
 
-**Usage**
+### Usage
 
 CalculateOnBarClose
 
-**More Information**
+### More Information
 
 See [*Bars*](#bars-candles).
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -5430,25 +5514,25 @@ LastBarVisible would be Bars.Count -1.
 ClearOutputWindow()
 -------------------
 
-**Description**
+### Description
 
 The ClearOutputWindow() method empties the output window. The method can be used within Initialize() as well as within OnBarUpdate().
 The output window contains all outputs that have been created with the [*Print()*](#print) command.
 Using the output window is a great method for code debugging.
 
-**Usage**
+### Usage
 
 ClearOutputWindow()
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 none
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -5465,24 +5549,24 @@ ClearOutputWindow();
 CrossAbove()
 ------------
 
-**Description**
+### Description
 
 The CrossAbove() method allows you to check whether a crossing of two values has occurred (from bottom to top) within a predefined number of periods. The values can be a market price, an indicator, a data series or a constant value.
 
 See [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
 
-**Usage**
+### Usage
 
 **CrossAbove**(IDataSeries series1, **double value**, **int** lookBackPeriod)
 
 **CrossAbove**(IDataSeries series1, IDataSeries series2, **int** lookBackPeriod)
 
-**Return Value**
+### Return Value
 
 **true** a cross has occurred
 **false** a cross has not occurred
 
-**Parameter**
+### Parameter
 
 |                     |                                                          |
 |---------------------|----------------------------------------------------------|
@@ -5490,7 +5574,7 @@ See [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling
 | series1 und series2 | A data series such as an indicator, close, high, etc.    |
 | value               | A constant value of the type double                      |
 
-**Example**
+### Example
 
 // Puts out a notice if the SMA(20) crosses above the SMA(50)
 
@@ -5513,24 +5597,24 @@ See [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling
 CrossBelow()
 ------------
 
-**Description**
+### Description
 
 Using the CrossBelow() method, you can test whether or not a cross below has occurred within a predefined number of periods. The values can be the market price, an indicator, any data series, or a constant value.
 
 See [*CrossAbove()*](#crossabove), [*Rising()*](#rising), [*Falling()*](#falling).
 
-**Usage**
+### Usage
 
 **CrossBelow**(IDataSeries series1, **double value**, **int** lookBackPeriod)
 
 **CrossBelow**(IDataSeries series1, IDataSeries series2, **int** lookBackPeriod)
 
-**Return Value**
+### Return Value
 
 **true** a cross has occurred
 **false** a cross has not occurred
 
-**Parameter**
+### Parameter
 
 |                     |                                                          |
 |---------------------|----------------------------------------------------------|
@@ -5538,7 +5622,7 @@ See [*CrossAbove()*](#crossabove), [*Rising()*](#rising), [*Falling()*](#falling
 | series1 und series2 | A data series such as an indicator, close, high etc.     |
 | value               | A constant value of the type double                      |
 
-**Example**
+### Example
 
 // Puts out a notice if the SMA(20) crosses below the SMA(50)
 
@@ -5563,30 +5647,30 @@ See [*CrossAbove()*](#crossabove), [*Rising()*](#rising), [*Falling()*](#falling
 CurrentBar
 ----------
 
-**Description**
+### Description
 
 Current bar is a method of indexing bars used in the OnBarUpdate() method. If a chart contains 500 bars and an indicator is to be calculated on the basis of these, then AgenaTrader will begin calculating from the oldest bar. The oldest bar receives the number 0. Once the calculation for this bar has been completed, the OnBarUpdate() method is called up for the next bar, which in turn receives the number 1. This continues until the last bar, which receives a value of 500.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 Current bar is a variable of the type int, which always contains the number of the bar currently being used.
 
-**Usage**
+### Usage
 
 CurrentBar
 
-**More Information**
+### More Information
 
 The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the [*Barindex*](#bars-candles). Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:
 
 CurrentBar numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time\[0\] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time\[5\].
 For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.
 
-**Example**
+### Example
 
 **protected** override void **OnBarUpdate**()
 
@@ -5599,11 +5683,11 @@ For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.
 DatafeedHistoryPeriodicity
 --------------------------
 
-**Description**
+### Description
 
 Datafeed history periodicity is a data type.
 
-**Definition**
+### Definition
 
 public enum DatafeedHistoryPeriodicity
 
@@ -5623,12 +5707,12 @@ public enum DatafeedHistoryPeriodicity
 
 -   DatafeedHistoryPeriodicity.Volume
 
-See [*TimeFrame*](#timeframe), [*TimeFrames*](#_topic_TimeFrames).
+See [*TimeFrame*](#timeframe), [*TimeFrames*](#timeframes).
 
 DataSeries
 ----------
 
-**Description**
+### Description
 
 Data series (data rows) are an easy yet powerful method of saving additional values for individual bars. For example, when calculating the smoothing average, each bar is assigned the value calculated for this bar.
 A data series is an array that contains as many elements as there are bars displayed in a chart. AgenaTrader ensures that data series are correctly synchronized with the bars.
@@ -5637,26 +5721,26 @@ In the table below you will find 4 newly created data series (highlighted). Each
 
 <img src="./media/image12.png" width="318" height="248" />
 
-**Usable Data Series in AgenaTrader**
+### Usable Data Series in AgenaTrader
 
--   [*BoolSeries*](#_topic_BoolSeries)
+[*BoolSeries*](#boolseries)
 
--   [*DataSeries*](#_topic_DataSeries)
+[*DataSeries*](#dataseries-1)
 
--   [*DateTimeSeries*](#_topic_DateTimeSeries)
+[*DateTimeSeries*](#datetimeseries)
 
--   [*FloatSeries*](#_topic_FloatSeries)
+[*FloatSeries*](#floatseries)
 
--   [*IntSeries*](#_topic_IntSeries)
+[*IntSeries*](#intseries)
 
--   [*LongSeries*](#_topic_LongSeries)
+[*LongSeries*](#longseries)
 
--   [*StringSeries*](#_topic_StringSeries)
+[*StringSeries*](#stringseries)
 
 In addition, there are also data series such as ColorSeries, although these are only used for internal purposes and should not be used directly.
-To change the color of plots, please use [*PlotColors*](#_topic_PlotColors).
+To change the color of plots, please use [*PlotColors*](#plotcolors).
 
-**Set(), Reset() und ContainsValue()**
+### Set(), Reset() und ContainsValue()
 
 Each data series contains a **Set()**, **Reset()** and **ContainsValue()** method.
 With Set(value) or Set(int barsAgo, value) you can place values into the data series for the current position, or in this case into the barsAgo position.
@@ -5664,17 +5748,18 @@ With Reset() or Reset(int barsAgo) you can delete a value from the data series f
 Programming with the help of the reset method can simplify otherwise complex logic. This is especially true for Boolean series, where only “true” or “false” values can be included.
 The ContainsValue() checks whether a data series has a value for a specific position.
 
-**Information about Data Types**
+### Information about Data Types
 
 [*http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx*](http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx)
 
-<span id="_topic_BoolSeries" class="anchor"></span>**BoolSeries**
+BoolSeries
+----------
 
-**Description**
+### Description
 
 Bool series is a data series that contains a Boolean value for each bar. The number of elements in this series correlates with the exact number of bars within the chart.
 
-**Create New Bool Series**
+### Create New Bool Series
 
 In the area for the declaration of variables, simply declare a new variable:
 
@@ -5694,7 +5779,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the data series for the current position:
 
@@ -5704,7 +5789,7 @@ Writing a value in the past into the data series:
 
 myBoolSeries.**Set**(**int** barsAgo, **bool** Value);
 
-**Delete Values**
+### Delete Values
 
 Removing the current value for the data series:
 
@@ -5714,17 +5799,17 @@ Removing a value in the past from the data series:
 
 myBoolSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myBoolSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** ("For the bar of " + Time\[0\] + " ago the value of the data series is: " + myBoolSeries\[0\]);
 
-**Example**
+### Example
 
-**protected** override void **OnBarUpdate**()
+protected override void OnBarUpdate()
 
 {
 
@@ -5738,15 +5823,16 @@ myBoolSeries.**Set**(**false**);
 
 }
 
-<span id="_topic_DataSeries" class="anchor"></span>**DataSeries**
+DataSeries
+----------
 
-**Description**
+### Description
 
 Data series is a [*DataSeries*](#dataseries) that can contain a double value for each bar. The number of elements in this series corresponds to the exact number of bars within the charts.
 
 Data series for double values are the data series most commonly used for indicators.
 
-**Create a New Data Series**
+### Create a New Data Series
 
 In the declaration area for variables:
 
@@ -5766,7 +5852,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the data series for the current position:
 
@@ -5776,7 +5862,7 @@ Writing a value in the past into the data series:
 
 myDataSeries.**Set**(**int** barsAgo, **duble** Value);
 
-**Delete Values**
+### Delete Values
 
 Removing the current value from the data series:
 
@@ -5786,27 +5872,28 @@ Removing a value in the past from the data series:
 
 myDataSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** ("For the bar from " + Time\[0\] + " ago the value for the data series is: " + myDataSeries\[0\]);
 
-**Example**
+### Example
 
 //Saves the span between the high and low of a bar
 
 myDataSeries.**Set**(Math.**Abs**(High\[0\]-Low\[0\]));
 
-<span id="_topic_DateTimeSeries" class="anchor"></span>**DateTimeSeries**
+DateTimeSeries
+--------------
 
-**Description**
+### Description
 
 Date time series is a [*DataSeries*](#dataseries) that can record a date time value for each bar. The number of elements in this series corresponds to the number of bars in the chart.
 
-**Create a New Data Series**
+### Create a New Data Series
 
 Create a new variable in the declaration area:
 
@@ -5826,7 +5913,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the current position of the data series:
 
@@ -5836,7 +5923,7 @@ Writing a value from the past into the data series:
 
 myDataSeries.**Set**(**int** barsAgo, DateTime Value);
 
-**Delete Values**
+### Delete Values
 
 Removing the current value from the data series:
 
@@ -5846,27 +5933,28 @@ Remove a past value from the data series:
 
 myDataSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** ("For the bar from " + Time\[0\] + " ago the value of the data series is: " + myDataSeries\[0\]);
 
-**Example**
+### Example
 
 //Saves the difference of -6 hours (eastern time, New York) for a time zone conversion
 
 myDataSeries.**Set**(Time\[0\].**AddHours**(-6);
 
-<span id="_topic_FloatSeries" class="anchor"></span>**FloatSeries**
+FloatSeries
+-----------
 
-**Description**
+### Description
 
 Float series is a DataSeries that contains a float value for each bar in the chart. The number of elements in this series corresponds to the number of bars within the chart.
 
-**Create a New Data Series**
+### Create a New Data Series
 
 Create a new variable in the declaration area:
 
@@ -5886,7 +5974,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the current position of the data series
 
@@ -5896,7 +5984,7 @@ Writing a value from the past into the data series:
 
 myDataSeries.**Set**(**int** barsAgo, **float** Value);
 
-**Delete Values**
+### Delete Values
 
 Removing the current value from the data series:
 
@@ -5906,27 +5994,28 @@ Removing a value located in the past from the data series:
 
 myDataSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** ("For the bar from " + Time\[0\] + " ago the value for the data series is: " + myDataSeries\[0\]);
 
-**Example**
+### Example
 
 //Saves the span between the high and the low of a bar
 
 myDataSeries.**Set**(Math.**Abs**((**float**) High\[0\] - (**float**) Low\[0\]));
 
-<span id="_topic_IntSeries" class="anchor"></span>**IntSeries**
+IntSeries
+---------
 
-**Description**
+### Description
 
 Int series is a data series that can assign an integer value for each bar. The number of elements in this series corresponds to the number of bars within the chart.
 
-**Create a New Data Series**
+### Create a New Data Series
 
 Create a new variable in the declaration area:
 
@@ -5946,7 +6035,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the current position of the data series
 
@@ -5956,7 +6045,7 @@ Writing a value from the past into the data series:
 
 myDataSeries.**Set**(**int** barsAgo, **int** Value);
 
-**Delete Values**
+### Delete Values
 
 Removing the current value from the data series:
 
@@ -5966,27 +6055,28 @@ Removing a value located in the past from the data series:
 
 myDataSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
 
-**Example**
+### Example
 
 //Saves the span in ticks between high and low for each bar
 
 myDataSeries.**Set**((**int**) ((High\[0\] - Low\[0\]) / TickSize));
 
-<span id="_topic_LongSeries" class="anchor"></span>**LongSeries**
+LongSeries
+----------
 
-**Description**
+### Description
 
 Long series is a data series that can include an integer value for each bar. The number of elements in this series corresponds to the number of bars within the chart.
 
-**Create a New Data Series**
+### Create a New Data Series
 
 Create a new variable in the declaration area:
 
@@ -6006,7 +6096,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the current position of the data series:
 
@@ -6016,7 +6106,7 @@ Writing a value from the past into the data deries:
 
 myDataSeries.**Set**(**int** barsAgo, **long** Value);
 
-**Delete Values**
+### Delete Values
 
 Removing the current value from the data series:
 
@@ -6026,27 +6116,28 @@ Removing a value located in the past from the data series:
 
 myDataSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
 
-**Example**
+### Example
 
 //Saves the span of ticks between high and low for each bar
 
 myDataSeries.**Set**((**long**) ((High\[0\] - Low\[0\]) / TickSize));
 
-<span id="_topic_StringSeries" class="anchor"></span>**StringSeries**
+StringSeries
+------------
 
-**Description**
+### Description
 
 String series is a data series for string values that are saved for each bar. The number of elements in this series corresponds to the number of bars within the chart.
 
-**Create a New Data Series**
+### Create a New Data Series
 
 Create a new variable in the declaration area:
 
@@ -6066,7 +6157,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**Assign Values**
+### Assign Values
 
 Assigning a value to the current position of the data series:
 
@@ -6076,7 +6167,7 @@ Writing a value from the past into the data series:
 
 myDataSeries.**Set**(**int** barsAgo, string Value);
 
-**Delete Values**
+### Delete Values
 
 Remove the current value from the data series:
 
@@ -6086,15 +6177,15 @@ Remove a value located in the past from the data series:
 
 myDataSeries.**Reset**(**int** barsAgo);
 
-**Check Values for their Validity**
+### Check Values for their Validity
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
 
-**Read Value**
+### Read Value
 
 **Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
 
-**Example**
+### Example
 
 //Save the current calendar day for each bar (Monday… Tuesday etc.)
 
@@ -6103,7 +6194,7 @@ myDataSeries.**Set**(string.**Format**("{0:dddd}", Time\[0\]));
 DayOfWeek
 ---------
 
-**Description**
+### Description
 
 “DayOfWeek” outputs the date-time value (such as a timestamp) for each bar.
 
@@ -6111,7 +6202,7 @@ Of course, all other methods defined within the C\# language for usage of date-t
 
 See [*http://msdn.microsoft.com/de-de/library/03ybds8y.aspx*](http://msdn.microsoft.com/de-de/library/03ybds8y.aspx)
 
-**Definition**
+### Definition
 
 Property DayOfWeek
 
@@ -6131,7 +6222,7 @@ public enum DayOfWeek
 
 -   DayOfWeek.Sunday
 
-**Example**
+### Example
 
 //Outputs the weekday for each bar
 
@@ -6146,7 +6237,7 @@ return;
 Displacement
 ------------
 
-**Description**
+### Description
 
 By implementing “Displacement”, you can shift a drawn indicator line right or left along the x-axis.
 This property can be queried within the script and will return an int value.
@@ -6157,15 +6248,15 @@ Green line: Displacement = +5
 
 <img src="./media/image13.png" width="454" height="384" />
 
-**Usage**
+### Usage
 
 Displacement
 
-**Parameter**
+### Parameter
 
 int Offset Number of bars by which the indicator is to be moved.
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -6182,7 +6273,7 @@ Displacement = 1;
 DisplayInDataBox
 ----------------
 
-**Description**
+### Description
 
 The property “DisplayInDataBox” states whether the value of an indicator is contained in the data box of the chart or not.
 
@@ -6200,11 +6291,11 @@ The following image displays the values of 3 smoothed averages in the data box.
 
 <img src="./media/image14.png" width="451" height="387" />
 
-**Usage**
+### Usage
 
 DisplayInDataBox
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -6221,7 +6312,7 @@ DisplayInDataBox = **false**;
 DrawOnPricePanel
 ----------------
 
-**Description**
+### Description
 
 The property “DrawOnPricePanel” determines the panel in which the drawing objects are drawn.
 
@@ -6236,11 +6327,11 @@ Drawing objects are drawn in the panel (subchart) assigned to the indicator
 If the indicator is already assigned to the price chart (overlay = true) then this property has no effect, meaning that no additional subchart is opened.
 The property can be queried within the script and returns a Boolean value.
 
-**Usage**
+### Usage
 
 DrawOnPricePanel
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -6271,26 +6362,26 @@ DrawOnPricePanel = **true**;
 Falling()
 ---------
 
-**Description**
+### Description
 
 The Falling() method allows you to test whether an “is falling” condition exists, i.e. whether the current value is smaller than the value of the previous bar.
 
 See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising).
 
-**Usage**
+### Usage
 
 **Falling**(IDataSeries series)
 
-**Return Value**
+### Return Value
 
 **true** If the data series is falling
 **false** If the data series is not falling
 
-**Parameter**
+### Parameter
 
 series a data series such as an indicator, close, high etc.
 
-**Example**
+### Example
 
 // Check whether SMA(20) is falling
 
@@ -6303,42 +6394,43 @@ Colors
 
 AgenaScript provides you with the following commands for defining colors and making color changes to the chart:
 
--   [*BarColor*](#_topic_BarColor) Color of a bar
+[*BarColor*](#barcolor) Color of a bar
 
--   [*BackColor*](#_topic_BackColor) Background color of the chart
+[*BackColor*](#backcolor) Background color of the chart
 
--   [*BackColorAll*](#_topic_BackColorAll) Background color of the chart and all panels
+[*BackColorAll*](#backcolorall) Background color of the chart and all panels
 
 ChartControl.UpColor Color of up ticks (up bars)
 ChartControl.DownColor Color of down ticks (down bars)
 
 For each bar, its colors are saved in the following data series. If these data series are written in, the color of the referenced bar will change.
 
--   [*BarColorSeries*](#_topic_BarColorSeries)
+[*BarColorSeries*](#barcolorseries)
 
--   [*CandleOutlineColorSeries*](#_topic_CandleOutlineColorSeries)
+[*CandleOutlineColorSeries*](#candleoutlinecolorseries)
 
--   [*BackColorSeries*](#_topic_BackColorSeries)
+[*BackColorSeries*](#backcolorseries)
 
--   [*BackColorAllSeries*](#_topic_BackColorAllSeries)
+[*BackColorAllSeries*](#backcolorallseries)
 
-<span id="_topic_BarColor" class="anchor"></span>**BarColor**
+BarColor
+--------
 
-**Description**
+### Description
 
 Bar color changes the color of a bar.
 
-See [*Colors*](#colors), [*BarColorSeries*](#_topic_BarColorSeries), [*BackColor*](#_topic_BackColor), [*BackColorAll*](#_topic_BackColorAll), [*CandleOutlineColor*](#_topic_CandleOutlineColor).
+See [*Colors*](#colors), [*BarColorSeries*](#barcolorseries), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
-**Usage**
+### Usage
 
 BarColor
 
-**Example**
+### Example
 
 // If the closing price is above the SMA(14), color the bar orange
 
@@ -6346,23 +6438,24 @@ BarColor
 
 <img src="./media/image15.png" width="427" height="385" />
 
-<span id="_topic_BackColor" class="anchor"></span>**BackColor**
+BackColor
+---------
 
-**Description**
+### Description
 
 Back color changes the background color of a bar or gives the current background color of a bar when queried.
 
-See [*Colors*](#colors), [*BarColor*](#_topic_BarColor), [*BackColorAll*](#_topic_BackColorAll), [*CandleOutlineColor*](#_topic_CandleOutlineColor).
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
-**Usage**
+### Usage
 
 BackColor
 
-**Example**
+### Example
 
 // Every Monday, change the bar background color to blue
 
@@ -6382,23 +6475,24 @@ BackColor = **SMA**(14)\[0\] &gt;= Close\[0\] ? Color.Maroon : Color.LimeGreen;
 
 <img src="./media/image17.png" width="430" height="384" />
 
-<span id="_topic_BackColorAll" class="anchor"></span>**BackColorAll**
+BackColorAll
+------------
 
-**Description**
+### Description
 
 Back color all changes the background color of a bar within the chart window and in all subcharts.
 
-See [*Colors*](#colors), [*BarColor*](#_topic_BarColor), [*BackColor*](#_topic_BackColor), [*CandleOutlineColor*](#_topic_CandleOutlineColor).
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*CandleOutlineColor*](#candleoutlinecolor).
 
-**Parameter**
+### Parameter
 
 A color object of the type “public struct color”
 
-**Usage**
+### Usage
 
 BackColorAll
 
-**Example**
+### Example
 
 // Every Monday, change the bar background color to blue
 
@@ -6408,21 +6502,22 @@ BackColorAll = Color.Blue;
 
 <img src="./media/image18.png" width="430" height="385" />
 
-<span id="_topic_BarColorSeries" class="anchor"></span>**BarColorSeries**
+BarColorSeries
+--------------
 
-**Description**
+### Description
 
 Bar color series is a data series containing the color for each bar.
 
-See [*Colors*](#colors), [*BackColorSeries*](#_topic_BackColorSeries), [*BackColorAllSeries*](#_topic_BackColorAllSeries), [*CandleOutlineColorSeries*](#_topic_CandleOutlineColorSeries).
+See [*Colors*](#colors), [*BackColorSeries*](#backcolorseries), [*BackColorAllSeries*](#backcolorallseries), [*CandleOutlineColorSeries*](#candleoutlinecolorseries).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
 int barsAgo
 
-**Usage**
+### Usage
 
 BarColorSeries
 
@@ -6432,7 +6527,7 @@ When using the method with an index \[**int** barsAgo\] the color for the refere
 
 **Caution: Only the color of a bar whose color has been explicitly changed beforehand will be returned. In all other cases, the “Color.Empty” value will be returned.**
 
-**Example**
+### Example
 
 **protected** override void **OnBarUpdate**()
 
@@ -6462,21 +6557,22 @@ BarColorSeries\[2\] = Color.Yellow;
 
 <img src="./media/image19.png" width="423" height="372" />
 
-<span id="_topic_BackColorSeries" class="anchor"></span>**BackColorSeries**
+BackColorSeries
+---------------
 
-**Description**
+### Description
 
 Back color series is a data series containing the background color for each bar. If the background color for the subcharts is to be included, please use “BackColorAllSeries” instead.
 
-See [*Colors*](#colors), [*BarColorSeries*](#_topic_BarColor), [*BackColorAllSeries*](#_topic_BackColorAllSeries) [*CandleOutlineColorSeries*](#_topic_CandleOutlineColorSeries).
+See [*Colors*](#colors), [*BarColorSeries*](#barcolor), [*BackColorAllSeries*](#backcolorallseries) [*CandleOutlineColorSeries*](#candleoutlinecolorseries).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
 int barsAgo
 
-**Usage**
+### Usage
 
 BackColorSeries
 
@@ -6484,7 +6580,7 @@ BackColorSeries\[**int** barsAgo\]
 
 When using this method with an index \[**int** barsAgo\] the background color for the referenced bar will be outputted.
 
-**Example**
+### Example
 
 // Which background color does the current bar have?
 
@@ -6500,21 +6596,22 @@ BackColorSeries\[3\] = Color.Blue;
 
 BackColorSeries\[1\] = Color.Green;
 
-<span id="_topic_BackColorAllSeries" class="anchor"></span>**BackColorAllSeries**
+BackColorAllSeries
+------------------
 
-**Description**
+### Description
 
 Back color all series is a data series containing the background color for each bar. The difference to BackColorSeries is that the background color of the subchart is included.
 
-See [*Colors*](#colors), [*BarColorSeries*](#_topic_BarColorSeries), [*BackColorSeries*](#_topic_BackColorSeries), [*CandleOutlineColorSeries*](#_topic_CandleOutlineColorSeries).
+See [*Colors*](#colors), [*BarColorSeries*](#barcolorseries), [*BackColorSeries*](#backcolorseries), [*CandleOutlineColorSeries*](#candleoutlinecolorseries).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
 int barsAgo
 
-**Usage**
+### Usage
 
 BackColorAllSeries
 
@@ -6522,29 +6619,30 @@ BackColorAllSeries\[**int** barsAgo\]
 
 When using the method with an index \[**int** barsAgo\] the background color for the referenced bar will be changed or returned.
 
-**Example**
+### Example
 
-See [*BackColorSeries*](#_topic_BackColorSeries).
+See [*BackColorSeries*](#backcolorseries).
 
-<span id="_topic_CandleOutlineColor" class="anchor"></span>**CandleOutlineColor**
+CandleOutlineColor
+------------------
 
-**Description**
+### Description
 
 Candle outline color changes the border/outline color (including the wick) of a bar.
 
 If the color of the bar is changed using BarColor and the outline is not changed using CandleOutlineColor, the outline color is adjusted to match the color of the bar.
 
-See [*Colors*](#colors), [*BarColor*](#_topic_BarColor), [*BackColor*](#_topic_BackColor), [*BackColorAll*](#_topic_BackColorAll).
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
-**Usage**
+### Usage
 
 CandleOutlineColor
 
-**Example**
+### Example
 
 **if** (**SMA**(14)\[0\] &gt; **SMA**(200)\[0\])
 
@@ -6556,21 +6654,22 @@ CandleOutlineColor = Color.Red;
 
 <img src="./media/image20.png" width="490" height="448" />
 
-<span id="_topic_CandleOutlineColorSeries" class="anchor"></span>**CandleOutlineColorSeries**
+CandleOutlineColorSeries
+------------------------
 
-**Description**
+### Description
 
 Candle outline color series is a data series that saves the outline color for each bar.
 
-See [*Colors*](#colors), [*BarColorSeries*](#_topic_BarColorSeries), [*BackColorSeries*](#_topic_BackColorSeries), [*BackColorAllSeries*](#_topic_BackColorAllSeries).
+See [*Colors*](#colors), [*BarColorSeries*](#barcolorseries), [*BackColorSeries*](#backcolorseries), [*BackColorAllSeries*](#backcolorallseries).
 
-**Parameter**
+### Parameter
 
 a color object of the type “public struct color”
 
 int barsAgo
 
-**Usage**
+### Usage
 
 CandleOutlineColorSeries
 CandleOutlineColorSeries\[**int** barsAgo\]
@@ -6579,7 +6678,7 @@ When using this method with an index \[**int** barsAgo\] the border color for th
 
 **Caution: Color.Empty will be outputted for a bar unless it has been previously changed.**
 
-**Example**
+### Example
 
 // Set the outline color of the current bar to blue
 
@@ -6592,19 +6691,19 @@ CandleOutlineColorSeries\[0\] = Color.Empty;
 FirstTickOfBar
 --------------
 
-**Description**
+### Description
 
 FirstTickOfBar is a property of the type “bool” that returns “true” if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
 This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnBarClose = false and the data feed is able to output real-time values.
 When using end-of-day data in a daily chart, the “FirstTickOfBar” is always true for the last bar.
 FirstTickOfBar should not be used outside of the OnBarUpdate() method.
-See [*Bars.TickCount*](#_topic_BarsTickCount).
+See [*Bars.TickCount*](#bars.tickcount).
 
-**Usage**
+### Usage
 
 FirstTickOfBar
 
-**Example**
+### Example
 
 // Within a tick-by-tick strategy, execute one part bar-by-bar only
 
@@ -6623,24 +6722,24 @@ return;
 FirstTickOfBarMtf
 -----------------
 
-**Description**
+### Description
 
 FirstTickOfBarMtf is the **m**ulti-**t**ime **f**rame variant of the [*FirstTickOfBar*](#firsttickofbar) property.
 
 The setting of CalculateOnBarClose only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnBarClose setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.
 
-**Usage**
+### Usage
 
 FirstTickOfBarMtf(BarsInProgress)
 
-**Parameter**
+### Parameter
 
 FirstTickOfBarMtf(BarsInProgress).
 
-See [*BarsInProgress*](#_topic_BarsInProgress).
+See [*BarsInProgress*](#barsinprogress).
 
-**Example**
+### Example
 
 **if** (**FirstTickOfBarMtf**(BarsInProgress))
 
@@ -6649,25 +6748,25 @@ See [*BarsInProgress*](#_topic_BarsInProgress).
 GetCurrentAsk()
 ---------------
 
-**Description**
+### Description
 
 The GetCurrentAsk() method returns the current value of the ask side of the order book. If no level 1 data is available to AgenaTrader, then this function simply outputs the last trade value.
 
 See [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
 
-**Usage**
+### Usage
 
-**GetCurrentAsk**()
+GetCurrentAsk()
 
-**Return Value**
+### Return Value
 
 double value
 
-**Parameter**
+### Parameter
 
 none
 
-**Example**
+### Example
 
 If an entry condition is fulfilled, then 1 contract should be sold at the current ask price:
 
@@ -6690,25 +6789,25 @@ entryOrder = **SubmitOrder**(0, OrderAction.SellShort, OrderType.Limit, 1, **Get
 GetCurrentBid()
 ---------------
 
-**Description**
+### Description
 
 The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.
 
 See [*GetCurrentAsk()*](#getcurrentask) and [*OnMarketData()*](#onmarketdata).
 
-**Usage**
+### Usage
 
-**GetCurrentBid**()
+GetCurrentBid()
 
-**Return Value**
+### Return Value
 
 double value
 
-**Parameter**
+### Parameter
 
 none
 
-**Example**
+### Example
 
 If an entry condition is fulfilled, then 1 contract should be sold at the current bid price:
 
@@ -6731,27 +6830,27 @@ entryOrder = **SubmitOrder**(0, OrderAction.Buy, OrderType.Limit, 1, **GetCurren
 HighestBar
 ----------
 
-**Description**
+### Description
 
 The HighestBar() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
 
 See [*LowestBar()*](#lowestbar).
 
-**Parameter**
+### Parameter
 
 period Number of bars within which the bar is searched for
 
 series Every data series, such as close, high, low, etc.
 
-**Return Value**
+### Return Value
 
 **int** barsAgo How many bars ago the high occurred
 
-**Usage**
+### Usage
 
 **HighestBar**(IDataSeries series, **int** period)
 
-**Example**
+### Example
 
 // How many bars ago was the highest high for the current session?
 
@@ -6764,22 +6863,22 @@ series Every data series, such as close, high, low, etc.
 Historical
 ----------
 
-**Description**
+### Description
 
 Historical allows you to check whether AgenaScript is working with historical or real-time data.
 As long as OnBarUpdate() is called up for historical data, then historical = true. As soon as live data is being used, then historical = false.
 During a backtest, historical is always true.
 
-**Usage**
+### Usage
 
 Historical
 
-**Return Value**
+### Return Value
 
 **true** when using historical data
 **false** when using real-time data
 
-**Example**
+### Example
 
 **protected** override void **OnBarUpdate**()
 
@@ -6796,23 +6895,23 @@ Historical
 Initialize()
 ------------
 
-**Description**
+### Description
 
 The Initialize() method is called up once at the beginning of an indicator or strategy calculation. This method can be used to set indicator properties, initialize your own variables, or add plots.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 none
 
-**Usage**
+### Usage
 
 **protected** override void **Initialize**()
 
-**Important Keywords**
+### Important Keywords
 
 -   [*Add()*](#add)
 
@@ -6860,14 +6959,14 @@ none
 
 -   [*TraceOrders*](#traceorders)
 
-**More Information**
+### More Information
 
 **Caution:**
 
 The Initialize() method is not only called up at the beginning of an indicator or strategy calculation, but also if the chart is reloaded unexpectedly or if the properties dialog of indicators is opened and so on.
 Developers of custom AgenaScripts should NOT use this method for running their own routines, opening forms, performing license checks, etc. The OnStartUp() method should be used for these kind of tasks.
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -6892,20 +6991,20 @@ CalculateOnBarClose = **true**;
 InitRequirements()
 ------------------
 
-**Description**
+### Description
 
 The InitRequirements() method is called up once at the beginning of an indicator and/or strategy calculation. This method is only necessary when using multi-bars.
 Within InitRequirements, no other programming commands are executed. For initializing, the Initialize() or OnStartUp() method should be used.
 
-**Parameter**
+### Parameter
 
 none
 
-**Return Value**
+### Return Value
 
 none
 
-**Example**
+### Example
 
 **protected** override void **InitRequirements**()
 
@@ -6920,7 +7019,7 @@ none
 InputPriceType
 --------------
 
-**Description**
+### Description
 
 The input price type property determines which price series is used by default when calculating an indicator, if no other data series is explicitly stated.
 InputPriceType can be set with the Initialize() method; this specification is then valid for all further calculations.
@@ -6929,11 +7028,11 @@ Every further appearance of InputPriceType will be ignored!
 
 See [*PriceType*](#pricetype)
 
-**Usage**
+### Usage
 
 InputPriceType
 
-**Example1**
+### Example1
 
 **protected** override void **Initialize**()
 
@@ -6955,7 +7054,7 @@ InputPriceType = PriceType.Low;
 
 }
 
-**Example2**
+### Example2
 
 **protected** override void **OnBarUpdate**()
 
@@ -6986,7 +7085,7 @@ InputPriceType = PriceType.High;
 Instrument
 ----------
 
-**Description**
+### Description
 
 With “instrument”, information concerning the trading instrument (stock, future etc.) is made available.
 
@@ -6995,7 +7094,7 @@ Detailed information can be found here: *Instruments*.
 Line()
 ------
 
-**Description**
+### Description
 
 A line object is used for drawing a horizontal line in the chart. Usually, these are upper and lower trigger lines for indicators such as the RSI (70 and 30).
 The lines described here are not to be confused with lines from the drawing objects (see “DrawHorizontalLine”).
@@ -7003,7 +7102,7 @@ Line objects can be added to an indicator with the help of the Add() method, and
 
 See [*Plot*](#plot).
 
-**Parameter**
+### Parameter
 
 |       |                                                              |
 |-------|--------------------------------------------------------------|
@@ -7012,17 +7111,17 @@ See [*Plot*](#plot).
 | Pen   | A pen object                                                 |
 | Value | Defines which value on the y-axis the line will be drawn for |
 
-**Usage**
+### Usage
 
 **Line**(Color color, **double value**, string name)
 
 **Line**(Pen pen, **double value**, string name)
 
-**More Information**
+### More Information
 
 Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*](http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx)
 
-**Example**
+### Example
 
 // Example 1
 
@@ -7065,7 +7164,7 @@ line = **new Line**(pen, 10, "MyLine");
 Log()
 -----
 
-**Description**
+### Description
 
 Log() allows you to write outputs in the AgenaTrader log file (log tab). 5 different log levels are supported.
 
@@ -7073,28 +7172,28 @@ Note:
 
 If the log tab is not viewable, it can be displayed using the tools log.
 
-**Usage**
+### Usage
 
 **Log**(string message, LogLevel logLevel)
 
-**Parameter**
+### Parameter
 
-|          |                          |
-|----------|--------------------------|
-| message  | Text (message)           |
-| logLevel | Possible values are      
-                                      
-            -   InfoLogLevel.Info     
-                                      
-            -   InfoLogLevel.Message  
-                                      
-            -   InfoLogLevel.Warning  
-                                      
-            -   InfoLogLevel.Alert    
-                                      
-            -   InfoLogLevel.Error    |
+|          |                      |
+|----------|----------------------|
+| message  | Text (message)       |
+| logLevel | Possible values are  
+                                  
+            InfoLogLevel.Info     
+                                  
+            InfoLogLevel.Message  
+                                  
+            InfoLogLevel.Warning  
+                                  
+            InfoLogLevel.Alert    
+                                  
+            InfoLogLevel.Error    |
 
-**Example**
+### Example
 
 **Log**("This is information.", InfoLogLevel.Info);
 
@@ -7109,27 +7208,27 @@ If the log tab is not viewable, it can be displayed using the tools log.
 LowestBar
 ---------
 
-**Description**
+### Description
 
 The LowestBar() method attempts to find the lowest bar within a predefined number of periods.
 
 See [*HighestBar()*](#highestbar).
 
-**Parameter**
+### Parameter
 
 period Number of bars that will be searched for the lowest bar
 
 series Every data series, such as close, high, low etc.
 
-**Return Value**
+### Return Value
 
 **int** barsAgo How many bars ago the low occurred
 
-**Usage**
+### Usage
 
 **LowestBar**(IDataSeries series, **int** period)
 
-**Example**
+### Example
 
 // How many bars ago was the lowest low of the session?
 
@@ -7142,7 +7241,7 @@ series Every data series, such as close, high, low etc.
 MarketDataEventArgs
 -------------------
 
-**Description**
+### Description
 
 The data type MarketDataEventArgs represents a change in the level 1 data and is used as a parameter of the OnMarketData() function.
 
@@ -7171,14 +7270,14 @@ The data type MarketDataEventArgs represents a change in the level 1 data and is
 | Time           | A date-time value containing the timestamp of the change                                                                         |
 | Volume         | A long value that shows the volume                                                                                               |
 
-**Example**
+### Example
 
 See [*OnMarketData()*](#onmarketdata).
 
 MarketDepthEventArgs
 --------------------
 
-**Description**
+### Description
 
 The data type MarketDepthEventArgs represents a change in the level 2 data (market depth) and is used as a parameter within OnMarketDepth().
 
@@ -7201,14 +7300,14 @@ The data type MarketDepthEventArgs represents a change in the level 2 data (mark
 | Time           | A date-time value containing the timestamp of the change       |
 | Volume         | A long value that shows the volume                             |
 
-**Example**
+### Example
 
 See [*OnMarketDepth()*](#onmarketdepth).
 
 Overlay
 -------
 
-**Description**
+### Description
 
 The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.
 
@@ -7222,11 +7321,11 @@ A separate chart window is opened (RSI)
 
 This property can be queried within the script and outputs a value of the type Boolean (true or false).
 
-**Usage**
+### Usage
 
 Overlay
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -7243,7 +7342,7 @@ Overlay = **false**;
 PaintPriceMarkers
 -----------------
 
-**Description**
+### Description
 
 The paint price markers property defines whether the so-called price markers for the indicator outputs are displayed on the right-hand chart border (in the price axis) or not. In some cases it makes sense to switch these off for a better overview in the chart.
 **PaintPriceMarkers = true (default)**
@@ -7256,11 +7355,11 @@ Price markers are not shown in the price axis
 
 This property can be queried within the script and returns a value of the type Boolean (true or false).
 
-**Usage**
+### Usage
 
 PaintPriceMarkers
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -7277,23 +7376,23 @@ PaintPriceMarkers = **false**;
 PlaySound()
 -----------
 
-**Description**
+### Description
 
 This method allows you to play a wav file.
 
-**Usage**
+### Usage
 
 **PlaySound**(wavFile)
 
-**Return Value**
+### Return Value
 
 none
 
-**Parameter**
+### Parameter
 
 wavFile File name of the wav file to be played
 
-**Example**
+### Example
 
 **using** System.IO;
 
@@ -7306,39 +7405,39 @@ string file = "\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav";
 Plot()
 ------
 
-**Description**
+### Description
 
 A plot (drawing) is used to visually display indicators in a chart. Plot objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
 See [*Line*](#line).
 
-**Parameter**
+### Parameter
 
-|           |                            |
-|-----------|----------------------------|
-| Color     | Drawing color              |
-| Pen       | Pen object                 |
-| PlotStyle | Line type                  
-                                         
-             -   PlotStyle.Bar           
-                                         
-             -   PlotStyle.Block         
-                                         
-             -   PlotStyle.Cross         
-                                         
-             -   PlotStyle.Dot           
-                                         
-             -   PlotStyle.Hash          
-                                         
-             -   PlotStyle.Line          
-                                         
-             -   PlotStyle.Square        
-                                         
-             -   PlotStyle.TriangleDown  
-                                         
-             -   PlotStyle.TriangleUp    |
-| Name      | Description                |
+|           |                        |
+|-----------|------------------------|
+| Color     | Drawing color          |
+| Pen       | Pen object             |
+| PlotStyle | Line type              
+                                     
+             PlotStyle.Bar           
+                                     
+             PlotStyle.Block         
+                                     
+             PlotStyle.Cross         
+                                     
+             PlotStyle.Dot           
+                                     
+             PlotStyle.Hash          
+                                     
+             PlotStyle.Line          
+                                     
+             PlotStyle.Square        
+                                     
+             PlotStyle.TriangleDown  
+                                     
+             PlotStyle.TriangleUp    |
+| Name      | Description            |
 
-**Usage**
+### Usage
 
 **Plot**(Color color, string name)
 
@@ -7348,11 +7447,11 @@ See [*Line*](#line).
 
 **Plot**(Pen pen, PlotStyle plotStyle, string name)
 
-**More Information**
+### More Information
 
 Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*](http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx)
 
-**Example**
+### Example
 
 // Example 1
 
@@ -7401,7 +7500,7 @@ plot = **new Plot**(pen, PlotStyle.Dot, "MyPlot");
 PlotMethod
 ----------
 
-**Description**
+### Description
 
 In each indicator, the plot method can be overridden in order to add your own graphics (GDI+) to the price chart with the help of the graphics class (System.Drawing).
 
@@ -7411,7 +7510,7 @@ The [*ChartControl*](#chartcontrol) object offers several parameters.
 
 More examples: [*Bar Numbering*](#bar-numbering-within-the-chart), *Chart Background Image*.
 
-**Parameter**
+### Parameter
 
 graphics The graphics object of the price chart (context)
 
@@ -7421,15 +7520,15 @@ double min The smallest price in the y-axis
 
 double max The biggest price in the y-axis
 
-**Return Value**
+### Return Value
 
 none
 
-**Usage**
+### Usage
 
 **public** override void **Plot**(Graphics graphics, Rectangle r, **double** min, **double** max)
 
-**Example**
+### Example
 
 **using** System;
 
@@ -7560,7 +7659,7 @@ graphics.**DrawString**("Here is bottom left!", font, brush, r.X + 10, r.Y + r.H
 PriceType
 ---------
 
-**Description**
+### Description
 
 Price type describes a form of price data.
 
@@ -7584,23 +7683,23 @@ Following variables are available:
 
 -   PriceType.Weighted
 
-**Usage**
+### Usage
 
 PriceType
 
-**Example**
+### Example
 
 See [*InputPriceType*](#inputpricetype)
 
 Print()
 -------
 
-**Description**
+### Description
 
 The Print() method writes outputs in the AgenaTrader output window.
 See [*ClearOutputWindow()*](#clearoutputwindow).
 
-**Usage**
+### Usage
 
 **Print**(string message)
 
@@ -7614,21 +7713,21 @@ See [*ClearOutputWindow()*](#clearoutputwindow).
 
 **Print**(string format, string message)
 
-**Parameter**
+### Parameter
 
 string Text an individual message text
 
-**Return Value**
+### Return Value
 
 none
 
-**More Information**
+### More Information
 
 Information regarding output formatting: *Formatting numbers*.
 
 Hints about the String.Format() method: [*http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx*](http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx)
 
-**Example**
+### Example
 
 // "Quick&Dirty" formatting of a number with 2 decimal points
 
@@ -7645,44 +7744,44 @@ Hints about the String.Format() method: [*http://msdn.microsoft.com/de-de/librar
 RemoveDrawObject()
 ------------------
 
-**Description**
+### Description
 
 The RemoveDrawObject() method removes a specific drawing object from the chart based on a unique identifier (tag).
 See [*RemoveDrawObjects()*](#removedrawobjects).
 
-**Usage**
+### Usage
 
-**RemoveDrawObject**(string tag)
+RemoveDrawObject(string tag)
 
-**Return Value**
+### Return Value
 
 none
 
-**Parameter**
+### Parameter
 
 string tag The clearly identifiable name for the drawing object
 
-**Example**
+### Example
 
 **RemoveDrawObjects**("My line");
 
 RemoveDrawObjects()
 -------------------
 
-**Description**
+### Description
 
 This method removes all drawings from the chart
 See [*RemoveDrawObject()*](#removedrawobject).
 
-**Usage**
+### Usage
 
-**RemoveDrawObjects**()
+RemoveDrawObjects()
 
-**Return Value**
+### Return Value
 
 none
 
-**Example**
+### Example
 
 //Delete all drawings from the chart
 
@@ -7691,26 +7790,26 @@ none
 Rising()
 --------
 
-**Description**
+### Description
 
 With this method you can check if an uptrend exists, i.e. if the current value is bigger than the previous bar’s value.
 
 See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Falling()*](#falling).
 
-**Usage**
+### Usage
 
 **Rising**(IDataSeries series)
 
-**Return Value**
+### Return Value
 
 **true** If the data series is rising
 **false** If the data series is not rising
 
-**Parameter**
+### Parameter
 
 series A data series such as an indicator, close, high etc.
 
-**Example**
+### Example
 
 // Check if SMA(20) is rising
 
@@ -7721,7 +7820,7 @@ series A data series such as an indicator, close, high etc.
 SessionBreakLines
 -----------------
 
-**Description**
+### Description
 
 The property SessionBreakLines defines whether the vertical lines that represent a trading session stop are displayed within the chart.
 This may be useful for stocks and other instruments if you wish to display session breaks/trading stops.
@@ -7735,11 +7834,11 @@ Session break lines are not shown
 
 This property can be queried within the script and outputs a value of the type Boolean (true or false).
 
-**Usage**
+### Usage
 
 SessionBreakLines
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -7758,7 +7857,7 @@ TickSize
 
 A tick is the smallest possible price change of a financial instrument within an exchange. If, for example, the trading prices are specified to 2 decimal places, then a tick equals 0.01. You can expect Forex instruments to be specified to within 4 or 5 decimal places. A tick is called a pip in Forex trading and usually equals 0.0001 or 0.00001.
 The tick value is usually predefined by the exchange and does not (usually) change.
-See [*Instrument.TickSize*](#_topic_InstrumentTickSize).
+See [*Instrument.TickSize*](#instrument.ticksize).
 
 Usually, a tick is displayed as a decimal number. Historically speaking (especially in American exchanges) stocks have been noted with tick sizes of 1/16 of a dollar.
 This notation is still widespread within commodities. Corn futures (ZC) are noted in ¼ US cents/bushel (usually equals 12.50 US$ per contract).
@@ -7786,19 +7885,19 @@ The individual contract specifications can be found on the websites of the respe
 CME: [*www.cmegroup.com*](http://www.cmegroup.com) under Products & Trading
 Eurex (FDAX): [*www.eurexchange.com/exchange-en/products/idx/dax/17206/*](../../goose/Documents/www.eurexchange.com/exchange-en/products/idx/dax/17206/)
 
-See [*Instrument.TickSize*](#_topic_InstrumentTickSize).
+See [*Instrument.TickSize*](#instrument.ticksize).
 
 TimeFrame
 ---------
 
-See [*Bars.TimeFrame*](#_topic_BarsTimeFrame).
+See [*Bars.TimeFrame*](#bars.timeframe).
 
-When using multiple timeframes ([*Multibars*](#multibars)) in an indicator, please see [*TimeFrames*](#_topic_TimeFrames).
+When using multiple timeframes ([*Multibars*](#multibars)) in an indicator, please see [*TimeFrames*](#timeframes).
 
 ToDay()
 -------
 
-**Description**
+### Description
 
 To day is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C\#.
 Experienced programmers can continue using the date-time function directly.
@@ -7812,11 +7911,11 @@ See [*ToTime*](#totime).
 
 Help with date-time: [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
-**Usage**
+### Usage
 
 ToDay(DateTime time)
 
-**Example**
+### Example
 
 // Do not trade on the 11<sup>th</sup> of September
 
@@ -7827,7 +7926,7 @@ return;
 ToTime()
 --------
 
-**Description**
+### Description
 
 To time is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C\#.
 
@@ -7840,11 +7939,11 @@ See [*ToDay*](#today).
 
 Help with date-time: [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
-**Usage**
+### Usage
 
 ToTime(DateTime time)
 
-**Example**
+### Example
 
 // Only enter trades between 08:15 and 16:35
 
@@ -7859,25 +7958,25 @@ ToTime(DateTime time)
 Update()
 --------
 
-**Description**
+### Description
 
 The Update() method calls up the OnBarUpdate method in order to recalculate the indicator values.
 
 Update() is to be used with caution and is intended for use by experienced programmers.
 
-**Usage**
+### Usage
 
-**Update**()
+Update()
 
-**Return Value**
-
-none
-
-**Parameter**
+### Return Value
 
 none
 
-**Example**
+### Parameter
+
+none
+
+### Example
 
 The effect of update can be illustrated with the help of 2 indicators.
 The first indicator, Ind1, uses a public variable from the indicator Ind2.
@@ -7935,7 +8034,7 @@ return myPublicVariable;
 Value
 -----
 
-**Description**
+### Description
 
 Value is a data series object containing the first data series of an indicator.
 
@@ -7943,24 +8042,24 @@ When the Add() method is called up, a value object is automatically created and 
 
 Value is identical to Values\[0\].
 
-**Usage**
+### Usage
 
 Value
 
 Value\[**int** barsAgo\]
 
-**More Information**
+### More Information
 
 The methods known for a collection, Set(), Reset(), and Count(), can be used for values.
 
-**Example**
+### Example
 
-See [*Values*](#_topic_Values).
+See [*Values*](#values).
 
 VerticalGridLines
 -----------------
 
-**Description**
+### Description
 
 The property VerticalGridLines defines whether or not the regularly spaced vertical lines (the so-called grid) are shown within the charting area.
 
@@ -7974,11 +8073,11 @@ Vertical grid lines are not shown
 
 This property can be queried within the script and returns a value of the type Boolean (true or false).
 
-**Usage**
+### Usage
 
 VerticalGridLines
 
-**Example**
+### Example
 
 **protected** override void **Initialize**()
 
@@ -7998,7 +8097,7 @@ DrawingObjects
 DrawAndrewsPitchfork()
 ----------------------
 
-**Description**
+### Description
 
 This drawing object draws an Andrew’s Pitchfork.
 
@@ -8008,17 +8107,17 @@ Information concerning its usage:
 [*http://www.volumen-analyse.de/blog/?p=917*](http://www.volumen-analyse.de/blog/?p=917)
 [*http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews\_Pitchfork*](http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews_Pitchfork)
 
-**Usage**
+### Usage
 
 **DrawAndrewsPitchfork**(string tag, **bool** autoScale, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, **int** anchor3BarsAgo, **double** anchor3Y, Color color, DashStyle dashStyle, **int** width)
 
 **DrawAndrewsPitchfork**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, DateTime anchor3Time, **double** anchor3Y, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IAndrewsPitchfork (interface)
 
-**Parameter**
+### Parameter
 
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
@@ -8046,7 +8145,7 @@ A drawing object of the type IAndrewsPitchfork (interface)
                   using System.Drawing.Drawing2D;.                                                         |
 | width          | Line strength in points                                                                 |
 
-**Example**
+### Example
 
 // Draw the Andrew’s Pitchfork (“MyAPF”)
 
@@ -8055,11 +8154,11 @@ A drawing object of the type IAndrewsPitchfork (interface)
 DrawArc()
 ---------
 
-**Description**
+### Description
 
 DrawArc() draws a circular arc.
 
-**Usage**
+### Usage
 
 **DrawArc**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY, Color color)
 
@@ -8067,11 +8166,11 @@ DrawArc() draws a circular arc.
 
 **DrawArc**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IArc (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
@@ -8096,7 +8195,7 @@ A drawing object of the type IArc (interface)
                 using System.Drawing.Drawing2D;                                                          |
 | width        | Line strength in points                                                                 |
 
-**Example**
+### Example
 
 // Draws a blue arc
 **DrawArc**("MyArc", **true**, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
@@ -8104,7 +8203,7 @@ A drawing object of the type IArc (interface)
 DrawArrowDown()
 ---------------
 
-**Description**
+### Description
 
 DrawArrowDown() draws an arrow pointing downwards:
 
@@ -8112,17 +8211,17 @@ DrawArrowDown() draws an arrow pointing downwards:
 
 See [*DrawArrowUp()*](#drawarrowup), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
-**Usage**
+### Usage
 
 **DrawArrowDown**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawArrowDown**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IArrowDown (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8133,7 +8232,7 @@ A drawing object of the type IArrowDown (interface)
 | y         | y-value for the arrow                                                                   |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws a red arrow 3 ticks above the high for the current bar
 
@@ -8148,13 +8247,13 @@ A drawing object of the type IArrowDown (interface)
 DrawArrowLine()
 ---------------
 
-**Description**
+### Description
 
 DrawArrowLine() draws an arrow:
 
 <img src="./media/image22.png" width="127" height="34" />
 
-**Usage**
+### Usage
 
 **DrawArrowLine**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY, Color color)
 
@@ -8162,11 +8261,11 @@ DrawArrowLine() draws an arrow:
 
 **DrawArrowLine**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IArrowLine (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
@@ -8191,7 +8290,7 @@ A drawing object of the type IArrowLine (interface)
                 using System.Drawing.Drawing2D;                                                          |
 | width        | Line strength in points                                                                 |
 
-**Example**
+### Example
 
 // Draws a black arrow
 
@@ -8200,7 +8299,7 @@ A drawing object of the type IArrowLine (interface)
 DrawArrowUp()
 -------------
 
-**Description**
+### Description
 
 DrawArowUp() draws an arrow pointing upwards:
 
@@ -8208,17 +8307,17 @@ DrawArowUp() draws an arrow pointing upwards:
 
 See [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
-**Usage**
+### Usage
 
 **DrawArrowUp**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawArrowUp**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IArrowUp (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8229,7 +8328,7 @@ A drawing object of the type IArrowUp (interface)
 | y         | y-value for the arrow                                                                   |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws a green arrow for the current bar 3 ticks below the low
 
@@ -8238,7 +8337,7 @@ A drawing object of the type IArrowUp (interface)
 DrawDiamond()
 -------------
 
-**Description**
+### Description
 
 DrawDiamond() draws a diamond:
 
@@ -8246,17 +8345,17 @@ DrawDiamond() draws a diamond:
 
 See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
-**Usage**
+### Usage
 
 **DrawDiamond**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawDiamond**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IDiamond (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8267,7 +8366,7 @@ A drawing object of the type IDiamond (interface)
 | y         | y-value on which the diamond should be drawn                                            |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws a light blue diamond for the current bar 5 ticks below the low
 
@@ -8276,7 +8375,7 @@ A drawing object of the type IDiamond (interface)
 DrawDot()
 ---------
 
-**Description**
+### Description
 
 DrawDot() draws a dot:
 
@@ -8284,17 +8383,17 @@ DrawDot() draws a dot:
 
 See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
-**Usage**
+### Usage
 
 **DrawDot**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawDot**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IDot (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8305,7 +8404,7 @@ A drawing object of the type IDot (interface)
 | y         | y-value at which the dot should be drawn                                                |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws an orange dot for the current bar 5 ticks above the high
 
@@ -8314,11 +8413,11 @@ A drawing object of the type IDot (interface)
 DrawEllipse()
 -------------
 
-**Description**
+### Description
 
 DrawEllipse() draws an ellipse.
 
-**Usage**
+### Usage
 
 **DrawEllipse**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY, Color color)
 
@@ -8326,11 +8425,11 @@ DrawEllipse() draws an ellipse.
 
 **DrawEllipse**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY, Color color, Color areaColor, **int** areaOpacity)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IEllipse (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
@@ -8349,7 +8448,7 @@ A drawing object of the type IEllipse (interface)
                 0 = completely transparent                                                               
                 10 = completely opaque                                                                   |
 
-**Example**
+### Example
 
 // Draws a yellow ellipse from the current bar to 5 bars ago
 
@@ -8358,13 +8457,13 @@ A drawing object of the type IEllipse (interface)
 DrawExtendedLine()
 ------------------
 
-**Description**
+### Description
 
 DrawExtendedLine() draws a line with an infinite end point.
 
 See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawRay()*](#drawray).
 
-**Usage**
+### Usage
 
 **DrawExtendedLine**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY, Color color)
 
@@ -8372,11 +8471,11 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 **DrawExtendedLine**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IExtendedLine (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                                         |
 |--------------|---------------------------------------------------------------------------------------------------------|
@@ -8401,7 +8500,7 @@ A drawing object of the type IExtendedLine (interface)
                 using System.Drawing.Drawing2D;                                                                          |
 | width        | Line strength in points                                                                                 |
 
-**Example**
+### Example
 
 // Draws a line without an end point
 
@@ -8410,21 +8509,21 @@ A drawing object of the type IExtendedLine (interface)
 DrawFibonacciCircle()
 ---------------------
 
-**Description**
+### Description
 
 DrawFibonacciCircle() draws a Fibonacci circle.
 
-**Usage**
+### Usage
 
 **DrawFibonacciCircle**(string tag, **bool** autoScale, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY)
 
 **DrawFibonacciCircle**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IFibonacciCircle (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
@@ -8437,7 +8536,7 @@ A drawing object of the type IFibonacciCircle (interface)
 | endTime      | Date/time for the end of the Fibonacci circle                                           |
 | endY         | y-value for the end point of the Fibonacci circle                                       |
 
-**Example**
+### Example
 
 //Draws a Fibonacci circle
 
@@ -8446,21 +8545,21 @@ A drawing object of the type IFibonacciCircle (interface)
 DrawFibonacciExtensions()
 -------------------------
 
-**Description**
+### Description
 
 DrawFibonacciExtensions() draws Fibonacci extensions.
 
-**Usage**
+### Usage
 
 **DrawFibonacciExtensions**(string tag, **bool** autoScale, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, **int** anchor3BarsAgo, **double** anchor3Y)
 
 **DrawFibonacciExtensions**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, DateTime anchor3Time, **double** anchor3Y)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IFibonacciExtensions (interface)
 
-**Parameter**
+### Parameter
 
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
@@ -8476,7 +8575,7 @@ A drawing object of the type IFibonacciExtensions (interface)
 | anchor3Time    | Date/time for anchor point 3                                                            |
 | anchor3Y       | y-value for anchor point 3                                                              |
 
-**Example**
+### Example
 
 // Draws Fibonacci extensions
 
@@ -8485,21 +8584,21 @@ A drawing object of the type IFibonacciExtensions (interface)
 DrawFibonacciRetracements()
 ---------------------------
 
-**Description**
+### Description
 
 DrawFibonacciRetracements() draws Fibonacci retracements.
 
-**Usage**
+### Usage
 
 **DrawFibonacciRetracements**(string tag, **bool** autoScale, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY)
 
 **DrawFibonacciRetracements**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IFibonacciRetracements (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
@@ -8512,7 +8611,7 @@ A drawing object of the type IFibonacciRetracements (interface)
 | endTime      | Date/time at which the Fibonacci retracement should end                                 |
 | endY         | y-value at which the Fibonacci retracement should end                                   |
 
-**Example**
+### Example
 
 // Draws Fibonnaci retracements
 
@@ -8521,21 +8620,21 @@ A drawing object of the type IFibonacciRetracements (interface)
 DrawFibonacciTimeExtensions()
 -----------------------------
 
-**Description**
+### Description
 
 DrawFibonacciTimeExtensions() draws Fibonacci time extensions.
 
-**Usage**
+### Usage
 
 **DrawFibonacciTimeExtensions**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY)
 
 **DrawFibonacciTimeExtensions**(string tag, DateTime startTime, **double** startY, DateTime endTime, **double** endY)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IFibonacciTimeExtensions (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                       |
 |--------------|-------------------------------------------------------|
@@ -8547,7 +8646,7 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 | endTime      | Date/time at which the extensions should end          |
 | endY         | y-value at which the extensions should end            |
 
-**Example**
+### Example
 
 // Draws Fibonacci time extensions
 
@@ -8556,21 +8655,21 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 DrawGannFan()
 -------------
 
-**Description**
+### Description
 
 DrawGannFan() draws a Gann fan.
 
-**Usage**
+### Usage
 
 **DrawGannFan**(string tag, **bool** autoScale, **int** barsAgo, **double** y)
 
 **DrawGannFan**(string tag, **bool** autoScale, DateTime time, **double** y)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IGannFan (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8580,7 +8679,7 @@ A drawing object of the type IGannFan (interface)
 | time      | Date/time at which the Gann fan should start                                            |
 | y         | y-value for the Gann fan                                                                |
 
-**Example**
+### Example
 
 // Shows a Gann fan at the low of the bar from 10 periods ago
 
@@ -8589,13 +8688,13 @@ A drawing object of the type IGannFan (interface)
 DrawLine()
 ----------
 
-**Description**
+### Description
 
 DrawLine() draws a (trend) line.
 
 See [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
 
-**Usage**
+### Usage
 
 **DrawLine**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY, Color color)
 
@@ -8603,11 +8702,11 @@ See [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawv
 
 **DrawLine**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ITrendLine (interface).
 
-**Parameter**
+### Parameter
 
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
@@ -8632,7 +8731,7 @@ A drawing object of the type ITrendLine (interface).
                 using System.Drawing.Drawing2D;                                                          |
 | width        | Line strength in points                                                                 |
 
-**Example**
+### Example
 
 // Draws a line
 
@@ -8641,23 +8740,23 @@ A drawing object of the type ITrendLine (interface).
 DrawHorizontalLine()
 --------------------
 
-**Description**
+### Description
 
 DrawHorizontalLine() draws a horizontal line in the chart.
 
 See [*DrawLine()*](#drawline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
 
-**Usage**
+### Usage
 
 **DrawHorizontalLine**(string tag, **double** y, Color color)
 
 **DrawHorizontalLine**(string tag, **bool** autoScale, **double** y, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IHorizontalLine (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8677,7 +8776,7 @@ A drawing object of the type IHorizontalLine (interface)
              using System.Drawing.Drawing2D;                                                          |
 | width     | Line strength                                                                           |
 
-**Example**
+### Example
 
 // Draws a horizontal line at y=10
 
@@ -8686,13 +8785,13 @@ A drawing object of the type IHorizontalLine (interface)
 DrawRay()
 ---------
 
-**Description**
+### Description
 
 DrawRay() draws a (trend) line and extends it to infinity.
 
 See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline).
 
-**Usage**
+### Usage
 
 **DrawRay**(string tag, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, Color color)
 
@@ -8700,11 +8799,11 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 **DrawRay**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IRay (interface)
 
-**Parameter**
+### Parameter
 
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
@@ -8729,7 +8828,7 @@ A drawing object of the type IRay (interface)
                   using System.Drawing.Drawing2D;.                                                         |
 | width          | Line strength                                                                           |
 
-**Example**
+### Example
 
 // Draws a line from the bar from 10 periods ago to the current bar (x-axis)
 
@@ -8750,11 +8849,11 @@ A drawing object of the type IRay (interface)
 DrawRectangle()
 ---------------
 
-**Description**
+### Description
 
 DrawRectangle() draws a rectangle.
 
-**Usage**
+### Usage
 
 **DrawRectangle**(string tag, **int** startBarsAgo, **double** startY, **int** endBarsAgo, **double** endY, Color color)
 
@@ -8762,11 +8861,11 @@ DrawRectangle() draws a rectangle.
 
 **DrawRectangle**(string tag, **bool** autoScale, DateTime startTime, **double** startY, DateTime endTime, **double** endY, Color color, Color areaColor, **int** areaOpacity)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IRectangle (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                                        |
 |--------------|--------------------------------------------------------------------------------------------------------|
@@ -8785,7 +8884,7 @@ A drawing object of the type IRectangle (interface)
                 0 = completely transparent                                                                              
                 10 = completely opaque                                                                                  |
 
-**Example**
+### Example
 
 // Draws a green rectangle from the low of 10 periods ago to the high of 5 periods ago
 
@@ -8796,11 +8895,11 @@ A drawing object of the type IRectangle (interface)
 DrawRegion()
 ------------
 
-**Description**
+### Description
 
 DrawRegion() fills a specific area on a chart.
 
-**Usage**
+### Usage
 
 **DrawRegion**(string tag, **int** startBarsAgo, **int** endBarsAgo, IDataSeries series, **double** y, Color outlineColor, Color areaColor, **int** areaOpacity)
 
@@ -8810,11 +8909,11 @@ DrawRegion() fills a specific area on a chart.
 
 **DrawRegion**(string tag, DateTime startTime, DateTime endTime, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, **int** areaOpacity)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IRegion (interface)
 
-**Parameter**
+### Parameter
 
 |                  |                                                                                   |
 |------------------|-----------------------------------------------------------------------------------|
@@ -8834,7 +8933,7 @@ A drawing object of the type IRegion (interface)
                     0 = completely transparent                                                         
                     10 = completely opaque                                                             |
 
-**Example**
+### Example
 
 // Fills the area between the upper and lower Bollinger Bands
 
@@ -8843,11 +8942,11 @@ A drawing object of the type IRegion (interface)
 DrawRegressionChannel()
 -----------------------
 
-**Description**
+### Description
 
 DrawRegressionChannel() draws a regression channel.
 
-**Usage**
+### Usage
 
 **DrawRegressionChannel**(string tag, **int** startBarsAgo, **int** endBarsAgo, Color color)
 
@@ -8855,11 +8954,11 @@ DrawRegressionChannel() draws a regression channel.
 
 **DrawRegressionChannel**(string tag, **bool** autoScale, DateTime startTime, DateTime endTime, Color upperColor, DashStyle upperDashStyle, **int** upperWidth, Color middleColor, DashStyle middleDashStyle, **int** middleWidth, Color lowerColor, DashStyle lowerDashStyle, **int** lowerWidth)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IRegressionChannel (interface)
 
-**Parameter**
+### Parameter
 
 |                  |                                                                                         |
 |------------------|-----------------------------------------------------------------------------------------|
@@ -8889,7 +8988,7 @@ A drawing object of the type IRegressionChannel (interface)
  middleWidth,      
  lowerWidth        | Line strength                                                                           |
 
-**Example**
+### Example
 
 // Draws a regression channel from the low of the bar from 10 days ago to the high of the bar from 5 days ago.
 
@@ -8898,7 +8997,7 @@ A drawing object of the type IRegressionChannel (interface)
 DrawSquare()
 ------------
 
-**Description**
+### Description
 
 DrawSquare() draws a square:
 
@@ -8906,17 +9005,17 @@ DrawSquare() draws a square:
 
 See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
-**Usage**
+### Usage
 
 **DrawSqare**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawSqare**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ISquare (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -8927,7 +9026,7 @@ A drawing object of the type ISquare (interface)
 | Y         | y-value for the square                                                                  |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws a dark red square at the current bar 10 ticks above the high
 **DrawSquare**("MySquare", **true**, 0, High\[0\] + 10\*TickSize, Color.DarkRed);
@@ -8935,13 +9034,13 @@ A drawing object of the type ISquare (interface)
 DrawText()
 ----------
 
-**Description**
+### Description
 
 DrawText() writes whatever text you want onto the chart.
 
 See [*DrawTextFixed()*](#drawtextfixed), *PlotMethod*.
 
-**Usage**
+### Usage
 
 **DrawText**(string tag, string text, **int** barsAgo, **double** y, Color color)
 
@@ -8960,11 +9059,11 @@ See [*DrawTextFixed()*](#drawtextfixed), *PlotMethod*.
 
 **using** System.Windows.Forms.VisualStyles;
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IText (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
@@ -8997,7 +9096,7 @@ A drawing object of the type IText (interface)
                 0 = completely transparent                                                                   
                 10 = completely opaque                                                                       |
 
-**Example**
+### Example
 
 // writes text at y=3.0
 
@@ -9046,23 +9145,23 @@ Color.Yellow, // Fill color
 DrawTextFixed()
 ---------------
 
-**Description**
+### Description
 
 DrawTextFixed() writes text into one of 5 predetermined locations on the chart.
 
 See [*DrawText()*](#drawtext).
 
-**Usage**
+### Usage
 
 **DrawTextFixed**(string tag, string text, TextPosition textPosition)
 
 **DrawTextFixed**(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, **int** areaOpacity)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ITextFixed (interface)
 
-**Parameter**
+### Parameter
 
 |              |                                                                            |
 |--------------|----------------------------------------------------------------------------|
@@ -9083,7 +9182,7 @@ A drawing object of the type ITextFixed (interface)
                 0 = completely transparent                                                  
                 10 = completely opaque                                                      |
 
-**Example**
+### Example
 
 // Writes text into the middle of the chart
 
@@ -9098,21 +9197,21 @@ Color.Red, **new Font**("Arial",35), Color.Blue, Color.Empty, 10);
 DrawTrendChannel()
 ------------------
 
-**Description**
+### Description
 
 DrawTrendChannel() draws a trend channel.
 
-**Usage**
+### Usage
 
 **DrawTrendChannel**(string tag, **bool** autoScale, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, **int** anchor3BarsAgo, **double** anchor3Y)
 
 **DrawTrendChannel**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, DateTime anchor3Time, **double** anchor3Y)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ITrendChannel (interface)
 
-**Parameter**
+### Parameter
 
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
@@ -9128,7 +9227,7 @@ A drawing object of the type ITrendChannel (interface)
 | anchor3Time    | Date/time for anchor point 3 (x-axis)                                                   |
 | anchor3Y       | y-value for anchor point 3                                                              |
 
-**Example**
+### Example
 
 // Draws a trend channel
 
@@ -9137,11 +9236,11 @@ A drawing object of the type ITrendChannel (interface)
 DrawTriangle()
 --------------
 
-**Description**
+### Description
 
 DrawTriangle() draws a triangle.
 
-**Usage**
+### Usage
 
 **DrawTriangle**(string tag, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, **int** anchor3BarsAgo, **double** anchor3Y, Color color)
 
@@ -9149,11 +9248,11 @@ DrawTriangle() draws a triangle.
 
 **DrawTriangle**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, DateTime anchor3Time, **double** anchor3Y, Color color, Color areaColor, **int** areaOpacity)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ITriangle (interface)
 
-**Parameter**
+### Parameter
 
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
@@ -9175,7 +9274,7 @@ A drawing object of the type ITriangle (interface)
                   0 = completely transparent                                                               
                   10 = completely opaque                                                                   |
 
-**Example**
+### Example
 
 // Draws a green triangle
 
@@ -9184,7 +9283,7 @@ A drawing object of the type ITriangle (interface)
 DrawTriangleUp()
 ----------------
 
-**Description**
+### Description
 
 DrawTriangleUp() draws a small upwards-pointing triangle:
 
@@ -9192,17 +9291,17 @@ DrawTriangleUp() draws a small upwards-pointing triangle:
 
 See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleDown()*](#drawtriangledown).
 
-**Usage**
+### Usage
 
 **DrawTriangleUp**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawTriangleUp**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ITriangleUp (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -9213,7 +9312,7 @@ A drawing object of the type ITriangleUp (interface)
 | y         | y-value at which the triangle should be drawn                                           |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws a small light green triangle at the current bar 10 ticks below the low
 
@@ -9222,7 +9321,7 @@ A drawing object of the type ITriangleUp (interface)
 DrawTriangleDown()
 ------------------
 
-**Description**
+### Description
 
 DrawTriangleDown() draws a small downwards-pointing triangle:
 
@@ -9230,17 +9329,17 @@ DrawTriangleDown() draws a small downwards-pointing triangle:
 
 See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup).
 
-**Usage**
+### Usage
 
 **DrawTriangleDown**(string tag, **bool** autoScale, **int** barsAgo, **double** y, Color color)
 
 **DrawTriangleDown**(string tag, **bool** autoScale, DateTime time, **double** y, Color color)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type ITriangleDown (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
@@ -9251,7 +9350,7 @@ A drawing object of the type ITriangleDown (interface)
 | Y         | y-value at which the triangle should be drawn                                           |
 | color     | Color of the drawing object                                                             |
 
-**Example**
+### Example
 
 // Draws a small red triangle at the current bar 10 ticks above the high
 
@@ -9260,13 +9359,13 @@ A drawing object of the type ITriangleDown (interface)
 DrawVerticalLine()
 ------------------
 
-**Description**
+### Description
 
 DrawVerticalLine() draws a vertical line in the chart.
 
 See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
 
-**Usage**
+### Usage
 
 **DrawVerticalLine**(string tag, **int** barsAgo, Color color)
 
@@ -9274,11 +9373,11 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 **DrawVerticalLine**(string tag, DateTime time, Color color, DashStyle dashStyle, **int** width)
 
-**Return Value**
+### Return Value
 
 A drawing object of the type IVerticalLine (interface)
 
-**Parameter**
+### Parameter
 
 |           |                                                                            |
 |-----------|----------------------------------------------------------------------------|
@@ -9298,7 +9397,7 @@ A drawing object of the type IVerticalLine (interface)
              using System.Drawing.Drawing2D;                                             |
 | width     | Line strength                                                              |
 
-**Example **
+### Example 
 
 // Draws a vertical line at the bar from 10 periods ago
 
@@ -9611,7 +9710,7 @@ set { \_soundFile = **value**; }
 Formatting of Numbers
 ---------------------
 
-**Formatting of Numbers**
+### Formatting of Numbers
 
 **General information on formatting in C\#**
 
@@ -9635,7 +9734,7 @@ Formatting of Numbers
 
 **Print**("To 4 decimal places : " + d.**ToString**("N4")); // 123.4568
 
-**Useful Functions**
+### Useful Functions
 
 Returns the currency symbol for the current instrument:
 
@@ -9738,7 +9837,7 @@ return string.**Format**(CultureInfo.CurrentCulture, f, d);
 
 }
 
-**Example**
+### **Example**
 
 **double** profit = 1234.567890;
 
