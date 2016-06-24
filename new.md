@@ -88,7 +88,7 @@ Bars (**public** IBars Bars) can be used directly in a script and equates to Bar
 
 The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).
 
-[*BarsSinceSession*](#bars.barssincesession)
+[*BarsSinceSession*](#barssincesession)
 
 [*Bars.Count*](#bars.count)
 
@@ -129,8 +129,8 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 With the **OnBarUpdate** () method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnBarUpdate** () is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate** () then you should first perform a test for null references using **if** (Bars != **null**).
 
-Bars.BarsSinceSession
----------------------
+BarsSinceSession
+----------------
 
 ### Description
 
