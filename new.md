@@ -7,37 +7,37 @@ AgenaScript allows you to execute any ideas/methods that are too complex for the
 
 Information contained in this help document:
 
-1.  Handling bars and instruments
+[1. Handling bars and instruments](#_Data)
 
 You will find a detailed explanation of how AgenaScript reacts and interacts with individual bars or candles as well as various trading instruments.
 
-1.  Events
+[2. Events](#events)
 
 AgenaScript is event-based and -driven. When (for example) a candle closes or a new candle opens, then an event has occurred. When a new price value is delivered by your data provider or a new order is executed by your broker, then these too are considered events. AgenaScript allows you to react to these events. You can read about the exact methodology in this and the following chapters.
 
-1.  Indicators und oscillators
+3. Indicators und oscillators
 
 This section explains the indicators already available for AgenaTrader users in detail. The help document presents the indicator itself as well as its usage, the interpretation of the signals and the source of the information.
 Each indicator and oscillator can be used on its own with AgenaScripts; the exact syntax and meaning of its parameters are also described here. You will also find several code snippets here.
 
-1.  Strategy programming
+[4. Strategy programming](#strategy-programming)
 
 AgenaScript allows you to create your own trading strategies and execute them live within the market. Information pertaining to prerequisites and how orders are sent to the broker and managed internally can be found here.
 
-1.  Keywords
+[5. Keywords](#keywords)
 
 Like every other programming language, AgenaTrader has a set of commands that can be converted and used via Scripts. You should be relatively well versed in these if you wish to create your own indicators or trading systems.
 
-1.  Drawing objects
+[6. Drawing objects](#drawingobjects)
 
 All drawing objects that can be used within the chart can also be accessed using AgenaScript. In this way, you can turn on/off certain lines, arrows, rectangles and other objects with specified conditions.
 
-1.  Tips and tricks
+[7. Hints and advice](#_Hints_&_Advice)
 
 This section provides solutions to problems of an unusual nature. To solve such problems, you need to be able to trace and understand source code and programming. More advanced programmers and users may find solutions and suggestions that could help them in their own programming.
 
-Data
-====
+<span id="_topic_Daten" class="anchor"><span id="_Data" class="anchor"></span></span>Data
+=========================================================================================
 
 Data is understood as information that is retrieved externally and uploaded to AgenaTrader, or as data series that are created by AgenaScripts.
 
@@ -88,7 +88,7 @@ Bars (**public** IBars Bars) can be used directly in a script and equates to Bar
 
 The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).
 
-[*Bars.BarsSinceSession*](#bars.barssincesession)
+[*BarsSinceSession*](#bars.barssincesession)
 
 [*Bars.Count*](#bars.count)
 
@@ -124,7 +124,7 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.TimeFrame*](#bars.timeframe)
 
--   [*Bars.TotalTicks*](#bars.totalticks)
+[*Bars.TotalTicks*](#bars.totalticks)
 
 With the **OnBarUpdate** () method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnBarUpdate** () is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate** () then you should first perform a test for null references using **if** (Bars != **null**).
@@ -9403,8 +9403,8 @@ A drawing object of the type IVerticalLine (interface)
 
 **DrawVerticalLine**("MyVerticalLine", 10, Color.Black);
 
-Hints & Advice
-==============
+<span id="_topic_TippsTricks" class="anchor"><span id="_Hints_&_Advice" class="anchor"></span></span>Hints & Advice
+===================================================================================================================
 
 Bar Numbering Within the Chart
 ------------------------------
