@@ -1,0 +1,7 @@
+site_name: AgenaTrader Tutorials
+docs_dir: sources
+theme: readthedocs
+pages:
+    - 'Lets start': 'index.md'
+    - 'Basic Example': 'Example_Indicator_Condition_Strategy_Basic/README.md'
+    - 'Advanced Example': 'Example_Indicator_Condition_Strategy_Advanced/README.md'
