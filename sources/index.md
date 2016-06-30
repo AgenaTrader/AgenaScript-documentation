@@ -1,12 +1,10 @@
 #Welcome to the official AgenaScript repository!
-
-#Welcome to the AgenaTrader tutorial!
 Want to learn more about the AgenaTrader scripting language? We've got the resources to help you get started. Start by browsing the tutorials on the list below.
 
 ##IMPORTANT
 These scripts are compiled against AgenaTrader 1.9.0.273.
-**If you are using a higher version DO NOT USE these scripts!**
 
+**If you are using a higher version DO NOT USE these scripts!**
 
 
 #Contact us
