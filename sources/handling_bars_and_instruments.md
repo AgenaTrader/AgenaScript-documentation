@@ -4,7 +4,7 @@ Data is understood as information that is retrieved externally and uploaded to A
 
 Further detailed information can be found using the appropriate shortcuts:
 
-[*Bars (Candles)*](#bars-candles)
+[Bars (Candles)](#bars-candles)
 
 [Data series](#data-series)
 
@@ -54,46 +54,51 @@ Bars (**public** IBars Bars) can be used directly in a script and equates to Bar
 
 The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).
 
-[*BarsSinceSession*]
+[*BarsSinceSession*](#barssincesession)
 
-[*Bars.Count*]
+[*Bars.Count*](#barscount)
 
-[*Bars.FirstBarOfSession*]
+[*Bars.FirstBarOfSession*](#barsfirstbarofsession)
 
-[*Bars.GetBar*]
+[*Bars.GetBar*](#barsgetbar)
 
-[*Bars.GetBarsAgo*]
+[*Bars.GetBarsAgo*](#barsgetbarsago)
 
-[*Bars.GetByIndex*]
+[*Bars.GetByIndex*](#barsgetbyindex)
 
-[*Bars.GetIndex*]
+[*Bars.GetIndex*](#barsgetindex)
 
-[*Bars.GetNextBeginEnd*]
+[*Bars.GetNextBeginEnd*](#barsgetnextbeginend)
 
-[*Bars.GetOpen*] (+ GetHigh, GetLow, GetClose, GetTime and GetVolume)
+[*Bars.GetOpen*](#barsgetopen) 
+GetHigh
+GetLow
+GetClose
+GetTime 
+GetVolume
 
-[*Bars.Instrument*]
+[*Bars.Instrument*](#barsinstrument)
 
-[*Bars.IsIntraDay*]
+[*Bars.IsIntraDay*](#barsisintraday)
 
-[*Bars.PercentComplete*]
+[*Bars.PercentComplete*](#barspercentcomplete)
 
-[*Bars.SessionBegin*]
+[*Bars.SessionBegin*](#barssessionbegin)
 
-[*Bars.SessionEnd*]
+[*Bars.SessionEnd*](#barssessionend)
 
-[*Bars.SessionNextBegin*]
+[*Bars.SessionNextBegin*](#barssessionnextbegin)
 
-[*Bars.SessionNextEnd*]
+[*Bars.SessionNextEnd*](#barssessionnextend)
 
-[*Bars.TickCount*]
+[*Bars.TickCount*](#barstickcount)
 
-[*Bars.TimeFrame*]
+[*Bars.TimeFrame*](#barstimeframe)
 
-[*Bars.TotalTicks*]
+[*Bars.TotalTicks*](#barstotalticks)
 
-With the **OnBarUpdate**() method you can use any properties you want without having to test for a null reference.
-As soon as the function **OnBarUpdate**() is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate**() then you should first perform a test for null references using **if** (Bars != **null**).
+With the **OnBarUpdate()** method you can use any properties you want without having to test for a null reference.
+As soon as the function **OnBarUpdate()** is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate()** then you should first perform a test for null references using **if** (Bars != **null**).
 
 BarsSinceSession
 ----------------
@@ -381,7 +386,7 @@ DateTime sessionBegin;
 
 DateTime sessionEnd;
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
@@ -537,7 +542,7 @@ If this property is used outside of OnBarUpdate() you should test for a null ref
 
 **Bool** remind = **false**;
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
@@ -1510,39 +1515,38 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 See example [*Multibars*][*MultiBars*].
 
-Instruments
------------
+##Instruments
 
 The term "instrument" denotes a tradable value such as a stock, ETF, future etc.
 
 An instrument has various properties that can be used in AgenaScripts created by the user:
 
-[*Instrument.Compare*]
+[*Instrument.Compare*](#instrumentcompare)
 
-[*Instrument.Currency*]
+[*Instrument.Currency*](#instrumentcurrency)
 
-[*Instrument.Digits*]
+[*Instrument.Digits*](#instrumentdigits)
 
-[*Instrument.ETF*]
+[*Instrument.ETF*](#instrumentetf)
 
-[*Instrument.Exchange*]
+[*Instrument.Exchange*](#instrumentexchange)
 
-[*Instrument.Expiry*]
+[*Instrument.Expiry*](#instrumentexpiry)
 
-[*Instrument.InstrumentType*]
+[*Instrument.InstrumentType*](#instrumentinstrumenttype)
 
-[*Instrument.Name*]
+[*Instrument.Name*](#instrumentname)
 
-[*Instrument.PointValue*]
+[*Instrument.PointValue*](#instrumentpointvalue)
 
-[*Instrument.Round2TickSize*]
+[*Instrument.Round2TickSize*](#instrumentround2ticksize)
 
-[*Instrument.Symbol*]
+[*Instrument.Symbol*](#instrumentsymbol)
 
-[*Instrument.TickSize*]
+[*Instrument.TickSize*](#instrumentticksize)
 
-With the **OnBarUpdate**() method you can use any properties you wish without having to test for a null reference.
-As soon as the **OnBarUpdate**() function is called up by AgenaScript, an object will become available. If you wish to use these properties outside of **OnBarUpdate**(), you should first perform a test for null references using **if** (Bars != **null**)
+With the **OnBarUpdate()** method you can use any properties you wish without having to test for a null reference.
+As soon as the **OnBarUpdate()** function is called up by AgenaScript, an object will become available. If you wish to use these properties outside of **OnBarUpdate()**, you should first perform a test for null references using **if** (Bars != **null**)
 
 Instrument.Compare
 ------------------
@@ -2050,7 +2054,7 @@ Lines\[**int** index\]
 
 // Add "using System.Drawing.Drawing2D;" for DashStyle
 
-**protected** override void **Initialize**()
+**protected** override void **Initialize()**
 
 {
 
@@ -2060,7 +2064,7 @@ Lines\[**int** index\]
 
 }
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
@@ -2142,7 +2146,7 @@ More information regarding the collection class:
 
 **private** Pen pen;
 
-**protected** override void **Initialize**()
+**protected** override void **Initialize()**
 
 {
 
@@ -2162,7 +2166,7 @@ Overlay = **true**;
 
 }
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
@@ -2237,7 +2241,7 @@ Plots\[**int** index\]
 
 ### Example
 
-**protected** override void **Initialize**()
+**protected** override void **Initialize()**
 
 {
 
@@ -2245,7 +2249,7 @@ Plots\[**int** index\]
 
 }
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
@@ -2348,7 +2352,7 @@ If you want your self-created indicator to use a different timeframe, this is po
 
 {
 
-**protected** override void **InitRequirements**()
+**protected** override void **InitRequirements()**
 
 > {
 >
@@ -2358,7 +2362,7 @@ If you want your self-created indicator to use a different timeframe, this is po
 >
 > }
 >
-> **protected** override void **Initialize**()
+> **protected** override void **Initialize()**
 
 {
 
@@ -2366,7 +2370,7 @@ CalculateOnBarClose = **true**;
 
 }
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
@@ -2485,7 +2489,7 @@ Within a script that only works with primary timeframes, the value will always e
 
 // Calculate only for the chart timeframe
 
-**protected** override void **OnBarUpdate**()
+**protected** override void **OnBarUpdate()**
 
 {
 
