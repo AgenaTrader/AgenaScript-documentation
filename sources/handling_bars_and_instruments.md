@@ -6,9 +6,9 @@ Further detailed information can be found using the appropriate shortcuts:
 
 [*Bars (Candles)*](#bars-candles)
 
-[*Data series*]
+[Data series](#data-series)
 
-[*Instrument*]
+[Instruments]
 
 
 Bars (Candles)
