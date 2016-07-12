@@ -8,11 +8,10 @@ Further detailed information can be found using the appropriate shortcuts:
 
 [Data series](#data-series)
 
-[Instruments]
+[Instruments](#instruments)
 
 
-Bars (Candles)
---------------
+##Bars (Candles)
 
 ### Functionality
 
