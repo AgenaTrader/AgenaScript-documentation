@@ -2,28 +2,13 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to the official AgenaScript repository!\n\n\nWant to learn more about the AgenaTrader scripting language? We've got the resources to help you get started. Start by browsing the tutorials on the list below.\n\n\nIMPORTANT\n\n\nThese scripts are compiled against AgenaTrader 1.9.0.273.\n\n\nIf you are using a higher version DO NOT USE these scripts!\n\n\nContact us\n\n\nIf you have any questions, feedback for us or you have particular wishes please do not hesitate to contact us:\n\n \nGitHub Simon\n or \nTwitter Simon\n\n\n \nGitHub Christian\n or \nTwitter Christian\n\n\nLinks\n\n\n\n\nAgena Trader Software\n\n\nAgena Trader Support Forum", 
+            "text": "Welcome to the official AgenaScript repository!\n\n\nWant to learn more about the AgenaTrader scripting language? We've got the resources to help you get started.", 
             "title": "Lets start"
         }, 
         {
             "location": "/#welcome-to-the-official-agenascript-repository", 
-            "text": "Want to learn more about the AgenaTrader scripting language? We've got the resources to help you get started. Start by browsing the tutorials on the list below.", 
+            "text": "Want to learn more about the AgenaTrader scripting language? We've got the resources to help you get started.", 
             "title": "Welcome to the official AgenaScript repository!"
-        }, 
-        {
-            "location": "/#important", 
-            "text": "These scripts are compiled against AgenaTrader 1.9.0.273.  If you are using a higher version DO NOT USE these scripts!", 
-            "title": "IMPORTANT"
-        }, 
-        {
-            "location": "/#contact-us", 
-            "text": "If you have any questions, feedback for us or you have particular wishes please do not hesitate to contact us:   GitHub Simon  or  Twitter Simon    GitHub Christian  or  Twitter Christian", 
-            "title": "Contact us"
-        }, 
-        {
-            "location": "/#links", 
-            "text": "Agena Trader Software  Agena Trader Support Forum", 
-            "title": "Links"
         }
     ]
 }
