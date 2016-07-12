@@ -4,7 +4,7 @@ Data is understood as information that is retrieved externally and uploaded to A
 
 Further detailed information can be found using the appropriate shortcuts:
 
-[*Bars*]
+[*Bars*](bars-candles)
 
 [*Data series*]
 
