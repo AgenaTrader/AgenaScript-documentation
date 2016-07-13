@@ -3,5 +3,15 @@ docs_dir: sources
 theme: readthedocs
 site_favicon: favicon.ico
 extra_css: [custom.css]
+use_directory_urls: true
+strict: true
 pages:
     - 'Lets start': 'index.md'
+    - 'Handling bars and instruments': 'handling_bars_and_instruments.md'
+    - 'Events': 'events.md'
+    - 'Strategy programming': 'strategy_programming.md'
+    - 'Keywords': 'keywords.md'
+    - 'Drawing objects': 'drawing_objects.md'
+    - 'Hints and advice': 'hints_and_advice.md'
+
+
