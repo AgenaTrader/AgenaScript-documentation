@@ -29,7 +29,7 @@ Whenever a new bar is added within a session it will become the new index 0; the
 Within a script (a self-created program/algorithm) the [***Close***] will be representative for the array (list) of all closing prices.
 The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago“ expression for this in general cases.
 
-Obviously, every bar will not only have a closing value but also a [*High*], [*Low*], [*Open*], [*Median*], [*Typical*], [*Weighted*], [*Time*] and *Volume*. Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
+Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
 
 **Important tip:**
 
@@ -274,7 +274,7 @@ Bars.GetByIndex
 
 Bars.GetByIndex outputs the index for the specified bar object
 
-See [*Bars.GetBar*], [*Bars.GetBarsAgo*], [*Bars.GetIndex*].
+See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetIndex*](#barsgetindex).
 
 ### Parameter
 
@@ -290,7 +290,7 @@ Bars.**GetByIndex** (int Index)
 
 ### More Information
 
-For indexing of bars see [*Functionality*][*Bars*]
+For indexing of bars see [*Functionality*][*Bars*](#bars)
 
 ### Example
 
@@ -303,7 +303,7 @@ Bars.GetIndex
 
 Bars.GetIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
 
-See [*Bars.GetBar*], [*Bars.GetBarsAgo*], [*Bars.GetByIndex*].
+See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex).
 
 ### Parameter
 
@@ -345,7 +345,7 @@ Bars.GetNextBeginEnd
 
 Bars.GetNextBeginEnd outputs the date and time for the beginning and end of a trading session.
 
-See [*Bars.SessionBegin*], [*Bars.SessionEnd*], [*Bars.SessionNextBegin*], [*Bars.SessionNextEnd*].
+See [*Bars.SessionBegin*](#barssessionbegin), [*Bars.SessionEnd*](#barssessionend), [*Bars.SessionNextBegin*](#barssessionnextbegin), [*Bars.SessionNextEnd*](#barssessionnextend).
 
 ### Parameter
 
@@ -400,8 +400,6 @@ Bars.GetSessionDate
 -------------------
 
 ### Description
-
-### 
 
 Bars.GetSessionDate provides the date and the time of the start of a particular trading session.
 
@@ -795,25 +793,25 @@ Data series are interpreted as freely usable data storage containers for your pr
 In the following section, the concept of data series will be explained in detail and understandably. All price data for the individual bars are organized and saved within data series.
 The following are available:
 
-[*Open*][] [*Opens*]
+[*Open*](#Open) [*Opens*](Opens)
 
-[*High*][] [*Highs*]
+[*High*](#High) [*Highs*](Highs)
 
-[*Low*][] [*Lows*]
+[*Low*](#Low) [*Lows*](Lows)
 
-[*Close*][***Close***] [*Closes*]
+[*Close*](#close) [*Closes*](Closes)
 
-[*Median*][] [*Medians*]
+[*Median*](#median) [*Medians*](Medians)
 
-[*Typical*][] [*Typicals*]
+[*Typical*](#Typical) [*Typicals*](Typicals)
 
-[*Weighted*][] [*Weighteds*]
+[*Weighted*](#Weighted) [*Weighteds*](Weighteds)
 
-[*Time*][] [*Times*]
+[*Time*](#Time) [*Times*](Times)
 
-[*TimeFrame*][] [*TimeFrames*]
+[*TimeFrame*](#TimeFrame) [*TimeFrames*](TimeFrames)
 
-[*Volume*][] [*Volumes*]
+[*Volume*](#Volume) [*Volumes*](Volumes)
 
 Open
 ----
