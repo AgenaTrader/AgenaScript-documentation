@@ -12,6 +12,7 @@ The following example demonstrates the usage of the plot method and the properti
 **Note:**
 For demonstration purposes, each time Paint is called up within the “Bar Numbering” section, “New” and “Dispose” will also be called up multiple times.
 From a performance point of view, this solution can be better implemented by using constant variable declarations and calling up “Dispose” within the OnTermination statement.
+```cs
 
 **using** System;
 
@@ -162,12 +163,15 @@ return Math.**Max**(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 }
 
 }
+```
+
 
 Custom Chart Background Image
 -----------------------------
 
 The plot method allows you to add a background image to the chart.
 The following example uses an image with the JPG format located in the main directory on the hard drive (C:).
+```cs
 
 **using** System;
 
@@ -208,6 +212,8 @@ g.**DrawImage**(img,r);
 }
 
 }
+```
+
 
 <img src=".//media/image31.png" width="601" height="444" />
 
@@ -216,6 +222,7 @@ File Selection in the Properties
 
 To enable file selection within the properties dialog of an indicator, you will need a type converter.
 The following example displays how a selection of WAV files can be programmed for an alert:
+```cs
 
 **using** System;
 
@@ -302,6 +309,8 @@ set { \_soundFile = **value**; }
 }
 
 }
+```
+
 
 Formatting of Numbers
 ---------------------
@@ -310,6 +319,7 @@ Formatting of Numbers
 
 **General information on formatting in C\#**
 
+```cs
 **double** d = 123.4567890;
 
 **Print**("Without formatting : " + d.**ToString**()); // 123.456789
@@ -329,11 +339,14 @@ Formatting of Numbers
 **Print**("To 3 decimal places : " + d.**ToString**("N3")); // 123.457
 
 **Print**("To 4 decimal places : " + d.**ToString**("N4")); // 123.4568
+```
+
 
 ### Useful Functions
 
 Returns the currency symbol for the current instrument:
 
+```cs
 **public** string **getWaehrungssymbol**() {
 
 string s = "";
@@ -355,9 +368,12 @@ string s = "";
 return s;
 
 }
+```
+
 
 Converts a number into a currency with a thousands separator and 2 decimal places.
 The block separation per 1000 units can be set in “Culture”.
+```cs
 
 **public** string **getWaehrungOhneSymbol**(**double** d) {
 
@@ -366,9 +382,12 @@ The block separation per 1000 units can be set in “Culture”.
 return d.**ToString**("\#,\#\#0.00");
 
 }
+```
+
 
 Converts a number into a currency with a thousands separator and 2 decimal places and a currency symbol:
 
+```cs
 **public** string **getWaehrungMitSymbol**(**double** d) {
 
 // Dollar is prefixed, everything else is added afterwards
@@ -382,10 +401,13 @@ string w=**getWaehrungssymbol**();
 return s;
 
 }
+```
+
 
 Converts a number into a currency with a thousands separator and 2 decimal places as well as a currency symbol, and fills up to a fixed length with empty spaces.
 The function is great for outputting values into a table.
 
+```cs
 **public** string **getWaehrungMitSymbol**(**double** d, **int** Laenge) {
 
 // Leading spaces until a fixed length has been reached
@@ -397,10 +419,13 @@ string s=**getWaehrungMitSymbol**(d);
 return s;
 
 }
+```
+
 
 Converts a number into a percentage. Nothing is calculated, only formatted.
 Leading plus sign, a decimal place and a percent sign.
 
+```cs
 **public** string **getPercent**(**double** d) {
 
 d=Math.**Round**(d, 1);
@@ -410,10 +435,13 @@ string s=(d&gt;0)?"+":""; // Leading plus sign
 return s+d.**ToString**("0.0")+"%";
 
 }
+```
+
 
 Formats the market price depending on the number of decimal places to which the currency is notated.
 This includes a thousands separator and fixed length, meaning that zeros are filled on the right hand side.
 Because Culture Info is being used, you must integrate the NameSpace **System.Globalization**.
+```cs
 
 **public** string **format**(**double** d)
 
@@ -432,8 +460,11 @@ string f = "{0:n"+tickLength.**ToString**()+"}";
 return string.**Format**(CultureInfo.CurrentCulture, f, d);
 
 }
+```
+
 
 ### **Example**
+```cs
 
 **double** profit = 1234.567890;
 
@@ -450,6 +481,8 @@ return string.**Format**(CultureInfo.CurrentCulture, f, d);
 **double** price = 123.4567;
 
 **Print**("getPrice :" + **getKurs**(Kurs)); // 123.46
+```
+
 
 Index Conversion
 ----------------
@@ -468,6 +501,7 @@ The bars are numbered from oldest to youngest.
 This type is most commonly used in the Plot() method in “for” loops.
 The oldest Bbar receives an index of 0, while the youngest bar has the index Bars.Count-1.
 The following function can be used to recalculate the index types:
+```cs
 
 private int Convert(int idx)
 
@@ -476,11 +510,14 @@ private int Convert(int idx)
 return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 
 }
+```
+
 
 Overwriting Indicator Names
 ---------------------------
 
 The name of an indicator (or a strategy) is displayed within the properties dialog and at the top edge of the chart. Use the ToString() property to overwrite it.
+```cs
 
 public override string ToString()
 
@@ -489,6 +526,8 @@ public override string ToString()
 return "My Name";
 
 }
+```
+
 
 Rectangle with Rounded Corners
 ------------------------------
@@ -497,6 +536,7 @@ By using the graphics methods, you can create interesting forms and place them o
 One example of this is the RoundedRectangle class, which is a rectangle with rounded corners.
 
 <img src=".//media/image32.png" width="440" height="407" />
+```cs
 
 **Example Code:**
 
@@ -715,205 +755,6 @@ return p;
 }
 
 }
+```
 
-  [*1. Handling bars and instruments*]: #_Data
-  [*2. Events*]: #events
-  [*Bars*]: #bars-candles
-  [*Data series*]: #dataseries
-  [*Instrument*]: #instruments
-  [***Close***]: #close
-  [*High*]: #high
-  [*Low*]: #low
-  [*Open*]: #open
-  [*Median*]: #median
-  [*Typical*]: #typical
-  [*Weighted*]: #weighted
-  [*Time*]: #time
-  [*CalculateOnBarClose*]: #calculateonbarclose
-  [*BarsSinceSession*]: #barssincesession
-  [*Bars.Count*]: #bars.count
-  [*Bars.FirstBarOfSession*]: #bars.firstbarofsession
-  [*Bars.GetBar*]: #bars.getbar
-  [*Bars.GetBarsAgo*]: #bars.getbarsago
-  [*Bars.GetByIndex*]: #bars.getbyindex
-  [*Bars.GetIndex*]: #bars.getindex
-  [*Bars.GetNextBeginEnd*]: #bars.getnextbeginend
-  [*Bars.GetOpen*]: #bars.getopen
-  [*Bars.Instrument*]: #bars.instrument
-  [*Bars.IsIntraDay*]: #bars.isintraday
-  [*Bars.PercentComplete*]: #bars.percentcomplete
-  [*Bars.SessionBegin*]: #bars.sessionbegin
-  [*Bars.SessionEnd*]: #bars.sessionend
-  [*Bars.SessionNextBegin*]: #bars.sessionnextbegin
-  [*Bars.SessionNextEnd*]: #bars.sessionnextend
-  [*Bars.TickCount*]: #bars.tickcount
-  [*Bars.TimeFrame*]: #bars.timeframe
-  [*Bars.TotalTicks*]: #bars.totalticks
-  [*Properties*]: #properties-of-bars
-  [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]: http://msdn.microsoft.com/de-de/library/system.datetime.aspx
-  [*OnBarUpdate()*]: #onbarupdate
-  [*Instrument.Exchange*]: #instrument.exchange
-  [*TimeFrame*]: #timeframe
-  [*Opens*]: #opens
-  [*Highs*]: #highs
-  [*Lows*]: #lows
-  [*Closes*]: #closes
-  [*Medians*]: #medians
-  [*Typicals*]: #typicals
-  [*Weighteds*]: #weighteds
-  [*Times*]: #times
-  [*TimeFrames*]: #timeframes
-  [*Volume*]: #volume
-  [*Volumes*]: #volumes
-  [*DataSeries*]: #dataseries-1
-  [*MultiBars*]: #multibars
-  [1]: #data-series
-  [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*]: http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html
-  [*DateTimeSeries*]: #datetimeseries
-  [*VOL()*]: #_topic_VolumenVOL
-  [*Instrument.Compare*]: #instrument.compare
-  [*Instrument.Currency*]: #instrument.currency
-  [*Instrument.Digits*]: #instrument.digits
-  [*Instrument.ETF*]: #instrument.etf
-  [*Instrument.Expiry*]: #instrument.expiry
-  [*Instrument.InstrumentType*]: #instrument.instrumenttype
-  [*Instrument.Name*]: #instrument.name
-  [*Instrument.PointValue*]: #instrument.pointvalue
-  [*Instrument.Round2TickSize*]: #instrument.round2ticksize
-  [*Instrument.Symbol*]: #instrument.symbol
-  [*Instrument.TickSize*]: #instrument.ticksize
-  [*TickSize*]: #ticksize
-  [*Formatting of Numbers*]: #formatting-of-numbers
-  [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]: http://de.wikipedia.org/wiki/Exchange-traded_fund
-  [*Line*]: #line
-  [*Add()*]: #add
-  [*Plots*]: #plots
-  [*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*]: http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx
-  [*Lines*]: #lines
-  [*CurrentBars*]: #currentbars
-  [*BarsInProgress*]: #barsinprogress
-  [*TimeFrameRequirements*]: #timeframerequirements
-  [CurrentBar]: #currentbar
-  [*event-oriented*]: http://de.wikipedia.org/wiki/Ereignis_%28Programmierung%29
-  [*API*]: http://de.wikipedia.org/wiki/Programmierschnittstelle
-  [*Overwriting*]: http://de.wikipedia.org/wiki/%C3%9Cberschreiben_%28OOP%29
-  [*OnExecution()*]: #onexecution
-  [*OnMarketData()*]: #onmarketdata
-  [*OnMarketDepth()*]: #onmarketdepth
-  [*OnOrderUpdate()*]: #onorderupdate
-  [*OnStartUp()*]: #onstartup
-  [*OnTermination()*]: #ontermination
-  [*Events*]: #_topic_EreignisseEvents
-  [*MarketDataEventArgs*]: #marketdataeventargs
-  [*MarketDepthEventArgs*]: #marketdeptheventargs
-  [*Initialize()*]: #initialize
-  [*DefaultQuantity*]: #defaultquantity
-  [*EnterLongLimit()*]: #enterlonglimit
-  [*EnterLongStop()*]: #enterlongstop
-  [*EnterLongStopLimit()*]: #enterlongstoplimit
-  [*EnterLong()*]: #enterlong
-  [*CancelOrder*]: #cancelorder
-  [*TimeInForce*]: #timeinforce
-  [*EnterShortLimit()*]: #entershortlimit
-  [*EnterShortStop()*]: #entershortstop
-  [*EnterShortStopLimit()*]: #entershortstoplimit
-  [*EnterShort()*]: #entershort
-  [*EntryHandling*]: #entryhandling
-  [*EntriesPerDirection*]: #entriesperdirection
-  [*ExitLong()*]: #exitlong
-  [*ExitLongLimit()*]: #exitlonglimit
-  [*ExitLongStop()*]: #exitlongstop
-  [*ExitLongStopLimit()*]: #exitlongstoplimit
-  [*ExitShort()*]: #exitshort
-  [*ExitShortLimit()*]: #exitshortlimit
-  [*ExitShortStop()*]: #exitshortstop
-  [*ExitShortStopLimit()*]: #exitshortstoplimit
-  [*GetProfitLoss()*]: #getprofitloss
-  [*GetAccountValue()*]: #getaccountvalue
-  [*http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp*]: http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp
-  [*Position.MarketPosition*]: #position
-  [*Trade*]: #trade
-  [*SetStopLoss()*]: #setstoploss
-  [*SetTrailStop()*]: #settrailstop
-  [*SetProfitTarget()*]: #_topic_SetProfitTarget
-  [*Performance*]: #performance
-  [*Plot*]: #plot
-  [*http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx*]: http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx
-  [*Browsable*]: #browsable
-  [*Category*]: #category
-  [*ConditionalValue*]: #conditionalvalue
-  [*Description*]: #description-105
-  [*DisplayName*]: #displayname
-  [*XmlIgnore*]: #xmlignore
-  [Attribut]: #attribute
-  [*GetDayBar*]: #_topic_GetDayBar
-  [*PlotSample*]: #bar-numbering-within-the-chart
-  [*Print()*]: #print
-  [*CrossBelow()*]: #crossbelow
-  [*Rising()*]: #rising
-  [*Falling()*]: #falling
-  [*CrossAbove()*]: #crossabove
-  [*BoolSeries*]: #boolseries
-  [*FloatSeries*]: #floatseries
-  [*IntSeries*]: #intseries
-  [*LongSeries*]: #longseries
-  [*StringSeries*]: #stringseries
-  [*PlotColors*]: #plotcolors
-  [*http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx*]: http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx
-  [*http://msdn.microsoft.com/de-de/library/03ybds8y.aspx*]: http://msdn.microsoft.com/de-de/library/03ybds8y.aspx
-  [*BarColor*]: #barcolor
-  [*BackColor*]: #backcolor
-  [*BackColorAll*]: #backcolorall
-  [*BarColorSeries*]: #barcolorseries
-  [*CandleOutlineColorSeries*]: #candleoutlinecolorseries
-  [*BackColorSeries*]: #backcolorseries
-  [*BackColorAllSeries*]: #backcolorallseries
-  [*Colors*]: #colors
-  [*CandleOutlineColor*]: #candleoutlinecolor
-  [*FirstTickOfBar*]: #firsttickofbar
-  [*GetCurrentBid()*]: #getcurrentbid
-  [*GetCurrentAsk()*]: #getcurrentask
-  [*LowestBar()*]: #lowestbar
-  [*AllowRemovalOfDrawObjects*]: #allowremovalofdrawobjects
-  [*AutoScale*]: #autoscale
-  [*BarsRequired*]: #barsrequired
-  [*ClearOutputWindow()*]: #clearoutputwindow
-  [*Displacement*]: #displacement
-  [*DisplayInDataBox*]: #displayindatabox
-  [*DrawOnPricePanel*]: #drawonpricepanel
-  [*InputPriceType*]: #inputpricetype
-  [*Overlay*]: #overlay
-  [*PaintPriceMarkers*]: #paintpricemarkers
-  [*SessionBreakLines*]: #sessionbreaklines
-  [*VerticalGridLines*]: #verticalgridlines
-  [*TraceOrders*]: #traceorders
-  [*PriceType*]: #pricetype
-  [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*]: http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx
-  [*HighestBar()*]: #highestbar
-  [*SMA*]: #_topic_SMASimpleMovingAverage
-  [*http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx*]: http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx
-  [*ChartControl*]: #chartcontrol
-  [*http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx*]: http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx
-  [*RemoveDrawObjects()*]: #removedrawobjects
-  [*RemoveDrawObject()*]: #removedrawobject
-  [*www.cmegroup.com*]: http://www.cmegroup.com
-  [*ToTime*]: #totime
-  [*ToDay*]: #today
-  [*Values*]: #values
-  [*http://vtadwiki.vtad.de/index.php/Andrews\_Pitchfork*]: http://vtadwiki.vtad.de/index.php/Andrews_Pitchfork
-  [*http://www.volumen-analyse.de/blog/?p=917*]: http://www.volumen-analyse.de/blog/?p=917
-  [*http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews\_Pitchfork*]: http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews_Pitchfork
-  [*DrawArrowUp()*]: #drawarrowup
-  [*DrawDiamond()*]: #drawdiamond
-  [*DrawDot()*]: #drawdot
-  [*DrawSquare()*]: #drawsquare
-  [*DrawTriangleUp()*]: #drawtriangleup
-  [*DrawTriangleDown()*]: #drawtriangledown
-  [*DrawArrowDown()*]: #drawarrowdown
-  [*DrawLine()*]: #drawline
-  [*DrawHorizontalLine()*]: #drawhorizontalline
-  [*DrawVerticalLine()*]: #drawverticalline
-  [*DrawRay()*]: #drawray
-  [*DrawExtendedLine()*]: #drawextendedline
-  [*DrawTextFixed()*]: #drawtextfixed
-  [*DrawText()*]: #drawtext
+
