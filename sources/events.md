@@ -115,8 +115,10 @@ The „MarketDataType“ field always equals the „last" value
 The fields "Volume", "BidSize" and "AskSize" are always 0.
 
 ### Usage
-
+```cs
 protected override void OnMarketData(MarketDataEventArgs e)
+```
+
 
 ### Return Value
 
@@ -152,11 +154,12 @@ The OnMarketDepth() method is called up whenever there is a change in the level 
 In a multibar indicator, the BarsInProgress method identifies the data series for which the OnMarketDepth() method is called up.
 OnMarketDepth is not called up for historical data.
 
-More information can be found here: [*Events*].
+More information can be found here: [*Events*](#Events).
 
 ### Usage
-
-protected **override void** OnMarketDepth**(MarketDepthEventArgs e)**
+```cs
+protected override void OnMarketDepth(MarketDepthEventArgs e)
+```
 
 ### Return Value
 
@@ -167,17 +170,11 @@ none
 [*MarketDepthEventArgs*] e
 
 ### Example
-
-**protected** override void **OnMarketDepth**(MarketDepthEventArgs e)
-
+protected override void OnMarketDepth(MarketDepthEventArgs e)
 {
-
-// Output for the current ask price
-
-**if** (e.MarketDataType == MarketDataType.Ask && e.Operation == Operation.Update)
-
-**Print**("The current ask is + e.Price + " " + e.Volume);
-
+    // Output for the current ask price
+    if (e.MarketDataType == MarketDataType.Ask && e.Operation == Operation.Update)
+    Print("The current ask is + e.Price + " " + e.Volume);
 }
 
 OnOrderUpdate()
@@ -202,46 +199,35 @@ An order object of the type IOrder
 None
 
 ### Usage
-
-**protected** override void **OnOrderUpdate**(IOrder order)
+```cs
+protected override void OnOrderUpdate(IOrder order)
+```
 
 ### Example
+```cs
 
-**private** IOrder entryOrder = **null**;
+private IOrder entryOrder = null;
 
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**if** (entryOrder == **null** && Close\[0\] &gt; Open\[0\])
-
-entryOrder = **EnterLong**();
-
+    if (entryOrder == null && Close[0] &gt; Open\[0\])
+    entryOrder = EnterLong();
 }
 
-**protected** override void **OnOrderUpdate**(IOrder order)
-
+protected override void OnOrderUpdate(IOrder order)
 {
+    if (entryOrder != null && entryOrder == order)
+    {
+        Print(order.ToString());
+        if (order.OrderState == OrderState.Cancelled)
+        {
+        Print("Order was canceled.");
+        entryOrder = null;
+        }
 
-**if** (entryOrder != **null** && entryOrder == order)
-
-{
-
-**Print**(order.**ToString**());
-
-**if** (order.OrderState == OrderState.Cancelled)
-
-{
-
-**Print**("Order was canceled.");
-
-entryOrder = **null**;
-
+    }
 }
-
-}
-
-}
+```
 
 OnStartUp()
 -----------
@@ -264,28 +250,23 @@ none
 none
 
 ### Usage
-
-**protected** override void **OnStartUp**()
+```cs
+protected override void OnStartUp()
+```
 
 ### Example
+```cs
+private myForm Window;
 
-**private** myForm Window;
-
-**protected** override void **OnStartUp**()
-
+protected override void OnStartUp()
 {
-
-**if** (ChartControl != **null**)
-
-{
-
-Window = **new myForm**();
-
-Window.**Show**();
-
+    if (ChartControl != null)
+    {
+    Window = new myForm();
+    Window.Show();
+    }
 }
-
-}
+```
 
 OnTermination()
 ---------------
@@ -294,9 +275,9 @@ OnTermination()
 
 The OnTermination() method can also be overridden in order to once again free up all the resources used in the script.
 
-See [*Initialize()*] and [*OnStartUp()*].
+See [*Initialize()*](#Initialize) and [*OnStartUp()*](#OnStartUp).
 
-More information can be found here: [*Events*].
+More information can be found here: [*Events*](#Events).
 
 ### Parameter
 
@@ -307,28 +288,23 @@ none
 none
 
 ### Usage
-
-**protected** override void **OnTermination**()
+```cs
+protected override void OnTermination()
+```
 
 ### More Information
 
-**Caution:
-Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.**
+**Caution:**
+**Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.**
 
 ### Example
-
-**protected** override void **OnTermination**()
-
+```cs
+protected override void OnTermination()
 {
-
-**if** (Window != **null**)
-
-{
-
-Window.**Dispose**();
-
-Window = **null**;
-
+    if (Window != null)
+    {
+        Window.Dispose();
+        Window = null;
+    }
 }
-
-}
+```
