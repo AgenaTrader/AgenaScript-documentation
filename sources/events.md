@@ -1,24 +1,18 @@
 
 #Events
 
-AgenaTrader is an [*event-oriented*] application by definition.
+AgenaTrader is an *event-oriented* application by definition.
 
 Programming in AgenaTrader using the various application programming interface ([*API*]) methods is based initially on the [*Overwriting*] of routines predefined for event handling.
 
 The following methods can be used and therefore overwritten:
 
 -   [*OnBarUpdate()*]
-
 -   [*OnExecution()*]
-
 -   [*OnMarketData()*]
-
 -   [*OnMarketDepth()*]
-
 -   [*OnOrderUpdate()*]
-
 -   [*OnStartUp()*]
-
 -   [*OnTermination()*]
 
 OnBarUpdate()
@@ -26,13 +20,13 @@ OnBarUpdate()
 
 ### Description
 
-The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnBarClose*], this will happen upon every incoming tick or when the bar has completed/closed.
+The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnBarClose*](#CalculateOnBarClose), this will happen upon every incoming tick or when the bar has completed/closed.
 OnBarUpdate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.
 
-Caution: the numbering/indexing is different from the bar index – see [*Bars*].
+Caution: the numbering/indexing is different from the bar index – see [*Bars*](#Bars).
 
-More information can be found here: [*Events*].
+More information can be found here: [*Events*](#Events).
 
 ### Parameter
 
@@ -43,18 +37,17 @@ none
 none
 
 ### Usage
-
-**protected** override void **OnBarUpdate**()
+```cs
+protected override void OnBarUpdate()
+```
 
 ### Example
-
-**protected** override void **OnBarUpdate**()
-
+```cs
+protected override void OnBarUpdate()
 {
-
-**Print**("Calling of OnBarUpdate for the bar number " + CurrentBar + " from " +Time\[0\]);
-
+    Print("Calling of OnBarUpdate for the bar number " + CurrentBar + " from " +Time\[0\]);
 }
+```
 
 OnExecution()
 -------------
@@ -77,40 +70,31 @@ An execution object of the type IExecution
 none
 
 ### Usage
-
-**protected** override void **OnExecution**(IExecution execution)
+```cs
+protected override void OnExecution(IExecution execution)
+````
 
 ### Example
+```cs
+private IOrder entryOrder = null;
 
-**private** IOrder entryOrder = **null**;
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**if** (entryOrder == **null** && Close\[0\] &gt; Open\[0\])
-
-entryOrder = **EnterLong**();
-
+    if (entryOrder == null && Close[0] > Open[0])
+    entryOrder = EnterLong();
 }
 
-**protected** override void **OnExecution**(IExecution execution)
-
+protected override void OnExecution(IExecution execution)
 {
+    // Example 1
+    if (entryOrder != null && execution.Order == entryOrder)
+    Print(execution.ToString());
 
-// Example 1
-
-**if** (entryOrder != **null** && execution.Order == entryOrder)
-
-**Print**(execution.**ToString**());
-
-// Example 2
-
-**if** (execution.Order != **null** && execution.Order.OrderState == OrderState.Filled)
-
-**Print**(execution.**ToString**());
-
+    // Example 2
+    if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
+    Print(execution.ToString());
 }
+```
 
 OnMarketData()
 --------------
@@ -120,7 +104,7 @@ OnMarketData()
 The OnMarketData() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
 In a multibar indicator, the BarsInProgress method identifies the data series that was used for an information request for OnMarketData().
 OnMarketData() will not be called up for historical data.
-More information can be found here: [*Events*].
+More information can be found here: [*Events*](#Events).
 
 **Notes regarding data from Yahoo (YFeed)**
 
@@ -132,7 +116,7 @@ The fields "Volume", "BidSize" and "AskSize" are always 0.
 
 ### Usage
 
-protected **override void** OnMarketData**(MarketDataEventArgs e)**
+protected override void OnMarketData(MarketDataEventArgs e)
 
 ### Return Value
 
@@ -143,32 +127,21 @@ none
 [*MarketDataEventArgs*] e
 
 ### Example
-
-**protected** override void **OnMarketData**(MarketDataEventArgs e)
-
+```cs
+protected override void OnMarketData(MarketDataEventArgs e)
 {
-
-**Print**("AskPrice "+e.AskPrice);
-
-**Print**("AskSize "+e.AskSize);
-
-**Print**("BidPrice "+e.BidPrice);
-
-**Print**("BidSize "+e.BidSize);
-
-**Print**("Instrument "+e.Instrument);
-
-**Print**("LastPrice "+e.LastPrice);
-
-**Print**("MarketDataType "+e.MarketDataType);
-
-**Print**("Price "+e.Price);
-
-**Print**("Time "+e.Time);
-
-**Print**("Volume "+e.Volume);
-
+    Print("AskPrice "+e.AskPrice);
+    Print("AskSize "+e.AskSize);
+    Print("BidPrice "+e.BidPrice);
+    Print("BidSize "+e.BidSize);
+    Print("Instrument "+e.Instrument);
+    Print("LastPrice "+e.LastPrice);
+    Print("MarketDataType "+e.MarketDataType);
+    Print("Price "+e.Price);
+    Print("Time "+e.Time);
+    Print("Volume "+e.Volume);
 }
+```
 
 OnMarketDepth()
 ---------------
