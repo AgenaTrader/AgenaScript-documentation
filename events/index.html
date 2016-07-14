@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
+
+
+
   <title>Events - AgenaScript Documentation</title>
-  
+
 
   <link rel="shortcut icon" href="../favicon.ico">
-  
 
-  
+
+
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -22,27 +22,27 @@
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
 
-  
+
   <script>
     // Current page data
     var mkdocs_page_name = "Events";
     var mkdocs_page_input_path = "events.md";
     var mkdocs_page_url = "/events/";
   </script>
-  
+
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
+  <script src="../js/theme.js"></script>
 
-  
+
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
-    
+
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
@@ -55,77 +55,77 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         <ul class="current">
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="..">Lets start</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../handling_bars_and_instruments/handling_bars_and_instruments/">Handling bars and instruments</a>
-        
+        <a class="" href="../handling_bars_and_instruments/">Handling bars and instruments</a>
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Events</a>
-        
+
             <ul>
-            
+
                 <li class="toctree-l3"><a href="#events">Events</a></li>
-                
+
                     <li><a class="toctree-l4" href="#onbarupdate">OnBarUpdate()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#onexecution">OnExecution()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#onmarketdata">OnMarketData()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#onmarketdepth">OnMarketDepth()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#onorderupdate">OnOrderUpdate()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#onstartup">OnStartUp()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#ontermination">OnTermination()</a></li>
-                
-            
+
+
             </ul>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../strategy_programming/">Strategy programming</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../keywords/">Keywords</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../drawing_objects/">Drawing objects</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../hints_and_advice/">Hints and advice</a>
-        
+
     </li>
 <li>
-          
+
         </ul>
       </div>
       &nbsp;
@@ -133,31 +133,31 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-      
+
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
         <a href="..">AgenaScript Documentation</a>
       </nav>
 
-      
+
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
+
+
+
     <li>Events</li>
     <li class="wy-breadcrumbs-aside">
-      
+
     </li>
   </ul>
   <hr/>
 </div>
           <div role="main">
             <div class="section">
-              
+
                 <h1 id="events">Events</h1>
 <p>AgenaTrader is an <em>event-oriented</em> application by definition.</p>
 <p>Programming in AgenaTrader using the various application programming interface ([<em>API</em>]) methods is based initially on the [<em>Overwriting</em>] of routines predefined for event handling.</p>
@@ -189,7 +189,7 @@ The editing begins with the oldest bar and goes up to the newest bar within the 
 <h3 id="example">Example</h3>
 <pre><code class="cs">protected override void OnBarUpdate()
 {
-    Print(&quot;Calling of OnBarUpdate for the bar number &quot; + CurrentBar + &quot; from &quot; +Time\[0\]);
+    Print(&quot;Calling of OnBarUpdate for the bar number &quot; + CurrentBar + &quot; from &quot; +Time[0]);
 }
 </code></pre>
 
@@ -205,24 +205,20 @@ The status of a strategy can be changed by a strategy-managed order. This status
 <p>none</p>
 <h3 id="usage_1">Usage</h3>
 <pre><code class="cs">protected override void OnExecution(IExecution execution)
-````
+</code></pre>
 
-### Example
-```cs
-private IOrder entryOrder = null;
-
+<h3 id="example_1">Example</h3>
+<pre><code class="cs">private IOrder entryOrder = null;
 protected override void OnBarUpdate()
 {
     if (entryOrder == null &amp;&amp; Close[0] &gt; Open[0])
     entryOrder = EnterLong();
 }
-
 protected override void OnExecution(IExecution execution)
 {
     // Example 1
     if (entryOrder != null &amp;&amp; execution.Order == entryOrder)
     Print(execution.ToString());
-
     // Example 2
     if (execution.Order != null &amp;&amp; execution.Order.OrderState == OrderState.Filled)
     Print(execution.ToString());
@@ -247,7 +243,7 @@ More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
 <p>none</p>
 <h3 id="parameter_2">Parameter</h3>
 <p>[<em>MarketDataEventArgs</em>] e</p>
-<h3 id="example_1">Example</h3>
+<h3 id="example_2">Example</h3>
 <pre><code class="cs">protected override void OnMarketData(MarketDataEventArgs e)
 {
     Print(&quot;AskPrice &quot;+e.AskPrice);
@@ -277,13 +273,15 @@ OnMarketDepth is not called up for historical data.</p>
 <p>none</p>
 <h3 id="parameter_3">Parameter</h3>
 <p>[<em>MarketDepthEventArgs</em>] e</p>
-<h3 id="example_2">Example</h3>
-<p>protected override void OnMarketDepth(MarketDepthEventArgs e)
+<h3 id="example_3">Example</h3>
+<pre><code class="cs">protected override void OnMarketDepth(MarketDepthEventArgs e)
 {
     // Output for the current ask price
     if (e.MarketDataType == MarketDataType.Ask &amp;&amp; e.Operation == Operation.Update)
-    Print("The current ask is + e.Price + " " + e.Volume);
-}</p>
+    Print(&quot;The current ask is + e.Price + &quot; &quot; + e.Volume);
+}
+</code></pre>
+
 <h2 id="onorderupdate">OnOrderUpdate()</h2>
 <h3 id="description_4">Description</h3>
 <p>The OnOrderUpdate() method is called up whenever the status is changed by a strategy-managed order.
@@ -299,16 +297,13 @@ A status change can therefore occur due to a change in the volume, price or stat
 <pre><code class="cs">protected override void OnOrderUpdate(IOrder order)
 </code></pre>
 
-<h3 id="example_3">Example</h3>
-<pre><code class="cs">
-private IOrder entryOrder = null;
-
+<h3 id="example_4">Example</h3>
+<pre><code class="cs">private IOrder entryOrder = null;
 protected override void OnBarUpdate()
 {
-    if (entryOrder == null &amp;&amp; Close[0] &amp;gt; Open\[0\])
+    if (entryOrder == null &amp;&amp; Close[0] &gt; Open[0])
     entryOrder = EnterLong();
 }
-
 protected override void OnOrderUpdate(IOrder order)
 {
     if (entryOrder != null &amp;&amp; entryOrder == order)
@@ -316,10 +311,9 @@ protected override void OnOrderUpdate(IOrder order)
         Print(order.ToString());
         if (order.OrderState == OrderState.Cancelled)
         {
-        Print(&quot;Order was canceled.&quot;);
-        entryOrder = null;
+            Print(&quot;Order was canceled.&quot;);
+            entryOrder = null;
         }
-
     }
 }
 </code></pre>
@@ -338,9 +332,8 @@ OnStartUp() is only called up once at the beginning of the script, after [<em>In
 <pre><code class="cs">protected override void OnStartUp()
 </code></pre>
 
-<h3 id="example_4">Example</h3>
+<h3 id="example_5">Example</h3>
 <pre><code class="cs">private myForm Window;
-
 protected override void OnStartUp()
 {
     if (ChartControl != null)
@@ -366,8 +359,8 @@ protected override void OnStartUp()
 
 <h3 id="more-information">More Information</h3>
 <p><strong>Caution:</strong>
-<strong>Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.</strong></p>
-<h3 id="example_5">Example</h3>
+Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.</p>
+<h3 id="example_6">Example</h3>
 <pre><code class="cs">protected override void OnTermination()
 {
     if (Window != null)
@@ -377,31 +370,31 @@ protected override void OnStartUp()
     }
 }
 </code></pre>
-              
+
             </div>
           </div>
           <footer>
-  
+
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+
         <a href="../strategy_programming/" class="btn btn-neutral float-right" title="Strategy programming">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../handling_bars_and_instruments/handling_bars_and_instruments/" class="btn btn-neutral" title="Handling bars and instruments"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+
+
+        <a href="../handling_bars_and_instruments/" class="btn btn-neutral" title="Handling bars and instruments"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+
     </div>
-  
+
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
+
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+
         </div>
       </div>
 
@@ -411,13 +404,13 @@ protected override void OnStartUp()
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../handling_bars_and_instruments/handling_bars_and_instruments/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
+
+
+        <span><a href="../handling_bars_and_instruments/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+
+
         <span style="margin-left: 15px"><a href="../strategy_programming/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
+
     </span>
 </div>
 
