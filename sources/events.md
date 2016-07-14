@@ -44,7 +44,7 @@ protected override void OnBarUpdate()
 ```cs
 protected override void OnBarUpdate()
 {
-    Print("Calling of OnBarUpdate for the bar number " + CurrentBar + " from " +Time\[0\]);
+    Print("Calling of OnBarUpdate for the bar number " + CurrentBar + " from " +Time[0]);
 }
 ```
 
@@ -75,19 +75,16 @@ protected override void OnExecution(IExecution execution)
 ### Example
 ```cs
 private IOrder entryOrder = null;
-
 protected override void OnBarUpdate()
 {
     if (entryOrder == null && Close[0] > Open[0])
     entryOrder = EnterLong();
 }
-
 protected override void OnExecution(IExecution execution)
 {
     // Example 1
     if (entryOrder != null && execution.Order == entryOrder)
     Print(execution.ToString());
-
     // Example 2
     if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
     Print(execution.ToString());
@@ -203,15 +200,12 @@ protected override void OnOrderUpdate(IOrder order)
 
 ### Example
 ```cs
-
 private IOrder entryOrder = null;
-
 protected override void OnBarUpdate()
 {
-    if (entryOrder == null && Close[0] &gt; Open\[0\])
+    if (entryOrder == null && Close[0] > Open[0])
     entryOrder = EnterLong();
 }
-
 protected override void OnOrderUpdate(IOrder order)
 {
     if (entryOrder != null && entryOrder == order)
@@ -222,7 +216,6 @@ protected override void OnOrderUpdate(IOrder order)
 			Print("Order was canceled.");
 			entryOrder = null;
         }
-
     }
 }
 ```
@@ -254,7 +247,6 @@ protected override void OnStartUp()
 ### Example
 ```cs
 private myForm Window;
-
 protected override void OnStartUp()
 {
     if (ChartControl != null)
@@ -304,3 +296,4 @@ protected override void OnTermination()
     }
 }
 ```
+
