@@ -43,8 +43,7 @@ In this case the currently running bar will have the value 0, the bar next to th
 
 With close \[0\] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high \[0\], low \[0\]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open \[0\] value will not change.
 
-Properties of Bars
-------------------
+## Properties of Bars
 
 ### Properties of Bars
 
@@ -70,12 +69,17 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.GetNextBeginEnd*](#barsgetnextbeginend)
 
-[*Bars.GetOpen*](#barsgetopen) 
-GetHigh
-GetLow
-GetClose
-GetTime 
-GetVolume
+[*Bars.GetOpen*](#barsgetopen)
+
+[*Bars.GetHigh*](#barsgethigh)
+
+[*Bars.GetLow*](#barsgetlow)
+
+[*Bars.GetClose*](#barsgetclose)
+
+[*Bars.GetTime*](#barsgettime)
+
+[*Bars.GetVolume*](#barsgetvolume)
 
 [*Bars.Instrument*](#barsinstrument)
 
@@ -100,8 +104,7 @@ GetVolume
 With the **OnBarUpdate()** method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnBarUpdate()** is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate()** then you should first perform a test for null references using **if** (Bars != **null**).
 
-BarsSinceSession
-----------------
+## BarsSinceSession
 
 ### Description
 
@@ -129,8 +132,7 @@ If this property is used outside of OnBarUpdate() then you should test for a nul
 
 **Print** ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
 
-Bars.Count
-----------
+## Bars.Count
 
 ### Description
 
@@ -158,8 +160,7 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 
 **Print** ("There are a total of” + Bars.Count + “bars available.");
 
-Bars.FirstBarOfSession
-----------------------
+## Bars.FirstBarOfSession
 
 ### Description
 
@@ -189,8 +190,7 @@ If this property is called up outside of OnBarUpdate() you should test for a nul
 
 **Print** ("The current trading session started at” + Time \[0\]);
 
-Bars.GetBar
------------
+## Bars.GetBar
 
 ### Description
 
@@ -223,8 +223,7 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 
 **Print** ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.**GetBar**(**new DateTime**(2012, 01, 03, 18, 0, 0)).Close);
 
-Bars.GetBarsAgo
----------------
+## Bars.GetBarsAgo
 
 ### Description
 
@@ -257,18 +256,15 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 
 **Print**("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.**GetBarsAgo**(**new DateTime**(2012, 01, 03, 18, 0, 0)));
 
-Bars.GetClose
--------------
+## Bars.GetClose
 
 Bars.GetClose(int index) – see [*Bars.GetOpen*].
 
-Bars.GetHigh
-------------
+## Bars.GetHigh
 
 Bars.GetHigh(int index) – see [*Bars.GetOpen*].
 
-Bars.GetByIndex
----------------
+## Bars.GetByIndex
 
 ### Description
 
@@ -296,8 +292,7 @@ For indexing of bars see [*Functionality*][*Bars*](#bars)
 
 **Print**(Close\[0\] + " and " + Bars.**GetByIndex**(CurrentBar).Close + " are equal in this example.");
 
-Bars.GetIndex
--------------
+## Bars.GetIndex
 
 ### Description
 
@@ -333,13 +328,11 @@ IBar bar = Bars.**GetBar**(Time\[barsAgo\]);
 
 **Print**(barsAgo + " and " + Bars.**GetIndex**(bar) + " are equal in this example.");
 
-Bars.GetLow
------------
+## Bars.GetLow
 
 Bars.GetLow(int index) – see [*Bars.GetOpen*].
 
-Bars.GetNextBeginEnd
---------------------
+## Bars.GetNextBeginEnd
 
 ### Description
 
@@ -360,8 +353,8 @@ See [*Bars.SessionBegin*](#barssessionbegin), [*Bars.SessionEnd*](#barssessionen
 DateTime session begin
 DateTime session end
 
-**Note:
-**The date for the beginning and the end of a trading session are connected components. If the specified date corresponds to the end date of the current trading session then the returned value for the beginning of a trading session may already be in the past. In this case the date for the following trading session cannot be returned.
+**Note:**
+The date for the beginning and the end of a trading session are connected components. If the specified date corresponds to the end date of the current trading session then the returned value for the beginning of a trading session may already be in the past. In this case the date for the following trading session cannot be returned.
 
 ### Usage
 
@@ -381,23 +374,18 @@ When using the time signature, a timestamp is transmitted that corresponds exact
 More information can be found here [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
 
 ### Example
-
+```cs
 DateTime sessionBegin;
-
 DateTime sessionEnd;
 
 **protected** override void **OnBarUpdate()**
-
 {
-
 Bars.**GetNextBeginEnd**(Bars, 0, **out** sessionBegin, **out** sessionEnd);
-
 **Print**("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
-
 }
+```
 
-Bars.GetSessionDate
--------------------
+## Bars.GetSessionDate
 
 ### Description
 
@@ -405,30 +393,24 @@ Bars.GetSessionDate provides the date and the time of the start of a particular 
 
 The date and time for the start of the current trading session are also displayed correctly even if the function is used on a bar in the past.
 
-Bars.GetOpen
-------------
+## Bars.GetOpen
 
 ### Description
 
 For reasons of compatibility, the following methods are available.
 
 - Bars.GetOpen(int index) outputs the open for the bars referenced with &lt;index&gt;.
-
 - Bars.GetHigh(int index) outputs the high for the bars referenced with &lt;index&gt;.
-
 - Bars.GetLow(int index) outputs the low for the bars referenced with &lt;index&gt;.
-
 - Bars.GetClose(int index) outputs the close for the bars referenced with &lt;index&gt;.
-
 - Bars.GetTime(int index) outputs the timestamp for the bars referenced with &lt;index&gt;.
-
 - Bars.GetVolume(int index) outputs the volume for the bars referenced with &lt;index&gt;.
 
 **Caution**: The indexing will deviate from the [*Indexing*][*Bars*] normally used.
 Here, the indexing will begin with 0 for the oldest bar (on the left of the chart) and end with the newest bar on the right of the chart (=Bars.Count-1).
 
 The indexing can easily be recalculated:
-
+```cs
 private int Convert(int idx)
 
 {
@@ -436,6 +418,7 @@ private int Convert(int idx)
 return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 
 }
+```
 
 ### Parameter
 
@@ -447,18 +430,15 @@ Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume
 
 Type DateTime for GetTime
 
-Bars.GetTime
-------------
+## Bars.GetTime
 
 Bars.GetTime(int index) – see [*Bars.GetOpen*].
 
-Bars.GetVolume
---------------
+## Bars.GetVolume
 
 Bars.GetVolume(int index) – see [*Bars.GetOpen*].
 
-Bars.Instrument
----------------
+## Bars.Instrument
 
 ### Description
 
@@ -483,7 +463,7 @@ Bars.Instrument
 For more information regarding the trading instruments please see [*Instrument*].
 
 ### Example
-
+```cs
 // both outputs will provide the same result
 
 **Print**("The currently displayed trading instrument has the symbol: " + Bars.Instrument);
@@ -491,9 +471,9 @@ For more information regarding the trading instruments please see [*Instrument*]
 Instrument i = Bars.Instrument;
 
 **Print**("The currently displayed trading instrument has the symbol " + i.Symbol);
+```
 
-Bars.IsIntraDay
----------------
+## Bars.IsIntraDay
 
 This function is not yet implemented.
 
@@ -503,8 +483,7 @@ We are working on this – please bear with us. Thank you for your patience.
 
 TODO
 
-Bars.PercentComplete
---------------------
+## Bars.PercentComplete
 
 ### Description
 
@@ -529,7 +508,7 @@ With [*OnBarUpdate()*] this property can be used without having to test for a nu
 If this property is used outside of OnBarUpdate() you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
 ### Example
-
+```cs
 // A 60 minute chart is looked at from an intraday perspective
 
 // every 5 minutes before the current bar closes
@@ -557,9 +536,10 @@ remind = **false**;
 }
 
 }
+```
 
-Bars.SessionBegin
------------------
+
+## Bars.SessionBegin
 
 ### Description
 
@@ -586,11 +566,11 @@ The time for the returned value will equal the starting time defined in the Mark
 <img src=".//media/image3.png" width="292" height="330" />
 
 ### Example
-
+```cs
 **Print**("The currently running trading session started at " + Bars.SessionBegin );
+```
 
-Bars.SessionEnd
----------------
+## Bars.SessionEnd
 
 ### Description
 
@@ -616,11 +596,11 @@ The time for the returned value will correlate with the end time of the trading 
 <img src=".//media/image4.png" width="292" height="330" />
 
 ### Example
-
+```cs
 **Print**("The current trading session will end at " + Bars.SessionEnd);
+```
 
-Bars.SessionNextBegin
----------------------
+## Bars.SessionNextBegin
 
 ### Description
 
@@ -646,11 +626,11 @@ The time for the returned value will correlate to the value displayed in the Mar
 <img src=".//media/image3.png" width="292" height="330" />
 
 ### Example
-
+```cs
 **Print**("The next trading session starts at " + Bars.SessionNextBegin);
+```
 
-Bars.SessionNextEnd
--------------------
+## Bars.SessionNextEnd
 
 ### Description
 
@@ -676,11 +656,11 @@ The time for the returned value will correlate with the value specified within t
 <img src=".//media/image4.png" width="292" height="330" />
 
 ### Example
-
+```cs
 **Print**("The next trading session ends at " + Bars.SessionNextEnd);
+```
 
-Bars.TickCount
---------------
+## Bars.TickCount
 
 ### Description
 
@@ -707,8 +687,9 @@ With [*OnBarUpdate()*] this property can be used without having to test for a nu
 If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
 ### Example
-
+```cs
 **Print**("The current bar consists of " + Bars.TickCount + " Ticks.");
+```
 
 Bars.TimeFrame
 --------------
