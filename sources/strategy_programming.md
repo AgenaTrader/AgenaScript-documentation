@@ -256,7 +256,8 @@ EnterLong()
 EnterLong(string signalName)
 EnterLong(int quantity)
 EnterLong(int quantity, string signalName)
-For multi-bar strategies
+
+//For multi-bar strategies
 EnterLong(int barsInProgressIndex, int quantity, string signalName)
 ```
 
@@ -363,8 +364,8 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                                   |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies                                                                                                                                              
-                       Index of the data series for which an entry order is to be executed.                                                                                                                   
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies                                                                                                                                           
+                       Index of the data series for which an entry order is to be executed.                                                                                                          
                        See [*BarsInProgress*].                                                                                                                                                                |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*] command or until it reaches its expiry time (see [*TimeInForce*]). |
