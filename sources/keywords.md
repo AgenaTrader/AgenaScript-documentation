@@ -127,8 +127,7 @@ get { return Values\[1\]; }
 ```
 
 
-Alert()
--------
+## Alert()
 
 ### Description
 
@@ -178,8 +177,7 @@ string nameOfSoundFile = "MyAlertSoundFile.wav";
 ```
 
 
-AllowRemovalOfDrawObjects
--------------------------
+## AllowRemovalOfDrawObjects
 
 ### Description
 
@@ -219,8 +217,7 @@ AllowRemovalOfDrawObjects = **true**;
 ```
 
 
-Attribute
----------
+## Attribute
 
 Attribute is a component of the C\# language. Within AgenaScript, indicators, and strategies, you can use these attributes in the same manner as you would in C\#.
 Information regarding the usage of attributes can be found here:
@@ -237,8 +234,7 @@ The most commonly used attributes in AgenaScript are:
 -   [*TimeFrameRequirements*]
 -   [*XmlIgnore*]
 
-Browsable
----------
+## Browsable
 
 Browsable is an *[Attribut]e* within AgenaScript.
 
@@ -288,8 +284,7 @@ get { return Values\[0\]; }
 ```
 
 
-Category
---------
+## Category
 
 Category is an *[Attribut]e* in AgenaScript.
 
@@ -317,8 +312,7 @@ set { \_period = value; }
 
 <img src=".//media/image11.png" width="520" height="565" />
 
-ConditionalValue
-----------------
+## ConditionalValue
 
 Conditional value is an *[Attribut]e* in AgenaScript.
 
@@ -351,8 +345,7 @@ return \_internVariable;
 ```
 
 
-Description
------------
+## Description
 
 Description is an attribute in AgenaScript.
 
@@ -387,8 +380,7 @@ set { numStdDev = Math.Max(0, value); }
 
 The descriptions are displayed in the relevant properties dialog.
 
-DisplayName
------------
+## DisplayName
 
 Display name is an attribute in AgenaScript.
 
@@ -413,8 +405,7 @@ set { numStdDev = Math.Max(0, value); }
 ```
 
 
-TimeFrameRequirements
----------------------
+## TimeFrameRequirements
 
 Timeframe requirements is an attribute in AgenaScripts.
 
@@ -433,8 +424,7 @@ See [*MultiBars*].
 
 If a class uses a different indicator that requires one or more secondary timeframes, then the “TimeFrameRequirements” attribute must be set for the class retrieving the data. An example for this can be seen here: [*GetDayBar*].
 
-XMLIgnore
----------
+## XMLIgnore
 
 XML ignore is an attribute in AgenaScript.
 
@@ -502,8 +492,7 @@ set { \_textFont = SerializableFont.FromString(value); }
 ```
 
 
-AutoScale
----------
+## AutoScale
 
 ### Description
 
@@ -540,8 +529,7 @@ AutoScale = **true**;
 ```
 
 
-BarsRequired
-------------
+## BarsRequired
 
 ### Description
 
@@ -572,8 +560,7 @@ BarsRequired = 50;
 ```
 
 
-CalculateOnBarClose
--------------------
+## CalculateOnBarClose
 
 ### Description
 
@@ -613,8 +600,7 @@ CalculateOnBarClose = **true**;
 ```
 
 
-ChartControl
-------------
+## ChartControl
 
 Chart control is an object that provides reading access of various properties for the chart.
 
@@ -671,8 +657,7 @@ LastBarPainted would be larger than Bars.Count.
 
 LastBarVisible would be Bars.Count -1.
 
-ClearOutputWindow()
--------------------
+## ClearOutputWindow()
 
 ### Description
 
@@ -709,8 +694,7 @@ ClearOutputWindow();
 ```
 
 
-CrossAbove()
-------------
+## CrossAbove()
 
 ### Description
 
@@ -760,8 +744,7 @@ See [*CrossBelow()*], [*Rising()*], [*Falling()*].
 ```
 
 
-CrossBelow()
-------------
+## CrossBelow()
 
 ### Description
 
@@ -816,8 +799,7 @@ See [*CrossAbove()*], [*Rising()*], [*Falling()*].
 ```
 
 
-CurrentBar
-----------
+## CurrentBar
 
 ### Description
 
@@ -855,8 +837,7 @@ For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.
 ```
 
 
-DatafeedHistoryPeriodicity
---------------------------
+## DatafeedHistoryPeriodicity
 
 ### Description
 
@@ -902,8 +883,7 @@ public enum DatafeedHistoryPeriodicity
 
 See *TimeFrame*, *TimeFrames*.
 
-DataSeries
-----------
+## DataSeries
 
 ### Description
 
@@ -945,8 +925,7 @@ The ContainsValue() checks whether a data series has a value for a specific posi
 
 [*http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx*]
 
-BoolSeries
-----------
+## BoolSeries
 
 ### Description
 
@@ -1025,8 +1004,7 @@ myBoolSeries.**Set**(**false**);
 ```
 
 
-DataSeries
-----------
+## DataSeries
 
 ### Description
 
@@ -1097,8 +1075,7 @@ myDataSeries.**Set**(Math.**Abs**(High\[0\]-Low\[0\]));
 ```
 
 
-DateTimeSeries
---------------
+## DateTimeSeries
 
 ### Description
 
@@ -1167,8 +1144,7 @@ myDataSeries.**Set**(Time\[0\].**AddHours**(-6);
 ```
 
 
-FloatSeries
------------
+## FloatSeries
 
 ### Description
 
@@ -1237,8 +1213,7 @@ myDataSeries.**Set**(Math.**Abs**((**float**) High\[0\] - (**float**) Low\[0\]))
 ```
 
 
-IntSeries
----------
+## IntSeries
 
 ### Description
 
@@ -1310,8 +1285,7 @@ myDataSeries.**Set**((**int**) ((High\[0\] - Low\[0\]) / TickSize));
 ```
 
 
-LongSeries
-----------
+## LongSeries
 
 ### Description
 
@@ -1380,8 +1354,7 @@ myDataSeries.**Set**((**long**) ((High\[0\] - Low\[0\]) / TickSize));
 ```
 
 
-StringSeries
-------------
+## StringSeries
 
 ### Description
 
@@ -1468,8 +1441,7 @@ myDataSeries.**Set**(string.**Format**("{0:dddd}", Time\[0\]));
 ```
 
 
-DayOfWeek
----------
+## DayOfWeek
 
 ### Description
 
@@ -1508,8 +1480,7 @@ return;
 ```
 
 
-Displacement
-------------
+## Displacement
 
 ### Description
 
@@ -1547,8 +1518,7 @@ Displacement = 1;
 ```
 
 
-DisplayInDataBox
-----------------
+## DisplayInDataBox
 
 ### Description
 
@@ -1589,8 +1559,7 @@ DisplayInDataBox = **false**;
 ```
 
 
-DrawOnPricePanel
-----------------
+## DrawOnPricePanel
 
 ### Description
 
@@ -1642,8 +1611,7 @@ DrawOnPricePanel = **true**;
 ```
 
 
-Falling()
----------
+## Falling()
 
 ### Description
 
@@ -1678,8 +1646,7 @@ series a data series such as an indicator, close, high etc.
 ```
 
 
-Colors
-------
+## Colors
 
 AgenaScript provides you with the following commands for defining colors and making color changes to the chart:
 
@@ -1702,8 +1669,7 @@ For each bar, its colors are saved in the following data series. If these data s
 
 [*BackColorAllSeries*]
 
-BarColor
---------
+## BarColor
 
 ### Description
 
@@ -1730,8 +1696,7 @@ BarColor
 
 <img src=".//media/image15.png" width="427" height="386" />
 
-BackColor
----------
+## BackColor
 
 ### Description
 
@@ -1773,8 +1738,7 @@ BackColor = **SMA**(14)\[0\] &gt;= Close\[0\] ? Color.Maroon : Color.LimeGreen;
 
 <img src=".//media/image17.png" width="430" height="384" />
 
-BackColorAll
-------------
+## BackColorAll
 
 ### Description
 
@@ -1803,8 +1767,7 @@ BackColorAll = Color.Blue;
 
 <img src=".//media/image18.png" width="431" height="386" />
 
-BarColorSeries
---------------
+## BarColorSeries
 
 ### Description
 
@@ -1861,8 +1824,7 @@ BarColorSeries\[2\] = Color.Yellow;
 
 <img src=".//media/image19.png" width="423" height="372" />
 
-BackColorSeries
----------------
+## BackColorSeries
 
 ### Description
 
@@ -1906,8 +1868,7 @@ BackColorSeries\[1\] = Color.Green;
 ```
 
 
-BackColorAllSeries
-------------------
+## BackColorAllSeries
 
 ### Description
 
@@ -1936,8 +1897,7 @@ When using the method with an index \[**int** barsAgo\] the background color for
 
 See [*BackColorSeries*].
 
-CandleOutlineColor
-------------------
+## CandleOutlineColor
 
 ### Description
 
@@ -1970,8 +1930,7 @@ CandleOutlineColor = Color.Red;
 
 <img src=".//media/image20.png" width="491" height="449" />
 
-CandleOutlineColorSeries
-------------------------
+## CandleOutlineColorSeries
 
 ### Description
 
@@ -2010,8 +1969,7 @@ CandleOutlineColorSeries\[0\] = Color.Empty;
 ```
 
 
-FirstTickOfBar
---------------
+## FirstTickOfBar
 
 ### Description
 
@@ -2044,8 +2002,7 @@ return;
 ```
 
 
-FirstTickOfBarMtf
------------------
+## FirstTickOfBarMtf
 
 ### Description
 
@@ -2070,8 +2027,7 @@ See [*BarsInProgress*].
 
 **Print**("A new bar has begun.");
 
-GetCurrentAsk()
----------------
+## GetCurrentAsk()
 
 ### Description
 
@@ -2114,8 +2070,7 @@ entryOrder = **SubmitOrder**(0, OrderAction.SellShort, OrderType.Limit, 1, **Get
 ```
 
 
-GetCurrentBid()
----------------
+## GetCurrentBid()
 
 ### Description
 
@@ -2158,8 +2113,7 @@ entryOrder = **SubmitOrder**(0, OrderAction.Buy, OrderType.Limit, 1, **GetCurren
 ```
 
 
-HighestBar
-----------
+## HighestBar
 
 ### Description
 
@@ -2194,8 +2148,7 @@ series Every data series, such as close, high, low, etc.
 ```
 
 
-Historical
-----------
+## Historical
 
 ### Description
 
@@ -2229,8 +2182,7 @@ Historical
 ```
 
 
-Initialize()
-------------
+## Initialize()
 
 ### Description
 
@@ -2328,8 +2280,7 @@ CalculateOnBarClose = **true**;
 
 ```
 
-InitRequirements()
-------------------
+## InitRequirements()
 
 ### Description
 
@@ -2359,8 +2310,7 @@ none
 
 ```
 
-InputPriceType
---------------
+## InputPriceType
 
 ### Description
 
@@ -2431,8 +2381,7 @@ InputPriceType = PriceType.High;
 ```
 
 
-Instrument
-----------
+## Instrument
 
 ### Description
 
@@ -2440,8 +2389,7 @@ With “instrument”, information concerning the trading instrument (stock, fut
 
 Detailed information can be found here: *Instruments*.
 
-Line()
-------
+## Line()
 
 ### Description
 
@@ -2513,8 +2461,7 @@ line = **new Line**(pen, 10, "MyLine");
 ```
 
 
-Log()
------
+## Log()
 
 ### Description
 
@@ -2570,8 +2517,7 @@ Log("This is an alert popup window.", InfoLogLevel.Alert); //green
 ```
 
 
-LowestBar
----------
+## LowestBar
 
 ### Description
 
@@ -2606,8 +2552,7 @@ series Every data series, such as close, high, low etc.
 ```
 
 
-MarketDataEventArgs
--------------------
+## MarketDataEventArgs
 
 ### Description
 
@@ -2636,8 +2581,7 @@ The data type MarketDataEventArgs represents a change in the level 1 data and is
 
 See [*OnMarketData()*].
 
-MarketDepthEventArgs
---------------------
+## MarketDepthEventArgs
 
 ### Description
 
@@ -2663,8 +2607,7 @@ The data type MarketDepthEventArgs represents a change in the level 2 data (mark
 
 See [*OnMarketDepth()*].
 
-Overlay
--------
+## Overlay
 
 ### Description
 
@@ -2701,8 +2644,7 @@ Overlay = **false**;
 ```
 
 
-PaintPriceMarkers
------------------
+## PaintPriceMarkers
 
 ### Description
 
@@ -2738,8 +2680,7 @@ PaintPriceMarkers = **false**;
 ```
 
 
-PlaySound()
------------
+## PlaySound()
 
 ### Description
 
@@ -2770,8 +2711,7 @@ string file = "\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav";
 ```
 
 
-Plot()
-------
+## Plot()
 
 ### Description
 
@@ -2862,8 +2802,7 @@ plot = **new Plot**(pen, PlotStyle.Dot, "MyPlot");
 ```
 
 
-PlotMethod
-----------
+## PlotMethod
 
 ### Description
 
@@ -3027,8 +2966,7 @@ graphics.**DrawString**("Here is bottom left!", font, brush, r.X + 10, r.Y + r.H
 
 ```
 
-PriceType
----------
+## PriceType
 
 ### Description
 
@@ -3055,8 +2993,7 @@ PriceType
 
 See [*InputPriceType*]
 
-Print()
--------
+## Print()
 
 ### Description
 
@@ -3111,8 +3048,7 @@ Hints about the String.Format() method: [*http://msdn.microsoft.com/de-de/librar
 ```
 
 
-RemoveDrawObject()
-------------------
+## RemoveDrawObject()
 
 ### Description
 
@@ -3135,8 +3071,7 @@ string tag The clearly identifiable name for the drawing object
 
 **RemoveDrawObjects**("My line");
 
-RemoveDrawObjects()
--------------------
+## RemoveDrawObjects()
 
 ### Description
 
@@ -3160,8 +3095,7 @@ none
 ```
 
 
-Rising()
---------
+## Rising()
 
 ### Description
 
@@ -3193,8 +3127,7 @@ series A data series such as an indicator, close, high etc.
 ```
 
 
-SessionBreakLines
------------------
+## SessionBreakLines
 
 ### Description
 
@@ -3231,8 +3164,7 @@ SessionBreakLines = **false**;
 
 ```
 
-TickSize
---------
+## TickSize
 
 A tick is the smallest possible price change of a financial instrument within an exchange. If, for example, the trading prices are specified to 2 decimal places, then a tick equals 0.01. You can expect Forex instruments to be specified to within 4 or 5 decimal places. A tick is called a pip in Forex trading and usually equals 0.0001 or 0.00001.
 The tick value is usually predefined by the exchange and does not (usually) change.
@@ -3266,15 +3198,13 @@ Eurex (FDAX): *http://www.eurexchange.com/exchange-en/products/idx/dax/17206/*
 
 See [*Instrument.TickSize*].
 
-TimeFrame
----------
+## TimeFrame
 
 See [*Bars.TimeFrame*].
 
 When using multiple timeframes ([*Multibars*][*MultiBars*]) in an indicator, please see [*TimeFrames*].
 
-ToDay()
--------
+## ToDay()
 
 ### Description
 
@@ -3305,8 +3235,7 @@ return;
 ```
 
 
-ToTime()
---------
+## ToTime()
 
 ### Description
 
@@ -3340,8 +3269,7 @@ ToTime(DateTime time)
 ```
 
 
-Update()
---------
+## Update()
 
 ### Description
 
@@ -3422,8 +3350,7 @@ return myPublicVariable;
 **With Update() - Correct
 **By calling up Update(), OnBarUpdate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.
 
-Value
------
+## Value
 
 ### Description
 
@@ -3447,8 +3374,7 @@ The methods known for a collection, Set(), Reset(), and Count(), can be used for
 
 See [*Values*].
 
-VerticalGridLines
------------------
+## VerticalGridLines
 
 ### Description
 

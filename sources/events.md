@@ -15,8 +15,7 @@ The following methods can be used and therefore overwritten:
 -   [*OnStartUp()*]
 -   [*OnTermination()*]
 
-OnBarUpdate()
--------------
+## OnBarUpdate()
 
 ### Description
 
@@ -49,8 +48,7 @@ protected override void OnBarUpdate()
 }
 ```
 
-OnExecution()
--------------
+## OnExecution()
 
 ### Description
 
@@ -96,8 +94,7 @@ protected override void OnExecution(IExecution execution)
 }
 ```
 
-OnMarketData()
---------------
+## OnMarketData()
 
 ### Description
 
@@ -145,8 +142,7 @@ protected override void OnMarketData(MarketDataEventArgs e)
 }
 ```
 
-OnMarketDepth()
----------------
+## OnMarketDepth()
 
 ### Description
 
@@ -177,8 +173,7 @@ protected override void OnMarketDepth(MarketDepthEventArgs e)
     Print("The current ask is + e.Price + " " + e.Volume);
 }
 
-OnOrderUpdate()
----------------
+## OnOrderUpdate()
 
 ### Description
 
@@ -229,8 +224,7 @@ protected override void OnOrderUpdate(IOrder order)
 }
 ```
 
-OnStartUp()
------------
+## OnStartUp()
 
 ### Description
 
@@ -268,8 +262,7 @@ protected override void OnStartUp()
 }
 ```
 
-OnTermination()
----------------
+## OnTermination()
 
 ### Description
 

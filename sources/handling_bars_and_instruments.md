@@ -691,8 +691,7 @@ If this property is used outside of OnBarUpdate(), you should test for a null re
 **Print**("The current bar consists of " + Bars.TickCount + " Ticks.");
 ```
 
-Bars.TimeFrame
---------------
+## Bars.TimeFrame
 
 ### Description
 
@@ -732,8 +731,7 @@ TimeFrame tf = (TimeFrame) Bars.TimeFrame;
 
 **Print**(tf.PeriodicityValue); // outputs "30"
 
-Bars.TotalTicks
----------------
+## Bars.TotalTicks
 
 ### Description
 
@@ -765,8 +763,7 @@ If this property is used outside of OnBarUpdate(), you should test for a null re
 
 **Print**("The total amount of ticks is " + Bars.TotalTicks);
 
-Data Series
------------
+## Data Series
 
 ### Description
 
@@ -794,8 +791,7 @@ The following are available:
 
 [*Volume*](#Volume) [*Volumes*](Volumes)
 
-Open
-----
+## Open
 
 ### Description
 
@@ -829,8 +825,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 **Print**("SMA(14) calculated using the opening prices: " + Instrument.**Round2TickSize**(**SMA**(Open, 14)\[0\]));
 
-Opens
------
+## Opens
 
 ### Description
 
@@ -868,8 +863,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 See example: [*Multibars*][*MultiBars*].
 
-High
-----
+## High
 
 ### Description
 
@@ -903,8 +897,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 **Print**("SMA(14) Calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(High, 14)\[0\]));
 
-Highs
------
+## Highs
 
 ### Description
 
@@ -943,8 +936,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 Please see examples under [*Multibars*][*MultiBars*].
 
-Low
----
+## Low
 
 ### Description
 
@@ -978,8 +970,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 **Print**("SMA(14) calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(Low, 14)\[0\]));
 
-Lows
-----
+## Lows
 
 ### Description
 
@@ -1018,8 +1009,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 See example [*Multibars*][*MultiBars*].
 
-Close
------
+## Close
 
 ### Description
 
@@ -1059,8 +1049,7 @@ Indicators are usually calculated using the closing prices.
 
 **Print**("SMA(14) calculated using the closing prices: " + Instrument.**Round2TickSize**(**SMA**(14)\[0\]));
 
-Closes
-------
+## Closes
 
 ### Description
 
@@ -1099,8 +1088,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 See example [*Multibars*][*MultiBars*].
 
-Median
-------
+## Median
 
 ### Description
 
@@ -1141,8 +1129,7 @@ Further information about median, typical und weighted:
 
 **Print**("SMA(14) calculated using the median prices: " + Instrument.**Round2TickSize**(**SMA**(Median, 14)\[0\]));
 
-Medians
--------
+## Medians
 
 ### Description
 
@@ -1183,8 +1170,7 @@ Further information on median: http://www.investopedia.com/terms/m/median.asp
 
 See example in [*Multibars*][*MultiBars*].
 
-Typical
--------
+## Typical
 
 ### Description
 
@@ -1224,8 +1210,7 @@ Example
 
 **Print**("SMA(14) calculated using the typical price: " + Instrument.**Round2TickSize**(**SMA**(Typical, 14)\[0\]));
 
-Typicals
---------
+## Typicals
 
 ### Description
 
@@ -1264,8 +1249,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 See example [*Multibars*][*MultiBars*].
 
-Weighted
---------
+## Weighted
 
 ### Description
 
@@ -1305,8 +1289,7 @@ Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-po
 
 **Print**("SMA(14) calculated using the weighted price: " + Instrument.**Round2TickSize**(**SMA**(Weighted, 14)\[0\]));
 
-Weighteds
----------
+## Weighteds
 
 ### Description
 
@@ -1345,8 +1328,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 See example under [*Multibars*][*MultiBars*].
 
-Time
-----
+## Time
 
 ### Description
 
@@ -1376,8 +1358,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 **Print**(Time\[5\]);
 
-Times
------
+## Times
 
 ### Description
 
@@ -1415,8 +1396,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 See example [*Multibars*][*MultiBars*].
 
-Volume
-------
+## Volume
 
 ### Description
 
@@ -1453,8 +1433,7 @@ for example, Vol()\[3\] will have the same value as Volume\[3\].
 
 **Print**("SMA(14) calculated using the volume: " + Instrument.**Round2TickSize**(**SMA**(Volume, 14)\[0\]));
 
-Volumes
--------
+## Volumes
 
 ### Description
 
@@ -1527,8 +1506,7 @@ An instrument has various properties that can be used in AgenaScripts created by
 With the **OnBarUpdate()** method you can use any properties you wish without having to test for a null reference.
 As soon as the **OnBarUpdate()** function is called up by AgenaScript, an object will become available. If you wish to use these properties outside of **OnBarUpdate()**, you should first perform a test for null references using **if** (Bars != **null**)
 
-Instrument.Compare
-------------------
+## Instrument.Compare
 
 ### Description
 
@@ -1564,8 +1542,7 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001
 
 **Print**(Instrument.**Compare**(2, 1.999999));
 
-Instrument.Currency
--------------------
+## Instrument.Currency
 
 ### Description
 
@@ -1591,8 +1568,7 @@ The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.
 
 **Print**(Instrument.Name + " is traded in " + Instrument.Currency
 
-Instrument.Digits
------------------
+## Instrument.Digits
 
 ### Description
 
@@ -1622,8 +1598,7 @@ More information can be found here: [*Formatting of Numbers*].
 
 **Print**("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
 
-Instrument.ETF
---------------
+## Instrument.ETF
 
 ### Description
 
@@ -1659,8 +1634,7 @@ Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]
 
 **Print**("The value is a stock.");
 
-Instrument.Exchange
--------------------
+## Instrument.Exchange
 
 ### Description
 
@@ -1686,8 +1660,7 @@ Example
 
 **Print**("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
 
-Instrument.Expiry
------------------
+## Instrument.Expiry
 
 ### Description
 
@@ -1717,8 +1690,7 @@ The expiry date (expiry) can also be seen within the Instrument Escort:
 
 **Print**("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
 
-Instrument.InstrumentType
--------------------------
+## Instrument.InstrumentType
 
 ### Description
 
@@ -1750,8 +1722,7 @@ The instrument type can also be viewed within the Instrument Escort:
 
 **Print**("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
 
-Instrument.Name
----------------
+## Instrument.Name
 
 ### Description
 
@@ -1779,8 +1750,7 @@ The instrument name can also be seen within the Instrument Escort:
 
 **Print**("The currently loaded instrument inside the chart is named " + Instrument.Name);
 
-Instrument.PointValue
----------------------
+## Instrument.PointValue
 
 ### Description
 
@@ -1821,8 +1791,7 @@ The point value can also be viewed within the Instrument Escort:
 
 **Print**("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
 
-Instrument.Round2TickSize
--------------------------
+## Instrument.Round2TickSize
 
 ### Description
 
@@ -1855,8 +1824,7 @@ Example of professional [*Formatting*][*Formatting of Numbers*].
 
 **Print**(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.**Round2TickSize**(Price));
 
-Instrument.Symbol
------------------
+## Instrument.Symbol
 
 ### Description
 
@@ -1886,8 +1854,7 @@ The instrument symbol can also be viewed within the Instrument Escort:
 
 **Print**("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
 
-Instrument.TickSize
--------------------
+## Instrument.TickSize
 
 ### Description
 
@@ -1923,11 +1890,9 @@ Examples of professional [*Formatting*][*Formatting of Numbers*].
 
 **Print**("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");
 
-Collections
------------
+## Collections
 
-DrawObjects
------------
+## DrawObjects
 
 ### Description
 
@@ -1980,8 +1945,7 @@ vline.Pen.Width = 3;
 
 }
 
-Input
------
+## Input
 
 ### Description
 
@@ -2012,8 +1976,7 @@ Input\[**int** barsAgo\]
 
 **Print**("The input data for the indicators are " + Input\[0\]);
 
-Lines
------
+## Lines
 
 ### Description
 
@@ -2075,8 +2038,7 @@ Lines\[**int** index\]
 
 }
 
-PlotColors
-----------
+## PlotColors
 
 ### Description
 
@@ -2201,8 +2163,7 @@ PlotColors\[2\]\[0\] = Color.DarkGray;
 
 }
 
-Plots
------
+## Plots
 
 ### Description
 
@@ -2246,8 +2207,7 @@ Value.**Set**(**SMA**(20)\[0\]);
 
 }
 
-Values
-------
+## Values
 
 ### Description
 
@@ -2284,8 +2244,7 @@ Value.**Set**(High\[0\] - Low\[0\]);
 
 Value.**Set**(High\[0\] - Close\[0\]);
 
-Multibars
----------
+## Multibars
 
 ### Description
 
@@ -2394,8 +2353,7 @@ Additional syntax methods are available for multibars:
 
 **double** w = MultiBars.**GetBarsItem**(TF\_Week).Close\[0\];
 
-CurrentBars
------------
+## CurrentBars
 
 ### Description
 
@@ -2431,8 +2389,7 @@ CurrentBars\[**int** barSeriesIndex\]
 
 **if** (CurrentBars\[i\] &lt; 20) return;
 
-BarsInProgress
---------------
+## BarsInProgress
 
 ### Description
 
@@ -2478,8 +2435,7 @@ Within a script that only works with primary timeframes, the value will always e
 
 }
 
-TimeFrames
-----------
+## TimeFrames
 
 ### Description
 

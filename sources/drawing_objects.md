@@ -1,8 +1,7 @@
 
 #DrawingObjects
 
-DrawAndrewsPitchfork()
-----------------------
+## DrawAndrewsPitchfork()
 
 ### Description
 
@@ -52,8 +51,7 @@ DrawAndrewsPitchfork("MyAPF", true, 4, Low[4], 3, High[3], 1, Low[1], Color.Blac
 ```
 
 
-DrawArc()
----------
+## DrawArc()
 
 ### Description
 
@@ -100,8 +98,7 @@ A drawing object of the type IArc (interface)
 DrawArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 ```
 
-DrawArrowDown()
----------------
+## DrawArrowDown()
 
 ### Description
 
@@ -142,8 +139,7 @@ if(High[2] > High[3] && High[1] > High[2] && Close[0] < Open[0])
 DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
 ```
 
-DrawArrowLine()
----------------
+## DrawArrowLine()
 
 ### Description
 
@@ -192,8 +188,7 @@ A drawing object of the type IArrowLine (interface)
 DrawArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 ```
 
-DrawArrowUp()
--------------
+## DrawArrowUp()
 
 ### Description
 
@@ -230,8 +225,7 @@ A drawing object of the type IArrowUp (interface)
 DrawArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
 ```
 
-DrawDiamond()
--------------
+## DrawDiamond()
 
 ### Description
 
@@ -269,8 +263,7 @@ DrawDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 ```
 
 
-DrawDot()
----------
+## DrawDot()
 
 ### Description
 
@@ -308,8 +301,7 @@ A drawing object of the type IDot (interface)
 DrawDot("MyDot", true, 0, High[0] + 5*TickSize, Color.Orange);
 ```
 
-DrawEllipse()
--------------
+## DrawEllipse()
 
 ### Description
 
@@ -350,8 +342,7 @@ A drawing object of the type IEllipse (interface)
 DrawEllipse("MyEllipse", true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
 ```
 
-DrawExtendedLine()
-------------------
+## DrawExtendedLine()
 
 ### Description
 
@@ -400,8 +391,7 @@ A drawing object of the type IExtendedLine (interface)
 DrawExtendedLine("MyExt.Line", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 ```
 
-DrawFibonacciCircle()
----------------------
+## DrawFibonacciCircle()
 
 ### Description
 
@@ -436,8 +426,7 @@ A drawing object of the type IFibonacciCircle (interface)
 DrawFibonacciCircle("MyFibCircle", true, 5, Low[5], 0, High[0]);
 ```
 
-DrawFibonacciExtensions()
--------------------------
+## DrawFibonacciExtensions()
 
 ### Description
 
@@ -475,8 +464,7 @@ A drawing object of the type IFibonacciExtensions (interface)
 DrawFibonacciExtensions("MyFibExt", true, 4, Low[4], 3, High[3], 1, Low[1]);
 ```
 
-DrawFibonacciRetracements()
----------------------------
+## DrawFibonacciRetracements()
 
 ### Description
 
@@ -511,8 +499,7 @@ A drawing object of the type IFibonacciRetracements (interface)
 DrawFibonacciRetracements("MyFibRet", true, 10, Low[10], 0, High[0]);
 ```
 
-DrawFibonacciTimeExtensions()
------------------------------
+## DrawFibonacciTimeExtensions()
 
 ### Description
 
@@ -546,8 +533,7 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 DrawFibonacciTimeExtensions("MyFibTimeExt", 10, Low[10], 0, High[0]);
 ```
 
-DrawGannFan()
--------------
+## DrawGannFan()
 
 ### Description
 
@@ -580,8 +566,7 @@ DrawGannFan("MyGannFan", true, 10, Low[10]);
 ```
 
 
-DrawLine()
-----------
+## DrawLine()
 
 ### Description
 
@@ -630,8 +615,7 @@ A drawing object of the type ITrendLine (interface).
 DrawLine("MyLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 ```
 
-DrawHorizontalLine()
---------------------
+## DrawHorizontalLine()
 
 ### Description
 
@@ -674,8 +658,7 @@ A drawing object of the type IHorizontalLine (interface)
 DrawHorizontalLine("MyHorizontalLine", 10, Color.Black);
 ```
 
-DrawRay()
----------
+## DrawRay()
 
 ### Description
 
@@ -732,8 +715,7 @@ DrawRay("MyRay", 0, 3, 10, 7, Color.Green);
 ```
 
 
-DrawRectangle()
----------------
+## DrawRectangle()
 
 ### Description
 
@@ -775,8 +757,7 @@ A drawing object of the type IRectangle (interface)
 DrawRectangle("MyRect", true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
 ```
 
-DrawRegion()
-------------
+## DrawRegion()
 
 ### Description
 
@@ -820,8 +801,7 @@ A drawing object of the type IRegion (interface)
 DrawRegion("MyRegion", CurrentBar, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
 ```
 
-DrawRegressionChannel()
------------------------
+## DrawRegressionChannel()
 
 ### Description
 
@@ -874,8 +854,7 @@ A drawing object of the type IRegressionChannel (interface)
 DrawRegressionChannel("MyRegChannel", 10, 0, Color.Black);
 ```
 
-DrawSquare()
-------------
+## DrawSquare()
 
 ### Description
 
@@ -912,8 +891,7 @@ A drawing object of the type ISquare (interface)
 DrawSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
 ```
 
-DrawText()
-----------
+## DrawText()
 
 ### Description
 
@@ -1016,8 +994,7 @@ Color.Yellow, // Fill color
 100); // Opacity
 ```
 
-DrawTextFixed()
----------------
+## DrawTextFixed()
 
 ### Description
 
@@ -1066,8 +1043,7 @@ DrawTextFixed("MyText", "This is sample text.", TextPosition.Center,
 Color.Red, new Font("Arial",35), Color.Blue, Color.Empty, 10);
 ```
 
-DrawTrendChannel()
-------------------
+## DrawTrendChannel()
 
 ### Description
 
@@ -1105,8 +1081,7 @@ A drawing object of the type ITrendChannel (interface)
 DrawTrendChannel("MyTrendChannel", true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
 ```
 
-DrawTriangle()
---------------
+## DrawTriangle()
 
 ### Description
 
@@ -1152,8 +1127,7 @@ DrawTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 ```
 
 
-DrawTriangleUp()
-----------------
+## DrawTriangleUp()
 
 ### Description
 
@@ -1191,8 +1165,7 @@ A drawing object of the type ITriangleUp (interface)
 DrawTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 ```
 
-DrawTriangleDown()
-------------------
+## DrawTriangleDown()
 
 ### Description
 
@@ -1230,8 +1203,7 @@ A drawing object of the type ITriangleDown (interface)
 DrawTriangleDown("MyTriangleDown", true, 0, High[0] + 10*TickSize, Color.Red);
 ```
 
-DrawVerticalLine()
-------------------
+## DrawVerticalLine()
 
 ### Description
 

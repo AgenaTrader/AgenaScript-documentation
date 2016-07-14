@@ -1,8 +1,7 @@
 # Strategy Programming
 
 
-Account
--------
+## Account
 
 ### Description
 
@@ -80,8 +79,7 @@ The individual properties are:
 ```
 
 
-BarsSinceEntry()
-----------------
+## BarsSinceEntry()
 
 ### Description
 
@@ -121,8 +119,7 @@ For multi-bar strategies
 ```
 
 
-BarsSinceExit()
----------------
+## BarsSinceExit()
 
 ### Description
 
@@ -162,8 +159,7 @@ For multi-bar strategies
 ```
 
 
-CancelOrder()
--------------
+## CancelOrder()
 
 ### Description
 
@@ -217,8 +213,7 @@ CurrentBar &gt; barNumberOfOrder + 3)
 ```
 
 
-ChangeOrder()
--------------
+## ChangeOrder()
 
 ### Description
 
@@ -259,11 +254,9 @@ Change order, as the name suggests, changes an order.
 ```
 
 
-DataSeriesConfigurable
-----------------------
+## DataSeriesConfigurable
 
-DefaultQuantity
----------------
+## DefaultQuantity
 
 ### Description
 
@@ -295,8 +288,7 @@ DefaultQuantity = 100;
 ```
 
 
-EnterLong()
------------
+## EnterLong()
 
 ### Description
 
@@ -349,8 +341,7 @@ an order object of the type “IOrder”
 ```
 
 
-EnterLongLimit()
-----------------
+## EnterLongLimit()
 
 ### Description
 
@@ -407,8 +398,7 @@ an order object of the type “IOrder”
 ```
 
 
-EnterLongStop()
----------------
+## EnterLongStop()
 
 ### Description
 
@@ -467,8 +457,7 @@ myEntryOrder = **EnterLongStop**(High\[0\], "Stop Long");
 ```
 
 
-EnterLongStopLimit()
---------------------
+## EnterLongStopLimit()
 
 ### Description
 
@@ -530,8 +519,7 @@ myEntryOrder = **EnterLongStopLimit**(High\[0\]+2\*TickSize, High\[0\], "Stop Lo
 ```
 
 
-EnterShort()
-------------
+## EnterShort()
 
 ### Description
 
@@ -583,8 +571,7 @@ an order object of the type “IOrder”
 ```
 
 
-EnterShortLimit()
------------------
+## EnterShortLimit()
 
 ### Description
 
@@ -641,8 +628,7 @@ an order object of the type “IOrder”
 ```
 
 
-EnterShortStop()
-----------------
+## EnterShortStop()
 
 ### Description
 
@@ -699,8 +685,7 @@ myEntryOrder = **EnterShortStop**(Low\[0\], "stop short");
 ```
 
 
-EnterShortStopLimit()
----------------------
+## EnterShortStopLimit()
 
 ### Description
 
@@ -760,8 +745,7 @@ myEntryOrder = **EnterShortStopLimit**(Low\[0\]-2\*TickSize, Low\[0\], "stop sho
 ```
 
 
-EntriesPerDirection
--------------------
+## EntriesPerDirection
 
 ### Description
 
@@ -840,8 +824,7 @@ EntryHandling = EntryHandling.UniqueEntries;
 ```
 
 
-EntryHandling
--------------
+## EntryHandling
 
 ### Description
 
@@ -868,11 +851,9 @@ If entries per direction = 2, then it is possible for two signals for enter long
 
 See [*EntriesPerDirection*].
 
-ExcludeTradeHistoryInBacktest
------------------------------
+## ExcludeTradeHistoryInBacktest
 
-ExitLong()
-----------
+## ExitLong()
 
 ### Description
 
@@ -936,8 +917,7 @@ an order object of the type “IOrder”
 ```
 
 
-ExitLongLimit()
----------------
+## ExitLongLimit()
 
 ### Description
 
@@ -1002,8 +982,7 @@ an order object of the type “IOrder”
 ```
 
 
-ExitLongStop()
---------------
+## ExitLongStop()
 
 ### Description
 
@@ -1066,8 +1045,7 @@ an order object of the type “IOrder”
 ```
 
 
-ExitLongStopLimit()
--------------------
+## ExitLongStopLimit()
 
 ### Description
 
@@ -1134,14 +1112,11 @@ an order object of the type “IOrder”
 ```
 
 
-ExitOnClose
------------
+## ExitOnClose
 
-ExitOnCloseSeconds
-------------------
+## ExitOnCloseSeconds
 
-ExitShort()
------------
+## ExitShort()
 
 ### Description
 
@@ -1204,8 +1179,7 @@ an order object of the type “IOrder”
 ```
 
 
-ExitShortLimit()
-----------------
+## ExitShortLimit()
 
 ### Description
 
@@ -1271,8 +1245,7 @@ an order object of the type “IOrder”
 ```
 
 
-ExitShortStop()
----------------
+## ExitShortStop()
 
 ### Description
 
@@ -1335,8 +1308,7 @@ an order object of the type “IOrder”
 ```
 
 
-ExitShortStopLimit()
---------------------
+## ExitShortStopLimit()
 
 ### Description
 
@@ -1402,8 +1374,7 @@ an order object of the type “IOrder”
 ```
 
 
-GetAccountValue()
------------------
+## GetAccountValue()
 
 ### Description
 
@@ -1445,8 +1416,7 @@ for historical bars, a zero (0) is returned
 
 ```
 
-GetProfitLoss()
----------------
+## GetProfitLoss()
 
 ### Description
 
@@ -1483,13 +1453,11 @@ a double value for the unrealized profit or loss
 ```
 
 
-MarketPosition
---------------
+## MarketPosition
 
 See [*Position.MarketPosition*].
 
-Performance
------------
+## Performance
 
 ### Description
 
@@ -1545,8 +1513,7 @@ The individual lists are:
 ```
 
 
-Position
---------
+## Position
 
 ### Description
 
@@ -1616,13 +1583,11 @@ The individual properties are:
 ```
 
 
-Quantity
---------
+## Quantity
 
 See [*Position.Quantity*][*Position.MarketPosition*].
 
-SetProfitTarget()
------------------
+## SetProfitTarget()
 
 ### Description
 
@@ -1670,8 +1635,7 @@ See [*SetStopLoss()*], [*SetTrailStop()*].
 ```
 
 
-SetStopLoss()
--------------
+## SetStopLoss()
 
 ### Description
 
@@ -1723,8 +1687,7 @@ See [*SetProfitTarget()*], [*SetTrailStop()*].
 ```
 
 
-SetTrailStop()
---------------
+## SetTrailStop()
 
 ### Description
 
@@ -1801,8 +1764,7 @@ See [*SetStopLoss()*], [*SetProfitTarget()*].
 ```
 
 
-SubmitOrder()
--------------
+## SubmitOrder()
 
 ### Description
 
@@ -1876,8 +1838,7 @@ entryOrder = **SubmitOrder**(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", 
 ```
 
 
-TimeInForce
------------
+## TimeInForce
 
 ### Description
 
@@ -1910,8 +1871,7 @@ TimeInForce = TimeInForce.Day;
 
 ```
 
-TraceOrders
------------
+## TraceOrders
 
 ### Description
 
@@ -1966,8 +1926,7 @@ TraceOrders = **true**;
 ```
 
 
-Trade
------
+## Trade
 
 ### Description
 
