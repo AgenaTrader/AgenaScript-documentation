@@ -1461,7 +1461,6 @@ TraceOrders = true;
 }
 ```
 
-
 ## Trade
 ### Description
 Trade is an object containing information about trades that have been executed by a strategy or are currently running.
@@ -1534,32 +1533,32 @@ The individual properties are:
 ```cs
 protected override void OnTermination()
 {
-if (Performance.AllTrades.Count < 1) return;
-foreach (ITrade trade in Performance.AllTrades)
-{
-Print("Trade \#"+trade.Id);
-Print("--------------------------------------------");
-Print("Average price " + trade.AvgPrice);
-Print("Realized P/L " + trade.ClosedProfitLoss);
-Print("Commissions " + trade.Commission);
-Print("Time of entry " + trade.CreatedDateTime);
-Print("Entry reason " + trade.EntryReason);
-Print("Time of exit " + trade.ExitDateTime);
-Print("Exit price " + trade.ExitPrice);
-Print("Exit reason " + trade.ExitReason);
-Print("Instrument " + trade.Instrument);
-Print("Positioning " + trade.MarketPosition);
-Print("Unrealized P/L " + trade.OpenProfitLoss);
-Print("P/L (currency) " + trade.ProfitCurrency);
-Print("P/L " + trade.ProfitLoss);
-Print("P/L (in percent) " + trade.ProfitPercent);
-Print("P/L (% with commission)" + trade.ProfitPercentWithCommission);
-Print("PL (in points) " + trade.ProfitPoints);
-Print("Quantity " + trade.Quantity);
-Print("Timeframe " + trade.TimeFrame);
-Print("URL for the snapshot " + trade.Url);
-Print("");
-}
+  if (Performance.AllTrades.Count < 1) return;
+  foreach (ITrade trade in Performance.AllTrades)
+  {
+    Print("Trade #"+trade.Id);
+    Print("--------------------------------------------");
+    Print("Average price " + trade.AvgPrice);
+    Print("Realized P/L " + trade.ClosedProfitLoss);
+    Print("Commissions " + trade.Commission);
+    Print("Time of entry " + trade.CreatedDateTime);
+    Print("Entry reason " + trade.EntryReason);
+    Print("Time of exit " + trade.ExitDateTime);
+    Print("Exit price " + trade.ExitPrice);
+    Print("Exit reason " + trade.ExitReason);
+    Print("Instrument " + trade.Instrument);
+    Print("Positioning " + trade.MarketPosition);
+    Print("Unrealized P/L " + trade.OpenProfitLoss);
+    Print("P/L (currency) " + trade.ProfitCurrency);
+    Print("P/L " + trade.ProfitLoss);
+    Print("P/L (in percent) " + trade.ProfitPercent);
+    Print("P/L (% with commission)" + trade.ProfitPercentWithCommission);
+    Print("PL (in points) " + trade.ProfitPoints);
+    Print("Quantity " + trade.Quantity);
+    Print("Timeframe " + trade.TimeFrame);
+    Print("URL for the snapshot " + trade.Url);
+    Print("");
+  }
 }
 ```
 
@@ -1586,54 +1585,60 @@ The individual factors are:
 -   **AvgEtd**
     The average drawdown at the end of a trade
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgEtd
-    **Print**("Average ETD of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgEtd);
-
+    ```cs
+    Print("Average ETD of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgEtd);
+    ```
 -   **AvgMae**
     Average maximum adverse excursion
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgMae
-    **Print**("Average MAE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMae);
-
+    ```cs
+    Print("Average MAE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMae);
+    ```
 -   **AvgMfe**
     Average maximum favorable excursion
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgMfe
-    **Print**("Average MFE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMfe);
-
+    ```cs
+    Print("Average MFE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMfe);
+    ```
 -   **AvgProfit**
     Average profit for all trades
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgProfit
-    **Print**("Average profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgProfit);
-
+    ```cs
+    Print("Average profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgProfit);
+    ```
 -   **CumProfit**
     The cumulative winnings over all trades
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.CumProfit
-    **Print**("Average cumulative profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.CumProfit);
-
+    ```cs
+    Print("Average cumulative profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.CumProfit);
+    ```
 -   **DrawDown**
     The drawdown for all trades
-    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.DrawDown
-    **Print**("Drawdown of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.DrawDown);
-
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.DrawDow
+    ```cs
+    Print("Drawdown of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.DrawDown);
+    ```
 -   **LargestLoser**
     The largest losing trade
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.LargestLoser
-    **Print**("Largest loss of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestLoser);
-
+    ```cs
+    Print("Largest loss of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestLoser);
+    ```
 -   **LargestWinner**
     The largest winning trade
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.LargestWinner
-    **Print**("Largest win of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestWinner);
-
+    ```cs
+    Print("Largest win of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestWinner);
+    ```
 -   **ProfitPerMonth**
     The total performance (wins/losses) for the month (also in percent)
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.ProfitPerMonth
-    **Print**("Profit per month of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.ProfitPerMonth);
-
+    ```cs
+    Print("Profit per month of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.ProfitPerMonth);
+    ```
 -   **StdDev**
     The standard deviation for the wins/losses. With this, you are able to identify outliers. The smaller the standard deviation, the higher the expectation of winnings.
 
 **All factors are double values.**
 
 <img src="./media/image10.png" width="629" height="478" />
-
-
-

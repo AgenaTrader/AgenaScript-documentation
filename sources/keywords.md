@@ -19,7 +19,7 @@ Add(Line line)
 
 ### Example
 ```cs
-\#region Usings
+#region Usings
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,43 +31,47 @@ using AgenaTrader.API;
 using AgenaTrader.Custom;
 using AgenaTrader.Plugins;
 using AgenaTrader.Helper;
-\#endregion
+#endregion
 namespace AgenaTrader.UserCode
 {
-[Description("Enter the description for the new custom indicator here")]
-public class MyIndicator : UserIndicator
-{
-protected override void Initialize()
-{
-// Two blue lines will be placed into the chart, one at 70 and the other at 30
-Add(new Line(Color.Blue, 70, "UpperLine"));
-Add(new Line(Color.Blue, 30, "LowerLine"));
-// Add 2 plots
-Add(new Plot(Color.Red, "myFastSMA"));
-Add(new Plot(Color.Blue, "mySlowSMA"));
-}
-protected override void OnBarUpdate()
-{
-//The set method is assigned to the value of the current bar
-FastSMA.Set( SMA(8)[0] ); // is identical with Values[0].Set( SMA(8)[0] );
-SlowSMA.Set( SMA(50)[0] ); // is identical with Values[1].Set( SMA(50)[0] );
-}
-// Two data series are made available here
-// These are not necessary for the display of the indicator // With the help of these series, one indicator can access the other
-// For example: double d = MyIndicator.FastSMA[0] - MyIndicator.SlowSMA[0];
-[Browsable(false)]
-[XmlIgnore()]
-public DataSeries FastSMA
-{
-get { return Values[0]; }
-}
-[Browsable(false)]
-[XmlIgnore()]
-public DataSeries SlowSMA
-{
-get { return Values[1]; }
-}
-}
+  [Description("Enter the description for the new custom indicator here")]
+  public class MyIndicator : UserIndicator
+  {
+    protected override void Initialize()
+    {
+    // Two blue lines will be placed into the chart, one at 70 and the other at 30
+    Add(new Line(Color.Blue, 70, "UpperLine"));
+    Add(new Line(Color.Blue, 30, "LowerLine"));
+
+    // Add 2 plots
+    Add(new Plot(Color.Red, "myFastSMA"));
+    Add(new Plot(Color.Blue, "mySlowSMA"));
+    }
+    
+    protected override void OnBarUpdate()
+    {
+    //The set method is assigned to the value of the current bar
+    FastSMA.Set( SMA(8)[0] ); // is identical with Values[0].Set( SMA(8)[0] );
+    SlowSMA.Set( SMA(50)[0] ); // is identical with Values[1].Set( SMA(50)[0] );
+    }
+
+    // Two data series are made available here
+    // These are not necessary for the display of the indicator // With the help of these series, one indicator can access the other
+    // For example: double d = MyIndicator.FastSMA[0] - MyIndicator.SlowSMA[0];
+    [Browsable(false)]
+    [XmlIgnore()]
+    public DataSeries FastSMA
+    {
+      get { return Values[0]; }
+    }
+
+    [Browsable(false)]
+    [XmlIgnore()]
+    public DataSeries SlowSMA
+    {
+      get { return Values[1]; }
+    }
+  }
 }
 ```
 
@@ -245,7 +249,7 @@ public class TickCounter : UserIndicator
 {
 //As an attribute of a public variable, the text is a description of the function of the parameter.
 [Description("Number of standard deviations")]
-[DisplayName("\# of std. dev.")]
+[DisplayName("# of std. dev.")]
 public double NumStdDev
 {
 get { return numStdDev; }
@@ -264,7 +268,7 @@ The display name attribute defines the text shown in the properties dialog for t
 If this attribute is not specified, the name of the public variable is used.
 ```cs
 [Description("Number of standard deviations")]
-[DisplayName("\# of std. dev.")]
+[DisplayName("# of std. dev.")]
 public double NumStdDev
 {
 get { return numStdDev; }
@@ -2619,6 +2623,3 @@ Add(new Plot(Color.Red, "MyPlot1"));
 VerticalGridLines = false;
 }
 ```
-
-
-
