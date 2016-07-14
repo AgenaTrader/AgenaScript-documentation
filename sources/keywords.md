@@ -138,7 +138,7 @@ The alert method creates an acoustic and/or visual alarm.
 ```cs
 **Alert**(string message, **bool** showMessageBox, string soundLocation);
 
-Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the “re-arm seconds” parameter are ignored.
+Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the "re-arm seconds" parameter are ignored.
 
 **Alert**(string id, AlertPriority priority, string message, string soundLocation, **int** rearmSeconds, Color backColor, Color forColor);
 ```
@@ -155,8 +155,8 @@ None
 |                |                                                                                                                       |
 |----------------|-----------------------------------------------------------------------------------------------------------------------|
 | message        | Alert text displayed within the messages tab                                                                          |
-| soundLocation  | Name of a sound file in the \*.wav format. If no path is specified, then “My Documents\\AgenaTrader\\Sounds\\ is used |
-| showMessageBox | If set to “true”, a message box will be displayed in addition to the sound                                            |
+| soundLocation  | Name of a sound file in the \*.wav format. If no path is specified, then "My Documents\\AgenaTrader\\Sounds\\ is used |
+| showMessageBox | If set to "true", a message box will be displayed in addition to the sound                                            |
 
 ### Example
 ```cs
@@ -166,9 +166,11 @@ None
 **if** (**CrossBelow**(**SMA**(20), **SMA**(50), 1))
 
 **Alert**("Check short signal!", **true**, "Alert4.wav");
+```
 
 To use music files in a different path, you need to specify the path:
 
+```cs
 string pathOfSoundfile = Environment.**GetFolderPath**(Environment.SpecialFolder.MyDocuments)+@"\\MyAlertSounds\\";
 
 string nameOfSoundFile = "MyAlertSoundFile.wav";
@@ -181,7 +183,7 @@ string nameOfSoundFile = "MyAlertSoundFile.wav";
 
 ### Description
 
-“AllowRemovalOfDrawObjects” is a property of indicators that can be set under [*Initialize()*].
+"AllowRemovalOfDrawObjects" is a property of indicators that can be set under [*Initialize()*].
 
 **AllowRemovalOfDrawObjects = true**
 
@@ -191,7 +193,7 @@ Drawing objects that are drawn by an indicator or a strategy can be manually rem
 
 Drawing objects that have been created by a strategy or indicator CANNOT be manually removed from the chart. They are removed once the indicator or strategy is removed.
 
-This property can be queried and will return “true” or “false”.
+This property can be queried and will return "true" or "false".
 
 ### Usage
 
@@ -291,7 +293,7 @@ Category is an *[Attribut]e* in AgenaScript.
 The category attribute defines under which category in the properties dialog the parameter is shown.
 If this attribute is missing, the parameters category is accepted as the standard.
 
-The following example shows how to create the new category “My Parameters” in the properties dialog:
+The following example shows how to create the new category "My Parameters" in the properties dialog:
 ```cs
 
 \[Category("My Parameters")\]
@@ -409,11 +411,14 @@ set { numStdDev = Math.Max(0, value); }
 
 Timeframe requirements is an attribute in AgenaScripts.
 
-If you want a script to use data from various timeframes, the class requires the attribute „TimeFrameRequirements“. You can specify multiple timeframes here:
+If you want a script to use data from various timeframes, the class requires the attribute „TimeFrameRequirements". You can specify multiple timeframes here:
 
+```cs
 \[**TimeFrameRequirements**("1 day")\]
 
 \[**TimeFrameRequirements**("15 minutes", "1 day", "1 week")\]
+```
+
 
 The amount of data provided for the other timeframes will always be the same as the number of actual candles loaded into the chart. If there are 500 candles for a 5-minute chart, then 500 candles of another timeframe will also be loaded. In the first example above, 500 daily candles will be loaded. In the second example, 500 15-minute candles, 500 daily candles and 500 weekly candles will be loaded.
 The amount of data can become rather large very quickly, thus you should take precautions when using this attribute.
@@ -422,7 +427,7 @@ See [*MultiBars*].
 
 **Important:**
 
-If a class uses a different indicator that requires one or more secondary timeframes, then the “TimeFrameRequirements” attribute must be set for the class retrieving the data. An example for this can be seen here: [*GetDayBar*].
+If a class uses a different indicator that requires one or more secondary timeframes, then the "TimeFrameRequirements" attribute must be set for the class retrieving the data. An example for this can be seen here: [*GetDayBar*].
 
 ## XMLIgnore
 
@@ -498,15 +503,21 @@ set { \_textFont = SerializableFont.FromString(value); }
 
 Auto scale is a property of indicators that can be set within the Initialize() method.
 
+```cs
 **AutoScale = true (default)**
+```
+
 
 The price axis (y-axis) of the chart is set so that all plots and lines of an indicator are visible.
 
+```cs
 **AutoScale = false**
+```
+
 
 Plots and lines of an indicator or strategy are not accounted for in the scaling of the y-axis. Therefore they may lie outside of the visible chart area.
 
-This property can be queried and will return either “true” or “false”.
+This property can be queried and will return either "true" or "false".
 
 ### Usage
 
@@ -533,7 +544,7 @@ AutoScale = **true**;
 
 ### Description
 
-The property “BarsRequired” determines how many historical bars are required for an indicator or a strategy to call up the OnBarUpdate() method for the first time and thus begin the calculations. Bars required should be set within the Initialize() method.
+The property "BarsRequired" determines how many historical bars are required for an indicator or a strategy to call up the OnBarUpdate() method for the first time and thus begin the calculations. Bars required should be set within the Initialize() method.
 The setting should be chosen carefully. If you require 100 days for the calculation of a moving average, then you should ensure that at least 100 days of historical data are loaded.
 The property can be queried in the script and will return an int value.
 
@@ -564,13 +575,19 @@ BarsRequired = 50;
 
 ### Description
 
-The property “CalculateOnBarClose” determines the events for which AgenaTrader can call up the OnBarUpdate() method.
+The property "CalculateOnBarClose" determines the events for which AgenaTrader can call up the OnBarUpdate() method.
 
-**CalculateOnBarClose = true
-**OnBarUpdate() is called up when a bar is closed and the next incoming tick creates a new bar.
+```cs
+CalculateOnBarClose = true
+```
 
-**CalculateOnBarClose = false
-**OnBarUpdate() is called up for each new incoming tick.
+**OnBarUpdate()** is called up when a bar is closed and the next incoming tick creates a new bar.
+
+```cs
+**CalculateOnBarClose = false**
+```
+
+OnBarUpdate() is called up for each new incoming tick.
 If you are running AgenaTrader on older hardware, this may cause performance issues with instruments that are highly liquid.
 The property can be queried in the script and will return a value of the type Boolean (true or false).
 CalculateOnBarClose can be used within Initialize() and also within OnBarUpdate().
@@ -607,23 +624,14 @@ Chart control is an object that provides reading access of various properties fo
 The important properties are:
 
 -   ChartFontColor, BackColor
-
 -   UpColor, DownColor
-
 -   Font
-
 -   BarMarginLeft, BarMarginRight
-
 -   BarSpace, BarWidth
-
 -   BarsPainted
-
 -   FirstBarPainted, LastBarPainted
-
 -   BarsVisible
-
 -   FirstBarVisible, LastBarVisible
-
 -   GetXByBarIdx, GetYByValue
 
 An example can be seen here: [*PlotSample*].
@@ -704,9 +712,12 @@ See [*CrossBelow()*], [*Rising()*], [*Falling()*].
 
 ### Usage
 
+```cs
 **CrossAbove**(IDataSeries series1, **double value**, **int** lookBackPeriod)
 
 **CrossAbove**(IDataSeries series1, IDataSeries series2, **int** lookBackPeriod)
+```
+
 
 ### Return Value
 
@@ -846,39 +857,22 @@ Datafeed history periodicity is a data type.
 ### Definition
 
 public enum DatafeedHistoryPeriodicity
-
 -   DatafeedHistoryPeriodicity.Tick
-
 -   DatafeedHistoryPeriodicity.Second
-
 -   DatafeedHistoryPeriodicity.Minute
-
 -   DatafeedHistoryPeriodicity.Hour
-
 -   DatafeedHistoryPeriodicity.Day
-
 -   DatafeedHistoryPeriodicity.Week
-
 -   DatafeedHistoryPeriodicity.Month
-
 -   DatafeedHistoryPeriodicity.Volume
-
 -   DatafeedHistoryPeriodicity.Range
-
 -   DatafeedHistoryPeriodicity.Quarter
-
 -   DatafeedHistoryPeriodicity.Year
-
 -   DatafeedHistoryPeriodicity.HeikinAshi
-
 -   DatafeedHistoryPeriodicity.Renko
-
 -   DatafeedHistoryPeriodicity.LineBreak
-
 -   DatafeedHistoryPeriodicity.Kagi
-
 -   DatafeedHistoryPeriodicity.PointAndFigure
-
 -   DatafeedHistoryPeriodicity.Custom
 
 See *TimeFrame*, *TimeFrames*.
@@ -918,7 +912,7 @@ To change the color of plots, please use [*PlotColors*].
 Each data series contains a **Set()**, **Reset()** and **ContainsValue()** method.
 With Set(value) or Set(int barsAgo, value) you can place values into the data series for the current position, or in this case into the barsAgo position.
 With Reset() or Reset(int barsAgo) you can delete a value from the data series for the current position or for the barsAgo position. This has the result that no valid value exists at this position any more.
-Programming with the help of the reset method can simplify otherwise complex logic. This is especially true for Boolean series, where only “true” or “false” values can be included.
+Programming with the help of the reset method can simplify otherwise complex logic. This is especially true for Boolean series, where only "true" or "false" values can be included.
 The ContainsValue() checks whether a data series has a value for a specific position.
 
 ### Information about Data Types
@@ -961,29 +955,47 @@ CalculateOnBarClose = **true**;
 
 Assigning a value to the data series for the current position:
 
+```cs
 myBoolSeries.**Set**(**true**);
+```
+
 
 Writing a value in the past into the data series:
 
+```cs
 myBoolSeries.**Set**(**int** barsAgo, **bool** Value);
+```
+
 
 ### Delete Values
 
 Removing the current value for the data series:
 
+```cs
 myBoolSeries.**Reset**();
+```
+
 
 Removing a value in the past from the data series:
+```cs
 
 myBoolSeries.**Reset**(**int** barsAgo);
+```
+
 
 ### Check Values for their Validity
 
+```cs
 myBoolSeries.**ContainsValue**(**int** barsAgo);
+```
+
 
 ### Read Value
 
+```cs
 **Print** ("For the bar of " + Time\[0\] + " ago the value of the data series is: " + myBoolSeries\[0\]);
+```
+
 
 ### Example
 
@@ -1042,29 +1054,47 @@ CalculateOnBarClose = **true**;
 
 Assigning a value to the data series for the current position:
 
+```cs
 myDataSeries.Set(Bars\[0\].Close);
+```
+
 
 Writing a value in the past into the data series:
+```cs
 
 myDataSeries.**Set**(**int** barsAgo, **duble** Value);
+```
+
 
 ### Delete Values
 
 Removing the current value from the data series:
 
+```cs
 myDataSeries.**Reset**();
+```
+
 
 Removing a value in the past from the data series:
+```cs
 
 myDataSeries.**Reset**(**int** barsAgo);
 
+```
+
 ### Check Values for their Validity
 
+```cs
 myDataSeries.**ContainsValue**(**int** barsAgo);
+```
+
 
 ### Read Value
+```cs
 
 **Print** ("For the bar from " + Time\[0\] + " ago the value for the data series is: " + myDataSeries\[0\]);
+```
+
 
 ### Example
 ```cs
@@ -1111,29 +1141,47 @@ CalculateOnBarClose = **true**;
 
 Assigning a value to the current position of the data series:
 
+```cs
 myDataSeries.**Set**(DateTime Value);
+```
+
 
 Writing a value from the past into the data series:
 
+```cs
 myDataSeries.**Set**(**int** barsAgo, DateTime Value);
+```
+
 
 ### Delete Values
 
 Removing the current value from the data series:
 
+```cs
 myDataSeries.**Reset**();
+```
+
 
 Remove a past value from the data series:
 
+```cs
 myDataSeries.**Reset**(**int** barsAgo);
+```
+
 
 ### Check Values for their Validity
 
+```cs
 myDataSeries.**ContainsValue**(**int** barsAgo);
+```
+
 
 ### Read Value
 
+```cs
 **Print** ("For the bar from " + Time\[0\] + " ago the value of the data series is: " + myDataSeries\[0\]);
+```
+
 
 ### Example
 
@@ -1180,29 +1228,47 @@ CalculateOnBarClose = **true**;
 
 Assigning a value to the current position of the data series
 
+```cs
 myDataSeries.**Set**(**float** Value);
+```
+
 
 Writing a value from the past into the data series:
+```cs
 
 myDataSeries.**Set**(**int** barsAgo, **float** Value);
+```
+
 
 ### Delete Values
 
 Removing the current value from the data series:
+```cs
 
 myDataSeries.**Reset**();
+```
+
 
 Removing a value located in the past from the data series:
+```cs
 
 myDataSeries.**Reset**(**int** barsAgo);
+```
+
 
 ### Check Values for their Validity
+```cs
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
+```
+
 
 ### Read Value
+```cs
 
 **Print** ("For the bar from " + Time\[0\] + " ago the value for the data series is: " + myDataSeries\[0\]);
+```
+
 
 ### Example
 
@@ -1251,30 +1317,48 @@ CalculateOnBarClose = **true**;
 ### Assign Values
 
 Assigning a value to the current position of the data series
+```cs
 
 myDataSeries.**Set**(**int** Value);
+```
+
 
 Writing a value from the past into the data series:
+```cs
 
 myDataSeries.**Set**(**int** barsAgo, **int** Value);
+```
+
 
 ### Delete Values
 
 Removing the current value from the data series:
+```cs
 
 myDataSeries.**Reset**();
+```
+
 
 Removing a value located in the past from the data series:
+```cs
 
 myDataSeries.**Reset**(**int** barsAgo);
+```
+
 
 ### Check Values for their Validity
+```cs
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
+```
+
 
 ### Read Value
+```cs
 
 **Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
+```
+
 
 ### Example
 
@@ -1320,30 +1404,48 @@ CalculateOnBarClose = **true**;
 ### Assign Values
 
 Assigning a value to the current position of the data series:
+```cs
 
 myDataSeries.**Set**(**long** Value);
+```
+
 
 Writing a value from the past into the data deries:
+```cs
 
 myDataSeries.**Set**(**int** barsAgo, **long** Value);
+```
+
 
 ### Delete Values
 
 Removing the current value from the data series:
+```cs
 
 myDataSeries.**Reset**();
+```
+
 
 Removing a value located in the past from the data series:
+```cs
 
 myDataSeries.**Reset**(**int** barsAgo);
+```
+
 
 ### Check Values for their Validity
+```cs
 
 myDataSeries.**ContainsValue**(**int** barsAgo);
+```
+
 
 ### Read Value
+```cs
 
 **Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
+```
+
 
 ### Example
 
@@ -1445,7 +1547,7 @@ myDataSeries.**Set**(string.**Format**("{0:dddd}", Time\[0\]));
 
 ### Description
 
-“DayOfWeek” outputs the date-time value (such as a timestamp) for each bar.
+"DayOfWeek" outputs the date-time value (such as a timestamp) for each bar.
 
 Of course, all other methods defined within the C\# language for usage of date-time objects are also available, such as day, month, year, hour, minute, second, day of week etc.
 
@@ -1456,7 +1558,6 @@ See [*http://msdn.microsoft.com/de-de/library/03ybds8y.aspx*]
 Property DayOfWeek
 
 public enum DayOfWeek
-
 -   DayOfWeek.Monday
 -   DayOfWeek.Tuesday
 -   DayOfWeek.Wednesday
@@ -1484,7 +1585,7 @@ return;
 
 ### Description
 
-By implementing “Displacement”, you can shift a drawn indicator line right or left along the x-axis.
+By implementing "Displacement", you can shift a drawn indicator line right or left along the x-axis.
 This property can be queried within the script and will return an int value.
 
 Blue line: Displacement = 0 (Original)
@@ -1522,15 +1623,21 @@ Displacement = 1;
 
 ### Description
 
-The property “DisplayInDataBox” states whether the value of an indicator is contained in the data box of the chart or not.
+The property "DisplayInDataBox" states whether the value of an indicator is contained in the data box of the chart or not.
 
 The property can be queried in the script and returns a value of the type Boolean (true or false).
+```cs
 
 **DisplayInDataBox = true (default)**
+```
+
 
 The indicator values are displayed in the data box.
+```cs
 
 **DisplayInDataBox = false**
+```
+
 
 The indicator values are not displayed in the data box.
 
@@ -1563,13 +1670,19 @@ DisplayInDataBox = **false**;
 
 ### Description
 
-The property “DrawOnPricePanel” determines the panel in which the drawing objects are drawn.
+The property "DrawOnPricePanel" determines the panel in which the drawing objects are drawn.
+```cs
 
 **DrawOnPricePanel = true (default)**
+```
+
 
 Drawing objects are shown in the price chart
+```cs
 
 **DrawOnPricePanel = false**
+```
+
 
 Drawing objects are drawn in the panel (subchart) assigned to the indicator
 
@@ -1615,7 +1728,7 @@ DrawOnPricePanel = **true**;
 
 ### Description
 
-The Falling() method allows you to test whether an “is falling” condition exists, i.e. whether the current value is smaller than the value of the previous bar.
+The Falling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.
 
 See [*CrossAbove()*], [*CrossBelow()*], [*Rising()*].
 
@@ -1679,7 +1792,7 @@ See [*Colors*], [*BarColorSeries*], [*BackColor*], [*BackColorAll*], [*CandleOut
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 ### Usage
 
@@ -1706,7 +1819,7 @@ See [*Colors*], [*BarColor*], [*BackColorAll*], [*CandleOutlineColor*].
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 ### Usage
 
@@ -1748,7 +1861,7 @@ See [*Colors*], [*BarColor*], [*BackColor*], [*CandleOutlineColor*].
 
 ### Parameter
 
-A color object of the type “public struct color”
+A color object of the type "public struct color"
 
 ### Usage
 
@@ -1777,7 +1890,7 @@ See [*Colors*], [*BackColorSeries*], [*BackColorAllSeries*], [*CandleOutlineColo
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 int barsAgo
 
@@ -1789,7 +1902,7 @@ BarColorSeries\[**int** barsAgo\]
 
 When using the method with an index \[**int** barsAgo\] the color for the referenced bar will be changed or returned.
 
-**Caution: Only the color of a bar whose color has been explicitly changed beforehand will be returned. In all other cases, the “Color.Empty” value will be returned.**
+**Caution: Only the color of a bar whose color has been explicitly changed beforehand will be returned. In all other cases, the "Color.Empty" value will be returned.**
 
 ### Example
 
@@ -1828,13 +1941,13 @@ BarColorSeries\[2\] = Color.Yellow;
 
 ### Description
 
-Back color series is a data series containing the background color for each bar. If the background color for the subcharts is to be included, please use “BackColorAllSeries” instead.
+Back color series is a data series containing the background color for each bar. If the background color for the subcharts is to be included, please use "BackColorAllSeries" instead.
 
 See [*Colors*], [*BarColorSeries*][*BarColor*], [*BackColorAllSeries*][] [*CandleOutlineColorSeries*].
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 int barsAgo
 
@@ -1878,7 +1991,7 @@ See [*Colors*], [*BarColorSeries*], [*BackColorSeries*], [*CandleOutlineColorSer
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 int barsAgo
 
@@ -1909,7 +2022,7 @@ See [*Colors*], [*BarColor*], [*BackColor*], [*BackColorAll*].
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 ### Usage
 
@@ -1940,7 +2053,7 @@ See [*Colors*], [*BarColorSeries*], [*BackColorSeries*], [*BackColorAllSeries*].
 
 ### Parameter
 
-a color object of the type “public struct color”
+a color object of the type "public struct color"
 
 int barsAgo
 
@@ -1973,9 +2086,9 @@ CandleOutlineColorSeries\[0\] = Color.Empty;
 
 ### Description
 
-FirstTickOfBar is a property of the type “bool” that returns “true” if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
+FirstTickOfBar is a property of the type "bool" that returns "true" if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
 This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnBarClose = false and the data feed is able to output real-time values.
-When using end-of-day data in a daily chart, the “FirstTickOfBar” is always true for the last bar.
+When using end-of-day data in a daily chart, the "FirstTickOfBar" is always true for the last bar.
 FirstTickOfBar should not be used outside of the OnBarUpdate() method.
 See [*Bars.TickCount*].
 
@@ -2023,9 +2136,12 @@ See [*BarsInProgress*].
 
 ### Example
 
+```cs
 **if** (**FirstTickOfBarMtf**(BarsInProgress))
 
 **Print**("A new bar has begun.");
+```
+
 
 ## GetCurrentAsk()
 
@@ -2128,12 +2244,18 @@ period Number of bars within which the bar is searched for
 series Every data series, such as close, high, low, etc.
 
 ### Return Value
+```cs
 
 **int** barsAgo How many bars ago the high occurred
+```
+
 
 ### Usage
+```cs
 
 **HighestBar**(IDataSeries series, **int** period)
+```
+
 
 ### Example
 
@@ -2197,61 +2319,43 @@ none
 none
 
 ### Usage
+```cs
 
 **protected** override void **Initialize**()
+```
+
 
 ### Important Keywords
 
 -   [*Add()*]
-
 -   [*AllowRemovalOfDrawObjects*]
-
 -   [*AutoScale*]
-
 -   [*BarsRequired*]
-
 -   [*CalculateOnBarClose*]
-
 -   [*ClearOutputWindow()*]
-
 -   [*Displacement*]
-
 -   [*DisplayInDataBox*]
-
 -   [*DrawOnPricePanel*]
-
 -   [*InputPriceType*]
-
 -   [*Overlay*]
-
 -   [*PaintPriceMarkers*]
-
 -   [*SessionBreakLines*]
-
 -   [*VerticalGridLines*]
 
 **Additional Keywords for Strategies**
 
 -   [*DefaultQuantity*]
-
 -   [*EntriesPerDirection*]
-
 -   [*EntryHandling*]
-
 -   [*SetStopLoss()*]
-
 -   [*SetProfitTarget()*]
-
 -   [*SetTrailStop()*]
-
 -   [*TimeInForce*]
-
 -   [*TraceOrders*]
 
 ### More Information
 
 **Caution:**
-
 The Initialize() method is not only called up at the beginning of an indicator or strategy calculation, but also if the chart is reloaded unexpectedly or if the properties dialog of indicators is opened and so on.
 Developers of custom AgenaScripts should NOT use this method for running their own routines, opening forms, performing license checks, etc. The OnStartUp() method should be used for these kind of tasks.
 
@@ -2322,8 +2426,11 @@ Every further appearance of InputPriceType will be ignored!
 See [*PriceType*]
 
 ### Usage
+```cs
 
 InputPriceType
+```
+
 
 ### Example1
 
@@ -2385,7 +2492,7 @@ InputPriceType = PriceType.High;
 
 ### Description
 
-With “instrument”, information concerning the trading instrument (stock, future etc.) is made available.
+With "instrument", information concerning the trading instrument (stock, future etc.) is made available.
 
 Detailed information can be found here: *Instruments*.
 
@@ -2394,7 +2501,7 @@ Detailed information can be found here: *Instruments*.
 ### Description
 
 A line object is used for drawing a horizontal line in the chart. Usually, these are upper and lower trigger lines for indicators such as the RSI (70 and 30).
-The lines described here are not to be confused with lines from the drawing objects (see “DrawHorizontalLine”).
+The lines described here are not to be confused with lines from the drawing objects (see "DrawHorizontalLine").
 Line objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.
 
 See [*Plot*].
@@ -2410,9 +2517,12 @@ See [*Plot*].
 
 ### Usage
 
+```cs
 **Line**(Color color, **double value**, string name)
 
 **Line**(Pen pen, **double value**, string name)
+```
+
 
 ### More Information
 
@@ -2480,16 +2590,11 @@ If the log tab is not viewable, it can be displayed using the tools log.
 |          |                      |
 |----------|----------------------|
 | message  | Text (message)       |
-| logLevel | Possible values are  
-                                  
-            InfoLogLevel.Info     
-                                  
-            InfoLogLevel.Message  
-                                  
+| logLevel | Possible values are                     
+            InfoLogLevel.Info                          
+            InfoLogLevel.Message                        
             InfoLogLevel.Warning  
-                                  
             InfoLogLevel.Alert    
-                                  
             InfoLogLevel.Error    |
 
 ### Example
@@ -2536,8 +2641,11 @@ series Every data series, such as close, high, low etc.
 **int** barsAgo How many bars ago the low occurred
 
 ### Usage
+```cs
 
 **LowestBar**(IDataSeries series, **int** period)
+```
+
 
 ### Example
 ```cs
@@ -2613,11 +2721,17 @@ See [*OnMarketDepth()*].
 
 The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.
 
+```cs
 **Overlay = true**
+```
+
 
 The indicator is drawn above the price (for example an [*SMA*])
 
+```cs
 **Overlay = false (default)**
+```
+
 
 A separate chart window is opened (RSI)
 
@@ -2818,7 +2932,7 @@ More examples: [*Bar Numbering*][*PlotSample*], *Chart Background Image*.
 
 graphics The graphics object of the price chart (context)
 
-rectangle The size of the drawing area (type “public struct rectangle”)
+rectangle The size of the drawing area (type "public struct rectangle")
 
 double min The smallest price in the y-axis
 
@@ -2975,7 +3089,6 @@ Price type describes a form of price data.
 See [*InputPriceType*]
 
 Following variables are available:
-
 -   PriceType.Close
 -   PriceType.High
 -   PriceType.Low
@@ -3069,7 +3182,10 @@ string tag The clearly identifiable name for the drawing object
 
 ### Example
 
+```cs
 **RemoveDrawObjects**("My line");
+```
+
 
 ## RemoveDrawObjects()
 
@@ -3105,7 +3221,10 @@ See [*CrossAbove()*], [*CrossBelow()*], [*Falling()*].
 
 ### Usage
 
+```cs
 **Rising**(IDataSeries series)
+
+```
 
 ### Return Value
 
@@ -3278,8 +3397,11 @@ The Update() method calls up the OnBarUpdate method in order to recalculate the 
 Update() is to be used with caution and is intended for use by experienced programmers.
 
 ### Usage
+```cs
 
 Update()
+```
+
 
 ### Return Value
 
@@ -3344,11 +3466,11 @@ return myPublicVariable;
 ```
 
 
-**Without Update() - Wrong
-**If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in Ind2. Without Update(), the value of MyPublicVariable would be returned. In this case it would be 0.
+**Without Update() - Wrong**
+If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in Ind2. Without Update(), the value of MyPublicVariable would be returned. In this case it would be 0.
 
-**With Update() - Correct
-**By calling up Update(), OnBarUpdate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.
+**With Update() - Correct**
+By calling up Update(), OnBarUpdate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.
 
 ## Value
 

@@ -130,7 +130,10 @@ If this property is used outside of OnBarUpdate() then you should test for a nul
 
 ### Example
 
+```cs
 **Print** ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
+```
+
 
 ## Bars.Count
 
@@ -158,7 +161,10 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 
 ### Example
 
+```cs
 **Print** ("There are a total of” + Bars.Count + “bars available.");
+```
+
 
 ## Bars.FirstBarOfSession
 
@@ -186,9 +192,12 @@ If this property is called up outside of OnBarUpdate() you should test for a nul
 
 ### Example
 
+```cs
 **if** (Bars.FirstBarOfSession)
 
 **Print** ("The current trading session started at” + Time \[0\]);
+```
+
 
 ## Bars.GetBar
 
@@ -211,7 +220,10 @@ For a timestamp younger than the newest bar: index of the last bar
 
 ### Usage
 
+```cs
 Bars.**GetBar**(DateTime time)
+```
+
 
 ### More Information
 
@@ -221,7 +233,10 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 
 ### Example
 
+```cs
 **Print** ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.**GetBar**(**new DateTime**(2012, 01, 03, 18, 0, 0)).Close);
+```
+
 
 ## Bars.GetBarsAgo
 
@@ -243,8 +258,11 @@ With a timestamp older than the oldest bar: 0 (null)
 With a timestamp newer than the youngest bar: index of the last bar
 
 ### Usage
+```cs
 
 Bars.**GetBarsAgo**(DateTime time)
+```
+
 
 ### More Information
 
@@ -254,7 +272,10 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 
 ### Example
 
+```cs
 **Print**("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.**GetBarsAgo**(**new DateTime**(2012, 01, 03, 18, 0, 0)));
+```
+
 
 ## Bars.GetClose
 
@@ -281,8 +302,11 @@ Type int Index
 Type IBar Bar object for the specified index
 
 ### Usage
+```cs
 
 Bars.**GetByIndex** (int Index)
+```
+
 
 ### More Information
 
@@ -290,7 +314,10 @@ For indexing of bars see [*Functionality*][*Bars*](#bars)
 
 ### Example
 
+```cs
 **Print**(Close\[0\] + " and " + Bars.**GetByIndex**(CurrentBar).Close + " are equal in this example.");
+```
+
 
 ## Bars.GetIndex
 
@@ -312,9 +339,12 @@ Type int The bar index of the specified bar object or DateTime object
 
 ### Usage
 
+```cs
 Bars.**GetIndex** (IBar bar)
 
 Bars.**GetIndex** (DateTime dt)
+```
+
 
 ### More Information
 
@@ -322,11 +352,14 @@ For more information about indexing see [*Functionality*][*Bars*]
 
 ### Example
 
+```cs
 **int** barsAgo = 5;
 
 IBar bar = Bars.**GetBar**(Time\[barsAgo\]);
 
 **Print**(barsAgo + " and " + Bars.**GetIndex**(bar) + " are equal in this example.");
+```
+
 
 ## Bars.GetLow
 
@@ -358,9 +391,12 @@ The date for the beginning and the end of a trading session are connected compon
 
 ### Usage
 
+```cs
 Bars.**GetNextBeginEnd**(Bars bars, **int** barsAgo, **out** DateTime sessionBegin, **out** DateTime sessionEnd)
 
 Bars.**GetNextBeginEnd**(DateTime time, **out** DateTime sessionBegin, **out** DateTime sessionEnd)
+```
+
 
 ### More Information
 
@@ -721,6 +757,7 @@ If this property is used outside of OnBarUpdate(),you should test for a null ref
 
 ### Example
 
+```cs
 //Usage within a 30 minute chart
 
 TimeFrame tf = (TimeFrame) Bars.TimeFrame;
@@ -730,6 +767,8 @@ TimeFrame tf = (TimeFrame) Bars.TimeFrame;
 **Print**(tf.Periodicity); // outputs "Minute"
 
 **Print**(tf.PeriodicityValue); // outputs "30"
+```
+
 
 ## Bars.TotalTicks
 
@@ -803,9 +842,12 @@ BarsAgo Index Value (see [*Bars*])
 
 ### Usage
 
+```cs
 Open
 
 Open\[**int** barsAgo\]
+
+```
 
 ### More Information
 
@@ -813,6 +855,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
 
+```cs
 // Opening price for the current period
 
 **Print**(Time\[0\] + " " + Open\[0\]);
@@ -824,6 +867,8 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 // Current value for the SMA 14 that is based on the opening prices (rounded)
 
 **Print**("SMA(14) calculated using the opening prices: " + Instrument.**Round2TickSize**(**SMA**(Open, 14)\[0\]));
+```
+
 
 ## Opens
 
@@ -851,9 +896,12 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 Opens\[**int** barSeriesIndex\]
 
 Opens\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -874,10 +922,13 @@ High is a *[DataSerie][*Data series*]s* of the type [*DataSeries*], in which the
 barsAgo IndexValue (see [*Bars*])
 
 ### Usage
+```cs
 
 High
 
 High\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -885,6 +936,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
 
+```cs
 // High values of the current period
 
 **Print**(Time\[0\] + " " + High\[0\]);
@@ -896,6 +948,8 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 // the current value for the SMA 14 calculated on the basis of the high prices
 
 **Print**("SMA(14) Calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(High, 14)\[0\]));
+```
+
 
 ## Highs
 
@@ -924,9 +978,12 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 Highs\[**int** barSeriesIndex\]
 
 Highs\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -948,9 +1005,12 @@ barsAgo IndexValue (see [*Bars*])
 
 ### Usage
 
+```cs
 Low
 
 Low\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -958,6 +1018,7 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
 
+```cs
 // Lowest value of the current period
 
 **Print**(Time\[0\] + " " + Low\[0\]);
@@ -969,6 +1030,8 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 // The current value for the SMA 14 calculated on the basis of the low prices (smoothed)
 
 **Print**("SMA(14) calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(Low, 14)\[0\]));
+```
+
 
 ## Lows
 
@@ -997,9 +1060,12 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 Lows\[**int** barSeriesIndex\]
 
 Lows\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1021,9 +1087,12 @@ barsAgo Index value (see [*Bars*])
 
 ### Usage
 
+```cs
 Close
 
 Close\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1033,6 +1102,7 @@ Indicators are usually calculated using the closing prices.
 
 ### Example
 
+```cs
 // Closing price of the current period
 
 **Print**(Time\[0\] + " " + Close\[0\]);
@@ -1048,6 +1118,8 @@ Indicators are usually calculated using the closing prices.
 // Close does not need to be mentioned since it is used by default
 
 **Print**("SMA(14) calculated using the closing prices: " + Instrument.**Round2TickSize**(**SMA**(14)\[0\]));
+```
+
 
 ## Closes
 
@@ -1075,10 +1147,13 @@ barsAgo Index value of the individual bars within the data series
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
+```cs
 
 Closes\[**int** barSeriesIndex\]
 
 Closes\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1104,9 +1179,12 @@ barsAgo Index value (see [*Bars*])
 
 ### Usage
 
+```cs
 Median
 
 Median\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1117,6 +1195,7 @@ Further information about median, typical und weighted:
 
 ### Example
 
+```cs
 // Median price for the current period
 
 **Print**(Time\[0\] + " " + Median\[0\]);
@@ -1128,6 +1207,8 @@ Further information about median, typical und weighted:
 // Current value for the SMA 14 calculated using the median prices
 
 **Print**("SMA(14) calculated using the median prices: " + Instrument.**Round2TickSize**(**SMA**(Median, 14)\[0\]));
+```
+
 
 ## Medians
 
@@ -1156,9 +1237,12 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 Medians\[**int** barSeriesIndex\]
 
 Medians\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1186,9 +1270,12 @@ barsAgo Index value (see [*Bars*])
 
 ### Usage
 
+```cs
 Typical
 
 Typical\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1196,8 +1283,9 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 Further information on typical: *https://technicianapp.com/resources/typical-price/*
 
-Example
+### Example
 
+```cs
 // Typical price for the current period
 
 **Print**(Time\[0\] + " " + Typical\[0\]);
@@ -1209,6 +1297,8 @@ Example
 // Current value for the SMA 14 calculated using the typical price
 
 **Print**("SMA(14) calculated using the typical price: " + Instrument.**Round2TickSize**(**SMA**(Typical, 14)\[0\]));
+```
+
 
 ## Typicals
 
@@ -1237,9 +1327,12 @@ barSeriesIndex Index value of the various timeframes
 
 ### Usage
 
+```cs
 Typicals\[**int** barSeriesIndex\]
 
 Typicals\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1265,9 +1358,12 @@ barsAgo Index value (see [*Bars*])
 
 ### Usage
 
-Weighted
+## Weighted
 
+```cs
 Weighted\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1277,6 +1373,7 @@ Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-po
 
 ### Example
 
+```cs
 // Weighted price for the current period
 
 **Print**(Time\[0\] + " " + Weighted\[0\]);
@@ -1288,6 +1385,8 @@ Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-po
 // Current value for the SMA 14 using the weighted price
 
 **Print**("SMA(14) calculated using the weighted price: " + Instrument.**Round2TickSize**(**SMA**(Weighted, 14)\[0\]));
+```
+
 
 ## Weighteds
 
@@ -1316,9 +1415,12 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 Weighteds\[**int** barSeriesIndex\]
 
 Weighteds\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1340,9 +1442,12 @@ barsAgo Index value (see [*Bars*])
 
 ### Usage
 
+```cs
 Time
 
 Time\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1350,6 +1455,7 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
 
+```cs
 // Timestamp of the current period
 
 **Print**(Time\[0\]);
@@ -1357,6 +1463,8 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 // Timestamp of the bar from 5 periods ago
 
 **Print**(Time\[5\]);
+```
+
 
 ## Times
 
@@ -1383,10 +1491,13 @@ barsAgo Index value for the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
+```cs
 
 Times\[**int** barSeriesIndex\]
 
 Times\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1421,6 +1532,7 @@ for example, Vol()\[3\] will have the same value as Volume\[3\].
 
 ### Example
 
+```cs
 // Volume for the current period
 
 **Print**(Time\[0\] + " " + Volume\[0\]);
@@ -1432,6 +1544,8 @@ for example, Vol()\[3\] will have the same value as Volume\[3\].
 // Current value for the SMA 14 calculated using the volume
 
 **Print**("SMA(14) calculated using the volume: " + Instrument.**Round2TickSize**(**SMA**(Volume, 14)\[0\]));
+```
+
 
 ## Volumes
 
@@ -1461,9 +1575,12 @@ barSeriesIndex Index value of the various timeframes
 
 ### Usage
 
+```cs
 Volumes\[**int** barSeriesIndex\]
 
 Volumes\[**int** barSeriesIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -1526,8 +1643,11 @@ Type int
 0 - Value1 and value2 are equal
 
 ### Usage
+```cs
 
 Instrument.**Compare**(**double** Value1, **double** Value2)
+```
+
 
 ### More Information
 
@@ -1539,8 +1659,11 @@ Compare(2, 1.999999) a 0, meaning the values are equal
 Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001
 
 ### Example
+```cs
 
 **Print**(Instrument.**Compare**(2, 1.999999));
+```
+
 
 ## Instrument.Currency
 
@@ -1565,8 +1688,11 @@ Instrument.Currency
 The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.
 
 ### Example
+```cs
 
-**Print**(Instrument.Name + " is traded in " + Instrument.Currency
+**Print**(Instrument.Name + " is traded in " + Instrument.Currency);
+```
+
 
 ## Instrument.Digits
 
@@ -1596,7 +1722,10 @@ More information can be found here: [*Formatting of Numbers*].
 
 ### Example
 
+```cs
 **Print**("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
+```
+
 
 ## Instrument.ETF
 
@@ -1623,6 +1752,7 @@ What is an ETF?
 Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]
 
 ### Example
+```cs
 
 **if** (Instrument.InstrumentType == InstrumentType.Stock)
 
@@ -1633,6 +1763,8 @@ Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]
 **else**
 
 **Print**("The value is a stock.");
+```
+
 
 ## Instrument.Exchange
 
@@ -1656,9 +1788,12 @@ Instrument.Exchange
 
 An overview of various exchange: *https://en.wikipedia.org/wiki/List\_of\_stock\_exchanges*
 
-Example
+### Example
 
+```cs
 **Print**("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
+```
+
 
 ## Instrument.Expiry
 
@@ -1688,7 +1823,10 @@ The expiry date (expiry) can also be seen within the Instrument Escort:
 
 ### Example
 
+```cs
 **Print**("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
+```
+
 
 ## Instrument.InstrumentType
 
@@ -1720,7 +1858,10 @@ The instrument type can also be viewed within the Instrument Escort:
 
 ### Example
 
+```cs
 **Print**("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
+```
+
 
 ## Instrument.Name
 
@@ -1748,7 +1889,10 @@ The instrument name can also be seen within the Instrument Escort:
 
 ### Example
 
+```cs
 **Print**("The currently loaded instrument inside the chart is named " + Instrument.Name);
+```
+
 
 ## Instrument.PointValue
 
@@ -1789,7 +1933,10 @@ The point value can also be viewed within the Instrument Escort:
 
 ### Example
 
+```cs
 **Print**("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
+```
+
 
 ## Instrument.Round2TickSize
 
@@ -1807,7 +1954,10 @@ double
 
 ### Usage
 
+```cs
 Instrument.**Round2TickSize**(**double** MarketPrice)
+```
+
 
 ### More Information
 
@@ -1820,9 +1970,12 @@ Example of professional [*Formatting*][*Formatting of Numbers*].
 
 ### Example
 
+```cs
 **double** Price = 12.3456789;
 
 **Print**(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.**Round2TickSize**(Price));
+```
+
 
 ## Instrument.Symbol
 
@@ -1852,7 +2005,10 @@ The instrument symbol can also be viewed within the Instrument Escort:
 
 ### Example
 
+```cs
 **Print**("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
+```
+
 
 ## Instrument.TickSize
 
@@ -1887,8 +2043,11 @@ See [*Instrument.PointValue*] and [*Instrument.Digits*].
 Examples of professional [*Formatting*][*Formatting of Numbers*].
 
 ### Example
+```cs
 
 **Print**("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");
+```
+
 
 ## Collections
 
@@ -1903,9 +2062,9 @@ The index for DrawObjects is the explicit name for the drawing object (string ta
 
 DrawObjects \[string tag\]
 
-Example
-**
-Note:** To be able to use the interface definitions you must use the using method.
+### Example
+**Note:** To be able to use the interface definitions you must use the using method.
+```cs
 
 **using** AgenaTrader.Plugins;
 
@@ -1944,6 +2103,8 @@ vline.Editable = **false**;
 vline.Pen.Width = 3;
 
 }
+```
+
 
 ## Input
 
@@ -1968,13 +2129,19 @@ Input\[0\] = SMA(20)\[0\].
 
 ### Usage
 
+```cs
 Input
 
 Input\[**int** barsAgo\]
+```
+
 
 ### Example
+```cs
 
 **Print**("The input data for the indicators are " + Input\[0\]);
+```
+
 
 ## Lines
 
@@ -1990,9 +2157,13 @@ See [*Plots*].
 
 ### Usage
 
+```cs
 Lines\[**int** index\]
+```
+
 
 ### Example
+```cs
 
 // Add "using System.Drawing.Drawing2D;" for DashStyle
 
@@ -2016,11 +2187,11 @@ Lines\[**int** index\]
 
 {
 
-> Lines\[0\].Width = 3;
->
-> Lines\[0\].Color = Color.Red;
->
-> Lines\[0\].DashStyle = DashStyle.Dot;
+Lines\[0\].Width = 3;
+
+Lines\[0\].Color = Color.Red;
+
+Lines\[0\].DashStyle = DashStyle.Dot;
 
 }
 
@@ -2028,15 +2199,17 @@ Lines\[**int** index\]
 
 {
 
-> Lines\[0\].Width = 1;
->
-> Lines\[0\].Color = Color.Blue;
->
-> Lines\[0\].DashStyle = DashStyle.Solid;
+Lines\[0\].Width = 1;
+
+Lines\[0\].Color = Color.Blue;
+
+Lines\[0\].DashStyle = DashStyle.Solid;
 
 }
 
 }
+```
+
 
 ## PlotColors
 
@@ -2050,7 +2223,10 @@ The order of the add commands determines how the plot colors are sorted. The fir
 
 ### Usage
 
+```cs
 PlotColors\[**int** PlotIndex\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -2058,6 +2234,7 @@ More information regarding the collection class:
 [*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*]
 
 ### Example
+```cs
 
 **using** System;
 
@@ -2162,6 +2339,8 @@ PlotColors\[2\]\[0\] = Color.DarkGray;
 }
 
 }
+```
+
 
 ## Plots
 
@@ -2177,9 +2356,13 @@ See [*Lines*].
 
 ### Usage
 
+```cs
 Plots\[**int** index\]
+```
+
 
 ### Example
+```cs
 
 **protected** override void **Initialize()**
 
@@ -2206,6 +2389,8 @@ Value.**Set**(**SMA**(20)\[0\]);
 > Plots\[0\].PlotColor = Color.Red;
 
 }
+```
+
 
 ## Values
 
@@ -2221,9 +2406,12 @@ The order of the add commands determines how the values are sorted. The first in
 
 ### Usage
 
+```cs
 Values\[**int** index\]
 
 Values\[**int** index\]\[**int** barsAgo\]
+```
+
 
 ### More Information
 
@@ -2234,6 +2422,7 @@ Information on the class collection:
 
 ### Example
 
+```cs
 // Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
 
 **if** (Values\[1\]\[1\] &lt; High\[0\] - Low\[0\])
@@ -2243,6 +2432,8 @@ Value.**Set**(High\[0\] - Low\[0\]);
 **else**
 
 Value.**Set**(High\[0\] - Close\[0\]);
+```
+
 
 ## Multibars
 
@@ -2253,6 +2444,7 @@ The same method applies for your self-programmed indicators. A 5 minute chart wi
 If you want your self-created indicator to use a different timeframe, this is possible using multibars.
 
 ### Example
+```cs
 
 **using** System;
 
@@ -2325,6 +2517,8 @@ CalculateOnBarClose = **true**;
 }
 
 }
+```
+
 
 ### Additional Notes
 
@@ -2338,6 +2532,7 @@ Closes\[2\]\[0\] equals the current closing price for the weekly data series
 See [*CurrentBars*], [*BarsInProgress*], [*TimeFrames*], [*TimeFrameRequirements*].
 
 Additional syntax methods are available for multibars:
+```cs
 
 // Declare the variable TF\_DAY and define it
 
@@ -2352,6 +2547,8 @@ Additional syntax methods are available for multibars:
 // The following instruction is identical to double w = Closes\[2\]\[0\];
 
 **double** w = MultiBars.**GetBarsItem**(TF\_Week).Close\[0\];
+```
+
 
 ## CurrentBars
 
@@ -2379,15 +2576,21 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 CurrentBars\[**int** barSeriesIndex\]
+```
+
 
 ### Example
+```cs
 
 //Ensure that a minimum of 20 bars is loaded
 
 **for** (**int** i=0; i&lt;CurrentBars.Count; i++)
 
 **if** (CurrentBars\[i\] &lt; 20) return;
+```
+
 
 ## BarsInProgress
 
@@ -2416,6 +2619,7 @@ BarsInProgress
 Within a script that only works with primary timeframes, the value will always equal zero.
 
 ### Example
+```cs
 
 // To demonstrate the methodology
 
@@ -2434,6 +2638,8 @@ Within a script that only works with primary timeframes, the value will always e
 // Logic for the primary data series
 
 }
+```
+
 
 ## TimeFrames
 
@@ -2461,12 +2667,18 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 
+```cs
 TimeFrames \[**int** barSeriesIndex\]
+```
+
 
 ### Example
 
+```cs
 **if** (BarsInProgress == 0 && CurrentBar == 0)
 
 **for** (**int** i = BarsArray.Count-1; i &gt;= 0; i--)
 
-> **Print**("The Indicator " + **this**.Name + " uses Bars of the Timeframe " + TimeFrames\[i\]);
+**Print**("The Indicator " + **this**.Name + " uses Bars of the Timeframe " + TimeFrames\[i\]);
+```
+

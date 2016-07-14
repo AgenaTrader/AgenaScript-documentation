@@ -14,9 +14,12 @@ Information concerning its usage:
 
 ### Usage
 
+```cs
 **DrawAndrewsPitchfork**(string tag, **bool** autoScale, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, **int** anchor3BarsAgo, **double** anchor3Y, Color color, DashStyle dashStyle, **int** width)
 
 **DrawAndrewsPitchfork**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, DateTime anchor3Time, **double** anchor3Y, Color color, DashStyle dashStyle, **int** width)
+
+```
 
 ### Return Value
 
@@ -625,9 +628,12 @@ See [*DrawLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*
 
 ### Usage
 
+```cs
 DrawHorizontalLine(string tag, double y, Color color)
 
 DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
+```
+
 
 ### Return Value
 
@@ -908,8 +914,8 @@ DrawText(string tag, bool autoScale, string text, int barsAgo, double y, int yPi
 DrawText(string tag, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
-**Important note:
-**When using signatures that contain horizontal alignment and vertical alignment, you need to add the following lines:
+**Important note:**
+When using signatures that contain horizontal alignment and vertical alignment, you need to add the following lines:
 ```cs
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;

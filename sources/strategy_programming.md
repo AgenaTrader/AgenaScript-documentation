@@ -1,6 +1,5 @@
 # Strategy Programming
 
-
 ## Account
 
 ### Description
@@ -1426,7 +1425,10 @@ See [*GetAccountValue()*].
 
 ### Usage
 
+```cs
 **GetProfitLoss**(**int** pLType);
+```
+
 
 ### Parameter
 
@@ -1800,13 +1802,9 @@ See [*OnOrderUpdate()*], [*OnExecution()*].
                        OrderAction.BuyToCover                                              
                        Buy order for closing a short position                              |
 | orderType           | Possible values:                                                   
-                                                                                           
                        OrderType.Limit                                                     
-                                                                                           
                        OrderType.Market                                                    
-                                                                                           
                        OrderType.Stop                                                      
-                                                                                           
                        OrderType.StopLimit                                                 |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
@@ -1880,21 +1878,14 @@ Trace orders can be specified with the [*Initialize()*] method.
 
 When TraceOrders is activated, each order will display the following values in the output window:
 
-Instrument
-
-Time frame
-
-Action
-
-Type
-
-Limit price
-
-Stop price
-
-Quantity
-
-Name
+- Instrument
+- Time frame
+- Action
+- Type
+- Limit price
+- Stop price
+- Quantity
+- Name
 
 This information is useful when creating and debugging strategies.
 

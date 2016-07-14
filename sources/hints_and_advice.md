@@ -1,6 +1,4 @@
-
-
-#Hints & Advice
+# Hints & Advice
 
 ## Bar Numbering Within the Chart
 
@@ -484,15 +482,11 @@ return string.**Format**(CultureInfo.CurrentCulture, f, d);
 
 There are two types of indexing in AgenaTrader.
 
-1.
-
-The bars are numbered from youngest to oldest.
+1. The bars are numbered from youngest to oldest.
 This type is used in the OnBarUpdate() method.
 The last bar has an index of 0, while the oldest bar has the index Bars.Count-1.
 
-2.
-
-The bars are numbered from oldest to youngest.
+2. The bars are numbered from oldest to youngest.
 This type is most commonly used in the Plot() method in “for” loops.
 The oldest Bbar receives an index of 0, while the youngest bar has the index Bars.Count-1.
 The following function can be used to recalculate the index types:
@@ -529,6 +523,7 @@ By using the graphics methods, you can create interesting forms and place them o
 One example of this is the RoundedRectangle class, which is a rectangle with rounded corners.
 
 <img src=".//media/image32.png" width="440" height="407" />
+
 ```cs
 
 **Example Code:**

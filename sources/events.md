@@ -166,12 +166,15 @@ none
 [*MarketDepthEventArgs*] e
 
 ### Example
+```cs
 protected override void OnMarketDepth(MarketDepthEventArgs e)
 {
     // Output for the current ask price
     if (e.MarketDataType == MarketDataType.Ask && e.Operation == Operation.Update)
     Print("The current ask is + e.Price + " " + e.Volume);
 }
+```
+
 
 ## OnOrderUpdate()
 
@@ -216,8 +219,8 @@ protected override void OnOrderUpdate(IOrder order)
         Print(order.ToString());
         if (order.OrderState == OrderState.Cancelled)
         {
-        Print("Order was canceled.");
-        entryOrder = null;
+			Print("Order was canceled.");
+			entryOrder = null;
         }
 
     }
@@ -288,7 +291,7 @@ protected override void OnTermination()
 ### More Information
 
 **Caution:**
-**Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.**
+Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.
 
 ### Example
 ```cs
