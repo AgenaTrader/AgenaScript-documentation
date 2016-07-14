@@ -15,10 +15,8 @@ Information concerning its usage:
 ### Usage
 
 ```cs
-**DrawAndrewsPitchfork**(string tag, **bool** autoScale, **int** anchor1BarsAgo, **double** anchor1Y, **int** anchor2BarsAgo, **double** anchor2Y, **int** anchor3BarsAgo, **double** anchor3Y, Color color, DashStyle dashStyle, **int** width)
-
-**DrawAndrewsPitchfork**(string tag, **bool** autoScale, DateTime anchor1Time, **double** anchor1Y, DateTime anchor2Time, **double** anchor2Y, DateTime anchor3Time, **double** anchor3Y, Color color, DashStyle dashStyle, **int** width)
-
+DrawAndrewsPitchfork(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -136,7 +134,6 @@ A drawing object of the type IArrowDown (interface)
 ```cs
 // Draws a red arrow 3 ticks above the high for the current bar
 DrawArrowDown("MyArrow", true, 0, High[0] + 3*TickSize, Color.Red);
-
 // Draws a red arrow on a three-bar reversal pattern
 if(High[2] > High[3] && High[1] > High[2] && Close[0] < Open[0])
 DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
@@ -630,7 +627,6 @@ See [*DrawLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*
 
 ```cs
 DrawHorizontalLine(string tag, double y, Color color)
-
 DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
 ```
 
@@ -713,7 +709,6 @@ A drawing object of the type IRay (interface)
 // --> line is extended to the right
 // from y=3 to y=7
 DrawRay("MyRay", 10, 3, 0, 7, Color.Green);
-
 // Draws a line from the current bar to the bar from 10 periods ago
 // --> line is extended to the left
 // from y=3 to y=7
@@ -961,14 +956,11 @@ A drawing object of the type IText (interface)
 
 ### Example
 ```cs
-
 // writes text at y=3.0
 DrawText("MyText", "This is sample text.", 10, 3, Color.Black);
-
 // writes red text in the font Arial 7
 DrawText("MyText", false, "This is sample text.", Time[0], Close[0]+50*TickSize, 0,
-
-Color.Red, **new Font**("Arial",7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
+Color.Red, new Font("Arial",7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
 ```
 
 This leads to the following result:
@@ -978,25 +970,15 @@ This leads to the following result:
 ```cs
 DrawText("MyTag",true,"Text",1, 
 // barsAgo
-
-High\[1\], // y
-
+High[1], // y
 10, // yPixelOffset
-
 Color.Blue, // Text color
-
 new Font("Arial", 10, FontStyle.Bold),
-
 StringAlignment.Center,
-
 HorizontalAlignment.Center,
-
 VerticalAlignment.Bottom,
-
 Color.Red, // Outline color
-
 Color.Yellow, // Fill color
-
 100); // Opacity
 ```
 
@@ -1043,7 +1025,6 @@ A drawing object of the type ITextFixed (interface)
 ```cs
 // Writes text into the middle of the chart
 DrawTextFixed("MyText", "This is sample text.", TextPosition.Center);
-
 // Writes red text with a blue border into the middle of the chart
 DrawTextFixed("MyText", "This is sample text.", TextPosition.Center,
 Color.Red, new Font("Arial",35), Color.Blue, Color.Empty, 10);
@@ -1253,3 +1234,4 @@ A drawing object of the type IVerticalLine (interface)
 // Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine("MyVerticalLine", 10, Color.Black);
 ```
+
