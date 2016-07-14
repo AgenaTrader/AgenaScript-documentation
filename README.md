@@ -39,7 +39,16 @@ mkdocs build --clean
 ```
 
 ###Bugfixing links for images
-mkdocs is creating wrong links for images, so we need to change this manually by **replacing ./media/ to ../media/**.
+mkdocs is creating wrong links for images, so we need to change this by **replacing ./media/ to ../media/** manually.
+Another option is to to this automatic by using **sed** on linux or macintosh:
+```bash
+sed -i .bak -e 's%./media/%../media/%g' site/drawing_objects/index.html  && rm site/drawing_objects/index.html.bak
+sed -i .bak -e 's%./media/%../media/%g' site/events/index.html  && rm site/events/index.html.bak
+sed -i .bak -e 's%./media/%../media/%g' site/handling_bars_and_instruments/index.html  && rm site/handling_bars_and_instruments/index.html.bak
+sed -i .bak -e 's%./media/%../media/%g' site/hints_and_advice/index.html  && rm site/hints_and_advice/index.html.bak
+sed -i .bak -e 's%./media/%../media/%g' site/keywords/index.html  && rm site/keywords/index.html.bak
+sed -i .bak -e 's%./media/%../media/%g' site/strategy_programming/index.html  && rm site/strategy_programming/index.html.bak
+```
 
 ###Deploy
 We have created a branch called *gh-pages* and all data from this branch will be displayed on GitHub Pages.

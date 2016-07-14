@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
+  
+  
+  
   <title>Drawing objects - AgenaScript Documentation</title>
-
+  
 
   <link rel="shortcut icon" href="../favicon.ico">
+  
 
-
-
+  
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -22,27 +22,27 @@
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
 
-
+  
   <script>
     // Current page data
     var mkdocs_page_name = "Drawing objects";
     var mkdocs_page_input_path = "drawing_objects.md";
     var mkdocs_page_url = "/drawing_objects/";
   </script>
-
+  
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script>
+  <script src="../js/theme.js"></script> 
 
-
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
-
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
@@ -55,119 +55,119 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         <ul class="current">
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="..">Lets start</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../handling_bars_and_instruments/">Handling bars and instruments</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../events/">Events</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../strategy_programming/">Strategy programming</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../keywords/">Keywords</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Drawing objects</a>
-
+        
             <ul>
-
+            
                 <li class="toctree-l3"><a href="#drawingobjects">DrawingObjects</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawandrewspitchfork">DrawAndrewsPitchfork()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawarc">DrawArc()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawarrowdown">DrawArrowDown()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawarrowline">DrawArrowLine()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawarrowup">DrawArrowUp()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawdiamond">DrawDiamond()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawdot">DrawDot()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawellipse">DrawEllipse()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawextendedline">DrawExtendedLine()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawfibonaccicircle">DrawFibonacciCircle()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawfibonacciextensions">DrawFibonacciExtensions()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawfibonacciretracements">DrawFibonacciRetracements()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawfibonaccitimeextensions">DrawFibonacciTimeExtensions()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawgannfan">DrawGannFan()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawline">DrawLine()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawhorizontalline">DrawHorizontalLine()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawray">DrawRay()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawrectangle">DrawRectangle()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawregion">DrawRegion()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawregressionchannel">DrawRegressionChannel()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawsquare">DrawSquare()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawtext">DrawText()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawtextfixed">DrawTextFixed()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawtrendchannel">DrawTrendChannel()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawtriangle">DrawTriangle()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawtriangleup">DrawTriangleUp()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawtriangledown">DrawTriangleDown()</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawverticalline">DrawVerticalLine()</a></li>
-
-
+                
+            
             </ul>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../hints_and_advice/">Hints and advice</a>
-
+        
     </li>
 <li>
-
+          
         </ul>
       </div>
       &nbsp;
@@ -175,31 +175,31 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-
+      
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
         <a href="..">AgenaScript Documentation</a>
       </nav>
 
-
+      
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-
-
-
+    
+      
+    
     <li>Drawing objects</li>
     <li class="wy-breadcrumbs-aside">
-
+      
     </li>
   </ul>
   <hr/>
 </div>
           <div role="main">
             <div class="section">
-
+              
                 <h1 id="drawingobjects">DrawingObjects</h1>
 <h2 id="drawandrewspitchfork">DrawAndrewsPitchfork()</h2>
 <h3 id="description">Description</h3>
@@ -2384,13 +2384,13 @@ DrawVerticalLine(string tag, DateTime time, Color color, DashStyle dashStyle, in
 </tr>
 </tbody>
 </table>
-<pre><code>         DashStyle.Dash
-         DashStyle.DashDot
-         DashStyle.DashDotDot
-         DashStyle.Dot
+<pre><code>         DashStyle.Dash                                                              
+         DashStyle.DashDot                                                           
+         DashStyle.DashDotDot                                                        
+         DashStyle.Dot                                                               
          DashStyle.Solid
 
-         You may have to integrate:
+         You may have to integrate:                                                  
          using System.Drawing.Drawing2D;                                             |
 </code></pre>
 <p>| width     | Line strength                                                              |</p>
@@ -2398,31 +2398,31 @@ DrawVerticalLine(string tag, DateTime time, Color color, DashStyle dashStyle, in
 <pre><code class="cs">// Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine(&quot;MyVerticalLine&quot;, 10, Color.Black);
 </code></pre>
-
+              
             </div>
           </div>
           <footer>
-
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-
+      
         <a href="../hints_and_advice/" class="btn btn-neutral float-right" title="Hints and advice">Next <span class="icon icon-circle-arrow-right"></span></a>
-
-
+      
+      
         <a href="../keywords/" class="btn btn-neutral" title="Keywords"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-
+      
     </div>
-
+  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-
+    
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-
+	  
         </div>
       </div>
 
@@ -2432,13 +2432,13 @@ DrawVerticalLine(&quot;MyVerticalLine&quot;, 10, Color.Black);
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-
-
+      
+      
         <span><a href="../keywords/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-
-
+      
+      
         <span style="margin-left: 15px"><a href="../hints_and_advice/" style="color: #fcfcfc">Next &raquo;</a></span>
-
+      
     </span>
 </div>
 
