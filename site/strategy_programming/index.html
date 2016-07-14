@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Strategy programming - AgenaScript Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../favicon.ico">
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../custom.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Strategy programming";
+    var mkdocs_page_input_path = "strategy_programming.md";
+    var mkdocs_page_url = "/strategy_programming/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Lets start</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../handling_bars_and_instruments/handling_bars_and_instruments/">Handling bars and instruments</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../events/">Events</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Strategy programming</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#strategy-programming">Strategy Programming</a></li>
+                
+                    <li><a class="toctree-l4" href="#account">Account</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssinceentry">BarsSinceEntry()</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssinceexit">BarsSinceExit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#cancelorder">CancelOrder()</a></li>
+                
+                    <li><a class="toctree-l4" href="#changeorder">ChangeOrder()</a></li>
+                
+                    <li><a class="toctree-l4" href="#dataseriesconfigurable">DataSeriesConfigurable</a></li>
+                
+                    <li><a class="toctree-l4" href="#defaultquantity">DefaultQuantity</a></li>
+                
+                    <li><a class="toctree-l4" href="#enterlong">EnterLong()</a></li>
+                
+                    <li><a class="toctree-l4" href="#enterlonglimit">EnterLongLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#enterlongstop">EnterLongStop()</a></li>
+                
+                    <li><a class="toctree-l4" href="#enterlongstoplimit">EnterLongStopLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#entershort">EnterShort()</a></li>
+                
+                    <li><a class="toctree-l4" href="#entershortlimit">EnterShortLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#entershortstop">EnterShortStop()</a></li>
+                
+                    <li><a class="toctree-l4" href="#entershortstoplimit">EnterShortStopLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#entriesperdirection">EntriesPerDirection</a></li>
+                
+                    <li><a class="toctree-l4" href="#entryhandling">EntryHandling</a></li>
+                
+                    <li><a class="toctree-l4" href="#excludetradehistoryinbacktest">ExcludeTradeHistoryInBacktest</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitlong">ExitLong()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitlonglimit">ExitLongLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitlongstop">ExitLongStop()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitlongstoplimit">ExitLongStopLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitonclose">ExitOnClose</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitoncloseseconds">ExitOnCloseSeconds</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitshort">ExitShort()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitshortlimit">ExitShortLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitshortstop">ExitShortStop()</a></li>
+                
+                    <li><a class="toctree-l4" href="#exitshortstoplimit">ExitShortStopLimit()</a></li>
+                
+                    <li><a class="toctree-l4" href="#getaccountvalue">GetAccountValue()</a></li>
+                
+                    <li><a class="toctree-l4" href="#getprofitloss">GetProfitLoss()</a></li>
+                
+                    <li><a class="toctree-l4" href="#marketposition">MarketPosition</a></li>
+                
+                    <li><a class="toctree-l4" href="#performance">Performance</a></li>
+                
+                    <li><a class="toctree-l4" href="#position">Position</a></li>
+                
+                    <li><a class="toctree-l4" href="#quantity">Quantity</a></li>
+                
+                    <li><a class="toctree-l4" href="#setprofittarget">SetProfitTarget()</a></li>
+                
+                    <li><a class="toctree-l4" href="#setstoploss">SetStopLoss()</a></li>
+                
+                    <li><a class="toctree-l4" href="#settrailstop">SetTrailStop()</a></li>
+                
+                    <li><a class="toctree-l4" href="#submitorder">SubmitOrder()</a></li>
+                
+                    <li><a class="toctree-l4" href="#timeinforce">TimeInForce</a></li>
+                
+                    <li><a class="toctree-l4" href="#traceorders">TraceOrders</a></li>
+                
+                    <li><a class="toctree-l4" href="#trade">Trade</a></li>
+                
+                    <li><a class="toctree-l4" href="#unmanaged">Unmanaged</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#backtesting-and-optimization">Backtesting and Optimization</a></li>
+                
+                    <li><a class="toctree-l4" href="#performance-characteristics">Performance Characteristics</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../keywords/">Keywords</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../drawing_objects/">Drawing objects</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../hints_and_advice/">Hints and advice</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">AgenaScript Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Strategy programming</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="strategy-programming">Strategy Programming</h1>
+<h2 id="account">Account</h2>
+<h3 id="description">Description</h3>
+<p>Account is an object containing information about the account with which the current strategy is working.</p>
+<p>The individual properties are:</p>
+<ul>
+<li>
+<p><strong>Account.AccountConnection
+    </strong>Name for the broker connection used (the name assigned under the account connection submenu)</p>
+</li>
+<li>
+<p><strong>Account.AccountType
+    </strong>Type of account (live account, simulated account etc.)</p>
+</li>
+<li>
+<p><strong>Account.Broker
+    </strong>Name/definition for the broker</p>
+</li>
+<li>
+<p><strong>Account.BuyingPower
+    </strong>The current account equity in consideration of the leverage provided by the broker (IB leverages your account equity by a factor of 4, meaning that with 10000€ your buying power is equal to 40000€)</p>
+</li>
+<li>
+<p><strong>Account.CashValue
+    </strong>Amount (double)</p>
+</li>
+<li>
+<p><strong>Account.Currency
+    </strong>Currency in which the account is held</p>
+</li>
+<li>
+<p><strong>Account.ExcessEquity
+    </strong>Excess</p>
+</li>
+<li>
+<p><strong>Account.InitialMargin
+    </strong>Initial margin (depends on the broker, double)</p>
+</li>
+<li>
+<p><strong>Account.InstrumentType
+    </strong>Type of trading instrument (type AgenaTrader.Plugins.InstrumentTypes)</p>
+</li>
+<li>
+<p><strong>Account.IsDemo
+    </strong>True, if the account is a demo account</p>
+</li>
+<li>
+<p><strong>Account.Name
+    </strong>Name of the account (should be identical to Account.AccountConnection)</p>
+</li>
+<li>
+<p><strong>Account.OverNightMargin
+    </strong>Overnight margin (depends on the broker, double)</p>
+</li>
+<li>
+<p><strong>Account.RealizedProfitLoss
+    </strong>Realized profits and losses (double)</p>
+</li>
+</ul>
+<h3 id="example">Example</h3>
+<p><strong>Print</strong>("AccountConnection " + Account.AccountConnection);</p>
+<p><strong>Print</strong>("AccountType " + Account.AccountType);</p>
+<p><strong>Print</strong>("Broker " + Account.Broker);</p>
+<p><strong>Print</strong>("BuyingPower " + Account.BuyingPower);</p>
+<p><strong>Print</strong>("CashValue " + Account.CashValue);</p>
+<p><strong>Print</strong>("Currency " + Account.Currency);</p>
+<p><strong>Print</strong>("ExcessEquity " + Account.ExcessEquity);</p>
+<p><strong>Print</strong>("InitialMargin " + Account.InitialMargin);</p>
+<p><strong>Print</strong>("InstrumentTypes " + Account.InstrumentTypes);</p>
+<p><strong>Print</strong>("IsDemo " + Account.IsDemo);</p>
+<p><strong>Print</strong>("Name " + Account.Name);</p>
+<p><strong>Print</strong>("OverNightMargin " + Account.OverNightMargin);</p>
+<p><strong>Print</strong>("RealizedProfitLoss " + Account.RealizedProfitLoss);</p>
+<h2 id="barssinceentry">BarsSinceEntry()</h2>
+<h3 id="description_1">Description</h3>
+<p>The property “BarsSinceEntry” returns the number of bars that have occurred since the last entry into the market.</p>
+<h3 id="usage">Usage</h3>
+<p><strong>BarsSinceEntry</strong>()</p>
+<p><strong>BarsSinceEntry</strong>(string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>BarsSinceEntry</strong>(<strong>int</strong> barsInProgressIndex, string signalName, <strong>int</strong> entriesAgo)</p>
+<h3 id="parameter">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>The signal name (string) that has been used to clearly label the entry within an entry method.</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                   Index for the data series for which the entry order was executed.                                          
+                   See *[BarsInProgress][*BarsInProgress*].*                                                                  |
+</code></pre>
+<p>| entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |</p>
+<h3 id="example_1">Example</h3>
+<p><strong>Print</strong>("The last entry was " + <strong>BarsSinceEntry</strong>() + " bars ago.");</p>
+<h2 id="barssinceexit">BarsSinceExit()</h2>
+<h3 id="description_2">Description</h3>
+<p>The property “BarsSinceExit” outputs the number of bars that have occurred since the last exit from the market.</p>
+<h3 id="usage_1">Usage</h3>
+<p><strong>BarsSinceExit</strong>()</p>
+<p><strong>BarsSinceExit</strong>(string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>BarsSinceExit</strong>(<strong>int</strong> barsInProgressIndex, string signalName, <strong>int</strong> exitsAgo)</p>
+<h3 id="parameter_1">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>The signal name (string) that has been used to clearly label the exit within the exit method.</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                   Index of the data series for which the exit order has been executed.                                                       
+                   See [*BarsInProgress*].                                                                                                    |
+</code></pre>
+<p>| exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |</p>
+<h3 id="example_2">Example</h3>
+<p><strong>Print</strong>("The last exit was " + <strong>BarsSinceExit</strong>() + " bars ago.");</p>
+<h2 id="cancelorder">CancelOrder()</h2>
+<h3 id="description_3">Description</h3>
+<p>Cancel order deletes an order.</p>
+<p>A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [<em>OnOrderUpdate()</em>].</p>
+<h3 id="usage_2">Usage</h3>
+<p><strong>CancelOrder</strong>(IOrder order)</p>
+<h3 id="parameter_2">Parameter</h3>
+<p>An order object of the type “IOrder”</p>
+<h3 id="example_3">Example</h3>
+<p><strong>private</strong> IOrder myEntryOrder = <strong>null</strong>;</p>
+<p><strong>private int</strong> barNumberOfOrder = 0;</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate</strong>()</p>
+<p>{</p>
+<p>// Place an entry stop at the high of the current bar</p>
+<p><strong>if</strong> (myEntryOrder == <strong>null</strong>)</p>
+<p>{</p>
+<p>myEntryOrder = <strong>EnterLongStop</strong>(High[0], "stop long");</p>
+<p>barNumberOfOrder = CurrentBar;</p>
+<p>}</p>
+<p>// Delete the order after 3 bars</p>
+<p><strong>if</strong> (Position.MarketPosition == PositionType.Flat &amp;&amp;</p>
+<p>CurrentBar &gt; barNumberOfOrder + 3)</p>
+<p><strong>CancelOrder</strong>(myEntryOrder);</p>
+<p>}</p>
+<h2 id="changeorder">ChangeOrder()</h2>
+<h3 id="description_4">Description</h3>
+<p>Change order, as the name suggests, changes an order.</p>
+<h3 id="usage_3">Usage</h3>
+<p><strong>ChangeOrder</strong>(IOrder iOrder, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<h3 id="parameter_3">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iOrder</td>
+<td>An order object of the type “IOrder”</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Number of units to be ordered</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>Limit price. Set this to 0 if not needed</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>Stop price. Set this to 0 if not needed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example_4">Example</h3>
+<p><strong>private</strong> IOrder stopOrder = <strong>null</strong>;</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate</strong>()</p>
+<p>{</p>
+<p>// If the position is profiting by 4 ticks then set the stop to break-even</p>
+<p><strong>if</strong> (stopOrder != <strong>null</strong> &amp;&amp; stopOrder.StopPrice &lt; Position.AvgPrice &amp;&amp; Close[0] &gt;= Position.AvgPrice + 4 * TickSize)</p>
+<p><strong>ChangeOrder</strong>(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);</p>
+<p>}</p>
+<h2 id="dataseriesconfigurable">DataSeriesConfigurable</h2>
+<h2 id="defaultquantity">DefaultQuantity</h2>
+<h3 id="description_5">Description</h3>
+<p>Change order changes an order.</p>
+<p>Default quantity defines the amount to be used in a strategy. Default quantity is set within the [<em>Initialize()</em>] method.</p>
+<h3 id="usage_4">Usage</h3>
+<p><strong>ChangeOrder</strong>(IOrder iOrder, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<h3 id="parameter_4">Parameter</h3>
+<p>an int value containing the amount (stocks, contracts etc.)</p>
+<h3 id="example_5">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>DefaultQuantity = 100;</p>
+<p>}</p>
+<h2 id="enterlong">EnterLong()</h2>
+<h3 id="description_6">Description</h3>
+<p>Enter long creates a long position (buy).</p>
+<p>If a signature not containing an amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterLongLimit()</em>], [<em>EnterLongStop()</em>], [<em>EnterLongStopLimit()</em>].</p>
+<h3 id="usage_5">Usage</h3>
+<p><strong>EnterLong</strong>()</p>
+<p><strong>EnterLong</strong>(string signalName)</p>
+<p><strong>EnterLong</strong>(<strong>int</strong> quantity)</p>
+<p><strong>EnterLong</strong>(<strong>int</strong> quantity, string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>EnterLong</strong>(<strong>int</strong> barsInProgressIndex, <strong>int</strong> quantity, string signalName)</p>
+<h3 id="parameter_5">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>The amount of stocks/contracts</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the entry order is to be executed. See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_6">Example</h3>
+<p>// Enter a long position if the last entry is 10 bars in the past</p>
+<p>// and if two SMAs have crossed</p>
+<p><strong>if</strong> (<strong>BarsSinceEntry</strong>() &gt; 10 &amp;&amp; <strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterLong</strong>("SMA cross entry");</p>
+<h2 id="enterlonglimit">EnterLongLimit()</h2>
+<h3 id="description_7">Description</h3>
+<p>Enter long limit creates a limit order for entering a long position (buy).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterLong()</em>], [<em>EnterLongStop()</em>], [<em>EnterLongStopLimit()</em>].</p>
+<h3 id="usage_6">Usage</h3>
+<p><strong>EnterLongLimit</strong>(<strong>double</strong> limitPrice)</p>
+<p><strong>EnterLongLimit</strong>(<strong>double</strong> limitPrice, string signalName)</p>
+<p><strong>EnterLongLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice)</p>
+<p><strong>EnterLongLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName)</p>
+<p>For Multibar-Strategies</p>
+<p><strong>EnterLongLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName)</p>
+<h3 id="parameter_6">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount of stocks/contracts/etc.</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the entry order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until removed with [<em>CancelOrder</em>] or until it reaches its expiry (see [<em>TimeInForce</em>]).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_1">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_7">Example</h3>
+<p>// A long position is placed if the last entry was 10 bars ago and the two SMAs have crossed each other</p>
+<p><strong>if</strong> (<strong>BarsSinceEntry</strong>() &gt; 10 &amp;&amp; <strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterLongLimit</strong>("SMA cross entry");</p>
+<h2 id="enterlongstop">EnterLongStop()</h2>
+<h3 id="description_8">Description</h3>
+<p>Enter long stop creates a limit order for entering a long position (buy).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterLong()</em>], [<em>EnterLongLimit()</em>], [<em>EnterLongStopLimit()</em>].</p>
+<h3 id="usage_7">Usage</h3>
+<p><strong>EnterLongStop</strong>(<strong>double</strong> stopPrice)</p>
+<p><strong>EnterLongStop</strong>(<strong>double</strong> stopPrice, string signalName)</p>
+<p><strong>EnterLongStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice)</p>
+<p><strong>EnterLongStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>EnterLongStop</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName)</p>
+<h3 id="parameter_7">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount of stocks or contracts etc.</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies</td>
+</tr>
+<tr>
+<td>Index of the data series for which an entry order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted with the [<em>CancelOrder</em>] command or until it reaches its expiry time (see [<em>TimeInForce</em>]).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_2">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_8">Example</h3>
+<p><strong>private</strong> IOrder myEntryOrder = <strong>null</strong>;</p>
+<p>// Place an entry order at the high of the current bar</p>
+<p><strong>if</strong> (myEntryOrder == <strong>null</strong>)</p>
+<p>myEntryOrder = <strong>EnterLongStop</strong>(High[0], "Stop Long");</p>
+<h2 id="enterlongstoplimit">EnterLongStopLimit()</h2>
+<h3 id="description_9">Description</h3>
+<p>Enter long stop limit creates a buy stop limit order for entering a long position.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterLong()</em>], [<em>EnterLongLimit()</em>], [<em>EnterLongStop()</em>].</p>
+<h3 id="usage_8">Usage</h3>
+<p><strong>EnterLongStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>EnterLongStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName)</p>
+<p><strong>EnterLongStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>EnterLongStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>EnterLongStopLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName)</p>
+<h3 id="_1"></h3>
+<h3 id="parameter_8">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount of stocks or contracts to be ordered</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the entry order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [<em>TimeInForce</em>]).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_3">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_9">Example</h3>
+<p><strong>private</strong> IOrder myEntryOrder = <strong>null</strong>;</p>
+<p>// Place an entry stop at the high of the current bar
+// if the high is reached, a limit order will be placed 2 ticks above the high</p>
+<p><strong>if</strong> (myEntryOrder == <strong>null</strong>)</p>
+<p>myEntryOrder = <strong>EnterLongStopLimit</strong>(High[0]+2*TickSize, High[0], "Stop Long");</p>
+<h2 id="entershort">EnterShort()</h2>
+<h3 id="description_10">Description</h3>
+<p>Enter short creates a market order for entering a short position (naked sell).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterShortLimit()</em>], [<em>EnterShortStop()</em>], [<em>EnterShortStopLimit()</em>].</p>
+<h3 id="usage_9">Usage</h3>
+<p><strong>EnterShort</strong>()</p>
+<p><strong>EnterShort</strong>(string signalName)</p>
+<p><strong>EnterShort</strong>(<strong>int</strong> quantity)</p>
+<p><strong>EnterShort</strong>(<strong>int</strong> quantity, string signalName)</p>
+<p><strong>For multi-bar strategies</strong></p>
+<p><strong>EnterShort</strong>(<strong>int</strong> barsInProgressIndex, <strong>int</strong> quantity, string signalName)</p>
+<h3 id="parameter_9">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount of stocks/contracts etc.</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies</td>
+</tr>
+<tr>
+<td>Index of the data series for which the entry order is to be executed</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_4">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_10">Example</h3>
+<p>// A short position will be placed if the last entry is 10 bars in the past and two SMAs have crossed each other</p>
+<p><strong>if</strong> (<strong>BarsSinceEntry</strong>() &gt; 10 &amp;&amp; <strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterShort</strong>("SMA cross entry");</p>
+<h2 id="entershortlimit">EnterShortLimit()</h2>
+<h3 id="description_11">Description</h3>
+<p>Enter short limit creates a limit order for entering a short position (naked short).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterShort()</em>], [<em>EnterShortStop()</em>], [<em>EnterShortStopLimit()</em>].</p>
+<h3 id="usage_10">Usage</h3>
+<p><strong>EnterShortLimit</strong>(<strong>double</strong> limitPrice)</p>
+<p><strong>EnterShortLimit</strong>(<strong>double</strong> limitPrice, string signalName)</p>
+<p><strong>EnterShortLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice)</p>
+<p><strong>EnterShortLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName)</p>
+<p>For Multibar-Strategies</p>
+<p><strong>EnterShortLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName)</p>
+<h3 id="parameter_10">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount to be ordered</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the entry order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [<em>TimeInForce</em>]).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_5">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_11">Example</h3>
+<p>// Enter a short position if the last entry is 10 bars in the past and two SMAs have crossed each other</p>
+<p><strong>if</strong> (<strong>BarsSinceEntry</strong>() &gt; 10 &amp;&amp; <strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterShortLimit</strong>("SMA cross entry");</p>
+<h2 id="entershortstop">EnterShortStop()</h2>
+<h3 id="description_12">Description</h3>
+<p>Enter short stop creates a limit order for entering a short position.
+If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.
+See [<em>EnterShort()</em>], [<em>EnterShortLimit()</em>], [<em>EnterShortStopLimit()</em>].</p>
+<h3 id="usage_11">Usage</h3>
+<p><strong>EnterShortStop</strong>(<strong>double</strong> stopPrice)</p>
+<p><strong>EnterShortStop</strong>(<strong>double</strong> stopPrice, string signalName)</p>
+<p><strong>EnterShortStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice)</p>
+<p><strong>EnterShortStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>EnterShortStop</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName)</p>
+<h3 id="parameter_11">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount to be ordered</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the entry order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_6">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_12">Example</h3>
+<p><strong>private</strong> IOrder myEntryOrder = <strong>null</strong>;</p>
+<p>// Place an entry stop at the low of the current bar</p>
+<p><strong>if</strong> (myEntryOrder == <strong>null</strong>)</p>
+<p>myEntryOrder = <strong>EnterShortStop</strong>(Low[0], "stop short");</p>
+<h2 id="entershortstoplimit">EnterShortStopLimit()</h2>
+<h3 id="description_13">Description</h3>
+<p>Enter short stop limit creates a sell stop limit order for entering a short position.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>EnterShort()</em>], [<em>EnterShortLimit()</em>], [<em>EnterShortStop()</em>].</p>
+<h3 id="usage_12">Usage</h3>
+<p><strong>EnterShortStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>EnterShortStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName)</p>
+<p><strong>EnterShortStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>EnterShortStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName)</p>
+<p>For multi-bar strategies</p>
+<p><strong>EnterShortStopLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName)</p>
+<h3 id="_2"></h3>
+<h3 id="parameter_12">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Amount to be ordered</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which an entry order is to be placed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_7">Return Value</h3>
+<p>An order object of the type “IOrder”</p>
+<h3 id="example_13">Example</h3>
+<p><strong>private</strong> IOrder myEntryOrder = <strong>null</strong>;</p>
+<p>// Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low</p>
+<p><strong>if</strong> (myEntryOrder == <strong>null</strong>)</p>
+<p>myEntryOrder = <strong>EnterShortStopLimit</strong>(Low[0]-2*TickSize, Low[0], "stop short");</p>
+<h2 id="entriesperdirection">EntriesPerDirection</h2>
+<h3 id="description_14">Description</h3>
+<p>Entries per direction defines the maximum number of entries permitted in one direction (long or short).</p>
+<p>Whether the name of the entry signal is taken into consideration or not is defined within [<em>EntryHandling</em>].</p>
+<p>Entries per direction is defined with the [<em>Initialize()</em>] method.</p>
+<h3 id="usage_13">Usage</h3>
+<p><strong>EntriesPerDirection</strong></p>
+<h3 id="parameter_13">Parameter</h3>
+<p>An int value for the maximum entries permitted in one direction.</p>
+<h3 id="example_14">Example</h3>
+<p>// Example 1</p>
+<p>// If one of the two entry conditions is true and a long position is opened, then the other entry signal will be ignored</p>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>EntriesPerDirection = 1;</p>
+<p>EntryHandling = EntryHandling.AllEntries;</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate</strong>()</p>
+<p>{</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1)</p>
+<p><strong>EnterLong</strong>("SMA Cross Entry");</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>RSI</strong>(14, 3), 30, 1)</p>
+<p><strong>EnterLong</strong>("RSI Cross Entry);</p>
+<p>}</p>
+<p>// Example 2</p>
+<p>// For each differently named entry signal, a long position will be opened</p>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>EntriesPerDirection = 1;</p>
+<p>EntryHandling = EntryHandling.UniqueEntries;</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate</strong>()</p>
+<p>{</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1)</p>
+<p><strong>EnterLong</strong>("SMA Cross Entry");</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>RSI</strong>(14, 3), 30, 1)</p>
+<p><strong>EnterLong</strong>("RSI Cross Entry);</p>
+<p>}</p>
+<h2 id="entryhandling">EntryHandling</h2>
+<h3 id="description_15">Description</h3>
+<p>Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([<em>EntriesPerDirection</em>]).</p>
+<p>Entry handling is defined with the [<em>Initialize()</em>] method.</p>
+<p><strong>EntryHandling.AllEntries</strong></p>
+<p>AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in [<em>EntriesPerDirection</em>]) per direction (long or short) is reached, regardless of how the entry signals are named.</p>
+<p>If entries per direction = 2, then enter long ("SMA crossover") and enter long ("range breakout") combined will reach the maximum number of long entries permitted.</p>
+<p><strong>EntryHandling.UniqueEntries</strong></p>
+<p>AgenaTrader continues to generate entry orders until the maximum number of entries (defined in entries per direction) in one direction (long or short) for the differently named entry signals has been reached.
+If entries per direction = 2, then it is possible for two signals for enter long ("SMA crossover") <em>and</em> 2 signals for enter long ("range breakout") to be traded.</p>
+<h3 id="usage_14">Usage</h3>
+<p><strong>EntryHandling</strong></p>
+<h3 id="example_15">Example</h3>
+<p>See [<em>EntriesPerDirection</em>].</p>
+<h2 id="excludetradehistoryinbacktest">ExcludeTradeHistoryInBacktest</h2>
+<h2 id="exitlong">ExitLong()</h2>
+<h3 id="description_16">Description</h3>
+<p>Exit long creates a sell market order for closing a long position (sell).</p>
+<p>If a signature not containing a set amount is used, the amount is set by [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<h3 id="usage_15">Usage</h3>
+<p><strong>ExitLong</strong>()</p>
+<p><strong>ExitLong</strong>(<strong>int</strong> quantity)</p>
+<p><strong>ExitLong</strong>(string fromEntry signal)</p>
+<p><strong>ExitLong</strong>(string signalName, string fromEntry signal)</p>
+<p><strong>ExitLong</strong>(<strong>int</strong> quantity, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitLong</strong>(<strong>int</strong> barsInProgressIndex, <strong>int</strong> quantity, string signalName, string fromEntry signal)</p>
+<h3 id="parameter_14">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>The quantity to be sold</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the attached entry signal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_8">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_16">Example</h3>
+<p>// Enter if two SMAs cross each other</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterLong</strong>("SMA Cross Entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitLong</strong>();</p>
+<h2 id="exitlonglimit">ExitLongLimit()</h2>
+<h3 id="description_17">Description</h3>
+<p>Exit long limit creates a sell limit order for closing a long position (i.e. for selling).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.
+See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<h3 id="usage_16">Usage</h3>
+<p><strong>ExitLongLimit</strong>(<strong>double</strong> limitPrice)</p>
+<p><strong>ExitLongLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice)</p>
+<p><strong>ExitLongLimit</strong>(<strong>double</strong> limitPrice, string fromEntry signal)</p>
+<p><strong>ExitLongLimit</strong>(<strong>double</strong> limitPrice, string signalName, string fromEntry signal)</p>
+<p><strong>ExitLongLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitLongLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName, string fromEntry signal)</p>
+<h3 id="parameter_15">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the attached entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Order quantity to be sold</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_9">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_17">Example</h3>
+<p>// Enter if two SMAs cross each other</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterLong</strong>("SMA Cross Entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitLongLimit</strong>(<strong>GetCurrentBid</strong>());</p>
+<h2 id="exitlongstop">ExitLongStop()</h2>
+<h3 id="description_18">Description</h3>
+<p>Exit long stop creates a sell stop order for closing a long position (short).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.
+See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<h3 id="usage_17">Usage</h3>
+<p><strong>ExitLongStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice)</p>
+<p><strong>ExitLongStop</strong>(<strong>double</strong> stopPrice, string fromEntry signal)</p>
+<p><strong>ExitLongStop</strong>(<strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p><strong>ExitLongStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitLongStop</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)ExitLongStop</p>
+<h3 id="parameter_16">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>The quantity to be sold</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_10">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_18">Example</h3>
+<p>// Enter if two SMAs cross each other</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterLong</strong>("SMA Cross Entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitLongStop</strong>(Low[0]);</p>
+<h2 id="exitlongstoplimit">ExitLongStopLimit()</h2>
+<h3 id="description_19">Description</h3>
+<p>Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<h3 id="usage_18">Usage</h3>
+<p><strong>ExitLongStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>ExitLongStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>ExitLongStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string fromEntry signal)</p>
+<p><strong>ExitLongStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p><strong>ExitLongStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p>For Multibar-Strategies</p>
+<p><strong>ExitLongStopLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<h3 id="parameter_17">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>The quantity to be sold</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_11">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_19">Example</h3>
+<p>// Enter if two SMAs cross each other</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterLong</strong>("SMA Cross Entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitLongStopLimit</strong>(Low[0]-10*TickSize, Low[0]);</p>
+<h2 id="exitonclose">ExitOnClose</h2>
+<h2 id="exitoncloseseconds">ExitOnCloseSeconds</h2>
+<h2 id="exitshort">ExitShort()</h2>
+<h3 id="description_20">Description</h3>
+<p>Exit short creates a buy-to-cover market order for closing a short position (buy).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.
+See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</em>], [<em>ExitShortStopLimit()</em>].</p>
+<h3 id="usage_19">Usage</h3>
+<p><strong>ExitShort</strong>()</p>
+<p><strong>ExitShort</strong>(<strong>int</strong> quantity)</p>
+<p><strong>ExitShort</strong>(string fromEntry signal)</p>
+<p><strong>ExitShort</strong>(string signalName, string fromEntry signal)</p>
+<p><strong>ExitShort</strong>(<strong>int</strong> quantity, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitShort</strong>(<strong>int</strong> barsInProgressIndex, <strong>int</strong> quantity, string signalName, string fromEntry signal)</p>
+<h3 id="parameter_18">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>Quantity</td>
+<td>Order quantity to be bought</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_12">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_20">Example</h3>
+<p>// Enter if two SMAs cross each other</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterShort</strong>("SMA cross entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitShort</strong>();</p>
+<h2 id="exitshortlimit">ExitShortLimit()</h2>
+<h3 id="description_21">Description</h3>
+<p>Exit short limit creates a buy-to-cover limit order for closing a short position (buy).</p>
+<p>If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</em>], [<em>ExitShortStopLimit()</em>].</p>
+<h3 id="usage_20">Usage</h3>
+<p><strong>ExitShortLimit</strong>(<strong>double</strong> limitPrice)</p>
+<p><strong>ExitShortLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice)</p>
+<p><strong>ExitShortLimit</strong>(<strong>double</strong> limitPrice, string fromEntry signal)</p>
+<p><strong>ExitShortLimit</strong>(<strong>double</strong> limitPrice, string signalName, string fromEntry signal)</p>
+<p><strong>ExitShortLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitShortLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, string signalName, string fromEntry signal)</p>
+<h3 id="parameter_19">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Order quantity to be bought</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_13">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_21">Example</h3>
+<p>// Enter if two SMAs cross</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterShort</strong>("SMA cross entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitShortLimit</strong>(<strong>GetCurrentAsk</strong>());</p>
+<h2 id="exitshortstop">ExitShortStop()</h2>
+<h3 id="description_22">Description</h3>
+<p>Exit short stop creates a buy-to-cover stop order for closing a short position.
+If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</em>], [<em>ExitShortStopLimit()</em>].</p>
+<h3 id="usage_21">Usage</h3>
+<p><strong>ExitShortStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice)</p>
+<p><strong>ExitShortStop</strong>(<strong>double</strong> stopPrice, string fromEntry signal)</p>
+<p><strong>ExitShortStop</strong>(<strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p><strong>ExitShortStop</strong>(<strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitShortStop</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)ExitLongStop</p>
+<h3 id="parameter_20">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Order quantity to be bought</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_14">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_22">Example</h3>
+<p>// Enter if two SMAs have crossed</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterShort</strong>("SMA cross entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong> (<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitShortStop</strong>(High[0]);</p>
+<h2 id="exitshortstoplimit">ExitShortStopLimit()</h2>
+<h3 id="description_23">Description</h3>
+<p>Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
+If a signature not containing a set amount is used, the amount is set by the [<em>DefaultQuantity</em>] or taken from the strategy dialog window.</p>
+<p>See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<h3 id="usage_22">Usage</h3>
+<p><strong>ExitShortStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>ExitShortStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice)</p>
+<p><strong>ExitShortStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string fromEntry signal)</p>
+<p><strong>ExitShortStopLimit</strong>(<strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p><strong>ExitShortStopLimit</strong>(<strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<p>For multi-bar strategies</p>
+<p><strong>ExitShortStopLimit</strong>(<strong>int</strong> barsInProgressIndex, <strong>bool</strong> liveUntilCancelled, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string signalName, string fromEntry signal)</p>
+<h3 id="parameter_21">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signalName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Order quantity to be bought</td>
+</tr>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the exit order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See [<em>BarsInProgress</em>].</td>
+<td></td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>A double value for the limit price</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_15">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_23">Example</h3>
+<p>// Enter if two SMAs cross each other</p>
+<p><strong>if</strong> (<strong>CrossBelow</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>EnterShort</strong>("SMA cross entry");</p>
+<p>// Close position</p>
+<p><strong>if</strong> (<strong>CrossAbove</strong>(<strong>SMA</strong>(10), <strong>SMA</strong>(20), 1))</p>
+<p><strong>ExitShortStopLimit</strong>(High[0]+10*TickSize, High[0]);</p>
+<h2 id="getaccountvalue">GetAccountValue()</h2>
+<h3 id="description_24">Description</h3>
+<p>Get account value outputs information regarding the account for which the current strategy is being carried out.</p>
+<p>See [<em>GetProfitLoss()</em>].</p>
+<h3 id="usage_23">Usage</h3>
+<p><strong>GetAccountValue</strong>(AccountItem accountItem)</p>
+<h3 id="parameter_22">Parameter</h3>
+<p>Possible values for account item are:</p>
+<p>AccountItem.BuyingPower</p>
+<p>AccountItem.CashValue</p>
+<p>AccountItem.RealizedProfitLoss</p>
+<h3 id="return-value_16">Return Value</h3>
+<p>a double value for the account item</p>
+<p>for historical bars, a zero (0) is returned</p>
+<h3 id="example_24">Example</h3>
+<p><strong>Print</strong>("The current account cash value is " + <strong>GetAccountValue</strong>(AccountItem.CashValue));</p>
+<p><strong>Print</strong>("The current account cash value with the leverage provided by the broker is " + <strong>GetAccountValue</strong>(AccountItem.BuyingPower));</p>
+<p><strong>Print</strong>("The current P/L already realized is " + <strong>GetAccountValue</strong>(AccountItem.RealizedProfitLoss));</p>
+<h2 id="getprofitloss">GetProfitLoss()</h2>
+<h3 id="description_25">Description</h3>
+<p>Get profit loss outputs the currently unrealized profit or loss for a running position.</p>
+<p>See [<em>GetAccountValue()</em>].</p>
+<h3 id="usage_24">Usage</h3>
+<p><strong>GetProfitLoss</strong>(<strong>int</strong> pLType);</p>
+<h3 id="parameter_23">Parameter</h3>
+<p>Potential values for the P/L type are:</p>
+<p>0 – Amount: P/L as a currency amount</p>
+<p>1 – Percent: P/L in percent</p>
+<p>2 – Risk: P/L in Van Tharp R-multiples ([<em>http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp</em>])</p>
+<p>3 – P/L in ticks</p>
+<h3 id="return-value_17">Return Value</h3>
+<p>a double value for the unrealized profit or loss</p>
+<h3 id="example_25">Example</h3>
+<p><strong>Print</strong>("The current risk for the strategy " + <strong>this</strong>.Name + " is " + <strong>GetProfitLoss</strong>(1) + " " + Instrument.Currency);</p>
+<p><strong>Print</strong>("This equals "+ string.<strong>Format</strong>( "{0:F1} R.", <strong>GetProfitLoss</strong>(3)));</p>
+<h2 id="marketposition">MarketPosition</h2>
+<p>See [<em>Position.MarketPosition</em>].</p>
+<h2 id="performance">Performance</h2>
+<h3 id="description_26">Description</h3>
+<p>Performance is an object containing information regarding all trades that have been generated by a strategy.</p>
+<p>The trades are sorted into multiple lists. With the help of these lists it is easier to create a performance evaluation.</p>
+<p>See Performance Characteristics.</p>
+<p>The individual lists are:</p>
+<ul>
+<li>
+<p><strong>Performance.AllTrades
+    </strong>A [<em>Trade</em>] collection object containing all trades generated by a strategy</p>
+</li>
+<li>
+<p><strong>Performance.LongTrades
+    </strong>A [<em>Trade</em>] collection object containing all long trades generated by a strategy</p>
+</li>
+<li>
+<p><strong>Performance.ShortTrades
+    </strong>A [<em>Trade</em>] collection object containing all short trades generated by a strategy</p>
+</li>
+<li>
+<p><strong>Performance.WinningTrades
+    </strong>A [<em>Trade</em>] collection object containing all profitable trades generated by a strategy</p>
+</li>
+<li>
+<p><strong>Performance.LosingTrades
+    </strong>A [<em>Trade</em>] collection object containing all loss trades generated by a strategy</p>
+</li>
+</ul>
+<h3 id="example_26">Example</h3>
+<p>// When exiting a strategy, create a performance evaluation</p>
+<p><strong>protected</strong> override void <strong>OnTermination</strong>()</p>
+<p>{</p>
+<p><strong>Print</strong>("Performance evaluation of the strategy : " + <strong>this</strong>.Name);</p>
+<p><strong>Print</strong>("----------------------------------------------------");</p>
+<p><strong>Print</strong>("Amount of all trades: " + Performance.AllTrades.Count);</p>
+<p><strong>Print</strong>("Amount of winning trades: " + Performance.WinningTrades.Count);</p>
+<p><strong>Print</strong>("Amount of all loss trades: " + Performance.LosingTrades.Count);</p>
+<p><strong>Print</strong>("Amount of all long trades: " + Performance.LongTrades.Count);</p>
+<p><strong>Print</strong>("Amount of short trades: " + Performance.ShortTrades.Count);</p>
+<p><strong>Print</strong>("Result: " + Account.RealizedProfitLoss + " " + Account.Currency);</p>
+<p>}</p>
+<h2 id="position">Position</h2>
+<h3 id="description_27">Description</h3>
+<p>Position is an object containing information regarding the position currently being managed by a strategy.</p>
+<p>The individual properties are:</p>
+<ul>
+<li>
+<p><strong>Position.AvgPrice
+    </strong>The average buy or sell price of a position.
+    For positions without partial executions, this is equal to the entry price.</p>
+</li>
+<li>
+<p><strong>Position.CreatedDateTime
+    </strong>Date and time at which the position was opened.</p>
+</li>
+<li>
+<p><strong>Position.Instrument
+    </strong>The trading instrument in which the position exists.
+    See <em>Instruments</em>.</p>
+</li>
+<li>
+<p><strong>Position.MarketPosition
+    </strong>One of three possible positions in the market:</p>
+<ul>
+<li>PositionType.Flat</li>
+<li>PositionType.Long</li>
+<li>PositionType.Short</li>
+</ul>
+</li>
+<li>
+<p><strong>Position.OpenProfitLoss
+    </strong>The currently not yet realized profit or loss.
+    See [<em>GetProfitLoss()</em>].</p>
+</li>
+<li>
+<p><strong>Position.ProfitCurrency
+    </strong>Profit (or loss) displayed as a currency amount.</p>
+</li>
+<li>
+<p><strong>Position.ProfitPercent
+    </strong>Profit (or loss) displayed in percent.</p>
+</li>
+<li>
+<p><strong>Position.ProfitPoints
+    </strong>Profit (or loss) displayed in points or pips.</p>
+</li>
+<li>
+<p><strong>Position.Quantity
+    </strong>Amount of stocks, contracts, CFDs etc. within a position.</p>
+</li>
+</ul>
+<h3 id="example_27">Example</h3>
+<p><strong>if</strong> (Position.MarketPosition != PositionType.Flat)</p>
+<p>{</p>
+<p><strong>Print</strong>("Average price " + Position.AvgPrice);</p>
+<p><strong>Print</strong>("Opening time " + Position.CreatedDateTime);</p>
+<p><strong>Print</strong>("Instrument " + Position.Instrument);</p>
+<p><strong>Print</strong>("Current positioning " + Position.MarketPosition);</p>
+<p><strong>Print</strong>("Unrealized P/L " + Position.OpenProfitLoss);</p>
+<p><strong>Print</strong>("P/L (currency) " + Position.ProfitCurrency);</p>
+<p><strong>Print</strong>("P/L (in percent) " + Position.ProfitPercent);</p>
+<p><strong>Print</strong>("P/L (in points) " + Position.ProfitPoints);</p>
+<p><strong>Print</strong>("Pieces " + Position.Quantity);</p>
+<p>}</p>
+<h2 id="quantity">Quantity</h2>
+<p>See [<em>Position.Quantity</em>][<em>Position.MarketPosition</em>].</p>
+<p><span id="_topic_SetProfitTarget" class="anchor"></span></p>
+<h2 id="setprofittarget">SetProfitTarget()</h2>
+<h3 id="description_28">Description</h3>
+<p>Set profit target immediately creates a “take profit” order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
+If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.</p>
+<p>See [<em>SetStopLoss()</em>], [<em>SetTrailStop()</em>].</p>
+<h3 id="usage_25">Usage</h3>
+<p><strong>SetProfitTarget</strong>(<strong>double</strong> currency)</p>
+<p><strong>SetProfitTarget</strong>(CalculationMode mode, <strong>double value</strong>)</p>
+<p><strong>SetProfitTarget</strong>(string fromEntry signal, CalculationMode mode, <strong>double value</strong>)</p>
+<h3 id="parameter_24">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>currency</td>
+<td>Sets the profit target in a currency, for example 500€.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>Possible values are:</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                - CalculationMode.Percent (display in percent)                                                                                                                     
+                - CalculationMode.Price (display as price value)                                                                                                                   
+                - CalculationMode.Ticks (display in ticks or pips)                                                                                                                 |
+</code></pre>
+<p>| value            | The distance between entry price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks. |
+| fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                 |</p>
+<h3 id="example_28">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>// Creates a profit target order 10 ticks above break-even</p>
+<p><strong>SetProfitTarget</strong>(CalculationMode.Ticks, 10);</p>
+<p>}</p>
+<h2 id="setstoploss">SetStopLoss()</h2>
+<h3 id="description_29">Description</h3>
+<p>Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.</p>
+<p>If the stop loss is static, then SetStopLoss() can be defined with the Initialize() method.</p>
+<p>See [<em>SetProfitTarget()</em>], [<em>SetTrailStop()</em>].</p>
+<h3 id="usage_26">Usage</h3>
+<p><strong>SetStopLoss</strong>(<strong>double</strong> currency)</p>
+<p><strong>SetStopLoss</strong>(<strong>double</strong> currency, <strong>bool</strong> simulated)</p>
+<p><strong>SetStopLoss</strong>(CalculationMode mode, <strong>double value</strong>)</p>
+<p><strong>SetStopLoss</strong>(string fromEntry signal, CalculationMode mode, <strong>double value</strong>, <strong>bool</strong> simulated)</p>
+<h3 id="parameter_25">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>currency</td>
+<td>The difference between the stop loss and the entry price (=risk) in a currency, such as 500€</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>Potential values can be:</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                - CalculationMode.Percent (display in percent)                                                                                                                                                               
+                - CalculationMode.Price (display as price value)                                                                                                                                                             
+                - CalculationMode.Ticks (display in ticks or pips)                                                                                                                                                           |
+</code></pre>
+<p>| simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
+| fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |</p>
+<h3 id="example_29">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>// Sets a stop of 500€</p>
+<p><strong>SetStopLoss</strong>(500);</p>
+<p>}</p>
+<h2 id="settrailstop">SetTrailStop()</h2>
+<h3 id="description_30">Description</h3>
+<p>Set trail stop creates a trail stop order after an entry order is generated. Its purpose is to protect you from losses, and after reaching break-even, to protect your gains.</p>
+<p>The order is sent directly to the broker and becomes effective immediately.</p>
+<p>If the stop loss price and the offset value are static, you can define SetTrailStop() with the Initialize() method.</p>
+<p>If you use SetTrailStop() within the [<em>OnBarUpdate()</em>] method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.</p>
+<p><strong>Functionality:</strong></p>
+<p>Assuming that you have SetTrailStop(CalculationMode.Ticks, 30) selected:</p>
+<p>In a long position, the stop will be 30 ticks from the previously reached high. If the market makes a new high, the stop will be adjusted. However, the stop will no longer be moved downwards.</p>
+<p>In a short position, this behavior starts with the most recent low.</p>
+<p><strong>Tips:</strong></p>
+<p>It is not possible to use SetStopLoss and SetTrailStop for the same position at the same time within one strategy. The SetStopLoss() method will always have precedence over the other methods.</p>
+<p>However, it is possible to use both variants parallel to each other in the same strategy if they are referencing different entry signals.</p>
+<p>Partial executions of a single order will cause a separate trading stop for each partial position.</p>
+<p>If a SetProfitTarget() is used in addition to a SetTrailStop(), then both orders will be automatically linked to form an OCO order.</p>
+<p>It is always a stop market order that is generated, and not a stop limit order.</p>
+<p>If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.</p>
+<p>See [<em>SetStopLoss()</em>], [<em>SetProfitTarget()</em>].</p>
+<h3 id="usage_27">Usage</h3>
+<p><strong>SetTrailStop</strong>(<strong>double</strong> currency)</p>
+<p><strong>SetTrailStop</strong>(<strong>double</strong> currency, <strong>bool</strong> simulated)</p>
+<p><strong>SetTrailStop</strong>(CalculationMode mode, <strong>double value</strong>)</p>
+<p><strong>SetTrailStop</strong>(string fromEntry signal, CalculationMode mode, <strong>double value</strong>, <strong>bool</strong> simulated)</p>
+<h3 id="parameter_26">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>currency</td>
+<td>The distance between the stop loss and the entry price</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>Possible values are:</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                - CalculationMode.Percent                                                                                                                                                                                    
+                - CalculationMode.Ticks                                                                                                                                                                                      |
+</code></pre>
+<p>| simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
+| fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |</p>
+<h3 id="example_30">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>// Sets a trailing stop of 30 ticks</p>
+<p><strong>SetTrailStop</strong>(CalculationMode.Ticks, 30);</p>
+<p>}</p>
+<h2 id="submitorder">SubmitOrder()</h2>
+<h3 id="description_31">Description</h3>
+<p>Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.</p>
+<p>See [<em>OnOrderUpdate()</em>], [<em>OnExecution()</em>].</p>
+<h3 id="usage_28">Usage</h3>
+<p><strong>SubmitOrder</strong>(<strong>int</strong> barsInProgressIndex, OrderAction orderAction, OrderType orderType, <strong>int</strong> quantity, <strong>double</strong> limitPrice, <strong>double</strong> stopPrice, string ocoId, string signalName)</p>
+<h3 id="parameter_27">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>barsInProgressIndex</td>
+<td>For multi-bar strategies.</td>
+</tr>
+<tr>
+<td>Index of the data series for which the order is to be executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>See BarsInProgress.</td>
+<td></td>
+</tr>
+<tr>
+<td>orderAction</td>
+<td>Possible values are:</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                   OrderAction.Buy                                                     
+                   Buy order for a long entry
+
+                   OrderAction.Sell                                                    
+                   Sell order for closing a long position
+
+                   OrderAction.SellShort                                               
+                   Sell order for a short entry
+
+                   OrderAction.BuyToCover                                              
+                   Buy order for closing a short position                              |
+</code></pre>
+<p>| orderType           | Possible values:                                                   </p>
+<pre><code>                   OrderType.Limit
+
+                   OrderType.Market
+
+                   OrderType.Stop
+
+                   OrderType.StopLimit                                                 |
+</code></pre>
+<p>| quantity            | Amount                                                             |
+| limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
+| stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
+| ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
+| signalName          | An unambiguous signal name (string)                                |</p>
+<h3 id="return-value_18">Return Value</h3>
+<p>an order object of the type “IOrder”</p>
+<h3 id="example_31">Example</h3>
+<h3 id="_3"></h3>
+<p><strong>private</strong> IOrder entryOrder = <strong>null</strong>;</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate</strong>()</p>
+<p>{</p>
+<p>// Entry conditions</p>
+<p><strong>if</strong> (Close[0] &gt; <strong>SMA</strong>(20)[0] &amp;&amp; entryOrder == <strong>null</strong>)</p>
+<p>entryOrder = <strong>SubmitOrder</strong>(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Enter long");</p>
+<p>}</p>
+<h2 id="timeinforce">TimeInForce</h2>
+<h3 id="description_32">Description</h3>
+<p>The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.</p>
+<p>TimeInForce is specified with the [<em>Initialize()</em>] method.</p>
+<p>Permitted values are:
+TimeInForce.day
+TimeInForce.loc
+TimeInForce.gtc (GTC = good till canceled)
+TimeInForce.gtd</p>
+<p><strong>Default:</strong> TimeInForce.GTC</p>
+<h3 id="usage_29">Usage</h3>
+<p><strong>TimeInForce</strong></p>
+<h3 id="example_32">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p>TimeInForce = TimeInForce.Day;</p>
+<p>}</p>
+<h2 id="traceorders">TraceOrders</h2>
+<h3 id="description_33">Description</h3>
+<p>The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
+Trace orders can be specified with the [<em>Initialize()</em>] method.</p>
+<p>When TraceOrders is activated, each order will display the following values in the output window:</p>
+<p>Instrument</p>
+<p>Time frame</p>
+<p>Action</p>
+<p>Type</p>
+<p>Limit price</p>
+<p>Stop price</p>
+<p>Quantity</p>
+<p>Name</p>
+<p>This information is useful when creating and debugging strategies.</p>
+<h3 id="usage_30">Usage</h3>
+<p>TraceOrders</p>
+<h3 id="parameter_28">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_19">Return Value</h3>
+<p><strong>true</strong> Tracing is currently switched on
+<strong>false</strong> Tracing is switched off</p>
+<h3 id="example_33">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize</strong>()</p>
+<p>{</p>
+<p><strong>ClearOutputWindow</strong>();</p>
+<p>TraceOrders = <strong>true</strong>;</p>
+<p>}</p>
+<h2 id="trade">Trade</h2>
+<h3 id="description_34">Description</h3>
+<p>Trade is an object containing information about trades that have been executed by a strategy or are currently running.</p>
+<p>The individual properties are:</p>
+<ul>
+<li>
+<p><strong>Trade.AvgPrice
+    </strong>Average entry price</p>
+</li>
+<li>
+<p><strong>Trade.ClosedProfitLoss
+    </strong>Profit or loss already realized</p>
+</li>
+<li>
+<p><strong>Trade.Commission
+    </strong>Commissions</p>
+</li>
+<li>
+<p><strong>Trade.CreatedDateTime
+    </strong>Time at which the trade was created</p>
+</li>
+<li>
+<p><strong>Trade.EntryReason
+    </strong>Description of the entry signal
+    For strategies: signal entry name</p>
+</li>
+<li>
+<p><strong>Trade.ExitDateTime
+    </strong>Time at which the trade was closed</p>
+</li>
+<li>
+<p><strong>Trade.ExitPrice
+    </strong>Exit price</p>
+</li>
+<li>
+<p><strong>Trade.ExitReason
+    </strong>Description of the exit signal
+    For strategies: name of the strategy</p>
+</li>
+<li>
+<p><strong>Trade.Instrument
+    </strong>Description of the trading instrument</p>
+</li>
+<li>
+<p><strong>Trade.MarketPosition
+    </strong>Positioning within the market</p>
+<ul>
+<li>PositionType.Flat</li>
+<li>PositionType.Long</li>
+<li>PositionType.Short</li>
+</ul>
+</li>
+<li>
+<p><strong>Trade.OpenProfitLoss
+    </strong>Unrealized profit/loss of a running position</p>
+</li>
+<li>
+<p><strong>Trade.ProfitCurrency
+    </strong>Profit or loss in the currency that the account is held in</p>
+</li>
+<li>
+<p><strong>Trade.ProfitLoss
+    </strong>Profit or loss</p>
+</li>
+<li>
+<p><strong>Trade.ProfitPercent
+    </strong>Profit or loss in percent</p>
+</li>
+<li>
+<p><strong>Trade.ProfitPercentWithCommission
+    </strong>Profit or loss in percent with commissions</p>
+</li>
+<li>
+<p><strong>Trade.ProfitPoints
+    </strong>Profit or loss in points/pips</p>
+</li>
+<li>
+<p><strong>Trade.Quantity
+    </strong>Quantity of stocks/contracts/ETFs/etc.</p>
+</li>
+<li>
+<p><strong>Trade.TimeFrame
+    </strong>Timeframe in which the trade was opened</p>
+</li>
+<li>
+<p><strong>Trade.Url
+    </strong>URL for the snapshot of the chart at the moment of creation</p>
+</li>
+</ul>
+<h3 id="example_34">Example</h3>
+<p><strong>protected</strong> override void <strong>OnTermination</strong>()</p>
+<p>{</p>
+<p><strong>if</strong> (Performance.AllTrades.Count &lt; 1) return;</p>
+<p><strong>foreach</strong> (ITrade trade <strong>in</strong> Performance.AllTrades)</p>
+<p>{</p>
+<p><strong>Print</strong>("Trade #"+trade.Id);</p>
+<p><strong>Print</strong>("--------------------------------------------");</p>
+<p><strong>Print</strong>("Average price " + trade.AvgPrice);</p>
+<p><strong>Print</strong>("Realized P/L " + trade.ClosedProfitLoss);</p>
+<p><strong>Print</strong>("Commissions " + trade.Commission);</p>
+<p><strong>Print</strong>("Time of entry " + trade.CreatedDateTime);</p>
+<p><strong>Print</strong>("Entry reason " + trade.EntryReason);</p>
+<p><strong>Print</strong>("Time of exit " + trade.ExitDateTime);</p>
+<p><strong>Print</strong>("Exit price " + trade.ExitPrice);</p>
+<p><strong>Print</strong>("Exit reason " + trade.ExitReason);</p>
+<p><strong>Print</strong>("Instrument " + trade.Instrument);</p>
+<p><strong>Print</strong>("Positioning " + trade.MarketPosition);</p>
+<p><strong>Print</strong>("Unrealized P/L " + trade.OpenProfitLoss);</p>
+<p><strong>Print</strong>("P/L (currency) " + trade.ProfitCurrency);</p>
+<p><strong>Print</strong>("P/L " + trade.ProfitLoss);</p>
+<p><strong>Print</strong>("P/L (in percent) " + trade.ProfitPercent);</p>
+<p><strong>Print</strong>("P/L (% with commission)" + trade.ProfitPercentWithCommission);</p>
+<p><strong>Print</strong>("PL (in points) " + trade.ProfitPoints);</p>
+<p><strong>Print</strong>("Quantity " + trade.Quantity);</p>
+<p><strong>Print</strong>("Timeframe " + trade.TimeFrame);</p>
+<p><strong>Print</strong>("URL for the snapshot " + trade.Url);</p>
+<p><strong>Print</strong>("");</p>
+<p>}</p>
+<p>}</p>
+<h2 id="unmanaged">Unmanaged</h2>
+<h1 id="backtesting-and-optimization">Backtesting and Optimization</h1>
+<h2 id="performance-characteristics">Performance Characteristics</h2>
+<p>Performance characteristics are the various factors that can be calculated for a list of trades. The trades can be generated by a strategy in real-time or based on a backtest.</p>
+<p>The following are available:</p>
+<ul>
+<li>all trades</li>
+<li>all long trades</li>
+<li>all short trades</li>
+<li>all winning trades</li>
+<li>all losing trades</li>
+</ul>
+<p>See [<em>Performance</em>].</p>
+<p>The individual factors are:</p>
+<ul>
+<li>
+<p><strong>AvgEtd
+    </strong>The average drawdown at the end of a trade
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgEtd
+    <strong>Print</strong>("Average ETD of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgEtd);</p>
+</li>
+<li>
+<p><strong>AvgMae
+    </strong>Average maximum adverse excursion
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgMae
+    <strong>Print</strong>("Average MAE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMae);</p>
+</li>
+<li>
+<p><strong>AvgMfe
+    </strong>Average maximum favorable excursion
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgMfe
+    <strong>Print</strong>("Average MFE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMfe);</p>
+</li>
+<li>
+<p><strong>AvgProfit
+    </strong>Average profit for all trades
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgProfit
+    <strong>Print</strong>("Average profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgProfit);</p>
+</li>
+<li>
+<p><strong>CumProfit
+    </strong>The cumulative winnings over all trades
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.CumProfit
+    <strong>Print</strong>("Average cumulative profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.CumProfit);</p>
+</li>
+<li>
+<p><strong>DrawDown
+    </strong>The drawdown for all trades
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.DrawDown
+    <strong>Print</strong>("Drawdown of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.DrawDown);</p>
+</li>
+<li>
+<p><strong>LargestLoser
+    </strong>The largest losing trade
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.LargestLoser
+    <strong>Print</strong>("Largest loss of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestLoser);</p>
+</li>
+<li>
+<p><strong>LargestWinner
+    </strong>The largest winning trade
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.LargestWinner
+    <strong>Print</strong>("Largest win of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestWinner);</p>
+</li>
+<li>
+<p><strong>ProfitPerMonth
+    </strong>The total performance (wins/losses) for the month (also in percent)
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.ProfitPerMonth
+    <strong>Print</strong>("Profit per month of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.ProfitPerMonth);</p>
+</li>
+<li>
+<p><strong>StdDev</strong>
+    The standard deviation for the wins/losses. With this, you are able to identify outliers. The smaller the standard deviation, the higher the expectation of winnings.</p>
+</li>
+</ul>
+<p><strong>All factors are double values.</strong></p>
+<p><img src=".//media/image10.png" width="629" height="478" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../keywords/" class="btn btn-neutral float-right" title="Keywords">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../events/" class="btn btn-neutral" title="Events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../events/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../keywords/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

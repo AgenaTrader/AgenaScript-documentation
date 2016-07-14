@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Handling bars and instruments - AgenaScript Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../custom.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Handling bars and instruments";
+    var mkdocs_page_input_path = "handling_bars_and_instruments/handling_bars_and_instruments.md";
+    var mkdocs_page_url = "/handling_bars_and_instruments/handling_bars_and_instruments/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> AgenaScript Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Lets start</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Handling bars and instruments</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#handling-bars-and-instruments">Handling bars and instruments</a></li>
+                
+                    <li><a class="toctree-l4" href="#bars-candles">Bars (Candles)</a></li>
+                
+                    <li><a class="toctree-l4" href="#properties-of-bars">Properties of Bars</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssincesession">BarsSinceSession</a></li>
+                
+                    <li><a class="toctree-l4" href="#barscount">Bars.Count</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsfirstbarofsession">Bars.FirstBarOfSession</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetbar">Bars.GetBar</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetbarsago">Bars.GetBarsAgo</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetclose">Bars.GetClose</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgethigh">Bars.GetHigh</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetbyindex">Bars.GetByIndex</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetindex">Bars.GetIndex</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetlow">Bars.GetLow</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetnextbeginend">Bars.GetNextBeginEnd</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetsessiondate">Bars.GetSessionDate</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetopen">Bars.GetOpen</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgettime">Bars.GetTime</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetvolume">Bars.GetVolume</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsinstrument">Bars.Instrument</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsisintraday">Bars.IsIntraDay</a></li>
+                
+                    <li><a class="toctree-l4" href="#barspercentcomplete">Bars.PercentComplete</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssessionbegin">Bars.SessionBegin</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssessionend">Bars.SessionEnd</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssessionnextbegin">Bars.SessionNextBegin</a></li>
+                
+                    <li><a class="toctree-l4" href="#barssessionnextend">Bars.SessionNextEnd</a></li>
+                
+                    <li><a class="toctree-l4" href="#barstickcount">Bars.TickCount</a></li>
+                
+                    <li><a class="toctree-l4" href="#barstimeframe">Bars.TimeFrame</a></li>
+                
+                    <li><a class="toctree-l4" href="#barstotalticks">Bars.TotalTicks</a></li>
+                
+                    <li><a class="toctree-l4" href="#data-series">Data Series</a></li>
+                
+                    <li><a class="toctree-l4" href="#open">Open</a></li>
+                
+                    <li><a class="toctree-l4" href="#opens">Opens</a></li>
+                
+                    <li><a class="toctree-l4" href="#high">High</a></li>
+                
+                    <li><a class="toctree-l4" href="#highs">Highs</a></li>
+                
+                    <li><a class="toctree-l4" href="#low">Low</a></li>
+                
+                    <li><a class="toctree-l4" href="#lows">Lows</a></li>
+                
+                    <li><a class="toctree-l4" href="#close">Close</a></li>
+                
+                    <li><a class="toctree-l4" href="#closes">Closes</a></li>
+                
+                    <li><a class="toctree-l4" href="#median">Median</a></li>
+                
+                    <li><a class="toctree-l4" href="#medians">Medians</a></li>
+                
+                    <li><a class="toctree-l4" href="#typical">Typical</a></li>
+                
+                    <li><a class="toctree-l4" href="#typicals">Typicals</a></li>
+                
+                    <li><a class="toctree-l4" href="#weighted">Weighted</a></li>
+                
+                    <li><a class="toctree-l4" href="#weighteds">Weighteds</a></li>
+                
+                    <li><a class="toctree-l4" href="#time">Time</a></li>
+                
+                    <li><a class="toctree-l4" href="#times">Times</a></li>
+                
+                    <li><a class="toctree-l4" href="#volume">Volume</a></li>
+                
+                    <li><a class="toctree-l4" href="#volumes">Volumes</a></li>
+                
+                    <li><a class="toctree-l4" href="#instruments">Instruments</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentcompare">Instrument.Compare</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentcurrency">Instrument.Currency</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentdigits">Instrument.Digits</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentetf">Instrument.ETF</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentexchange">Instrument.Exchange</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentexpiry">Instrument.Expiry</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentinstrumenttype">Instrument.InstrumentType</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentname">Instrument.Name</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentpointvalue">Instrument.PointValue</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentround2ticksize">Instrument.Round2TickSize</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentsymbol">Instrument.Symbol</a></li>
+                
+                    <li><a class="toctree-l4" href="#instrumentticksize">Instrument.TickSize</a></li>
+                
+                    <li><a class="toctree-l4" href="#collections">Collections</a></li>
+                
+                    <li><a class="toctree-l4" href="#drawobjects">DrawObjects</a></li>
+                
+                    <li><a class="toctree-l4" href="#input">Input</a></li>
+                
+                    <li><a class="toctree-l4" href="#lines">Lines</a></li>
+                
+                    <li><a class="toctree-l4" href="#plotcolors">PlotColors</a></li>
+                
+                    <li><a class="toctree-l4" href="#plots">Plots</a></li>
+                
+                    <li><a class="toctree-l4" href="#values">Values</a></li>
+                
+                    <li><a class="toctree-l4" href="#multibars">Multibars</a></li>
+                
+                    <li><a class="toctree-l4" href="#currentbars">CurrentBars</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsinprogress">BarsInProgress</a></li>
+                
+                    <li><a class="toctree-l4" href="#timeframes">TimeFrames</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../events/">Events</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../strategy_programming/">Strategy programming</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../keywords/">Keywords</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../drawing_objects/">Drawing objects</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../hints_and_advice/">Hints and advice</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">AgenaScript Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Handling bars and instruments</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="handling-bars-and-instruments">Handling bars and instruments</h1>
+<p>Data is understood as information that is retrieved externally and uploaded to AgenaTrader, or as data series that are created by AgenaScripts.</p>
+<p>Further detailed information can be found using the appropriate shortcuts:</p>
+<p><a href="#bars-candles">Bars (Candles)</a></p>
+<p><a href="#data-series">Data series</a></p>
+<p><a href="#instruments">Instruments</a></p>
+<h2 id="bars-candles">Bars (Candles)</h2>
+<h3 id="functionality">Functionality</h3>
+<p>A classical indicator calculates one or multiple values using an existing data series.</p>
+<p>Data series can be anything from closing prices to daily lows or values of an hourly period etc.</p>
+<p>Every period (meaning all candles of one day, one hour etc.) is assigned one or more indicator values.
+The following example is based on an indicator value, such as with a moving average, for example.
+To calculate a smoothed moving average, AgenaTrader needs a data series. In this example we will use the closing prices. All closing prices of a bar (candle) that are represented in the chart will be saved in a list and indexed.</p>
+<p>The current closing price, meaning the closing price of the bar that is on the right-hand side of the chart, will be assigned an index of 0. The bar to the left of that will have an index of 1 and so on. The oldest bar displayed will have an index value of 500.</p>
+<p>Whenever a new bar is added within a session it will become the new index 0; the bar to the left of it, which previously had an index of 0, will become index 1 and so on. The oldest bar will become index 501.
+Within a script (a self-created program/algorithm) the [<strong><em>Close</em></strong>] will be representative for the array (list) of all closing prices.
+The last closing price is thus <em>Close [0]</em>; the closing price previous to this will become <em>Close [1]</em>, the value before that will become <em>Close [2]</em> and the oldest bar will be <em>Close [501]</em>. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago“ expression for this in general cases.</p>
+<p>Obviously, every bar will not only have a closing value but also a <a href="#high"><em>High</em></a>, <a href="#low"><em>Low</em></a>, <a href="#open"><em>Open</em></a>, <a href="#median"><em>Median</em></a>, <a href="#typical"><em>Typical</em></a>, <a href="#weighted"><em>Weighted</em></a>, <a href="#time"><em>Time</em></a> and <a href="#volume"><em>Volume</em></a>. Thus, the high of the candle that occurred 10 days ago will be <em>High [10]</em>, yesterday’s low <em>Low [1]</em>...</p>
+<p><strong>Important tip:</strong></p>
+<p>The previous examples all assume that the calculations will occur at the end of a period. The value of the currently running index is not being taken into consideration.</p>
+<p>If you wish to use the values of the currently forming candle then you will need to set the value of</p>
+<p>[<em>CalculateOnBarClose</em>] to „false“.</p>
+<p>In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.</p>
+<p>With close [0] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high [0], low [0]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open [0] value will not change.</p>
+<h2 id="properties-of-bars">Properties of Bars</h2>
+<h3 id="properties-of-bars_1">Properties of Bars</h3>
+<p>"Bars" represents a list of all bars (candles) within a chart (see [<em>Functionality</em>][<em>Bars</em>]).</p>
+<p>Bars (<strong>public</strong> IBars Bars) can be used directly in a script and equates to BarsArray [0] (see Bars.GetNextBeginEnd for more information).</p>
+<p>The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).</p>
+<p><a href="#barssincesession"><em>BarsSinceSession</em></a></p>
+<p><a href="#barscount"><em>Bars.Count</em></a></p>
+<p><a href="#barsfirstbarofsession"><em>Bars.FirstBarOfSession</em></a></p>
+<p><a href="#barsgetbar"><em>Bars.GetBar</em></a></p>
+<p><a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a></p>
+<p><a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a></p>
+<p><a href="#barsgetindex"><em>Bars.GetIndex</em></a></p>
+<p><a href="#barsgetnextbeginend"><em>Bars.GetNextBeginEnd</em></a></p>
+<p><a href="#barsgetopen"><em>Bars.GetOpen</em></a> 
+GetHigh
+GetLow
+GetClose
+GetTime 
+GetVolume</p>
+<p><a href="#barsinstrument"><em>Bars.Instrument</em></a></p>
+<p><a href="#barsisintraday"><em>Bars.IsIntraDay</em></a></p>
+<p><a href="#barspercentcomplete"><em>Bars.PercentComplete</em></a></p>
+<p><a href="#barssessionbegin"><em>Bars.SessionBegin</em></a></p>
+<p><a href="#barssessionend"><em>Bars.SessionEnd</em></a></p>
+<p><a href="#barssessionnextbegin"><em>Bars.SessionNextBegin</em></a></p>
+<p><a href="#barssessionnextend"><em>Bars.SessionNextEnd</em></a></p>
+<p><a href="#barstickcount"><em>Bars.TickCount</em></a></p>
+<p><a href="#barstimeframe"><em>Bars.TimeFrame</em></a></p>
+<p><a href="#barstotalticks"><em>Bars.TotalTicks</em></a></p>
+<p>With the <strong>OnBarUpdate()</strong> method you can use any properties you want without having to test for a null reference.
+As soon as the function <strong>OnBarUpdate()</strong> is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of <strong>OnBarUpdate()</strong> then you should first perform a test for null references using <strong>if</strong> (Bars != <strong>null</strong>).</p>
+<h2 id="barssincesession">BarsSinceSession</h2>
+<h3 id="description">Description</h3>
+<p>Bars.BarsSinceSession outputs the amount of bars that have occurred since the beginning of the current trading session.</p>
+<p>See further [<em>Properties</em>] of bars.</p>
+<h3 id="return-value">Return Value</h3>
+<p>Type int Amount of Bars</p>
+<p>A value of -1 indicates a problem with referencing the correct session beginning.</p>
+<h3 id="usage">Usage</h3>
+<p>Bars.BarsSinceSession</p>
+<h3 id="further-information">Further Information</h3>
+<p>Within <em>OnBarUpdate()</em> this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnBarUpdate() then you should test for a null reference before executing it. You can test using <em>if</em> (Bars!= <em>null</em>) .</p>
+<h3 id="example">Example</h3>
+<p><strong>Print</strong> ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");</p>
+<h2 id="barscount">Bars.Count</h2>
+<h3 id="description_1">Description</h3>
+<p>Bars.Count gives you the amount of bars in a data series.</p>
+<p>See [<em>Properties</em>] for additional information.</p>
+<h3 id="return-value_1">Return Value</h3>
+<p>Type int Amount of Bars</p>
+<h3 id="usage_1">Usage</h3>
+<p>Bars.Count</p>
+<h3 id="more-information">More Information</h3>
+<p>The value of <em>CurrentBar</em> can only be lesser than or equal to Bars.Count - 1</p>
+<p>When you specify how many bars are to be loaded within AgenaTrader, then the value of Bars.Count is equal to this setting. In the following example, Bars.Count would give back a value of 500.</p>
+<p><img src=".//media/image1.png" width="296" height="363" /></p>
+<h3 id="example_1">Example</h3>
+<p><strong>Print</strong> ("There are a total of” + Bars.Count + “bars available.");</p>
+<h2 id="barsfirstbarofsession">Bars.FirstBarOfSession</h2>
+<h3 id="description_2">Description</h3>
+<p>With Bars.FirstBarOfSession you can determine whether the current bar is the first bar of the trading session.</p>
+<p>See [<em>Properties</em>] of bars for more information.</p>
+<h3 id="return-value_2">Return Value</h3>
+<p>Type bool</p>
+<p><strong>true</strong>: The bar is the first bar of the current trading session
+<strong>false</strong>: The bar is not the first bar of the current trading session</p>
+<h3 id="usage_2">Usage</h3>
+<p>Bars.FirstBarOfSession</p>
+<h3 id="more-information_1">More Information</h3>
+<p>With <em>OnBarUpdate()</em> this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up, an object will become available.
+If this property is called up outside of OnBarUpdate() you should test for a null reference using if (Bars != null).</p>
+<h3 id="example_2">Example</h3>
+<p><strong>if</strong> (Bars.FirstBarOfSession)</p>
+<p><strong>Print</strong> ("The current trading session started at” + Time [0]);</p>
+<h2 id="barsgetbar">Bars.GetBar</h2>
+<h3 id="description_3">Description</h3>
+<p>Bars.GetBar outputs the first bars (from oldest to newest) that correspond to the specified date/time.</p>
+<p>See [<em>Bars.GetBarsAgo</em>], [<em>Bars.GetByIndex</em>], [<em>Bars.GetIndex</em>].</p>
+<h3 id="parameter">Parameter</h3>
+<p>Type DateTime</p>
+<h3 id="return-value_3">Return Value</h3>
+<p>Type IBar Bar Object, for the bars corresponding to the timestamp</p>
+<p>For a timestamp older than the oldest bar: 0 (null)
+For a timestamp younger than the newest bar: index of the last bar</p>
+<h3 id="usage_3">Usage</h3>
+<p>Bars.<strong>GetBar</strong>(DateTime time)</p>
+<h3 id="more-information_2">More Information</h3>
+<p>For the indexing of bars please see [<em>Functionality</em>][<em>Bars</em>]</p>
+<p>For more information about using DateTime see [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
+<h3 id="example_3">Example</h3>
+<p><strong>Print</strong> ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.<strong>GetBar</strong>(<strong>new DateTime</strong>(2012, 01, 03, 18, 0, 0)).Close);</p>
+<h2 id="barsgetbarsago">Bars.GetBarsAgo</h2>
+<h3 id="description_4">Description</h3>
+<p>Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.</p>
+<p>See: [<em>Bars.GetBar</em>], [<em>Bars.GetByIndex</em>], [<em>Bars.GetIndex</em>].</p>
+<h3 id="parameter_1">Parameter</h3>
+<p>Type DateTime</p>
+<h3 id="return-value_4">Return Value</h3>
+<p>Type int Index of the bar that corresponds to the timestamp</p>
+<p>With a timestamp older than the oldest bar: 0 (null)
+With a timestamp newer than the youngest bar: index of the last bar</p>
+<h3 id="usage_4">Usage</h3>
+<p>Bars.<strong>GetBarsAgo</strong>(DateTime time)</p>
+<h3 id="more-information_3">More Information</h3>
+<p>For more information about indexing please see [<em>Functionality</em>][<em>Bars</em>]</p>
+<p>For more information about using DateTime see [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
+<h3 id="example_4">Example</h3>
+<p><strong>Print</strong>("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.<strong>GetBarsAgo</strong>(<strong>new DateTime</strong>(2012, 01, 03, 18, 0, 0)));</p>
+<h2 id="barsgetclose">Bars.GetClose</h2>
+<p>Bars.GetClose(int index) – see [<em>Bars.GetOpen</em>].</p>
+<h2 id="barsgethigh">Bars.GetHigh</h2>
+<p>Bars.GetHigh(int index) – see [<em>Bars.GetOpen</em>].</p>
+<h2 id="barsgetbyindex">Bars.GetByIndex</h2>
+<h3 id="description_5">Description</h3>
+<p>Bars.GetByIndex outputs the index for the specified bar object</p>
+<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>, <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>, <a href="#barsgetindex"><em>Bars.GetIndex</em></a>.</p>
+<h3 id="parameter_2">Parameter</h3>
+<p>Type int Index</p>
+<h3 id="return-value_5">Return Value</h3>
+<p>Type IBar Bar object for the specified index</p>
+<h3 id="usage_5">Usage</h3>
+<p>Bars.<strong>GetByIndex</strong> (int Index)</p>
+<h3 id="more-information_4">More Information</h3>
+<p>For indexing of bars see [<em>Functionality</em>]<a href="#bars"><em>Bars</em></a></p>
+<h3 id="example_5">Example</h3>
+<p><strong>Print</strong>(Close[0] + " and " + Bars.<strong>GetByIndex</strong>(CurrentBar).Close + " are equal in this example.");</p>
+<h2 id="barsgetindex">Bars.GetIndex</h2>
+<h3 id="description_6">Description</h3>
+<p>Bars.GetIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.</p>
+<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>, <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>, <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>.</p>
+<h3 id="parameter_3">Parameter</h3>
+<p>Type IBar bar
+or
+Type DateTime</p>
+<h3 id="return-value_6">Return Value</h3>
+<p>Type int The bar index of the specified bar object or DateTime object</p>
+<h3 id="usage_6">Usage</h3>
+<p>Bars.<strong>GetIndex</strong> (IBar bar)</p>
+<p>Bars.<strong>GetIndex</strong> (DateTime dt)</p>
+<h3 id="more-information_5">More Information</h3>
+<p>For more information about indexing see [<em>Functionality</em>][<em>Bars</em>]</p>
+<h3 id="example_6">Example</h3>
+<p><strong>int</strong> barsAgo = 5;</p>
+<p>IBar bar = Bars.<strong>GetBar</strong>(Time[barsAgo]);</p>
+<p><strong>Print</strong>(barsAgo + " and " + Bars.<strong>GetIndex</strong>(bar) + " are equal in this example.");</p>
+<h2 id="barsgetlow">Bars.GetLow</h2>
+<p>Bars.GetLow(int index) – see [<em>Bars.GetOpen</em>].</p>
+<h2 id="barsgetnextbeginend">Bars.GetNextBeginEnd</h2>
+<h3 id="description_7">Description</h3>
+<p>Bars.GetNextBeginEnd outputs the date and time for the beginning and end of a trading session.</p>
+<p>See <a href="#barssessionbegin"><em>Bars.SessionBegin</em></a>, <a href="#barssessionend"><em>Bars.SessionEnd</em></a>, <a href="#barssessionnextbegin"><em>Bars.SessionNextBegin</em></a>, <a href="#barssessionnextend"><em>Bars.SessionNextEnd</em></a>.</p>
+<h3 id="parameter_4">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DateTime</td>
+<td>time</td>
+<td>Date or time for which the data of the following trading session will be scanned/searched.</td>
+</tr>
+<tr>
+<td>iBars</td>
+<td>bars</td>
+<td>Bar object for which the data will be scanned/searched.</td>
+</tr>
+<tr>
+<td>int</td>
+<td>barsago</td>
+<td>Number of days in the past for which the data will be searched/scanned.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value_7">Return Value</h3>
+<p>DateTime session begin
+DateTime session end</p>
+<p><strong>Note:
+</strong>The date for the beginning and the end of a trading session are connected components. If the specified date corresponds to the end date of the current trading session then the returned value for the beginning of a trading session may already be in the past. In this case the date for the following trading session cannot be returned.</p>
+<h3 id="usage_7">Usage</h3>
+<p>Bars.<strong>GetNextBeginEnd</strong>(Bars bars, <strong>int</strong> barsAgo, <strong>out</strong> DateTime sessionBegin, <strong>out</strong> DateTime sessionEnd)</p>
+<p>Bars.<strong>GetNextBeginEnd</strong>(DateTime time, <strong>out</strong> DateTime sessionBegin, <strong>out</strong> DateTime sessionEnd)</p>
+<h3 id="more-information_6">More Information</h3>
+<p>The two signatures will not necessarily output the same result.
+When using the bar signature, the supplied bar will be inspected for its session template association. The beginning and end of the next session will be taken from this template.</p>
+<p>When using the time signature, the date and time of the supplied bar will be used to calculate the data for the current and the following sessions.</p>
+<p>When using the time signature, a timestamp is transmitted that corresponds exactly to the beginning or the end time of a session.</p>
+<p>More information can be found here [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
+<h3 id="example_7">Example</h3>
+<p>DateTime sessionBegin;</p>
+<p>DateTime sessionEnd;</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p>Bars.<strong>GetNextBeginEnd</strong>(Bars, 0, <strong>out</strong> sessionBegin, <strong>out</strong> sessionEnd);</p>
+<p><strong>Print</strong>("Session Start: " + sessionBegin + " Session End: " + sessionEnd);</p>
+<p>}</p>
+<h2 id="barsgetsessiondate">Bars.GetSessionDate</h2>
+<h3 id="description_8">Description</h3>
+<p>Bars.GetSessionDate provides the date and the time of the start of a particular trading session.</p>
+<p>The date and time for the start of the current trading session are also displayed correctly even if the function is used on a bar in the past.</p>
+<h2 id="barsgetopen">Bars.GetOpen</h2>
+<h3 id="description_9">Description</h3>
+<p>For reasons of compatibility, the following methods are available.</p>
+<ul>
+<li>
+<p>Bars.GetOpen(int index) outputs the open for the bars referenced with &lt;index&gt;.</p>
+</li>
+<li>
+<p>Bars.GetHigh(int index) outputs the high for the bars referenced with &lt;index&gt;.</p>
+</li>
+<li>
+<p>Bars.GetLow(int index) outputs the low for the bars referenced with &lt;index&gt;.</p>
+</li>
+<li>
+<p>Bars.GetClose(int index) outputs the close for the bars referenced with &lt;index&gt;.</p>
+</li>
+<li>
+<p>Bars.GetTime(int index) outputs the timestamp for the bars referenced with &lt;index&gt;.</p>
+</li>
+<li>
+<p>Bars.GetVolume(int index) outputs the volume for the bars referenced with &lt;index&gt;.</p>
+</li>
+</ul>
+<p><strong>Caution</strong>: The indexing will deviate from the [<em>Indexing</em>][<em>Bars</em>] normally used.
+Here, the indexing will begin with 0 for the oldest bar (on the left of the chart) and end with the newest bar on the right of the chart (=Bars.Count-1).</p>
+<p>The indexing can easily be recalculated:</p>
+<p>private int Convert(int idx)</p>
+<p>{</p>
+<p>return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));</p>
+<p>}</p>
+<h3 id="parameter_5">Parameter</h3>
+<p>int index (0 .. Bars.Count-1)</p>
+<h3 id="return-value_8">Return Value</h3>
+<p>Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume</p>
+<p>Type DateTime for GetTime</p>
+<h2 id="barsgettime">Bars.GetTime</h2>
+<p>Bars.GetTime(int index) – see [<em>Bars.GetOpen</em>].</p>
+<h2 id="barsgetvolume">Bars.GetVolume</h2>
+<p>Bars.GetVolume(int index) – see [<em>Bars.GetOpen</em>].</p>
+<h2 id="barsinstrument">Bars.Instrument</h2>
+<h3 id="description_10">Description</h3>
+<p>Bars.Instrument outputs an instrument object for the trading instrument displayed within the chart.</p>
+<p>See [<em>Properties</em>] for more information.</p>
+<h3 id="parameter_6">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_9">Return Value</h3>
+<p>Type Instrument</p>
+<h3 id="usage_8">Usage</h3>
+<p>Bars.Instrument</p>
+<h3 id="more-information_7">More Information</h3>
+<p>For more information regarding the trading instruments please see [<em>Instrument</em>].</p>
+<h3 id="example_8">Example</h3>
+<p>// both outputs will provide the same result</p>
+<p><strong>Print</strong>("The currently displayed trading instrument has the symbol: " + Bars.Instrument);</p>
+<p>Instrument i = Bars.Instrument;</p>
+<p><strong>Print</strong>("The currently displayed trading instrument has the symbol " + i.Symbol);</p>
+<h2 id="barsisintraday">Bars.IsIntraDay</h2>
+<p>This function is not yet implemented.</p>
+<p>We are working on this – please bear with us. Thank you for your patience.</p>
+<p><img src=".//media/image2.png" width="240" height="180" /></p>
+<p>TODO</p>
+<h2 id="barspercentcomplete">Bars.PercentComplete</h2>
+<h3 id="description_11">Description</h3>
+<p>Bars.PercentComplete outputs the value that displays what percentage a bar has already completed. A bar with a period of 10 minutes has completed 50% after 5 minutes.</p>
+<p>For non-time-based charts (Kagi, LineBreak, Renko, Range, P&amp;F etc.) this will output 0 during backtesting.</p>
+<h3 id="return-value_10">Return Value</h3>
+<p><strong>double</strong></p>
+<p>A percentage value; 30% will be outputted as 0.3</p>
+<h3 id="usage_9">Usage</h3>
+<p>Bars.PercentComplete</p>
+<h3 id="more-information_8">More Information</h3>
+<p>With [<em>OnBarUpdate()</em>] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnBarUpdate() you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
+<h3 id="example_9">Example</h3>
+<p>// A 60 minute chart is looked at from an intraday perspective</p>
+<p>// every 5 minutes before the current bar closes</p>
+<p>// an acoustic signal shall be played</p>
+<p>// 55 min. equals 92%</p>
+<p><strong>Bool</strong> remind = <strong>false</strong>;</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p><strong>if</strong> (FirstTickOfBar) remind = <strong>true</strong>;</p>
+<p><strong>if</strong> (remind &amp;&amp; Bars.PercentComplete &gt;= 0.92)</p>
+<p>{</p>
+<p>remind = <strong>false</strong>;</p>
+<p><strong>PlaySound</strong>("Alert1");</p>
+<p>}</p>
+<p>}</p>
+<h2 id="barssessionbegin">Bars.SessionBegin</h2>
+<h3 id="description_12">Description</h3>
+<p>Bars.SessionBegin outputs the date and time for the beginning of the current trading session.</p>
+<p>Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.</p>
+<h3 id="parameter_7">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_11">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_10">Usage</h3>
+<p>Bars.GetSessionBegin</p>
+<h3 id="more-information_9">More Information</h3>
+<p>The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [<em>Instrument.Exchange</em>] .</p>
+<p><img src=".//media/image3.png" width="292" height="330" /></p>
+<h3 id="example_10">Example</h3>
+<p><strong>Print</strong>("The currently running trading session started at " + Bars.SessionBegin );</p>
+<h2 id="barssessionend">Bars.SessionEnd</h2>
+<h3 id="description_13">Description</h3>
+<p>Bars.SessionEnd outputs the time for the end of the currently running trading session.
+Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.</p>
+<h3 id="parameter_8">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_12">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_11">Usage</h3>
+<p>Bars.GetSessionEnd</p>
+<h3 id="more-information_10">More Information</h3>
+<p>The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [<em>Instrument.Exchange</em>] function.</p>
+<p><img src=".//media/image4.png" width="292" height="330" /></p>
+<h3 id="example_11">Example</h3>
+<p><strong>Print</strong>("The current trading session will end at " + Bars.SessionEnd);</p>
+<h2 id="barssessionnextbegin">Bars.SessionNextBegin</h2>
+<h3 id="description_14">Description</h3>
+<p>Bars.SessionNextBegin outputs the date and time for the start of the next trading session.
+Date and time for the next session will be correctly outputted when the function is used on a bar in the past.</p>
+<h3 id="parameter_9">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_13">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_12">Usage</h3>
+<p>Bars.GetSessionNextBegin</p>
+<h3 id="more-information_11">More Information</h3>
+<p>The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [<em>Instrument.Exchange</em>] function.</p>
+<p><img src=".//media/image3.png" width="292" height="330" /></p>
+<h3 id="example_12">Example</h3>
+<p><strong>Print</strong>("The next trading session starts at " + Bars.SessionNextBegin);</p>
+<h2 id="barssessionnextend">Bars.SessionNextEnd</h2>
+<h3 id="description_15">Description</h3>
+<p>Bars.SessionNextEnd outputs the date and time for the end of the next session.
+See [<em>Properties</em>] for more information.</p>
+<h3 id="parameter_10">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_14">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_13">Usage</h3>
+<p>Bars.GetSessionNextEnd</p>
+<h3 id="more-information_12">More Information</h3>
+<p>The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [<em>Instrument.Exchange</em>] function.</p>
+<p><img src=".//media/image4.png" width="292" height="330" /></p>
+<h3 id="example_13">Example</h3>
+<p><strong>Print</strong>("The next trading session ends at " + Bars.SessionNextEnd);</p>
+<h2 id="barstickcount">Bars.TickCount</h2>
+<h3 id="description_16">Description</h3>
+<p>Bars.TickCount outputs the total numbers of ticks contained within a bar.</p>
+<p>More information can be found in [<em>Properties</em>] of bars.</p>
+<h3 id="parameter_11">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_15">Return Value</h3>
+<p>Type int</p>
+<h3 id="usage_14">Usage</h3>
+<p>Bars.TickCount</p>
+<h3 id="more-information_13">More Information</h3>
+<p>With [<em>OnBarUpdate()</em>] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
+<h3 id="example_14">Example</h3>
+<p><strong>Print</strong>("The current bar consists of " + Bars.TickCount + " Ticks.");</p>
+<h2 id="barstimeframe">Bars.TimeFrame</h2>
+<h3 id="description_17">Description</h3>
+<p>Bars.TimeFrame outputs the timeframe object containing information regarding the currently used timeframe.</p>
+<p>More information can be found here: [<em>Properties</em>]</p>
+<h3 id="parameter_12">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_16">Return Value</h3>
+<p>Type ITimeFrame</p>
+<h3 id="usage_15">Usage</h3>
+<p>Bars.TimeFrame</p>
+<h3 id="more-information_14">More Information</h3>
+<p>For more information about timeframe objects please see [<em>TimeFrame</em>].</p>
+<p>With [<em>OnBarUpdate()</em>] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnBarUpdate(),you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
+<h3 id="example_15">Example</h3>
+<p>//Usage within a 30 minute chart</p>
+<p>TimeFrame tf = (TimeFrame) Bars.TimeFrame;</p>
+<p><strong>Print</strong>(Bars.TimeFrame); // outputs "30 Min"</p>
+<p><strong>Print</strong>(tf.Periodicity); // outputs "Minute"</p>
+<p><strong>Print</strong>(tf.PeriodicityValue); // outputs "30"</p>
+<h2 id="barstotalticks">Bars.TotalTicks</h2>
+<h3 id="description_18">Description</h3>
+<p>Bars.TotalTicks outputs the total number of ticks from the moment the function is called up.</p>
+<p>More information can be found here: [<em>Properties</em>].</p>
+<h3 id="parameter_13">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_17">Return Value</h3>
+<p>Type int</p>
+<h3 id="usage_16">Usage</h3>
+<p>Bars.TotalTicks</p>
+<h3 id="more-information_15">More Information</h3>
+<p>The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.</p>
+<p>With [<em>OnBarUpdate()</em>] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
+<h3 id="example_16">Example</h3>
+<p><strong>Print</strong>("The total amount of ticks is " + Bars.TotalTicks);</p>
+<h2 id="data-series">Data Series</h2>
+<h3 id="description_19">Description</h3>
+<p>Data series are interpreted as freely usable data storage containers for your programs. Additionally, they an integrated component of AgenaTrader that saves the price changes for individual bars. We will be focusing on the latter function here.
+In the following section, the concept of data series will be explained in detail and understandably. All price data for the individual bars are organized and saved within data series.
+The following are available:</p>
+<p><a href="#Open"><em>Open</em></a> <a href="../Opens"><em>Opens</em></a></p>
+<p><a href="#High"><em>High</em></a> <a href="../Highs"><em>Highs</em></a></p>
+<p><a href="#Low"><em>Low</em></a> <a href="../Lows"><em>Lows</em></a></p>
+<p><a href="#close"><em>Close</em></a> <a href="../Closes"><em>Closes</em></a></p>
+<p><a href="#median"><em>Median</em></a> <a href="../Medians"><em>Medians</em></a></p>
+<p><a href="#Typical"><em>Typical</em></a> <a href="../Typicals"><em>Typicals</em></a></p>
+<p><a href="#Weighted"><em>Weighted</em></a> <a href="../Weighteds"><em>Weighteds</em></a></p>
+<p><a href="#Time"><em>Time</em></a> <a href="../Times"><em>Times</em></a></p>
+<p><a href="#TimeFrame"><em>TimeFrame</em></a> <a href="../TimeFrames"><em>TimeFrames</em></a></p>
+<p><a href="#Volume"><em>Volume</em></a> <a href="../Volumes"><em>Volumes</em></a></p>
+<h2 id="open">Open</h2>
+<h3 id="description_20">Description</h3>
+<p>Open is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DataSeries</em>], in which the historical opening prices are saved.</p>
+<h3 id="parameter_14">Parameter</h3>
+<p>BarsAgo Index Value (see [<em>Bars</em>])</p>
+<h3 id="usage_17">Usage</h3>
+<p>Open</p>
+<p>Open[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_16">More Information</h3>
+<p>The returned value is dependent upon the property of [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_17">Example</h3>
+<p>// Opening price for the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Open[0]);</p>
+<p>// Opening price for the bars of 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Open[5]);</p>
+<p>// Current value for the SMA 14 that is based on the opening prices (rounded)</p>
+<p><strong>Print</strong>("SMA(14) calculated using the opening prices: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Open, 14)[0]));</p>
+<h2 id="opens">Opens</h2>
+<h3 id="description_21">Description</h3>
+<p>Opens is an array of data series that contains all open data series.</p>
+<p>This array is only useful or meaningful for indicators or strategies that use multiple data from multiple timeframes.
+A new entry is entered into the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Opens[0] The open data series of the chart timeframe
+Opens[1] The open data series of all bars in a daily timeframe
+Opens[2] The open data series of all bars in a weekly timeframe</p>
+<p>Opens[0][0] is equivalent to Open[0].</p>
+<p>In addition, please see [<em>MultiBars</em>] for more information.</p>
+<h3 id="parameter_15">Parameter</h3>
+<p>barsAgo Index value for the individual bars within the data series (see [<em>Bars</em>])
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_18">Usage</h3>
+<p>Opens[<strong>int</strong> barSeriesIndex]</p>
+<p>Opens[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_17">More Information</h3>
+<p>The returned value is dependent upon the property of [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_18">Example</h3>
+<p>See example: [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="high">High</h2>
+<h3 id="description_22">Description</h3>
+<p>High is a <em>[DataSerie][</em>Data series<em>]s</em> of the type [<em>DataSeries</em>], in which the historical high prices are saved.</p>
+<h3 id="parameter_16">Parameter</h3>
+<p>barsAgo IndexValue (see [<em>Bars</em>])</p>
+<h3 id="usage_19">Usage</h3>
+<p>High</p>
+<p>High[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_18">More Information</h3>
+<p>The returned value is dependent upon the property of [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_19">Example</h3>
+<p>// High values of the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + High[0]);</p>
+<p>// High values of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + High[5]);</p>
+<p>// the current value for the SMA 14 calculated on the basis of the high prices</p>
+<p><strong>Print</strong>("SMA(14) Calculated using the high prices: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(High, 14)[0]));</p>
+<h2 id="highs">Highs</h2>
+<h3 id="description_23">Description</h3>
+<p>Highs is an array of [<em>DataSeries</em>][1] that contains all high data series.</p>
+<p>This array is only of value for indicators or strategies that use data from multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new time unit is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Highs[0] the high data series of the chart timeframe
+Highs[1] the high data series of all bars in a daily timeframe
+Highs[2] the high data series of all bars in a weekly timeframe</p>
+<p>Highs[0][0] is equivalent to High[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_17">Parameter</h3>
+<p>barsAgo Index value for the individual bars within the data series (see [<em>Bars</em>])
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_20">Usage</h3>
+<p>Highs[<strong>int</strong> barSeriesIndex]</p>
+<p>Highs[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_19">More Information</h3>
+<p>The returned value is dependent upon the property of [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_20">Example</h3>
+<p>Please see examples under [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="low">Low</h2>
+<h3 id="description_24">Description</h3>
+<p>Low is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DataSeries</em>], in which the historical low prices are saved.</p>
+<h3 id="parameter_18">Parameter</h3>
+<p>barsAgo IndexValue (see [<em>Bars</em>])</p>
+<h3 id="usage_21">Usage</h3>
+<p>Low</p>
+<p>Low[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_20">More Information</h3>
+<p>The returned value is dependent upon the property of [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_21">Example</h3>
+<p>// Lowest value of the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Low[0]);</p>
+<p>// Lowest value of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Low[5]);</p>
+<p>// The current value for the SMA 14 calculated on the basis of the low prices (smoothed)</p>
+<p><strong>Print</strong>("SMA(14) calculated using the high prices: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Low, 14)[0]));</p>
+<h2 id="lows">Lows</h2>
+<h3 id="description_25">Description</h3>
+<p>Lows is an array of [<em>DataSeries</em>][1] that contains all [<em>Low</em>] data series.</p>
+<p>This array is only of value to indicators or strategies that use data from multiple time units.</p>
+<p>A new entry is added whenever a new time unit is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Lows[0] the low data series for the chart timeframe
+Lows[1] the low data series for all bars in a daily timeframe
+Lows[2] the low data series for all bars in a weekly timeframe</p>
+<p>Lows[0][0] is equivalent to Low[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_19">Parameter</h3>
+<p>barsAgo Index value for the individual bars within the data series
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_22">Usage</h3>
+<p>Lows[<strong>int</strong> barSeriesIndex]</p>
+<p>Lows[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_21">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_22">Example</h3>
+<p>See example [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="close">Close</h2>
+<h3 id="description_26">Description</h3>
+<p>Close is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DataSeries</em>], in which the historical closing prices are saved.</p>
+<h3 id="parameter_20">Parameter</h3>
+<p>barsAgo Index value (see [<em>Bars</em>])</p>
+<h3 id="usage_23">Usage</h3>
+<p>Close</p>
+<p>Close[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_22">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<p>Indicators are usually calculated using the closing prices.</p>
+<h3 id="example_23">Example</h3>
+<p>// Closing price of the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Close[0]);</p>
+<p>// Closing price of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Close[5]);</p>
+<p>// Current value for the SMA 14 based on the closing prices</p>
+<p><strong>Print</strong>("SMA(14) calculated using the closing prices: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Close, 14)[0]));</p>
+<p>// Close does not need to be mentioned since it is used by default</p>
+<p><strong>Print</strong>("SMA(14) calculated using the closing prices: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(14)[0]));</p>
+<h2 id="closes">Closes</h2>
+<h3 id="description_27">Description</h3>
+<p>Closes is an array of [<em>DataSeries</em>][1] that contains all [<em>Low</em>] data series.</p>
+<p>This array is only of importance to indicators or strategies that use data from multiple time units.</p>
+<p>A new entry is added to the array whenever a timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Closes[0] the close data series of the chart timeframe
+Closes[1] the close data series of all bars in a daily timeframe
+Closes[2] the close data series of all bars in a weekly timeframe</p>
+<p>Closes[0][0] is equivalent to Close[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_21">Parameter</h3>
+<p>barsAgo Index value of the individual bars within the data series
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_24">Usage</h3>
+<p>Closes[<strong>int</strong> barSeriesIndex]</p>
+<p>Closes[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_23">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_24">Example</h3>
+<p>See example [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="median">Median</h2>
+<h3 id="description_28">Description</h3>
+<p>Median is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DataSeries</em>], in which the historical median values are saved.</p>
+<p>The median price of a bar is calculated using (high + low) / 2</p>
+<p>See [<em>Typical</em>] &amp; [<em>Weighted</em>].</p>
+<h3 id="parameter_22">Parameter</h3>
+<p>barsAgo Index value (see [<em>Bars</em>])</p>
+<h3 id="usage_25">Usage</h3>
+<p>Median</p>
+<p>Median[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_24">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<p>Further information about median, typical und weighted:
+[<em>http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html</em>]</p>
+<h3 id="example_25">Example</h3>
+<p>// Median price for the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Median[0]);</p>
+<p>// Median price of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Median[5]);</p>
+<p>// Current value for the SMA 14 calculated using the median prices</p>
+<p><strong>Print</strong>("SMA(14) calculated using the median prices: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Median, 14)[0]));</p>
+<h2 id="medians">Medians</h2>
+<h3 id="description_29">Description</h3>
+<p>Medians is an array of [<em>DataSeries</em>][1] that contains all [<em>Median</em>] data series.</p>
+<p>This array is only of value to indicators or strategies that use data from multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new time frame is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Medians[0] the median data series of the chart timeframe
+Medians[1] the median data series of all bars in a daily timeframe
+Medians[2] the median data series of all bars in a weekly timeframe</p>
+<p>Medians[0][0] is equivalent to Medians[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_23">Parameter</h3>
+<p>barsAgo Index value for the individual bars within a data series
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_26">Usage</h3>
+<p>Medians[<strong>int</strong> barSeriesIndex]</p>
+<p>Medians[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_25">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<p>Further information on median: http://www.investopedia.com/terms/m/median.asp</p>
+<h3 id="example_26">Example</h3>
+<p>See example in [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="typical">Typical</h2>
+<h3 id="description_30">Description</h3>
+<p>Typical is a <em>DataSeries</em> of the type [<em>DataSeries</em>], in which the historical typical values are saved.</p>
+<p>The typical price of a bar is calculated using (high + low + close) / 3.</p>
+<p>See [<em>Median</em>] and [<em>Weighted</em>].</p>
+<h3 id="parameter_24">Parameter</h3>
+<p>barsAgo Index value (see [<em>Bars</em>])</p>
+<h3 id="usage_27">Usage</h3>
+<p>Typical</p>
+<p>Typical[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_26">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<p>Further information on typical: <em>https://technicianapp.com/resources/typical-price/</em></p>
+<p>Example</p>
+<p>// Typical price for the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Typical[0]);</p>
+<p>// Typical price of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Typical[5]);</p>
+<p>// Current value for the SMA 14 calculated using the typical price</p>
+<p><strong>Print</strong>("SMA(14) calculated using the typical price: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Typical, 14)[0]));</p>
+<h2 id="typicals">Typicals</h2>
+<h3 id="description_31">Description</h3>
+<p>Typicals is an array of <em>DataSeries</em> that contains all [<em>Typical</em>] data series.</p>
+<p>This array is only of value to indicators and strategies that make use of multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Typicals[0] the typical data series of the chart timeframe
+Typicals[1] the typical data series of all bars in a daily timeframe
+Typicals[2] the typical data series of all bars in a weekly timeframe</p>
+<p>Typicals[0][0] is equivalent to Typicals[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_25">Parameter</h3>
+<p>barsAgo Index value of the individual bars within a data series
+barSeriesIndex Index value of the various timeframes</p>
+<h3 id="usage_28">Usage</h3>
+<p>Typicals[<strong>int</strong> barSeriesIndex]</p>
+<p>Typicals[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_27">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_27">Example</h3>
+<p>See example [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="weighted">Weighted</h2>
+<h3 id="description_32">Description</h3>
+<p>Weighted is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DataSeries</em>], in which the historical weighted values are saved.</p>
+<p>The weighted price of a bar is calculated using the formula (high + low + 2*close) / 4 and then weighted on the closing price.</p>
+<p>See also [<em>Median</em>] and [<em>Typical</em>].</p>
+<h3 id="parameter_26">Parameter</h3>
+<p>barsAgo Index value (see [<em>Bars</em>])</p>
+<h3 id="usage_29">Usage</h3>
+<p>Weighted</p>
+<p>Weighted[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_28">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<p>Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-points.html</p>
+<h3 id="example_28">Example</h3>
+<p>// Weighted price for the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Weighted[0]);</p>
+<p>// Weighted price of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Weighted[5]);</p>
+<p>// Current value for the SMA 14 using the weighted price</p>
+<p><strong>Print</strong>("SMA(14) calculated using the weighted price: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Weighted, 14)[0]));</p>
+<h2 id="weighteds">Weighteds</h2>
+<h3 id="description_33">Description</h3>
+<p>Weighteds is an array of [<em>DataSeries</em>][1] that contains all [<em>Weighted</em>] data series.</p>
+<p>The array is only of value for indicators and strategies that use data from multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Weighteds[0] the weighted data series of the chart timeframe
+Weighteds[1] the weighted data series of all bars in a daily timeframe
+Weighteds[2] the weighted data series of all bars in a weekly timeframe</p>
+<p>Weighteds[0][0] is equivalent to Weighteds[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_27">Parameter</h3>
+<p>barsAgo Index value of the individual bars within a data series
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_30">Usage</h3>
+<p>Weighteds[<strong>int</strong> barSeriesIndex]</p>
+<p>Weighteds[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_29">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_29">Example</h3>
+<p>See example under [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="time">Time</h2>
+<h3 id="description_34">Description</h3>
+<p>Time is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DateTimeSeries</em>], in which the timestamps of the individual bars are saved.</p>
+<h3 id="parameter_28">Parameter</h3>
+<p>barsAgo Index value (see [<em>Bars</em>])</p>
+<h3 id="usage_31">Usage</h3>
+<p>Time</p>
+<p>Time[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_30">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_30">Example</h3>
+<p>// Timestamp of the current period</p>
+<p><strong>Print</strong>(Time[0]);</p>
+<p>// Timestamp of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5]);</p>
+<h2 id="times">Times</h2>
+<h3 id="description_35">Description</h3>
+<p>Times is an array of <em>DataSeries</em> that contains all [<em>Time</em>] data series.</p>
+<p>This array is only of value to indicators and strategies that make use of multiple timeframes.
+A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Times[0] the time data series of the chart timeframe
+Times[1] the time data series of all bars in a daily timeframe
+Times[2] the time data series of all bars in a weekly timeframe</p>
+<p>Times[0][0] is equivalent to Times[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_29">Parameter</h3>
+<p>barsAgo Index value for the individual bars within a data series
+barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_32">Usage</h3>
+<p>Times[<strong>int</strong> barSeriesIndex]</p>
+<p>Times[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_31">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_31">Example</h3>
+<p>See example [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="volume">Volume</h2>
+<h3 id="description_36">Description</h3>
+<p>Volume is a [<em>DataSeries</em>][<em>Data series</em>] of the type [<em>DataSeries</em>], in which the historical volume information is saved.</p>
+<h3 id="parameter_30">Parameter</h3>
+<p>barsAgo Index value (see [<em>Bars</em>])</p>
+<h3 id="usage_33">Usage</h3>
+<p>Volume</p>
+<p>Volume[<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_32">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<p>The value returned by the [<em>VOL()</em>] indicator is identical with the volume described here;
+for example, Vol()[3] will have the same value as Volume[3].</p>
+<h3 id="example_32">Example</h3>
+<p>// Volume for the current period</p>
+<p><strong>Print</strong>(Time[0] + " " + Volume[0]);</p>
+<p>// Volume of the bar from 5 periods ago</p>
+<p><strong>Print</strong>(Time[5] + " " + Volume[5]);</p>
+<p>// Current value for the SMA 14 calculated using the volume</p>
+<p><strong>Print</strong>("SMA(14) calculated using the volume: " + Instrument.<strong>Round2TickSize</strong>(<strong>SMA</strong>(Volume, 14)[0]));</p>
+<h2 id="volumes">Volumes</h2>
+<h3 id="description_37">Description</h3>
+<p>Volumes is an array of <em>DataSeries</em> that contains all [<em>Volume</em>] data series.</p>
+<p>This array is only of value for indicators or strategies that use data from multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>Volumes[0] the volume data series of the chart timeframe
+Volumes[1] the volume data series of all bars in the daily timeframe
+Volumes[2] the volume data series of all bars in the weekly timeframe</p>
+<p>Volumes[0][0] is equivalent to Volumes[0].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_31">Parameter</h3>
+<p>barsAgo Index value of the individual bars within a data series</p>
+<p>barSeriesIndex Index value of the various timeframes</p>
+<h3 id="usage_34">Usage</h3>
+<p>Volumes[<strong>int</strong> barSeriesIndex]</p>
+<p>Volumes[<strong>int</strong> barSeriesIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_33">More Information</h3>
+<p>The returned value is dependent upon the property [<em>CalculateOnBarClose</em>].</p>
+<h3 id="example_33">Example</h3>
+<p>See example [<em>Multibars</em>][<em>MultiBars</em>].</p>
+<h2 id="instruments">Instruments</h2>
+<p>The term "instrument" denotes a tradable value such as a stock, ETF, future etc.</p>
+<p>An instrument has various properties that can be used in AgenaScripts created by the user:</p>
+<p><a href="#instrumentcompare"><em>Instrument.Compare</em></a></p>
+<p><a href="#instrumentcurrency"><em>Instrument.Currency</em></a></p>
+<p><a href="#instrumentdigits"><em>Instrument.Digits</em></a></p>
+<p><a href="#instrumentetf"><em>Instrument.ETF</em></a></p>
+<p><a href="#instrumentexchange"><em>Instrument.Exchange</em></a></p>
+<p><a href="#instrumentexpiry"><em>Instrument.Expiry</em></a></p>
+<p><a href="#instrumentinstrumenttype"><em>Instrument.InstrumentType</em></a></p>
+<p><a href="#instrumentname"><em>Instrument.Name</em></a></p>
+<p><a href="#instrumentpointvalue"><em>Instrument.PointValue</em></a></p>
+<p><a href="#instrumentround2ticksize"><em>Instrument.Round2TickSize</em></a></p>
+<p><a href="#instrumentsymbol"><em>Instrument.Symbol</em></a></p>
+<p><a href="#instrumentticksize"><em>Instrument.TickSize</em></a></p>
+<p>With the <strong>OnBarUpdate()</strong> method you can use any properties you wish without having to test for a null reference.
+As soon as the <strong>OnBarUpdate()</strong> function is called up by AgenaScript, an object will become available. If you wish to use these properties outside of <strong>OnBarUpdate()</strong>, you should first perform a test for null references using <strong>if</strong> (Bars != <strong>null</strong>)</p>
+<h2 id="instrumentcompare">Instrument.Compare</h2>
+<h3 id="description_38">Description</h3>
+<p>The Instrument.Compare function compares two market prices whilst taking into account the correct number of decimal points. The smallest possible price change is displayed by the value TickSize. This function simplifies the otherwise time-consuming comparison using floating-point operations.</p>
+<h3 id="parameter_32">Parameter</h3>
+<p>double value1
+double value2</p>
+<h3 id="return-value_18">Return value</h3>
+<p>Type int</p>
+<p>1 - Value1 is bigger than value2
+-1 - Value1 is smaller than value2
+0 - Value1 and value2 are equal</p>
+<h3 id="usage_35">Usage</h3>
+<p>Instrument.<strong>Compare</strong>(<strong>double</strong> Value1, <strong>double</strong> Value2)</p>
+<h3 id="more-information_34">More Information</h3>
+<p>If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:</p>
+<p>Compare(2, 1.99999) a 1, meaning 2 is bigger than 1.99999
+Compare(2, 2.000001) a 0, meaning the values are equal
+Compare(2, 1.999999) a 0, meaning the values are equal
+Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001</p>
+<h3 id="example_34">Example</h3>
+<p><strong>Print</strong>(Instrument.<strong>Compare</strong>(2, 1.999999));</p>
+<h2 id="instrumentcurrency">Instrument.Currency</h2>
+<h3 id="description_39">Description</h3>
+<p>Instrument.Currency outputs a currency object that contains the corresponding currency in which the instrument is traded.</p>
+<h3 id="parameter_33">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_19">Return Value</h3>
+<p>A constant of the type “public enum currencies”</p>
+<h3 id="usage_36">Usage</h3>
+<p>Instrument.Currency</p>
+<h3 id="more-information_35">More Information</h3>
+<p>The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.</p>
+<h3 id="example_35">Example</h3>
+<p><strong>Print</strong>(Instrument.Name + " is traded in " + Instrument.Currency</p>
+<h2 id="instrumentdigits">Instrument.Digits</h2>
+<h3 id="description_40">Description</h3>
+<p>Instrument.Digits outputs the number of decimal points in which the market price of the instrument is traded.</p>
+<h3 id="parameter_34">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_20">Return Value</h3>
+<p>int Digits</p>
+<h3 id="usage_37">Usage</h3>
+<p>Instrument.Digits</p>
+<h3 id="more-information_36">More Information</h3>
+<p>Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.</p>
+<p>This function is especially useful when formatting the output of various instruments that need rounding. Also see [<em>TickSize</em>] and [<em>Instrument.Round2Ticks</em>][<em>Instrument.Round2TickSize</em>].</p>
+<p>More information can be found here: [<em>Formatting of Numbers</em>].</p>
+<h3 id="example_36">Example</h3>
+<p><strong>Print</strong>("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");</p>
+<h2 id="instrumentetf">Instrument.ETF</h2>
+<h3 id="description_41">Description</h3>
+<p>Instrument.ETF is used to differentiate between a stock and an ETF. This is necessary since ETFs are considered to be „stocks“ by some exchanges.</p>
+<h3 id="parameter_35">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_21">Return Value</h3>
+<p>Type bool</p>
+<h3 id="usage_38">Usage</h3>
+<p>Instrument.ETF</p>
+<h3 id="more-information_37">More Information</h3>
+<p>What is an ETF?</p>
+<p>Wikipedia: [<em>http://de.wikipedia.org/wiki/Exchange-traded_fund</em>]</p>
+<h3 id="example_37">Example</h3>
+<p><strong>if</strong> (Instrument.InstrumentType == InstrumentType.Stock)</p>
+<p><strong>if</strong> (Instrument.ETF)</p>
+<p><strong>Print</strong>("The value is an ETF.");</p>
+<p><strong>else</strong></p>
+<p><strong>Print</strong>("The value is a stock.");</p>
+<h2 id="instrumentexchange">Instrument.Exchange</h2>
+<h3 id="description_42">Description</h3>
+<p>Instrument.Exchange outputs the description/definition of the current exchange for the current instrument.</p>
+<h3 id="parameter_36">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_22">Return Value</h3>
+<p>An exchange object of the type “public enum exchanges”</p>
+<h3 id="usage_39">Usage</h3>
+<p>Instrument.Exchange</p>
+<h3 id="more-information_38">More Information</h3>
+<p>An overview of various exchange: <em>https://en.wikipedia.org/wiki/List_of_stock_exchanges</em></p>
+<p>Example</p>
+<p><strong>Print</strong>("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");</p>
+<h2 id="instrumentexpiry">Instrument.Expiry</h2>
+<h3 id="description_43">Description</h3>
+<p>Instrument.Expiry outputs the date (month and year) of the expiry of a financial instrument. Only derivative instruments such as options or futures will have an expiry date.</p>
+<h3 id="parameter_37">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_23">Return Value</h3>
+<p>Type DateTime</p>
+<p>For instruments without an expiry date the returned value is set to DateTime.MaxValue(= 31.12.9999 23.59:59)</p>
+<h3 id="usage_40">Usage</h3>
+<p>Instrument.Expiry</p>
+<h3 id="more-information_39">More Information</h3>
+<p>The expiry date (expiry) can also be seen within the Instrument Escort:</p>
+<p><img src=".//media/image5.png" width="564" height="409" /></p>
+<h3 id="example_38">Example</h3>
+<p><strong>Print</strong>("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);</p>
+<h2 id="instrumentinstrumenttype">Instrument.InstrumentType</h2>
+<h3 id="description_44">Description</h3>
+<p>Instrument.InstrumentType outputs a type object of the trading instrument.</p>
+<h3 id="parameter_38">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_24">Return Value</h3>
+<p>Object of the type “public enum instrument”</p>
+<h3 id="usage_41">Usage</h3>
+<p>Instrument.InstrumentType</p>
+<h3 id="more-information_40">More Information</h3>
+<p>Potential values are: future, stock, index, currency, option, CFD and unknown.</p>
+<p>There is no ETF type. ETFs are considered to be of the type “stock” – see [<em>Instrument.ETF</em>].</p>
+<p>The instrument type can also be viewed within the Instrument Escort:</p>
+<p><img src=".//media/image6.png" width="564" height="409" /></p>
+<h3 id="example_39">Example</h3>
+<p><strong>Print</strong>("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);</p>
+<h2 id="instrumentname">Instrument.Name</h2>
+<h3 id="description_45">Description</h3>
+<p>Instrument.Name outputs the name/description of the trading instrument.</p>
+<h3 id="parameter_39">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_25">Return Value</h3>
+<p>Type string</p>
+<h3 id="usage_42">Usage</h3>
+<p>Instrument.Name</p>
+<h3 id="more-information_41">More Information</h3>
+<p>The instrument name can also be seen within the Instrument Escort:</p>
+<p><img src=".//media/image7.png" width="564" height="409" /></p>
+<h3 id="example_40">Example</h3>
+<p><strong>Print</strong>("The currently loaded instrument inside the chart is named " + Instrument.Name);</p>
+<h2 id="instrumentpointvalue">Instrument.PointValue</h2>
+<h3 id="description_46">Description</h3>
+<p>Instrument.PointValue outputs the monetary value for a full point movement of the instrument.</p>
+<h3 id="parameter_40">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_26">Return Value</h3>
+<p>double – point value</p>
+<h3 id="usage_43">Usage</h3>
+<p>Instrument.PointValue</p>
+<h3 id="more-information_42">More Information</h3>
+<p><strong>Example for various point values</strong> (per amount, CFD, futures contract, lot etc.)</p>
+<p>Stock: generally 1.00 Euro or 1.00 USD.
+EUR/USD: 100,000 USD
+DAX future: 25.00 Euro</p>
+<p><strong>Tick Value</strong></p>
+<p>The tick value can be calculated by multiplying the point value with the tick size.</p>
+<p>For example, the E-mini S&amp;P 500 has a point value of $50. The tick size equals 0.25. This means that there are 4 ticks in one full point for the E-mini S&amp;P 500.
+Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.</p>
+<p>The point value can also be viewed within the Instrument Escort:</p>
+<p><img src=".//media/image8.png" width="564" height="409" /></p>
+<h3 id="example_41">Example</h3>
+<p><strong>Print</strong>("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);</p>
+<h2 id="instrumentround2ticksize">Instrument.Round2TickSize</h2>
+<h3 id="description_47">Description</h3>
+<p>The function Instrument.Round2TickSize rounds the supplied market price to the smallest value divisible by the tick size of the instrument.</p>
+<h3 id="parameter_41">Parameter</h3>
+<p>double – market value</p>
+<h3 id="return-value_27">Return value</h3>
+<p>double</p>
+<h3 id="usage_44">Usage</h3>
+<p>Instrument.<strong>Round2TickSize</strong>(<strong>double</strong> MarketPrice)</p>
+<h3 id="more-information_43">More Information</h3>
+<p>The number of decimal places to which the price is rounded depends on the instrument.
+If, for example, an instrument is a stock, then the rounding will be performed to 2 decimal places. For a Forex instrument, it may be carried out to 4 or 5 decimal places.</p>
+<p>See [<em>TickSize</em>] and [<em>Instrument.Digits</em>].</p>
+<p>Example of professional [<em>Formatting</em>][<em>Formatting of Numbers</em>].</p>
+<h3 id="example_42">Example</h3>
+<p><strong>double</strong> Price = 12.3456789;</p>
+<p><strong>Print</strong>(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.<strong>Round2TickSize</strong>(Price));</p>
+<h2 id="instrumentsymbol">Instrument.Symbol</h2>
+<h3 id="description_48">Description</h3>
+<p>Instrument.Symbol outputs the symbol that identifies the trading instrument within AgenaTrader. Depending on the symbol, the mappings for the various data feed providers and brokers will be managed in different ways.</p>
+<h3 id="parameter_42">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_28">Return value</h3>
+<p>Type string</p>
+<h3 id="usage_45">Usage</h3>
+<p>Instrument.Symbol</p>
+<h3 id="more-information_44">More Information</h3>
+<p>By using symbols, identical stocks being traded on different exchanges can be identified and separated from each other. The symbol BMW.DE is the BMW stock on the XETRA exchange. BMW.CFG is the CFD for the BMW stock.</p>
+<p>The instrument symbol can also be viewed within the Instrument Escort:</p>
+<p><img src=".//media/image9.png" width="564" height="409" /></p>
+<h3 id="example_43">Example</h3>
+<p><strong>Print</strong>("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);</p>
+<h2 id="instrumentticksize">Instrument.TickSize</h2>
+<h3 id="description_49">Description</h3>
+<p>The tick size is the smallest measurable unit that a financial instrument can move. This is usually called 1 tick.</p>
+<h3 id="parameter_43">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_29">Return Value</h3>
+<p>double</p>
+<h3 id="usage_46">Usage</h3>
+<p>Instrument.TickSize or simply TickSize</p>
+<h3 id="more-information_45">More Information</h3>
+<p>The keyword [<em>TickSize</em>] is equivalent to Instrument.TickSize. Both information requests will produce the same value and are thus interchangeable.</p>
+<h3 id="example_44">Example</h3>
+<p>Stock: 0.01
+ES future: 0.25
+EUR/USD: 0.00001</p>
+<p>See [<em>Instrument.PointValue</em>] and [<em>Instrument.Digits</em>].</p>
+<p>Examples of professional [<em>Formatting</em>][<em>Formatting of Numbers</em>].</p>
+<h3 id="example_45">Example</h3>
+<p><strong>Print</strong>("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");</p>
+<h2 id="collections">Collections</h2>
+<h2 id="drawobjects">DrawObjects</h2>
+<h3 id="description_50">Description</h3>
+<p>DrawObjects is a collection containing all drawing objects within the chart. The property hold all drawings which were generated by the script.
+The index for DrawObjects is the explicit name for the drawing object (string tag).</p>
+<h3 id="usage_47">Usage</h3>
+<p>DrawObjects [string tag]</p>
+<p>Example
+<strong>
+Note:</strong> To be able to use the interface definitions you must use the using method.</p>
+<p><strong>using</strong> AgenaTrader.Plugins;</p>
+<p>// Output number of drawing objects within the chart and their tags</p>
+<p><strong>Print</strong>("The chart contains " + DrawObjects.Count + " drawing objects.");</p>
+<p><strong>for each</strong> (IDrawObject draw <strong>in</strong> DrawObjects) <strong>Print</strong>(draw.Tag);</p>
+<p>//Draw a black trend line...</p>
+<p><strong>DrawLine</strong>("MyLine", <strong>true</strong>, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 3);</p>
+<p>// ... and change the color to red</p>
+<p>ITrendLine line = (ITrendLine) DrawObjects["MyLine"];</p>
+<p><strong>if</strong> (line != <strong>null</strong>) line.Pen.Color = Color.Red;</p>
+<p>// Set all lines within the chart to a line strength of 3,</p>
+<p>// and lock it so that it cannot be edited or moved</p>
+<p><strong>foreach</strong> (IDrawObject draw <strong>in</strong> DrawObjects)</p>
+<p><strong>if</strong> (draw <strong>is</strong> IVerticalLine)</p>
+<p>{</p>
+<p>IVerticalLine vline = (IVerticalLine) draw;</p>
+<p>vline.Locked = <strong>true</strong>;</p>
+<p>vline.Editable = <strong>false</strong>;</p>
+<p>vline.Pen.Width = 3;</p>
+<p>}</p>
+<h2 id="input">Input</h2>
+<h3 id="description_51">Description</h3>
+<p>Input is a [<em>DataSeries</em>] object in which the input data for an indicator or strategy is stored.</p>
+<p>If the indicator is used without any explicit instructions for the input data, then the closing price for the current market prices will be used.</p>
+<p>When calling up the SMA(20) the smoothing average is calculated on the basis of the closing prices for the current chart price data (this is equivalent to SMA(close,20).</p>
+<p>Input[0] = Close[0].</p>
+<p>When calling up the SMA(high, 20) the high price values are loaded and used for the calculation of the smoothing average.</p>
+<p>Input[0] = High[0].</p>
+<p>This way you can select which data series should be used for the calculation of the indicator.</p>
+<p><strong>double</strong> d = <strong>RSI</strong>(<strong>SMA</strong>(20), 14, 3)[0]; calculates the 14 period RSI using the SMA(20) as the input data series.
+Input[0] = SMA(20)[0].</p>
+<h3 id="usage_48">Usage</h3>
+<p>Input</p>
+<p>Input[<strong>int</strong> barsAgo]</p>
+<h3 id="example_46">Example</h3>
+<p><strong>Print</strong>("The input data for the indicators are " + Input[0]);</p>
+<h2 id="lines">Lines</h2>
+<h3 id="description_52">Description</h3>
+<p>Lines is a collection that contains all [<em>Line</em>] objects of an indicator.</p>
+<p>When a line object is added to the indicator using the [<em>Add()</em>] method, this line is automatically added to the “lines” collection.</p>
+<p>The order of the add commands determines how these lines are sorted. The first information request of Add() will create Lines[0], the next information request will be Lines[1] etc.</p>
+<p>See [<em>Plots</em>].</p>
+<h3 id="usage_49">Usage</h3>
+<p>Lines[<strong>int</strong> index]</p>
+<h3 id="example_47">Example</h3>
+<p>// Add "using System.Drawing.Drawing2D;" for DashStyle</p>
+<p><strong>protected</strong> override void <strong>Initialize()</strong></p>
+<p>{</p>
+<p><strong>Add</strong>(<strong>new Line</strong>(Color.Blue, 70, "Upper")); // saves into Lines[0]</p>
+<p><strong>Add</strong>(<strong>new Line</strong>(Color.Blue, 30, "Lower")); // saves into Lines[1]</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p>// When the RSI is above 70, properties of the lines will be changed</p>
+<p><strong>if</strong> (<strong>RSI</strong>(14 ,3) &gt;= 70)</p>
+<p>{</p>
+<blockquote>
+<p>Lines[0].Width = 3;</p>
+<p>Lines[0].Color = Color.Red;</p>
+<p>Lines[0].DashStyle = DashStyle.Dot;</p>
+</blockquote>
+<p>}</p>
+<p><strong>else</strong></p>
+<p>{</p>
+<blockquote>
+<p>Lines[0].Width = 1;</p>
+<p>Lines[0].Color = Color.Blue;</p>
+<p>Lines[0].DashStyle = DashStyle.Solid;</p>
+</blockquote>
+<p>}</p>
+<p>}</p>
+<h2 id="plotcolors">PlotColors</h2>
+<h3 id="description_53">Description</h3>
+<p>PlotColors is a collection that contains all color series of all plot objects.</p>
+<p>When a plot is added using the [<em>Add()</em>] method it automatically creates a color series object and is added to the PlotColors collection.</p>
+<p>The order of the add commands determines how the plot colors are sorted. The first information request of Add() will create PlotColors[0], the following information request will create PlotColors[1] etc.</p>
+<h3 id="usage_50">Usage</h3>
+<p>PlotColors[<strong>int</strong> PlotIndex][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_46">More Information</h3>
+<p>More information regarding the collection class:
+[<em>http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx</em>]</p>
+<h3 id="example_48">Example</h3>
+<p><strong>using</strong> System;</p>
+<p><strong>using</strong> System.Collections.Generic;</p>
+<p><strong>using</strong> System.ComponentModel;</p>
+<p><strong>using</strong> System.Drawing;</p>
+<p><strong>using</strong> AgenaTrader.API;</p>
+<p><strong>namespace</strong> AgenaTrader.UserCode</p>
+<p>{</p>
+<p>[<strong>Description</strong>("PlotColor Demo")]</p>
+<p><strong>public</strong> class PlotColorsDemo : UserIndicator</p>
+<p>{</p>
+<p><strong>public</strong> DataSeries SMA20 { get {return Values[0];} }</p>
+<p><strong>public</strong> DataSeries SMA50 { get {return Values[1];} }</p>
+<p><strong>public</strong> DataSeries SMA100 { get {return Values[2];} }</p>
+<p><strong>private</strong> Pen pen;</p>
+<p><strong>protected</strong> override void <strong>Initialize()</strong></p>
+<p>{</p>
+<p>// Set line strength (width) to 4</p>
+<p>pen = <strong>new Pen</strong>(Color.Empty, 4);</p>
+<p>// Add three plots with the defined line strength to the chart</p>
+<p><strong>Add</strong>(<strong>new Plot</strong>(pen, PlotStyle.Line, "SMA20" )); //attached to PlotColors[0]</p>
+<p><strong>Add</strong>(<strong>new Plot</strong>(pen, PlotStyle.Line, "SMA50" )); //attached to PlotColors[1]</p>
+<p><strong>Add</strong>(<strong>new Plot</strong>(pen, PlotStyle.Line, "SMA100")); //attached to PlotColors[2]</p>
+<p>Overlay = <strong>true</strong>;</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p>// Add values to the three plots</p>
+<p>SMA20.<strong>Set</strong> (<strong>SMA</strong>(20) [0]);</p>
+<p>SMA50.<strong>Set</strong> (<strong>SMA</strong>(50) [0]);</p>
+<p>SMA100.<strong>Set</strong>(<strong>SMA</strong>(100)[0]);</p>
+<p>// Change colors depending on the trend</p>
+<p><strong>if</strong> (<strong>Rising</strong>(Close))</p>
+<p>{</p>
+<p>PlotColors[0][0] = Color.LightGreen;</p>
+<p>PlotColors[1][0] = Color.Green;</p>
+<p>PlotColors[2][0] = Color.DarkGreen;</p>
+<p>}</p>
+<p><strong>else if</strong> (<strong>Falling</strong>(Close))</p>
+<p>{</p>
+<p>PlotColors[0][0] = Color.LightSalmon;</p>
+<p>PlotColors[1][0] = Color.Red;</p>
+<p>PlotColors[2][0] = Color.DarkRed;</p>
+<p>}</p>
+<p><strong>else</strong></p>
+<p>{</p>
+<p>PlotColors[0][0] = Color.LightGray;</p>
+<p>PlotColors[1][0] = Color.Gray;</p>
+<p>PlotColors[2][0] = Color.DarkGray;</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<h2 id="plots">Plots</h2>
+<h3 id="description_54">Description</h3>
+<p>Plots is a collection that contains the plot objects of an indicator.</p>
+<p>When a plot object is added to an indicator using the Add() method, it is also automatically added to the “plots” collection.</p>
+<p>The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots[0], the following information request will create Plots[1] etc.</p>
+<p>See [<em>Lines</em>].</p>
+<h3 id="usage_51">Usage</h3>
+<p>Plots[<strong>int</strong> index]</p>
+<h3 id="example_49">Example</h3>
+<p><strong>protected</strong> override void <strong>Initialize()</strong></p>
+<p>{</p>
+<p><strong>Add</strong>(<strong>new Plot</strong>(Color.Blue, "MySMA 20")); // saved to Plots[0]</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p>Value.<strong>Set</strong>(<strong>SMA</strong>(20)[0]);</p>
+<p>// If the market price is above the SMA colorize it green, otherwise red</p>
+<p><strong>if</strong> (Close[0] &gt; <strong>SMA</strong>(20)[0])</p>
+<blockquote>
+<p>Plots[0].PlotColor = Color.Green;</p>
+</blockquote>
+<p><strong>else</strong></p>
+<blockquote>
+<p>Plots[0].PlotColor = Color.Red;</p>
+</blockquote>
+<p>}</p>
+<h2 id="values">Values</h2>
+<h3 id="description_55">Description</h3>
+<p>Values is a collection that contains the data series objects of an indicator.</p>
+<p>When a plot is added to an indicator using the Add() method, a value object is automatically created and added to the “values” collection.</p>
+<p>The order of the add commands determines how the values are sorted. The first information request will create Values[0], the next information request will create Values[1] etc.</p>
+<p><strong>Value</strong> is always identical to Values[0].</p>
+<h3 id="usage_52">Usage</h3>
+<p>Values[<strong>int</strong> index]</p>
+<p>Values[<strong>int</strong> index][<strong>int</strong> barsAgo]</p>
+<h3 id="more-information_47">More Information</h3>
+<p>The methods known for a collection, Set() Reset() and Count(), are applicable for values.</p>
+<p>Information on the class collection:
+[<em>http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx</em>]</p>
+<h3 id="example_50">Example</h3>
+<p>// Check the second indicator value of one bar ago and set the value of the current indicator value based on it.</p>
+<p><strong>if</strong> (Values[1][1] &lt; High[0] - Low[0])</p>
+<p>Value.<strong>Set</strong>(High[0] - Low[0]);</p>
+<p><strong>else</strong></p>
+<p>Value.<strong>Set</strong>(High[0] - Close[0]);</p>
+<h2 id="multibars">Multibars</h2>
+<h3 id="description_56">Description</h3>
+<p>An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
+The same method applies for your self-programmed indicators. A 5 minute chart will call up the [<em>OnBarUpdate()</em>] for each 5 minute bar.
+If you want your self-created indicator to use a different timeframe, this is possible using multibars.</p>
+<h3 id="example_51">Example</h3>
+<p><strong>using</strong> System;</p>
+<p><strong>using</strong> System.Collections.Generic;</p>
+<p><strong>using</strong> System.ComponentModel;</p>
+<p><strong>using</strong> System.Drawing;</p>
+<p><strong>using</strong> System.Linq;</p>
+<p><strong>using</strong> System.Xml;</p>
+<p><strong>using</strong> System.Xml.Serialization;</p>
+<p><strong>using</strong> AgenaTrader.API;</p>
+<p><strong>using</strong> AgenaTrader.Custom;</p>
+<p><strong>using</strong> AgenaTrader.Plugins;</p>
+<p><strong>using</strong> AgenaTrader.Helper;</p>
+<p><strong>namespace</strong> AgenaTrader.UserCode</p>
+<p>{</p>
+<p>[<strong>Description</strong>("Multibar Demo")]</p>
+<p>// The indicator requires daily and weekly data</p>
+<p>[<strong>TimeFrameRequirements</strong>("1 Day", "1 Week")]</p>
+<p><strong>public</strong> class MultiBarDemo : UserIndicator</p>
+<p>{</p>
+<p><strong>protected</strong> override void <strong>InitRequirements()</strong></p>
+<blockquote>
+<p>{</p>
+<p><strong>Add</strong>(DatafeedHistoryPeriodicity.Day, 1);</p>
+<p><strong>Add</strong>(DatafeedHistoryPeriodicity.Week, 1);</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>Initialize()</strong></p>
+</blockquote>
+<p>{</p>
+<p>CalculateOnBarClose = <strong>true</strong>;</p>
+<p>}</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p>// The current value for the SMA 14 in a daily timeframe</p>
+<p><strong>Print</strong>(<strong>SMA</strong>(Closes[1], 14)[0]);</p>
+<p>// Current value for the SMA 14 in a weekly timeframe</p>
+<p><strong>Print</strong>(<strong>SMA</strong>(Closes[2], 14)[0]);</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<h3 id="additional-notes">Additional Notes</h3>
+<p>When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [<em>Opens</em>], [<em>Highs</em>], [<em>Lows</em>], [<em>Closes</em>], [<em>Medians</em>], [<em>Typicals</em>], [<em>Weighteds</em>], [<em>Times</em>] and [<em>Volumes</em>]. The indexing will occur in the order of the addition of the new timeframes.
+Closes[0][0] is equivalent to Close[0].
+Closes[1][0] equals the current closing price for the daily data series
+Closes[2][0] equals the current closing price for the weekly data series</p>
+<p>"Closes" is, of course, interchangeable with Opens, Highs, Lows etc.</p>
+<p>See [<em>CurrentBars</em>], [<em>BarsInProgress</em>], [<em>TimeFrames</em>], [<em>TimeFrameRequirements</em>].</p>
+<p>Additional syntax methods are available for multibars:</p>
+<p>// Declare the variable TF_DAY and define it</p>
+<p><strong>private</strong> static readonly TimeFrame TF_Day = <strong>new TimeFrame</strong>(DatafeedHistoryPeriodicity.Day, 1);</p>
+<p><strong>private</strong> static readonly TimeFrame TF_Week = <strong>new TimeFrame</strong>(DatafeedHistoryPeriodicity.Week, 1);</p>
+<p>// The following instruction is identical to double d = Closes[1][0];</p>
+<p><strong>double</strong> d = MultiBars.<strong>GetBarsItem</strong>(TF_Day).Close[0];</p>
+<p>// The following instruction is identical to double w = Closes[2][0];</p>
+<p><strong>double</strong> w = MultiBars.<strong>GetBarsItem</strong>(TF_Week).Close[0];</p>
+<h2 id="currentbars">CurrentBars</h2>
+<h3 id="description_57">Description</h3>
+<p>CurrentBars is an array of int values that contains the number of <em>[CurrentBar]s</em> for each bar.</p>
+<p>This array is only of value for indicators or strategies that use data from multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>CurrentBars[0] Current bar for the primary data series (chart timeframe)
+CurrentBars[1] Current bar for the daily bars
+CurrentBars[2] Current bar for the weekly bars</p>
+<p>CurrentBars[0] is equivalent to [<em>CurrentBar</em>][CurrentBar].</p>
+<p>Also see [<em>MultiBars</em>].</p>
+<h3 id="parameter_44">Parameter</h3>
+<p>barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_53">Usage</h3>
+<p>CurrentBars[<strong>int</strong> barSeriesIndex]</p>
+<h3 id="example_52">Example</h3>
+<p>//Ensure that a minimum of 20 bars is loaded</p>
+<p><strong>for</strong> (<strong>int</strong> i=0; i&lt;CurrentBars.Count; i++)</p>
+<p><strong>if</strong> (CurrentBars[i] &lt; 20) return;</p>
+<h2 id="barsinprogress">BarsInProgress</h2>
+<h3 id="description_58">Description</h3>
+<p>Within a multibars script, multiple bars objects are available. The OnBarUpdate() method
+will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the BarsInProgress method.</p>
+<p>BarsInProgress is only of value for indicators or strategies that use data from multiple timeframes.
+With <strong>[TimeFrameRequirements("1 Day", "1 Week")]</strong> two timeframes will be added to the primary chart timeframe.</p>
+<p>If OnBarUpdate() is called up by the primary data series, then BarsInProgress will equal zero. If OnBarUpdate() is called up by the daily bars, then BarsInProgress will equal 1. Weekly bars will have a value of 2.</p>
+<p>See [<em>Multibars</em>][<em>MultiBars</em>] and [<em>CurrentBars</em>].</p>
+<h3 id="parameter_45">Parameter</h3>
+<p>none</p>
+<h3 id="usage_54">Usage</h3>
+<p>BarsInProgress</p>
+<h3 id="more-information_48">More Information</h3>
+<p>Within a script that only works with primary timeframes, the value will always equal zero.</p>
+<h3 id="example_53">Example</h3>
+<p>// To demonstrate the methodology</p>
+<p>// set CalculateOnBarClose=false</p>
+<p><strong>Print</strong>(Time[0] + " " + BarsInProgress);</p>
+<p>// Calculate only for the chart timeframe</p>
+<p><strong>protected</strong> override void <strong>OnBarUpdate()</strong></p>
+<p>{</p>
+<p><strong>if</strong> (BarsInProgress &gt; 0) return;</p>
+<p>// Logic for the primary data series</p>
+<p>}</p>
+<h2 id="timeframes">TimeFrames</h2>
+<h3 id="description_59">Description</h3>
+<p>TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.</p>
+<p>This array is only of value for indicators or strategies that use data from multiple timeframes.</p>
+<p>A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.</p>
+<p>With <strong>[TimeFrameRequirements(("1 Day"), ("1 Week"))]</strong> the array will contain 3 entries:</p>
+<p>TimeFrames [0] Timeframe of the primary data series (chart timeframe)
+TimeFrames [1] <strong>Print</strong>(TimeFrames[1]); // returns "1 Day"
+TimeFrames [2] <strong>Print</strong>(TimeFrames[2]); // returns "1 Week"</p>
+<p>TimeFrames [0] is equivalent to [<em>TimeFrame</em>].</p>
+<p>See [<em>MultiBars</em>].</p>
+<h3 id="parameter_46">Parameter</h3>
+<p>barSeriesIndex Index value for the various timeframes</p>
+<h3 id="usage_55">Usage</h3>
+<p>TimeFrames [<strong>int</strong> barSeriesIndex]</p>
+<h3 id="example_54">Example</h3>
+<p><strong>if</strong> (BarsInProgress == 0 &amp;&amp; CurrentBar == 0)</p>
+<p><strong>for</strong> (<strong>int</strong> i = BarsArray.Count-1; i &gt;= 0; i--)</p>
+<blockquote>
+<p><strong>Print</strong>("The Indicator " + <strong>this</strong>.Name + " uses Bars of the Timeframe " + TimeFrames[i]);</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../events/" class="btn btn-neutral float-right" title="Events">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Lets start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../events/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
