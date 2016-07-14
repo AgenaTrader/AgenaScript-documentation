@@ -2100,32 +2100,32 @@ TraceOrders = true;
 <h3 id="example_34">Example</h3>
 <pre><code class="cs">protected override void OnTermination()
 {
-if (Performance.AllTrades.Count &lt; 1) return;
-foreach (ITrade trade in Performance.AllTrades)
-{
-Print(&quot;Trade \#&quot;+trade.Id);
-Print(&quot;--------------------------------------------&quot;);
-Print(&quot;Average price &quot; + trade.AvgPrice);
-Print(&quot;Realized P/L &quot; + trade.ClosedProfitLoss);
-Print(&quot;Commissions &quot; + trade.Commission);
-Print(&quot;Time of entry &quot; + trade.CreatedDateTime);
-Print(&quot;Entry reason &quot; + trade.EntryReason);
-Print(&quot;Time of exit &quot; + trade.ExitDateTime);
-Print(&quot;Exit price &quot; + trade.ExitPrice);
-Print(&quot;Exit reason &quot; + trade.ExitReason);
-Print(&quot;Instrument &quot; + trade.Instrument);
-Print(&quot;Positioning &quot; + trade.MarketPosition);
-Print(&quot;Unrealized P/L &quot; + trade.OpenProfitLoss);
-Print(&quot;P/L (currency) &quot; + trade.ProfitCurrency);
-Print(&quot;P/L &quot; + trade.ProfitLoss);
-Print(&quot;P/L (in percent) &quot; + trade.ProfitPercent);
-Print(&quot;P/L (% with commission)&quot; + trade.ProfitPercentWithCommission);
-Print(&quot;PL (in points) &quot; + trade.ProfitPoints);
-Print(&quot;Quantity &quot; + trade.Quantity);
-Print(&quot;Timeframe &quot; + trade.TimeFrame);
-Print(&quot;URL for the snapshot &quot; + trade.Url);
-Print(&quot;&quot;);
-}
+  if (Performance.AllTrades.Count &lt; 1) return;
+  foreach (ITrade trade in Performance.AllTrades)
+  {
+    Print(&quot;Trade #&quot;+trade.Id);
+    Print(&quot;--------------------------------------------&quot;);
+    Print(&quot;Average price &quot; + trade.AvgPrice);
+    Print(&quot;Realized P/L &quot; + trade.ClosedProfitLoss);
+    Print(&quot;Commissions &quot; + trade.Commission);
+    Print(&quot;Time of entry &quot; + trade.CreatedDateTime);
+    Print(&quot;Entry reason &quot; + trade.EntryReason);
+    Print(&quot;Time of exit &quot; + trade.ExitDateTime);
+    Print(&quot;Exit price &quot; + trade.ExitPrice);
+    Print(&quot;Exit reason &quot; + trade.ExitReason);
+    Print(&quot;Instrument &quot; + trade.Instrument);
+    Print(&quot;Positioning &quot; + trade.MarketPosition);
+    Print(&quot;Unrealized P/L &quot; + trade.OpenProfitLoss);
+    Print(&quot;P/L (currency) &quot; + trade.ProfitCurrency);
+    Print(&quot;P/L &quot; + trade.ProfitLoss);
+    Print(&quot;P/L (in percent) &quot; + trade.ProfitPercent);
+    Print(&quot;P/L (% with commission)&quot; + trade.ProfitPercentWithCommission);
+    Print(&quot;PL (in points) &quot; + trade.ProfitPoints);
+    Print(&quot;Quantity &quot; + trade.Quantity);
+    Print(&quot;Timeframe &quot; + trade.TimeFrame);
+    Print(&quot;URL for the snapshot &quot; + trade.Url);
+    Print(&quot;&quot;);
+  }
 }
 </code></pre>
 
@@ -2144,67 +2144,56 @@ Print(&quot;&quot;);
 <p>See [<em>Performance</em>].</p>
 <p>The individual factors are:</p>
 <ul>
-<li>
-<p><strong>AvgEtd</strong>
+<li><strong>AvgEtd</strong>
     The average drawdown at the end of a trade
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgEtd
-    <strong>Print</strong>("Average ETD of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgEtd);</p>
-</li>
-<li>
-<p><strong>AvgMae</strong>
+    <code>cs
+    Print("Average ETD of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgEtd);</code></li>
+<li><strong>AvgMae</strong>
     Average maximum adverse excursion
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgMae
-    <strong>Print</strong>("Average MAE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMae);</p>
-</li>
-<li>
-<p><strong>AvgMfe</strong>
+    <code>cs
+    Print("Average MAE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMae);</code></li>
+<li><strong>AvgMfe</strong>
     Average maximum favorable excursion
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgMfe
-    <strong>Print</strong>("Average MFE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMfe);</p>
-</li>
-<li>
-<p><strong>AvgProfit</strong>
+    <code>cs
+    Print("Average MFE of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgMfe);</code></li>
+<li><strong>AvgProfit</strong>
     Average profit for all trades
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.AvgProfit
-    <strong>Print</strong>("Average profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgProfit);</p>
-</li>
-<li>
-<p><strong>CumProfit</strong>
+    <code>cs
+    Print("Average profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.AvgProfit);</code></li>
+<li><strong>CumProfit</strong>
     The cumulative winnings over all trades
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.CumProfit
-    <strong>Print</strong>("Average cumulative profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.CumProfit);</p>
-</li>
-<li>
-<p><strong>DrawDown</strong>
+    <code>cs
+    Print("Average cumulative profit of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.CumProfit);</code></li>
+<li><strong>DrawDown</strong>
     The drawdown for all trades
-    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.DrawDown
-    <strong>Print</strong>("Drawdown of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.DrawDown);</p>
-</li>
-<li>
-<p><strong>LargestLoser</strong>
+    &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.DrawDow
+    <code>cs
+    Print("Drawdown of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.DrawDown);</code></li>
+<li><strong>LargestLoser</strong>
     The largest losing trade
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.LargestLoser
-    <strong>Print</strong>("Largest loss of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestLoser);</p>
-</li>
-<li>
-<p><strong>LargestWinner</strong>
+    <code>cs
+    Print("Largest loss of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestLoser);</code></li>
+<li><strong>LargestWinner</strong>
     The largest winning trade
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.LargestWinner
-    <strong>Print</strong>("Largest win of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestWinner);</p>
-</li>
-<li>
-<p><strong>ProfitPerMonth</strong>
+    <code>cs
+    Print("Largest win of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.LargestWinner);</code></li>
+<li><strong>ProfitPerMonth</strong>
     The total performance (wins/losses) for the month (also in percent)
     &lt;TradeCollection&gt;.TradesPerformance.&lt;TradesPerformanceValues&gt;.ProfitPerMonth
-    <strong>Print</strong>("Profit per month of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.ProfitPerMonth);</p>
-</li>
-<li>
-<p><strong>StdDev</strong>
-    The standard deviation for the wins/losses. With this, you are able to identify outliers. The smaller the standard deviation, the higher the expectation of winnings.</p>
-</li>
+    <code>cs
+    Print("Profit per month of all trades is: " + Performance.AllTrades.TradesPerformance.Currency.ProfitPerMonth);</code></li>
+<li><strong>StdDev</strong>
+    The standard deviation for the wins/losses. With this, you are able to identify outliers. The smaller the standard deviation, the higher the expectation of winnings.</li>
 </ul>
 <p><strong>All factors are double values.</strong></p>
-<p><img src="../media/image10.png" width="629" height="478" /></p>
+<p><img src="./media/image10.png" width="629" height="478" /></p>
               
             </div>
           </div>
