@@ -12,9 +12,7 @@ Further detailed information can be found using the appropriate shortcuts:
 
 
 ##Bars (Candles)
-
 ### Functionality
-
 A classical indicator calculates one or multiple values using an existing data series.
 
 Data series can be anything from closing prices to daily lows or values of an hourly period etc.
@@ -44,9 +42,7 @@ In this case the currently running bar will have the value 0, the bar next to th
 With close \[0\] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high \[0\], low \[0\]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open \[0\] value will not change.
 
 ## Properties of Bars
-
 ### Properties of Bars
-
 "Bars" represents a list of all bars (candles) within a chart (see [*Functionality*][*Bars*]).
 
 Bars (**public** IBars Bars) can be used directly in a script and equates to BarsArray \[0\] (see Bars.GetNextBeginEnd for more information).
@@ -105,54 +101,43 @@ With the **OnBarUpdate()** method you can use any properties you want without ha
 As soon as the function **OnBarUpdate()** is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate()** then you should first perform a test for null references using **if** (Bars != **null**).
 
 ## BarsSinceSession
-
 ### Description
-
 Bars.BarsSinceSession outputs the amount of bars that have occurred since the beginning of the current trading session.
 
 See further [*Properties*] of bars.
 
 ### Return Value
-
 Type int Amount of Bars
 
 A value of -1 indicates a problem with referencing the correct session beginning.
 
 ### Usage
-
 Bars.BarsSinceSession
 
 ### Further Information
-
 Within *OnBarUpdate()* this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnBarUpdate() then you should test for a null reference before executing it. You can test using *if* (Bars!= *null*) .
 
 ### Example
-
 ```cs
 Print ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
 ```
 
 
 ## Bars.Count
-
 ### Description
-
 Bars.Count gives you the amount of bars in a data series.
 
 See [*Properties*] for additional information.
 
 ### Return Value
-
 Type int Amount of Bars
 
 ### Usage
-
 Bars.Count
 
 ### More Information
-
 The value of *CurrentBar* can only be lesser than or equal to Bars.Count - 1
 
 When you specify how many bars are to be loaded within AgenaTrader, then the value of Bars.Count is equal to this setting. In the following example, Bars.Count would give back a value of 500.
@@ -160,38 +145,31 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 <img src="./media/image1.png" width="296" height="363" />
 
 ### Example
-
 ```cs
 Print ("There are a total of” + Bars.Count + “bars available.");
 ```
 
 
 ## Bars.FirstBarOfSession
-
 ### Description
-
 With Bars.FirstBarOfSession you can determine whether the current bar is the first bar of the trading session.
 
 See [*Properties*] of bars for more information.
 
 ### Return Value
-
 Type bool
 
 **true**: The bar is the first bar of the current trading session
 **false**: The bar is not the first bar of the current trading session
 
 ### Usage
-
 Bars.FirstBarOfSession
 
 ### More Information
-
 With *OnBarUpdate()* this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up, an object will become available.
 If this property is called up outside of OnBarUpdate() you should test for a null reference using if (Bars != null).
 
 ### Example
-
 ```cs
 if (Bars.FirstBarOfSession)
 Print ("The current trading session started at” + Time [0]);
@@ -199,58 +177,47 @@ Print ("The current trading session started at” + Time [0]);
 
 
 ## Bars.GetBar
-
 ### Description
-
 Bars.GetBar outputs the first bars (from oldest to newest) that correspond to the specified date/time.
 
 See [*Bars.GetBarsAgo*], [*Bars.GetByIndex*], [*Bars.GetIndex*].
 
 ### Parameter
-
 Type DateTime
 
 ### Return Value
-
 Type IBar Bar Object, for the bars corresponding to the timestamp
 
 For a timestamp older than the oldest bar: 0 (null)
 For a timestamp younger than the newest bar: index of the last bar
 
 ### Usage
-
 ```cs
 Bars.GetBar(DateTime time)
 ```
 
 
 ### More Information
-
 For the indexing of bars please see [*Functionality*][*Bars*]
 
 For more information about using DateTime see [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
 
 ### Example
-
 ```cs
 Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new DateTime(2012, 01, 03, 18, 0, 0)).Close);
 ```
 
 
 ## Bars.GetBarsAgo
-
 ### Description
-
 Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.
 
 See: [*Bars.GetBar*], [*Bars.GetByIndex*], [*Bars.GetIndex*].
 
 ### Parameter
-
 Type DateTime
 
 ### Return Value
-
 Type int Index of the bar that corresponds to the timestamp
 
 With a timestamp older than the oldest bar: 0 (null)
@@ -263,40 +230,32 @@ Bars.GetBarsAgo(DateTime time)
 
 
 ### More Information
-
 For more information about indexing please see [*Functionality*][*Bars*]
 
 For more information about using DateTime see [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
 
 ### Example
-
 ```cs
 Print("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.GetBarsAgo(new DateTime(2012, 01, 03, 18, 0, 0)));
 ```
 
 
 ## Bars.GetClose
-
 Bars.GetClose(int index) – see [*Bars.GetOpen*].
 
 ## Bars.GetHigh
-
 Bars.GetHigh(int index) – see [*Bars.GetOpen*].
 
 ## Bars.GetByIndex
-
 ### Description
-
 Bars.GetByIndex outputs the index for the specified bar object
 
 See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetIndex*](#barsgetindex).
 
 ### Parameter
-
 Type int Index
 
 ### Return Value
-
 Type IBar Bar object for the specified index
 
 ### Usage
@@ -306,36 +265,29 @@ Bars.GetByIndex (int Index)
 
 
 ### More Information
-
 For indexing of bars see [*Functionality*][*Bars*](#bars)
 
 ### Example
-
 ```cs
 Print(Close[0] + " and " + Bars.GetByIndex(CurrentBar).Close + " are equal in this example.");
 ```
 
 
 ## Bars.GetIndex
-
 ### Description
-
 Bars.GetIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
 
 See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex).
 
 ### Parameter
-
 Type IBar bar
 or
 Type DateTime
 
 ### Return Value
-
 Type int The bar index of the specified bar object or DateTime object
 
 ### Usage
-
 ```cs
 Bars.GetIndex (IBar bar)
 Bars.GetIndex (DateTime dt)
@@ -343,11 +295,9 @@ Bars.GetIndex (DateTime dt)
 
 
 ### More Information
-
 For more information about indexing see [*Functionality*][*Bars*]
 
 ### Example
-
 ```cs
 int barsAgo = 5;
 IBar bar = Bars.GetBar(Time[barsAgo]);
@@ -356,19 +306,15 @@ Print(barsAgo + " and " + Bars.GetIndex(bar) + " are equal in this example.");
 
 
 ## Bars.GetLow
-
 Bars.GetLow(int index) – see [*Bars.GetOpen*].
 
 ## Bars.GetNextBeginEnd
-
 ### Description
-
 Bars.GetNextBeginEnd outputs the date and time for the beginning and end of a trading session.
 
 See [*Bars.SessionBegin*](#barssessionbegin), [*Bars.SessionEnd*](#barssessionend), [*Bars.SessionNextBegin*](#barssessionnextbegin), [*Bars.SessionNextEnd*](#barssessionnextend).
 
 ### Parameter
-
 |          |         |                                                                                            |
 |----------|---------|--------------------------------------------------------------------------------------------|
 | DateTime | time    | Date or time for which the data of the following trading session will be scanned/searched. |
@@ -376,7 +322,6 @@ See [*Bars.SessionBegin*](#barssessionbegin), [*Bars.SessionEnd*](#barssessionen
 | int      | barsago | Number of days in the past for which the data will be searched/scanned.                    |
 
 ### Return Value
-
 DateTime session begin
 DateTime session end
 
@@ -384,7 +329,6 @@ DateTime session end
 The date for the beginning and the end of a trading session are connected components. If the specified date corresponds to the end date of the current trading session then the returned value for the beginning of a trading session may already be in the past. In this case the date for the following trading session cannot be returned.
 
 ### Usage
-
 ```cs
 Bars.GetNextBeginEnd(Bars bars, int barsAgo, out DateTime sessionBegin, out DateTime sessionEnd)
 Bars.GetNextBeginEnd(DateTime time, out DateTime sessionBegin, out DateTime sessionEnd)
@@ -392,7 +336,6 @@ Bars.GetNextBeginEnd(DateTime time, out DateTime sessionBegin, out DateTime sess
 
 
 ### More Information
-
 The two signatures will not necessarily output the same result.
 When using the bar signature, the supplied bar will be inspected for its session template association. The beginning and end of the next session will be taken from this template.
 
@@ -414,17 +357,13 @@ Print("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
 ```
 
 ## Bars.GetSessionDate
-
 ### Description
-
 Bars.GetSessionDate provides the date and the time of the start of a particular trading session.
 
 The date and time for the start of the current trading session are also displayed correctly even if the function is used on a bar in the past.
 
 ## Bars.GetOpen
-
 ### Description
-
 For reasons of compatibility, the following methods are available.
 
 - Bars.GetOpen(int index) outputs the open for the bars referenced with &lt;index&gt;.
@@ -446,45 +385,35 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 ```
 
 ### Parameter
-
 int index (0 .. Bars.Count-1)
 
 ### Return Value
-
 Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume
 
 Type DateTime for GetTime
 
 ## Bars.GetTime
-
 Bars.GetTime(int index) – see [*Bars.GetOpen*].
 
 ## Bars.GetVolume
-
 Bars.GetVolume(int index) – see [*Bars.GetOpen*].
 
 ## Bars.Instrument
-
 ### Description
-
 Bars.Instrument outputs an instrument object for the trading instrument displayed within the chart.
 
 See [*Properties*] for more information.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type Instrument
 
 ### Usage
-
 Bars.Instrument
 
 ### More Information
-
 For more information regarding the trading instruments please see [*Instrument*].
 
 ### Example
@@ -496,7 +425,6 @@ Print("The currently displayed trading instrument has the symbol " + i.Symbol);
 ```
 
 ## Bars.IsIntraDay
-
 This function is not yet implemented.
 
 We are working on this – please bear with us. Thank you for your patience.
@@ -506,25 +434,20 @@ We are working on this – please bear with us. Thank you for your patience.
 TODO
 
 ## Bars.PercentComplete
-
 ### Description
-
 Bars.PercentComplete outputs the value that displays what percentage a bar has already completed. A bar with a period of 10 minutes has completed 50% after 5 minutes.
 
 For non-time-based charts (Kagi, LineBreak, Renko, Range, P&F etc.) this will output 0 during backtesting.
 
 ### Return Value
-
 **double**
 
 A percentage value; 30% will be outputted as 0.3
 
 ### Usage
-
 Bars.PercentComplete
 
 ### More Information
-
 With [*OnBarUpdate()*] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnBarUpdate() you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
@@ -549,27 +472,21 @@ PlaySound("Alert1");
 
 
 ## Bars.SessionBegin
-
 ### Description
-
 Bars.SessionBegin outputs the date and time for the beginning of the current trading session.
 
 Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type DateTime
 
 ### Usage
-
 Bars.GetSessionBegin
 
 ### More Information
-
 The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*] .
 
 <img src="./media/image3.png" width="292" height="330" />
@@ -580,26 +497,20 @@ Print("The currently running trading session started at " + Bars.SessionBegin );
 ```
 
 ## Bars.SessionEnd
-
 ### Description
-
 Bars.SessionEnd outputs the time for the end of the currently running trading session.
 Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type DateTime
 
 ### Usage
-
 Bars.GetSessionEnd
 
 ### More Information
-
 The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*] function.
 
 <img src="./media/image4.png" width="292" height="330" />
@@ -610,26 +521,20 @@ Print("The current trading session will end at " + Bars.SessionEnd);
 ```
 
 ## Bars.SessionNextBegin
-
 ### Description
-
 Bars.SessionNextBegin outputs the date and time for the start of the next trading session.
 Date and time for the next session will be correctly outputted when the function is used on a bar in the past.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type DateTime
 
 ### Usage
-
 Bars.GetSessionNextBegin
 
 ### More Information
-
 The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*] function.
 
 <img src="./media/image3.png" width="292" height="330" />
@@ -640,26 +545,20 @@ Print("The next trading session starts at " + Bars.SessionNextBegin);
 ```
 
 ## Bars.SessionNextEnd
-
 ### Description
-
 Bars.SessionNextEnd outputs the date and time for the end of the next session.
 See [*Properties*] for more information.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type DateTime
 
 ### Usage
-
 Bars.GetSessionNextEnd
 
 ### More Information
-
 The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*] function.
 
 <img src="./media/image4.png" width="292" height="330" />
@@ -670,27 +569,21 @@ Print("The next trading session ends at " + Bars.SessionNextEnd);
 ```
 
 ## Bars.TickCount
-
 ### Description
-
 Bars.TickCount outputs the total numbers of ticks contained within a bar.
 
 More information can be found in [*Properties*] of bars.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type int
 
 ### Usage
-
 Bars.TickCount
 
 ### More Information
-
 With [*OnBarUpdate()*] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
@@ -701,27 +594,21 @@ Print("The current bar consists of " + Bars.TickCount + " Ticks.");
 ```
 
 ## Bars.TimeFrame
-
 ### Description
-
 Bars.TimeFrame outputs the timeframe object containing information regarding the currently used timeframe.
 
 More information can be found here: [*Properties*]
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type ITimeFrame
 
 ### Usage
-
 Bars.TimeFrame
 
 ### More Information
-
 For more information about timeframe objects please see [*TimeFrame*].
 
 With [*OnBarUpdate()*] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
@@ -729,7 +616,6 @@ With [*OnBarUpdate()*] this property can be used without having to test for a nu
 If this property is used outside of OnBarUpdate(),you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
 ### Example
-
 ```cs
 //Usage within a 30 minute chart
 TimeFrame tf = (TimeFrame) Bars.TimeFrame;
@@ -740,27 +626,21 @@ Print(tf.PeriodicityValue); // outputs "30"
 
 
 ## Bars.TotalTicks
-
 ### Description
-
 Bars.TotalTicks outputs the total number of ticks from the moment the function is called up.
 
 More information can be found here: [*Properties*].
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type int
 
 ### Usage
-
 Bars.TotalTicks
 
 ### More Information
-
 The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.
 
 With [*OnBarUpdate()*] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
@@ -768,13 +648,10 @@ With [*OnBarUpdate()*] this property can be used without having to test for a nu
 If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
 ### Example
-
 **Print**("The total amount of ticks is " + Bars.TotalTicks);
 
 ## Data Series
-
 ### Description
-
 Data series are interpreted as freely usable data storage containers for your programs. Additionally, they an integrated component of AgenaTrader that saves the price changes for individual bars. We will be focusing on the latter function here.
 In the following section, the concept of data series will be explained in detail and understandably. All price data for the individual bars are organized and saved within data series.
 The following are available:
@@ -800,28 +677,22 @@ The following are available:
 [*Volume*](#Volume) [*Volumes*](Volumes)
 
 ## Open
-
 ### Description
-
 Open is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical opening prices are saved.
 
 ### Parameter
-
 BarsAgo Index Value (see [*Bars*])
 
 ### Usage
-
 ```cs
 Open
 Open[int barsAgo]
 ```
 
 ### More Information
-
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
-
 ```cs
 // Opening price for the current period
 Print(Time[0] + " " + Open[0]);
@@ -833,9 +704,7 @@ Print("SMA(14) calculated using the opening prices: " + Instrument.Round2TickSiz
 
 
 ## Opens
-
 ### Description
-
 Opens is an array of data series that contains all open data series.
 
 This array is only useful or meaningful for indicators or strategies that use multiple data from multiple timeframes.
@@ -852,12 +721,10 @@ Opens\[0\]\[0\] is equivalent to Open\[0\].
 In addition, please see [*MultiBars*] for more information.
 
 ### Parameter
-
 barsAgo Index value for the individual bars within the data series (see [*Bars*])
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 Opens[int barSeriesIndex]
 Opens[int barSeriesIndex][int barsAgo]
@@ -865,21 +732,16 @@ Opens[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
-
 See example: [*Multibars*][*MultiBars*].
 
 ## High
-
 ### Description
-
 High is a *[DataSerie][*Data series*]s* of the type [*DataSeries*], in which the historical high prices are saved.
 
 ### Parameter
-
 barsAgo IndexValue (see [*Bars*])
 
 ### Usage
@@ -890,11 +752,9 @@ High[int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
-
 ```cs
 // High values of the current period
 Print(Time[0] + " " + High[0]);
@@ -906,9 +766,7 @@ Print("SMA(14) Calculated using the high prices: " + Instrument.Round2TickSize(S
 
 
 ## Highs
-
 ### Description
-
 Highs is an array of [*DataSeries*][1] that contains all high data series.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
@@ -926,12 +784,10 @@ Highs\[0\]\[0\] is equivalent to High\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value for the individual bars within the data series (see [*Bars*])
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 Highs[int barSeriesIndex]
 Highs[int barSeriesIndex][int barsAgo]
@@ -939,25 +795,19 @@ Highs[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
-
 Please see examples under [*Multibars*][*MultiBars*].
 
 ## Low
-
 ### Description
-
 Low is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical low prices are saved.
 
 ### Parameter
-
 barsAgo IndexValue (see [*Bars*])
 
 ### Usage
-
 ```cs
 Low
 Low[int barsAgo]
@@ -965,11 +815,9 @@ Low[int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ### Example
-
 ```cs
 // Lowest value of the current period
 Print(Time[0] + " " + Low[0]);
@@ -981,9 +829,7 @@ Print("SMA(14) calculated using the high prices: " + Instrument.Round2TickSize(S
 
 
 ## Lows
-
 ### Description
-
 Lows is an array of [*DataSeries*][1] that contains all [*Low*] data series.
 
 This array is only of value to indicators or strategies that use data from multiple time units.
@@ -1001,12 +847,10 @@ Lows\[0\]\[0\] is equivalent to Low\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value for the individual bars within the data series
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 Lows[int barSeriesIndex]
 Lows[int barSeriesIndex][int barsAgo]
@@ -1014,25 +858,19 @@ Lows[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 See example [*Multibars*][*MultiBars*].
 
 ## Close
-
 ### Description
-
 Close is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical closing prices are saved.
 
 ### Parameter
-
 barsAgo Index value (see [*Bars*])
 
 ### Usage
-
 ```cs
 Close
 Close[int barsAgo]
@@ -1040,13 +878,11 @@ Close[int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 Indicators are usually calculated using the closing prices.
 
 ### Example
-
 ```cs
 // Closing price of the current period
 Print(Time[0] + " " + Close[0]);
@@ -1060,9 +896,7 @@ Print("SMA(14) calculated using the closing prices: " + Instrument.Round2TickSiz
 
 
 ## Closes
-
 ### Description
-
 Closes is an array of [*DataSeries*][1] that contains all [*Low*] data series.
 
 This array is only of importance to indicators or strategies that use data from multiple time units.
@@ -1080,7 +914,6 @@ Closes\[0\]\[0\] is equivalent to Close\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value of the individual bars within the data series
 barSeriesIndex Index value for the various timeframes
 
@@ -1092,17 +925,13 @@ Closes[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 See example [*Multibars*][*MultiBars*].
 
 ## Median
-
 ### Description
-
 Median is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical median values are saved.
 
 The median price of a bar is calculated using (high + low) / 2
@@ -1110,11 +939,9 @@ The median price of a bar is calculated using (high + low) / 2
 See [*Typical*] & [*Weighted*].
 
 ### Parameter
-
 barsAgo Index value (see [*Bars*])
 
 ### Usage
-
 ```cs
 Median
 Median[int barsAgo]
@@ -1122,14 +949,12 @@ Median[int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 Further information about median, typical und weighted:
 [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*]
 
 ### Example
-
 ```cs
 // Median price for the current period
 Print(Time[0] + " " + Median[0]);
@@ -1141,9 +966,7 @@ Print("SMA(14) calculated using the median prices: " + Instrument.Round2TickSize
 
 
 ## Medians
-
 ### Description
-
 Medians is an array of [*DataSeries*][1] that contains all [*Median*] data series.
 
 This array is only of value to indicators or strategies that use data from multiple timeframes.
@@ -1161,12 +984,10 @@ Medians\[0\]\[0\] is equivalent to Medians\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value for the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 Medians[int barSeriesIndex]
 Medians[int barSeriesIndex][int barsAgo]
@@ -1174,19 +995,15 @@ Medians[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 Further information on median: http://www.investopedia.com/terms/m/median.asp
 
 ### Example
-
 See example in [*Multibars*][*MultiBars*].
 
 ## Typical
-
 ### Description
-
 Typical is a *DataSeries* of the type [*DataSeries*], in which the historical typical values are saved.
 
 The typical price of a bar is calculated using (high + low + close) / 3.
@@ -1194,11 +1011,9 @@ The typical price of a bar is calculated using (high + low + close) / 3.
 See [*Median*] and [*Weighted*].
 
 ### Parameter
-
 barsAgo Index value (see [*Bars*])
 
 ### Usage
-
 ```cs
 Typical
 Typical[int barsAgo]
@@ -1206,13 +1021,11 @@ Typical[int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 Further information on typical: *https://technicianapp.com/resources/typical-price/*
 
 ### Example
-
 ```cs
 // Typical price for the current period
 Print(Time[0] + " " + Typical[0]);
@@ -1224,9 +1037,7 @@ Print("SMA(14) calculated using the typical price: " + Instrument.Round2TickSize
 
 
 ## Typicals
-
 ### Description
-
 Typicals is an array of *DataSeries* that contains all [*Typical*] data series.
 
 This array is only of value to indicators and strategies that make use of multiple timeframes.
@@ -1244,12 +1055,10 @@ Typicals\[0\]\[0\] is equivalent to Typicals\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value of the individual bars within a data series
 barSeriesIndex Index value of the various timeframes
 
 ### Usage
-
 ```cs
 Typicals[int barSeriesIndex]
 Typicals[int barSeriesIndex][int barsAgo]
@@ -1257,17 +1066,13 @@ Typicals[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 See example [*Multibars*][*MultiBars*].
 
 ## Weighted
-
 ### Description
-
 Weighted is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical weighted values are saved.
 
 The weighted price of a bar is calculated using the formula (high + low + 2*close) / 4 and then weighted on the closing price.
@@ -1275,26 +1080,21 @@ The weighted price of a bar is calculated using the formula (high + low + 2*clos
 See also [*Median*] and [*Typical*].
 
 ### Parameter
-
 barsAgo Index value (see [*Bars*])
 
 ### Usage
-
 ## Weighted
-
 ```cs
 Weighted[int barsAgo]
 ```
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-points.html
 
 ### Example
-
 ```cs
 // Weighted price for the current period
 Print(Time[0] + " " + Weighted[0]);
@@ -1306,9 +1106,7 @@ Print("SMA(14) calculated using the weighted price: " + Instrument.Round2TickSiz
 
 
 ## Weighteds
-
 ### Description
-
 Weighteds is an array of [*DataSeries*][1] that contains all [*Weighted*] data series.
 
 The array is only of value for indicators and strategies that use data from multiple timeframes.
@@ -1326,12 +1124,10 @@ Weighteds\[0\]\[0\] is equivalent to Weighteds\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value of the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 Weighteds[int barSeriesIndex]
 Weighteds[int barSeriesIndex][int barsAgo]
@@ -1339,25 +1135,19 @@ Weighteds[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 See example under [*Multibars*][*MultiBars*].
 
 ## Time
-
 ### Description
-
 Time is a [*DataSeries*][*Data series*] of the type [*DateTimeSeries*], in which the timestamps of the individual bars are saved.
 
 ### Parameter
-
 barsAgo Index value (see [*Bars*])
 
 ### Usage
-
 ```cs
 Time
 Time[int barsAgo]
@@ -1365,11 +1155,9 @@ Time[int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 ```cs
 // Timestamp of the current period
 Print(Time[0]);
@@ -1379,9 +1167,7 @@ Print(Time[5]);
 
 
 ## Times
-
 ### Description
-
 Times is an array of *DataSeries* that contains all [*Time*] data series.
 
 This array is only of value to indicators and strategies that make use of multiple timeframes.
@@ -1398,7 +1184,6 @@ Times\[0\]\[0\] is equivalent to Times\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value for the individual bars within a data series
 barSeriesIndex Index value for the various timeframes
 
@@ -1410,38 +1195,30 @@ Times[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 See example [*Multibars*][*MultiBars*].
 
 ## Volume
-
 ### Description
-
 Volume is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical volume information is saved.
 
 ### Parameter
-
 barsAgo Index value (see [*Bars*])
 
 ### Usage
-
 Volume
 
 Volume\[**int** barsAgo\]
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 The value returned by the [*VOL()*] indicator is identical with the volume described here;
 for example, Vol()\[3\] will have the same value as Volume\[3\].
 
 ### Example
-
 ```cs
 // Volume for the current period
 Print(Time[0] + " " + Volume[0]);
@@ -1453,9 +1230,7 @@ Print("SMA(14) calculated using the volume: " + Instrument.Round2TickSize(SMA(Vo
 
 
 ## Volumes
-
 ### Description
-
 Volumes is an array of *DataSeries* that contains all [*Volume*] data series.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
@@ -1473,13 +1248,11 @@ Volumes\[0\]\[0\] is equivalent to Volumes\[0\].
 See [*MultiBars*].
 
 ### Parameter
-
 barsAgo Index value of the individual bars within a data series
 
 barSeriesIndex Index value of the various timeframes
 
 ### Usage
-
 ```cs
 Volumes[int barSeriesIndex]
 Volumes[int barSeriesIndex][int barsAgo]
@@ -1487,15 +1260,12 @@ Volumes[int barSeriesIndex][int barsAgo]
 
 
 ### More Information
-
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ### Example
-
 See example [*Multibars*][*MultiBars*].
 
 ##Instruments
-
 The term "instrument" denotes a tradable value such as a stock, ETF, future etc.
 
 An instrument has various properties that can be used in AgenaScripts created by the user:
@@ -1528,18 +1298,14 @@ With the **OnBarUpdate()** method you can use any properties you wish without ha
 As soon as the **OnBarUpdate()** function is called up by AgenaScript, an object will become available. If you wish to use these properties outside of **OnBarUpdate()**, you should first perform a test for null references using **if** (Bars != **null**)
 
 ## Instrument.Compare
-
 ### Description
-
 The Instrument.Compare function compares two market prices whilst taking into account the correct number of decimal points. The smallest possible price change is displayed by the value TickSize. This function simplifies the otherwise time-consuming comparison using floating-point operations.
 
 ### Parameter
-
 double value1
 double value2
 
 ### Return value
-
 Type int
 
 1 - Value1 is bigger than value2
@@ -1553,7 +1319,6 @@ Instrument.Compare(double Value1, double Value2)
 
 
 ### More Information
-
 If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:
 
 Compare(2, 1.99999) a 1, meaning 2 is bigger than 1.99999
@@ -1568,25 +1333,19 @@ Print(Instrument.Compare(2, 1.999999));
 
 
 ## Instrument.Currency
-
 ### Description
-
 Instrument.Currency outputs a currency object that contains the corresponding currency in which the instrument is traded.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 A constant of the type “public enum currencies”
 
 ### Usage
-
 Instrument.Currency
 
 ### More Information
-
 The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.
 
 ### Example
@@ -1596,25 +1355,19 @@ Print(Instrument.Name + " is traded in " + Instrument.Currency);
 
 
 ## Instrument.Digits
-
 ### Description
-
 Instrument.Digits outputs the number of decimal points in which the market price of the instrument is traded.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 int Digits
 
 ### Usage
-
 Instrument.Digits
 
 ### More Information
-
 Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.
 
 This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*] and [*Instrument.Round2Ticks*][*Instrument.Round2TickSize*].
@@ -1622,32 +1375,25 @@ This function is especially useful when formatting the output of various instrum
 More information can be found here: [*Formatting of Numbers*].
 
 ### Example
-
 ```cs
 Print("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
 ```
 
 
 ## Instrument.ETF
-
 ### Description
-
 Instrument.ETF is used to differentiate between a stock and an ETF. This is necessary since ETFs are considered to be „stocks“ by some exchanges.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 Type bool
 
 ### Usage
-
 Instrument.ETF
 
 ### More Information
-
 What is an ETF?
 
 Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]
@@ -1663,87 +1409,67 @@ Print("The value is a stock.");
 
 
 ## Instrument.Exchange
-
 ### Description
-
 Instrument.Exchange outputs the description/definition of the current exchange for the current instrument.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 An exchange object of the type “public enum exchanges”
 
 ### Usage
-
 Instrument.Exchange
 
 ### More Information
-
 An overview of various exchange: *https://en.wikipedia.org/wiki/List\_of\_stock\_exchanges*
 
 ### Example
-
 ```cs
 Print("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
 ```
 
 
 ## Instrument.Expiry
-
 ### Description
-
 Instrument.Expiry outputs the date (month and year) of the expiry of a financial instrument. Only derivative instruments such as options or futures will have an expiry date.
 
 ### Parameter
-
 None
 
 ### Return Value
-
 Type DateTime
 
 For instruments without an expiry date the returned value is set to DateTime.MaxValue(= 31.12.9999 23.59:59)
 
 ### Usage
-
 Instrument.Expiry
 
 ### More Information
-
 The expiry date (expiry) can also be seen within the Instrument Escort:
 
 <img src="./media/image5.png" width="564" height="409" />
 
 ### Example
-
 ```cs
 Print("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
 ```
 
 
 ## Instrument.InstrumentType
-
 ### Description
-
 Instrument.InstrumentType outputs a type object of the trading instrument.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 Object of the type “public enum instrument”
 
 ### Usage
-
 Instrument.InstrumentType
 
 ### More Information
-
 Potential values are: future, stock, index, currency, option, CFD and unknown.
 
 There is no ETF type. ETFs are considered to be of the type “stock” – see [*Instrument.ETF*].
@@ -1753,63 +1479,49 @@ The instrument type can also be viewed within the Instrument Escort:
 <img src="./media/image6.png" width="564" height="409" />
 
 ### Example
-
 ```cs
 Print("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
 ```
 
 
 ## Instrument.Name
-
 ### Description
-
 Instrument.Name outputs the name/description of the trading instrument.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 Type string
 
 ### Usage
-
 Instrument.Name
 
 ### More Information
-
 The instrument name can also be seen within the Instrument Escort:
 
 <img src="./media/image7.png" width="564" height="409" />
 
 ### Example
-
 ```cs
 Print("The currently loaded instrument inside the chart is named " + Instrument.Name);
 ```
 
 
 ## Instrument.PointValue
-
 ### Description
-
 Instrument.PointValue outputs the monetary value for a full point movement of the instrument.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 double – point value
 
 ### Usage
-
 Instrument.PointValue
 
 ### More Information
-
 **Example for various point values** (per amount, CFD, futures contract, lot etc.)
 
 Stock: generally 1.00 Euro or 1.00 USD.
@@ -1828,35 +1540,28 @@ The point value can also be viewed within the Instrument Escort:
 <img src="./media/image8.png" width="564" height="409" />
 
 ### Example
-
 ```cs
 Print("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
 ```
 
 
 ## Instrument.Round2TickSize
-
 ### Description
-
 The function Instrument.Round2TickSize rounds the supplied market price to the smallest value divisible by the tick size of the instrument.
 
 ### Parameter
-
 double – market value
 
 ### Return value
-
 double
 
 ### Usage
-
 ```cs
 Instrument.Round2TickSize(double MarketPrice)
 ```
 
 
 ### More Information
-
 The number of decimal places to which the price is rounded depends on the instrument.
 If, for example, an instrument is a stock, then the rounding will be performed to 2 decimal places. For a Forex instrument, it may be carried out to 4 or 5 decimal places.
 
@@ -1865,7 +1570,6 @@ See [*TickSize*] and [*Instrument.Digits*].
 Example of professional [*Formatting*][*Formatting of Numbers*].
 
 ### Example
-
 ```cs
 double Price = 12.3456789;
 Print(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.Round2TickSize(Price));
@@ -1873,25 +1577,19 @@ Print(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrum
 
 
 ## Instrument.Symbol
-
 ### Description
-
 Instrument.Symbol outputs the symbol that identifies the trading instrument within AgenaTrader. Depending on the symbol, the mappings for the various data feed providers and brokers will be managed in different ways.
 
 ### Parameter
-
 none
 
 ### Return value
-
 Type string
 
 ### Usage
-
 Instrument.Symbol
 
 ### More Information
-
 By using symbols, identical stocks being traded on different exchanges can be identified and separated from each other. The symbol BMW.DE is the BMW stock on the XETRA exchange. BMW.CFG is the CFD for the BMW stock.
 
 The instrument symbol can also be viewed within the Instrument Escort:
@@ -1899,36 +1597,28 @@ The instrument symbol can also be viewed within the Instrument Escort:
 <img src="./media/image9.png" width="564" height="409" />
 
 ### Example
-
 ```cs
 Print("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
 ```
 
 
 ## Instrument.TickSize
-
 ### Description
-
 The tick size is the smallest measurable unit that a financial instrument can move. This is usually called 1 tick.
 
 ### Parameter
-
 none
 
 ### Return Value
-
 double
 
 ### Usage
-
 Instrument.TickSize or simply TickSize
 
 ### More Information
-
 The keyword [*TickSize*] is equivalent to Instrument.TickSize. Both information requests will produce the same value and are thus interchangeable.
 
 ### Example
-
 Stock: 0.01
 ES future: 0.25
 EUR/USD: 0.00001
@@ -1944,16 +1634,12 @@ Print("The value of " + Instrument.Name + " can change for a minimum of " + Inst
 
 
 ## Collections
-
 ## DrawObjects
-
 ### Description
-
 DrawObjects is a collection containing all drawing objects within the chart. The property hold all drawings which were generated by the script.
 The index for DrawObjects is the explicit name for the drawing object (string tag).
 
 ### Usage
-
 DrawObjects \[string tag\]
 
 ### Example
@@ -1982,9 +1668,7 @@ vline.Pen.Width = 3;
 
 
 ## Input
-
 ### Description
-
 Input is a [*DataSeries*] object in which the input data for an indicator or strategy is stored.
 
 If the indicator is used without any explicit instructions for the input data, then the closing price for the current market prices will be used.
@@ -2003,7 +1687,6 @@ This way you can select which data series should be used for the calculation of 
 Input\[0\] = SMA(20)\[0\].
 
 ### Usage
-
 ```cs
 Input
 Input[int barsAgo]
@@ -2017,9 +1700,7 @@ Print("The input data for the indicators are " + Input[0]);
 
 
 ## Lines
-
 ### Description
-
 Lines is a collection that contains all [*Line*] objects of an indicator.
 
 When a line object is added to the indicator using the [*Add()*] method, this line is automatically added to the “lines” collection.
@@ -2029,7 +1710,6 @@ The order of the add commands determines how these lines are sorted. The first i
 See [*Plots*].
 
 ### Usage
-
 ```cs
 Lines[int index]
 ```
@@ -2063,9 +1743,7 @@ Lines[0].DashStyle = DashStyle.Solid;
 
 
 ## PlotColors
-
 ### Description
-
 PlotColors is a collection that contains all color series of all plot objects.
 
 When a plot is added using the [*Add()*] method it automatically creates a color series object and is added to the PlotColors collection.
@@ -2073,14 +1751,12 @@ When a plot is added using the [*Add()*] method it automatically creates a color
 The order of the add commands determines how the plot colors are sorted. The first information request of Add() will create PlotColors\[0\], the following information request will create PlotColors\[1\] etc.
 
 ### Usage
-
 ```cs
 PlotColors[int PlotIndex][int barsAgo]
 ```
 
 
 ### More Information
-
 More information regarding the collection class:
 [*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*]
 
@@ -2142,9 +1818,7 @@ PlotColors[2][0] = Color.DarkGray;
 
 
 ## Plots
-
 ### Description
-
 Plots is a collection that contains the plot objects of an indicator.
 
 When a plot object is added to an indicator using the Add() method, it is also automatically added to the “plots” collection.
@@ -2154,7 +1828,6 @@ The order of the add commands determines how the plots are sorted. The first Add
 See [*Lines*].
 
 ### Usage
-
 ```cs
 Plots[int index]
 ```
@@ -2179,9 +1852,7 @@ else
 
 
 ## Values
-
 ### Description
-
 Values is a collection that contains the data series objects of an indicator.
 
 When a plot is added to an indicator using the Add() method, a value object is automatically created and added to the “values” collection.
@@ -2191,7 +1862,6 @@ The order of the add commands determines how the values are sorted. The first in
 **Value** is always identical to Values\[0\].
 
 ### Usage
-
 ```cs
 Values[int index]
 Values[int index][int barsAgo]
@@ -2199,14 +1869,12 @@ Values[int index][int barsAgo]
 
 
 ### More Information
-
 The methods known for a collection, Set() Reset() and Count(), are applicable for values.
 
 Information on the class collection:
 [*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*]
 
 ### Example
-
 ```cs
 // Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
 if (Values[1][1] < High[0] - Low[0])
@@ -2217,9 +1885,7 @@ Value.Set(High[0] - Close[0]);
 
 
 ## Multibars
-
 ### Description
-
 An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
 The same method applies for your self-programmed indicators. A 5 minute chart will call up the [*OnBarUpdate()*] for each 5 minute bar.
 If you want your self-created indicator to use a different timeframe, this is possible using multibars.
@@ -2270,7 +1936,6 @@ Print(SMA(Closes[2], 14)[0]);
 
 
 ### Additional Notes
-
 When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*], [*Highs*], [*Lows*], [*Closes*], [*Medians*], [*Typicals*], [*Weighteds*], [*Times*] and [*Volumes*]. The indexing will occur in the order of the addition of the new timeframes.
 Closes\[0\]\[0\] is equivalent to Close\[0\].
 Closes\[1\]\[0\] equals the current closing price for the daily data series
@@ -2293,9 +1958,7 @@ double w = MultiBars.GetBarsItem(TF_Week).Close[0];
 
 
 ## CurrentBars
-
 ### Description
-
 CurrentBars is an array of int values that contains the number of *[CurrentBar]s* for each bar.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
@@ -2313,11 +1976,9 @@ CurrentBars\[0\] is equivalent to [*CurrentBar*][CurrentBar].
 Also see [*MultiBars*].
 
 ### Parameter
-
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 CurrentBars[int barSeriesIndex]
 ```
@@ -2332,9 +1993,7 @@ if (CurrentBars[i] < 20) return;
 
 
 ## BarsInProgress
-
 ### Description
-
 Within a multibars script, multiple bars objects are available. The OnBarUpdate() method
 will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the BarsInProgress method.
 
@@ -2346,15 +2005,12 @@ If OnBarUpdate() is called up by the primary data series, then BarsInProgress wi
 See [*Multibars*][*MultiBars*] and [*CurrentBars*].
 
 ### Parameter
-
 none
 
 ### Usage
-
 BarsInProgress
 
 ### More Information
-
 Within a script that only works with primary timeframes, the value will always equal zero.
 
 ### Example
@@ -2372,9 +2028,7 @@ if (BarsInProgress > 0) return;
 
 
 ## TimeFrames
-
 ### Description
-
 TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
@@ -2392,20 +2046,21 @@ TimeFrames \[0\] is equivalent to [*TimeFrame*].
 See [*MultiBars*].
 
 ### Parameter
-
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
-
 ```cs
 TimeFrames [int barSeriesIndex]
 ```
 
 
 ### Example
-
 ```cs
 if (BarsInProgress == 0 && CurrentBar == 0)
 for (int i = BarsArray.Count-1; i >= 0; i--)
 Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
+
+
+
+

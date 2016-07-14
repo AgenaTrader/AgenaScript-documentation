@@ -5,7 +5,6 @@
 Want to learn more about the AgenaTrader scripting language? We've got the resources to help you get started. Start by browsing the documentation on the list below.
 
 ##Introductory Words
-
 AgenaScript is AgenaTrader’s integrated programming language. The syntax is derived from C\# and thus closely resembles it.
 
 AgenaScript allows you to execute any ideas/methods that are too complex for the ConditionEscort. From simple indicators to entire applications where AgenaTrader is only required to run in the background, anything that can be written in .NET can be implemented.
@@ -35,3 +34,5 @@ All drawing objects that can be used within the chart can also be accessed using
 [Hints and advice](./hints_and_advice.md)
 
 This section provides solutions to problems of an unusual nature. To solve such problems, you need to be able to trace and understand source code and programming. More advanced programmers and users may find solutions and suggestions that could help them in their own programming.
+
+

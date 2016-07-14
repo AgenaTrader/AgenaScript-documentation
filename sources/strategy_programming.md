@@ -1,9 +1,7 @@
 # Strategy Programming
 
 ## Account
-
 ### Description
-
 Account is an object containing information about the account with which the current strategy is working.
 
 The individual properties are:
@@ -66,13 +64,10 @@ Print("RealizedProfitLoss " + Account.RealizedProfitLoss);
 
 
 ## BarsSinceEntry()
-
 ### Description
-
 The property “BarsSinceEntry” returns the number of bars that have occurred since the last entry into the market.
 
 ### Usage
-
 ```cs
 BarsSinceEntry()
 BarsSinceEntry(string signalName)
@@ -86,7 +81,6 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 
 
 ### Parameter
-
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the entry within an entry method.            |
@@ -97,20 +91,16 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
-
 ```cs
 Print("The last entry was " + BarsSinceEntry() + " bars ago.");
 ```
 
 
 ## BarsSinceExit()
-
 ### Description
-
 The property “BarsSinceExit” outputs the number of bars that have occurred since the last exit from the market.
 
 ### Usage
-
 ```cs
 BarsSinceExit()
 BarsSinceExit(string signalName)
@@ -124,7 +114,6 @@ BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 
 
 ### Parameter
-
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the exit within the exit method.                             |
@@ -141,9 +130,7 @@ Print("The last exit was " + BarsSinceExit() + " bars ago.");
 
 
 ## CancelOrder()
-
 ### Description
-
 Cancel order deletes an order.
 
 A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*].
@@ -155,7 +142,6 @@ CancelOrder(IOrder order)
 
 
 ### Parameter
-
 An order object of the type “IOrder”
 
 ### Example
@@ -179,9 +165,7 @@ CancelOrder(myEntryOrder);
 
 
 ## ChangeOrder()
-
 ### Description
-
 Change order, as the name suggests, changes an order.
 
 ### Usage
@@ -191,7 +175,6 @@ ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 
 
 ### Parameter
-
 |            |                                          |
 |------------|------------------------------------------|
 | iOrder     | An order object of the type “IOrder”     |
@@ -212,11 +195,8 @@ ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPri
 
 
 ## DataSeriesConfigurable
-
 ## DefaultQuantity
-
 ### Description
-
 Change order changes an order.
 
 Default quantity defines the amount to be used in a strategy. Default quantity is set within the [*Initialize()*] method.
@@ -228,7 +208,6 @@ ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 
 
 ### Parameter
-
 an int value containing the amount (stocks, contracts etc.)
 
 ### Example
@@ -241,9 +220,7 @@ DefaultQuantity = 100;
 
 
 ## EnterLong()
-
 ### Description
-
 Enter long creates a long position (buy).
 
 If a signature not containing an amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -263,7 +240,6 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 
 
 ### Parameter
-
 |                     |                                                                                               |
 |---------------------|-----------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                           |
@@ -272,7 +248,6 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
                        Index of the data series for which the entry order is to be executed. See [*BarsInProgress*].  |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -285,9 +260,7 @@ EnterLong("SMA cross entry");
 
 
 ## EnterLongLimit()
-
 ### Description
-
 Enter long limit creates a limit order for entering a long position (buy).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -310,7 +283,6 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 
 
 ### Parameter
-
 |                     |                                                                                                                                                                      |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                  |
@@ -322,7 +294,6 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*] or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -334,9 +305,7 @@ EnterLongLimit("SMA cross entry");
 
 
 ## EnterLongStop()
-
 ### Description
-
 Enter long stop creates a limit order for entering a long position (buy).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -359,7 +328,6 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 
 
 ### Parameter
-
 |                     |                                                                                                                                                                                       |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                                   |
@@ -371,7 +339,6 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*] command or until it reaches its expiry time (see [*TimeInForce*]). |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -384,9 +351,7 @@ myEntryOrder = EnterLongStop(High[0], "Stop Long");
 
 
 ## EnterLongStopLimit()
-
 ### Description
-
 Enter long stop limit creates a buy stop limit order for entering a long position.
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -409,7 +374,6 @@ EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 
 
 ### Parameter
-
 |                     |                                                                                                                                                                               |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                           |
@@ -422,7 +386,6 @@ EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -436,9 +399,7 @@ myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], "Stop Long");
 
 
 ## EnterShort()
-
 ### Description
-
 Enter short creates a market order for entering a short position (naked sell).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -457,7 +418,6 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 
 
 ### Parameter
-
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
@@ -467,7 +427,6 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
                        See [*BarsInProgress*].                                               |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -479,9 +438,7 @@ EnterShort("SMA cross entry");
 
 
 ## EnterShortLimit()
-
 ### Description
-
 Enter short limit creates a limit order for entering a short position (naked short).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -504,7 +461,6 @@ EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, 
 
 
 ### Parameter
-
 |                     |                                                                                                                                                                              |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                          |
@@ -516,7 +472,6 @@ EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, 
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -528,9 +483,7 @@ EnterShortLimit("SMA cross entry");
 
 
 ## EnterShortStop()
-
 ### Description
-
 Enter short stop creates a limit order for entering a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
 See [*EnterShort()*], [*EnterShortLimit()*], [*EnterShortStopLimit()*].
@@ -551,7 +504,6 @@ EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 
 
 ### Parameter
-
 |                     |                                                                                                               |
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                           |
@@ -563,7 +515,6 @@ EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -576,9 +527,7 @@ myEntryOrder = EnterShortStop(Low[0], "stop short");
 
 
 ## EnterShortStopLimit()
-
 ### Description
-
 Enter short stop limit creates a sell stop limit order for entering a short position.
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -601,7 +550,6 @@ EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quanti
 ```
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -614,7 +562,6 @@ EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quanti
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 An order object of the type “IOrder”
 
 ### Example
@@ -627,9 +574,7 @@ myEntryOrder = EnterShortStopLimit(Low[0]-2*TickSize, Low[0], "stop short");
 
 
 ## EntriesPerDirection
-
 ### Description
-
 Entries per direction defines the maximum number of entries permitted in one direction (long or short).
 
 Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*].
@@ -637,11 +582,9 @@ Whether the name of the entry signal is taken into consideration or not is defin
 Entries per direction is defined with the [*Initialize()*] method.
 
 ### Usage
-
 **EntriesPerDirection**
 
 ### Parameter
-
 An int value for the maximum entries permitted in one direction.
 
 ### Example
@@ -678,9 +621,7 @@ EnterLong("RSI Cross Entry);
 
 
 ## EntryHandling
-
 ### Description
-
 Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*]).
 
 Entry handling is defined with the [*Initialize()*] method.
@@ -697,19 +638,14 @@ AgenaTrader continues to generate entry orders until the maximum number of entri
 If entries per direction = 2, then it is possible for two signals for enter long ("SMA crossover") *and* 2 signals for enter long ("range breakout") to be traded.
 
 ### Usage
-
 **EntryHandling**
 
 ### Example
-
 See [*EntriesPerDirection*].
 
 ## ExcludeTradeHistoryInBacktest
-
 ## ExitLong()
-
 ### Description
-
 Exit long creates a sell market order for closing a long position (sell).
 
 If a signature not containing a set amount is used, the amount is set by [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -733,7 +669,6 @@ ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEn
 
 
 ### Parameter
-
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
@@ -744,7 +679,6 @@ ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEn
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -759,9 +693,7 @@ ExitLong();
 
 
 ## ExitLongLimit()
-
 ### Description
-
 Exit long limit creates a sell limit order for closing a long position (i.e. for selling).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -784,7 +716,6 @@ ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -797,7 +728,6 @@ ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -812,9 +742,7 @@ ExitLongLimit(GetCurrentBid());
 
 
 ## ExitLongStop()
-
 ### Description
-
 Exit long stop creates a sell stop order for closing a long position (short).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -836,7 +764,6 @@ ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, dou
 
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -849,7 +776,6 @@ ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, dou
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -864,9 +790,7 @@ ExitLongStop(Low[0]);
 
 
 ## ExitLongStopLimit()
-
 ### Description
-
 Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -890,7 +814,6 @@ ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity
 
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -904,7 +827,6 @@ ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -919,13 +841,9 @@ ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
 
 
 ## ExitOnClose
-
 ## ExitOnCloseSeconds
-
 ## ExitShort()
-
 ### Description
-
 Exit short creates a buy-to-cover market order for closing a short position (buy).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -947,7 +865,6 @@ ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromE
 ```
 
 ### Parameter
-
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
@@ -958,7 +875,6 @@ ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromE
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -973,9 +889,7 @@ ExitShort();
 
 
 ## ExitShortLimit()
-
 ### Description
-
 Exit short limit creates a buy-to-cover limit order for closing a short position (buy).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
@@ -998,7 +912,6 @@ ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 ```
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -1011,7 +924,6 @@ ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -1026,9 +938,7 @@ ExitShortLimit(GetCurrentAsk());
 
 
 ## ExitShortStop()
-
 ### Description
-
 Exit short stop creates a buy-to-cover stop order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
 
@@ -1049,7 +959,6 @@ ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 ```
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -1062,7 +971,6 @@ ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -1077,9 +985,7 @@ ExitShortStop(High[0]);
 
 
 ## ExitShortStopLimit()
-
 ### Description
-
 Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
 
@@ -1101,7 +1007,6 @@ ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 ```
 
 ### Parameter
-
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
@@ -1115,7 +1020,6 @@ ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
@@ -1130,22 +1034,18 @@ ExitShortStopLimit(High[0]+10*TickSize, High[0]);
 
 
 ## GetAccountValue()
-
 ### Description
-
 Get account value outputs information regarding the account for which the current strategy is being carried out.
 
 See [*GetProfitLoss()*].
 
 ### Usage
-
 ```cs
 GetAccountValue(AccountItem accountItem)
 ```
 
 
 ### Parameter
-
 Possible values for account item are:
 
 AccountItem.BuyingPower
@@ -1155,7 +1055,6 @@ AccountItem.CashValue
 AccountItem.RealizedProfitLoss
 
 ### Return Value
-
 a double value for the account item
 
 for historical bars, a zero (0) is returned
@@ -1168,22 +1067,18 @@ Print("The current P/L already realized is " + GetAccountValue(AccountItem.Reali
 ```
 
 ## GetProfitLoss()
-
 ### Description
-
 Get profit loss outputs the currently unrealized profit or loss for a running position.
 
 See [*GetAccountValue()*].
 
 ### Usage
-
 ```cs
 GetProfitLoss(int pLType);
 ```
 
 
 ### Parameter
-
 Potential values for the P/L type are:
 
 0 – Amount: P/L as a currency amount
@@ -1195,11 +1090,9 @@ Potential values for the P/L type are:
 3 – P/L in ticks
 
 ### Return Value
-
 a double value for the unrealized profit or loss
 
 ### Example
-
 ```cs
 Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
 Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
@@ -1207,13 +1100,10 @@ Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 
 
 ## MarketPosition
-
 See [*Position.MarketPosition*].
 
 ## Performance
-
 ### Description
-
 Performance is an object containing information regarding all trades that have been generated by a strategy.
 
 The trades are sorted into multiple lists. With the help of these lists it is easier to create a performance evaluation.
@@ -1255,9 +1145,7 @@ Print("Result: " + Account.RealizedProfitLoss + " " + Account.Currency);
 
 
 ## Position
-
 ### Description
-
 Position is an object containing information regarding the position currently being managed by a strategy.
 
 The individual properties are:
@@ -1313,13 +1201,10 @@ Print("Pieces " + Position.Quantity);
 
 
 ## Quantity
-
 See [*Position.Quantity*][*Position.MarketPosition*].
 
 ## SetProfitTarget()
-
 ### Description
-
 Set profit target immediately creates a “take profit” order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.
 
@@ -1333,7 +1218,6 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 ```
 
 ### Parameter
-
 |                  |                                                                                                                                                                   |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | currency         | Sets the profit target in a currency, for example 500€.                                                                                                           |
@@ -1356,9 +1240,7 @@ SetProfitTarget(CalculationMode.Ticks, 10);
 
 
 ## SetStopLoss()
-
 ### Description
-
 Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.
 
 If the stop loss is static, then SetStopLoss() can be defined with the Initialize() method.
@@ -1375,7 +1257,6 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 
 
 ### Parameter
-
 |                  |                                                                                                                                                                                                             |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€                                                                                                                |
@@ -1399,9 +1280,7 @@ SetStopLoss(500);
 
 
 ## SetTrailStop()
-
 ### Description
-
 Set trail stop creates a trail stop order after an entry order is generated. Its purpose is to protect you from losses, and after reaching break-even, to protect your gains.
 
 The order is sent directly to the broker and becomes effective immediately.
@@ -1443,7 +1322,6 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 ```
 
 ### Parameter
-
 |                  |                                                                                                                                                                                                             |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | currency         | The distance between the stop loss and the entry price                                                                                                                                                      |
@@ -1466,21 +1344,17 @@ SetTrailStop(CalculationMode.Ticks, 30);
 
 
 ## SubmitOrder()
-
 ### Description
-
 Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
 
 See [*OnOrderUpdate()*], [*OnExecution()*].
 
 ### Usage
-
 ```cs
 SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string signalName)
 ```
 
 ### Parameter
-
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
 | barsInProgressIndex | For multi-bar strategies.                                          
@@ -1511,11 +1385,9 @@ SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderTyp
 | signalName          | An unambiguous signal name (string)                                |
 
 ### Return Value
-
 an order object of the type “IOrder”
 
 ### Example
-
 ```cs
 private IOrder entryOrder = null;
 protected override void OnBarUpdate()
@@ -1528,9 +1400,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Ent
 
 
 ## TimeInForce
-
 ### Description
-
 The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.
 
 TimeInForce is specified with the [*Initialize()*] method.
@@ -1544,7 +1414,6 @@ TimeInForce.gtd
 **Default:** TimeInForce.GTC
 
 ### Usage
-
 **TimeInForce**
 
 ### Example
@@ -1556,9 +1425,7 @@ TimeInForce = TimeInForce.Day;
 ```
 
 ## TraceOrders
-
 ### Description
-
 The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
 Trace orders can be specified with the [*Initialize()*] method.
 
@@ -1576,15 +1443,12 @@ When TraceOrders is activated, each order will display the following values in t
 This information is useful when creating and debugging strategies.
 
 ### Usage
-
 TraceOrders
 
 ### Parameter
-
 none
 
 ### Return Value
-
 **true** Tracing is currently switched on
 **false** Tracing is switched off
 
@@ -1599,9 +1463,7 @@ TraceOrders = true;
 
 
 ## Trade
-
 ### Description
-
 Trade is an object containing information about trades that have been executed by a strategy or are currently running.
 
 The individual properties are:
@@ -1703,14 +1565,10 @@ Print("");
 
 
 ## Unmanaged
-
-
 # Backtesting and Optimization
 
 
 ## Performance Characteristics
-
-
 Performance characteristics are the various factors that can be calculated for a list of trades. The trades can be generated by a strategy in real-time or based on a backtest.
 
 The following are available:
@@ -1776,3 +1634,6 @@ The individual factors are:
 **All factors are double values.**
 
 <img src="./media/image10.png" width="629" height="478" />
+
+
+

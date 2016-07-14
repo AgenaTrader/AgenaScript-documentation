@@ -1,7 +1,6 @@
 # Hints & Advice
 
 ## Bar Numbering Within the Chart
-
 The following example demonstrates the usage of the plot method and the properties of the [*ChartControl*] object.
 
 <img src="./media/image30.png" width="611" height="444" />
@@ -89,7 +88,6 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 
 
 ## Custom Chart Background Image
-
 The plot method allows you to add a background image to the chart.
 The following example uses an image with the JPG format located in the main directory on the hard drive (C:).
 ```cs
@@ -119,7 +117,6 @@ g.DrawImage(img,r);
 <img src="./media/image31.png" width="601" height="444" />
 
 ## File Selection in the Properties
-
 To enable file selection within the properties dialog of an indicator, you will need a type converter.
 The following example displays how a selection of WAV files can be programmed for an alert:
 ```cs
@@ -170,9 +167,7 @@ set { _soundFile = value; }
 
 
 ## Formatting of Numbers
-
 ### Formatting of Numbers
-
 **General information on formatting in C\#**
 
 ```cs
@@ -190,7 +185,6 @@ Print("To 4 decimal places : " + d.ToString("N4")); // 123.4568
 
 
 ### Useful Functions
-
 Returns the currency symbol for the current instrument:
 
 ```cs
@@ -286,7 +280,6 @@ Print("getPrice :" + getKurs(Kurs)); // 123.46
 
 
 ## Index Conversion
-
 There are two types of indexing in AgenaTrader.
 
 1. The bars are numbered from youngest to oldest.
@@ -306,7 +299,6 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 
 
 ## Overwriting Indicator Names
-
 The name of an indicator (or a strategy) is displayed within the properties dialog and at the top edge of the chart. Use the ToString() property to overwrite it.
 ```cs
 public override string ToString()
@@ -317,7 +309,6 @@ return "My Name";
 
 
 ## Rectangle with Rounded Corners
-
 By using the graphics methods, you can create interesting forms and place them onto the chart.
 One example of this is the RoundedRectangle class, which is a rectangle with rounded corners.
 
@@ -434,3 +425,6 @@ public static GraphicsPath Create(Rectangle rect)
 }
 }
 ```
+
+
+

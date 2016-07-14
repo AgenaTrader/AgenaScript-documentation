@@ -2,9 +2,7 @@
 #DrawingObjects
 
 ## DrawAndrewsPitchfork()
-
 ### Description
-
 This drawing object draws an Andrew’s Pitchfork.
 
 Information concerning its usage:
@@ -13,18 +11,15 @@ Information concerning its usage:
 - [*http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews\_Pitchfork*]
 
 ### Usage
-
 ```cs
 DrawAndrewsPitchfork(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, DashStyle dashStyle, int width)
 DrawAndrewsPitchfork(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
-
 A drawing object of the type IAndrewsPitchfork (interface)
 
 ### Parameter
-
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
 | tag            | A clearly identifiable name for the drawing object                                      |
@@ -53,9 +48,7 @@ DrawAndrewsPitchfork("MyAPF", true, 4, Low[4], 3, High[3], 1, Low[1], Color.Blac
 
 
 ## DrawArc()
-
 ### Description
-
 DrawArc() draws a circular arc.
 
 ### Usage
@@ -66,11 +59,9 @@ DrawArc(string tag, bool autoScale, DateTime startTime, double startY, DateTime 
 ```
 
 ### Return Value
-
 A drawing object of the type IArc (interface)
 
 ### Parameter
-
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                      |
@@ -100,9 +91,7 @@ DrawArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 ```
 
 ## DrawArrowDown()
-
 ### Description
-
 DrawArrowDown() draws an arrow pointing downwards:
 
 <img src="./media/image21.png" width="21" height="25" />
@@ -116,11 +105,9 @@ DrawArrowDown(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
-
 A drawing object of the type IArrowDown (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -140,9 +127,7 @@ DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
 ```
 
 ## DrawArrowLine()
-
 ### Description
-
 DrawArrowLine() draws an arrow:
 
 <img src="./media/image22.png" width="127" height="34" />
@@ -155,11 +140,9 @@ DrawArrowLine() draws an arrow:
 ```
 
 ### Return Value
-
 A drawing object of the type IArrowLine (interface)
 
 ### Parameter
-
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                      |
@@ -189,9 +172,7 @@ DrawArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 ```
 
 ## DrawArrowUp()
-
 ### Description
-
 DrawArowUp() draws an arrow pointing upwards:
 
 <img src="./media/image23.png" width="22" height="20" />
@@ -205,11 +186,9 @@ DrawArrowUp(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
-
 A drawing object of the type IArrowUp (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -226,9 +205,7 @@ DrawArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
 ```
 
 ## DrawDiamond()
-
 ### Description
-
 DrawDiamond() draws a diamond:
 
 <img src="./media/image24.png" width="19" height="26" />
@@ -242,11 +219,9 @@ DrawDiamond(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
-
 A drawing object of the type IDiamond (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -264,9 +239,7 @@ DrawDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 
 
 ## DrawDot()
-
 ### Description
-
 DrawDot() draws a dot:
 
 <img src="./media/image25.png" width="19" height="20" />
@@ -274,18 +247,15 @@ DrawDot() draws a dot:
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
 ### Usage
-
 ```cs
 DrawDot(string tag, bool autoScale, int barsAgo, double y, Color color)
 DrawDot(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
-
 A drawing object of the type IDot (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -302,9 +272,7 @@ DrawDot("MyDot", true, 0, High[0] + 5*TickSize, Color.Orange);
 ```
 
 ## DrawEllipse()
-
 ### Description
-
 DrawEllipse() draws an ellipse.
 
 ### Usage
@@ -314,11 +282,9 @@ DrawEllipse(string tag, bool autoScale, int startBarsAgo, double startY, int end
 DrawEllipse(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
-
 A drawing object of the type IEllipse (interface)
 
 ### Parameter
-
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                      |
@@ -343,9 +309,7 @@ DrawEllipse("MyEllipse", true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yell
 ```
 
 ## DrawExtendedLine()
-
 ### Description
-
 DrawExtendedLine() draws a line with an infinite end point.
 
 See [*DrawLine()*], [*DrawHorizontalLine()*], [*DrawVerticalLine()*], [*DrawRay()*].
@@ -358,11 +322,9 @@ DrawExtendedLine(string tag, bool autoScale, DateTime startTime, double startY, 
 ```
 
 ### Return Value
-
 A drawing object of the type IExtendedLine (interface)
 
 ### Parameter
-
 |              |                                                                                                         |
 |--------------|---------------------------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                                      |
@@ -392,9 +354,7 @@ DrawExtendedLine("MyExt.Line", false, 10, Close[10], 0, Close[0], Color.Black, D
 ```
 
 ## DrawFibonacciCircle()
-
 ### Description
-
 DrawFibonacciCircle() draws a Fibonacci circle.
 
 ### Usage
@@ -404,11 +364,9 @@ DrawFibonacciCircle(string tag, bool autoScale, DateTime startTime, double start
 ```
 
 ### Return Value
-
 A drawing object of the type IFibonacciCircle (interface)
 
 ### Parameter
-
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                      |
@@ -427,9 +385,7 @@ DrawFibonacciCircle("MyFibCircle", true, 5, Low[5], 0, High[0]);
 ```
 
 ## DrawFibonacciExtensions()
-
 ### Description
-
 DrawFibonacciExtensions() draws Fibonacci extensions.
 
 ### Usage
@@ -439,11 +395,9 @@ DrawFibonacciExtensions(string tag, bool autoScale, DateTime anchor1Time, double
 ```
 
 ### Return Value
-
 A drawing object of the type IFibonacciExtensions (interface)
 
 ### Parameter
-
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
 | tag            | A clearly identifiable name for the drawing object                                      |
@@ -465,9 +419,7 @@ DrawFibonacciExtensions("MyFibExt", true, 4, Low[4], 3, High[3], 1, Low[1]);
 ```
 
 ## DrawFibonacciRetracements()
-
 ### Description
-
 DrawFibonacciRetracements() draws Fibonacci retracements.
 
 ### Usage
@@ -477,11 +429,9 @@ DrawFibonacciRetracements(string tag, bool autoScale, DateTime startTime, double
 ```
 
 ### Return Value
-
 A drawing object of the type IFibonacciRetracements (interface)
 
 ### Parameter
-
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                      |
@@ -500,9 +450,7 @@ DrawFibonacciRetracements("MyFibRet", true, 10, Low[10], 0, High[0]);
 ```
 
 ## DrawFibonacciTimeExtensions()
-
 ### Description
-
 DrawFibonacciTimeExtensions() draws Fibonacci time extensions.
 
 ### Usage
@@ -512,11 +460,9 @@ DrawFibonacciTimeExtensions(string tag, DateTime startTime, double startY, DateT
 ```
 
 ### Return Value
-
 A drawing object of the type IFibonacciTimeExtensions (interface)
 
 ### Parameter
-
 |              |                                                       |
 |--------------|-------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object    |
@@ -534,9 +480,7 @@ DrawFibonacciTimeExtensions("MyFibTimeExt", 10, Low[10], 0, High[0]);
 ```
 
 ## DrawGannFan()
-
 ### Description
-
 DrawGannFan() draws a Gann fan.
 
 ### Usage
@@ -546,11 +490,9 @@ DrawGannFan(string tag, bool autoScale, DateTime time, double y)
 ```
 
 ### Return Value
-
 A drawing object of the type IGannFan (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -567,9 +509,7 @@ DrawGannFan("MyGannFan", true, 10, Low[10]);
 
 
 ## DrawLine()
-
 ### Description
-
 DrawLine() draws a (trend) line.
 
 See [*DrawHorizontalLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*].
@@ -582,11 +522,9 @@ DrawLine(string tag, bool autoScale, DateTime startTime, double startY, DateTime
 ```
 
 ### Return Value
-
 A drawing object of the type ITrendLine (interface).
 
 ### Parameter
-
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                      |
@@ -616,15 +554,12 @@ DrawLine("MyLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Sol
 ```
 
 ## DrawHorizontalLine()
-
 ### Description
-
 DrawHorizontalLine() draws a horizontal line in the chart.
 
 See [*DrawLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*].
 
 ### Usage
-
 ```cs
 DrawHorizontalLine(string tag, double y, Color color)
 DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
@@ -632,11 +567,9 @@ DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle 
 
 
 ### Return Value
-
 A drawing object of the type IHorizontalLine (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -661,9 +594,7 @@ DrawHorizontalLine("MyHorizontalLine", 10, Color.Black);
 ```
 
 ## DrawRay()
-
 ### Description
-
 DrawRay() draws a (trend) line and extends it to infinity.
 
 See [*DrawLine()*], [*DrawHorizontalLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*].
@@ -676,11 +607,9 @@ DrawRay(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateT
 ```
 
 ### Return Value
-
 A drawing object of the type IRay (interface)
 
 ### Parameter
-
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
 | tag            | A clearly identifiable name for the drawing object                                      |
@@ -717,9 +646,7 @@ DrawRay("MyRay", 0, 3, 10, 7, Color.Green);
 
 
 ## DrawRectangle()
-
 ### Description
-
 DrawRectangle() draws a rectangle.
 
 ### Usage
@@ -729,11 +656,9 @@ DrawRectangle(string tag, bool autoScale, int startBarsAgo, double startY, int e
 DrawRectangle(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
-
 A drawing object of the type IRectangle (interface)
 
 ### Parameter
-
 |              |                                                                                                        |
 |--------------|--------------------------------------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                                                     |
@@ -759,9 +684,7 @@ DrawRectangle("MyRect", true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.Pa
 ```
 
 ## DrawRegion()
-
 ### Description
-
 DrawRegion() fills a specific area on a chart.
 
 ### Usage
@@ -773,11 +696,9 @@ DrawRegion(string tag, DateTime startTime, DateTime endTime, IDataSeries series1
 ```
 
 ### Return Value
-
 A drawing object of the type IRegion (interface)
 
 ### Parameter
-
 |                  |                                                                                   |
 |------------------|-----------------------------------------------------------------------------------|
 | tag              | A clearly identifiable name for the drawing object                                |
@@ -803,9 +724,7 @@ DrawRegion("MyRegion", CurrentBar, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).L
 ```
 
 ## DrawRegressionChannel()
-
 ### Description
-
 DrawRegressionChannel() draws a regression channel.
 
 ### Usage
@@ -816,11 +735,9 @@ DrawRegressionChannel(string tag, bool autoScale, DateTime startTime, DateTime e
 ```
 
 ### Return Value
-
 A drawing object of the type IRegressionChannel (interface)
 
 ### Parameter
-
 |                  |                                                                                         |
 |------------------|-----------------------------------------------------------------------------------------|
 | tag              | A clearly identifiable name for the drawing object                                      |
@@ -856,9 +773,7 @@ DrawRegressionChannel("MyRegChannel", 10, 0, Color.Black);
 ```
 
 ## DrawSquare()
-
 ### Description
-
 DrawSquare() draws a square:
 
 <img src="./media/image26.png" width="20" height="19" />
@@ -872,11 +787,9 @@ DrawSqare(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
-
 A drawing object of the type ISquare (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | Tag       | A clearly identifiable name for the drawing object                                      |
@@ -893,9 +806,7 @@ DrawSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
 ```
 
 ## DrawText()
-
 ### Description
-
 DrawText() writes whatever text you want onto the chart.
 
 See [*DrawTextFixed()*], *PlotMethod*.
@@ -918,11 +829,9 @@ using System.Windows.Forms.VisualStyles;
 
 
 ### Return Value
-
 A drawing object of the type IText (interface)
 
 ### Parameter
-
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Tag          | A clearly identifiable name for the drawing object                                          |
@@ -983,9 +892,7 @@ Color.Yellow, // Fill color
 ```
 
 ## DrawTextFixed()
-
 ### Description
-
 DrawTextFixed() writes text into one of 5 predetermined locations on the chart.
 
 See [*DrawText()*].
@@ -997,11 +904,9 @@ DrawTextFixed(string tag, string text, TextPosition textPosition, Color textColo
 ```
 
 ### Return Value
-
 A drawing object of the type ITextFixed (interface)
 
 ### Parameter
-
 |              |                                                                            |
 |--------------|----------------------------------------------------------------------------|
 | tag          | A clearly identifiable name for the drawing object                         |
@@ -1031,9 +936,7 @@ Color.Red, new Font("Arial",35), Color.Blue, Color.Empty, 10);
 ```
 
 ## DrawTrendChannel()
-
 ### Description
-
 DrawTrendChannel() draws a trend channel.
 
 ### Usage
@@ -1043,11 +946,9 @@ DrawTrendChannel(string tag, bool autoScale, DateTime anchor1Time, double anchor
 ```
 
 ### Return Value
-
 A drawing object of the type ITrendChannel (interface)
 
 ### Parameter
-
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
 | tag            | A clearly identifiable name for the drawing object                                      |
@@ -1069,9 +970,7 @@ DrawTrendChannel("MyTrendChannel", true, 10, Low[10], 0, High[0], 10, High[10] +
 ```
 
 ## DrawTriangle()
-
 ### Description
-
 DrawTriangle() draws a triangle.
 
 ### Usage
@@ -1082,11 +981,9 @@ DrawTriangle(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, 
 ```
 
 ### Return Value
-
 A drawing object of the type ITriangle (interface)
 
 ### Parameter
-
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
 | tag            | A clearly identifiable name for the drawing object                                      |
@@ -1115,9 +1012,7 @@ DrawTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 
 
 ## DrawTriangleUp()
-
 ### Description
-
 DrawTriangleUp() draws a small upwards-pointing triangle:
 
 <img src="./media/image28.png" width="25" height="19" />
@@ -1132,11 +1027,9 @@ DrawTriangleUp(string tag, bool autoScale, DateTime time, double y, Color color)
 
 
 ### Return Value
-
 A drawing object of the type ITriangleUp (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -1153,9 +1046,7 @@ DrawTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 ```
 
 ## DrawTriangleDown()
-
 ### Description
-
 DrawTriangleDown() draws a small downwards-pointing triangle:
 
 <img src="./media/image29.png" width="23" height="20" />
@@ -1170,11 +1061,9 @@ DrawTriangleDown(string tag, bool autoScale, DateTime time, double y, Color colo
 
 
 ### Return Value
-
 A drawing object of the type ITriangleDown (interface)
 
 ### Parameter
-
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                                      |
@@ -1191,9 +1080,7 @@ DrawTriangleDown("MyTriangleDown", true, 0, High[0] + 10*TickSize, Color.Red);
 ```
 
 ## DrawVerticalLine()
-
 ### Description
-
 DrawVerticalLine() draws a vertical line in the chart.
 
 See [*DrawLine()*], [*DrawHorizontalLine()*], [*DrawExtendedLine()*], [*DrawRay()*].
@@ -1206,11 +1093,9 @@ DrawVerticalLine(string tag, DateTime time, Color color, DashStyle dashStyle, in
 ```
 
 ### Return Value
-
 A drawing object of the type IVerticalLine (interface)
 
 ### Parameter
-
 |           |                                                                            |
 |-----------|----------------------------------------------------------------------------|
 | tag       | A clearly identifiable name for the drawing object                         |
@@ -1234,3 +1119,6 @@ A drawing object of the type IVerticalLine (interface)
 // Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine("MyVerticalLine", 10, Color.Black);
 ```
+
+
+
