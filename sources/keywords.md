@@ -15,114 +15,62 @@ line – a [*Line*] object
 
 ### Usage
 ```cs
-
-**Add**(Plot plot)
-
-**Add**(Line line)
+Add(Plot plot)
+Add(Line line)
 ```
 
 
 ### Example
 ```cs
-
-\#**region** Usings
-
-**using** System;
-
-**using** System.Collections.Generic;
-
-**using** System.ComponentModel;
-
-**using** System.Drawing;
-
-**using** System.Linq;
-
-**using** System.Xml;
-
-**using** System.Xml.Serialization;
-
-**using** AgenaTrader.API;
-
-**using** AgenaTrader.Custom;
-
-**using** AgenaTrader.Plugins;
-
-**using** AgenaTrader.Helper;
-
-\#**endregion**
-
-**namespace** AgenaTrader.UserCode
-
+\#region Usings
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+using AgenaTrader.Helper;
+\#endregion
+namespace AgenaTrader.UserCode
 {
-
-\[**Description**("Enter the description for the new custom indicator here")\]
-
-**public** class MyIndicator : UserIndicator
-
+[Description("Enter the description for the new custom indicator here")]
+public class MyIndicator : UserIndicator
 {
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 // Two blue lines will be placed into the chart, one at 70 and the other at 30
-
-**Add**(**new Line**(Color.Blue, 70, "UpperLine"));
-
-**Add**(**new Line**(Color.Blue, 30, "LowerLine"));
-
+Add(new Line(Color.Blue, 70, "UpperLine"));
+Add(new Line(Color.Blue, 30, "LowerLine"));
 // Add 2 plots
-
-**Add**(**new Plot**(Color.Red, "myFastSMA"));
-
-**Add**(**new Plot**(Color.Blue, "mySlowSMA"));
-
+Add(new Plot(Color.Red, "myFastSMA"));
+Add(new Plot(Color.Blue, "mySlowSMA"));
 }
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
 //The set method is assigned to the value of the current bar
-
-FastSMA.**Set**( **SMA**(8)\[0\] ); // is identical with Values\[0\].Set( SMA(8)\[0\] );
-
-SlowSMA.**Set**( **SMA**(50)\[0\] ); // is identical with Values\[1\].Set( SMA(50)\[0\] );
-
+FastSMA.Set( SMA(8)[0] ); // is identical with Values[0].Set( SMA(8)[0] );
+SlowSMA.Set( SMA(50)[0] ); // is identical with Values[1].Set( SMA(50)[0] );
 }
-
 // Two data series are made available here
-
 // These are not necessary for the display of the indicator // With the help of these series, one indicator can access the other
-
-// For example: double d = MyIndicator.FastSMA\[0\] - MyIndicator.SlowSMA\[0\];
-
-\[**Browsable**(**false**)\]
-
-\[**XmlIgnore**()\]
-
-**public** DataSeries FastSMA
-
+// For example: double d = MyIndicator.FastSMA[0] - MyIndicator.SlowSMA[0];
+[Browsable(false)]
+[XmlIgnore()]
+public DataSeries FastSMA
 {
-
-get { return Values\[0\]; }
-
+get { return Values[0]; }
 }
-
-\[**Browsable**(**false**)\]
-
-\[**XmlIgnore**()\]
-
-**public** DataSeries SlowSMA
-
+[Browsable(false)]
+[XmlIgnore()]
+public DataSeries SlowSMA
 {
-
-get { return Values\[1\]; }
-
+get { return Values[1]; }
 }
-
 }
-
 }
 ```
 
@@ -136,11 +84,9 @@ The alert method creates an acoustic and/or visual alarm.
 ### Usage
 
 ```cs
-**Alert**(string message, **bool** showMessageBox, string soundLocation);
-
+Alert(string message, bool showMessageBox, string soundLocation);
 Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the "re-arm seconds" parameter are ignored.
-
-**Alert**(string id, AlertPriority priority, string message, string soundLocation, **int** rearmSeconds, Color backColor, Color forColor);
+Alert(string id, AlertPriority priority, string message, string soundLocation, int rearmSeconds, Color backColor, Color forColor);
 ```
 
 
@@ -160,22 +106,17 @@ None
 
 ### Example
 ```cs
-
 // Message will be outputted if the SMA(20) crosses below the SMA(50)
-
-**if** (**CrossBelow**(**SMA**(20), **SMA**(50), 1))
-
-**Alert**("Check short signal!", **true**, "Alert4.wav");
+if (CrossBelow(SMA(20), SMA(50), 1))
+Alert("Check short signal!", true, "Alert4.wav");
 ```
 
 To use music files in a different path, you need to specify the path:
 
 ```cs
-string pathOfSoundfile = Environment.**GetFolderPath**(Environment.SpecialFolder.MyDocuments)+@"\\MyAlertSounds\\";
-
+string pathOfSoundfile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\\MyAlertSounds\\";
 string nameOfSoundFile = "MyAlertSoundFile.wav";
-
-**Alert**("Message text", **true**, pathOfSoundfile + nameOfSoundFile);
+Alert("Message text", true, pathOfSoundfile + nameOfSoundFile);
 ```
 
 
@@ -205,16 +146,11 @@ AllowRemovalOfDrawObjects
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //Drawing objects can be manually removed from the chart
-
-AllowRemovalOfDrawObjects = **true**;
-
+AllowRemovalOfDrawObjects = true;
 }
 ```
 
@@ -250,38 +186,24 @@ By default, browsable is set to true. Therefore, within a variable containing an
 
 The parameter should be displayed and queried in the properties window. Therefore browsable should be set to true.
 ```cs
-
-\[Description("Numbers of bars used for calculations")\]
-
-\[Category("Parameters")\]
-
+[Description("Numbers of bars used for calculations")]
+[Category("Parameters")]
 public int Period
-
 {
-
 get { return period; }
-
 set { period = Math.Max(1, value); }
-
 }
 ```
 
 
 **Example for a data series:**
 ```cs
-
-\[Browsable(false)\]
-
-\[DisplayName("Lower band")\]
-
-\[XmlIgnore\]
-
+[Browsable(false)]
+[DisplayName("Lower band")]
+[XmlIgnore]
 public DataSeries Lower
-
 {
-
-get { return Values\[0\]; }
-
+get { return Values[0]; }
 }
 ```
 
@@ -295,19 +217,12 @@ If this attribute is missing, the parameters category is accepted as the standar
 
 The following example shows how to create the new category "My Parameters" in the properties dialog:
 ```cs
-
-\[Category("My Parameters")\]
-
-\[DisplayName("Period number")\]
-
-public double \_period
-
+[Category("My Parameters")]
+[DisplayName("Period number")]
+public double _period
 {
-
-get { return \_period; }
-
-set { \_period = value; }
-
+get { return _period; }
+set { _period = value; }
 }
 ```
 
@@ -322,27 +237,16 @@ Normally, when making comparisons within the ConditionEscort, the data series ge
 An indicator can also yield values that are not contained within data series, such as values of the type int, double, char, Boolean, string, etc.
 To use these values within the scanner or ConditionEscort, they have to be labeled with the conditional value attribute.
 ```cs
-
-\[**Browsable**(**false**)\]
-
-\[XmlIgnore\]
-
-\[ConditionalValue\]
-
-**public int** PublicVariable
-
+[Browsable(false)]
+[XmlIgnore]
+[ConditionalValue]
+public int PublicVariable
 {
-
 get
-
 {
-
-**Update**();
-
-return \_internVariable;
-
+Update();
+return _internVariable;
 }
-
 }
 ```
 
@@ -354,28 +258,16 @@ Description is an attribute in AgenaScript.
 The description attribute is used in AgenaScript for classes and public variables.
 As an attribute of the class, the text is a description of the function of the entire indicator.
 ```cs
-
-\[Description("Displays the tick count of a bar.")\]
-
+[Description("Displays the tick count of a bar.")]
 public class TickCounter : UserIndicator
-
 {
-
-
 //As an attribute of a public variable, the text is a description of the function of the parameter.
-
-\[Description("Number of standard deviations")\]
-
-\[DisplayName("\# of std. dev.")\]
-
+[Description("Number of standard deviations")]
+[DisplayName("\# of std. dev.")]
 public double NumStdDev
-
 {
-
 get { return numStdDev; }
-
 set { numStdDev = Math.Max(0, value); }
-
 }
 ```
 
@@ -390,19 +282,12 @@ The display name attribute defines the text shown in the properties dialog for t
 
 If this attribute is not specified, the name of the public variable is used.
 ```cs
-
-\[Description("Number of standard deviations")\]
-
-\[DisplayName("\# of std. dev.")\]
-
+[Description("Number of standard deviations")]
+[DisplayName("\# of std. dev.")]
 public double NumStdDev
-
 {
-
 get { return numStdDev; }
-
 set { numStdDev = Math.Max(0, value); }
-
 }
 ```
 
@@ -414,9 +299,8 @@ Timeframe requirements is an attribute in AgenaScripts.
 If you want a script to use data from various timeframes, the class requires the attribute „TimeFrameRequirements". You can specify multiple timeframes here:
 
 ```cs
-\[**TimeFrameRequirements**("1 day")\]
-
-\[**TimeFrameRequirements**("15 minutes", "1 day", "1 week")\]
+[TimeFrameRequirements("1 day")]
+[TimeFrameRequirements("15 minutes", "1 day", "1 week")]
 ```
 
 
@@ -438,61 +322,33 @@ AgenaTrader saves all parameter settings for the indicators in a template. The t
 To save parameters in an XML file, the values must be serialized. Under most circumstances, AgenaTrader performs this automatically. Self-defined data types cannot be serialized automatically, so in this case the programmer is responsible for the correct serialization.
 In the following example, the color and font are used as parameters of an indicator. AgenaTrader has two methods for serializing color and font information (TextColorSerialize and TextFontSerialize). Both parameters – TextColor and TextFont – thus need to be marked with the XML ignore parameter.
 ```cs
-
-**private** Color \_textColor = Color.Blue;
-
-**private** Font \_textFont = **new Font**("Arial", 12, FontStyle.Bold);
-
-\[XmlIgnore\]
-
-\[Description("Textcolor")\]
-
+private Color _textColor = Color.Blue;
+private Font _textFont = new Font("Arial", 12, FontStyle.Bold);
+[XmlIgnore]
+[Description("Textcolor")]
 public Color TextColor
-
 {
-
-get { return \_textColor; }
-
-set { \_textColor = value; }
-
+get { return _textColor; }
+set { _textColor = value; }
 }
-
-\[Browsable(false)\]
-
+[Browsable(false)]
 public string TextColorSerialize
-
 {
-
-get { return SerializableColor.ToString(\_textColor); }
-
-set { \_textColor = SerializableColor.FromString(value); }
-
+get { return SerializableColor.ToString(_textColor); }
+set { _textColor = SerializableColor.FromString(value); }
 }
-
-\[XmlIgnore()\]
-
-\[Description("TextFont")\]
-
+[XmlIgnore()]
+[Description("TextFont")]
 public Font TextFont
-
 {
-
-get { return \_textFont; }
-
-set { \_textFont = value; }
-
+get { return _textFont; }
+set { _textFont = value; }
 }
-
-\[Browsable(false)\]
-
+[Browsable(false)]
 public string TextFontSerialize
-
 {
-
-get { return SerializableFont.ToString(\_textFont); }
-
-set { \_textFont = SerializableFont.FromString(value); }
-
+get { return SerializableFont.ToString(_textFont); }
+set { _textFont = SerializableFont.FromString(value); }
 }
 ```
 
@@ -504,14 +360,14 @@ set { \_textFont = SerializableFont.FromString(value); }
 Auto scale is a property of indicators that can be set within the Initialize() method.
 
 ```cs
-**AutoScale = true (default)**
+AutoScale = true (default)
 ```
 
 
 The price axis (y-axis) of the chart is set so that all plots and lines of an indicator are visible.
 
 ```cs
-**AutoScale = false**
+AutoScale = false
 ```
 
 
@@ -525,17 +381,11 @@ AutoScale
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //Scale the chart so that all drawing objects are visible
-
-AutoScale = **true**;
-
+AutoScale = true;
 }
 ```
 
@@ -557,16 +407,11 @@ BarsRequired
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //The indicator requires a minimum of 50 bars loaded into the history
-
 BarsRequired = 50;
-
 }
 ```
 
@@ -584,7 +429,7 @@ CalculateOnBarClose = true
 **OnBarUpdate()** is called up when a bar is closed and the next incoming tick creates a new bar.
 
 ```cs
-**CalculateOnBarClose = false**
+CalculateOnBarClose = false
 ```
 
 OnBarUpdate() is called up for each new incoming tick.
@@ -605,14 +450,10 @@ See [*Bars*].
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 //Indicator calculation should only occur when a bar has closed/finished
-
-CalculateOnBarClose = **true**;
-
+CalculateOnBarClose = true;
 }
 ```
 
@@ -688,16 +529,11 @@ none
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 // Delete the content of the output window
-
 ClearOutputWindow();
-
 }
 ```
 
@@ -713,9 +549,8 @@ See [*CrossBelow()*], [*Rising()*], [*Falling()*].
 ### Usage
 
 ```cs
-**CrossAbove**(IDataSeries series1, **double value**, **int** lookBackPeriod)
-
-**CrossAbove**(IDataSeries series1, IDataSeries series2, **int** lookBackPeriod)
+CrossAbove(IDataSeries series1, double value, int lookBackPeriod)
+CrossAbove(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 ```
 
 
@@ -736,22 +571,14 @@ See [*CrossBelow()*], [*Rising()*], [*Falling()*].
 
 ```cs
 // Puts out a notice if the SMA(20) crosses above the SMA(50)
-
-**if** (**CrossAbove**(**SMA**(20), **SMA**(50), 1))
-
-**Print**("SMA(20) has risen above SMA(50)!");
-
+if (CrossAbove(SMA(20), SMA(50), 1))
+Print("SMA(20) has risen above SMA(50)!");
 // Puts out a notice if the SMA(20) crosses above the value of 40
-
-**if** (**CrossAbove**(**SMA**(20), 40, 1))
-
-**Print**("SMA(20) has risen above 40!");
-
+if (CrossAbove(SMA(20), 40, 1))
+Print("SMA(20) has risen above 40!");
 // Put out a notice for a long entry if the SMA(20) has crossed above the SMA(50) within the last 5 bars.
-
-**if** (**CrossAbove**(**SMA**(20), **SMA**(50), 1) && Close\[0\] &gt; Close\[1\])
-
-**Print**("Long entry !!!");
+if (CrossAbove(SMA(20), SMA(50), 1) && Close[0] > Close[1])
+Print("Long entry !!!");
 ```
 
 
@@ -766,9 +593,8 @@ See [*CrossAbove()*], [*Rising()*], [*Falling()*].
 ### Usage
 
 ```cs
-**CrossBelow**(IDataSeries series1, **double value**, **int** lookBackPeriod)
-
-**CrossBelow**(IDataSeries series1, IDataSeries series2, **int** lookBackPeriod)
+CrossBelow(IDataSeries series1, double value, int lookBackPeriod)
+CrossBelow(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 ```
 
 
@@ -787,26 +613,16 @@ See [*CrossAbove()*], [*Rising()*], [*Falling()*].
 
 ### Example
 ```cs
-
 // Puts out a notice if the SMA(20) crosses below the SMA(50)
-
-**if** (**CrossBelow**(**SMA**(20), **SMA**(50), 1))
-
-**Print**("SMA(20) has fallen below SMA(50)!");
-
+if (CrossBelow(SMA(20), SMA(50), 1))
+Print("SMA(20) has fallen below SMA(50)!");
 // Puts out a notice if the SMA(20) falls below the value of 40
-
-**if** (**CrossBelow**(**SMA**(20), 40, 1))
-
-**Print**("SMA(20) has fallen below 40!");
-
+if (CrossBelow(SMA(20), 40, 1))
+Print("SMA(20) has fallen below 40!");
 // Puts out a notice for a short entry if a crossing of the SMA(20) below the SMA(50) has occurred within the last 5 bars.
-
 .
-
-**if** (**CrossBelow**(**SMA**(20), **SMA**(50), 1) && Close\[1\] &gt; Close\[0\])
-
-**Print**("Short entry !!!");
+if (CrossBelow(SMA(20), SMA(50), 1) && Close[1] > Close[0])
+Print("Short entry !!!");
 ```
 
 
@@ -837,13 +653,9 @@ For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.
 
 ### Example
 ```cs
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**Print**("Call of OnBarUpdate for bar nr. " + CurrentBar + " of " + Time\[0\]);
-
+Print("Call of OnBarUpdate for bar nr. " + CurrentBar + " of " + Time[0]);
 }
 ```
 
@@ -931,22 +743,15 @@ In the area for the declaration of variables, simply declare a new variable:
 
 ```cs
 //Variable declaration
-
-**private** BoolSeries myBoolSeries;
+private BoolSeries myBoolSeries;
 ```
 With the Initialize() method, this variable assigns a new instance of the Bool series:
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myBoolSeries = **new BoolSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myBoolSeries = new BoolSeries(this);
+CalculateOnBarClose = true;
 }
-
 ```
 
 
@@ -956,14 +761,14 @@ CalculateOnBarClose = **true**;
 Assigning a value to the data series for the current position:
 
 ```cs
-myBoolSeries.**Set**(**true**);
+myBoolSeries.Set(true);
 ```
 
 
 Writing a value in the past into the data series:
 
 ```cs
-myBoolSeries.**Set**(**int** barsAgo, **bool** Value);
+myBoolSeries.Set(int barsAgo, bool Value);
 ```
 
 
@@ -972,28 +777,27 @@ myBoolSeries.**Set**(**int** barsAgo, **bool** Value);
 Removing the current value for the data series:
 
 ```cs
-myBoolSeries.**Reset**();
+myBoolSeries.Reset();
 ```
 
 
 Removing a value in the past from the data series:
 ```cs
-
-myBoolSeries.**Reset**(**int** barsAgo);
+myBoolSeries.Reset(int barsAgo);
 ```
 
 
 ### Check Values for their Validity
 
 ```cs
-myBoolSeries.**ContainsValue**(**int** barsAgo);
+myBoolSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 
 ```cs
-**Print** ("For the bar of " + Time\[0\] + " ago the value of the data series is: " + myBoolSeries\[0\]);
+Print ("For the bar of " + Time[0] + " ago the value of the data series is: " + myBoolSeries[0]);
 ```
 
 
@@ -1001,17 +805,11 @@ myBoolSeries.**ContainsValue**(**int** barsAgo);
 
 ```cs
 protected override void OnBarUpdate()
-
 {
-
-**if** (Close\[0\] &gt; Open\[0\])
-
-myBoolSeries.**Set**(**true**);
-
-**else**
-
-myBoolSeries.**Set**(**false**);
-
+if (Close[0] > Open[0])
+myBoolSeries.Set(true);
+else
+myBoolSeries.Set(false);
 }
 ```
 
@@ -1030,20 +828,15 @@ In the declaration area for variables:
 
 ```cs
 //Variable declaration
-
-**private** DataSeries myDataSeries;
+private DataSeries myDataSeries;
 ```
 With the Initialize() method, this variable is assigned a new instance:
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myDataSeries = **new DataSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myDataSeries = new DataSeries(this);
+CalculateOnBarClose = true;
 }
 ```
 
@@ -1055,14 +848,13 @@ CalculateOnBarClose = **true**;
 Assigning a value to the data series for the current position:
 
 ```cs
-myDataSeries.Set(Bars\[0\].Close);
+myDataSeries.Set(Bars[0].Close);
 ```
 
 
 Writing a value in the past into the data series:
 ```cs
-
-myDataSeries.**Set**(**int** barsAgo, **duble** Value);
+myDataSeries.Set(int barsAgo, duble Value);
 ```
 
 
@@ -1071,37 +863,32 @@ myDataSeries.**Set**(**int** barsAgo, **duble** Value);
 Removing the current value from the data series:
 
 ```cs
-myDataSeries.**Reset**();
+myDataSeries.Reset();
 ```
 
 
 Removing a value in the past from the data series:
 ```cs
-
-myDataSeries.**Reset**(**int** barsAgo);
-
+myDataSeries.Reset(int barsAgo);
 ```
 
 ### Check Values for their Validity
 
 ```cs
-myDataSeries.**ContainsValue**(**int** barsAgo);
+myDataSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 ```cs
-
-**Print** ("For the bar from " + Time\[0\] + " ago the value for the data series is: " + myDataSeries\[0\]);
+Print ("For the bar from " + Time[0] + " ago the value for the data series is: " + myDataSeries[0]);
 ```
 
 
 ### Example
 ```cs
-
 //Saves the span between the high and low of a bar
-
-myDataSeries.**Set**(Math.**Abs**(High\[0\]-Low\[0\]));
+myDataSeries.Set(Math.Abs(High[0]-Low[0]));
 ```
 
 
@@ -1117,20 +904,15 @@ Create a new variable in the declaration area:
 
 ```cs
 //Variable declaration
-
-**private** DateTimeSeries myDataSeries;
+private DateTimeSeries myDataSeries;
 ```
 Assign a new instance of DateTimeSeries for the variable with the Initialize() method:
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myDataSeries = **new DateTimeSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myDataSeries = new DateTimeSeries(this);
+CalculateOnBarClose = true;
 }
 ```
 
@@ -1142,14 +924,14 @@ CalculateOnBarClose = **true**;
 Assigning a value to the current position of the data series:
 
 ```cs
-myDataSeries.**Set**(DateTime Value);
+myDataSeries.Set(DateTime Value);
 ```
 
 
 Writing a value from the past into the data series:
 
 ```cs
-myDataSeries.**Set**(**int** barsAgo, DateTime Value);
+myDataSeries.Set(int barsAgo, DateTime Value);
 ```
 
 
@@ -1158,28 +940,28 @@ myDataSeries.**Set**(**int** barsAgo, DateTime Value);
 Removing the current value from the data series:
 
 ```cs
-myDataSeries.**Reset**();
+myDataSeries.Reset();
 ```
 
 
 Remove a past value from the data series:
 
 ```cs
-myDataSeries.**Reset**(**int** barsAgo);
+myDataSeries.Reset(int barsAgo);
 ```
 
 
 ### Check Values for their Validity
 
 ```cs
-myDataSeries.**ContainsValue**(**int** barsAgo);
+myDataSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 
 ```cs
-**Print** ("For the bar from " + Time\[0\] + " ago the value of the data series is: " + myDataSeries\[0\]);
+Print ("For the bar from " + Time[0] + " ago the value of the data series is: " + myDataSeries[0]);
 ```
 
 
@@ -1187,8 +969,7 @@ myDataSeries.**ContainsValue**(**int** barsAgo);
 
 ```cs
 //Saves the difference of -6 hours (eastern time, New York) for a time zone conversion
-
-myDataSeries.**Set**(Time\[0\].**AddHours**(-6);
+myDataSeries.Set(Time[0].AddHours(-6);
 ```
 
 
@@ -1204,20 +985,15 @@ Create a new variable in the declaration area:
 
 ```cs
 //Variable declaration
-
-**private** FloatSeries myDataSeries;
+private FloatSeries myDataSeries;
 ```
 Assign a new instance of the FloatSeries to the variable with the Initialize() method:
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myDatatSeries = **new FloatSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myDatatSeries = new FloatSeries(this);
+CalculateOnBarClose = true;
 }
 ```
 
@@ -1229,14 +1005,13 @@ CalculateOnBarClose = **true**;
 Assigning a value to the current position of the data series
 
 ```cs
-myDataSeries.**Set**(**float** Value);
+myDataSeries.Set(float Value);
 ```
 
 
 Writing a value from the past into the data series:
 ```cs
-
-myDataSeries.**Set**(**int** barsAgo, **float** Value);
+myDataSeries.Set(int barsAgo, float Value);
 ```
 
 
@@ -1244,29 +1019,25 @@ myDataSeries.**Set**(**int** barsAgo, **float** Value);
 
 Removing the current value from the data series:
 ```cs
-
-myDataSeries.**Reset**();
+myDataSeries.Reset();
 ```
 
 
 Removing a value located in the past from the data series:
 ```cs
-
-myDataSeries.**Reset**(**int** barsAgo);
+myDataSeries.Reset(int barsAgo);
 ```
 
 
 ### Check Values for their Validity
 ```cs
-
-myDataSeries.**ContainsValue**(**int** barsAgo);
+myDataSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 ```cs
-
-**Print** ("For the bar from " + Time\[0\] + " ago the value for the data series is: " + myDataSeries\[0\]);
+Print ("For the bar from " + Time[0] + " ago the value for the data series is: " + myDataSeries[0]);
 ```
 
 
@@ -1274,8 +1045,7 @@ myDataSeries.**ContainsValue**(**int** barsAgo);
 
 ```cs
 //Saves the span between the high and the low of a bar
-
-myDataSeries.**Set**(Math.**Abs**((**float**) High\[0\] - (**float**) Low\[0\]));
+myDataSeries.Set(Math.Abs((float) High[0] - (float) Low[0]));
 ```
 
 
@@ -1292,22 +1062,16 @@ Create a new variable in the declaration area:
 
 ```cs
 //Variable declaration
-
-**private** IntSeries myDataSeries;
-
+private IntSeries myDataSeries;
 ```
 
 Assign an instance of the int series to the variable with the Initialize() method:
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myDataSeries = **new IntSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myDataSeries = new IntSeries(this);
+CalculateOnBarClose = true;
 }
 ```
 
@@ -1318,15 +1082,13 @@ CalculateOnBarClose = **true**;
 
 Assigning a value to the current position of the data series
 ```cs
-
-myDataSeries.**Set**(**int** Value);
+myDataSeries.Set(int Value);
 ```
 
 
 Writing a value from the past into the data series:
 ```cs
-
-myDataSeries.**Set**(**int** barsAgo, **int** Value);
+myDataSeries.Set(int barsAgo, int Value);
 ```
 
 
@@ -1334,29 +1096,25 @@ myDataSeries.**Set**(**int** barsAgo, **int** Value);
 
 Removing the current value from the data series:
 ```cs
-
-myDataSeries.**Reset**();
+myDataSeries.Reset();
 ```
 
 
 Removing a value located in the past from the data series:
 ```cs
-
-myDataSeries.**Reset**(**int** barsAgo);
+myDataSeries.Reset(int barsAgo);
 ```
 
 
 ### Check Values for their Validity
 ```cs
-
-myDataSeries.**ContainsValue**(**int** barsAgo);
+myDataSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 ```cs
-
-**Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
+Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 ```
 
 
@@ -1364,8 +1122,7 @@ myDataSeries.**ContainsValue**(**int** barsAgo);
 
 ```cs
 //Saves the span in ticks between high and low for each bar
-
-myDataSeries.**Set**((**int**) ((High\[0\] - Low\[0\]) / TickSize));
+myDataSeries.Set((int) ((High[0] - Low[0]) / TickSize));
 ```
 
 
@@ -1379,22 +1136,15 @@ Long series is a data series that can include an integer value for each bar. The
 
 Create a new variable in the declaration area:
 ```cs
-
 //Variable declaration
-
-**private** LongSeries myDataSeries;
+private LongSeries myDataSeries;
 ```
 Assign a new instance of the long series to the variable with the Initialize() method:
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myDataSeries = **new LongSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myDataSeries = new LongSeries(this);
+CalculateOnBarClose = true;
 }
 ```
 
@@ -1405,15 +1155,13 @@ CalculateOnBarClose = **true**;
 
 Assigning a value to the current position of the data series:
 ```cs
-
-myDataSeries.**Set**(**long** Value);
+myDataSeries.Set(long Value);
 ```
 
 
 Writing a value from the past into the data deries:
 ```cs
-
-myDataSeries.**Set**(**int** barsAgo, **long** Value);
+myDataSeries.Set(int barsAgo, long Value);
 ```
 
 
@@ -1421,29 +1169,25 @@ myDataSeries.**Set**(**int** barsAgo, **long** Value);
 
 Removing the current value from the data series:
 ```cs
-
-myDataSeries.**Reset**();
+myDataSeries.Reset();
 ```
 
 
 Removing a value located in the past from the data series:
 ```cs
-
-myDataSeries.**Reset**(**int** barsAgo);
+myDataSeries.Reset(int barsAgo);
 ```
 
 
 ### Check Values for their Validity
 ```cs
-
-myDataSeries.**ContainsValue**(**int** barsAgo);
+myDataSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 ```cs
-
-**Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
+Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 ```
 
 
@@ -1451,8 +1195,7 @@ myDataSeries.**ContainsValue**(**int** barsAgo);
 
 ```cs
 //Saves the span of ticks between high and low for each bar
-
-myDataSeries.**Set**((**long**) ((High\[0\] - Low\[0\]) / TickSize));
+myDataSeries.Set((long) ((High[0] - Low[0]) / TickSize));
 ```
 
 
@@ -1468,22 +1211,17 @@ Create a new variable in the declaration area:
 
 ```cs
 //Variable declaration
-
-**private** StringSeries myDataSeries;
+private StringSeries myDataSeries;
 ```
 
 
 Assign an instance of string series to the variable with the Initialize() method:
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-myDataSeries = **new StringSeries**(**this**);
-
-CalculateOnBarClose = **true**;
-
+myDataSeries = new StringSeries(this);
+CalculateOnBarClose = true;
 }
 ```
 
@@ -1493,14 +1231,14 @@ CalculateOnBarClose = **true**;
 Assigning a value to the current position of the data series:
 
 ```cs
-myDataSeries.**Set**(string Value);
+myDataSeries.Set(string Value);
 ```
 
 
 Writing a value from the past into the data series:
 
 ```cs
-myDataSeries.**Set**(**int** barsAgo, string Value);
+myDataSeries.Set(int barsAgo, string Value);
 ```
 
 
@@ -1509,28 +1247,28 @@ myDataSeries.**Set**(**int** barsAgo, string Value);
 Remove the current value from the data series:
 
 ```cs
-myDataSeries.**Reset**();
+myDataSeries.Reset();
 ```
 
 
 Remove a value located in the past from the data series:
 
 ```cs
-myDataSeries.**Reset**(**int** barsAgo);
+myDataSeries.Reset(int barsAgo);
 ```
 
 
 ### Check Values for their Validity
 
 ```cs
-myDataSeries.**ContainsValue**(**int** barsAgo);
+myDataSeries.ContainsValue(int barsAgo);
 ```
 
 
 ### Read Value
 
 ```cs
-**Print** (For the bar from + Time\[0\] + the value of the data series is:+ myDataSeries\[0\]);
+Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 ```
 
 
@@ -1538,8 +1276,7 @@ myDataSeries.**ContainsValue**(**int** barsAgo);
 
 ```cs
 //Save the current calendar day for each bar (Monday… Tuesday etc.)
-
-myDataSeries.**Set**(string.**Format**("{0:dddd}", Time\[0\]));
+myDataSeries.Set(string.Format("{0:dddd}", Time[0]));
 ```
 
 
@@ -1570,13 +1307,9 @@ public enum DayOfWeek
 
 ```cs
 //Outputs the weekday for each bar
-
-**Print**(Time\[0\].DayOfWeek);
-
+Print(Time[0].DayOfWeek);
 //Do not execute trades on a Friday
-
-**if** (Time\[0\].DayOfWeek == DayOfWeek.Friday)
-
+if (Time[0].DayOfWeek == DayOfWeek.Friday)
 return;
 ```
 
@@ -1605,16 +1338,11 @@ int Offset Number of bars by which the indicator is to be moved.
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //Displacement of the plot by one bar to the right
-
 Displacement = 1;
-
 }
 ```
 
@@ -1627,15 +1355,13 @@ The property "DisplayInDataBox" states whether the value of an indicator is cont
 
 The property can be queried in the script and returns a value of the type Boolean (true or false).
 ```cs
-
-**DisplayInDataBox = true (default)**
+DisplayInDataBox = true (default)
 ```
 
 
 The indicator values are displayed in the data box.
 ```cs
-
-**DisplayInDataBox = false**
+DisplayInDataBox = false
 ```
 
 
@@ -1652,16 +1378,11 @@ DisplayInDataBox
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //Values will not be shown in the data box
-
-DisplayInDataBox = **false**;
-
+DisplayInDataBox = false;
 }
 ```
 
@@ -1672,15 +1393,13 @@ DisplayInDataBox = **false**;
 
 The property "DrawOnPricePanel" determines the panel in which the drawing objects are drawn.
 ```cs
-
-**DrawOnPricePanel = true (default)**
+DrawOnPricePanel = true (default)
 ```
 
 
 Drawing objects are shown in the price chart
 ```cs
-
-**DrawOnPricePanel = false**
+DrawOnPricePanel = false
 ```
 
 
@@ -1696,30 +1415,18 @@ DrawOnPricePanel
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 // Indicator is drawn in a new subchart
-
-Overlay = **false**;
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Overlay = false;
+Add(new Plot(Color.Red, "MyPlot1"));
 // Drawing object is drawn in the price chart
-
-DrawOnPricePanel = **true**;
-
+DrawOnPricePanel = true;
 }
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
 // Draws a vertical line in the price chart for the bar from 5 minutes ago
-
-**DrawVerticalLine**("MyVerticalLine", 5, Color.Black);
-
+DrawVerticalLine("MyVerticalLine", 5, Color.Black);
 }
 ```
 
@@ -1735,7 +1442,7 @@ See [*CrossAbove()*], [*CrossBelow()*], [*Rising()*].
 ### Usage
 
 ```cs
-**Falling**(IDataSeries series)
+Falling(IDataSeries series)
 ```
 
 
@@ -1752,10 +1459,8 @@ series a data series such as an indicator, close, high etc.
 
 ```cs
 // Check whether SMA(20) is falling
-
-**if** (**Falling**(**SMA**(20)))
-
-**Print**("The SMA(20) is currently falling.");
+if (Falling(SMA(20)))
+Print("The SMA(20) is currently falling.");
 ```
 
 
@@ -1800,10 +1505,8 @@ BarColor
 
 ### Example
 ```cs
-
 // If the closing price is above the SMA(14), color the bar orange
-
-**if** (Close\[0\] &gt; **SMA**(14)\[0\]) BarColor = Color.Orange;
+if (Close[0] > SMA(14)[0]) BarColor = Color.Orange;
 ```
 
 
@@ -1829,9 +1532,7 @@ BackColor
 
 ```cs
 // Every Monday, change the bar background color to blue
-
-**if** (Time\[0\].DayOfWeek == DayOfWeek.Monday)
-
+if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColor = Color.Blue;
 ```
 
@@ -1840,12 +1541,9 @@ BackColor = Color.Blue;
 
 ```cs
 // Changing the bar background color depending on a smoothing average
-
 // Market price above the SMA(14) to green
-
 // Market price below the SMA(14) to maroon
-
-BackColor = **SMA**(14)\[0\] &gt;= Close\[0\] ? Color.Maroon : Color.LimeGreen;
+BackColor = SMA(14)[0] >= Close[0] ? Color.Maroon : Color.LimeGreen;
 ```
 
 
@@ -1871,9 +1569,7 @@ BackColorAll
 
 ```cs
 // Every Monday, change the bar background color to blue
-
-**if** (Time\[0\].DayOfWeek == DayOfWeek.Monday)
-
+if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColorAll = Color.Blue;
 ```
 
@@ -1907,30 +1603,18 @@ When using the method with an index \[**int** barsAgo\] the color for the refere
 ### Example
 
 ```cs
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**if** (CurrentBar == Bars.Count-1-(CalculateOnBarClose?1:0))
-
+if (CurrentBar == Bars.Count-1-(CalculateOnBarClose?1:0))
 {
-
 // Color the current bar blue
-
 // This is identical to BarColor = color.Blue
-
-BarColorSeries\[0\] = Color.Blue;
-
+BarColorSeries[0] = Color.Blue;
 // Color the previous bars green
-
-BarColorSeries\[1\] = Color.Orange;
-
+BarColorSeries[1] = Color.Orange;
 // Color the third bar yellow
-
-BarColorSeries\[2\] = Color.Yellow;
-
+BarColorSeries[2] = Color.Yellow;
 }
-
 }
 ```
 
@@ -1955,8 +1639,7 @@ int barsAgo
 
 ```cs
 BackColorSeries
-
-BackColorSeries\[**int** barsAgo\]
+BackColorSeries[int barsAgo]
 ```
 
 
@@ -1964,20 +1647,13 @@ When using this method with an index \[**int** barsAgo\] the background color fo
 
 ### Example
 ```cs
-
 // Which background color does the current bar have?
-
-**Print** (BackColorSeries\[0\]);
-
+Print (BackColorSeries[0]);
 // Set the current bar’s background color to blue
-
 // This is identical to BackColor = Color.Blue
-
-BackColorSeries\[3\] = Color.Blue;
-
+BackColorSeries[3] = Color.Blue;
 // Set background color for the previous bar to green
-
-BackColorSeries\[1\] = Color.Green;
+BackColorSeries[1] = Color.Green;
 ```
 
 
@@ -1999,8 +1675,7 @@ int barsAgo
 
 ```cs
 BackColorAllSeries
-
-BackColorAllSeries\[**int** barsAgo\]
+BackColorAllSeries[int barsAgo]
 ```
 
 
@@ -2031,12 +1706,9 @@ CandleOutlineColor
 ### Example
 
 ```cs
-**if** (**SMA**(14)\[0\] &gt; **SMA**(200)\[0\])
-
+if (SMA(14)[0] > SMA(200)[0])
 CandleOutlineColor = Color.LimeGreen;
-
-**else**
-
+else
 CandleOutlineColor = Color.Red;
 ```
 
@@ -2061,7 +1733,7 @@ int barsAgo
 
 ```cs
 CandleOutlineColorSeries
-CandleOutlineColorSeries\[**int** barsAgo\]
+CandleOutlineColorSeries[int barsAgo]
 ```
 
 
@@ -2073,12 +1745,9 @@ When using this method with an index \[**int** barsAgo\] the border color for th
 
 ```cs
 // Set the outline color of the current bar to blue
-
-CandleOutlineColorSeries\[0\] = Color.Blue;
-
+CandleOutlineColorSeries[0] = Color.Blue;
 // Change the outline color to the chart default value
-
-CandleOutlineColorSeries\[0\] = Color.Empty;
+CandleOutlineColorSeries[0] = Color.Empty;
 ```
 
 
@@ -2100,17 +1769,11 @@ FirstTickOfBar
 
 ```cs
 // Within a tick-by-tick strategy, execute one part bar-by-bar only
-
-**if** (FirstTickOfBar)
-
+if (FirstTickOfBar)
 {
-
-**if** (**CCI**(20)\[1\] &lt; -250)
-
-**EnterLong**();
-
+if (CCI(20)[1] < -250)
+EnterLong();
 return;
-
 }
 ```
 
@@ -2137,9 +1800,8 @@ See [*BarsInProgress*].
 ### Example
 
 ```cs
-**if** (**FirstTickOfBarMtf**(BarsInProgress))
-
-**Print**("A new bar has begun.");
+if (FirstTickOfBarMtf(BarsInProgress))
+Print("A new bar has begun.");
 ```
 
 
@@ -2167,21 +1829,13 @@ none
 
 ```cs
 If an entry condition is fulfilled, then 1 contract should be sold at the current ask price:
-
-**private** IOrder entryOrder = **null**;
-
-**protected** override void **OnBarUpdate**()
-
+private IOrder entryOrder = null;
+protected override void OnBarUpdate()
 {
-
 // Entry condition
-
-**if** (Close\[0\] &lt; **SMA**(20)\[0\] && entryOrder == **null**)
-
+if (Close[0] < SMA(20)[0] && entryOrder == null)
 // Sell 1 contract at the current ask price
-
-entryOrder = **SubmitOrder**(0, OrderAction.SellShort, OrderType.Limit, 1, **GetCurrentAsk**(), 0, "", "Enter short");
-
+entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
 }
 ```
 
@@ -2211,20 +1865,13 @@ none
 If an entry condition is fulfilled, then 1 contract should be sold at the current bid price:
 
 ```cs
-**private** IOrder entryOrder = **null**;
-
-**protected** override void **OnBarUpdate**()
-
+private IOrder entryOrder = null;
+protected override void OnBarUpdate()
 {
-
 // Entry condition
-
-**if** (Close\[0\] &gt; **SMA**(20)\[0\] && entryOrder == **null**)
-
+if (Close[0] > SMA(20)[0] && entryOrder == null)
 // Sell 1 contract at the current bid price
-
-entryOrder = **SubmitOrder**(0, OrderAction.Buy, OrderType.Limit, 1, **GetCurrentBid**(), 0, "", "Enter long");
-
+entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, "", "Enter long");
 }
 ```
 
@@ -2245,15 +1892,13 @@ series Every data series, such as close, high, low, etc.
 
 ### Return Value
 ```cs
-
-**int** barsAgo How many bars ago the high occurred
+int barsAgo How many bars ago the high occurred
 ```
 
 
 ### Usage
 ```cs
-
-**HighestBar**(IDataSeries series, **int** period)
+HighestBar(IDataSeries series, int period)
 ```
 
 
@@ -2261,12 +1906,9 @@ series Every data series, such as close, high, low, etc.
 
 ```cs
 // How many bars ago was the highest high for the current session?
-
-**Print**(**HighestBar**(High, Bars.BarsSinceSession - 1));
-
+Print(HighestBar(High, Bars.BarsSinceSession - 1));
 // What value did the market price have at the highest high of the session?
-
-**Print**("The highest price for the session was: " + Open\[**HighestBar**(High, Bars.BarsSinceSession - 1)\]);
+Print("The highest price for the session was: " + Open[HighestBar(High, Bars.BarsSinceSession - 1)]);
 ```
 
 
@@ -2290,16 +1932,11 @@ Historical
 ### Example
 
 ```cs
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
 // only execute for real-time data
-
-**if** (Historical) return;
-
+if (Historical) return;
 // Trading technique
-
 }
 ```
 
@@ -2320,8 +1957,7 @@ none
 
 ### Usage
 ```cs
-
-**protected** override void **Initialize**()
+protected override void Initialize()
 ```
 
 
@@ -2362,26 +1998,16 @@ Developers of custom AgenaScripts should NOT use this method for running their o
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Blue, "myPlot"));
-
-**ClearOutputWindow**();
-
-AutoScale = **false**;
-
-Overlay = **true**;
-
-PaintPriceMarkers = **false**;
-
-DisplayInDataBox = **false**;
-
-CalculateOnBarClose = **true**;
-
+Add(new Plot(Color.Blue, "myPlot"));
+ClearOutputWindow();
+AutoScale = false;
+Overlay = true;
+PaintPriceMarkers = false;
+DisplayInDataBox = false;
+CalculateOnBarClose = true;
 }
-
 ```
 
 ## InitRequirements()
@@ -2402,16 +2028,11 @@ none
 ### Example
 
 ```cs
-**protected** override void **InitRequirements**()
-
+protected override void InitRequirements()
 {
-
-**Add**(DatafeedHistoryPeriodicity.Day, 1);
-
-**Add**(DatafeedHistoryPeriodicity.Week, 1);
-
+Add(DatafeedHistoryPeriodicity.Day, 1);
+Add(DatafeedHistoryPeriodicity.Week, 1);
 }
-
 ```
 
 ## InputPriceType
@@ -2427,7 +2048,6 @@ See [*PriceType*]
 
 ### Usage
 ```cs
-
 InputPriceType
 ```
 
@@ -2435,24 +2055,15 @@ InputPriceType
 ### Example1
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**ClearOutputWindow**();
-
+ClearOutputWindow();
 InputPriceType = PriceType.Low;
-
 }
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
 // The input data series for the indicator (input) is low
-
-**Print**(Low\[0\] + " " + Input\[0\] + " " + InputPriceType);
-
+Print(Low[0] + " " + Input[0] + " " + InputPriceType);
 }
 ```
 
@@ -2460,30 +2071,18 @@ InputPriceType = PriceType.Low;
 ### Example2
 
 ```cs
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
 // These values are identical
-
 // since close is used as the input data series by default
-
-**Print**(**SMA**(20)\[0\] + " " + **SMA**(Close, 20)\[0\]);
-
+Print(SMA(20)[0] + " " + SMA(Close, 20)[0]);
 InputPriceType = PriceType.Low;
-
 // From here on out, low is used instead of close
-
 // Both values are identical
-
-**Print**(**SMA**(20)\[0\] + " " + **SMA**(Low, 20)\[0\]);
-
+Print(SMA(20)[0] + " " + SMA(Low, 20)[0]);
 InputPriceType = PriceType.High;
-
 // The instructions will be ignored
-
 // Input = low is still in effect
-
 }
 ```
 
@@ -2518,9 +2117,8 @@ See [*Plot*].
 ### Usage
 
 ```cs
-**Line**(Color color, **double value**, string name)
-
-**Line**(Pen pen, **double value**, string name)
+Line(Color color, double value, string name)
+Line(Pen pen, double value, string name)
 ```
 
 
@@ -2530,44 +2128,25 @@ Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.d
 
 ### Example
 ```cs
-
 // Example 1
-
 // A new line with standard values drawn at the value of 70
-
-**Add**(**new Line**(Color.Black, 70, "Upper"));
-
+Add(new Line(Color.Black, 70, "Upper"));
 // Example 2
-
 // A new line with self-defined values
-
-**private** Line line;
-
-**private** Pen pen;
-
-**protected** override void **Initialize**()
-
+private Line line;
+private Pen pen;
+protected override void Initialize()
 {
-
 // Define a red pen with the line strength 1
-
-pen = **new Pen**(Color.Red, 1);
-
+pen = new Pen(Color.Red, 1);
 // Define a horizontal line at 10
-
-line = **new Line**(pen, 10, "MyLine");
-
+line = new Line(pen, 10, "MyLine");
 // add the defined line to the indicator
-
-**Add**(line);
-
+Add(line);
 }
-
 // Example 3
-
 // Short form for the line in example 2
-
-**Add**(**new Line**(**new Pen**(Color.Red, 1), 10, "MyLine"));
+Add(new Line(new Pen(Color.Red, 1), 10, "MyLine"));
 ```
 
 
@@ -2599,25 +2178,15 @@ If the log tab is not viewable, it can be displayed using the tools log.
 
 ### Example
 ```cs
-
 //Tab protocol
-
 Log("This is information.", InfoLogLevel.Info); //white
-
 Log("This is a message.", InfoLogLevel.Message); // blue
-
 Log("This is a warning.", InfoLogLevel.Warning); // yellow
-
 Log("This is an alarm.", InfoLogLevel. AlertLog); //green
-
 Log("This is a mistake.", InfoLogLevel.Error); // red
-
 //Tab messags
-
 Log("This is a message (messages).", InfoLogLevel.Message); //gray
-
 //PopUp & protocoll
-
 Log("This is an alert popup window.", InfoLogLevel.Alert); //green
 ```
 
@@ -2642,21 +2211,16 @@ series Every data series, such as close, high, low etc.
 
 ### Usage
 ```cs
-
-**LowestBar**(IDataSeries series, **int** period)
+LowestBar(IDataSeries series, int period)
 ```
 
 
 ### Example
 ```cs
-
 // How many bars ago was the lowest low of the session?
-
-**Print**(**LowestBar**(Low, Bars.BarsSinceSession - 1));
-
+Print(LowestBar(Low, Bars.BarsSinceSession - 1));
 // Which price did the lowest open of the current session have?
-
-**Print**("The lowest open price of the current session was: " + Open\[**LowestBar**(Low, Bars.BarsSinceSession - 1)\]);
+Print("The lowest open price of the current session was: " + Open[LowestBar(Low, Bars.BarsSinceSession - 1)]);
 ```
 
 
@@ -2722,14 +2286,14 @@ See [*OnMarketDepth()*].
 The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.
 
 ```cs
-**Overlay = true**
+Overlay = true
 ```
 
 
 The indicator is drawn above the price (for example an [*SMA*])
 
 ```cs
-**Overlay = false (default)**
+Overlay = false (default)
 ```
 
 
@@ -2743,17 +2307,11 @@ Overlay
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //The indicator should be displayed within a separate window
-
-Overlay = **false**;
-
+Overlay = false;
 }
 ```
 
@@ -2780,16 +2338,11 @@ PaintPriceMarkers
 ### Example
 
 ```cs
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //Do not show price markers in the price axis
-
-PaintPriceMarkers = **false**;
-
+PaintPriceMarkers = false;
 }
 ```
 
@@ -2815,13 +2368,10 @@ wavFile File name of the wav file to be played
 ### Example
 
 ```cs
-**using** System.IO;
-
-string path = Environment.**GetFolderPath**(Environment.SpecialFolder.MyDocuments);
-
+using System.IO;
+string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string file = "\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav";
-
-**PlaySound**(path + file);
+PlaySound(path + file);
 ```
 
 
@@ -2853,13 +2403,10 @@ See [*Line*].
 ### Usage
 
 ```cs
-**Plot**(Color color, string name)
-
-**Plot**(Pen pen, string name)
-
-**Plot**(Color color, PlotStyle plotStyle, string name)
-
-**Plot**(Pen pen, PlotStyle plotStyle, string name)
+Plot(Color color, string name)
+Plot(Pen pen, string name)
+Plot(Color color, PlotStyle plotStyle, string name)
+Plot(Pen pen, PlotStyle plotStyle, string name)
 ```
 
 
@@ -2869,49 +2416,27 @@ Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.d
 
 ### Example
 ```cs
-
 // Example 1
-
 // Plot with standard values (line with line strength 1)
-
-**Add**(**new Plot**(Color.Green, "MyPlot"));
-
+Add(new Plot(Color.Green, "MyPlot"));
 // Example 2
-
 // user-defined values for pen and plot style
-
-**private** Plot plot;
-
-**private** Pen pen;
-
-**protected** override void **Initialize**()
-
+private Plot plot;
+private Pen pen;
+protected override void Initialize()
 {
-
 // a red pen with the line strength of 6 is defined
-
-pen = **new Pen**(Color.Blue, 6);
-
+pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-
-plot = **new Plot**(pen, PlotStyle.Dot, "MyPlot");
-
+plot = new Plot(pen, PlotStyle.Dot, "MyPlot");
 // The defined plot is to be used as a representation for an indicator
-
-**Add**(plot);
-
+Add(plot);
 }
-
 // Example 3
-
 // Abbreviation of example 2
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(**new Pen**(Color.Blue, 6), PlotStyle.Dot, "MyPlot"));
-
+Add(new Plot(new Pen(Color.Blue, 6), PlotStyle.Dot, "MyPlot"));
 }
 ```
 
@@ -2944,140 +2469,75 @@ none
 
 ### Usage
 ```cs
-
-**public** override void **Plot**(Graphics graphics, Rectangle r, **double** min, **double** max)
+public override void Plot(Graphics graphics, Rectangle r, double min, double max)
 ```
 
 
 ### Example
 ```cs
-
-**using** System;
-
-**using** System.Collections.Generic;
-
-**using** System.ComponentModel;
-
-**using** System.Drawing;
-
-**using** System.Drawing.Drawing2D;
-
-**using** AgenaTrader.API;
-
-**using** AgenaTrader.Custom;
-
-**using** AgenaTrader.Plugins;
-
-**namespace** AgenaTrader.UserCode
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+namespace AgenaTrader.UserCode
 {
-
-\[**Description**("Example for the usage of the plot method.")\]
-
-**public** class PlotSample : UserIndicator
-
+[Description("Example for the usage of the plot method.")]
+public class PlotSample : UserIndicator
 {
-
-**private** StringFormat stringFormat = **new StringFormat**();
-
-**private** SolidBrush brush = **new SolidBrush**(Color.Black);
-
-**private** Font font = **new Font**("Arial", 10);
-
-**protected** override void **Initialize**()
-
+private StringFormat stringFormat = new StringFormat();
+private SolidBrush brush = new SolidBrush(Color.Black);
+private Font font = new Font("Arial", 10);
+protected override void Initialize()
 {
-
-ChartOnly = **true**;
-
-Overlay = **true**;
-
+ChartOnly = true;
+Overlay = true;
 }
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {}
-
-**protected** override void **OnTermination**()
-
+protected override void OnTermination()
 {
-
-brush.**Dispose**();
-
-stringFormat.**Dispose**();
-
+brush.Dispose();
+stringFormat.Dispose();
 }
-
-**public** override void **Plot**(Graphics graphics, Rectangle r, **double** min, **double** max)
-
+public override void Plot(Graphics graphics, Rectangle r, double min, double max)
 {
-
 // Fill a rectangle
-
-SolidBrush tmpBrush = **new SolidBrush**(Color.LightGray);
-
-graphics.**FillRectangle**(tmpBrush, **new Rectangle** (0, 0, 300, 300));
-
-tmpBrush.**Dispose**();
-
+SolidBrush tmpBrush = new SolidBrush(Color.LightGray);
+graphics.FillRectangle(tmpBrush, new Rectangle (0, 0, 300, 300));
+tmpBrush.Dispose();
 // Draw a red line from top left to bottom right
-
-Pen pen = **new Pen**(Color.Red);
-
-graphics.**DrawLine**(pen, r.X, r.Y, r.X + r.Width, r.Y + r.Height);
-
+Pen pen = new Pen(Color.Red);
+graphics.DrawLine(pen, r.X, r.Y, r.X + r.Width, r.Y + r.Height);
 // Draw a red line from bottom left to top right
-
 // Use anti-alias (the line appears smoother)
-
 // The current settings for the smoothing are saved
-
 // Restore after drawing
-
 SmoothingMode oldSmoothingMode = graphics.SmoothingMode; //Save settings
-
 graphics.SmoothingMode = SmoothingMode.AntiAlias; // Use higher smoothing settings
-
-graphics.**DrawLine**(pen, r.X, r.Y + r.Height, r.X + r.Width, r.Y);
-
+graphics.DrawLine(pen, r.X, r.Y + r.Height, r.X + r.Width, r.Y);
 graphics.SmoothingMode = oldSmoothingMode; // Settings restored
-
-pen.**Dispose**();
-
+pen.Dispose();
 // Text in the upper left corner (position 10,35)
-
 stringFormat.Alignment = StringAlignment.Near; // Align text to the left
-
 brush.Color = Color.Blue;
-
-graphics.**DrawString**("Hello world!", font, brush, r.X + 10, r.Y + 35, stringFormat);
-
+graphics.DrawString("Hello world!", font, brush, r.X + 10, r.Y + 35, stringFormat);
 // Text in the left lower corner and draw a line around it
-
 brush.Color = Color.Aquamarine;
-
-graphics.**FillRectangle**(brush, r.X + 10, r.Y + r.Height - 20, 140, 19);
-
+graphics.FillRectangle(brush, r.X + 10, r.Y + r.Height - 20, 140, 19);
 // Draw outside line
-
-pen = **new Pen**(Color.Black);
-
-graphics.**DrawRectangle**(pen, r.X + 10, r.Y + r.Height - 20, 140, 19);
-
-pen.**Dispose**();
-
+pen = new Pen(Color.Black);
+graphics.DrawRectangle(pen, r.X + 10, r.Y + r.Height - 20, 140, 19);
+pen.Dispose();
 // Write text
-
 brush.Color = Color.Red;
-
-graphics.**DrawString**("Here is bottom left!", font, brush, r.X + 10, r.Y + r.Height - 20, stringFormat);
-
+graphics.DrawString("Here is bottom left!", font, brush, r.X + 10, r.Y + r.Height - 20, stringFormat);
 }
-
 }
-
 }
-
 ```
 
 ## PriceType
@@ -3116,17 +2576,12 @@ See [*ClearOutputWindow()*].
 ### Usage
 
 ```cs
-**Print**(string message)
-
-**Print**(**bool value**)
-
-**Print**(**double value**)
-
-**Print**(**int value**)
-
-**Print**(DateTime **value**)
-
-**Print**(string format, string message)
+Print(string message)
+Print(bool value)
+Print(double value)
+Print(int value)
+Print(DateTime value)
+Print(string format, string message)
 ```
 
 
@@ -3148,16 +2603,11 @@ Hints about the String.Format() method: [*http://msdn.microsoft.com/de-de/librar
 
 ```cs
 // "Quick&Dirty" formatting of a number with 2 decimal points
-
-**Print**(Close\[0\].**ToString**("0.00"));
-
+Print(Close[0].ToString("0.00"));
 // Output day of the week from the timestamp for the bar
-
-**Print**(string.**Format**("{0:dddd}", Time\[0\]));
-
+Print(string.Format("{0:dddd}", Time[0]));
 // An additional empty row with an escape sequence
-
-**Print**("One empty row afterwards \\n");
+Print("One empty row afterwards \\n");
 ```
 
 
@@ -3183,7 +2633,7 @@ string tag The clearly identifiable name for the drawing object
 ### Example
 
 ```cs
-**RemoveDrawObjects**("My line");
+RemoveDrawObjects("My line");
 ```
 
 
@@ -3206,8 +2656,7 @@ none
 
 ```cs
 //Delete all drawings from the chart
-
-**RemoveDrawObjects**();
+RemoveDrawObjects();
 ```
 
 
@@ -3222,8 +2671,7 @@ See [*CrossAbove()*], [*CrossBelow()*], [*Falling()*].
 ### Usage
 
 ```cs
-**Rising**(IDataSeries series)
-
+Rising(IDataSeries series)
 ```
 
 ### Return Value
@@ -3239,10 +2687,8 @@ series A data series such as an indicator, close, high etc.
 
 ```cs
 // Check if SMA(20) is rising
-
-**if** (**Rising**(**SMA**(20)))
-
-**Print**("The SMA(20) is currently rising.");
+if (Rising(SMA(20)))
+Print("The SMA(20) is currently rising.");
 ```
 
 
@@ -3268,19 +2714,12 @@ SessionBreakLines
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 //Session break lines should not be shown
-
-SessionBreakLines = **false**;
-
+SessionBreakLines = false;
 }
-
 ```
 
 ## TickSize
@@ -3345,11 +2784,8 @@ ToDay(DateTime time)
 
 ### Example
 ```cs
-
 // Do not trade on the 11<sup>th</sup> of September
-
-**if** (**ToDay**(Time\[0\]) = 20130911)
-
+if (ToDay(Time[0]) = 20130911)
 return;
 ```
 
@@ -3375,15 +2811,10 @@ ToTime(DateTime time)
 
 ### Example
 ```cs
-
 // Only enter trades between 08:15 and 16:35
-
-**if** (**ToTime**(Time\[0\]) &gt;= 81500 && **ToTime**(Time\[0\]) &lt;= 163500)
-
+if (ToTime(Time[0]) >= 81500 && ToTime(Time[0]) <= 163500)
 {
-
 // Any trading technique
-
 }
 ```
 
@@ -3398,7 +2829,6 @@ Update() is to be used with caution and is intended for use by experienced progr
 
 ### Usage
 ```cs
-
 Update()
 ```
 
@@ -3418,50 +2848,30 @@ The first indicator, Ind1, uses a public variable from the indicator Ind2.
 
 **Code from Ind1:**
 ```cs
-
-**public** class Ind1 : UserIndicator
-
+public class Ind1 : UserIndicator
 {
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**Print**( **Ind2**().MyPublicVariable );
-
+Print( Ind2().MyPublicVariable );
 }
-
 }
 ```
 
 
 **Code from Ind2:**
 ```cs
-
-**private double** myPublicVariable = 0;
-
-**protected** override void **OnBarUpdate**()
-
+private double myPublicVariable = 0;
+protected override void OnBarUpdate()
 {
-
 myPublicVariable = 1;
-
 }
-
-**public double** MyPublicVariable
-
+public double MyPublicVariable
 {
-
 get
-
 {
-
-**Update**();
-
+Update();
 return myPublicVariable;
-
 }
-
 }
 ```
 
@@ -3518,17 +2928,12 @@ VerticalGridLines
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Red, "MyPlot1"));
-
+Add(new Plot(Color.Red, "MyPlot1"));
 // Vertical grid lines shall not be shown within the chart
-
-VerticalGridLines = **false**;
-
+VerticalGridLines = false;
 }
 ```
+
 
