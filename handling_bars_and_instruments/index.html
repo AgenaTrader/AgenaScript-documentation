@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
+  
+  
+  
   <title>Handling bars and instruments - AgenaScript Documentation</title>
-
+  
 
   <link rel="shortcut icon" href="../favicon.ico">
+  
 
-
-
+  
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -22,27 +22,27 @@
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
 
-
+  
   <script>
     // Current page data
     var mkdocs_page_name = "Handling bars and instruments";
     var mkdocs_page_input_path = "handling_bars_and_instruments.md";
     var mkdocs_page_url = "/handling_bars_and_instruments/";
   </script>
-
+  
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script>
+  <script src="../js/theme.js"></script> 
 
-
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
-
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
@@ -55,205 +55,205 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         <ul class="current">
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="..">Lets start</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Handling bars and instruments</a>
-
+        
             <ul>
-
+            
                 <li class="toctree-l3"><a href="#handling-bars-and-instruments">Handling bars and instruments</a></li>
-
+                
                     <li><a class="toctree-l4" href="#bars-candles">Bars (Candles)</a></li>
-
+                
                     <li><a class="toctree-l4" href="#properties-of-bars">Properties of Bars</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barssincesession">BarsSinceSession</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barscount">Bars.Count</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsfirstbarofsession">Bars.FirstBarOfSession</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetbar">Bars.GetBar</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetbarsago">Bars.GetBarsAgo</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetclose">Bars.GetClose</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgethigh">Bars.GetHigh</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetbyindex">Bars.GetByIndex</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetindex">Bars.GetIndex</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetlow">Bars.GetLow</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetnextbeginend">Bars.GetNextBeginEnd</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetsessiondate">Bars.GetSessionDate</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetopen">Bars.GetOpen</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgettime">Bars.GetTime</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsgetvolume">Bars.GetVolume</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsinstrument">Bars.Instrument</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsisintraday">Bars.IsIntraDay</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barspercentcomplete">Bars.PercentComplete</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barssessionbegin">Bars.SessionBegin</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barssessionend">Bars.SessionEnd</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barssessionnextbegin">Bars.SessionNextBegin</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barssessionnextend">Bars.SessionNextEnd</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barstickcount">Bars.TickCount</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barstimeframe">Bars.TimeFrame</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barstotalticks">Bars.TotalTicks</a></li>
-
+                
                     <li><a class="toctree-l4" href="#data-series">Data Series</a></li>
-
+                
                     <li><a class="toctree-l4" href="#open">Open</a></li>
-
+                
                     <li><a class="toctree-l4" href="#opens">Opens</a></li>
-
+                
                     <li><a class="toctree-l4" href="#high">High</a></li>
-
+                
                     <li><a class="toctree-l4" href="#highs">Highs</a></li>
-
+                
                     <li><a class="toctree-l4" href="#low">Low</a></li>
-
+                
                     <li><a class="toctree-l4" href="#lows">Lows</a></li>
-
+                
                     <li><a class="toctree-l4" href="#close">Close</a></li>
-
+                
                     <li><a class="toctree-l4" href="#closes">Closes</a></li>
-
+                
                     <li><a class="toctree-l4" href="#median">Median</a></li>
-
+                
                     <li><a class="toctree-l4" href="#medians">Medians</a></li>
-
+                
                     <li><a class="toctree-l4" href="#typical">Typical</a></li>
-
+                
                     <li><a class="toctree-l4" href="#typicals">Typicals</a></li>
-
+                
                     <li><a class="toctree-l4" href="#weighted">Weighted</a></li>
-
+                
                     <li><a class="toctree-l4" href="#weighted_1">Weighted</a></li>
-
+                
                     <li><a class="toctree-l4" href="#weighteds">Weighteds</a></li>
-
+                
                     <li><a class="toctree-l4" href="#time">Time</a></li>
-
+                
                     <li><a class="toctree-l4" href="#times">Times</a></li>
-
+                
                     <li><a class="toctree-l4" href="#volume">Volume</a></li>
-
+                
                     <li><a class="toctree-l4" href="#volumes">Volumes</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instruments">Instruments</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentcompare">Instrument.Compare</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentcurrency">Instrument.Currency</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentdigits">Instrument.Digits</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentetf">Instrument.ETF</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentexchange">Instrument.Exchange</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentexpiry">Instrument.Expiry</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentinstrumenttype">Instrument.InstrumentType</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentname">Instrument.Name</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentpointvalue">Instrument.PointValue</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentround2ticksize">Instrument.Round2TickSize</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentsymbol">Instrument.Symbol</a></li>
-
+                
                     <li><a class="toctree-l4" href="#instrumentticksize">Instrument.TickSize</a></li>
-
+                
                     <li><a class="toctree-l4" href="#collections">Collections</a></li>
-
+                
                     <li><a class="toctree-l4" href="#drawobjects">DrawObjects</a></li>
-
+                
                     <li><a class="toctree-l4" href="#input">Input</a></li>
-
+                
                     <li><a class="toctree-l4" href="#lines">Lines</a></li>
-
+                
                     <li><a class="toctree-l4" href="#plotcolors">PlotColors</a></li>
-
+                
                     <li><a class="toctree-l4" href="#plots">Plots</a></li>
-
+                
                     <li><a class="toctree-l4" href="#values">Values</a></li>
-
+                
                     <li><a class="toctree-l4" href="#multibars">Multibars</a></li>
-
+                
                     <li><a class="toctree-l4" href="#currentbars">CurrentBars</a></li>
-
+                
                     <li><a class="toctree-l4" href="#barsinprogress">BarsInProgress</a></li>
-
+                
                     <li><a class="toctree-l4" href="#timeframes">TimeFrames</a></li>
-
-
+                
+            
             </ul>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../events/">Events</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../strategy_programming/">Strategy programming</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../keywords/">Keywords</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../drawing_objects/">Drawing objects</a>
-
+        
     </li>
 <li>
-
+          
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../hints_and_advice/">Hints and advice</a>
-
+        
     </li>
 <li>
-
+          
         </ul>
       </div>
       &nbsp;
@@ -261,31 +261,31 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-
+      
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
         <a href="..">AgenaScript Documentation</a>
       </nav>
 
-
+      
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-
-
-
+    
+      
+    
     <li>Handling bars and instruments</li>
     <li class="wy-breadcrumbs-aside">
-
+      
     </li>
   </ul>
   <hr/>
 </div>
           <div role="main">
             <div class="section">
-
+              
                 <h1 id="handling-bars-and-instruments">Handling bars and instruments</h1>
 <p>Data is understood as information that is retrieved externally and uploaded to AgenaTrader, or as data series that are created by AgenaScripts.</p>
 <p>Further detailed information can be found using the appropriate shortcuts:</p>
@@ -1749,31 +1749,31 @@ TimeFrames [2] <strong>Print</strong>(TimeFrames[2]); // returns "1 Week"</p>
 for (int i = BarsArray.Count-1; i &gt;= 0; i--)
 Print(&quot;The Indicator &quot; + this.Name + &quot; uses Bars of the Timeframe &quot; + TimeFrames[i]);
 </code></pre>
-
+              
             </div>
           </div>
           <footer>
-
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-
+      
         <a href="../events/" class="btn btn-neutral float-right" title="Events">Next <span class="icon icon-circle-arrow-right"></span></a>
-
-
+      
+      
         <a href=".." class="btn btn-neutral" title="Lets start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-
+      
     </div>
-
+  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-
+    
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-
+	  
         </div>
       </div>
 
@@ -1783,13 +1783,13 @@ Print(&quot;The Indicator &quot; + this.Name + &quot; uses Bars of the Timeframe
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-
-
+      
+      
         <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-
-
+      
+      
         <span style="margin-left: 15px"><a href="../events/" style="color: #fcfcfc">Next &raquo;</a></span>
-
+      
     </span>
 </div>
 
