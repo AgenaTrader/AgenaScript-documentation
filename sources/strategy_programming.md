@@ -49,32 +49,19 @@ The individual properties are:
 
 ### Example
 ```cs
-
-**Print**("AccountConnection " + Account.AccountConnection);
-
-**Print**("AccountType " + Account.AccountType);
-
-**Print**("Broker " + Account.Broker);
-
-**Print**("BuyingPower " + Account.BuyingPower);
-
-**Print**("CashValue " + Account.CashValue);
-
-**Print**("Currency " + Account.Currency);
-
-**Print**("ExcessEquity " + Account.ExcessEquity);
-
-**Print**("InitialMargin " + Account.InitialMargin);
-
-**Print**("InstrumentTypes " + Account.InstrumentTypes);
-
-**Print**("IsDemo " + Account.IsDemo);
-
-**Print**("Name " + Account.Name);
-
-**Print**("OverNightMargin " + Account.OverNightMargin);
-
-**Print**("RealizedProfitLoss " + Account.RealizedProfitLoss);
+Print("AccountConnection " + Account.AccountConnection);
+Print("AccountType " + Account.AccountType);
+Print("Broker " + Account.Broker);
+Print("BuyingPower " + Account.BuyingPower);
+Print("CashValue " + Account.CashValue);
+Print("Currency " + Account.Currency);
+Print("ExcessEquity " + Account.ExcessEquity);
+Print("InitialMargin " + Account.InitialMargin);
+Print("InstrumentTypes " + Account.InstrumentTypes);
+Print("IsDemo " + Account.IsDemo);
+Print("Name " + Account.Name);
+Print("OverNightMargin " + Account.OverNightMargin);
+Print("RealizedProfitLoss " + Account.RealizedProfitLoss);
 ```
 
 
@@ -87,16 +74,14 @@ The property “BarsSinceEntry” returns the number of bars that have occurred 
 ### Usage
 
 ```cs
-**BarsSinceEntry**()
-
-**BarsSinceEntry**(string signalName)
-
+BarsSinceEntry()
+BarsSinceEntry(string signalName)
 ```
 
 For multi-bar strategies
 
 ```cs
-**BarsSinceEntry**(**int** barsInProgressIndex, string signalName, **int** entriesAgo)
+BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 ```
 
 
@@ -114,7 +99,7 @@ For multi-bar strategies
 ### Example
 
 ```cs
-**Print**("The last entry was " + **BarsSinceEntry**() + " bars ago.");
+Print("The last entry was " + BarsSinceEntry() + " bars ago.");
 ```
 
 
@@ -127,16 +112,14 @@ The property “BarsSinceExit” outputs the number of bars that have occurred s
 ### Usage
 
 ```cs
-**BarsSinceExit**()
-
-**BarsSinceExit**(string signalName)
+BarsSinceExit()
+BarsSinceExit(string signalName)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**BarsSinceExit**(**int** barsInProgressIndex, string signalName, **int** exitsAgo)
+BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 ```
 
 
@@ -153,8 +136,7 @@ For multi-bar strategies
 
 ### Example
 ```cs
-
-**Print**("The last exit was " + **BarsSinceExit**() + " bars ago.");
+Print("The last exit was " + BarsSinceExit() + " bars ago.");
 ```
 
 
@@ -168,8 +150,7 @@ A cancel request is sent to the broker. There is no guarantee that the order wil
 
 ### Usage
 ```cs
-
-**CancelOrder**(IOrder order)
+CancelOrder(IOrder order)
 ```
 
 
@@ -179,35 +160,20 @@ An order object of the type “IOrder”
 
 ### Example
 ```cs
-
-**private** IOrder myEntryOrder = **null**;
-
-**private int** barNumberOfOrder = 0;
-
-**protected** override void **OnBarUpdate**()
-
+private IOrder myEntryOrder = null;
+private int barNumberOfOrder = 0;
+protected override void OnBarUpdate()
 {
-
 // Place an entry stop at the high of the current bar
-
-**if** (myEntryOrder == **null**)
-
+if (myEntryOrder == null)
 {
-
-myEntryOrder = **EnterLongStop**(High\[0\], "stop long");
-
+myEntryOrder = EnterLongStop(High[0], "stop long");
 barNumberOfOrder = CurrentBar;
-
 }
-
 // Delete the order after 3 bars
-
-**if** (Position.MarketPosition == PositionType.Flat &&
-
-CurrentBar &gt; barNumberOfOrder + 3)
-
-**CancelOrder**(myEntryOrder);
-
+if (Position.MarketPosition == PositionType.Flat &&
+CurrentBar > barNumberOfOrder + 3)
+CancelOrder(myEntryOrder);
 }
 ```
 
@@ -220,8 +186,7 @@ Change order, as the name suggests, changes an order.
 
 ### Usage
 ```cs
-
-**ChangeOrder**(IOrder iOrder, **int** quantity, **double** limitPrice, **double** stopPrice)
+ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
 
 
@@ -236,19 +201,12 @@ Change order, as the name suggests, changes an order.
 
 ### Example
 ```cs
-
-**private** IOrder stopOrder = **null**;
-
-**protected** override void **OnBarUpdate**()
-
+private IOrder stopOrder = null;
+protected override void OnBarUpdate()
 {
-
 // If the position is profiting by 4 ticks then set the stop to break-even
-
-**if** (stopOrder != **null** && stopOrder.StopPrice &lt; Position.AvgPrice && Close\[0\] &gt;= Position.AvgPrice + 4 \* TickSize)
-
-**ChangeOrder**(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
-
+if (stopOrder != null && stopOrder.StopPrice < Position.AvgPrice && Close[0] >= Position.AvgPrice + 4 \* TickSize)
+ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
 ```
 
@@ -265,8 +223,7 @@ Default quantity defines the amount to be used in a strategy. Default quantity i
 
 ### Usage
 ```cs
-
-**ChangeOrder**(IOrder iOrder, **int** quantity, **double** limitPrice, **double** stopPrice)
+ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
 
 
@@ -276,13 +233,9 @@ an int value containing the amount (stocks, contracts etc.)
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 DefaultQuantity = 100;
-
 }
 ```
 
@@ -299,18 +252,12 @@ See [*EnterLongLimit()*], [*EnterLongStop()*], [*EnterLongStopLimit()*].
 
 ### Usage
 ```cs
-
-**EnterLong**()
-
-**EnterLong**(string signalName)
-
-**EnterLong**(**int** quantity)
-
-**EnterLong**(**int** quantity, string signalName)
-
+EnterLong()
+EnterLong(string signalName)
+EnterLong(int quantity)
+EnterLong(int quantity, string signalName)
 For multi-bar strategies
-
-**EnterLong**(**int** barsInProgressIndex, **int** quantity, string signalName)
+EnterLong(int barsInProgressIndex, int quantity, string signalName)
 ```
 
 
@@ -329,14 +276,10 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter a long position if the last entry is 10 bars in the past
-
 // and if two SMAs have crossed
-
-**if** (**BarsSinceEntry**() &gt; 10 && **CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**EnterLong**("SMA cross entry");
+if (BarsSinceEntry() > 10 && CrossAbove(SMA(10), SMA(20), 1))
+EnterLong("SMA cross entry");
 ```
 
 
@@ -352,21 +295,16 @@ See [*EnterLong()*], [*EnterLongStop()*], [*EnterLongStopLimit()*].
 
 ### Usage
 ```cs
-
-**EnterLongLimit**(**double** limitPrice)
-
-**EnterLongLimit**(**double** limitPrice, string signalName)
-
-**EnterLongLimit**(**int** quantity, **double** limitPrice)
-
-**EnterLongLimit**(**int** quantity, **double** limitPrice, string signalName)
+EnterLongLimit(double limitPrice)
+EnterLongLimit(double limitPrice, string signalName)
+EnterLongLimit(int quantity, double limitPrice)
+EnterLongLimit(int quantity, double limitPrice, string signalName)
 ```
 
 
 For Multibar-Strategies
 ```cs
-
-**EnterLongLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName)
+EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
 ```
 
 
@@ -388,12 +326,9 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // A long position is placed if the last entry was 10 bars ago and the two SMAs have crossed each other
-
-**if** (**BarsSinceEntry**() &gt; 10 && **CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**EnterLongLimit**("SMA cross entry");
+if (BarsSinceEntry() > 10 && CrossAbove(SMA(10), SMA(20), 1))
+EnterLongLimit("SMA cross entry");
 ```
 
 
@@ -409,21 +344,16 @@ See [*EnterLong()*], [*EnterLongLimit()*], [*EnterLongStopLimit()*].
 
 ### Usage
 ```cs
-
-**EnterLongStop**(**double** stopPrice)
-
-**EnterLongStop**(**double** stopPrice, string signalName)
-
-**EnterLongStop**(**int** quantity, **double** stopPrice)
-
-**EnterLongStop**(**int** quantity, **double** stopPrice, string signalName)
+EnterLongStop(double stopPrice)
+EnterLongStop(double stopPrice, string signalName)
+EnterLongStop(int quantity, double stopPrice)
+EnterLongStop(int quantity, double stopPrice, string signalName)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**EnterLongStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName)
+EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
 ```
 
 
@@ -445,14 +375,10 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
-**private** IOrder myEntryOrder = **null**;
-
+private IOrder myEntryOrder = null;
 // Place an entry order at the high of the current bar
-
-**if** (myEntryOrder == **null**)
-
-myEntryOrder = **EnterLongStop**(High\[0\], "Stop Long");
+if (myEntryOrder == null)
+myEntryOrder = EnterLongStop(High[0], "Stop Long");
 ```
 
 
@@ -468,22 +394,16 @@ See [*EnterLong()*], [*EnterLongLimit()*], [*EnterLongStop()*].
 
 ### Usage
 ```cs
-
-**EnterLongStopLimit**(**double** limitPrice, **double** stopPrice)
-
-**EnterLongStopLimit**(**double** limitPrice, **double** stopPrice, string signalName)
-
-**EnterLongStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice)
-
-**EnterLongStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice, string signalName)
+EnterLongStopLimit(double limitPrice, double stopPrice)
+EnterLongStopLimit(double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(int quantity, double limitPrice, double stopPrice)
+EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**EnterLongStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName)
-
+EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
 
@@ -506,15 +426,11 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
-**private** IOrder myEntryOrder = **null**;
-
+private IOrder myEntryOrder = null;
 // Place an entry stop at the high of the current bar
 // if the high is reached, a limit order will be placed 2 ticks above the high
-
-**if** (myEntryOrder == **null**)
-
-myEntryOrder = **EnterLongStopLimit**(High\[0\]+2\*TickSize, High\[0\], "Stop Long");
+if (myEntryOrder == null)
+myEntryOrder = EnterLongStopLimit(High[0]+2\*TickSize, High[0], "Stop Long");
 ```
 
 
@@ -530,18 +446,12 @@ See [*EnterShortLimit()*], [*EnterShortStop()*], [*EnterShortStopLimit()*].
 
 ### Usage
 ```cs
-
-**EnterShort**()
-
-**EnterShort**(string signalName)
-
-**EnterShort**(**int** quantity)
-
-**EnterShort**(**int** quantity, string signalName)
-
-**For multi-bar strategies**
-
-**EnterShort**(**int** barsInProgressIndex, **int** quantity, string signalName)
+EnterShort()
+EnterShort(string signalName)
+EnterShort(int quantity)
+EnterShort(int quantity, string signalName)
+For multi-bar strategies
+EnterShort(int barsInProgressIndex, int quantity, string signalName)
 ```
 
 
@@ -561,12 +471,9 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // A short position will be placed if the last entry is 10 bars in the past and two SMAs have crossed each other
-
-**if** (**BarsSinceEntry**() &gt; 10 && **CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**EnterShort**("SMA cross entry");
+if (BarsSinceEntry() > 10 && CrossBelow(SMA(10), SMA(20), 1))
+EnterShort("SMA cross entry");
 ```
 
 
@@ -582,21 +489,16 @@ See [*EnterShort()*], [*EnterShortStop()*], [*EnterShortStopLimit()*].
 
 ### Usage
 ```cs
-
-**EnterShortLimit**(**double** limitPrice)
-
-**EnterShortLimit**(**double** limitPrice, string signalName)
-
-**EnterShortLimit**(**int** quantity, **double** limitPrice)
-
-**EnterShortLimit**(**int** quantity, **double** limitPrice, string signalName)
+EnterShortLimit(double limitPrice)
+EnterShortLimit(double limitPrice, string signalName)
+EnterShortLimit(int quantity, double limitPrice)
+EnterShortLimit(int quantity, double limitPrice, string signalName)
 ```
 
 
 For Multibar-Strategies
 ```cs
-
-**EnterShortLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName)
+EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
 ```
 
 
@@ -618,12 +520,9 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter a short position if the last entry is 10 bars in the past and two SMAs have crossed each other
-
-**if** (**BarsSinceEntry**() &gt; 10 && **CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**EnterShortLimit**("SMA cross entry");
+if (BarsSinceEntry() > 10 && CrossBelow(SMA(10), SMA(20), 1))
+EnterShortLimit("SMA cross entry");
 ```
 
 
@@ -637,21 +536,16 @@ See [*EnterShort()*], [*EnterShortLimit()*], [*EnterShortStopLimit()*].
 
 ### Usage
 ```cs
-
-**EnterShortStop**(**double** stopPrice)
-
-**EnterShortStop**(**double** stopPrice, string signalName)
-
-**EnterShortStop**(**int** quantity, **double** stopPrice)
-
-**EnterShortStop**(**int** quantity, **double** stopPrice, string signalName)
+EnterShortStop(double stopPrice)
+EnterShortStop(double stopPrice, string signalName)
+EnterShortStop(int quantity, double stopPrice)
+EnterShortStop(int quantity, double stopPrice, string signalName)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**EnterShortStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName)
+EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
 ```
 
 
@@ -673,14 +567,10 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
-**private** IOrder myEntryOrder = **null**;
-
+private IOrder myEntryOrder = null;
 // Place an entry stop at the low of the current bar
-
-**if** (myEntryOrder == **null**)
-
-myEntryOrder = **EnterShortStop**(Low\[0\], "stop short");
+if (myEntryOrder == null)
+myEntryOrder = EnterShortStop(Low[0], "stop short");
 ```
 
 
@@ -696,22 +586,17 @@ See [*EnterShort()*], [*EnterShortLimit()*], [*EnterShortStop()*].
 
 ### Usage
 ```cs
-
-**EnterShortStopLimit**(**double** limitPrice, **double** stopPrice)
-
-**EnterShortStopLimit**(**double** limitPrice, **double** stopPrice, string signalName)
-
-**EnterShortStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice)
-
-**EnterShortStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice, string signalName)
+EnterShortStopLimit(double limitPrice, double stopPrice)
+EnterShortStopLimit(double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(int quantity, double limitPrice, double stopPrice)
+EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
 
 For multi-bar strategies
 
 ```cs
-**EnterShortStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName)
-
+EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
 ### Parameter
@@ -733,14 +618,10 @@ An order object of the type “IOrder”
 
 ### Example
 ```cs
-
-**private** IOrder myEntryOrder = **null**;
-
+private IOrder myEntryOrder = null;
 // Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
-
-**if** (myEntryOrder == **null**)
-
-myEntryOrder = **EnterShortStopLimit**(Low\[0\]-2\*TickSize, Low\[0\], "stop short");
+if (myEntryOrder == null)
+myEntryOrder = EnterShortStopLimit(Low[0]-2\*TickSize, Low[0], "stop short");
 ```
 
 
@@ -764,61 +645,33 @@ An int value for the maximum entries permitted in one direction.
 
 ### Example
 ```cs
-
 // Example 1
-
 // If one of the two entry conditions is true and a long position is opened, then the other entry signal will be ignored
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 EntriesPerDirection = 1;
-
 EntryHandling = EntryHandling.AllEntries;
-
 }
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1)
-
-**EnterLong**("SMA Cross Entry");
-
-**if** (**CrossAbove**(**RSI**(14, 3), 30, 1)
-
-**EnterLong**("RSI Cross Entry);
-
+if (CrossAbove(SMA(10), SMA(20), 1)
+EnterLong("SMA Cross Entry");
+if (CrossAbove(RSI(14, 3), 30, 1)
+EnterLong("RSI Cross Entry);
 }
-
 // Example 2
-
 // For each differently named entry signal, a long position will be opened
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 EntriesPerDirection = 1;
-
 EntryHandling = EntryHandling.UniqueEntries;
-
 }
-
-**protected** override void **OnBarUpdate**()
-
+protected override void OnBarUpdate()
 {
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1)
-
-**EnterLong**("SMA Cross Entry");
-
-**if** (**CrossAbove**(**RSI**(14, 3), 30, 1)
-
-**EnterLong**("RSI Cross Entry);
-
+if (CrossAbove(SMA(10), SMA(20), 1)
+EnterLong("SMA Cross Entry");
+if (CrossAbove(RSI(14, 3), 30, 1)
+EnterLong("RSI Cross Entry);
 }
 ```
 
@@ -864,23 +717,17 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 
 ### Usage
 ```cs
-
-**ExitLong**()
-
-**ExitLong**(**int** quantity)
-
-**ExitLong**(string fromEntry signal)
-
-**ExitLong**(string signalName, string fromEntry signal)
-
-**ExitLong**(**int** quantity, string signalName, string fromEntry signal)
+ExitLong()
+ExitLong(int quantity)
+ExitLong(string fromEntry signal)
+ExitLong(string signalName, string fromEntry signal)
+ExitLong(int quantity, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitLong**(**int** barsInProgressIndex, **int** quantity, string signalName, string fromEntry signal)
+ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
 ```
 
 
@@ -901,18 +748,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross each other
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**EnterLong**("SMA Cross Entry");
-
+if (CrossAbove(SMA(10), SMA(20), 1))
+EnterLong("SMA Cross Entry");
 // Close position
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**ExitLong**();
+if (CrossBelow(SMA(10), SMA(20), 1))
+ExitLong();
 ```
 
 
@@ -927,23 +768,17 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 
 ### Usage
 ```cs
-
-**ExitLongLimit**(**double** limitPrice)
-
-**ExitLongLimit**(**int** quantity, **double** limitPrice)
-
-**ExitLongLimit**(**double** limitPrice, string fromEntry signal)
-
-**ExitLongLimit**(**double** limitPrice, string signalName, string fromEntry signal)
-
-**ExitLongLimit**(**int** quantity, **double** limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(double limitPrice)
+ExitLongLimit(int quantity, double limitPrice)
+ExitLongLimit(double limitPrice, string fromEntry signal)
+ExitLongLimit(double limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitLongLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
 
@@ -966,18 +801,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross each other
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**EnterLong**("SMA Cross Entry");
-
+if (CrossAbove(SMA(10), SMA(20), 1))
+EnterLong("SMA Cross Entry");
 // Close position
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**ExitLongLimit**(**GetCurrentBid**());
+if (CrossBelow(SMA(10), SMA(20), 1))
+ExitLongLimit(GetCurrentBid());
 ```
 
 
@@ -992,21 +821,16 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 
 ### Usage
 ```cs
-
-**ExitLongStop**(**int** quantity, **double** stopPrice)
-
-**ExitLongStop**(**double** stopPrice, string fromEntry signal)
-
-**ExitLongStop**(**double** stopPrice, string signalName, string fromEntry signal)
-
-**ExitLongStop**(**int** quantity, **double** stopPrice, string signalName, string fromEntry signal)
+ExitLongStop(int quantity, double stopPrice)
+ExitLongStop(double stopPrice, string fromEntry signal)
+ExitLongStop(double stopPrice, string signalName, string fromEntry signal)
+ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitLongStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName, string fromEntry signal)ExitLongStop
+ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
 ```
 
 
@@ -1029,18 +853,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross each other
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**EnterLong**("SMA Cross Entry");
-
+if (CrossAbove(SMA(10), SMA(20), 1))
+EnterLong("SMA Cross Entry");
 // Close position
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**ExitLongStop**(Low\[0\]);
+if (CrossBelow(SMA(10), SMA(20), 1))
+ExitLongStop(Low[0]);
 ```
 
 
@@ -1056,23 +874,17 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 
 ### Usage
 ```cs
-
-**ExitLongStopLimit**(**double** limitPrice, **double** stopPrice)
-
-**ExitLongStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice)
-
-**ExitLongStopLimit**(**double** limitPrice, **double** stopPrice, string fromEntry signal)
-
-**ExitLongStopLimit**(**double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
-
-**ExitLongStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(double limitPrice, double stopPrice)
+ExitLongStopLimit(int quantity, double limitPrice, double stopPrice)
+ExitLongStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
+ExitLongStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 
 For Multibar-Strategies
 ```cs
-
-**ExitLongStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 
@@ -1096,18 +908,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross each other
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**EnterLong**("SMA Cross Entry");
-
+if (CrossAbove(SMA(10), SMA(20), 1))
+EnterLong("SMA Cross Entry");
 // Close position
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**ExitLongStopLimit**(Low\[0\]-10\*TickSize, Low\[0\]);
+if (CrossBelow(SMA(10), SMA(20), 1))
+ExitLongStopLimit(Low[0]-10\*TickSize, Low[0]);
 ```
 
 
@@ -1126,24 +932,17 @@ See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopL
 
 ### Usage
 ```cs
-
-**ExitShort**()
-
-**ExitShort**(**int** quantity)
-
-**ExitShort**(string fromEntry signal)
-
-**ExitShort**(string signalName, string fromEntry signal)
-
-**ExitShort**(**int** quantity, string signalName, string fromEntry signal)
+ExitShort()
+ExitShort(int quantity)
+ExitShort(string fromEntry signal)
+ExitShort(string signalName, string fromEntry signal)
+ExitShort(int quantity, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitShort**(**int** barsInProgressIndex, **int** quantity, string signalName, string fromEntry signal)
-
+ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -1163,18 +962,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross each other
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**EnterShort**("SMA cross entry");
-
+if (CrossBelow(SMA(10), SMA(20), 1))
+EnterShort("SMA cross entry");
 // Close position
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**ExitShort**();
+if (CrossAbove(SMA(10), SMA(20), 1))
+ExitShort();
 ```
 
 
@@ -1190,24 +983,17 @@ See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopL
 
 ### Usage
 ```cs
-
-**ExitShortLimit**(**double** limitPrice)
-
-**ExitShortLimit**(**int** quantity, **double** limitPrice)
-
-**ExitShortLimit**(**double** limitPrice, string fromEntry signal)
-
-**ExitShortLimit**(**double** limitPrice, string signalName, string fromEntry signal)
-
-**ExitShortLimit**(**int** quantity, **double** limitPrice, string signalName, string fromEntry signal)
+ExitShortLimit(double limitPrice)
+ExitShortLimit(int quantity, double limitPrice)
+ExitShortLimit(double limitPrice, string fromEntry signal)
+ExitShortLimit(double limitPrice, string signalName, string fromEntry signal)
+ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitShortLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, string signalName, string fromEntry signal)
-
+ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -1229,18 +1015,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**EnterShort**("SMA cross entry");
-
+if (CrossBelow(SMA(10), SMA(20), 1))
+EnterShort("SMA cross entry");
 // Close position
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**ExitShortLimit**(**GetCurrentAsk**());
+if (CrossAbove(SMA(10), SMA(20), 1))
+ExitShortLimit(GetCurrentAsk());
 ```
 
 
@@ -1255,22 +1035,16 @@ See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopL
 
 ### Usage
 ```cs
-
-**ExitShortStop**(**int** quantity, **double** stopPrice)
-
-**ExitShortStop**(**double** stopPrice, string fromEntry signal)
-
-**ExitShortStop**(**double** stopPrice, string signalName, string fromEntry signal)
-
-**ExitShortStop**(**int** quantity, **double** stopPrice, string signalName, string fromEntry signal)
+ExitShortStop(int quantity, double stopPrice)
+ExitShortStop(double stopPrice, string fromEntry signal)
+ExitShortStop(double stopPrice, string signalName, string fromEntry signal)
+ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitShortStop**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** stopPrice, string signalName, string fromEntry signal)ExitLongStop
-
+ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
 ```
 
 ### Parameter
@@ -1292,18 +1066,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs have crossed
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**EnterShort**("SMA cross entry");
-
+if (CrossBelow(SMA(10), SMA(20), 1))
+EnterShort("SMA cross entry");
 // Close position
-
-**if** (**CrossAbove** (**SMA**(10), **SMA**(20), 1))
-
-**ExitShortStop**(High\[0\]);
+if (CrossAbove (SMA(10), SMA(20), 1))
+ExitShortStop(High[0]);
 ```
 
 
@@ -1318,24 +1086,17 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 
 ### Usage
 ```cs
-
-**ExitShortStopLimit**(**double** limitPrice, **double** stopPrice)
-
-**ExitShortStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice)
-
-**ExitShortStopLimit**(**double** limitPrice, **double** stopPrice, string fromEntry signal)
-
-**ExitShortStopLimit**(**double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
-
-**ExitShortStopLimit**(**int** quantity, **double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
+ExitShortStopLimit(double limitPrice, double stopPrice)
+ExitShortStopLimit(int quantity, double limitPrice, double stopPrice)
+ExitShortStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
+ExitShortStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 
 For multi-bar strategies
 ```cs
-
-**ExitShortStopLimit**(**int** barsInProgressIndex, **bool** liveUntilCancelled, **int** quantity, **double** limitPrice, **double** stopPrice, string signalName, string fromEntry signal)
-
+ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -1358,18 +1119,12 @@ an order object of the type “IOrder”
 
 ### Example
 ```cs
-
 // Enter if two SMAs cross each other
-
-**if** (**CrossBelow**(**SMA**(10), **SMA**(20), 1))
-
-**EnterShort**("SMA cross entry");
-
+if (CrossBelow(SMA(10), SMA(20), 1))
+EnterShort("SMA cross entry");
 // Close position
-
-**if** (**CrossAbove**(**SMA**(10), **SMA**(20), 1))
-
-**ExitShortStopLimit**(High\[0\]+10\*TickSize, High\[0\]);
+if (CrossAbove(SMA(10), SMA(20), 1))
+ExitShortStopLimit(High[0]+10\*TickSize, High[0]);
 ```
 
 
@@ -1384,7 +1139,7 @@ See [*GetProfitLoss()*].
 ### Usage
 
 ```cs
-**GetAccountValue**(AccountItem accountItem)
+GetAccountValue(AccountItem accountItem)
 ```
 
 
@@ -1406,13 +1161,9 @@ for historical bars, a zero (0) is returned
 
 ### Example
 ```cs
-
-**Print**("The current account cash value is " + **GetAccountValue**(AccountItem.CashValue));
-
-**Print**("The current account cash value with the leverage provided by the broker is " + **GetAccountValue**(AccountItem.BuyingPower));
-
-**Print**("The current P/L already realized is " + **GetAccountValue**(AccountItem.RealizedProfitLoss));
-
+Print("The current account cash value is " + GetAccountValue(AccountItem.CashValue));
+Print("The current account cash value with the leverage provided by the broker is " + GetAccountValue(AccountItem.BuyingPower));
+Print("The current P/L already realized is " + GetAccountValue(AccountItem.RealizedProfitLoss));
 ```
 
 ## GetProfitLoss()
@@ -1426,7 +1177,7 @@ See [*GetAccountValue()*].
 ### Usage
 
 ```cs
-**GetProfitLoss**(**int** pLType);
+GetProfitLoss(int pLType);
 ```
 
 
@@ -1449,9 +1200,8 @@ a double value for the unrealized profit or loss
 ### Example
 
 ```cs
-**Print**("The current risk for the strategy " + **this**.Name + " is " + **GetProfitLoss**(1) + " " + Instrument.Currency);
-
-**Print**("This equals "+ string.**Format**( "{0:F1} R.", **GetProfitLoss**(3)));
+Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
+Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ```
 
 
@@ -1488,29 +1238,17 @@ The individual lists are:
 
 ### Example
 ```cs
-
 // When exiting a strategy, create a performance evaluation
-
-**protected** override void **OnTermination**()
-
+protected override void OnTermination()
 {
-
-**Print**("Performance evaluation of the strategy : " + **this**.Name);
-
-**Print**("----------------------------------------------------");
-
-**Print**("Amount of all trades: " + Performance.AllTrades.Count);
-
-**Print**("Amount of winning trades: " + Performance.WinningTrades.Count);
-
-**Print**("Amount of all loss trades: " + Performance.LosingTrades.Count);
-
-**Print**("Amount of all long trades: " + Performance.LongTrades.Count);
-
-**Print**("Amount of short trades: " + Performance.ShortTrades.Count);
-
-**Print**("Result: " + Account.RealizedProfitLoss + " " + Account.Currency);
-
+Print("Performance evaluation of the strategy : " + this.Name);
+Print("----------------------------------------------------");
+Print("Amount of all trades: " + Performance.AllTrades.Count);
+Print("Amount of winning trades: " + Performance.WinningTrades.Count);
+Print("Amount of all loss trades: " + Performance.LosingTrades.Count);
+Print("Amount of all long trades: " + Performance.LongTrades.Count);
+Print("Amount of short trades: " + Performance.ShortTrades.Count);
+Print("Result: " + Account.RealizedProfitLoss + " " + Account.Currency);
 }
 ```
 
@@ -1558,29 +1296,17 @@ The individual properties are:
 
 ### Example
 ```cs
-
-**if** (Position.MarketPosition != PositionType.Flat)
-
+if (Position.MarketPosition != PositionType.Flat)
 {
-
-**Print**("Average price " + Position.AvgPrice);
-
-**Print**("Opening time " + Position.CreatedDateTime);
-
-**Print**("Instrument " + Position.Instrument);
-
-**Print**("Current positioning " + Position.MarketPosition);
-
-**Print**("Unrealized P/L " + Position.OpenProfitLoss);
-
-**Print**("P/L (currency) " + Position.ProfitCurrency);
-
-**Print**("P/L (in percent) " + Position.ProfitPercent);
-
-**Print**("P/L (in points) " + Position.ProfitPoints);
-
-**Print**("Pieces " + Position.Quantity);
-
+Print("Average price " + Position.AvgPrice);
+Print("Opening time " + Position.CreatedDateTime);
+Print("Instrument " + Position.Instrument);
+Print("Current positioning " + Position.MarketPosition);
+Print("Unrealized P/L " + Position.OpenProfitLoss);
+Print("P/L (currency) " + Position.ProfitCurrency);
+Print("P/L (in percent) " + Position.ProfitPercent);
+Print("P/L (in points) " + Position.ProfitPoints);
+Print("Pieces " + Position.Quantity);
 }
 ```
 
@@ -1600,13 +1326,9 @@ See [*SetStopLoss()*], [*SetTrailStop()*].
 
 ### Usage
 ```cs
-
-**SetProfitTarget**(**double** currency)
-
-**SetProfitTarget**(CalculationMode mode, **double value**)
-
-**SetProfitTarget**(string fromEntry signal, CalculationMode mode, **double value**)
-
+SetProfitTarget(double currency)
+SetProfitTarget(CalculationMode mode, double value)
+SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 ```
 
 ### Parameter
@@ -1624,15 +1346,10 @@ See [*SetStopLoss()*], [*SetTrailStop()*].
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 // Creates a profit target order 10 ticks above break-even
-
-**SetProfitTarget**(CalculationMode.Ticks, 10);
-
+SetProfitTarget(CalculationMode.Ticks, 10);
 }
 ```
 
@@ -1649,14 +1366,10 @@ See [*SetProfitTarget()*], [*SetTrailStop()*].
 
 ### Usage
 ```cs
-
-**SetStopLoss**(**double** currency)
-
-**SetStopLoss**(**double** currency, **bool** simulated)
-
-**SetStopLoss**(CalculationMode mode, **double value**)
-
-**SetStopLoss**(string fromEntry signal, CalculationMode mode, **double value**, **bool** simulated)
+SetStopLoss(double currency)
+SetStopLoss(double currency, bool simulated)
+SetStopLoss(CalculationMode mode, double value)
+SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 ```
 
 
@@ -1676,15 +1389,10 @@ See [*SetProfitTarget()*], [*SetTrailStop()*].
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 // Sets a stop of 500€
-
-**SetStopLoss**(500);
-
+SetStopLoss(500);
 }
 ```
 
@@ -1727,15 +1435,10 @@ See [*SetStopLoss()*], [*SetProfitTarget()*].
 
 ### Usage
 ```cs
-
-**SetTrailStop**(**double** currency)
-
-**SetTrailStop**(**double** currency, **bool** simulated)
-
-**SetTrailStop**(CalculationMode mode, **double value**)
-
-**SetTrailStop**(string fromEntry signal, CalculationMode mode, **double value**, **bool** simulated)
-
+SetTrailStop(double currency)
+SetTrailStop(double currency, bool simulated)
+SetTrailStop(CalculationMode mode, double value)
+SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 ```
 
 ### Parameter
@@ -1753,15 +1456,10 @@ See [*SetStopLoss()*], [*SetProfitTarget()*].
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 // Sets a trailing stop of 30 ticks
-
-**SetTrailStop**(CalculationMode.Ticks, 30);
-
+SetTrailStop(CalculationMode.Ticks, 30);
 }
 ```
 
@@ -1777,8 +1475,7 @@ See [*OnOrderUpdate()*], [*OnExecution()*].
 ### Usage
 
 ```cs
-**SubmitOrder**(**int** barsInProgressIndex, OrderAction orderAction, OrderType orderType, **int** quantity, **double** limitPrice, **double** stopPrice, string ocoId, string signalName)
-
+SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string signalName)
 ```
 
 ### Parameter
@@ -1819,19 +1516,12 @@ an order object of the type “IOrder”
 ### Example
  
 ```cs
-
-**private** IOrder entryOrder = **null**;
-
-**protected** override void **OnBarUpdate**()
-
+private IOrder entryOrder = null;
+protected override void OnBarUpdate()
 {
-
 // Entry conditions
-
-**if** (Close\[0\] &gt; **SMA**(20)\[0\] && entryOrder == **null**)
-
-entryOrder = **SubmitOrder**(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Enter long");
-
+if (Close[0] > SMA(20)[0] && entryOrder == null)
+entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Enter long");
 }
 ```
 
@@ -1858,15 +1548,10 @@ TimeInForce.gtd
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
 TimeInForce = TimeInForce.Day;
-
 }
-
 ```
 
 ## TraceOrders
@@ -1904,15 +1589,10 @@ none
 
 ### Example
 ```cs
-
-**protected** override void **Initialize**()
-
+protected override void Initialize()
 {
-
-**ClearOutputWindow**();
-
-TraceOrders = **true**;
-
+ClearOutputWindow();
+TraceOrders = true;
 }
 ```
 
@@ -1989,63 +1669,34 @@ The individual properties are:
 
 ### Example
 ```cs
-
-**protected** override void **OnTermination**()
-
+protected override void OnTermination()
 {
-
-**if** (Performance.AllTrades.Count &lt; 1) return;
-
-**foreach** (ITrade trade **in** Performance.AllTrades)
-
+if (Performance.AllTrades.Count < 1) return;
+foreach (ITrade trade in Performance.AllTrades)
 {
-
-**Print**("Trade \#"+trade.Id);
-
-**Print**("--------------------------------------------");
-
-**Print**("Average price " + trade.AvgPrice);
-
-**Print**("Realized P/L " + trade.ClosedProfitLoss);
-
-**Print**("Commissions " + trade.Commission);
-
-**Print**("Time of entry " + trade.CreatedDateTime);
-
-**Print**("Entry reason " + trade.EntryReason);
-
-**Print**("Time of exit " + trade.ExitDateTime);
-
-**Print**("Exit price " + trade.ExitPrice);
-
-**Print**("Exit reason " + trade.ExitReason);
-
-**Print**("Instrument " + trade.Instrument);
-
-**Print**("Positioning " + trade.MarketPosition);
-
-**Print**("Unrealized P/L " + trade.OpenProfitLoss);
-
-**Print**("P/L (currency) " + trade.ProfitCurrency);
-
-**Print**("P/L " + trade.ProfitLoss);
-
-**Print**("P/L (in percent) " + trade.ProfitPercent);
-
-**Print**("P/L (% with commission)" + trade.ProfitPercentWithCommission);
-
-**Print**("PL (in points) " + trade.ProfitPoints);
-
-**Print**("Quantity " + trade.Quantity);
-
-**Print**("Timeframe " + trade.TimeFrame);
-
-**Print**("URL for the snapshot " + trade.Url);
-
-**Print**("");
-
+Print("Trade \#"+trade.Id);
+Print("--------------------------------------------");
+Print("Average price " + trade.AvgPrice);
+Print("Realized P/L " + trade.ClosedProfitLoss);
+Print("Commissions " + trade.Commission);
+Print("Time of entry " + trade.CreatedDateTime);
+Print("Entry reason " + trade.EntryReason);
+Print("Time of exit " + trade.ExitDateTime);
+Print("Exit price " + trade.ExitPrice);
+Print("Exit reason " + trade.ExitReason);
+Print("Instrument " + trade.Instrument);
+Print("Positioning " + trade.MarketPosition);
+Print("Unrealized P/L " + trade.OpenProfitLoss);
+Print("P/L (currency) " + trade.ProfitCurrency);
+Print("P/L " + trade.ProfitLoss);
+Print("P/L (in percent) " + trade.ProfitPercent);
+Print("P/L (% with commission)" + trade.ProfitPercentWithCommission);
+Print("PL (in points) " + trade.ProfitPoints);
+Print("Quantity " + trade.Quantity);
+Print("Timeframe " + trade.TimeFrame);
+Print("URL for the snapshot " + trade.Url);
+Print("");
 }
-
 }
 ```
 
@@ -2124,3 +1775,4 @@ The individual factors are:
 **All factors are double values.**
 
 <img src=".//media/image10.png" width="629" height="478" />
+
