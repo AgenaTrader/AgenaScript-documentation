@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
+
+
+
   <title>Drawing objects - AgenaScript Documentation</title>
-  
+
 
   <link rel="shortcut icon" href="../favicon.ico">
-  
 
-  
+
+
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -22,27 +22,27 @@
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
 
-  
+
   <script>
     // Current page data
     var mkdocs_page_name = "Drawing objects";
     var mkdocs_page_input_path = "drawing_objects.md";
     var mkdocs_page_url = "/drawing_objects/";
   </script>
-  
+
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
+  <script src="../js/theme.js"></script>
 
-  
+
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
-    
+
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
@@ -55,119 +55,119 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         <ul class="current">
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="..">Lets start</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../handling_bars_and_instruments/handling_bars_and_instruments/">Handling bars and instruments</a>
-        
+        <a class="" href="../handling_bars_and_instruments/">Handling bars and instruments</a>
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../events/">Events</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../strategy_programming/">Strategy programming</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../keywords/">Keywords</a>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Drawing objects</a>
-        
+
             <ul>
-            
+
                 <li class="toctree-l3"><a href="#drawingobjects">DrawingObjects</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawandrewspitchfork">DrawAndrewsPitchfork()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawarc">DrawArc()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawarrowdown">DrawArrowDown()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawarrowline">DrawArrowLine()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawarrowup">DrawArrowUp()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawdiamond">DrawDiamond()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawdot">DrawDot()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawellipse">DrawEllipse()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawextendedline">DrawExtendedLine()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawfibonaccicircle">DrawFibonacciCircle()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawfibonacciextensions">DrawFibonacciExtensions()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawfibonacciretracements">DrawFibonacciRetracements()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawfibonaccitimeextensions">DrawFibonacciTimeExtensions()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawgannfan">DrawGannFan()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawline">DrawLine()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawhorizontalline">DrawHorizontalLine()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawray">DrawRay()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawrectangle">DrawRectangle()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawregion">DrawRegion()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawregressionchannel">DrawRegressionChannel()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawsquare">DrawSquare()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawtext">DrawText()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawtextfixed">DrawTextFixed()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawtrendchannel">DrawTrendChannel()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawtriangle">DrawTriangle()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawtriangleup">DrawTriangleUp()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawtriangledown">DrawTriangleDown()</a></li>
-                
+
                     <li><a class="toctree-l4" href="#drawverticalline">DrawVerticalLine()</a></li>
-                
-            
+
+
             </ul>
-        
+
     </li>
 <li>
-          
+
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../hints_and_advice/">Hints and advice</a>
-        
+
     </li>
 <li>
-          
+
         </ul>
       </div>
       &nbsp;
@@ -175,31 +175,31 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-      
+
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
         <a href="..">AgenaScript Documentation</a>
       </nav>
 
-      
+
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
+
+
+
     <li>Drawing objects</li>
     <li class="wy-breadcrumbs-aside">
-      
+
     </li>
   </ul>
   <hr/>
 </div>
           <div role="main">
             <div class="section">
-              
+
                 <h1 id="drawingobjects">DrawingObjects</h1>
 <h2 id="drawandrewspitchfork">DrawAndrewsPitchfork()</h2>
 <h3 id="description">Description</h3>
@@ -209,8 +209,10 @@
 - [<em>http://www.volumen-analyse.de/blog/?p=917</em>]
 - [<em>http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews_Pitchfork</em>]</p>
 <h3 id="usage">Usage</h3>
-<p><strong>DrawAndrewsPitchfork</strong>(string tag, <strong>bool</strong> autoScale, <strong>int</strong> anchor1BarsAgo, <strong>double</strong> anchor1Y, <strong>int</strong> anchor2BarsAgo, <strong>double</strong> anchor2Y, <strong>int</strong> anchor3BarsAgo, <strong>double</strong> anchor3Y, Color color, DashStyle dashStyle, <strong>int</strong> width)</p>
-<p><strong>DrawAndrewsPitchfork</strong>(string tag, <strong>bool</strong> autoScale, DateTime anchor1Time, <strong>double</strong> anchor1Y, DateTime anchor2Time, <strong>double</strong> anchor2Y, DateTime anchor3Time, <strong>double</strong> anchor3Y, Color color, DashStyle dashStyle, <strong>int</strong> width)</p>
+<pre><code class="cs">DrawAndrewsPitchfork(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, DashStyle dashStyle, int width)
+</code></pre>
+
 <h3 id="return-value">Return Value</h3>
 <p>A drawing object of the type IAndrewsPitchfork (interface)</p>
 <h3 id="parameter">Parameter</h3>
@@ -403,7 +405,7 @@ DrawArc(&quot;MyArc&quot;, true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 <h2 id="drawarrowdown">DrawArrowDown()</h2>
 <h3 id="description_2">Description</h3>
 <p>DrawArrowDown() draws an arrow pointing downwards:</p>
-<p><img src=".//media/image21.png" width="21" height="25" /></p>
+<p><img src="../media/image21.png" width="21" height="25" /></p>
 <p>See [<em>DrawArrowUp()</em>], [<em>DrawDiamond()</em>], [<em>DrawDot()</em>], [<em>DrawSquare()</em>], [<em>DrawTriangleUp()</em>], [<em>DrawTriangleDown()</em>].</p>
 <h3 id="usage_2">Usage</h3>
 <pre><code class="cs">DrawArrowDown(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -450,7 +452,6 @@ DrawArrowDown(string tag, bool autoScale, DateTime time, double y, Color color)
 <h3 id="example_2">Example</h3>
 <pre><code class="cs">// Draws a red arrow 3 ticks above the high for the current bar
 DrawArrowDown(&quot;MyArrow&quot;, true, 0, High[0] + 3*TickSize, Color.Red);
-
 // Draws a red arrow on a three-bar reversal pattern
 if(High[2] &gt; High[3] &amp;&amp; High[1] &gt; High[2] &amp;&amp; Close[0] &lt; Open[0])
 DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
@@ -459,7 +460,7 @@ DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
 <h2 id="drawarrowline">DrawArrowLine()</h2>
 <h3 id="description_3">Description</h3>
 <p>DrawArrowLine() draws an arrow:</p>
-<p><img src=".//media/image22.png" width="127" height="34" /></p>
+<p><img src="../media/image22.png" width="127" height="34" /></p>
 <h3 id="usage_3">Usage</h3>
 <pre><code class="cs"> DrawArrowLine (string tag,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color)
  DrawArrowLine (string tag,  bool  autoScale,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color, DashStyle dashStyle,  int  width)
@@ -563,7 +564,7 @@ DrawArrowLine(&quot;MyArrow&quot;, false, 10, 10, 0, 5, Color.Black, DashStyle.S
 <h2 id="drawarrowup">DrawArrowUp()</h2>
 <h3 id="description_4">Description</h3>
 <p>DrawArowUp() draws an arrow pointing upwards:</p>
-<p><img src=".//media/image23.png" width="22" height="20" /></p>
+<p><img src="../media/image23.png" width="22" height="20" /></p>
 <p>See [<em>DrawArrowDown()</em>], [<em>DrawDiamond()</em>], [<em>DrawDot()</em>], [<em>DrawSquare()</em>], [<em>DrawTriangleUp()</em>], [<em>DrawTriangleDown()</em>].</p>
 <h3 id="usage_4">Usage</h3>
 <pre><code class="cs">DrawArrowUp(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -615,7 +616,7 @@ DrawArrowUp(&quot;MyArrow&quot;, true, 0, Low[0] - 3*TickSize, Color.Green);
 <h2 id="drawdiamond">DrawDiamond()</h2>
 <h3 id="description_5">Description</h3>
 <p>DrawDiamond() draws a diamond:</p>
-<p><img src=".//media/image24.png" width="19" height="26" /></p>
+<p><img src="../media/image24.png" width="19" height="26" /></p>
 <p>See [<em>DrawArrowUp()</em>], [<em>DrawArrowDown()</em>], [<em>DrawDot()</em>], [<em>DrawSquare()</em>], [<em>DrawTriangleUp()</em>], [<em>DrawTriangleDown()</em>].</p>
 <h3 id="usage_5">Usage</h3>
 <pre><code class="cs">DrawDiamond(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -667,7 +668,7 @@ DrawDiamond(&quot;MyDiamond&quot;, true, 0, Low[0] - 5*TickSize, Color.SteelBlue
 <h2 id="drawdot">DrawDot()</h2>
 <h3 id="description_6">Description</h3>
 <p>DrawDot() draws a dot:</p>
-<p><img src=".//media/image25.png" width="19" height="20" /></p>
+<p><img src="../media/image25.png" width="19" height="20" /></p>
 <p>See [<em>DrawArrowUp()</em>], [<em>DrawArrowDown()</em>], [<em>DrawDiamond()</em>], [<em>DrawSquare()</em>], [<em>DrawTriangleUp()</em>], [<em>DrawTriangleDown()</em>].</p>
 <h3 id="usage_6">Usage</h3>
 <pre><code class="cs">DrawDot(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -1298,8 +1299,10 @@ DrawLine(&quot;MyLine&quot;, false, 10, Close[10], 0, Close[0], Color.Black, Das
 <p>DrawHorizontalLine() draws a horizontal line in the chart.</p>
 <p>See [<em>DrawLine()</em>], [<em>DrawVerticalLine()</em>], [<em>DrawExtendedLine()</em>], [<em>DrawRay()</em>].</p>
 <h3 id="usage_15">Usage</h3>
-<p>DrawHorizontalLine(string tag, double y, Color color)</p>
-<p>DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)</p>
+<pre><code class="cs">DrawHorizontalLine(string tag, double y, Color color)
+DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
+</code></pre>
+
 <h3 id="return-value_15">Return Value</h3>
 <p>A drawing object of the type IHorizontalLine (interface)</p>
 <h3 id="parameter_15">Parameter</h3>
@@ -1478,7 +1481,6 @@ DrawRay(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateT
 // --&gt; line is extended to the right
 // from y=3 to y=7
 DrawRay(&quot;MyRay&quot;, 10, 3, 0, 7, Color.Green);
-
 // Draws a line from the current bar to the bar from 10 periods ago
 // --&gt; line is extended to the left
 // from y=3 to y=7
@@ -1760,7 +1762,7 @@ DrawRegressionChannel(&quot;MyRegChannel&quot;, 10, 0, Color.Black);
 <h2 id="drawsquare">DrawSquare()</h2>
 <h3 id="description_20">Description</h3>
 <p>DrawSquare() draws a square:</p>
-<p><img src=".//media/image26.png" width="20" height="19" /></p>
+<p><img src="../media/image26.png" width="20" height="19" /></p>
 <p>See [<em>DrawArrowUp()</em>], [<em>DrawArrowDown()</em>], [<em>DrawDiamond()</em>], [<em>DrawDot()</em>], [<em>DrawTriangleUp()</em>], [<em>DrawTriangleDown()</em>].</p>
 <h3 id="usage_20">Usage</h3>
 <pre><code class="cs">DrawSqare(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -1821,8 +1823,8 @@ DrawText(string tag, bool autoScale, string text, int barsAgo, double y, int yPi
 DrawText(string tag, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
 </code></pre>
 
-<p><strong>Important note:
-</strong>When using signatures that contain horizontal alignment and vertical alignment, you need to add the following lines:</p>
+<p><strong>Important note:</strong>
+When using signatures that contain horizontal alignment and vertical alignment, you need to add the following lines:</p>
 <pre><code class="cs">using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 </code></pre>
@@ -1953,39 +1955,26 @@ using System.Windows.Forms.VisualStyles;
 </tbody>
 </table>
 <h3 id="example_21">Example</h3>
-<pre><code class="cs">
-// writes text at y=3.0
+<pre><code class="cs">// writes text at y=3.0
 DrawText(&quot;MyText&quot;, &quot;This is sample text.&quot;, 10, 3, Color.Black);
-
 // writes red text in the font Arial 7
 DrawText(&quot;MyText&quot;, false, &quot;This is sample text.&quot;, Time[0], Close[0]+50*TickSize, 0,
-
-Color.Red, **new Font**(&quot;Arial&quot;,7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
+Color.Red, new Font(&quot;Arial&quot;,7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
 </code></pre>
 
 <p>This leads to the following result:</p>
-<p><img src=".//media/image27.png" width="405" height="251" /></p>
-<pre><code class="cs">DrawText(&quot;MyTag&quot;,true,&quot;Text&quot;,1, 
+<p><img src="../media/image27.png" width="405" height="251" /></p>
+<pre><code class="cs">DrawText(&quot;MyTag&quot;,true,&quot;Text&quot;,1,
 // barsAgo
-
-High\[1\], // y
-
+High[1], // y
 10, // yPixelOffset
-
 Color.Blue, // Text color
-
 new Font(&quot;Arial&quot;, 10, FontStyle.Bold),
-
 StringAlignment.Center,
-
 HorizontalAlignment.Center,
-
 VerticalAlignment.Bottom,
-
 Color.Red, // Outline color
-
 Color.Yellow, // Fill color
-
 100); // Opacity
 </code></pre>
 
@@ -2078,7 +2067,6 @@ DrawTextFixed(string tag, string text, TextPosition textPosition, Color textColo
 <h3 id="example_22">Example</h3>
 <pre><code class="cs">// Writes text into the middle of the chart
 DrawTextFixed(&quot;MyText&quot;, &quot;This is sample text.&quot;, TextPosition.Center);
-
 // Writes red text with a blue border into the middle of the chart
 DrawTextFixed(&quot;MyText&quot;, &quot;This is sample text.&quot;, TextPosition.Center,
 Color.Red, new Font(&quot;Arial&quot;,35), Color.Blue, Color.Empty, 10);
@@ -2252,7 +2240,7 @@ DrawTriangle(&quot;tag1&quot;, 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 <h2 id="drawtriangleup">DrawTriangleUp()</h2>
 <h3 id="description_25">Description</h3>
 <p>DrawTriangleUp() draws a small upwards-pointing triangle:</p>
-<p><img src=".//media/image28.png" width="25" height="19" /></p>
+<p><img src="../media/image28.png" width="25" height="19" /></p>
 <p>See [<em>DrawArrowUp()</em>], [<em>DrawArrowDown()</em>], [<em>DrawDiamond()</em>], [<em>DrawDot()</em>], [<em>DrawSquare()</em>], [<em>DrawTriangleDown()</em>].</p>
 <h3 id="usage_25">Usage</h3>
 <pre><code class="cs">DrawTriangleUp(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -2304,7 +2292,7 @@ DrawTriangleUp(&quot;MyTriangleUp&quot;, true, 0, Low[0] - 10*TickSize, Color.Li
 <h2 id="drawtriangledown">DrawTriangleDown()</h2>
 <h3 id="description_26">Description</h3>
 <p>DrawTriangleDown() draws a small downwards-pointing triangle:</p>
-<p><img src=".//media/image29.png" width="23" height="20" /></p>
+<p><img src="../media/image29.png" width="23" height="20" /></p>
 <p>See [<em>DrawArrowUp()</em>], [<em>DrawArrowDown()</em>], [<em>DrawDiamond()</em>], [<em>DrawDot()</em>], [<em>DrawSquare()</em>], [<em>DrawTriangleUp()</em>].</p>
 <h3 id="usage_26">Usage</h3>
 <pre><code class="cs">DrawTriangleDown(string tag, bool autoScale, int barsAgo, double y, Color color)
@@ -2396,13 +2384,13 @@ DrawVerticalLine(string tag, DateTime time, Color color, DashStyle dashStyle, in
 </tr>
 </tbody>
 </table>
-<pre><code>         DashStyle.Dash                                                              
-         DashStyle.DashDot                                                           
-         DashStyle.DashDotDot                                                        
-         DashStyle.Dot                                                               
+<pre><code>         DashStyle.Dash
+         DashStyle.DashDot
+         DashStyle.DashDotDot
+         DashStyle.Dot
          DashStyle.Solid
 
-         You may have to integrate:                                                  
+         You may have to integrate:
          using System.Drawing.Drawing2D;                                             |
 </code></pre>
 <p>| width     | Line strength                                                              |</p>
@@ -2410,31 +2398,31 @@ DrawVerticalLine(string tag, DateTime time, Color color, DashStyle dashStyle, in
 <pre><code class="cs">// Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine(&quot;MyVerticalLine&quot;, 10, Color.Black);
 </code></pre>
-              
+
             </div>
           </div>
           <footer>
-  
+
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+
         <a href="../hints_and_advice/" class="btn btn-neutral float-right" title="Hints and advice">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
+
+
         <a href="../keywords/" class="btn btn-neutral" title="Keywords"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+
     </div>
-  
+
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
+
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+
         </div>
       </div>
 
@@ -2444,13 +2432,13 @@ DrawVerticalLine(&quot;MyVerticalLine&quot;, 10, Color.Black);
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
+
+
         <span><a href="../keywords/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
+
+
         <span style="margin-left: 15px"><a href="../hints_and_advice/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
+
     </span>
 </div>
 
