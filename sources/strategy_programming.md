@@ -91,7 +91,7 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the entry within an entry method.            |
 | barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                 
-                                                                                                                                  
+
                        Index for the data series for which the entry order was executed.                                          
                        See *[BarsInProgress][*BarsInProgress*].*                                                                  |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
@@ -129,7 +129,7 @@ BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the exit within the exit method.                             |
 | barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                 
-                                                                                                                                                  
+
                        Index of the data series for which the exit order has been executed.                                                       
                        See [*BarsInProgress*].                                                                                                    |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
@@ -1337,7 +1337,7 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | currency         | Sets the profit target in a currency, for example 500€.                                                                                                           |
 | mode             | Possible values are:                                                                                                                                              
-                                                                                                                                                                                       
+
                     - CalculationMode.Percent (display in percent)                                                                                                                     
                     - CalculationMode.Price (display as price value)                                                                                                                   
                     - CalculationMode.Ticks (display in ticks or pips)                                                                                                                 |
@@ -1379,7 +1379,7 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€                                                                                                                |
 | mode             | Potential values can be:                                                                                                                                                                                    
-                                                                                                                                                                                                                                 
+
                     - CalculationMode.Percent (display in percent)                                                                                                                                                               
                     - CalculationMode.Price (display as price value)                                                                                                                                                             
                     - CalculationMode.Ticks (display in ticks or pips)                                                                                                                                                           |
@@ -1447,7 +1447,7 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | currency         | The distance between the stop loss and the entry price                                                                                                                                                      |
 | mode             | Possible values are:                                                                                                                                                                                        
-                                                                                                                                                                                                                                 
+
                     - CalculationMode.Percent                                                                                                                                                                                    
                     - CalculationMode.Ticks                                                                                                                                                                                      |
 | simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
@@ -1486,16 +1486,16 @@ SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderTyp
                        Index of the data series for which the order is to be executed.     
                        See BarsInProgress.                                                 |
 | orderAction         | Possible values are:                                               
-                                                                                           
+
                        OrderAction.Buy                                                     
                        Buy order for a long entry                                          
-                                                                                           
+
                        OrderAction.Sell                                                    
                        Sell order for closing a long position                              
-                                                                                           
+
                        OrderAction.SellShort                                               
                        Sell order for a short entry                                        
-                                                                                           
+
                        OrderAction.BuyToCover                                              
                        Buy order for closing a short position                              |
 | orderType           | Possible values:                                                   
@@ -1514,7 +1514,7 @@ SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderTyp
 an order object of the type “IOrder”
 
 ### Example
- 
+
 ```cs
 private IOrder entryOrder = null;
 protected override void OnBarUpdate()
@@ -1774,5 +1774,4 @@ The individual factors are:
 
 **All factors are double values.**
 
-<img src=".//media/image10.png" width="629" height="478" />
-
+<img src="./media/image10.png" width="629" height="478" />

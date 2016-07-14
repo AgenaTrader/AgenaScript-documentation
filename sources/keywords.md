@@ -90,7 +90,7 @@ Alert(string id, AlertPriority priority, string message, string soundLocation, i
 ```
 
 
-### 
+###
 
 ### Return Value
 
@@ -227,7 +227,7 @@ set { _period = value; }
 ```
 
 
-<img src=".//media/image11.png" width="520" height="565" />
+<img src="./media/image11.png" width="520" height="565" />
 
 ## ConditionalValue
 
@@ -698,7 +698,7 @@ A data series is an array that contains as many elements as there are bars displ
 Data series are used in exactly the same way as the close or time series. They can therefore also be used for the input data for various indicators.
 In the table below you will find 4 newly created data series (highlighted). Each data series has exactly one value of a special data type (int, bool, string) attached to it per bar. The indexing with barsAgo is thus identical to the data series provided by the system.
 
-<img src=".//media/image12.png" width="318" height="248" />
+<img src="./media/image12.png" width="318" height="248" />
 
 ### Usable Data Series in AgenaTrader
 
@@ -1325,7 +1325,7 @@ Blue line: Displacement = 0 (Original)
 Red line: Displacement = -5
 Green line: Displacement = +5
 
-<img src=".//media/image13.png" width="454" height="384" />
+<img src="./media/image13.png" width="454" height="384" />
 
 ### Usage
 
@@ -1369,7 +1369,7 @@ The indicator values are not displayed in the data box.
 
 The following image displays the values of 3 smoothed averages in the data box.
 
-<img src=".//media/image14.png" width="452" height="387" />
+<img src="./media/image14.png" width="452" height="387" />
 
 ### Usage
 
@@ -1510,7 +1510,7 @@ if (Close[0] > SMA(14)[0]) BarColor = Color.Orange;
 ```
 
 
-<img src=".//media/image15.png" width="427" height="386" />
+<img src="./media/image15.png" width="427" height="386" />
 
 ## BackColor
 
@@ -1537,7 +1537,7 @@ BackColor = Color.Blue;
 ```
 
 
-<img src=".//media/image16.png" width="432" height="386" />
+<img src="./media/image16.png" width="432" height="386" />
 
 ```cs
 // Changing the bar background color depending on a smoothing average
@@ -1547,7 +1547,7 @@ BackColor = SMA(14)[0] >= Close[0] ? Color.Maroon : Color.LimeGreen;
 ```
 
 
-<img src=".//media/image17.png" width="430" height="384" />
+<img src="./media/image17.png" width="430" height="384" />
 
 ## BackColorAll
 
@@ -1574,7 +1574,7 @@ BackColorAll = Color.Blue;
 ```
 
 
-<img src=".//media/image18.png" width="431" height="386" />
+<img src="./media/image18.png" width="431" height="386" />
 
 ## BarColorSeries
 
@@ -1619,7 +1619,7 @@ BarColorSeries[2] = Color.Yellow;
 ```
 
 
-<img src=".//media/image19.png" width="423" height="372" />
+<img src="./media/image19.png" width="423" height="372" />
 
 ## BackColorSeries
 
@@ -1713,7 +1713,7 @@ CandleOutlineColor = Color.Red;
 ```
 
 
-<img src=".//media/image20.png" width="491" height="449" />
+<img src="./media/image20.png" width="491" height="449" />
 
 ## CandleOutlineColorSeries
 
@@ -2935,5 +2935,3 @@ Add(new Plot(Color.Red, "MyPlot1"));
 VerticalGridLines = false;
 }
 ```
-
-

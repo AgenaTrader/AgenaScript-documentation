@@ -41,7 +41,7 @@ A drawing object of the type IAndrewsPitchfork (interface)
 | color          | Color of the object                                                                     |
 | dashStyle      | Line styles:                                                                            |
 |                |  DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot DashStyle.Solid |
-|                | You need to integrate:                                                                  | 
+|                | You need to integrate:                                                                  |
 |                | using System.Drawing.Drawing2D;.                                                        |
 | width          | Line strength in points                                                                 |
 
@@ -105,7 +105,7 @@ DrawArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 
 DrawArrowDown() draws an arrow pointing downwards:
 
-<img src=".//media/image21.png" width="21" height="25" />
+<img src="./media/image21.png" width="21" height="25" />
 
 See [*DrawArrowUp()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -145,7 +145,7 @@ DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
 
 DrawArrowLine() draws an arrow:
 
-<img src=".//media/image22.png" width="127" height="34" />
+<img src="./media/image22.png" width="127" height="34" />
 
 ### Usage
 ```cs
@@ -194,7 +194,7 @@ DrawArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 
 DrawArowUp() draws an arrow pointing upwards:
 
-<img src=".//media/image23.png" width="22" height="20" />
+<img src="./media/image23.png" width="22" height="20" />
 
 See [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -231,7 +231,7 @@ DrawArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
 
 DrawDiamond() draws a diamond:
 
-<img src=".//media/image24.png" width="19" height="26" />
+<img src="./media/image24.png" width="19" height="26" />
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -269,7 +269,7 @@ DrawDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 
 DrawDot() draws a dot:
 
-<img src=".//media/image25.png" width="19" height="20" />
+<img src="./media/image25.png" width="19" height="20" />
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -786,7 +786,7 @@ A drawing object of the type IRegion (interface)
 | endBarsAgo       | Sets the preceding bar at which the drawing should end (0 = current bar)          |
 | endTime          | End time for the drawing                                                          |
 | series1, series2 | Every data series, for example an indicator, close, high, low and so on.          
-                                                                                                       
+
                     The respective value of the data series for the current bar is used as a y-value.  |
 | y                | Any double value                                                                  |
 | outlineColor     | Color for the border                                                              |
@@ -861,7 +861,7 @@ DrawRegressionChannel("MyRegChannel", 10, 0, Color.Black);
 
 DrawSquare() draws a square:
 
-<img src=".//media/image26.png" width="20" height="19" />
+<img src="./media/image26.png" width="20" height="19" />
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -965,10 +965,10 @@ Color.Red, new Font("Arial",7), StringAlignment.Center, Color.Blue, Color.DarkOl
 
 This leads to the following result:
 
-<img src=".//media/image27.png" width="405" height="251" />
+<img src="./media/image27.png" width="405" height="251" />
 
 ```cs
-DrawText("MyTag",true,"Text",1, 
+DrawText("MyTag",true,"Text",1,
 // barsAgo
 High[1], // y
 10, // yPixelOffset
@@ -1120,7 +1120,7 @@ DrawTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 
 DrawTriangleUp() draws a small upwards-pointing triangle:
 
-<img src=".//media/image28.png" width="25" height="19" />
+<img src="./media/image28.png" width="25" height="19" />
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleDown()*].
 
@@ -1158,7 +1158,7 @@ DrawTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 
 DrawTriangleDown() draws a small downwards-pointing triangle:
 
-<img src=".//media/image29.png" width="23" height="20" />
+<img src="./media/image29.png" width="23" height="20" />
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*].
 
@@ -1218,13 +1218,13 @@ A drawing object of the type IVerticalLine (interface)
 | time      | Date/time of the bar at which the vertical line should be drawn            |
 | color     | Line color                                                                 |
 | dashStyle | Line style                                                                 
-                                                                                         
+
              DashStyle.Dash                                                              
              DashStyle.DashDot                                                           
              DashStyle.DashDotDot                                                        
              DashStyle.Dot                                                               
              DashStyle.Solid                                                             
-                                                                                         
+
              You may have to integrate:                                                  
              using System.Drawing.Drawing2D;                                             |
 | width     | Line strength                                                              |
@@ -1234,4 +1234,3 @@ A drawing object of the type IVerticalLine (interface)
 // Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine("MyVerticalLine", 10, Color.Black);
 ```
-

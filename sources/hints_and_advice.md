@@ -4,7 +4,7 @@
 
 The following example demonstrates the usage of the plot method and the properties of the [*ChartControl*] object.
 
-<img src=".//media/image30.png" width="611" height="444" />
+<img src="./media/image30.png" width="611" height="444" />
 
 **Note:**
 For demonstration purposes, each time Paint is called up within the “Bar Numbering” section, “New” and “Dispose” will also be called up multiple times.
@@ -116,7 +116,7 @@ g.DrawImage(img,r);
 ```
 
 
-<img src=".//media/image31.png" width="601" height="444" />
+<img src="./media/image31.png" width="601" height="444" />
 
 ## File Selection in the Properties
 
@@ -321,7 +321,7 @@ return "My Name";
 By using the graphics methods, you can create interesting forms and place them onto the chart.
 One example of this is the RoundedRectangle class, which is a rectangle with rounded corners.
 
-<img src=".//media/image32.png" width="440" height="407" />
+<img src="./media/image32.png" width="440" height="407" />
 
 ```cs
 Example Code:
@@ -434,6 +434,3 @@ public static GraphicsPath Create(Rectangle rect)
 }
 }
 ```
-
-
-
