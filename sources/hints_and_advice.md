@@ -72,7 +72,7 @@ for (int i=ChartControl.FirstBarVisible; i<=ChartControl.LastBarVisible; i++)
 string text = i.ToString();
 _stringSize = g.MeasureString(text, _font);
 int x = ChartControl.GetXByBarIdx(Bars, i);
-int y = ChartControl.GetYByValue(this, High[Abs2Ago(i)] + 3\*TickSize) - (int) _stringSize.Height;
+int y = ChartControl.GetYByValue(this, High[Abs2Ago(i)] + 3*TickSize) - (int) _stringSize.Height;
 g.DrawString(text, _font, _brush, x, y, _sf);
 }
 _sf.Dispose();
@@ -147,7 +147,7 @@ public override StandardValuesCollection GetStandardValues(ITypeDescriptorContex
 if (context == null) return null;
 ArrayList list = new ArrayList();
 DirectoryInfo dir = new DirectoryInfo(_dir);
-FileInfo[] files = dir.GetFiles("\*.wav");
+FileInfo[] files = dir.GetFiles("*.wav");
 foreach (FileInfo file in files) list.Add(file.Name);
 return new TypeConverter.StandardValuesCollection(list);
 }
@@ -369,13 +369,13 @@ All = TopLeft | TopRight | BottomLeft | BottomRight
 public static GraphicsPath Create(int x, int y, int width, int height, int radius, RectangleCorners corners)
 {
 Rectangle r = new Rectangle(x,y,width, height);
-Rectangle tlc = new Rectangle(r.Left, r.Top,Math.Min(2 \* radius, r.Width),Math.Min(2 \* radius, r.Height));
+Rectangle tlc = new Rectangle(r.Left, r.Top,Math.Min(2 * radius, r.Width),Math.Min(2 * radius, r.Height));
 Rectangle trc = tlc;
-trc.X = r.Right - 2 \* radius;
+trc.X = r.Right - 2 * radius;
 Rectangle blc = tlc;
-blc.Y = r.Bottom - 2 \* radius;
+blc.Y = r.Bottom - 2 * radius;
 Rectangle brc = blc;
-brc.X = r.Right - 2 \* radius;
+brc.X = r.Right - 2 * radius;
 Point[] n = new Point[]
 {
 new Point(tlc.Left, tlc.Bottom), tlc.Location,

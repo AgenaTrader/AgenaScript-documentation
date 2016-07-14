@@ -205,7 +205,7 @@ private IOrder stopOrder = null;
 protected override void OnBarUpdate()
 {
 // If the position is profiting by 4 ticks then set the stop to break-even
-if (stopOrder != null && stopOrder.StopPrice < Position.AvgPrice && Close[0] >= Position.AvgPrice + 4 \* TickSize)
+if (stopOrder != null && stopOrder.StopPrice < Position.AvgPrice && Close[0] >= Position.AvgPrice + 4 * TickSize)
 ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
 ```
@@ -430,7 +430,7 @@ private IOrder myEntryOrder = null;
 // Place an entry stop at the high of the current bar
 // if the high is reached, a limit order will be placed 2 ticks above the high
 if (myEntryOrder == null)
-myEntryOrder = EnterLongStopLimit(High[0]+2\*TickSize, High[0], "Stop Long");
+myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], "Stop Long");
 ```
 
 
@@ -621,7 +621,7 @@ An order object of the type “IOrder”
 private IOrder myEntryOrder = null;
 // Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
 if (myEntryOrder == null)
-myEntryOrder = EnterShortStopLimit(Low[0]-2\*TickSize, Low[0], "stop short");
+myEntryOrder = EnterShortStopLimit(Low[0]-2*TickSize, Low[0], "stop short");
 ```
 
 
@@ -913,7 +913,7 @@ if (CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA Cross Entry");
 // Close position
 if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongStopLimit(Low[0]-10\*TickSize, Low[0]);
+ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
 ```
 
 
@@ -1124,7 +1124,7 @@ if (CrossBelow(SMA(10), SMA(20), 1))
 EnterShort("SMA cross entry");
 // Close position
 if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShortStopLimit(High[0]+10\*TickSize, High[0]);
+ExitShortStopLimit(High[0]+10*TickSize, High[0]);
 ```
 
 

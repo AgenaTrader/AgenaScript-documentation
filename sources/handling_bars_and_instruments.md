@@ -1270,7 +1270,7 @@ See example [*Multibars*][*MultiBars*].
 
 Weighted is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical weighted values are saved.
 
-The weighted price of a bar is calculated using the formula (high + low + 2\*close) / 4 and then weighted on the closing price.
+The weighted price of a bar is calculated using the formula (high + low + 2*close) / 4 and then weighted on the closing price.
 
 See also [*Median*] and [*Typical*].
 
@@ -1821,7 +1821,7 @@ DAX future: 25.00 Euro
 The tick value can be calculated by multiplying the point value with the tick size.
 
 For example, the E-mini S&P 500 has a point value of $50. The tick size equals 0.25. This means that there are 4 ticks in one full point for the E-mini S&P 500.
-Since 50 \* 0.25 = 50/4 this means that the tick value is $12.50.
+Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.
 
 The point value can also be viewed within the Instrument Escort:
 
