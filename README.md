@@ -1,3 +1,4 @@
+![AgenaTrader](./sources/images/logo_100.png)
 
 #Live System
 To get started, check out: [https://agenatrader.github.io/AgenaScript-documentation/site/index.html](https://agenatrader.github.io/AgenaScript-documentation/site/index.html)
@@ -8,6 +9,13 @@ Documentation source files are written in [Markdown](https://guides.github.com/f
 The tutorials in the sources directory of this repository, are built with mkdocs and publicly hosted on GitHub Pages at [https://agenatrader.github.io/AgenaScript-documentation/site/index.html](https://agenatrader.github.io/AgenaScript-documentation/site/index.html).
 
 ##Getting Started
+
+###Editor
+To edit these files you can use the GitHub Online Editor but we recommend to use a separate text editor.
+We recommend the text editor **Atom**. [You can download it here.](https://atom.io)
+
+![Atom](./sources/images/logo_atom.png)
+
 ###Installation
 The following things are prerequisites:
 * Install [GitHub Client](https://desktop.github.com) and create a GitHub user
@@ -29,6 +37,11 @@ If you are getting a warning that the *site directory* has already created, you 
 ```bash
 mkdocs build --clean
 ```
+
+###Bugfixing links for images
+mkdocs is creating wrong links for images, so we need to change this manually by **replacing ./media/ to ../media/**.
+
+###Deploy
 We have created a branch called *gh-pages* and all data from this branch will be displayed on GitHub Pages.
 Commit now your changes into the master repository, sync your repository and *change locally to the branch gh-pages*. Update all changes from master into the branch using the GitHub Client function *upate from master*.
 
