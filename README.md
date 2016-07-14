@@ -9,7 +9,6 @@ Documentation source files are written in [Markdown](https://guides.github.com/f
 The tutorials in the sources directory of this repository, are built with mkdocs and publicly hosted on GitHub Pages at [https://agenatrader.github.io/AgenaScript-documentation/site/index.html](https://agenatrader.github.io/AgenaScript-documentation/site/index.html).
 
 ##Getting Started
-
 ###Editor
 To edit these files you can use the GitHub Online Editor but we recommend to use a separate text editor.
 We recommend the text editor **Atom**. [You can download it here.](https://atom.io)
@@ -19,6 +18,7 @@ We recommend the text editor **Atom**. [You can download it here.](https://atom.
 ###Installation
 The following things are prerequisites:
 * Install [GitHub Client](https://desktop.github.com) and create a GitHub user
+* Install [Pandoc](http://pandoc.org/installing.html)
 * Install [Python](https://www.python.org/downloads/)
 * Install Python package [mkdocs](http://www.mkdocs.org) using pip
 
