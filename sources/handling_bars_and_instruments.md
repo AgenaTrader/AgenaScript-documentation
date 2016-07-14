@@ -131,7 +131,7 @@ If this property is used outside of OnBarUpdate() then you should test for a nul
 ### Example
 
 ```cs
-**Print** ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
+Print ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
 ```
 
 
@@ -162,7 +162,7 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 ### Example
 
 ```cs
-**Print** ("There are a total of” + Bars.Count + “bars available.");
+Print ("There are a total of” + Bars.Count + “bars available.");
 ```
 
 
@@ -193,9 +193,8 @@ If this property is called up outside of OnBarUpdate() you should test for a nul
 ### Example
 
 ```cs
-**if** (Bars.FirstBarOfSession)
-
-**Print** ("The current trading session started at” + Time \[0\]);
+if (Bars.FirstBarOfSession)
+Print ("The current trading session started at” + Time [0]);
 ```
 
 
@@ -221,7 +220,7 @@ For a timestamp younger than the newest bar: index of the last bar
 ### Usage
 
 ```cs
-Bars.**GetBar**(DateTime time)
+Bars.GetBar(DateTime time)
 ```
 
 
@@ -234,7 +233,7 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 ### Example
 
 ```cs
-**Print** ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.**GetBar**(**new DateTime**(2012, 01, 03, 18, 0, 0)).Close);
+Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new DateTime(2012, 01, 03, 18, 0, 0)).Close);
 ```
 
 
@@ -259,8 +258,7 @@ With a timestamp newer than the youngest bar: index of the last bar
 
 ### Usage
 ```cs
-
-Bars.**GetBarsAgo**(DateTime time)
+Bars.GetBarsAgo(DateTime time)
 ```
 
 
@@ -273,7 +271,7 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 ### Example
 
 ```cs
-**Print**("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.**GetBarsAgo**(**new DateTime**(2012, 01, 03, 18, 0, 0)));
+Print("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.GetBarsAgo(new DateTime(2012, 01, 03, 18, 0, 0)));
 ```
 
 
@@ -303,8 +301,7 @@ Type IBar Bar object for the specified index
 
 ### Usage
 ```cs
-
-Bars.**GetByIndex** (int Index)
+Bars.GetByIndex (int Index)
 ```
 
 
@@ -315,7 +312,7 @@ For indexing of bars see [*Functionality*][*Bars*](#bars)
 ### Example
 
 ```cs
-**Print**(Close\[0\] + " and " + Bars.**GetByIndex**(CurrentBar).Close + " are equal in this example.");
+Print(Close[0] + " and " + Bars.GetByIndex(CurrentBar).Close + " are equal in this example.");
 ```
 
 
@@ -340,9 +337,8 @@ Type int The bar index of the specified bar object or DateTime object
 ### Usage
 
 ```cs
-Bars.**GetIndex** (IBar bar)
-
-Bars.**GetIndex** (DateTime dt)
+Bars.GetIndex (IBar bar)
+Bars.GetIndex (DateTime dt)
 ```
 
 
@@ -353,11 +349,9 @@ For more information about indexing see [*Functionality*][*Bars*]
 ### Example
 
 ```cs
-**int** barsAgo = 5;
-
-IBar bar = Bars.**GetBar**(Time\[barsAgo\]);
-
-**Print**(barsAgo + " and " + Bars.**GetIndex**(bar) + " are equal in this example.");
+int barsAgo = 5;
+IBar bar = Bars.GetBar(Time[barsAgo]);
+Print(barsAgo + " and " + Bars.GetIndex(bar) + " are equal in this example.");
 ```
 
 
@@ -392,9 +386,8 @@ The date for the beginning and the end of a trading session are connected compon
 ### Usage
 
 ```cs
-Bars.**GetNextBeginEnd**(Bars bars, **int** barsAgo, **out** DateTime sessionBegin, **out** DateTime sessionEnd)
-
-Bars.**GetNextBeginEnd**(DateTime time, **out** DateTime sessionBegin, **out** DateTime sessionEnd)
+Bars.GetNextBeginEnd(Bars bars, int barsAgo, out DateTime sessionBegin, out DateTime sessionEnd)
+Bars.GetNextBeginEnd(DateTime time, out DateTime sessionBegin, out DateTime sessionEnd)
 ```
 
 
@@ -413,11 +406,10 @@ More information can be found here [*http://msdn.microsoft.com/de-de/library/sys
 ```cs
 DateTime sessionBegin;
 DateTime sessionEnd;
-
-**protected** override void **OnBarUpdate()**
+protected override void OnBarUpdate()
 {
-Bars.**GetNextBeginEnd**(Bars, 0, **out** sessionBegin, **out** sessionEnd);
-**Print**("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
+Bars.GetNextBeginEnd(Bars, 0, out sessionBegin, out sessionEnd);
+Print("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
 }
 ```
 
@@ -448,11 +440,8 @@ Here, the indexing will begin with 0 for the oldest bar (on the left of the char
 The indexing can easily be recalculated:
 ```cs
 private int Convert(int idx)
-
 {
-
 return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
-
 }
 ```
 
@@ -501,12 +490,9 @@ For more information regarding the trading instruments please see [*Instrument*]
 ### Example
 ```cs
 // both outputs will provide the same result
-
-**Print**("The currently displayed trading instrument has the symbol: " + Bars.Instrument);
-
+Print("The currently displayed trading instrument has the symbol: " + Bars.Instrument);
 Instrument i = Bars.Instrument;
-
-**Print**("The currently displayed trading instrument has the symbol " + i.Symbol);
+Print("The currently displayed trading instrument has the symbol " + i.Symbol);
 ```
 
 ## Bars.IsIntraDay
@@ -546,31 +532,18 @@ If this property is used outside of OnBarUpdate() you should test for a null ref
 ### Example
 ```cs
 // A 60 minute chart is looked at from an intraday perspective
-
 // every 5 minutes before the current bar closes
-
 // an acoustic signal shall be played
-
 // 55 min. equals 92%
-
-**Bool** remind = **false**;
-
-**protected** override void **OnBarUpdate()**
-
+bool remind = false;
+protected override void OnBarUpdate()
 {
-
-**if** (FirstTickOfBar) remind = **true**;
-
-**if** (remind && Bars.PercentComplete &gt;= 0.92)
-
+if (FirstTickOfBar) remind = true;
+if (remind && Bars.PercentComplete >= 0.92)
 {
-
-remind = **false**;
-
-**PlaySound**("Alert1");
-
+remind = false;
+PlaySound("Alert1");
 }
-
 }
 ```
 
@@ -603,7 +576,7 @@ The time for the returned value will equal the starting time defined in the Mark
 
 ### Example
 ```cs
-**Print**("The currently running trading session started at " + Bars.SessionBegin );
+Print("The currently running trading session started at " + Bars.SessionBegin );
 ```
 
 ## Bars.SessionEnd
@@ -633,7 +606,7 @@ The time for the returned value will correlate with the end time of the trading 
 
 ### Example
 ```cs
-**Print**("The current trading session will end at " + Bars.SessionEnd);
+Print("The current trading session will end at " + Bars.SessionEnd);
 ```
 
 ## Bars.SessionNextBegin
@@ -663,7 +636,7 @@ The time for the returned value will correlate to the value displayed in the Mar
 
 ### Example
 ```cs
-**Print**("The next trading session starts at " + Bars.SessionNextBegin);
+Print("The next trading session starts at " + Bars.SessionNextBegin);
 ```
 
 ## Bars.SessionNextEnd
@@ -693,7 +666,7 @@ The time for the returned value will correlate with the value specified within t
 
 ### Example
 ```cs
-**Print**("The next trading session ends at " + Bars.SessionNextEnd);
+Print("The next trading session ends at " + Bars.SessionNextEnd);
 ```
 
 ## Bars.TickCount
@@ -724,7 +697,7 @@ If this property is used outside of OnBarUpdate(), you should test for a null re
 
 ### Example
 ```cs
-**Print**("The current bar consists of " + Bars.TickCount + " Ticks.");
+Print("The current bar consists of " + Bars.TickCount + " Ticks.");
 ```
 
 ## Bars.TimeFrame
@@ -759,14 +732,10 @@ If this property is used outside of OnBarUpdate(),you should test for a null ref
 
 ```cs
 //Usage within a 30 minute chart
-
 TimeFrame tf = (TimeFrame) Bars.TimeFrame;
-
-**Print**(Bars.TimeFrame); // outputs "30 Min"
-
-**Print**(tf.Periodicity); // outputs "Minute"
-
-**Print**(tf.PeriodicityValue); // outputs "30"
+Print(Bars.TimeFrame); // outputs "30 Min"
+Print(tf.Periodicity); // outputs "Minute"
+Print(tf.PeriodicityValue); // outputs "30"
 ```
 
 
@@ -844,9 +813,7 @@ BarsAgo Index Value (see [*Bars*])
 
 ```cs
 Open
-
-Open\[**int** barsAgo\]
-
+Open[int barsAgo]
 ```
 
 ### More Information
@@ -857,16 +824,11 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ```cs
 // Opening price for the current period
-
-**Print**(Time\[0\] + " " + Open\[0\]);
-
+Print(Time[0] + " " + Open[0]);
 // Opening price for the bars of 5 periods ago
-
-**Print**(Time\[5\] + " " + Open\[5\]);
-
+Print(Time[5] + " " + Open[5]);
 // Current value for the SMA 14 that is based on the opening prices (rounded)
-
-**Print**("SMA(14) calculated using the opening prices: " + Instrument.**Round2TickSize**(**SMA**(Open, 14)\[0\]));
+Print("SMA(14) calculated using the opening prices: " + Instrument.Round2TickSize(SMA(Open, 14)[0]));
 ```
 
 
@@ -897,9 +859,8 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-Opens\[**int** barSeriesIndex\]
-
-Opens\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Opens[int barSeriesIndex]
+Opens[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -923,10 +884,8 @@ barsAgo IndexValue (see [*Bars*])
 
 ### Usage
 ```cs
-
 High
-
-High\[**int** barsAgo\]
+High[int barsAgo]
 ```
 
 
@@ -938,16 +897,11 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ```cs
 // High values of the current period
-
-**Print**(Time\[0\] + " " + High\[0\]);
-
+Print(Time[0] + " " + High[0]);
 // High values of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + High\[5\]);
-
+Print(Time[5] + " " + High[5]);
 // the current value for the SMA 14 calculated on the basis of the high prices
-
-**Print**("SMA(14) Calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(High, 14)\[0\]));
+Print("SMA(14) Calculated using the high prices: " + Instrument.Round2TickSize(SMA(High, 14)[0]));
 ```
 
 
@@ -979,9 +933,8 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-Highs\[**int** barSeriesIndex\]
-
-Highs\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Highs[int barSeriesIndex]
+Highs[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1007,8 +960,7 @@ barsAgo IndexValue (see [*Bars*])
 
 ```cs
 Low
-
-Low\[**int** barsAgo\]
+Low[int barsAgo]
 ```
 
 
@@ -1020,16 +972,11 @@ The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
 ```cs
 // Lowest value of the current period
-
-**Print**(Time\[0\] + " " + Low\[0\]);
-
+Print(Time[0] + " " + Low[0]);
 // Lowest value of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + Low\[5\]);
-
+Print(Time[5] + " " + Low[5]);
 // The current value for the SMA 14 calculated on the basis of the low prices (smoothed)
-
-**Print**("SMA(14) calculated using the high prices: " + Instrument.**Round2TickSize**(**SMA**(Low, 14)\[0\]));
+Print("SMA(14) calculated using the high prices: " + Instrument.Round2TickSize(SMA(Low, 14)[0]));
 ```
 
 
@@ -1061,9 +1008,8 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-Lows\[**int** barSeriesIndex\]
-
-Lows\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Lows[int barSeriesIndex]
+Lows[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1089,8 +1035,7 @@ barsAgo Index value (see [*Bars*])
 
 ```cs
 Close
-
-Close\[**int** barsAgo\]
+Close[int barsAgo]
 ```
 
 
@@ -1104,20 +1049,13 @@ Indicators are usually calculated using the closing prices.
 
 ```cs
 // Closing price of the current period
-
-**Print**(Time\[0\] + " " + Close\[0\]);
-
+Print(Time[0] + " " + Close[0]);
 // Closing price of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + Close\[5\]);
-
+Print(Time[5] + " " + Close[5]);
 // Current value for the SMA 14 based on the closing prices
-
-**Print**("SMA(14) calculated using the closing prices: " + Instrument.**Round2TickSize**(**SMA**(Close, 14)\[0\]));
-
+Print("SMA(14) calculated using the closing prices: " + Instrument.Round2TickSize(SMA(Close, 14)[0]));
 // Close does not need to be mentioned since it is used by default
-
-**Print**("SMA(14) calculated using the closing prices: " + Instrument.**Round2TickSize**(**SMA**(14)\[0\]));
+Print("SMA(14) calculated using the closing prices: " + Instrument.Round2TickSize(SMA(14)[0]));
 ```
 
 
@@ -1148,10 +1086,8 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 ```cs
-
-Closes\[**int** barSeriesIndex\]
-
-Closes\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Closes[int barSeriesIndex]
+Closes[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1181,8 +1117,7 @@ barsAgo Index value (see [*Bars*])
 
 ```cs
 Median
-
-Median\[**int** barsAgo\]
+Median[int barsAgo]
 ```
 
 
@@ -1197,16 +1132,11 @@ Further information about median, typical und weighted:
 
 ```cs
 // Median price for the current period
-
-**Print**(Time\[0\] + " " + Median\[0\]);
-
+Print(Time[0] + " " + Median[0]);
 // Median price of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + Median\[5\]);
-
+Print(Time[5] + " " + Median[5]);
 // Current value for the SMA 14 calculated using the median prices
-
-**Print**("SMA(14) calculated using the median prices: " + Instrument.**Round2TickSize**(**SMA**(Median, 14)\[0\]));
+Print("SMA(14) calculated using the median prices: " + Instrument.Round2TickSize(SMA(Median, 14)[0]));
 ```
 
 
@@ -1238,9 +1168,8 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-Medians\[**int** barSeriesIndex\]
-
-Medians\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Medians[int barSeriesIndex]
+Medians[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1272,8 +1201,7 @@ barsAgo Index value (see [*Bars*])
 
 ```cs
 Typical
-
-Typical\[**int** barsAgo\]
+Typical[int barsAgo]
 ```
 
 
@@ -1287,16 +1215,11 @@ Further information on typical: *https://technicianapp.com/resources/typical-pri
 
 ```cs
 // Typical price for the current period
-
-**Print**(Time\[0\] + " " + Typical\[0\]);
-
+Print(Time[0] + " " + Typical[0]);
 // Typical price of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + Typical\[5\]);
-
+Print(Time[5] + " " + Typical[5]);
 // Current value for the SMA 14 calculated using the typical price
-
-**Print**("SMA(14) calculated using the typical price: " + Instrument.**Round2TickSize**(**SMA**(Typical, 14)\[0\]));
+Print("SMA(14) calculated using the typical price: " + Instrument.Round2TickSize(SMA(Typical, 14)[0]));
 ```
 
 
@@ -1328,9 +1251,8 @@ barSeriesIndex Index value of the various timeframes
 ### Usage
 
 ```cs
-Typicals\[**int** barSeriesIndex\]
-
-Typicals\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Typicals[int barSeriesIndex]
+Typicals[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1361,7 +1283,7 @@ barsAgo Index value (see [*Bars*])
 ## Weighted
 
 ```cs
-Weighted\[**int** barsAgo\]
+Weighted[int barsAgo]
 ```
 
 
@@ -1375,16 +1297,11 @@ Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-po
 
 ```cs
 // Weighted price for the current period
-
-**Print**(Time\[0\] + " " + Weighted\[0\]);
-
+Print(Time[0] + " " + Weighted[0]);
 // Weighted price of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + Weighted\[5\]);
-
+Print(Time[5] + " " + Weighted[5]);
 // Current value for the SMA 14 using the weighted price
-
-**Print**("SMA(14) calculated using the weighted price: " + Instrument.**Round2TickSize**(**SMA**(Weighted, 14)\[0\]));
+Print("SMA(14) calculated using the weighted price: " + Instrument.Round2TickSize(SMA(Weighted, 14)[0]));
 ```
 
 
@@ -1416,9 +1333,8 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-Weighteds\[**int** barSeriesIndex\]
-
-Weighteds\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Weighteds[int barSeriesIndex]
+Weighteds[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1444,8 +1360,7 @@ barsAgo Index value (see [*Bars*])
 
 ```cs
 Time
-
-Time\[**int** barsAgo\]
+Time[int barsAgo]
 ```
 
 
@@ -1457,12 +1372,9 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 
 ```cs
 // Timestamp of the current period
-
-**Print**(Time\[0\]);
-
+Print(Time[0]);
 // Timestamp of the bar from 5 periods ago
-
-**Print**(Time\[5\]);
+Print(Time[5]);
 ```
 
 
@@ -1492,10 +1404,8 @@ barSeriesIndex Index value for the various timeframes
 
 ### Usage
 ```cs
-
-Times\[**int** barSeriesIndex\]
-
-Times\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Times[int barSeriesIndex]
+Times[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1534,16 +1444,11 @@ for example, Vol()\[3\] will have the same value as Volume\[3\].
 
 ```cs
 // Volume for the current period
-
-**Print**(Time\[0\] + " " + Volume\[0\]);
-
+Print(Time[0] + " " + Volume[0]);
 // Volume of the bar from 5 periods ago
-
-**Print**(Time\[5\] + " " + Volume\[5\]);
-
+Print(Time[5] + " " + Volume[5]);
 // Current value for the SMA 14 calculated using the volume
-
-**Print**("SMA(14) calculated using the volume: " + Instrument.**Round2TickSize**(**SMA**(Volume, 14)\[0\]));
+Print("SMA(14) calculated using the volume: " + Instrument.Round2TickSize(SMA(Volume, 14)[0]));
 ```
 
 
@@ -1576,9 +1481,8 @@ barSeriesIndex Index value of the various timeframes
 ### Usage
 
 ```cs
-Volumes\[**int** barSeriesIndex\]
-
-Volumes\[**int** barSeriesIndex\]\[**int** barsAgo\]
+Volumes[int barSeriesIndex]
+Volumes[int barSeriesIndex][int barsAgo]
 ```
 
 
@@ -1644,8 +1548,7 @@ Type int
 
 ### Usage
 ```cs
-
-Instrument.**Compare**(**double** Value1, **double** Value2)
+Instrument.Compare(double Value1, double Value2)
 ```
 
 
@@ -1660,8 +1563,7 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001
 
 ### Example
 ```cs
-
-**Print**(Instrument.**Compare**(2, 1.999999));
+Print(Instrument.Compare(2, 1.999999));
 ```
 
 
@@ -1689,8 +1591,7 @@ The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.
 
 ### Example
 ```cs
-
-**Print**(Instrument.Name + " is traded in " + Instrument.Currency);
+Print(Instrument.Name + " is traded in " + Instrument.Currency);
 ```
 
 
@@ -1723,7 +1624,7 @@ More information can be found here: [*Formatting of Numbers*].
 ### Example
 
 ```cs
-**Print**("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
+Print("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
 ```
 
 
@@ -1753,16 +1654,11 @@ Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]
 
 ### Example
 ```cs
-
-**if** (Instrument.InstrumentType == InstrumentType.Stock)
-
-**if** (Instrument.ETF)
-
-**Print**("The value is an ETF.");
-
-**else**
-
-**Print**("The value is a stock.");
+if (Instrument.InstrumentType == InstrumentType.Stock)
+if (Instrument.ETF)
+Print("The value is an ETF.");
+else
+Print("The value is a stock.");
 ```
 
 
@@ -1791,7 +1687,7 @@ An overview of various exchange: *https://en.wikipedia.org/wiki/List\_of\_stock\
 ### Example
 
 ```cs
-**Print**("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
+Print("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
 ```
 
 
@@ -1824,7 +1720,7 @@ The expiry date (expiry) can also be seen within the Instrument Escort:
 ### Example
 
 ```cs
-**Print**("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
+Print("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
 ```
 
 
@@ -1859,7 +1755,7 @@ The instrument type can also be viewed within the Instrument Escort:
 ### Example
 
 ```cs
-**Print**("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
+Print("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
 ```
 
 
@@ -1890,7 +1786,7 @@ The instrument name can also be seen within the Instrument Escort:
 ### Example
 
 ```cs
-**Print**("The currently loaded instrument inside the chart is named " + Instrument.Name);
+Print("The currently loaded instrument inside the chart is named " + Instrument.Name);
 ```
 
 
@@ -1934,7 +1830,7 @@ The point value can also be viewed within the Instrument Escort:
 ### Example
 
 ```cs
-**Print**("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
+Print("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
 ```
 
 
@@ -1955,7 +1851,7 @@ double
 ### Usage
 
 ```cs
-Instrument.**Round2TickSize**(**double** MarketPrice)
+Instrument.Round2TickSize(double MarketPrice)
 ```
 
 
@@ -1971,9 +1867,8 @@ Example of professional [*Formatting*][*Formatting of Numbers*].
 ### Example
 
 ```cs
-**double** Price = 12.3456789;
-
-**Print**(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.**Round2TickSize**(Price));
+double Price = 12.3456789;
+Print(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.Round2TickSize(Price));
 ```
 
 
@@ -2006,7 +1901,7 @@ The instrument symbol can also be viewed within the Instrument Escort:
 ### Example
 
 ```cs
-**Print**("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
+Print("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
 ```
 
 
@@ -2044,8 +1939,7 @@ Examples of professional [*Formatting*][*Formatting of Numbers*].
 
 ### Example
 ```cs
-
-**Print**("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");
+Print("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");
 ```
 
 
@@ -2065,43 +1959,24 @@ DrawObjects \[string tag\]
 ### Example
 **Note:** To be able to use the interface definitions you must use the using method.
 ```cs
-
-**using** AgenaTrader.Plugins;
-
+using AgenaTrader.Plugins;
 // Output number of drawing objects within the chart and their tags
-
-**Print**("The chart contains " + DrawObjects.Count + " drawing objects.");
-
-**for each** (IDrawObject draw **in** DrawObjects) **Print**(draw.Tag);
-
+Print("The chart contains " + DrawObjects.Count + " drawing objects.");
+for each (IDrawObject draw in DrawObjects) Print(draw.Tag);
 //Draw a black trend line...
-
-**DrawLine**("MyLine", **true**, 10, Close\[10\], 0, Close\[0\], Color.Black, DashStyle.Solid, 3);
-
+DrawLine("MyLine", true, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 3);
 // ... and change the color to red
-
-ITrendLine line = (ITrendLine) DrawObjects\["MyLine"\];
-
-**if** (line != **null**) line.Pen.Color = Color.Red;
-
+ITrendLine line = (ITrendLine) DrawObjects["MyLine"];
+if (line != null) line.Pen.Color = Color.Red;
 // Set all lines within the chart to a line strength of 3,
-
 // and lock it so that it cannot be edited or moved
-
-**foreach** (IDrawObject draw **in** DrawObjects)
-
-**if** (draw **is** IVerticalLine)
-
+foreach (IDrawObject draw in DrawObjects)
+if (draw is IVerticalLine)
 {
-
 IVerticalLine vline = (IVerticalLine) draw;
-
-vline.Locked = **true**;
-
-vline.Editable = **false**;
-
+vline.Locked = true;
+vline.Editable = false;
 vline.Pen.Width = 3;
-
 }
 ```
 
@@ -2131,15 +2006,13 @@ Input\[0\] = SMA(20)\[0\].
 
 ```cs
 Input
-
-Input\[**int** barsAgo\]
+Input[int barsAgo]
 ```
 
 
 ### Example
 ```cs
-
-**Print**("The input data for the indicators are " + Input\[0\]);
+Print("The input data for the indicators are " + Input[0]);
 ```
 
 
@@ -2158,55 +2031,33 @@ See [*Plots*].
 ### Usage
 
 ```cs
-Lines\[**int** index\]
+Lines[int index]
 ```
 
 
 ### Example
 ```cs
-
 // Add "using System.Drawing.Drawing2D;" for DashStyle
-
-**protected** override void **Initialize()**
-
+protected override void Initialize()
 {
-
-**Add**(**new Line**(Color.Blue, 70, "Upper")); // saves into Lines\[0\]
-
-**Add**(**new Line**(Color.Blue, 30, "Lower")); // saves into Lines\[1\]
-
+Add(new Line(Color.Blue, 70, "Upper")); // saves into Lines[0]
+Add(new Line(Color.Blue, 30, "Lower")); // saves into Lines[1]
 }
-
-**protected** override void **OnBarUpdate()**
-
+protected override void OnBarUpdate()
 {
-
 // When the RSI is above 70, properties of the lines will be changed
-
-**if** (**RSI**(14 ,3) &gt;= 70)
-
+if (RSI(14 ,3) >= 70)
 {
-
-Lines\[0\].Width = 3;
-
-Lines\[0\].Color = Color.Red;
-
-Lines\[0\].DashStyle = DashStyle.Dot;
-
+Lines[0].Width = 3;
+Lines[0].Color = Color.Red;
+Lines[0].DashStyle = DashStyle.Dot;
 }
-
-**else**
-
+else
 {
-
-Lines\[0\].Width = 1;
-
-Lines\[0\].Color = Color.Blue;
-
-Lines\[0\].DashStyle = DashStyle.Solid;
-
+Lines[0].Width = 1;
+Lines[0].Color = Color.Blue;
+Lines[0].DashStyle = DashStyle.Solid;
 }
-
 }
 ```
 
@@ -2224,7 +2075,7 @@ The order of the add commands determines how the plot colors are sorted. The fir
 ### Usage
 
 ```cs
-PlotColors\[**int** PlotIndex\]\[**int** barsAgo\]
+PlotColors[int PlotIndex][int barsAgo]
 ```
 
 
@@ -2235,109 +2086,57 @@ More information regarding the collection class:
 
 ### Example
 ```cs
-
-**using** System;
-
-**using** System.Collections.Generic;
-
-**using** System.ComponentModel;
-
-**using** System.Drawing;
-
-**using** AgenaTrader.API;
-
-**namespace** AgenaTrader.UserCode
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using AgenaTrader.API;
+namespace AgenaTrader.UserCode
 {
-
-\[**Description**("PlotColor Demo")\]
-
-**public** class PlotColorsDemo : UserIndicator
-
+[Description("PlotColor Demo")]
+public class PlotColorsDemo : UserIndicator
 {
-
-**public** DataSeries SMA20 { get {return Values\[0\];} }
-
-**public** DataSeries SMA50 { get {return Values\[1\];} }
-
-**public** DataSeries SMA100 { get {return Values\[2\];} }
-
-**private** Pen pen;
-
-**protected** override void **Initialize()**
-
+public DataSeries SMA20 { get {return Values[0];} }
+public DataSeries SMA50 { get {return Values[1];} }
+public DataSeries SMA100 { get {return Values[2];} }
+private Pen pen;
+protected override void Initialize()
 {
-
 // Set line strength (width) to 4
-
-pen = **new Pen**(Color.Empty, 4);
-
+pen = new Pen(Color.Empty, 4);
 // Add three plots with the defined line strength to the chart
-
-**Add**(**new Plot**(pen, PlotStyle.Line, "SMA20" )); //attached to PlotColors\[0\]
-
-**Add**(**new Plot**(pen, PlotStyle.Line, "SMA50" )); //attached to PlotColors\[1\]
-
-**Add**(**new Plot**(pen, PlotStyle.Line, "SMA100")); //attached to PlotColors\[2\]
-
-Overlay = **true**;
-
+Add(new Plot(pen, PlotStyle.Line, "SMA20" )); //attached to PlotColors[0]
+Add(new Plot(pen, PlotStyle.Line, "SMA50" )); //attached to PlotColors[1]
+Add(new Plot(pen, PlotStyle.Line, "SMA100")); //attached to PlotColors[2]
+Overlay = true;
 }
-
-**protected** override void **OnBarUpdate()**
-
+protected override void OnBarUpdate()
 {
-
 // Add values to the three plots
-
-SMA20.**Set** (**SMA**(20) \[0\]);
-
-SMA50.**Set** (**SMA**(50) \[0\]);
-
-SMA100.**Set**(**SMA**(100)\[0\]);
-
+SMA20.Set (SMA(20) [0]);
+SMA50.Set (SMA(50) [0]);
+SMA100.Set(SMA(100)[0]);
 // Change colors depending on the trend
-
-**if** (**Rising**(Close))
-
+if (Rising(Close))
 {
-
-PlotColors\[0\]\[0\] = Color.LightGreen;
-
-PlotColors\[1\]\[0\] = Color.Green;
-
-PlotColors\[2\]\[0\] = Color.DarkGreen;
-
+PlotColors[0][0] = Color.LightGreen;
+PlotColors[1][0] = Color.Green;
+PlotColors[2][0] = Color.DarkGreen;
 }
-
-**else if** (**Falling**(Close))
-
+else if (Falling(Close))
 {
-
-PlotColors\[0\]\[0\] = Color.LightSalmon;
-
-PlotColors\[1\]\[0\] = Color.Red;
-
-PlotColors\[2\]\[0\] = Color.DarkRed;
-
+PlotColors[0][0] = Color.LightSalmon;
+PlotColors[1][0] = Color.Red;
+PlotColors[2][0] = Color.DarkRed;
 }
-
-**else**
-
+else
 {
-
-PlotColors\[0\]\[0\] = Color.LightGray;
-
-PlotColors\[1\]\[0\] = Color.Gray;
-
-PlotColors\[2\]\[0\] = Color.DarkGray;
-
+PlotColors[0][0] = Color.LightGray;
+PlotColors[1][0] = Color.Gray;
+PlotColors[2][0] = Color.DarkGray;
 }
-
 }
-
 }
-
 }
 ```
 
@@ -2357,37 +2156,24 @@ See [*Lines*].
 ### Usage
 
 ```cs
-Plots\[**int** index\]
+Plots[int index]
 ```
 
 
 ### Example
 ```cs
-
-**protected** override void **Initialize()**
-
+protected override void Initialize()
 {
-
-**Add**(**new Plot**(Color.Blue, "MySMA 20")); // saved to Plots\[0\]
-
+Add(new Plot(Color.Blue, "MySMA 20")); // saved to Plots[0]
 }
-
-**protected** override void **OnBarUpdate()**
-
+protected override void OnBarUpdate()
 {
-
-Value.**Set**(**SMA**(20)\[0\]);
-
+Value.Set(SMA(20)[0]);
 // If the market price is above the SMA colorize it green, otherwise red
-
-**if** (Close\[0\] &gt; **SMA**(20)\[0\])
-
-> Plots\[0\].PlotColor = Color.Green;
-
-**else**
-
-> Plots\[0\].PlotColor = Color.Red;
-
+if (Close[0] > SMA(20)[0])
+	Plots[0].PlotColor = Color.Green;
+else
+	Plots[0].PlotColor = Color.Red;
 }
 ```
 
@@ -2407,9 +2193,8 @@ The order of the add commands determines how the values are sorted. The first in
 ### Usage
 
 ```cs
-Values\[**int** index\]
-
-Values\[**int** index\]\[**int** barsAgo\]
+Values[int index]
+Values[int index][int barsAgo]
 ```
 
 
@@ -2424,14 +2209,10 @@ Information on the class collection:
 
 ```cs
 // Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
-
-**if** (Values\[1\]\[1\] &lt; High\[0\] - Low\[0\])
-
-Value.**Set**(High\[0\] - Low\[0\]);
-
-**else**
-
-Value.**Set**(High\[0\] - Close\[0\]);
+if (Values[1][1] < High[0] - Low[0])
+Value.Set(High[0] - Low[0]);
+else
+Value.Set(High[0] - Close[0]);
 ```
 
 
@@ -2445,77 +2226,45 @@ If you want your self-created indicator to use a different timeframe, this is po
 
 ### Example
 ```cs
-
-**using** System;
-
-**using** System.Collections.Generic;
-
-**using** System.ComponentModel;
-
-**using** System.Drawing;
-
-**using** System.Linq;
-
-**using** System.Xml;
-
-**using** System.Xml.Serialization;
-
-**using** AgenaTrader.API;
-
-**using** AgenaTrader.Custom;
-
-**using** AgenaTrader.Plugins;
-
-**using** AgenaTrader.Helper;
-
-**namespace** AgenaTrader.UserCode
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+using AgenaTrader.Helper;
+namespace AgenaTrader.UserCode
 {
-
-\[**Description**("Multibar Demo")\]
-
+[Description("Multibar Demo")]
 // The indicator requires daily and weekly data
-
-\[**TimeFrameRequirements**("1 Day", "1 Week")\]
-
-**public** class MultiBarDemo : UserIndicator
-
+[TimeFrameRequirements("1 Day", "1 Week")]
+public class MultiBarDemo : UserIndicator
 {
-
-**protected** override void **InitRequirements()**
-
+protected override void InitRequirements()
 > {
 >
-> **Add**(DatafeedHistoryPeriodicity.Day, 1);
+> Add(DatafeedHistoryPeriodicity.Day, 1);
 >
-> **Add**(DatafeedHistoryPeriodicity.Week, 1);
+> Add(DatafeedHistoryPeriodicity.Week, 1);
 >
 > }
 >
-> **protected** override void **Initialize()**
-
+> protected override void Initialize()
 {
-
-CalculateOnBarClose = **true**;
-
+CalculateOnBarClose = true;
 }
-
-**protected** override void **OnBarUpdate()**
-
+protected override void OnBarUpdate()
 {
-
 // The current value for the SMA 14 in a daily timeframe
-
-**Print**(**SMA**(Closes\[1\], 14)\[0\]);
-
+Print(SMA(Closes[1], 14)[0]);
 // Current value for the SMA 14 in a weekly timeframe
-
-**Print**(**SMA**(Closes\[2\], 14)\[0\]);
-
+Print(SMA(Closes[2], 14)[0]);
 }
-
 }
-
 }
 ```
 
@@ -2533,20 +2282,13 @@ See [*CurrentBars*], [*BarsInProgress*], [*TimeFrames*], [*TimeFrameRequirements
 
 Additional syntax methods are available for multibars:
 ```cs
-
-// Declare the variable TF\_DAY and define it
-
-**private** static readonly TimeFrame TF\_Day = **new TimeFrame**(DatafeedHistoryPeriodicity.Day, 1);
-
-**private** static readonly TimeFrame TF\_Week = **new TimeFrame**(DatafeedHistoryPeriodicity.Week, 1);
-
-// The following instruction is identical to double d = Closes\[1\]\[0\];
-
-**double** d = MultiBars.**GetBarsItem**(TF\_Day).Close\[0\];
-
-// The following instruction is identical to double w = Closes\[2\]\[0\];
-
-**double** w = MultiBars.**GetBarsItem**(TF\_Week).Close\[0\];
+// Declare the variable TF_DAY and define it
+private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
+private static readonly TimeFrame TF_Week = new TimeFrame(DatafeedHistoryPeriodicity.Week, 1);
+// The following instruction is identical to double d = Closes[1][0];
+double d = MultiBars.GetBarsItem(TF_Day).Close[0];
+// The following instruction is identical to double w = Closes[2][0];
+double w = MultiBars.GetBarsItem(TF_Week).Close[0];
 ```
 
 
@@ -2577,18 +2319,15 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-CurrentBars\[**int** barSeriesIndex\]
+CurrentBars[int barSeriesIndex]
 ```
 
 
 ### Example
 ```cs
-
 //Ensure that a minimum of 20 bars is loaded
-
-**for** (**int** i=0; i&lt;CurrentBars.Count; i++)
-
-**if** (CurrentBars\[i\] &lt; 20) return;
+for (int i=0; i<CurrentBars.Count; i++)
+if (CurrentBars[i] < 20) return;
 ```
 
 
@@ -2620,23 +2359,14 @@ Within a script that only works with primary timeframes, the value will always e
 
 ### Example
 ```cs
-
 // To demonstrate the methodology
-
 // set CalculateOnBarClose=false
-
-**Print**(Time\[0\] + " " + BarsInProgress);
-
+Print(Time[0] + " " + BarsInProgress);
 // Calculate only for the chart timeframe
-
-**protected** override void **OnBarUpdate()**
-
+protected override void OnBarUpdate()
 {
-
-**if** (BarsInProgress &gt; 0) return;
-
+if (BarsInProgress > 0) return;
 // Logic for the primary data series
-
 }
 ```
 
@@ -2668,17 +2398,16 @@ barSeriesIndex Index value for the various timeframes
 ### Usage
 
 ```cs
-TimeFrames \[**int** barSeriesIndex\]
+TimeFrames [int barSeriesIndex]
 ```
 
 
 ### Example
 
 ```cs
-**if** (BarsInProgress == 0 && CurrentBar == 0)
-
-**for** (**int** i = BarsArray.Count-1; i &gt;= 0; i--)
-
-**Print**("The Indicator " + **this**.Name + " uses Bars of the Timeframe " + TimeFrames\[i\]);
+if (BarsInProgress == 0 && CurrentBar == 0)
+for (int i = BarsArray.Count-1; i >= 0; i--)
+Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
+
 
