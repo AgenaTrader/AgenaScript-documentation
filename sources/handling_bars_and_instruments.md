@@ -140,7 +140,7 @@ The value of *CurrentBar* can only be lesser than or equal to Bars.Count - 1
 
 When you specify how many bars are to be loaded within AgenaTrader, then the value of Bars.Count is equal to this setting. In the following example, Bars.Count would give back a value of 500.
 
-<img src="./media/image1.png" width="296" height="363" />
+![Bars.Count](./media/image1.png)
 
 ### Example
 ```cs
@@ -416,7 +416,7 @@ This function is not yet implemented.
 
 We are working on this – please bear with us. Thank you for your patience.
 
-<img src="./media/image2.png" width="240" height="180" />
+![Bars.IsIntraDay](./media/image2.png)
 
 TODO
 
@@ -475,7 +475,7 @@ Bars.GetSessionBegin
 ### More Information
 The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*] .
 
-<img src="./media/image3.png" width="292" height="330" />
+![Bars.SessionBegin](./media/image3.png)
 
 ### Example
 ```cs
@@ -499,7 +499,7 @@ Bars.GetSessionEnd
 ### More Information
 The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*] function.
 
-<img src="./media/image4.png" width="292" height="330" />
+![Bars.SessionEnd](./media/image4.png)
 
 ### Example
 ```cs
@@ -523,7 +523,7 @@ Bars.GetSessionNextBegin
 ### More Information
 The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*] function.
 
-<img src="./media/image3.png" width="292" height="330" />
+![Bars.SessionNextBegin](./media/image3.png)
 
 ### Example
 ```cs
@@ -547,7 +547,7 @@ Bars.GetSessionNextEnd
 ### More Information
 The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*] function.
 
-<img src="./media/image4.png" width="292" height="330" />
+![Bars.SessionNextEnd](./media/image4.png)
 
 ### Example
 ```cs
@@ -1402,7 +1402,7 @@ Instrument.Expiry
 ### More Information
 The expiry date (expiry) can also be seen within the Instrument Escort:
 
-<img src="./media/image5.png" width="564" height="409" />
+![Instrument.Expiry](./media/image5.png)
 
 ### Example
 ```cs
@@ -1429,7 +1429,7 @@ There is no ETF type. ETFs are considered to be of the type “stock” – see 
 
 The instrument type can also be viewed within the Instrument Escort:
 
-<img src="./media/image6.png" width="564" height="409" />
+![Instrument.InstrumentType](./media/image6.png)
 
 ### Example
 ```cs
@@ -1452,7 +1452,7 @@ Instrument.Name
 ### More Information
 The instrument name can also be seen within the Instrument Escort:
 
-<img src="./media/image7.png" width="564" height="409" />
+![Instrument.Name](./media/image7.png)
 
 ### Example
 ```cs
@@ -1488,7 +1488,7 @@ Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.
 
 The point value can also be viewed within the Instrument Escort:
 
-<img src="./media/image8.png" width="564" height="409" />
+![Instrument.PointValue](./media/image8.png)
 
 ### Example
 ```cs
@@ -1542,7 +1542,7 @@ By using symbols, identical stocks being traded on different exchanges can be id
 
 The instrument symbol can also be viewed within the Instrument Escort:
 
-<img src="./media/image9.png" width="564" height="409" />
+![Instrument.Symbol](./media/image9.png)
 
 ### Example
 ```cs
@@ -1989,5 +1989,6 @@ if (BarsInProgress == 0 && CurrentBar == 0)
 for (int i = BarsArray.Count-1; i >= 0; i--)
 Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
+
 
 

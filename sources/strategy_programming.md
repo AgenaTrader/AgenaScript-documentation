@@ -1575,6 +1575,7 @@ The individual factors are:
 
 **All factors are double values.**
 
-<img src="./media/image10.png" width="629" height="478" />
+![Performance Characteristics](./media/image10.png)
+
 
 

@@ -93,7 +93,7 @@ DrawArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 ### Description
 DrawArrowDown() draws an arrow pointing downwards:
 
-<img src="./media/image21.png" width="21" height="25" />
+![DrawArrowDown()](./media/image21.png)
 
 See [*DrawArrowUp()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -129,7 +129,7 @@ DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
 ### Description
 DrawArrowLine() draws an arrow:
 
-<img src="./media/image22.png" width="127" height="34" />
+![DrawArrowLine()](./media/image22.png)
 
 ### Usage
 ```cs
@@ -174,7 +174,7 @@ DrawArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 ### Description
 DrawArowUp() draws an arrow pointing upwards:
 
-<img src="./media/image23.png" width="22" height="20" />
+![DrawArrowUp()](./media/image23.png)
 
 See [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -207,7 +207,7 @@ DrawArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
 ### Description
 DrawDiamond() draws a diamond:
 
-<img src="./media/image24.png" width="19" height="26" />
+![DrawDiamond()](./media/image24.png)
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -240,7 +240,7 @@ DrawDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 ### Description
 DrawDot() draws a dot:
 
-<img src="./media/image25.png" width="19" height="20" />
+![DrawDot()](./media/image25.png)
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -771,7 +771,7 @@ DrawRegressionChannel("MyRegChannel", 10, 0, Color.Black);
 ### Description
 DrawSquare() draws a square:
 
-<img src="./media/image26.png" width="20" height="19" />
+![DrawSquare()](./media/image26.png)
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
@@ -868,7 +868,7 @@ Color.Red, new Font("Arial",7), StringAlignment.Center, Color.Blue, Color.DarkOl
 
 This leads to the following result:
 
-<img src="./media/image27.png" width="405" height="251" />
+![DrawText()](./media/image27.png)
 
 ```cs
 DrawText("MyTag",true,"Text",1,
@@ -1008,7 +1008,7 @@ DrawTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 ### Description
 DrawTriangleUp() draws a small upwards-pointing triangle:
 
-<img src="./media/image28.png" width="25" height="19" />
+![DrawTriangleUp()](./media/image28.png)
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleDown()*].
 
@@ -1041,7 +1041,7 @@ DrawTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 ### Description
 DrawTriangleDown() draws a small downwards-pointing triangle:
 
-<img src="./media/image29.png" width="23" height="20" />
+![DrawTriangleDown()](./media/image29.png)
 
 See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*].
 
@@ -1110,5 +1110,6 @@ A drawing object of the type IVerticalLine (interface)
 // Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine("MyVerticalLine", 10, Color.Black);
 ```
+
 
 

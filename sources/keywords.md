@@ -206,7 +206,7 @@ set { _period = value; }
 }
 ```
 
-<img src="./media/image11.png" width="520" height="565" />
+![Category](./media/image11.png)
 
 ## ConditionalValue
 Conditional value is an *[Attribut]e* in AgenaScript.
@@ -615,7 +615,7 @@ A data series is an array that contains as many elements as there are bars displ
 Data series are used in exactly the same way as the close or time series. They can therefore also be used for the input data for various indicators.
 In the table below you will find 4 newly created data series (highlighted). Each data series has exactly one value of a special data type (int, bool, string) attached to it per bar. The indexing with barsAgo is thus identical to the data series provided by the system.
 
-<img src="./media/image12.png" width="318" height="248" />
+![DataSeries](./media/image12.png)
 
 ### Usable Data Series in AgenaTrader
 [*BoolSeries*]
@@ -1116,7 +1116,7 @@ Blue line: Displacement = 0 (Original)
 Red line: Displacement = -5
 Green line: Displacement = +5
 
-<img src="./media/image13.png" width="454" height="384" />
+![Displacement](./media/image13.png)
 
 ### Usage
 Displacement
@@ -1152,7 +1152,7 @@ The indicator values are not displayed in the data box.
 
 The following image displays the values of 3 smoothed averages in the data box.
 
-<img src="./media/image14.png" width="452" height="387" />
+![DisplayInDataBox](./media/image14.png)
 
 ### Usage
 DisplayInDataBox
@@ -1269,7 +1269,7 @@ BarColor
 if (Close[0] > SMA(14)[0]) BarColor = Color.Orange;
 ```
 
-<img src="./media/image15.png" width="427" height="386" />
+![BarColor](./media/image15.png)
 
 ## BackColor
 ### Description
@@ -1290,7 +1290,7 @@ if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColor = Color.Blue;
 ```
 
-<img src="./media/image16.png" width="432" height="386" />
+![BackColor](./media/image16.png)
 
 ```cs
 // Changing the bar background color depending on a smoothing average
@@ -1299,7 +1299,7 @@ BackColor = Color.Blue;
 BackColor = SMA(14)[0] >= Close[0] ? Color.Maroon : Color.LimeGreen;
 ```
 
-<img src="./media/image17.png" width="430" height="384" />
+![BackColor](./media/image17.png)
 
 ## BackColorAll
 ### Description
@@ -1320,7 +1320,7 @@ if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColorAll = Color.Blue;
 ```
 
-<img src="./media/image18.png" width="431" height="386" />
+![BackColorAll](./media/image18.png)
 
 ## BarColorSeries
 ### Description
@@ -1359,7 +1359,7 @@ BarColorSeries[2] = Color.Yellow;
 }
 ```
 
-<img src="./media/image19.png" width="423" height="372" />
+![BarColorSeries](./media/image19.png)
 
 ## BackColorSeries
 ### Description
@@ -1435,7 +1435,7 @@ else
 CandleOutlineColor = Color.Red;
 ```
 
-<img src="./media/image20.png" width="491" height="449" />
+![CandleOutlineColor](./media/image20.png)
 
 ## CandleOutlineColorSeries
 ### Description
@@ -2474,5 +2474,6 @@ Add(new Plot(Color.Red, "MyPlot1"));
 VerticalGridLines = false;
 }
 ```
+
 
 

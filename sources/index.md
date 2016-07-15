@@ -35,3 +35,4 @@ All drawing objects that can be used within the chart can also be accessed using
 
 This section provides solutions to problems of an unusual nature. To solve such problems, you need to be able to trace and understand source code and programming. More advanced programmers and users may find solutions and suggestions that could help them in their own programming.
 
+
