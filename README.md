@@ -30,6 +30,9 @@ Move to your source folder, open a console and create an ebook in \*.epub format
 pandoc -S --epub-cover-image=../documents/epub_cover.png --epub-stylesheet=../documents/epub_styles.css -o ../documents/agenascript-documentation.epub ../documents/epub_title.txt index.md handling_bars_and_instruments.md events.md strategy_programming.md keywords.md drawing_objects.md hints_and_advice.md
 ```
 
+###Validate ebook (epub)
+We recommend to validate the ebook using **pagina EPUB-Checker**. [You can download it here.](http://www.pagina-online.de/produkte/epub-checker/#c773)
+
 ###Parsing markdown to word file
 Move to your source folder, open a console and create a Word document in \*.docx format:
 ```bash
