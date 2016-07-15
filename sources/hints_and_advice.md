@@ -86,7 +86,6 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 }
 ```
 
-
 ## Custom Chart Background Image
 The plot method allows you to add a background image to the chart.
 The following example uses an image with the JPG format located in the main directory on the hard drive (C:).
@@ -112,7 +111,6 @@ g.DrawImage(img,r);
 }
 }
 ```
-
 
 <img src="./media/image31.png" width="601" height="444" />
 
@@ -165,7 +163,6 @@ set { _soundFile = value; }
 }
 ```
 
-
 ## Formatting of Numbers
 ### Formatting of Numbers
 **General information on formatting in C\#**
@@ -182,7 +179,6 @@ Print("To 2 decimal places : " + d.ToString("N2")); // 123.45
 Print("To 3 decimal places : " + d.ToString("N3")); // 123.457
 Print("To 4 decimal places : " + d.ToString("N4")); // 123.4568
 ```
-
 
 ### Useful Functions
 Returns the currency symbol for the current instrument:
@@ -201,7 +197,6 @@ return s;
 }
 ```
 
-
 Converts a number into a currency with a thousands separator and 2 decimal places.
 The block separation per 1000 units can be set in “Culture”.
 ```cs
@@ -210,7 +205,6 @@ public string getWaehrungOhneSymbol(double d) {
 return d.ToString("\#,\#\#0.00");
 }
 ```
-
 
 Converts a number into a currency with a thousands separator and 2 decimal places and a currency symbol:
 
@@ -224,7 +218,6 @@ return s;
 }
 ```
 
-
 Converts a number into a currency with a thousands separator and 2 decimal places as well as a currency symbol, and fills up to a fixed length with empty spaces.
 The function is great for outputting values into a table.
 
@@ -237,7 +230,6 @@ return s;
 }
 ```
 
-
 Converts a number into a percentage. Nothing is calculated, only formatted.
 Leading plus sign, a decimal place and a percent sign.
 
@@ -248,7 +240,6 @@ string s=(d>0)?"+":""; // Leading plus sign
 return s+d.ToString("0.0")+"%";
 }
 ```
-
 
 Formats the market price depending on the number of decimal places to which the currency is notated.
 This includes a thousands separator and fixed length, meaning that zeros are filled on the right hand side.
@@ -265,7 +256,6 @@ return string.Format(CultureInfo.CurrentCulture, f, d);
 }
 ```
 
-
 ### **Example**
 ```cs
 double profit = 1234.567890;
@@ -277,7 +267,6 @@ Print("getPercent :" + getPercent(ProzGewinn)); // +12.3%
 double price = 123.4567;
 Print("getPrice :" + getKurs(Kurs)); // 123.46
 ```
-
 
 ## Index Conversion
 There are two types of indexing in AgenaTrader.
@@ -297,7 +286,6 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 }
 ```
 
-
 ## Overwriting Indicator Names
 The name of an indicator (or a strategy) is displayed within the properties dialog and at the top edge of the chart. Use the ToString() property to overwrite it.
 ```cs
@@ -306,7 +294,6 @@ public override string ToString()
 return "My Name";
 }
 ```
-
 
 ## Rectangle with Rounded Corners
 By using the graphics methods, you can create interesting forms and place them onto the chart.
@@ -425,6 +412,5 @@ public static GraphicsPath Create(Rectangle rect)
 }
 }
 ```
-
 
 

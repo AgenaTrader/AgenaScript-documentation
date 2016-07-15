@@ -16,7 +16,6 @@ Add(Plot plot)
 Add(Line line)
 ```
 
-
 ### Example
 ```cs
 #region Usings
@@ -75,7 +74,6 @@ namespace AgenaTrader.UserCode
 }
 ```
 
-
 ## Alert()
 ### Description
 The alert method creates an acoustic and/or visual alarm.
@@ -86,7 +84,6 @@ Alert(string message, bool showMessageBox, string soundLocation);
 Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the "re-arm seconds" parameter are ignored.
 Alert(string id, AlertPriority priority, string message, string soundLocation, int rearmSeconds, Color backColor, Color forColor);
 ```
-
 
 ###
 ### Return Value
@@ -114,7 +111,6 @@ string nameOfSoundFile = "MyAlertSoundFile.wav";
 Alert("Message text", true, pathOfSoundfile + nameOfSoundFile);
 ```
 
-
 ## AllowRemovalOfDrawObjects
 ### Description
 "AllowRemovalOfDrawObjects" is a property of indicators that can be set under [*Initialize()*].
@@ -134,7 +130,6 @@ This property can be queried and will return "true" or "false".
 AllowRemovalOfDrawObjects
 ```
 
-
 ### Example
 ```cs
 protected override void Initialize()
@@ -144,7 +139,6 @@ Add(new Plot(Color.Red, "MyPlot1"));
 AllowRemovalOfDrawObjects = true;
 }
 ```
-
 
 ## Attribute
 Attribute is a component of the C\# language. Within AgenaScript, indicators, and strategies, you can use these attributes in the same manner as you would in C\#.
@@ -184,7 +178,6 @@ set { period = Math.Max(1, value); }
 }
 ```
 
-
 **Example for a data series:**
 ```cs
 [Browsable(false)]
@@ -195,7 +188,6 @@ public DataSeries Lower
 get { return Values[0]; }
 }
 ```
-
 
 ## Category
 Category is an *[Attribut]e* in AgenaScript.
@@ -213,7 +205,6 @@ get { return _period; }
 set { _period = value; }
 }
 ```
-
 
 <img src="./media/image11.png" width="520" height="565" />
 
@@ -237,7 +228,6 @@ return _internVariable;
 }
 ```
 
-
 ## Description
 Description is an attribute in AgenaScript.
 
@@ -257,7 +247,6 @@ set { numStdDev = Math.Max(0, value); }
 }
 ```
 
-
 The descriptions are displayed in the relevant properties dialog.
 
 ## DisplayName
@@ -276,7 +265,6 @@ set { numStdDev = Math.Max(0, value); }
 }
 ```
 
-
 ## TimeFrameRequirements
 Timeframe requirements is an attribute in AgenaScripts.
 
@@ -286,7 +274,6 @@ If you want a script to use data from various timeframes, the class requires the
 [TimeFrameRequirements("1 day")]
 [TimeFrameRequirements("15 minutes", "1 day", "1 week")]
 ```
-
 
 The amount of data provided for the other timeframes will always be the same as the number of actual candles loaded into the chart. If there are 500 candles for a 5-minute chart, then 500 candles of another timeframe will also be loaded. In the first example above, 500 daily candles will be loaded. In the second example, 500 15-minute candles, 500 daily candles and 500 weekly candles will be loaded.
 The amount of data can become rather large very quickly, thus you should take precautions when using this attribute.
@@ -335,7 +322,6 @@ set { _textFont = SerializableFont.FromString(value); }
 }
 ```
 
-
 ## AutoScale
 ### Description
 Auto scale is a property of indicators that can be set within the Initialize() method.
@@ -344,13 +330,11 @@ Auto scale is a property of indicators that can be set within the Initialize() m
 AutoScale = true (default)
 ```
 
-
 The price axis (y-axis) of the chart is set so that all plots and lines of an indicator are visible.
 
 ```cs
 AutoScale = false
 ```
-
 
 Plots and lines of an indicator or strategy are not accounted for in the scaling of the y-axis. Therefore they may lie outside of the visible chart area.
 
@@ -368,7 +352,6 @@ Add(new Plot(Color.Red, "MyPlot1"));
 AutoScale = true;
 }
 ```
-
 
 ## BarsRequired
 ### Description
@@ -390,7 +373,6 @@ Add(new Plot(Color.Red, "MyPlot1"));
 BarsRequired = 50;
 }
 ```
-
 
 ## CalculateOnBarClose
 ### Description
@@ -427,7 +409,6 @@ protected override void Initialize()
 CalculateOnBarClose = true;
 }
 ```
-
 
 ## ChartControl
 Chart control is an object that provides reading access of various properties for the chart.
@@ -501,7 +482,6 @@ ClearOutputWindow();
 }
 ```
 
-
 ## CrossAbove()
 ### Description
 The CrossAbove() method allows you to check whether a crossing of two values has occurred (from bottom to top) within a predefined number of periods. The values can be a market price, an indicator, a data series or a constant value.
@@ -513,7 +493,6 @@ See [*CrossBelow()*], [*Rising()*], [*Falling()*].
 CrossAbove(IDataSeries series1, double value, int lookBackPeriod)
 CrossAbove(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 ```
-
 
 ### Return Value
 **true** a cross has occurred
@@ -539,7 +518,6 @@ if (CrossAbove(SMA(20), SMA(50), 1) && Close[0] > Close[1])
 Print("Long entry !!!");
 ```
 
-
 ## CrossBelow()
 ### Description
 Using the CrossBelow() method, you can test whether or not a cross below has occurred within a predefined number of periods. The values can be the market price, an indicator, any data series, or a constant value.
@@ -551,7 +529,6 @@ See [*CrossAbove()*], [*Rising()*], [*Falling()*].
 CrossBelow(IDataSeries series1, double value, int lookBackPeriod)
 CrossBelow(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 ```
-
 
 ### Return Value
 **true** a cross has occurred
@@ -577,7 +554,6 @@ Print("SMA(20) has fallen below 40!");
 if (CrossBelow(SMA(20), SMA(50), 1) && Close[1] > Close[0])
 Print("Short entry !!!");
 ```
-
 
 ## CurrentBar
 ### Description
@@ -605,7 +581,6 @@ protected override void OnBarUpdate()
 Print("Call of OnBarUpdate for bar nr. " + CurrentBar + " of " + Time[0]);
 }
 ```
-
 
 ## DatafeedHistoryPeriodicity
 ### Description
@@ -690,8 +665,6 @@ CalculateOnBarClose = true;
 }
 ```
 
-
-
 ### Assign Values
 Assigning a value to the data series for the current position:
 
@@ -699,13 +672,11 @@ Assigning a value to the data series for the current position:
 myBoolSeries.Set(true);
 ```
 
-
 Writing a value in the past into the data series:
 
 ```cs
 myBoolSeries.Set(int barsAgo, bool Value);
 ```
-
 
 ### Delete Values
 Removing the current value for the data series:
@@ -714,24 +685,20 @@ Removing the current value for the data series:
 myBoolSeries.Reset();
 ```
 
-
 Removing a value in the past from the data series:
 ```cs
 myBoolSeries.Reset(int barsAgo);
 ```
-
 
 ### Check Values for their Validity
 ```cs
 myBoolSeries.ContainsValue(int barsAgo);
 ```
 
-
 ### Read Value
 ```cs
 Print ("For the bar of " + Time[0] + " ago the value of the data series is: " + myBoolSeries[0]);
 ```
-
 
 ### Example
 ```cs
@@ -743,7 +710,6 @@ else
 myBoolSeries.Set(false);
 }
 ```
-
 
 ## DataSeries
 ### Description
@@ -768,9 +734,6 @@ CalculateOnBarClose = true;
 }
 ```
 
-
-
-
 ### Assign Values
 Assigning a value to the data series for the current position:
 
@@ -778,12 +741,10 @@ Assigning a value to the data series for the current position:
 myDataSeries.Set(Bars[0].Close);
 ```
 
-
 Writing a value in the past into the data series:
 ```cs
 myDataSeries.Set(int barsAgo, duble Value);
 ```
-
 
 ### Delete Values
 Removing the current value from the data series:
@@ -791,7 +752,6 @@ Removing the current value from the data series:
 ```cs
 myDataSeries.Reset();
 ```
-
 
 Removing a value in the past from the data series:
 ```cs
@@ -803,19 +763,16 @@ myDataSeries.Reset(int barsAgo);
 myDataSeries.ContainsValue(int barsAgo);
 ```
 
-
 ### Read Value
 ```cs
 Print ("For the bar from " + Time[0] + " ago the value for the data series is: " + myDataSeries[0]);
 ```
-
 
 ### Example
 ```cs
 //Saves the span between the high and low of a bar
 myDataSeries.Set(Math.Abs(High[0]-Low[0]));
 ```
-
 
 ## DateTimeSeries
 ### Description
@@ -838,9 +795,6 @@ CalculateOnBarClose = true;
 }
 ```
 
-
-
-
 ### Assign Values
 Assigning a value to the current position of the data series:
 
@@ -848,13 +802,11 @@ Assigning a value to the current position of the data series:
 myDataSeries.Set(DateTime Value);
 ```
 
-
 Writing a value from the past into the data series:
 
 ```cs
 myDataSeries.Set(int barsAgo, DateTime Value);
 ```
-
 
 ### Delete Values
 Removing the current value from the data series:
@@ -863,32 +815,27 @@ Removing the current value from the data series:
 myDataSeries.Reset();
 ```
 
-
 Remove a past value from the data series:
 
 ```cs
 myDataSeries.Reset(int barsAgo);
 ```
 
-
 ### Check Values for their Validity
 ```cs
 myDataSeries.ContainsValue(int barsAgo);
 ```
-
 
 ### Read Value
 ```cs
 Print ("For the bar from " + Time[0] + " ago the value of the data series is: " + myDataSeries[0]);
 ```
 
-
 ### Example
 ```cs
 //Saves the difference of -6 hours (eastern time, New York) for a time zone conversion
 myDataSeries.Set(Time[0].AddHours(-6);
 ```
-
 
 ## FloatSeries
 ### Description
@@ -911,9 +858,6 @@ CalculateOnBarClose = true;
 }
 ```
 
-
-
-
 ### Assign Values
 Assigning a value to the current position of the data series
 
@@ -921,12 +865,10 @@ Assigning a value to the current position of the data series
 myDataSeries.Set(float Value);
 ```
 
-
 Writing a value from the past into the data series:
 ```cs
 myDataSeries.Set(int barsAgo, float Value);
 ```
-
 
 ### Delete Values
 Removing the current value from the data series:
@@ -934,24 +876,20 @@ Removing the current value from the data series:
 myDataSeries.Reset();
 ```
 
-
 Removing a value located in the past from the data series:
 ```cs
 myDataSeries.Reset(int barsAgo);
 ```
-
 
 ### Check Values for their Validity
 ```cs
 myDataSeries.ContainsValue(int barsAgo);
 ```
 
-
 ### Read Value
 ```cs
 Print ("For the bar from " + Time[0] + " ago the value for the data series is: " + myDataSeries[0]);
 ```
-
 
 ### Example
 ```cs
@@ -959,14 +897,12 @@ Print ("For the bar from " + Time[0] + " ago the value for the data series is: "
 myDataSeries.Set(Math.Abs((float) High[0] - (float) Low[0]));
 ```
 
-
 ## IntSeries
 ### Description
 Int series is a data series that can assign an integer value for each bar. The number of elements in this series corresponds to the number of bars within the chart.
 
 ### Create a New Data Series
 Create a new variable in the declaration area:
-
 
 ```cs
 //Variable declaration
@@ -983,21 +919,16 @@ CalculateOnBarClose = true;
 }
 ```
 
-
-
-
 ### Assign Values
 Assigning a value to the current position of the data series
 ```cs
 myDataSeries.Set(int Value);
 ```
 
-
 Writing a value from the past into the data series:
 ```cs
 myDataSeries.Set(int barsAgo, int Value);
 ```
-
 
 ### Delete Values
 Removing the current value from the data series:
@@ -1005,31 +936,26 @@ Removing the current value from the data series:
 myDataSeries.Reset();
 ```
 
-
 Removing a value located in the past from the data series:
 ```cs
 myDataSeries.Reset(int barsAgo);
 ```
-
 
 ### Check Values for their Validity
 ```cs
 myDataSeries.ContainsValue(int barsAgo);
 ```
 
-
 ### Read Value
 ```cs
 Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 ```
-
 
 ### Example
 ```cs
 //Saves the span in ticks between high and low for each bar
 myDataSeries.Set((int) ((High[0] - Low[0]) / TickSize));
 ```
-
 
 ## LongSeries
 ### Description
@@ -1050,21 +976,16 @@ CalculateOnBarClose = true;
 }
 ```
 
-
-
-
 ### Assign Values
 Assigning a value to the current position of the data series:
 ```cs
 myDataSeries.Set(long Value);
 ```
 
-
 Writing a value from the past into the data deries:
 ```cs
 myDataSeries.Set(int barsAgo, long Value);
 ```
-
 
 ### Delete Values
 Removing the current value from the data series:
@@ -1072,31 +993,26 @@ Removing the current value from the data series:
 myDataSeries.Reset();
 ```
 
-
 Removing a value located in the past from the data series:
 ```cs
 myDataSeries.Reset(int barsAgo);
 ```
-
 
 ### Check Values for their Validity
 ```cs
 myDataSeries.ContainsValue(int barsAgo);
 ```
 
-
 ### Read Value
 ```cs
 Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 ```
-
 
 ### Example
 ```cs
 //Saves the span of ticks between high and low for each bar
 myDataSeries.Set((long) ((High[0] - Low[0]) / TickSize));
 ```
-
 
 ## StringSeries
 ### Description
@@ -1110,7 +1026,6 @@ Create a new variable in the declaration area:
 private StringSeries myDataSeries;
 ```
 
-
 Assign an instance of string series to the variable with the Initialize() method:
 
 ```cs
@@ -1121,7 +1036,6 @@ CalculateOnBarClose = true;
 }
 ```
 
-
 ### Assign Values
 Assigning a value to the current position of the data series:
 
@@ -1129,13 +1043,11 @@ Assigning a value to the current position of the data series:
 myDataSeries.Set(string Value);
 ```
 
-
 Writing a value from the past into the data series:
 
 ```cs
 myDataSeries.Set(int barsAgo, string Value);
 ```
-
 
 ### Delete Values
 Remove the current value from the data series:
@@ -1144,32 +1056,27 @@ Remove the current value from the data series:
 myDataSeries.Reset();
 ```
 
-
 Remove a value located in the past from the data series:
 
 ```cs
 myDataSeries.Reset(int barsAgo);
 ```
 
-
 ### Check Values for their Validity
 ```cs
 myDataSeries.ContainsValue(int barsAgo);
 ```
-
 
 ### Read Value
 ```cs
 Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 ```
 
-
 ### Example
 ```cs
 //Save the current calendar day for each bar (Monday… Tuesday etc.)
 myDataSeries.Set(string.Format("{0:dddd}", Time[0]));
 ```
-
 
 ## DayOfWeek
 ### Description
@@ -1200,7 +1107,6 @@ if (Time[0].DayOfWeek == DayOfWeek.Friday)
 return;
 ```
 
-
 ## Displacement
 ### Description
 By implementing "Displacement", you can shift a drawn indicator line right or left along the x-axis.
@@ -1228,7 +1134,6 @@ Displacement = 1;
 }
 ```
 
-
 ## DisplayInDataBox
 ### Description
 The property "DisplayInDataBox" states whether the value of an indicator is contained in the data box of the chart or not.
@@ -1238,12 +1143,10 @@ The property can be queried in the script and returns a value of the type Boolea
 DisplayInDataBox = true (default)
 ```
 
-
 The indicator values are displayed in the data box.
 ```cs
 DisplayInDataBox = false
 ```
-
 
 The indicator values are not displayed in the data box.
 
@@ -1264,7 +1167,6 @@ DisplayInDataBox = false;
 }
 ```
 
-
 ## DrawOnPricePanel
 ### Description
 The property "DrawOnPricePanel" determines the panel in which the drawing objects are drawn.
@@ -1272,12 +1174,10 @@ The property "DrawOnPricePanel" determines the panel in which the drawing object
 DrawOnPricePanel = true (default)
 ```
 
-
 Drawing objects are shown in the price chart
 ```cs
 DrawOnPricePanel = false
 ```
-
 
 Drawing objects are drawn in the panel (subchart) assigned to the indicator
 
@@ -1304,7 +1204,6 @@ DrawVerticalLine("MyVerticalLine", 5, Color.Black);
 }
 ```
 
-
 ## Falling()
 ### Description
 The Falling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.
@@ -1315,7 +1214,6 @@ See [*CrossAbove()*], [*CrossBelow()*], [*Rising()*].
 ```cs
 Falling(IDataSeries series)
 ```
-
 
 ### Return Value
 **true** If the data series is falling
@@ -1330,7 +1228,6 @@ series a data series such as an indicator, close, high etc.
 if (Falling(SMA(20)))
 Print("The SMA(20) is currently falling.");
 ```
-
 
 ## Colors
 AgenaScript provides you with the following commands for defining colors and making color changes to the chart:
@@ -1372,7 +1269,6 @@ BarColor
 if (Close[0] > SMA(14)[0]) BarColor = Color.Orange;
 ```
 
-
 <img src="./media/image15.png" width="427" height="386" />
 
 ## BackColor
@@ -1394,7 +1290,6 @@ if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColor = Color.Blue;
 ```
 
-
 <img src="./media/image16.png" width="432" height="386" />
 
 ```cs
@@ -1403,7 +1298,6 @@ BackColor = Color.Blue;
 // Market price below the SMA(14) to maroon
 BackColor = SMA(14)[0] >= Close[0] ? Color.Maroon : Color.LimeGreen;
 ```
-
 
 <img src="./media/image17.png" width="430" height="384" />
 
@@ -1425,7 +1319,6 @@ BackColorAll
 if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColorAll = Color.Blue;
 ```
-
 
 <img src="./media/image18.png" width="431" height="386" />
 
@@ -1466,7 +1359,6 @@ BarColorSeries[2] = Color.Yellow;
 }
 ```
 
-
 <img src="./media/image19.png" width="423" height="372" />
 
 ## BackColorSeries
@@ -1486,7 +1378,6 @@ BackColorSeries
 BackColorSeries[int barsAgo]
 ```
 
-
 When using this method with an index \[**int** barsAgo\] the background color for the referenced bar will be outputted.
 
 ### Example
@@ -1499,7 +1390,6 @@ BackColorSeries[3] = Color.Blue;
 // Set background color for the previous bar to green
 BackColorSeries[1] = Color.Green;
 ```
-
 
 ## BackColorAllSeries
 ### Description
@@ -1517,7 +1407,6 @@ int barsAgo
 BackColorAllSeries
 BackColorAllSeries[int barsAgo]
 ```
-
 
 When using the method with an index \[**int** barsAgo\] the background color for the referenced bar will be changed or returned.
 
@@ -1546,7 +1435,6 @@ else
 CandleOutlineColor = Color.Red;
 ```
 
-
 <img src="./media/image20.png" width="491" height="449" />
 
 ## CandleOutlineColorSeries
@@ -1566,7 +1454,6 @@ CandleOutlineColorSeries
 CandleOutlineColorSeries[int barsAgo]
 ```
 
-
 When using this method with an index \[**int** barsAgo\] the border color for the referenced bar will be outputted.
 
 **Caution: Color.Empty will be outputted for a bar unless it has been previously changed.**
@@ -1578,7 +1465,6 @@ CandleOutlineColorSeries[0] = Color.Blue;
 // Change the outline color to the chart default value
 CandleOutlineColorSeries[0] = Color.Empty;
 ```
-
 
 ## FirstTickOfBar
 ### Description
@@ -1602,7 +1488,6 @@ return;
 }
 ```
 
-
 ## FirstTickOfBarMtf
 ### Description
 FirstTickOfBarMtf is the **m**ulti-**t**ime **f**rame variant of the [*FirstTickOfBar*] property.
@@ -1623,7 +1508,6 @@ See [*BarsInProgress*].
 if (FirstTickOfBarMtf(BarsInProgress))
 Print("A new bar has begun.");
 ```
-
 
 ## GetCurrentAsk()
 ### Description
@@ -1652,7 +1536,6 @@ if (Close[0] < SMA(20)[0] && entryOrder == null)
 entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
 }
 ```
-
 
 ## GetCurrentBid()
 ### Description
@@ -1683,7 +1566,6 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 }
 ```
 
-
 ## HighestBar
 ### Description
 The HighestBar() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
@@ -1700,12 +1582,10 @@ series Every data series, such as close, high, low, etc.
 int barsAgo How many bars ago the high occurred
 ```
 
-
 ### Usage
 ```cs
 HighestBar(IDataSeries series, int period)
 ```
-
 
 ### Example
 ```cs
@@ -1714,7 +1594,6 @@ Print(HighestBar(High, Bars.BarsSinceSession - 1));
 // What value did the market price have at the highest high of the session?
 Print("The highest price for the session was: " + Open[HighestBar(High, Bars.BarsSinceSession - 1)]);
 ```
-
 
 ## Historical
 ### Description
@@ -1739,7 +1618,6 @@ if (Historical) return;
 }
 ```
 
-
 ## Initialize()
 ### Description
 The Initialize() method is called up once at the beginning of an indicator or strategy calculation. This method can be used to set indicator properties, initialize your own variables, or add plots.
@@ -1754,7 +1632,6 @@ none
 ```cs
 protected override void Initialize()
 ```
-
 
 ### Important Keywords
 -   [*Add()*]
@@ -1836,7 +1713,6 @@ See [*PriceType*]
 InputPriceType
 ```
 
-
 ### Example1
 ```cs
 protected override void Initialize()
@@ -1850,7 +1726,6 @@ protected override void OnBarUpdate()
 Print(Low[0] + " " + Input[0] + " " + InputPriceType);
 }
 ```
-
 
 ### Example2
 ```cs
@@ -1868,7 +1743,6 @@ InputPriceType = PriceType.High;
 // Input = low is still in effect
 }
 ```
-
 
 ## Instrument
 ### Description
@@ -1898,7 +1772,6 @@ Line(Color color, double value, string name)
 Line(Pen pen, double value, string name)
 ```
 
-
 ### More Information
 Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*]
 
@@ -1924,7 +1797,6 @@ Add(line);
 // Short form for the line in example 2
 Add(new Line(new Pen(Color.Red, 1), 10, "MyLine"));
 ```
-
 
 ## Log()
 ### Description
@@ -1962,7 +1834,6 @@ Log("This is a message (messages).", InfoLogLevel.Message); //gray
 Log("This is an alert popup window.", InfoLogLevel.Alert); //green
 ```
 
-
 ## LowestBar
 ### Description
 The LowestBar() method attempts to find the lowest bar within a predefined number of periods.
@@ -1982,7 +1853,6 @@ series Every data series, such as close, high, low etc.
 LowestBar(IDataSeries series, int period)
 ```
 
-
 ### Example
 ```cs
 // How many bars ago was the lowest low of the session?
@@ -1990,7 +1860,6 @@ Print(LowestBar(Low, Bars.BarsSinceSession - 1));
 // Which price did the lowest open of the current session have?
 Print("The lowest open price of the current session was: " + Open[LowestBar(Low, Bars.BarsSinceSession - 1)]);
 ```
-
 
 ## MarketDataEventArgs
 ### Description
@@ -2049,13 +1918,11 @@ The overlay property defines whether the indicator outputs are displayed in the 
 Overlay = true
 ```
 
-
 The indicator is drawn above the price (for example an [*SMA*])
 
 ```cs
 Overlay = false (default)
 ```
-
 
 A separate chart window is opened (RSI)
 
@@ -2073,7 +1940,6 @@ Add(new Plot(Color.Red, "MyPlot1"));
 Overlay = false;
 }
 ```
-
 
 ## PaintPriceMarkers
 ### Description
@@ -2101,7 +1967,6 @@ PaintPriceMarkers = false;
 }
 ```
 
-
 ## PlaySound()
 ### Description
 This method allows you to play a wav file.
@@ -2122,7 +1987,6 @@ string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string file = "\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav";
 PlaySound(path + file);
 ```
-
 
 ## Plot()
 ### Description
@@ -2154,7 +2018,6 @@ Plot(Color color, PlotStyle plotStyle, string name)
 Plot(Pen pen, PlotStyle plotStyle, string name)
 ```
 
-
 ### More Information
 Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*]
 
@@ -2184,7 +2047,6 @@ Add(new Plot(new Pen(Color.Blue, 6), PlotStyle.Dot, "MyPlot"));
 }
 ```
 
-
 ## PlotMethod
 ### Description
 In each indicator, the plot method can be overridden in order to add your own graphics (GDI+) to the price chart with the help of the graphics class (System.Drawing).
@@ -2211,7 +2073,6 @@ none
 ```cs
 public override void Plot(Graphics graphics, Rectangle r, double min, double max)
 ```
-
 
 ### Example
 ```cs
@@ -2317,7 +2178,6 @@ Print(DateTime value)
 Print(string format, string message)
 ```
 
-
 ### Parameter
 string Text an individual message text
 
@@ -2339,7 +2199,6 @@ Print(string.Format("{0:dddd}", Time[0]));
 Print("One empty row afterwards \\n");
 ```
 
-
 ## RemoveDrawObject()
 ### Description
 The RemoveDrawObject() method removes a specific drawing object from the chart based on a unique identifier (tag).
@@ -2359,7 +2218,6 @@ string tag The clearly identifiable name for the drawing object
 RemoveDrawObjects("My line");
 ```
 
-
 ## RemoveDrawObjects()
 ### Description
 This method removes all drawings from the chart
@@ -2376,7 +2234,6 @@ none
 //Delete all drawings from the chart
 RemoveDrawObjects();
 ```
-
 
 ## Rising()
 ### Description
@@ -2402,7 +2259,6 @@ series A data series such as an indicator, close, high etc.
 if (Rising(SMA(20)))
 Print("The SMA(20) is currently rising.");
 ```
-
 
 ## SessionBreakLines
 ### Description
@@ -2493,7 +2349,6 @@ if (ToDay(Time[0]) = 20130911)
 return;
 ```
 
-
 ## ToTime()
 ### Description
 To time is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C\#.
@@ -2519,7 +2374,6 @@ if (ToTime(Time[0]) >= 81500 && ToTime(Time[0]) <= 163500)
 }
 ```
 
-
 ## Update()
 ### Description
 The Update() method calls up the OnBarUpdate method in order to recalculate the indicator values.
@@ -2530,7 +2384,6 @@ Update() is to be used with caution and is intended for use by experienced progr
 ```cs
 Update()
 ```
-
 
 ### Return Value
 none
@@ -2553,7 +2406,6 @@ Print( Ind2().MyPublicVariable );
 }
 ```
 
-
 **Code from Ind2:**
 ```cs
 private double myPublicVariable = 0;
@@ -2570,7 +2422,6 @@ return myPublicVariable;
 }
 }
 ```
-
 
 **Without Update() - Wrong**
 If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in Ind2. Without Update(), the value of MyPublicVariable would be returned. In this case it would be 0.
@@ -2623,3 +2474,5 @@ Add(new Plot(Color.Red, "MyPlot1"));
 VerticalGridLines = false;
 }
 ```
+
+

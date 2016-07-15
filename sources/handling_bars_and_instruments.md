@@ -10,7 +10,6 @@ Further detailed information can be found using the appropriate shortcuts:
 
 [Instruments](#instruments)
 
-
 ##Bars (Candles)
 ### Functionality
 A classical indicator calculates one or multiple values using an existing data series.
@@ -124,7 +123,6 @@ If this property is used outside of OnBarUpdate() then you should test for a nul
 Print ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
 ```
 
-
 ## Bars.Count
 ### Description
 Bars.Count gives you the amount of bars in a data series.
@@ -148,7 +146,6 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 ```cs
 Print ("There are a total of” + Bars.Count + “bars available.");
 ```
-
 
 ## Bars.FirstBarOfSession
 ### Description
@@ -175,7 +172,6 @@ if (Bars.FirstBarOfSession)
 Print ("The current trading session started at” + Time [0]);
 ```
 
-
 ## Bars.GetBar
 ### Description
 Bars.GetBar outputs the first bars (from oldest to newest) that correspond to the specified date/time.
@@ -196,7 +192,6 @@ For a timestamp younger than the newest bar: index of the last bar
 Bars.GetBar(DateTime time)
 ```
 
-
 ### More Information
 For the indexing of bars please see [*Functionality*][*Bars*]
 
@@ -206,7 +201,6 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 ```cs
 Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new DateTime(2012, 01, 03, 18, 0, 0)).Close);
 ```
-
 
 ## Bars.GetBarsAgo
 ### Description
@@ -228,7 +222,6 @@ With a timestamp newer than the youngest bar: index of the last bar
 Bars.GetBarsAgo(DateTime time)
 ```
 
-
 ### More Information
 For more information about indexing please see [*Functionality*][*Bars*]
 
@@ -238,7 +231,6 @@ For more information about using DateTime see [*http://msdn.microsoft.com/de-de/
 ```cs
 Print("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.GetBarsAgo(new DateTime(2012, 01, 03, 18, 0, 0)));
 ```
-
 
 ## Bars.GetClose
 Bars.GetClose(int index) – see [*Bars.GetOpen*].
@@ -263,7 +255,6 @@ Type IBar Bar object for the specified index
 Bars.GetByIndex (int Index)
 ```
 
-
 ### More Information
 For indexing of bars see [*Functionality*][*Bars*](#bars)
 
@@ -271,7 +262,6 @@ For indexing of bars see [*Functionality*][*Bars*](#bars)
 ```cs
 Print(Close[0] + " and " + Bars.GetByIndex(CurrentBar).Close + " are equal in this example.");
 ```
-
 
 ## Bars.GetIndex
 ### Description
@@ -293,7 +283,6 @@ Bars.GetIndex (IBar bar)
 Bars.GetIndex (DateTime dt)
 ```
 
-
 ### More Information
 For more information about indexing see [*Functionality*][*Bars*]
 
@@ -303,7 +292,6 @@ int barsAgo = 5;
 IBar bar = Bars.GetBar(Time[barsAgo]);
 Print(barsAgo + " and " + Bars.GetIndex(bar) + " are equal in this example.");
 ```
-
 
 ## Bars.GetLow
 Bars.GetLow(int index) – see [*Bars.GetOpen*].
@@ -333,7 +321,6 @@ The date for the beginning and the end of a trading session are connected compon
 Bars.GetNextBeginEnd(Bars bars, int barsAgo, out DateTime sessionBegin, out DateTime sessionEnd)
 Bars.GetNextBeginEnd(DateTime time, out DateTime sessionBegin, out DateTime sessionEnd)
 ```
-
 
 ### More Information
 The two signatures will not necessarily output the same result.
@@ -469,7 +456,6 @@ PlaySound("Alert1");
 }
 }
 ```
-
 
 ## Bars.SessionBegin
 ### Description
@@ -624,7 +610,6 @@ Print(tf.Periodicity); // outputs "Minute"
 Print(tf.PeriodicityValue); // outputs "30"
 ```
 
-
 ## Bars.TotalTicks
 ### Description
 Bars.TotalTicks outputs the total number of ticks from the moment the function is called up.
@@ -702,7 +687,6 @@ Print(Time[5] + " " + Open[5]);
 Print("SMA(14) calculated using the opening prices: " + Instrument.Round2TickSize(SMA(Open, 14)[0]));
 ```
 
-
 ## Opens
 ### Description
 Opens is an array of data series that contains all open data series.
@@ -730,7 +714,6 @@ Opens[int barSeriesIndex]
 Opens[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
@@ -750,7 +733,6 @@ High
 High[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
@@ -763,7 +745,6 @@ Print(Time[5] + " " + High[5]);
 // the current value for the SMA 14 calculated on the basis of the high prices
 Print("SMA(14) Calculated using the high prices: " + Instrument.Round2TickSize(SMA(High, 14)[0]));
 ```
-
 
 ## Highs
 ### Description
@@ -793,7 +774,6 @@ Highs[int barSeriesIndex]
 Highs[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
@@ -813,7 +793,6 @@ Low
 Low[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property of [*CalculateOnBarClose*].
 
@@ -826,7 +805,6 @@ Print(Time[5] + " " + Low[5]);
 // The current value for the SMA 14 calculated on the basis of the low prices (smoothed)
 Print("SMA(14) calculated using the high prices: " + Instrument.Round2TickSize(SMA(Low, 14)[0]));
 ```
-
 
 ## Lows
 ### Description
@@ -856,7 +834,6 @@ Lows[int barSeriesIndex]
 Lows[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -876,7 +853,6 @@ Close
 Close[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -893,7 +869,6 @@ Print("SMA(14) calculated using the closing prices: " + Instrument.Round2TickSiz
 // Close does not need to be mentioned since it is used by default
 Print("SMA(14) calculated using the closing prices: " + Instrument.Round2TickSize(SMA(14)[0]));
 ```
-
 
 ## Closes
 ### Description
@@ -923,7 +898,6 @@ Closes[int barSeriesIndex]
 Closes[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -947,7 +921,6 @@ Median
 Median[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -963,7 +936,6 @@ Print(Time[5] + " " + Median[5]);
 // Current value for the SMA 14 calculated using the median prices
 Print("SMA(14) calculated using the median prices: " + Instrument.Round2TickSize(SMA(Median, 14)[0]));
 ```
-
 
 ## Medians
 ### Description
@@ -993,7 +965,6 @@ Medians[int barSeriesIndex]
 Medians[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -1019,7 +990,6 @@ Typical
 Typical[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -1034,7 +1004,6 @@ Print(Time[5] + " " + Typical[5]);
 // Current value for the SMA 14 calculated using the typical price
 Print("SMA(14) calculated using the typical price: " + Instrument.Round2TickSize(SMA(Typical, 14)[0]));
 ```
-
 
 ## Typicals
 ### Description
@@ -1064,7 +1033,6 @@ Typicals[int barSeriesIndex]
 Typicals[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -1088,7 +1056,6 @@ barsAgo Index value (see [*Bars*])
 Weighted[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -1103,7 +1070,6 @@ Print(Time[5] + " " + Weighted[5]);
 // Current value for the SMA 14 using the weighted price
 Print("SMA(14) calculated using the weighted price: " + Instrument.Round2TickSize(SMA(Weighted, 14)[0]));
 ```
-
 
 ## Weighteds
 ### Description
@@ -1133,7 +1099,6 @@ Weighteds[int barSeriesIndex]
 Weighteds[int barSeriesIndex][int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -1153,7 +1118,6 @@ Time
 Time[int barsAgo]
 ```
 
-
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
 
@@ -1164,7 +1128,6 @@ Print(Time[0]);
 // Timestamp of the bar from 5 periods ago
 Print(Time[5]);
 ```
-
 
 ## Times
 ### Description
@@ -1192,7 +1155,6 @@ barSeriesIndex Index value for the various timeframes
 Times[int barSeriesIndex]
 Times[int barSeriesIndex][int barsAgo]
 ```
-
 
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
@@ -1228,7 +1190,6 @@ Print(Time[5] + " " + Volume[5]);
 Print("SMA(14) calculated using the volume: " + Instrument.Round2TickSize(SMA(Volume, 14)[0]));
 ```
 
-
 ## Volumes
 ### Description
 Volumes is an array of *DataSeries* that contains all [*Volume*] data series.
@@ -1257,7 +1218,6 @@ barSeriesIndex Index value of the various timeframes
 Volumes[int barSeriesIndex]
 Volumes[int barSeriesIndex][int barsAgo]
 ```
-
 
 ### More Information
 The returned value is dependent upon the property [*CalculateOnBarClose*].
@@ -1317,7 +1277,6 @@ Type int
 Instrument.Compare(double Value1, double Value2)
 ```
 
-
 ### More Information
 If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:
 
@@ -1330,7 +1289,6 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001
 ```cs
 Print(Instrument.Compare(2, 1.999999));
 ```
-
 
 ## Instrument.Currency
 ### Description
@@ -1352,7 +1310,6 @@ The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.
 ```cs
 Print(Instrument.Name + " is traded in " + Instrument.Currency);
 ```
-
 
 ## Instrument.Digits
 ### Description
@@ -1378,7 +1335,6 @@ More information can be found here: [*Formatting of Numbers*].
 ```cs
 Print("The value of " +Instrument.Name + " is noted with a precision of " + Instrument.Digits +" Decimal points.");
 ```
-
 
 ## Instrument.ETF
 ### Description
@@ -1407,7 +1363,6 @@ else
 Print("The value is a stock.");
 ```
 
-
 ## Instrument.Exchange
 ### Description
 Instrument.Exchange outputs the description/definition of the current exchange for the current instrument.
@@ -1428,7 +1383,6 @@ An overview of various exchange: *https://en.wikipedia.org/wiki/List\_of\_stock\
 ```cs
 Print("The instrument " + Instrument.Name +" is traded on the " + Instrument.Exchange + " exchange.");
 ```
-
 
 ## Instrument.Expiry
 ### Description
@@ -1454,7 +1408,6 @@ The expiry date (expiry) can also be seen within the Instrument Escort:
 ```cs
 Print("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
 ```
-
 
 ## Instrument.InstrumentType
 ### Description
@@ -1483,7 +1436,6 @@ The instrument type can also be viewed within the Instrument Escort:
 Print("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
 ```
 
-
 ## Instrument.Name
 ### Description
 Instrument.Name outputs the name/description of the trading instrument.
@@ -1506,7 +1458,6 @@ The instrument name can also be seen within the Instrument Escort:
 ```cs
 Print("The currently loaded instrument inside the chart is named " + Instrument.Name);
 ```
-
 
 ## Instrument.PointValue
 ### Description
@@ -1544,7 +1495,6 @@ The point value can also be viewed within the Instrument Escort:
 Print("When " + Instrument.Name + " rises for one full point then this is equal to " + Instrument.PointValue + " " + Instrument.Currency);
 ```
 
-
 ## Instrument.Round2TickSize
 ### Description
 The function Instrument.Round2TickSize rounds the supplied market price to the smallest value divisible by the tick size of the instrument.
@@ -1560,7 +1510,6 @@ double
 Instrument.Round2TickSize(double MarketPrice)
 ```
 
-
 ### More Information
 The number of decimal places to which the price is rounded depends on the instrument.
 If, for example, an instrument is a stock, then the rounding will be performed to 2 decimal places. For a Forex instrument, it may be carried out to 4 or 5 decimal places.
@@ -1574,7 +1523,6 @@ Example of professional [*Formatting*][*Formatting of Numbers*].
 double Price = 12.3456789;
 Print(Price + " rounded for a " + Instrument.Name + " valid value is " + Instrument.Round2TickSize(Price));
 ```
-
 
 ## Instrument.Symbol
 ### Description
@@ -1600,7 +1548,6 @@ The instrument symbol can also be viewed within the Instrument Escort:
 ```cs
 Print("The instrument currently loaded within the chart has the symbol: " + Instrument.Symbol);
 ```
-
 
 ## Instrument.TickSize
 ### Description
@@ -1631,7 +1578,6 @@ Examples of professional [*Formatting*][*Formatting of Numbers*].
 ```cs
 Print("The value of " + Instrument.Name + " can change for a minimum of " + Instrument.TickSize + " Tick(s).");
 ```
-
 
 ## Collections
 ## DrawObjects
@@ -1666,7 +1612,6 @@ vline.Pen.Width = 3;
 }
 ```
 
-
 ## Input
 ### Description
 Input is a [*DataSeries*] object in which the input data for an indicator or strategy is stored.
@@ -1692,12 +1637,10 @@ Input
 Input[int barsAgo]
 ```
 
-
 ### Example
 ```cs
 Print("The input data for the indicators are " + Input[0]);
 ```
-
 
 ## Lines
 ### Description
@@ -1713,7 +1656,6 @@ See [*Plots*].
 ```cs
 Lines[int index]
 ```
-
 
 ### Example
 ```cs
@@ -1741,7 +1683,6 @@ Lines[0].DashStyle = DashStyle.Solid;
 }
 ```
 
-
 ## PlotColors
 ### Description
 PlotColors is a collection that contains all color series of all plot objects.
@@ -1754,7 +1695,6 @@ The order of the add commands determines how the plot colors are sorted. The fir
 ```cs
 PlotColors[int PlotIndex][int barsAgo]
 ```
-
 
 ### More Information
 More information regarding the collection class:
@@ -1816,7 +1756,6 @@ PlotColors[2][0] = Color.DarkGray;
 }
 ```
 
-
 ## Plots
 ### Description
 Plots is a collection that contains the plot objects of an indicator.
@@ -1831,7 +1770,6 @@ See [*Lines*].
 ```cs
 Plots[int index]
 ```
-
 
 ### Example
 ```cs
@@ -1850,7 +1788,6 @@ else
 }
 ```
 
-
 ## Values
 ### Description
 Values is a collection that contains the data series objects of an indicator.
@@ -1867,7 +1804,6 @@ Values[int index]
 Values[int index][int barsAgo]
 ```
 
-
 ### More Information
 The methods known for a collection, Set() Reset() and Count(), are applicable for values.
 
@@ -1882,7 +1818,6 @@ Value.Set(High[0] - Low[0]);
 else
 Value.Set(High[0] - Close[0]);
 ```
-
 
 ## Multibars
 ### Description
@@ -1934,7 +1869,6 @@ Print(SMA(Closes[2], 14)[0]);
 }
 ```
 
-
 ### Additional Notes
 When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*], [*Highs*], [*Lows*], [*Closes*], [*Medians*], [*Typicals*], [*Weighteds*], [*Times*] and [*Volumes*]. The indexing will occur in the order of the addition of the new timeframes.
 Closes\[0\]\[0\] is equivalent to Close\[0\].
@@ -1955,7 +1889,6 @@ double d = MultiBars.GetBarsItem(TF_Day).Close[0];
 // The following instruction is identical to double w = Closes[2][0];
 double w = MultiBars.GetBarsItem(TF_Week).Close[0];
 ```
-
 
 ## CurrentBars
 ### Description
@@ -1983,14 +1916,12 @@ barSeriesIndex Index value for the various timeframes
 CurrentBars[int barSeriesIndex]
 ```
 
-
 ### Example
 ```cs
 //Ensure that a minimum of 20 bars is loaded
 for (int i=0; i<CurrentBars.Count; i++)
 if (CurrentBars[i] < 20) return;
 ```
-
 
 ## BarsInProgress
 ### Description
@@ -2026,7 +1957,6 @@ if (BarsInProgress > 0) return;
 }
 ```
 
-
 ## TimeFrames
 ### Description
 TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.
@@ -2053,14 +1983,11 @@ barSeriesIndex Index value for the various timeframes
 TimeFrames [int barSeriesIndex]
 ```
 
-
 ### Example
 ```cs
 if (BarsInProgress == 0 && CurrentBar == 0)
 for (int i = BarsArray.Count-1; i >= 0; i--)
 Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
-
-
 
 

@@ -62,7 +62,6 @@ Print("OverNightMargin " + Account.OverNightMargin);
 Print("RealizedProfitLoss " + Account.RealizedProfitLoss);
 ```
 
-
 ## BarsSinceEntry()
 ### Description
 The property “BarsSinceEntry” returns the number of bars that have occurred since the last entry into the market.
@@ -79,7 +78,6 @@ For multi-bar strategies
 BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 ```
 
-
 ### Parameter
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
@@ -95,7 +93,6 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 Print("The last entry was " + BarsSinceEntry() + " bars ago.");
 ```
 
-
 ## BarsSinceExit()
 ### Description
 The property “BarsSinceExit” outputs the number of bars that have occurred since the last exit from the market.
@@ -106,12 +103,10 @@ BarsSinceExit()
 BarsSinceExit(string signalName)
 ```
 
-
 For multi-bar strategies
 ```cs
 BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                           |
@@ -128,7 +123,6 @@ BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 Print("The last exit was " + BarsSinceExit() + " bars ago.");
 ```
 
-
 ## CancelOrder()
 ### Description
 Cancel order deletes an order.
@@ -139,7 +133,6 @@ A cancel request is sent to the broker. There is no guarantee that the order wil
 ```cs
 CancelOrder(IOrder order)
 ```
-
 
 ### Parameter
 An order object of the type “IOrder”
@@ -163,7 +156,6 @@ CancelOrder(myEntryOrder);
 }
 ```
 
-
 ## ChangeOrder()
 ### Description
 Change order, as the name suggests, changes an order.
@@ -172,7 +164,6 @@ Change order, as the name suggests, changes an order.
 ```cs
 ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
-
 
 ### Parameter
 |            |                                          |
@@ -193,7 +184,6 @@ ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPri
 }
 ```
 
-
 ## DataSeriesConfigurable
 ## DefaultQuantity
 ### Description
@@ -206,7 +196,6 @@ Default quantity defines the amount to be used in a strategy. Default quantity i
 ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
 
-
 ### Parameter
 an int value containing the amount (stocks, contracts etc.)
 
@@ -217,7 +206,6 @@ protected override void Initialize()
 DefaultQuantity = 100;
 }
 ```
-
 
 ## EnterLong()
 ### Description
@@ -238,7 +226,6 @@ EnterLong(int quantity, string signalName)
 EnterLong(int barsInProgressIndex, int quantity, string signalName)
 ```
 
-
 ### Parameter
 |                     |                                                                                               |
 |---------------------|-----------------------------------------------------------------------------------------------|
@@ -258,7 +245,6 @@ if (BarsSinceEntry() > 10 && CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA cross entry");
 ```
 
-
 ## EnterLongLimit()
 ### Description
 Enter long limit creates a limit order for entering a long position (buy).
@@ -275,12 +261,10 @@ EnterLongLimit(int quantity, double limitPrice)
 EnterLongLimit(int quantity, double limitPrice, string signalName)
 ```
 
-
 For Multibar-Strategies
 ```cs
 EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                                      |
@@ -303,7 +287,6 @@ if (BarsSinceEntry() > 10 && CrossAbove(SMA(10), SMA(20), 1))
 EnterLongLimit("SMA cross entry");
 ```
 
-
 ## EnterLongStop()
 ### Description
 Enter long stop creates a limit order for entering a long position (buy).
@@ -320,12 +303,10 @@ EnterLongStop(int quantity, double stopPrice)
 EnterLongStop(int quantity, double stopPrice, string signalName)
 ```
 
-
 For multi-bar strategies
 ```cs
 EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                                                       |
@@ -349,7 +330,6 @@ if (myEntryOrder == null)
 myEntryOrder = EnterLongStop(High[0], "Stop Long");
 ```
 
-
 ## EnterLongStopLimit()
 ### Description
 Enter long stop limit creates a buy stop limit order for entering a long position.
@@ -366,12 +346,10 @@ EnterLongStopLimit(int quantity, double limitPrice, double stopPrice)
 EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
-
 For multi-bar strategies
 ```cs
 EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                                               |
@@ -397,7 +375,6 @@ if (myEntryOrder == null)
 myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], "Stop Long");
 ```
 
-
 ## EnterShort()
 ### Description
 Enter short creates a market order for entering a short position (naked sell).
@@ -415,7 +392,6 @@ EnterShort(int quantity, string signalName)
 For multi-bar strategies
 EnterShort(int barsInProgressIndex, int quantity, string signalName)
 ```
-
 
 ### Parameter
 |                     |                                                                      |
@@ -436,7 +412,6 @@ if (BarsSinceEntry() > 10 && CrossBelow(SMA(10), SMA(20), 1))
 EnterShort("SMA cross entry");
 ```
 
-
 ## EnterShortLimit()
 ### Description
 Enter short limit creates a limit order for entering a short position (naked short).
@@ -453,12 +428,10 @@ EnterShortLimit(int quantity, double limitPrice)
 EnterShortLimit(int quantity, double limitPrice, string signalName)
 ```
 
-
 For Multibar-Strategies
 ```cs
 EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                                              |
@@ -481,7 +454,6 @@ if (BarsSinceEntry() > 10 && CrossBelow(SMA(10), SMA(20), 1))
 EnterShortLimit("SMA cross entry");
 ```
 
-
 ## EnterShortStop()
 ### Description
 Enter short stop creates a limit order for entering a short position.
@@ -496,12 +468,10 @@ EnterShortStop(int quantity, double stopPrice)
 EnterShortStop(int quantity, double stopPrice, string signalName)
 ```
 
-
 For multi-bar strategies
 ```cs
 EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
 ```
-
 
 ### Parameter
 |                     |                                                                                                               |
@@ -525,7 +495,6 @@ if (myEntryOrder == null)
 myEntryOrder = EnterShortStop(Low[0], "stop short");
 ```
 
-
 ## EnterShortStopLimit()
 ### Description
 Enter short stop limit creates a sell stop limit order for entering a short position.
@@ -541,7 +510,6 @@ EnterShortStopLimit(double limitPrice, double stopPrice, string signalName)
 EnterShortStopLimit(int quantity, double limitPrice, double stopPrice)
 EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
 ```
-
 
 For multi-bar strategies
 
@@ -571,7 +539,6 @@ private IOrder myEntryOrder = null;
 if (myEntryOrder == null)
 myEntryOrder = EnterShortStopLimit(Low[0]-2*TickSize, Low[0], "stop short");
 ```
-
 
 ## EntriesPerDirection
 ### Description
@@ -619,7 +586,6 @@ EnterLong("RSI Cross Entry);
 }
 ```
 
-
 ## EntryHandling
 ### Description
 Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*]).
@@ -661,12 +627,10 @@ ExitLong(string signalName, string fromEntry signal)
 ExitLong(int quantity, string signalName, string fromEntry signal)
 ```
 
-
 For multi-bar strategies
 ```cs
 ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
 ```
-
 
 ### Parameter
 |                     |                                                                      |
@@ -691,7 +655,6 @@ if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLong();
 ```
 
-
 ## ExitLongLimit()
 ### Description
 Exit long limit creates a sell limit order for closing a long position (i.e. for selling).
@@ -708,12 +671,10 @@ ExitLongLimit(double limitPrice, string signalName, string fromEntry signal)
 ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
-
 For multi-bar strategies
 ```cs
 ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                              |
@@ -740,7 +701,6 @@ if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLongLimit(GetCurrentBid());
 ```
 
-
 ## ExitLongStop()
 ### Description
 Exit long stop creates a sell stop order for closing a long position (short).
@@ -756,12 +716,10 @@ ExitLongStop(double stopPrice, string signalName, string fromEntry signal)
 ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
 ```
 
-
 For multi-bar strategies
 ```cs
 ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                              |
@@ -788,7 +746,6 @@ if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLongStop(Low[0]);
 ```
 
-
 ## ExitLongStopLimit()
 ### Description
 Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).
@@ -806,12 +763,10 @@ ExitLongStopLimit(double limitPrice, double stopPrice, string signalName, string
 ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
-
 For Multibar-Strategies
 ```cs
 ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
-
 
 ### Parameter
 |                     |                                                                                                                                                              |
@@ -839,7 +794,6 @@ if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
 ```
 
-
 ## ExitOnClose
 ## ExitOnCloseSeconds
 ## ExitShort()
@@ -857,7 +811,6 @@ ExitShort(string fromEntry signal)
 ExitShort(string signalName, string fromEntry signal)
 ExitShort(int quantity, string signalName, string fromEntry signal)
 ```
-
 
 For multi-bar strategies
 ```cs
@@ -887,7 +840,6 @@ if (CrossAbove(SMA(10), SMA(20), 1))
 ExitShort();
 ```
 
-
 ## ExitShortLimit()
 ### Description
 Exit short limit creates a buy-to-cover limit order for closing a short position (buy).
@@ -904,7 +856,6 @@ ExitShortLimit(double limitPrice, string fromEntry signal)
 ExitShortLimit(double limitPrice, string signalName, string fromEntry signal)
 ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
-
 
 For multi-bar strategies
 ```cs
@@ -936,7 +887,6 @@ if (CrossAbove(SMA(10), SMA(20), 1))
 ExitShortLimit(GetCurrentAsk());
 ```
 
-
 ## ExitShortStop()
 ### Description
 Exit short stop creates a buy-to-cover stop order for closing a short position.
@@ -951,7 +901,6 @@ ExitShortStop(double stopPrice, string fromEntry signal)
 ExitShortStop(double stopPrice, string signalName, string fromEntry signal)
 ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
 ```
-
 
 For multi-bar strategies
 ```cs
@@ -983,7 +932,6 @@ if (CrossAbove (SMA(10), SMA(20), 1))
 ExitShortStop(High[0]);
 ```
 
-
 ## ExitShortStopLimit()
 ### Description
 Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
@@ -999,7 +947,6 @@ ExitShortStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
 ExitShortStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
-
 
 For multi-bar strategies
 ```cs
@@ -1032,7 +979,6 @@ if (CrossAbove(SMA(10), SMA(20), 1))
 ExitShortStopLimit(High[0]+10*TickSize, High[0]);
 ```
 
-
 ## GetAccountValue()
 ### Description
 Get account value outputs information regarding the account for which the current strategy is being carried out.
@@ -1043,7 +989,6 @@ See [*GetProfitLoss()*].
 ```cs
 GetAccountValue(AccountItem accountItem)
 ```
-
 
 ### Parameter
 Possible values for account item are:
@@ -1077,7 +1022,6 @@ See [*GetAccountValue()*].
 GetProfitLoss(int pLType);
 ```
 
-
 ### Parameter
 Potential values for the P/L type are:
 
@@ -1097,7 +1041,6 @@ a double value for the unrealized profit or loss
 Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
 Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ```
-
 
 ## MarketPosition
 See [*Position.MarketPosition*].
@@ -1142,7 +1085,6 @@ Print("Amount of short trades: " + Performance.ShortTrades.Count);
 Print("Result: " + Account.RealizedProfitLoss + " " + Account.Currency);
 }
 ```
-
 
 ## Position
 ### Description
@@ -1199,7 +1141,6 @@ Print("Pieces " + Position.Quantity);
 }
 ```
 
-
 ## Quantity
 See [*Position.Quantity*][*Position.MarketPosition*].
 
@@ -1238,7 +1179,6 @@ SetProfitTarget(CalculationMode.Ticks, 10);
 }
 ```
 
-
 ## SetStopLoss()
 ### Description
 Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.
@@ -1254,7 +1194,6 @@ SetStopLoss(double currency, bool simulated)
 SetStopLoss(CalculationMode mode, double value)
 SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 ```
-
 
 ### Parameter
 |                  |                                                                                                                                                                                                             |
@@ -1277,7 +1216,6 @@ protected override void Initialize()
 SetStopLoss(500);
 }
 ```
-
 
 ## SetTrailStop()
 ### Description
@@ -1342,7 +1280,6 @@ SetTrailStop(CalculationMode.Ticks, 30);
 }
 ```
 
-
 ## SubmitOrder()
 ### Description
 Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
@@ -1397,7 +1334,6 @@ if (Close[0] > SMA(20)[0] && entryOrder == null)
 entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Enter long");
 }
 ```
-
 
 ## TimeInForce
 ### Description
@@ -1562,10 +1498,8 @@ protected override void OnTermination()
 }
 ```
 
-
 ## Unmanaged
 # Backtesting and Optimization
-
 
 ## Performance Characteristics
 Performance characteristics are the various factors that can be calculated for a list of trades. The trades can be generated by a strategy in real-time or based on a backtest.
@@ -1642,3 +1576,5 @@ The individual factors are:
 **All factors are double values.**
 
 <img src="./media/image10.png" width="629" height="478" />
+
+

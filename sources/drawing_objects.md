@@ -46,7 +46,6 @@ A drawing object of the type IAndrewsPitchfork (interface)
 DrawAndrewsPitchfork("MyAPF", true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
 ```
 
-
 ## DrawArc()
 ### Description
 DrawArc() draws a circular arc.
@@ -236,7 +235,6 @@ A drawing object of the type IDiamond (interface)
 // Draws a light blue diamond for the current bar 5 ticks below the low
 DrawDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 ```
-
 
 ## DrawDot()
 ### Description
@@ -507,7 +505,6 @@ A drawing object of the type IGannFan (interface)
 DrawGannFan("MyGannFan", true, 10, Low[10]);
 ```
 
-
 ## DrawLine()
 ### Description
 DrawLine() draws a (trend) line.
@@ -564,7 +561,6 @@ See [*DrawLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*
 DrawHorizontalLine(string tag, double y, Color color)
 DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
 ```
-
 
 ### Return Value
 A drawing object of the type IHorizontalLine (interface)
@@ -643,7 +639,6 @@ DrawRay("MyRay", 10, 3, 0, 7, Color.Green);
 // from y=3 to y=7
 DrawRay("MyRay", 0, 3, 10, 7, Color.Green);
 ```
-
 
 ## DrawRectangle()
 ### Description
@@ -827,7 +822,6 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 ```
 
-
 ### Return Value
 A drawing object of the type IText (interface)
 
@@ -1010,7 +1004,6 @@ A drawing object of the type ITriangle (interface)
 DrawTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 ```
 
-
 ## DrawTriangleUp()
 ### Description
 DrawTriangleUp() draws a small upwards-pointing triangle:
@@ -1024,7 +1017,6 @@ See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*
 DrawTriangleUp(string tag, bool autoScale, int barsAgo, double y, Color color)
 DrawTriangleUp(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
-
 
 ### Return Value
 A drawing object of the type ITriangleUp (interface)
@@ -1058,7 +1050,6 @@ See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*
 DrawTriangleDown(string tag, bool autoScale, int barsAgo, double y, Color color)
 DrawTriangleDown(string tag, bool autoScale, DateTime time, double y, Color color)
 ```
-
 
 ### Return Value
 A drawing object of the type ITriangleDown (interface)
@@ -1119,6 +1110,5 @@ A drawing object of the type IVerticalLine (interface)
 // Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine("MyVerticalLine", 10, Color.Black);
 ```
-
 
 

@@ -103,7 +103,6 @@ The fields "Volume", "BidSize" and "AskSize" are always 0.
 protected override void OnMarketData(MarketDataEventArgs e)
 ```
 
-
 ### Return Value
 none
 
@@ -155,7 +154,6 @@ protected override void OnMarketDepth(MarketDepthEventArgs e)
     Print("The current ask is + e.Price + " " + e.Volume);
 }
 ```
-
 
 ## OnOrderUpdate()
 ### Description
@@ -267,6 +265,5 @@ protected override void OnTermination()
     }
 }
 ```
-
 
 
