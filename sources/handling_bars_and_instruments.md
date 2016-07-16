@@ -24,7 +24,7 @@ The current closing price, meaning the closing price of the bar that is on the r
 
 Whenever a new bar is added within a session it will become the new index 0; the bar to the left of it, which previously had an index of 0, will become index 1 and so on. The oldest bar will become index 501.
 Within a script (a self-created program/algorithm) the [***Close***] will be representative for the array (list) of all closing prices.
-The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago“ expression for this in general cases.
+The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.
 
 Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
 
@@ -34,7 +34,7 @@ The previous examples all assume that the calculations will occur at the end of 
 
 If you wish to use the values of the currently forming candle then you will need to set the value of
 
-[*CalculateOnBarClose*] to „false“.
+[*CalculateOnBarClose*] to „false".
 
 In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.
 
@@ -120,7 +120,7 @@ If this property is used outside of OnBarUpdate() then you should test for a nul
 
 ### Example
 ```cs
-Print ("Since the start of the last trading session there have been” + Bars.BarsSinceSession + “bars.");
+Print ("Since the start of the last trading session there have been" + Bars.BarsSinceSession + "bars.");
 ```
 
 ## Bars.Count
@@ -144,7 +144,7 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 
 ### Example
 ```cs
-Print ("There are a total of” + Bars.Count + “bars available.");
+Print ("There are a total of" + Bars.Count + "bars available.");
 ```
 
 ## Bars.FirstBarOfSession
@@ -169,7 +169,7 @@ If this property is called up outside of OnBarUpdate() you should test for a nul
 ### Example
 ```cs
 if (Bars.FirstBarOfSession)
-Print ("The current trading session started at” + Time [0]);
+Print ("The current trading session started at" + Time [0]);
 ```
 
 ## Bars.GetBar
@@ -641,25 +641,25 @@ Data series are interpreted as freely usable data storage containers for your pr
 In the following section, the concept of data series will be explained in detail and understandably. All price data for the individual bars are organized and saved within data series.
 The following are available:
 
-[*Open*](#Open) [*Opens*](Opens)
+[*Open*](#open) [*Opens*](#opens)
 
-[*High*](#High) [*Highs*](Highs)
+[*High*](#high) [*Highs*](#highs)
 
-[*Low*](#Low) [*Lows*](Lows)
+[*Low*](#low) [*Lows*](#lows)
 
-[*Close*](#close) [*Closes*](Closes)
+[*Close*](#close) [*Closes*](#closes)
 
-[*Median*](#median) [*Medians*](Medians)
+[*Median*](#median) [*Medians*](#medians)
 
-[*Typical*](#Typical) [*Typicals*](Typicals)
+[*Typical*](#Typical) [*Typicals*](#typicals)
 
-[*Weighted*](#Weighted) [*Weighteds*](Weighteds)
+[*Weighted*](#weighted) [*Weighteds*](#weighteds)
 
-[*Time*](#Time) [*Times*](Times)
+[*Time*](#time) [*Times*](#times)
 
-[*TimeFrame*](#TimeFrame) [*TimeFrames*](TimeFrames)
+[*TimeFrame*](#timeframe) [*TimeFrames*](#timeframes)
 
-[*Volume*](#Volume) [*Volumes*](Volumes)
+[*Volume*](#volume) [*Volumes*](#volumes)
 
 ## Open
 ### Description
@@ -1298,7 +1298,7 @@ Instrument.Currency outputs a currency object that contains the corresponding cu
 None
 
 ### Return Value
-A constant of the type “public enum currencies”
+A constant of the type "public enum currencies"
 
 ### Usage
 Instrument.Currency
@@ -1338,7 +1338,7 @@ Print("The value of " +Instrument.Name + " is noted with a precision of " + Inst
 
 ## Instrument.ETF
 ### Description
-Instrument.ETF is used to differentiate between a stock and an ETF. This is necessary since ETFs are considered to be „stocks“ by some exchanges.
+Instrument.ETF is used to differentiate between a stock and an ETF. This is necessary since ETFs are considered to be „stocks" by some exchanges.
 
 ### Parameter
 none
@@ -1371,7 +1371,7 @@ Instrument.Exchange outputs the description/definition of the current exchange f
 none
 
 ### Return Value
-An exchange object of the type “public enum exchanges”
+An exchange object of the type "public enum exchanges"
 
 ### Usage
 Instrument.Exchange
@@ -1417,7 +1417,7 @@ Instrument.InstrumentType outputs a type object of the trading instrument.
 none
 
 ### Return Value
-Object of the type “public enum instrument”
+Object of the type "public enum instrument"
 
 ### Usage
 Instrument.InstrumentType
@@ -1425,7 +1425,7 @@ Instrument.InstrumentType
 ### More Information
 Potential values are: future, stock, index, currency, option, CFD and unknown.
 
-There is no ETF type. ETFs are considered to be of the type “stock” – see [*Instrument.ETF*].
+There is no ETF type. ETFs are considered to be of the type "stock" – see [*Instrument.ETF*].
 
 The instrument type can also be viewed within the Instrument Escort:
 
@@ -1646,7 +1646,7 @@ Print("The input data for the indicators are " + Input[0]);
 ### Description
 Lines is a collection that contains all [*Line*] objects of an indicator.
 
-When a line object is added to the indicator using the [*Add()*] method, this line is automatically added to the “lines” collection.
+When a line object is added to the indicator using the [*Add()*] method, this line is automatically added to the "lines" collection.
 
 The order of the add commands determines how these lines are sorted. The first information request of Add() will create Lines\[0\], the next information request will be Lines\[1\] etc.
 
@@ -1760,7 +1760,7 @@ PlotColors[2][0] = Color.DarkGray;
 ### Description
 Plots is a collection that contains the plot objects of an indicator.
 
-When a plot object is added to an indicator using the Add() method, it is also automatically added to the “plots” collection.
+When a plot object is added to an indicator using the Add() method, it is also automatically added to the "plots" collection.
 
 The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots\[0\], the following information request will create Plots\[1\] etc.
 
@@ -1792,7 +1792,7 @@ else
 ### Description
 Values is a collection that contains the data series objects of an indicator.
 
-When a plot is added to an indicator using the Add() method, a value object is automatically created and added to the “values” collection.
+When a plot is added to an indicator using the Add() method, a value object is automatically created and added to the "values" collection.
 
 The order of the add commands determines how the values are sorted. The first information request will create Values\[0\], the next information request will create Values\[1\] etc.
 
@@ -1989,6 +1989,3 @@ if (BarsInProgress == 0 && CurrentBar == 0)
 for (int i = BarsArray.Count-1; i >= 0; i--)
 Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
-
-
-
