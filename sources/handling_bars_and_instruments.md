@@ -1225,6 +1225,39 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 ### Example
 See example [*Multibars*][*MultiBars*].
 
+## TimeFrames
+### Description
+TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.
+
+This array is only of value for indicators or strategies that use data from multiple timeframes.
+
+A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.
+
+With **\[TimeFrameRequirements(("1 Day"), ("1 Week"))\]** the array will contain 3 entries:
+
+TimeFrames \[0\] Timeframe of the primary data series (chart timeframe)
+TimeFrames \[1\] **Print**(TimeFrames\[1\]); // returns "1 Day"
+TimeFrames \[2\] **Print**(TimeFrames\[2\]); // returns "1 Week"
+
+TimeFrames \[0\] is equivalent to [*TimeFrame*].
+
+See [*MultiBars*].
+
+### Parameter
+barSeriesIndex Index value for the various timeframes
+
+### Usage
+```cs
+TimeFrames [int barSeriesIndex]
+```
+
+### Example
+```cs
+if (BarsInProgress == 0 && CurrentBar == 0)
+for (int i = BarsArray.Count-1; i >= 0; i--)
+Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
+```
+
 ##Instruments
 The term "instrument" denotes a tradable value such as a stock, ETF, future etc.
 
@@ -1955,37 +1988,4 @@ protected override void OnBarUpdate()
 if (BarsInProgress > 0) return;
 // Logic for the primary data series
 }
-```
-
-## TimeFrames
-### Description
-TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.
-
-This array is only of value for indicators or strategies that use data from multiple timeframes.
-
-A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.
-
-With **\[TimeFrameRequirements(("1 Day"), ("1 Week"))\]** the array will contain 3 entries:
-
-TimeFrames \[0\] Timeframe of the primary data series (chart timeframe)
-TimeFrames \[1\] **Print**(TimeFrames\[1\]); // returns "1 Day"
-TimeFrames \[2\] **Print**(TimeFrames\[2\]); // returns "1 Week"
-
-TimeFrames \[0\] is equivalent to [*TimeFrame*].
-
-See [*MultiBars*].
-
-### Parameter
-barSeriesIndex Index value for the various timeframes
-
-### Usage
-```cs
-TimeFrames [int barSeriesIndex]
-```
-
-### Example
-```cs
-if (BarsInProgress == 0 && CurrentBar == 0)
-for (int i = BarsArray.Count-1; i >= 0; i--)
-Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
