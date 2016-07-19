@@ -1225,6 +1225,15 @@ The returned value is dependent upon the property [*CalculateOnBarClose*].
 ### Example
 See example [*Multibars*][*MultiBars*].
 
+## TimeFrame
+### Description
+TimeFrame is a timeframe object.
+
+### Usage
+```cs
+TimeFrame
+```
+
 ## TimeFrames
 ### Description
 TimeFrames is an array of timeframe objects that contains a timeframe object for each individual bar object.
