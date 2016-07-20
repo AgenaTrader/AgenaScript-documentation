@@ -78,7 +78,7 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.Instrument*](#barsinstrument)
 
-[*Bars.IsIntraDay*](#barsisintraday)
+[*Bars.IsIntraday*](#barsisintraday)
 
 [*Bars.PercentComplete*](#barspercentcomplete)
 
@@ -411,14 +411,28 @@ Instrument i = Bars.Instrument;
 Print("The currently displayed trading instrument has the symbol " + i.Symbol);
 ```
 
-## Bars.IsIntraDay
-This function is not yet implemented.
+## Bars.IsIntraday
+### Description
+Bars.IsIntraday returns a boolean which indicates if the TimeFrame is intra-day.
 
-We are working on this – please bear with us. Thank you for your patience.
+### Return Value
+**bool**
 
-![Bars.IsIntraDay](./media/image2.png)
+It returns "true" if TimeFrame is intra-day (e.g. 1 min, 15 min, 1 hour, etc.) and "false" in other cases.
 
-TODO
+### Usage
+```cs
+Bars.IsIntraday
+```
+
+### Example
+```cs
+if(Bars.IsIntraday) {
+	Print("TimeFrame is Intraday.");
+} else {
+	Print("TimeFrame is not Intraday.");
+}
+```
 
 ## Bars.PercentComplete
 ### Description
