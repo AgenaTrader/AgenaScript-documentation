@@ -4,6 +4,8 @@ theme: readthedocs
 site_favicon: favicon.ico
 extra_css: [custom.css]
 use_directory_urls: true
+repo_url: https://github.com/AgenaTrader/AgenaScript-documentation
+site_url: https://agenatrader.github.io/AgenaScript-documentation/index.html
 strict: true
 pages:
     - 'Lets start': 'index.md'
@@ -13,5 +15,3 @@ pages:
     - 'Keywords': 'keywords.md'
     - 'Drawing objects': 'drawing_objects.md'
     - 'Hints and advice': 'hints_and_advice.md'
-
-
