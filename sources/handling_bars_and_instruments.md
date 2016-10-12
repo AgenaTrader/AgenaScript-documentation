@@ -1334,6 +1334,8 @@ Instrument.Compare(double Value1, double Value2)
 ```
 
 ### More Information
+Be aware this function compares prices based on TickSize. If the ticksize of your instrument is 0.01 these prices will be rounded and compared. If you want regular comparation of two numbers, you should use  operator greater than (>) and smaller than (<).
+
 If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:
 
 Compare(2, 1.99999) a 1, meaning 2 is bigger than 1.99999
