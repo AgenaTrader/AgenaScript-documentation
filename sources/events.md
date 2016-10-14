@@ -151,7 +151,7 @@ protected override void OnMarketDepth(MarketDepthEventArgs e)
 {
     // Output for the current ask price
     if (e.MarketDataType == MarketDataType.Ask && e.Operation == Operation.Update)
-    Print("The current ask is + e.Price + " " + e.Volume);
+    Print("The current ask is" + e.Price + " " + e.Volume);
 }
 ```
 
@@ -160,8 +160,8 @@ protected override void OnMarketDepth(MarketDepthEventArgs e)
 The OnOrderUpdate() method is called up whenever the status is changed by a strategy-managed order.
 A status change can therefore occur due to a change in the volume, price or status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for the relevant events.
 
-**Important note:
-**If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.
+**Important note:**
+**If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.**
 
 More information can be found here: [*Events*].
 
@@ -265,6 +265,3 @@ protected override void OnTermination()
     }
 }
 ```
-
-
-
