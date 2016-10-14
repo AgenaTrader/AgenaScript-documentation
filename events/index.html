@@ -282,7 +282,7 @@ OnMarketDepth is not called up for historical data.</p>
 {
     // Output for the current ask price
     if (e.MarketDataType == MarketDataType.Ask &amp;&amp; e.Operation == Operation.Update)
-    Print(&quot;The current ask is + e.Price + &quot; &quot; + e.Volume);
+    Print(&quot;The current ask is&quot; + e.Price + &quot; &quot; + e.Volume);
 }
 </code></pre>
 
@@ -290,8 +290,8 @@ OnMarketDepth is not called up for historical data.</p>
 <h3 id="description_4">Description</h3>
 <p>The OnOrderUpdate() method is called up whenever the status is changed by a strategy-managed order.
 A status change can therefore occur due to a change in the volume, price or status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for the relevant events.</p>
-<p><strong>Important note:
-</strong>If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.</p>
+<p><strong>Important note:</strong>
+<strong>If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.</strong></p>
 <p>More information can be found here: [<em>Events</em>].</p>
 <h3 id="parameter_4">Parameter</h3>
 <p>An order object of the type IOrder</p>
