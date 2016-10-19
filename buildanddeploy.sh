@@ -28,10 +28,10 @@ then
   ## build epub ebook with pandoc
   cd sources
   pandoc -S --epub-cover-image=../documents/epub_cover.png --epub-stylesheet=../documents/epub_styles.css -o ../documents/agenascript-documentation.epub ../documents/epub_title.txt index.md handling_bars_and_instruments.md events.md strategy_programming.md keywords.md drawing_objects.md hints_and_advice.md
-  cd ..
 
   # build word file with pandoc
   pandoc -S -o ../documents/agenascript-documentation.docx ../documents/epub_title.txt index.md handling_bars_and_instruments.md events.md strategy_programming.md keywords.md drawing_objects.md hints_and_advice.md
+  cd ..
   exit
 elif [ "$1" = "-deploy" ] ;
 then

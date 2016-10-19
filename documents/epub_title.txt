@@ -3,5 +3,5 @@ title: AgenaScript Documentation
 author: INCLUDE Information Technologies GmbH
 rights:  MIT License
 language: en-US
-date: 2016-07-14
+date: Di 18 Okt 2016 11:29:56 CEST
 ...
