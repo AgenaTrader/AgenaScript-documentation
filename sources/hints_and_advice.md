@@ -287,13 +287,26 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
 ```
 
 ## Overwriting Indicator Names
-The name of an indicator (or a strategy) is displayed within the properties dialog and at the top edge of the chart. Use the ToString() property to overwrite it.
+The name of an indicator (or a strategy) is displayed within the properties dialog and at the top edge of the chart. Use the ToString() method and DisplayName property to overwrite it.
 ```cs
 public override string ToString()
 {
 return "My Name";
 }
 ```
+
+```cs
+public override string DisplayName
+     {
+         get
+         {
+            return "My Name";
+         }
+     }
+```
+
+**Important tip:**
+Always use both override methods in your scripts to assure that your special name is used on all AgenaTrader forms.
 
 ## Rectangle with Rounded Corners
 By using the graphics methods, you can create interesting forms and place them onto the chart.
@@ -412,6 +425,3 @@ public static GraphicsPath Create(Rectangle rect)
 }
 }
 ```
-
-
-
