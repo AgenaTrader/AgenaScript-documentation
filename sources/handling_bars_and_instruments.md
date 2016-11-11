@@ -367,7 +367,7 @@ Bars.GetSessionDate(DateTime dt)
 ### Further Information
 The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.
 
-! image
+![Bars.SessionBegin](./media/image3.png)
 ### Example
 ```cs
 Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionDate(new DateTime(2015, 03, 25)) + " begonnen.");
@@ -581,7 +581,7 @@ Type bool
 Bars.SessionBreak
 
 ### More Information
-Image
+![Bars.SessionEnd](./media/image4.png)
 ### Example
 ```cs
 if (Bars.SessionBreak)
@@ -1632,7 +1632,7 @@ Instrument.MainSector
 
 ### More Information
 The main sector is also visible in the instrument escort:
-image
+![Instrument.InstrumentType](./media/image6.png)
 ### Example
 ```cs
 Print("Das Instrument " + Instrument.Name + " ist im Sektor " + Instrument.MainSector + " tätig.");
@@ -1653,7 +1653,7 @@ Instrument.Margin
 
 ### More Information
 Margin is also visible in the instrument escort:
-image
+![Instrument.InstrumentType](./media/image6.png)
 ### Example
 ```cs
 Print("Das Instrument " + Instrument.Name + " has a margin of " + Instrument.Margin);
