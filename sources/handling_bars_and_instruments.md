@@ -64,6 +64,8 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.GetNextBeginEnd*](#barsgetnextbeginend)
 
+[*Bars.GetSessionDate*](#barsgetsessiondate)
+
 [*Bars.GetOpen*](#barsgetopen)
 
 [*Bars.GetHigh*](#barsgethigh)
@@ -78,11 +80,17 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.Instrument*](#barsinstrument)
 
+[*Bars.IsEod*](#barsiseod)
+
 [*Bars.IsIntraday*](#barsisintraday)
+
+[*Bars.IsNtb*](#barsisntb)
 
 [*Bars.PercentComplete*](#barspercentcomplete)
 
 [*Bars.SessionBegin*](#barssessionbegin)
+
+[*Bars.SessionBread*](#barssessionbreak)
 
 [*Bars.SessionEnd*](#barssessionend)
 
@@ -345,10 +353,26 @@ Print("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
 
 ## Bars.GetSessionDate
 ### Description
-Bars.GetSessionDate provides the date and the time of the start of a particular trading session.
+Bars.GetSessionDate provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other [*Properties*] of bars.
 
-The date and time for the start of the current trading session are also displayed correctly even if the function is used on a bar in the past.
+### Parameter
+None
 
+### Return value
+Type DateTime
+
+### Usage
+Bars.GetSessionDate(DateTime dt)
+
+### Further Information
+The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.
+
+! image
+### Example
+```cs
+Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionDate(new DateTime(2015, 03, 25)) + " begonnen.");
+}
+```
 ## Bars.GetOpen
 ### Description
 For reasons of compatibility, the following methods are available.
@@ -410,7 +434,30 @@ Print("The currently displayed trading instrument has the symbol: " + Bars.Instr
 Instrument i = Bars.Instrument;
 Print("The currently displayed trading instrument has the symbol " + i.Symbol);
 ```
+## Bars.IsEod
+### Description
+Bars.IsEod can be used to check whether they are end-of-day bars.
 
+See [*Properties*] for more information.
+
+### Parameter
+None
+
+### Return Value
+Type bool
+
+### Usage
+Bars.IsEod
+
+### More Information
+Within [*OnBarUpdate()*], this property can be used without having to test for null reference. As soon as the method OnBarUpdate () is called by AgenaScript, there is always a bar object.
+
+If this property  used outside of OnBarUpdate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
+
+### Example
+```cs
+Print("Die Bars sind Eod: " + Bars.IsEod);
+```
 ## Bars.IsIntraday
 ### Description
 Bars.IsIntraday returns a boolean which indicates if the TimeFrame is intra-day.
@@ -433,6 +480,28 @@ if(Bars.IsIntraday) {
 	Print("TimeFrame is not Intraday.");
 }
 ```
+## Bars.IsNtb
+### Description
+With Bars.IsNtb it can be checked whether it is not-time-based bars. For example Ntb bars are Point & Figure or Renko Charts.
+
+See [*Properties*] for more information.
+
+### Parameter
+None
+
+### Return Value
+Type bool
+
+### Usage
+Bars.IsNtb
+
+### More Information
+[*OnBarUpdate()*] property can be used without having to test for null reference first. As soon as the method OnBarUpdate () is called by AgenaScript, there is always a bar object. If this property is used outside of OnBarUpdate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
+### Example
+```cs
+Print("Die angezeigten Bars sind Ntb: " + Bars.IsNtb);
+```
+
 
 ## Bars.PercentComplete
 ### Description
@@ -496,6 +565,30 @@ The time for the returned value will equal the starting time defined in the Mark
 Print("The currently running trading session started at " + Bars.SessionBegin );
 ```
 
+## Bars.SessionBreak
+### Description
+Bars.SessionBreak can be used to determine whether the bars are within the commercial trading session in the commercial breaks defined in the marketplace escort.
+
+See [*Properties*] for more information.
+
+### Parameter
+None
+
+### Return Value
+Type bool
+
+### Usage
+Bars.SessionBreak
+
+### More Information
+Image
+### Example
+```cs
+if (Bars.SessionBreak)
+{
+Print("The stock exchange Xetra has just a trade pause");
+
+```
 ## Bars.SessionEnd
 ### Description
 Bars.SessionEnd outputs the time for the end of the currently running trading session.
@@ -1298,7 +1391,13 @@ An instrument has various properties that can be used in AgenaScripts created by
 
 [*Instrument.Expiry*](#instrumentexpiry)
 
+[*Instrument.GetCurrencyFactor*](#instrumentgetcurrencyfactor)
+
 [*Instrument.InstrumentType*](#instrumentinstrumenttype)
+
+[*Instrument.MainSector*](#instrumentmainsector)
+
+[*Instrument.Margin*](#instrumentmargin)
 
 [*Instrument.Name*](#instrumentname)
 
@@ -1467,6 +1566,31 @@ The expiry date (expiry) can also be seen within the Instrument Escort:
 Print("The instrument " + Instrument.Name +" will expire on " + Instrument.Expiry);
 ```
 
+## Instrument.GetCurrencyFactor
+### Description
+Instrument.GetCurrencyFactor returns a conversion factor that can be used to convert an instrument's currency to the account's currency.
+
+### Parameter
+Type Currencies
+
+### Return Value
+Type double
+
+### Usage
+Instrument.GetCurrencyFactor(Currencies)
+
+### More Information
+Common currencies are.B. AUD, CAD, EUR, GBP, JPY oder USD.
+
+### Example
+```cs
+Protected override void OnBarUpdate()
+{
+   double currFactor = Instrument.GetCurrencyFactor(Account.Currency);
+   Print(Close[0] + " in " + Instrument.Currency.ToString() + " = " + (Close[0] * currFactor) + " in " + Account.Currency.ToString());
+}
+```
+
 ## Instrument.InstrumentType
 ### Description
 Instrument.InstrumentType outputs a type object of the trading instrument.
@@ -1493,7 +1617,47 @@ The instrument type can also be viewed within the Instrument Escort:
 ```cs
 Print("The instrument " + Instrument.Name + " is of the type " + Instrument.InstrumentType);
 ```
+## Instrument.MainSector
+### Description
+Instrument.MainSector returns the main sector of the trading instrument.
 
+### Parameter
+none
+
+### Return Value
+String
+
+### Usage
+Instrument.MainSector
+
+### More Information
+The main sector is also visible in the instrument escort:
+image
+### Example
+```cs
+Print("Das Instrument " + Instrument.Name + " ist im Sektor " + Instrument.MainSector + " tätig.");
+```
+
+## Instrument.Margin
+### Description
+Instrument.MainSector returns the required margin of the trading instrument.
+
+### Parameter
+none
+
+### Return Value
+int
+
+### Usage
+Instrument.Margin
+
+### More Information
+Margin is also visible in the instrument escort:
+image
+### Example
+```cs
+Print("Das Instrument " + Instrument.Name + " has a margin of " + Instrument.Margin);
+```
 ## Instrument.Name
 ### Description
 Instrument.Name outputs the name/description of the trading instrument.
