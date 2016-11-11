@@ -8,6 +8,9 @@ Programming in AgenaTrader using the various application programming interface (
 The following methods can be used and therefore overwritten:
 
 -   [*OnBarUpdate()*]
+-   [*OnBrokerConnect()*]
+-   [*OnBrokerDisconnect()*]
+-   [*OnChartPanelMouseDown()*]
 -   [*OnExecution()*]
 -   [*OnMarketData()*]
 -   [*OnMarketDepth()*]
@@ -41,6 +44,122 @@ protected override void OnBarUpdate()
 protected override void OnBarUpdate()
 {
     Print("Calling of OnBarUpdate for the bar number " + CurrentBar + " from " +Time[0]);
+}
+```
+## OnBrokerConnect()
+### Description
+OnBrokerConnect () method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect (), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.
+
+More information can be found here: [*Events*](#Events).
+
+### Parameter
+none
+
+### Return Value
+none
+
+### Usage
+```cs
+protected override void OnBrokerConnect()
+```
+
+### Example
+```cs
+private IOrder _takeProfit = null;
+private IOrder _trailingStop = null;
+
+
+protected override void OnBrokerConnect()
+{
+   if (Trade != null && Trade.MarketPosition != PositionType.Flat)
+   {
+       _takeProfit = Orders.FirstOrDefault(o => o.Name == this.GetType().Name && o.OrderType ==OrderType.Limit);
+       _trailingStop = Orders.FirstOrDefault(o => o.Name == this.GetType().Name && o.OrderType ==OrderType.Stop);
+   }
+}
+
+```
+
+## OnBrokerDisconnect()
+### Description
+OnBrokerDisconnect() method is invoked each time the connection to the broker is interrupted.
+
+More information can be found here: [*Events*](#Events).
+
+### Parameter
+An object of type TradingDatafeedChangedEventArgs
+
+### Return Value
+none
+
+### Usage
+```cs
+protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
+```
+
+### Example
+```cs
+protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
+{
+   if (e.Connected)
+       Print("Die Verbindung zum Broker wird getrennt");
+   else
+       Print("Die Verbindung zum Broker wurde getrennt");
+}
+```
+## OnChartPanelMouseDown()
+### Description
+Description
+In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the ChartControl.ChartPanelMouseDown event.
+### Attention!
+It is important to remove the EventHandler from the OnTermination () method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
+
+### Example
+```cs
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+using AgenaTrader.Helper;
+
+
+namespace AgenaTrader.UserCode
+{
+       public class MouseEvent : UserIndicator
+       {
+               protected override void Initialize()
+               {
+                       Overlay = true;
+               }
+               
+               protected override void OnStartUp()
+               {
+                       // Add event listener
+                       if (ChartControl != null)
+                               ChartControl.ChartPanelMouseDown += OnChartPanelMouseDown;
+               }
+
+
+               protected override void OnTermination()
+               {
+                       // Remove event listener
+                       if (ChartControl != null)
+                               ChartControl.ChartPanelMouseDown -= OnChartPanelMouseDown;
+               }
+
+
+               private void OnChartPanelMouseDown(object sender,System.Windows.Forms.MouseEventArgs e)
+               {
+                       Print("X = {0}, Y = {1}", ChartControl.GetDateTimeByX(e.X),ChartControl.GetPriceByY(e.Y));
+               }
+       }
 }
 ```
 
