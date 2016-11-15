@@ -1615,7 +1615,58 @@ protected override void OnBarUpdate()
        Print("AskVolume {0} < BidVolume {1}", GetCurrentAskVolume(), GetCurrentBidVolume());
 }
 ```
+## GetCurrentPrice()
+### Description
+The GetCurrentPrice () method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales
 
+See [*GetCurrentAsk*], [*GetCurrentBid()*] and [*OnMarketData()*].
+
+### Usage
+GetCurrentPrice()
+
+### Return Value
+none
+
+### Parameter
+double
+
+### Example
+If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.
+```cs
+private IOrder entryOrder = null;
+
+
+protected override void OnBarUpdate()
+{
+   // Einstiegsbedingung
+   if (Close[0] > SMA(20)[0] && entryOrder == null)
+       // Kauf 1 Kontrakt zum aktuellen BidKurs
+       entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,"", "Enter Long");
+}
+```
+## GetCurrentSpread()
+### Description
+The GetCurrentSpare () method returns the current spread.
+
+See [*GetCurrentAsk*], [*GetCurrentBid()*] and [*OnMarketData()*].
+
+### Usage
+GetCurrentSpread()
+
+### Return Value
+none
+
+### Parameter
+double
+
+### Example
+If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.
+```cs
+protected override void OnBarUpdate()
+{
+       Print("Der aktuelle Spread ist {0}", GetCurrentSpread());
+}
+```
 
 ## HighestBar
 ### Description
