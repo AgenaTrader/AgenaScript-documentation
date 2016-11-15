@@ -104,6 +104,14 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.TotalTicks*](#barstotalticks)
 
+[*Bars.IsGrowing*](#barsisgrowing)
+
+[*Bars.IsFalling*](#barsisfalling)
+
+[*Bars.TailTop*](#barstailtop)
+
+[*Bars.TailBottom*](#barstailbottom)
+
 With the **OnBarUpdate()** method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnBarUpdate()** is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate()** then you should first perform a test for null references using **if** (Bars != **null**).
 
@@ -738,6 +746,58 @@ The data type int has a positive value range of 2147483647. When you assume 10 t
 With [*OnBarUpdate()*] this property can be used without having to test for a null reference. As soon as the OnBarUpdate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnBarUpdate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
+
+## Bars.isGrowing
+### Description
+Bar properties used when Bar is growing up.
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+Bars[0]. isGrowing;
+
+## Bars.IsFalling
+### Description
+Bar properties used when Bar is falling down.
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+Bars[0]. IsFalling;
+
+## Bars.TailTop 
+### Description
+Bar properties used for candle tail top height
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+Bars[0].TailTop;
+
+## Bars.TailBottom 
+### Description
+Bar properties used for candle tail bottom height
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+Bars[0].TailBottom;
+
 
 ### Example
 **Print**("The total amount of ticks is " + Bars.TotalTicks);
