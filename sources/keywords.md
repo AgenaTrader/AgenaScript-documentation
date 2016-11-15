@@ -1537,6 +1537,30 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 }
 ```
 
+## GetCurrentAskVolume()
+### Description
+The GetCurrentAskVolume () method returns the current volume on the Ask page of the order book. This function is only executable if the data provider provides level 2 data.
+
+See [*GetCurrentBidVolume()*], [*GetCurrentBid()*] and [*OnMarketData()*].
+
+### Usage
+GetCurrentAskVolume()
+
+### Return Value
+Long  value
+
+### Parameter
+none
+
+### Example
+```cs
+protected override void OnBarUpdate()
+{
+   if (GetCurrentAskVolume() < GetCurrentBidVolume())
+       Print("AskVolume {0} < BidVolume {1}", GetCurrentAskVolume(), GetCurrentBidVolume());
+
+```
+
 ## GetCurrentBid()
 ### Description
 The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.
@@ -1565,6 +1589,33 @@ if (Close[0] > SMA(20)[0] && entryOrder == null)
 entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, "", "Enter long");
 }
 ```
+
+## GetCurrentBidVolume()
+### Description
+The GetCurrentBidVolume () method returns the current volume on the Bid page of the order book. This function is only executable if the data provider provides level 2 data.
+
+See [*GetCurrentAskVolume*], [*GetCurrentBid()*] and [*OnMarketData()*].
+
+### Usage
+GetCurrentBidVolume()
+
+### Return Value
+Long value
+
+### Parameter
+none
+
+### Example
+
+
+```cs
+protected override void OnBarUpdate()
+{
+   if (GetCurrentAskVolume() < GetCurrentBidVolume())
+       Print("AskVolume {0} < BidVolume {1}", GetCurrentAskVolume(), GetCurrentBidVolume());
+}
+```
+
 
 ## HighestBar
 ### Description
