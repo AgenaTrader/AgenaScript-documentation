@@ -1041,7 +1041,26 @@ a double value for the unrealized profit or loss
 Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
 Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ```
+## GetScriptedCondition()
+### Description
+This method allows user to communicate between scripts.
 
+### Usage
+```cs
+GetProfitLoss(int pLType);
+```
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Example
+```cs
+public virtual AgenaTrader.API.ScriptedConditionBase GetScriptedCondition(string scName, AgenaTrader.Plugins.IDataSeries input)
+GetScriptedCondition(“MyCondition”, Close).Occured[0];
+```
 ## MarketPosition
 See [*Position.MarketPosition*].
 
