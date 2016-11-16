@@ -122,7 +122,27 @@ BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 ```cs
 Print("The last exit was " + BarsSinceExit() + " bars ago.");
 ```
+## CancelAllOrders()
+### Description
+CancelAllOrders deletes all oders (cancel) managed by the strategy.
+A cancel request is sent to the broker. Whether an or there is really deleted, can not be guaranteed. It may happen that an order has received a partial execution before it is deleted.
+Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*].
 
+### Usage
+```cs
+CancelAllOrders()
+```
+### Parameter
+None
+
+### Example
+```cs
+protected override void OnBarUpdate()
+{
+   if (BarsSinceEntry() >= 30)
+       CancelAllOrders();
+}
+```
 ## CancelOrder()
 ### Description
 Cancel order deletes an order.
@@ -183,6 +203,115 @@ if (stopOrder != null && stopOrder.StopPrice < Position.AvgPrice && Close[0] >= 
 ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
 ```
+## CreateIfDoneGroup()
+### Description
+If two orders are linked to one another via a CreateIfDoneGroup, it means that if the one order has been executed, the second linked order is activated.
+
+### Usage
+```cs
+CreateIfDoneGroup(IEnumerable<IOrder> orders)
+```
+
+### Parameter
+An order object of type IOrder as a list
+
+### Example
+```cs
+private IOrder oEnterLong = null;
+private IOrder oExitLong = null;
+
+
+protected override void Initialize()
+{
+   IsAutomated = false;
+}
+
+
+protected override void OnBarUpdate()
+{
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, "ocoId","signalName");
+   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","signalName");
+
+
+   CreateIfDoneGroup(new List<IOrder> { oEnterLong, oExitLong });
+
+
+   oEnterLong.ConfirmOrder();
+```
+
+## CreateOCOGroup()
+### Description
+If two orders are linked via a CreateOCOGroup, it means that once the one order has been executed, the second linked order is deleted.
+
+### Usage
+```cs
+CreateOCOGroup(IEnumerable<IOrder> orders)
+```
+
+### Parameter
+An order object of type IOrder as a list
+
+### Example
+```cs
+private IOrder oEnterLong = null;
+private IOrder oEnterShort = null;
+
+
+protected override void Initialize()
+{
+   IsAutomated = false;
+}
+
+
+protected override void OnBarUpdate()
+{
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","signalName");
+   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "signalName");
+
+
+   CreateOCOGroup(new List<IOrder> { oEnterLong, oEnterShort });
+
+
+   oEnterLong.ConfirmOrder();
+   oEnterShort.ConfirmOrder();
+}
+```
+
+## CreateOROGroup()
+### Description
+If two orders are linked via a CreateOROGroup, it means that once the one order has been executed, the order size of the second order is reduced by the order volume of the first order.
+### Usage
+```cs
+CreateOROGroup(IEnumerable<IOrder> orders)
+```
+
+### Parameter
+An order object of type IOrder as a list
+
+### Example
+```cs
+private IOrder oStopLong = null;
+private IOrder oLimitLong = null;
+
+
+protected override void Initialize()
+{
+   IsAutomated = false;
+}
+
+
+protected override void OnBarUpdate()
+{
+   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "signalName");
+   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "signalName");
+
+
+   CreateOROGroup(new List<IOrder> { oLimitLong, oStopLong });
+}
+
+
+```
+
 
 ## DataSeriesConfigurable
 ## DefaultQuantity
@@ -1041,6 +1170,147 @@ a double value for the unrealized profit or loss
 Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
 Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ```
+
+## GetProfitLossAmount()
+### Description
+GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.
+
+See [*GetAccountValue()*].
+
+### Usage
+```cs
+GetProfitLossAmount(double profitLoss);
+```
+
+### Parameter
+Double
+
+### Return Value
+a double value for the unrealized profit or loss
+
+### Example
+```cs
+Print("Das momentane Risiko der Strategie " + this.Name + " beträgt " +GetProfitLossAmount(Position.OpenProfitLoss) + " " + Instrument.Currency);
+```
+
+## GetProfitLossRisk()
+### Description
+GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.
+
+See [*GetAccountValue()*].
+
+### Usage
+```cs
+GetProfitLossRisk();
+```
+
+### Parameter
+None
+### Return Value
+A double value for the R-Multiple
+
+### Example
+```cs
+Print("Das momentane Risiko der Strategie " + this.Name + " beträgt " + string.Format( "{0:F1} R.", GetProfitLossRisk()));
+```
+
+## IsAutomated
+### Description
+IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*Initialize()*] method.
+
+If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*].
+
+### Parameter
+Bool value
+
+### Example
+```cs
+protected override void Initialize()
+{
+   IsAutomated = false;
+}
+```
+
+## Order
+### Description
+IOrder is an object that contains information about an order that is currently managed by a strategy.
+
+
+The individual properties are:
+
+-   ** Action
+    **One of four possible positions in the market:
+    - OrderAction.Buy
+    - OrderAction.BuyToCover
+    - OrderAction.Sell
+    - OrderAction.SellShort
+    
+-   **AvgFillPrice
+    **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry     price.
+
+-   **Filled
+    **For partial versions, Filled is less than Quantity
+   
+-   **FromEntrySignal
+    **The trading instrument in which the position exists..
+      See *Instruments*.
+
+-   **LimitPrice
+
+-   **Name
+    **The unique SignalName  (maybe mistake SignalName)
+
+-   **OrderId
+    **The unique OrderId
+
+-   **OrderMode
+    **One of three possible positions in the market:
+    - OrderMode.Direct
+    - OrderMode.Dynamic
+    - OrderMode.Synthetic
+
+-   **OrderState
+    **The current status of the order can be queried (see *OnExecution* and *OnOrderUpdate*) 
+    - OrderState.Accepted
+    - OrderState.Cancelled
+    - OrderState.CancelRejected
+    - OrderState.Filled
+    - OrderState.PartFilled
+    - OrderState.PendingCancel
+    - OrderState.PendingReplace
+    - OrderState.PendingSubmit
+    - OrderState.Rejected
+    - OrderState.ReplaceRejected
+    - OrderState.Unknown
+    - OrderState.Working
+    
+-   **OrderType
+    **Possible order types: 
+    - OrderType.Limit
+    - OrderType.Market
+    - OrderType.Stop
+    - OrderType.StopLimit
+
+-   **Quantity
+    **The quantity to be ordered
+    
+-   **StopPrice
+
+-   **Time
+    **Time stamp
+
+-   **TimeFrame
+    **The TimeFrame, which is valid for the order.
+ 
+-   ***TimeFrame*
+
+Possible Methods:
+
+-   **order.*CancelOrder()*
+    **Delete the Order 
+    
+-   **order.ConfirmOrder()
+    **Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced. 
 
 ## MarketPosition
 See [*Position.MarketPosition*].
