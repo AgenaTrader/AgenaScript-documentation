@@ -409,6 +409,31 @@ protected override void Initialize()
 CalculateOnBarClose = true;
 }
 ```
+## Occurred
+### Description
+This DataSeries is used in conditions and indicates if signal occurred (1-long, -1 short, 0- no signal )
+
+### Parameter
+None
+
+### Return value
+Int
+
+### Usage
+In scripted condition for short, long, none signal indication
+
+### Example
+```cs
+protected override void OnBarUpdate()
+{
+if ( CurrentBar %2 == 0 )
+Occurred.Set(1); // Long
+else if ( CurrentBar %3 == 0 )
+Occurred.Set(-1); // Short
+else
+Occurred.Set(0); 
+}
+```
 
 ## ChartControl
 Chart control is an object that provides reading access of various properties for the chart.
@@ -580,6 +605,29 @@ protected override void OnBarUpdate()
 {
 Print("Call of OnBarUpdate for bar nr. " + CurrentBar + " of " + Time[0]);
 }
+```
+## IsCurrentBarLast
+### Description
+Indicates if current bar is last in calculation.
+
+### Parameter
+None
+
+### Return value
+Type bool
+
+### Usage
+used for complicated calculation on a last bar
+
+### Example
+```cs
+protected override void OnBarUpdate()
+        {
+            base.OnBarUpdate();
+            if (!IsCurrentBarLast)
+                return;
+            bool isUpdated; 
+} 
 ```
 
 ## DatafeedHistoryPeriodicity
@@ -1465,7 +1513,39 @@ CandleOutlineColorSeries[0] = Color.Blue;
 // Change the outline color to the chart default value
 CandleOutlineColorSeries[0] = Color.Empty;
 ```
+## Email function
+### Description
+Override method which allows to send mail .
 
+### Parameter
+None
+
+### Return value
+string
+
+### Usage
+used for complicated calculation on a last bar
+
+### Example
+```cs
+protected override void OnExecution(IExecution execution)
+{
+if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
+{ 
+if (oEnter != null && execution.Name == oEnter.Name)
+{
+// Enter-Order gefüllt
+if (_sendMail) this.SendEmail(Core.AccountManager.Core.Settings.MailDefaultFromAddress, Core.PreferenceManager.DefaultEmailAddress,
+execution.Instrument.Symbol + " Order " + execution.Name + " ausgeführt.", "Die Order für " + execution.Instrument.Name + " wurde ausgeführt. Invest: " + (Trade.Quantity * Trade.AvgPrice).ToString("F2"));
+}
+else if (oTStop != null && execution.Name == oTStop.Name)
+{
+OrderStatus = 0; // Trend-Stopp-Order gefüllt
+if (_sendMail) this.SendEmail(Core.AccountManager.Core.Settings.MailDefaultFromAddress, Core.PreferenceManager.DefaultEmailAddress,
+execution.Instrument.Symbol +" Order " + execution.Name + " ausgeführt.",
+execution.Instrument.Symbol +" Order " + execution.Name + " ausgeführt. Profit:" + Trade.ClosedProfitLoss.ToString("F2"));
+}
+```
 ## FirstTickOfBar
 ### Description
 FirstTickOfBar is a property of the type "bool" that returns "true" if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
@@ -2088,6 +2168,31 @@ using System.IO;
 string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string file = "\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav";
 PlaySound(path + file);
+```
+
+## Parameter()
+### Description
+Attribute which used for indicator customization
+
+### Return Value
+None
+
+### Parameter
+None
+
+### Example
+```cs
+[Description("Period for the medium mean average")]
+        [Category("Parameters")]
+        [DisplayName("MA Medium")]
+        public int MA_Medium
+{
+            get { return _ma_medium; }
+            set
+    {
+                _ma_medium = value;
+            }
+        }
 ```
 
 ## Plot()
