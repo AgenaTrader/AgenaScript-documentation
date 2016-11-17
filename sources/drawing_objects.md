@@ -415,6 +415,36 @@ A drawing object of the type IFibonacciExtensions (interface)
 // Draws Fibonacci extensions
 DrawFibonacciExtensions("MyFibExt", true, 4, Low[4], 3, High[3], 1, Low[1]);
 ```
+## DrawFibonacciProjections()
+### Description
+Draw Fibonacci Projections () sketches Fibonacci Projections.
+
+### Usage
+```cs
+DrawFibonacciProjections(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y,DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+```
+
+### Return Value
+A drawing object of the type IFibonacciProjections (Interface)
+
+### Parameter
+|                |                                                                                         |
+|----------------|-----------------------------------------------------------------------------------------|
+| tag            | A clearly identifiable name for the drawing object                                      |
+| autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
+| anchor1Time    | Date/time for anchor point 1                                                            |
+| anchor1Y       | y-value for anchor point 1                                                              |
+| anchor2Time    | Date/time for anchor point 2                                                            |
+| anchor2Y       | y-value for the anchor point 2                                                          |
+| anchor3Time    | Date/time for anchor point 3                                                            |
+| anchor3Y       | y-value for anchor point 3                                                              |
+
+### Example
+```cs
+// zeichnet FibonacciProjections
+DrawFibonacciProjections("MyFibPro", true, Low[4], 3, High[3], 1, Low[1], 2);
+
+```
 
 ## DrawFibonacciRetracements()
 ### Description
