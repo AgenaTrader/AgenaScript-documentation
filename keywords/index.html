@@ -120,6 +120,8 @@
                 
                     <li><a class="toctree-l4" href="#calculateonbarclose">CalculateOnBarClose</a></li>
                 
+                    <li><a class="toctree-l4" href="#occurred">Occurred</a></li>
+                
                     <li><a class="toctree-l4" href="#chartcontrol">ChartControl</a></li>
                 
                     <li><a class="toctree-l4" href="#clearoutputwindow">ClearOutputWindow()</a></li>
@@ -129,6 +131,8 @@
                     <li><a class="toctree-l4" href="#crossbelow">CrossBelow()</a></li>
                 
                     <li><a class="toctree-l4" href="#currentbar">CurrentBar</a></li>
+                
+                    <li><a class="toctree-l4" href="#iscurrentbarlast">IsCurrentBarLast</a></li>
                 
                     <li><a class="toctree-l4" href="#datafeedhistoryperiodicity">DatafeedHistoryPeriodicity</a></li>
                 
@@ -176,13 +180,23 @@
                 
                     <li><a class="toctree-l4" href="#candleoutlinecolorseries">CandleOutlineColorSeries</a></li>
                 
+                    <li><a class="toctree-l4" href="#email-function">Email function</a></li>
+                
                     <li><a class="toctree-l4" href="#firsttickofbar">FirstTickOfBar</a></li>
                 
                     <li><a class="toctree-l4" href="#firsttickofbarmtf">FirstTickOfBarMtf</a></li>
                 
                     <li><a class="toctree-l4" href="#getcurrentask">GetCurrentAsk()</a></li>
                 
+                    <li><a class="toctree-l4" href="#getcurrentaskvolume">GetCurrentAskVolume()</a></li>
+                
                     <li><a class="toctree-l4" href="#getcurrentbid">GetCurrentBid()</a></li>
+                
+                    <li><a class="toctree-l4" href="#getcurrentbidvolume">GetCurrentBidVolume()</a></li>
+                
+                    <li><a class="toctree-l4" href="#getcurrentprice">GetCurrentPrice()</a></li>
+                
+                    <li><a class="toctree-l4" href="#getcurrentspread">GetCurrentSpread()</a></li>
                 
                     <li><a class="toctree-l4" href="#highestbar">HighestBar</a></li>
                 
@@ -211,6 +225,8 @@
                     <li><a class="toctree-l4" href="#paintpricemarkers">PaintPriceMarkers</a></li>
                 
                     <li><a class="toctree-l4" href="#playsound">PlaySound()</a></li>
+                
+                    <li><a class="toctree-l4" href="#parameter_33">Parameter()</a></li>
                 
                     <li><a class="toctree-l4" href="#plot">Plot()</a></li>
                 
@@ -656,6 +672,27 @@ CalculateOnBarClose = true;
 }
 </code></pre>
 
+<h2 id="occurred">Occurred</h2>
+<h3 id="description_7">Description</h3>
+<p>This DataSeries is used in conditions and indicates if signal occurred (1-long, -1 short, 0- no signal )</p>
+<h3 id="parameter_2">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_1">Return value</h3>
+<p>Int</p>
+<h3 id="usage_6">Usage</h3>
+<p>In scripted condition for short, long, none signal indication</p>
+<h3 id="example_6">Example</h3>
+<pre><code class="cs">protected override void OnBarUpdate()
+{
+if ( CurrentBar %2 == 0 )
+Occurred.Set(1); // Long
+else if ( CurrentBar %3 == 0 )
+Occurred.Set(-1); // Short
+else
+Occurred.Set(0); 
+}
+</code></pre>
+
 <h2 id="chartcontrol">ChartControl</h2>
 <p>Chart control is an object that provides reading access of various properties for the chart.</p>
 <p>The important properties are:</p>
@@ -688,17 +725,17 @@ BarsVisible contains the number of bars actually visible.</p>
 <p>LastBarPainted would be larger than Bars.Count.</p>
 <p>LastBarVisible would be Bars.Count -1.</p>
 <h2 id="clearoutputwindow">ClearOutputWindow()</h2>
-<h3 id="description_7">Description</h3>
+<h3 id="description_8">Description</h3>
 <p>The ClearOutputWindow() method empties the output window. The method can be used within Initialize() as well as within OnBarUpdate().
 The output window contains all outputs that have been created with the [<em>Print()</em>] command.
 Using the output window is a great method for code debugging.</p>
-<h3 id="usage_6">Usage</h3>
+<h3 id="usage_7">Usage</h3>
 <p>ClearOutputWindow()</p>
-<h3 id="parameter_2">Parameter</h3>
+<h3 id="parameter_3">Parameter</h3>
 <p>none</p>
-<h3 id="return-value_1">Return Value</h3>
+<h3 id="return-value_2">Return Value</h3>
 <p>none</p>
-<h3 id="example_6">Example</h3>
+<h3 id="example_7">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
@@ -708,18 +745,18 @@ ClearOutputWindow();
 </code></pre>
 
 <h2 id="crossabove">CrossAbove()</h2>
-<h3 id="description_8">Description</h3>
+<h3 id="description_9">Description</h3>
 <p>The CrossAbove() method allows you to check whether a crossing of two values has occurred (from bottom to top) within a predefined number of periods. The values can be a market price, an indicator, a data series or a constant value.</p>
 <p>See [<em>CrossBelow()</em>], [<em>Rising()</em>], [<em>Falling()</em>].</p>
-<h3 id="usage_7">Usage</h3>
+<h3 id="usage_8">Usage</h3>
 <pre><code class="cs">CrossAbove(IDataSeries series1, double value, int lookBackPeriod)
 CrossAbove(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 </code></pre>
 
-<h3 id="return-value_2">Return Value</h3>
+<h3 id="return-value_3">Return Value</h3>
 <p><strong>true</strong> a cross has occurred
 <strong>false</strong> a cross has not occurred</p>
-<h3 id="parameter_3">Parameter</h3>
+<h3 id="parameter_4">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -742,7 +779,7 @@ CrossAbove(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 </tr>
 </tbody>
 </table>
-<h3 id="example_7">Example</h3>
+<h3 id="example_8">Example</h3>
 <pre><code class="cs">// Puts out a notice if the SMA(20) crosses above the SMA(50)
 if (CrossAbove(SMA(20), SMA(50), 1))
 Print(&quot;SMA(20) has risen above SMA(50)!&quot;);
@@ -755,18 +792,18 @@ Print(&quot;Long entry !!!&quot;);
 </code></pre>
 
 <h2 id="crossbelow">CrossBelow()</h2>
-<h3 id="description_9">Description</h3>
+<h3 id="description_10">Description</h3>
 <p>Using the CrossBelow() method, you can test whether or not a cross below has occurred within a predefined number of periods. The values can be the market price, an indicator, any data series, or a constant value.</p>
 <p>See [<em>CrossAbove()</em>], [<em>Rising()</em>], [<em>Falling()</em>].</p>
-<h3 id="usage_8">Usage</h3>
+<h3 id="usage_9">Usage</h3>
 <pre><code class="cs">CrossBelow(IDataSeries series1, double value, int lookBackPeriod)
 CrossBelow(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 </code></pre>
 
-<h3 id="return-value_3">Return Value</h3>
+<h3 id="return-value_4">Return Value</h3>
 <p><strong>true</strong> a cross has occurred
 <strong>false</strong> a cross has not occurred</p>
-<h3 id="parameter_4">Parameter</h3>
+<h3 id="parameter_5">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -789,7 +826,7 @@ CrossBelow(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
 </tr>
 </tbody>
 </table>
-<h3 id="example_8">Example</h3>
+<h3 id="example_9">Example</h3>
 <pre><code class="cs">// Puts out a notice if the SMA(20) crosses below the SMA(50)
 if (CrossBelow(SMA(20), SMA(50), 1))
 Print(&quot;SMA(20) has fallen below SMA(50)!&quot;);
@@ -803,27 +840,46 @@ Print(&quot;Short entry !!!&quot;);
 </code></pre>
 
 <h2 id="currentbar">CurrentBar</h2>
-<h3 id="description_10">Description</h3>
+<h3 id="description_11">Description</h3>
 <p>Current bar is a method of indexing bars used in the OnBarUpdate() method. If a chart contains 500 bars and an indicator is to be calculated on the basis of these, then AgenaTrader will begin calculating from the oldest bar. The oldest bar receives the number 0. Once the calculation for this bar has been completed, the OnBarUpdate() method is called up for the next bar, which in turn receives the number 1. This continues until the last bar, which receives a value of 500.</p>
-<h3 id="parameter_5">Parameter</h3>
+<h3 id="parameter_6">Parameter</h3>
 <p>none</p>
-<h3 id="return-value_4">Return Value</h3>
+<h3 id="return-value_5">Return Value</h3>
 <p>Current bar is a variable of the type int, which always contains the number of the bar currently being used.</p>
-<h3 id="usage_9">Usage</h3>
+<h3 id="usage_10">Usage</h3>
 <p>CurrentBar</p>
 <h3 id="more-information_1">More Information</h3>
 <p>The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the [<em>Barindex</em>][<em>Bars</em>]. Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:</p>
 <p>CurrentBar numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time[0] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time[5].
 For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.</p>
-<h3 id="example_9">Example</h3>
+<h3 id="example_10">Example</h3>
 <pre><code class="cs">protected override void OnBarUpdate()
 {
 Print(&quot;Call of OnBarUpdate for bar nr. &quot; + CurrentBar + &quot; of &quot; + Time[0]);
 }
 </code></pre>
 
+<h2 id="iscurrentbarlast">IsCurrentBarLast</h2>
+<h3 id="description_12">Description</h3>
+<p>Indicates if current bar is last in calculation.</p>
+<h3 id="parameter_7">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_6">Return value</h3>
+<p>Type bool</p>
+<h3 id="usage_11">Usage</h3>
+<p>used for complicated calculation on a last bar</p>
+<h3 id="example_11">Example</h3>
+<pre><code class="cs">protected override void OnBarUpdate()
+        {
+            base.OnBarUpdate();
+            if (!IsCurrentBarLast)
+                return;
+            bool isUpdated; 
+} 
+</code></pre>
+
 <h2 id="datafeedhistoryperiodicity">DatafeedHistoryPeriodicity</h2>
-<h3 id="description_11">Description</h3>
+<h3 id="description_13">Description</h3>
 <p>Datafeed history periodicity is a data type.</p>
 <h3 id="definition">Definition</h3>
 <p>public enum DatafeedHistoryPeriodicity
@@ -846,7 +902,7 @@ Print(&quot;Call of OnBarUpdate for bar nr. &quot; + CurrentBar + &quot; of &quo
 -   DatafeedHistoryPeriodicity.Custom</p>
 <p>See <em>TimeFrame</em>, <em>TimeFrames</em>.</p>
 <h2 id="dataseries">DataSeries</h2>
-<h3 id="description_12">Description</h3>
+<h3 id="description_14">Description</h3>
 <p>Data series (data rows) are an easy yet powerful method of saving additional values for individual bars. For example, when calculating the smoothing average, each bar is assigned the value calculated for this bar.
 A data series is an array that contains as many elements as there are bars displayed in a chart. AgenaTrader ensures that data series are correctly synchronized with the bars.
 Data series are used in exactly the same way as the close or time series. They can therefore also be used for the input data for various indicators.
@@ -871,7 +927,7 @@ The ContainsValue() checks whether a data series has a value for a specific posi
 <h3 id="information-about-data-types">Information about Data Types</h3>
 <p>[<em>http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx</em>]</p>
 <h2 id="boolseries">BoolSeries</h2>
-<h3 id="description_13">Description</h3>
+<h3 id="description_15">Description</h3>
 <p>Bool series is a data series that contains a Boolean value for each bar. The number of elements in this series correlates with the exact number of bars within the chart.</p>
 <h3 id="create-new-bool-series">Create New Bool Series</h3>
 <p>In the area for the declaration of variables, simply declare a new variable:</p>
@@ -913,7 +969,7 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (&quot;For the bar of &quot; + Time[0] + &quot; ago the value of the data series is: &quot; + myBoolSeries[0]);
 </code></pre>
 
-<h3 id="example_10">Example</h3>
+<h3 id="example_12">Example</h3>
 <pre><code class="cs">protected override void OnBarUpdate()
 {
 if (Close[0] &gt; Open[0])
@@ -924,7 +980,7 @@ myBoolSeries.Set(false);
 </code></pre>
 
 <h2 id="dataseries_1">DataSeries</h2>
-<h3 id="description_14">Description</h3>
+<h3 id="description_16">Description</h3>
 <p>Data series is a [<em>DataSeries</em>][<em>Data series</em>] that can contain a double value for each bar. The number of elements in this series corresponds to the exact number of bars within the charts.</p>
 <p>Data series for double values are the data series most commonly used for indicators.</p>
 <h3 id="create-a-new-data-series">Create a New Data Series</h3>
@@ -967,13 +1023,13 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (&quot;For the bar from &quot; + Time[0] + &quot; ago the value for the data series is: &quot; + myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_11">Example</h3>
+<h3 id="example_13">Example</h3>
 <pre><code class="cs">//Saves the span between the high and low of a bar
 myDataSeries.Set(Math.Abs(High[0]-Low[0]));
 </code></pre>
 
 <h2 id="datetimeseries">DateTimeSeries</h2>
-<h3 id="description_15">Description</h3>
+<h3 id="description_17">Description</h3>
 <p>Date time series is a [<em>DataSeries</em>][<em>Data series</em>] that can record a date time value for each bar. The number of elements in this series corresponds to the number of bars in the chart.</p>
 <h3 id="create-a-new-data-series_1">Create a New Data Series</h3>
 <p>Create a new variable in the declaration area:</p>
@@ -1015,13 +1071,13 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (&quot;For the bar from &quot; + Time[0] + &quot; ago the value of the data series is: &quot; + myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_12">Example</h3>
+<h3 id="example_14">Example</h3>
 <pre><code class="cs">//Saves the difference of -6 hours (eastern time, New York) for a time zone conversion
 myDataSeries.Set(Time[0].AddHours(-6);
 </code></pre>
 
 <h2 id="floatseries">FloatSeries</h2>
-<h3 id="description_16">Description</h3>
+<h3 id="description_18">Description</h3>
 <p>Float series is a DataSeries that contains a float value for each bar in the chart. The number of elements in this series corresponds to the number of bars within the chart.</p>
 <h3 id="create-a-new-data-series_2">Create a New Data Series</h3>
 <p>Create a new variable in the declaration area:</p>
@@ -1063,13 +1119,13 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (&quot;For the bar from &quot; + Time[0] + &quot; ago the value for the data series is: &quot; + myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_13">Example</h3>
+<h3 id="example_15">Example</h3>
 <pre><code class="cs">//Saves the span between the high and the low of a bar
 myDataSeries.Set(Math.Abs((float) High[0] - (float) Low[0]));
 </code></pre>
 
 <h2 id="intseries">IntSeries</h2>
-<h3 id="description_17">Description</h3>
+<h3 id="description_19">Description</h3>
 <p>Int series is a data series that can assign an integer value for each bar. The number of elements in this series corresponds to the number of bars within the chart.</p>
 <h3 id="create-a-new-data-series_3">Create a New Data Series</h3>
 <p>Create a new variable in the declaration area:</p>
@@ -1111,13 +1167,13 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_14">Example</h3>
+<h3 id="example_16">Example</h3>
 <pre><code class="cs">//Saves the span in ticks between high and low for each bar
 myDataSeries.Set((int) ((High[0] - Low[0]) / TickSize));
 </code></pre>
 
 <h2 id="longseries">LongSeries</h2>
-<h3 id="description_18">Description</h3>
+<h3 id="description_20">Description</h3>
 <p>Long series is a data series that can include an integer value for each bar. The number of elements in this series corresponds to the number of bars within the chart.</p>
 <h3 id="create-a-new-data-series_4">Create a New Data Series</h3>
 <p>Create a new variable in the declaration area:</p>
@@ -1159,13 +1215,13 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_15">Example</h3>
+<h3 id="example_17">Example</h3>
 <pre><code class="cs">//Saves the span of ticks between high and low for each bar
 myDataSeries.Set((long) ((High[0] - Low[0]) / TickSize));
 </code></pre>
 
 <h2 id="stringseries">StringSeries</h2>
-<h3 id="description_19">Description</h3>
+<h3 id="description_21">Description</h3>
 <p>String series is a data series for string values that are saved for each bar. The number of elements in this series corresponds to the number of bars within the chart.</p>
 <h3 id="create-a-new-data-series_5">Create a New Data Series</h3>
 <p>Create a new variable in the declaration area:</p>
@@ -1207,13 +1263,13 @@ CalculateOnBarClose = true;
 <pre><code class="cs">Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_16">Example</h3>
+<h3 id="example_18">Example</h3>
 <pre><code class="cs">//Save the current calendar day for each bar (Monday… Tuesday etc.)
 myDataSeries.Set(string.Format(&quot;{0:dddd}&quot;, Time[0]));
 </code></pre>
 
 <h2 id="dayofweek">DayOfWeek</h2>
-<h3 id="description_20">Description</h3>
+<h3 id="description_22">Description</h3>
 <p>"DayOfWeek" outputs the date-time value (such as a timestamp) for each bar.</p>
 <p>Of course, all other methods defined within the C# language for usage of date-time objects are also available, such as day, month, year, hour, minute, second, day of week etc.</p>
 <p>See [<em>http://msdn.microsoft.com/de-de/library/03ybds8y.aspx</em>]</p>
@@ -1227,7 +1283,7 @@ myDataSeries.Set(string.Format(&quot;{0:dddd}&quot;, Time[0]));
 -   DayOfWeek.Friday
 -   DayOfWeek.Saturday
 -   DayOfWeek.Sunday</p>
-<h3 id="example_17">Example</h3>
+<h3 id="example_19">Example</h3>
 <pre><code class="cs">//Outputs the weekday for each bar
 Print(Time[0].DayOfWeek);
 //Do not execute trades on a Friday
@@ -1236,18 +1292,18 @@ return;
 </code></pre>
 
 <h2 id="displacement">Displacement</h2>
-<h3 id="description_21">Description</h3>
+<h3 id="description_23">Description</h3>
 <p>By implementing "Displacement", you can shift a drawn indicator line right or left along the x-axis.
 This property can be queried within the script and will return an int value.</p>
 <p>Blue line: Displacement = 0 (Original)
 Red line: Displacement = -5
 Green line: Displacement = +5</p>
 <p><img alt="Displacement" src="../media/image13.png" /></p>
-<h3 id="usage_10">Usage</h3>
+<h3 id="usage_12">Usage</h3>
 <p>Displacement</p>
-<h3 id="parameter_6">Parameter</h3>
+<h3 id="parameter_8">Parameter</h3>
 <p>int Offset Number of bars by which the indicator is to be moved.</p>
-<h3 id="example_18">Example</h3>
+<h3 id="example_20">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
@@ -1257,7 +1313,7 @@ Displacement = 1;
 </code></pre>
 
 <h2 id="displayindatabox">DisplayInDataBox</h2>
-<h3 id="description_22">Description</h3>
+<h3 id="description_24">Description</h3>
 <p>The property "DisplayInDataBox" states whether the value of an indicator is contained in the data box of the chart or not.</p>
 <p>The property can be queried in the script and returns a value of the type Boolean (true or false).</p>
 <pre><code class="cs">DisplayInDataBox = true (default)
@@ -1270,9 +1326,9 @@ Displacement = 1;
 <p>The indicator values are not displayed in the data box.</p>
 <p>The following image displays the values of 3 smoothed averages in the data box.</p>
 <p><img alt="DisplayInDataBox" src="../media/image14.png" /></p>
-<h3 id="usage_11">Usage</h3>
+<h3 id="usage_13">Usage</h3>
 <p>DisplayInDataBox</p>
-<h3 id="example_19">Example</h3>
+<h3 id="example_21">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
@@ -1282,7 +1338,7 @@ DisplayInDataBox = false;
 </code></pre>
 
 <h2 id="drawonpricepanel">DrawOnPricePanel</h2>
-<h3 id="description_23">Description</h3>
+<h3 id="description_25">Description</h3>
 <p>The property "DrawOnPricePanel" determines the panel in which the drawing objects are drawn.</p>
 <pre><code class="cs">DrawOnPricePanel = true (default)
 </code></pre>
@@ -1294,9 +1350,9 @@ DisplayInDataBox = false;
 <p>Drawing objects are drawn in the panel (subchart) assigned to the indicator</p>
 <p>If the indicator is already assigned to the price chart (overlay = true) then this property has no effect, meaning that no additional subchart is opened.
 The property can be queried within the script and returns a Boolean value.</p>
-<h3 id="usage_12">Usage</h3>
+<h3 id="usage_14">Usage</h3>
 <p>DrawOnPricePanel</p>
-<h3 id="example_20">Example</h3>
+<h3 id="example_22">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 // Indicator is drawn in a new subchart
@@ -1313,19 +1369,19 @@ DrawVerticalLine(&quot;MyVerticalLine&quot;, 5, Color.Black);
 </code></pre>
 
 <h2 id="falling">Falling()</h2>
-<h3 id="description_24">Description</h3>
+<h3 id="description_26">Description</h3>
 <p>The Falling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.</p>
 <p>See [<em>CrossAbove()</em>], [<em>CrossBelow()</em>], [<em>Rising()</em>].</p>
-<h3 id="usage_13">Usage</h3>
+<h3 id="usage_15">Usage</h3>
 <pre><code class="cs">Falling(IDataSeries series)
 </code></pre>
 
-<h3 id="return-value_5">Return Value</h3>
+<h3 id="return-value_7">Return Value</h3>
 <p><strong>true</strong> If the data series is falling
 <strong>false</strong> If the data series is not falling</p>
-<h3 id="parameter_7">Parameter</h3>
+<h3 id="parameter_9">Parameter</h3>
 <p>series a data series such as an indicator, close, high etc.</p>
-<h3 id="example_21">Example</h3>
+<h3 id="example_23">Example</h3>
 <pre><code class="cs">// Check whether SMA(20) is falling
 if (Falling(SMA(20)))
 Print(&quot;The SMA(20) is currently falling.&quot;);
@@ -1344,28 +1400,28 @@ ChartControl.DownColor Color of down ticks (down bars)</p>
 <p>[<em>BackColorSeries</em>]</p>
 <p>[<em>BackColorAllSeries</em>]</p>
 <h2 id="barcolor">BarColor</h2>
-<h3 id="description_25">Description</h3>
+<h3 id="description_27">Description</h3>
 <p>Bar color changes the color of a bar.</p>
 <p>See [<em>Colors</em>], [<em>BarColorSeries</em>], [<em>BackColor</em>], [<em>BackColorAll</em>], [<em>CandleOutlineColor</em>].</p>
-<h3 id="parameter_8">Parameter</h3>
+<h3 id="parameter_10">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
-<h3 id="usage_14">Usage</h3>
+<h3 id="usage_16">Usage</h3>
 <p>BarColor</p>
-<h3 id="example_22">Example</h3>
+<h3 id="example_24">Example</h3>
 <pre><code class="cs">// If the closing price is above the SMA(14), color the bar orange
 if (Close[0] &gt; SMA(14)[0]) BarColor = Color.Orange;
 </code></pre>
 
 <p><img alt="BarColor" src="../media/image15.png" /></p>
 <h2 id="backcolor">BackColor</h2>
-<h3 id="description_26">Description</h3>
+<h3 id="description_28">Description</h3>
 <p>Back color changes the background color of a bar or gives the current background color of a bar when queried.</p>
 <p>See [<em>Colors</em>], [<em>BarColor</em>], [<em>BackColorAll</em>], [<em>CandleOutlineColor</em>].</p>
-<h3 id="parameter_9">Parameter</h3>
+<h3 id="parameter_11">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
-<h3 id="usage_15">Usage</h3>
+<h3 id="usage_17">Usage</h3>
 <p>BackColor</p>
-<h3 id="example_23">Example</h3>
+<h3 id="example_25">Example</h3>
 <pre><code class="cs">// Every Monday, change the bar background color to blue
 if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColor = Color.Blue;
@@ -1380,14 +1436,14 @@ BackColor = SMA(14)[0] &gt;= Close[0] ? Color.Maroon : Color.LimeGreen;
 
 <p><img alt="BackColor" src="../media/image17.png" /></p>
 <h2 id="backcolorall">BackColorAll</h2>
-<h3 id="description_27">Description</h3>
+<h3 id="description_29">Description</h3>
 <p>Back color all changes the background color of a bar within the chart window and in all subcharts.</p>
 <p>See [<em>Colors</em>], [<em>BarColor</em>], [<em>BackColor</em>], [<em>CandleOutlineColor</em>].</p>
-<h3 id="parameter_10">Parameter</h3>
+<h3 id="parameter_12">Parameter</h3>
 <p>A color object of the type "public struct color"</p>
-<h3 id="usage_16">Usage</h3>
+<h3 id="usage_18">Usage</h3>
 <p>BackColorAll</p>
-<h3 id="example_24">Example</h3>
+<h3 id="example_26">Example</h3>
 <pre><code class="cs">// Every Monday, change the bar background color to blue
 if (Time[0].DayOfWeek == DayOfWeek.Monday)
 BackColorAll = Color.Blue;
@@ -1395,18 +1451,18 @@ BackColorAll = Color.Blue;
 
 <p><img alt="BackColorAll" src="../media/image18.png" /></p>
 <h2 id="barcolorseries">BarColorSeries</h2>
-<h3 id="description_28">Description</h3>
+<h3 id="description_30">Description</h3>
 <p>Bar color series is a data series containing the color for each bar.</p>
 <p>See [<em>Colors</em>], [<em>BackColorSeries</em>], [<em>BackColorAllSeries</em>], [<em>CandleOutlineColorSeries</em>].</p>
-<h3 id="parameter_11">Parameter</h3>
+<h3 id="parameter_13">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
-<h3 id="usage_17">Usage</h3>
+<h3 id="usage_19">Usage</h3>
 <p>BarColorSeries</p>
 <p>BarColorSeries[<strong>int</strong> barsAgo]</p>
 <p>When using the method with an index [<strong>int</strong> barsAgo] the color for the referenced bar will be changed or returned.</p>
 <p><strong>Caution: Only the color of a bar whose color has been explicitly changed beforehand will be returned. In all other cases, the "Color.Empty" value will be returned.</strong></p>
-<h3 id="example_25">Example</h3>
+<h3 id="example_27">Example</h3>
 <pre><code class="cs">protected override void OnBarUpdate()
 {
 if (CurrentBar == Bars.Count-1-(CalculateOnBarClose?1:0))
@@ -1424,19 +1480,19 @@ BarColorSeries[2] = Color.Yellow;
 
 <p><img alt="BarColorSeries" src="../media/image19.png" /></p>
 <h2 id="backcolorseries">BackColorSeries</h2>
-<h3 id="description_29">Description</h3>
+<h3 id="description_31">Description</h3>
 <p>Back color series is a data series containing the background color for each bar. If the background color for the subcharts is to be included, please use "BackColorAllSeries" instead.</p>
 <p>See [<em>Colors</em>], [<em>BarColorSeries</em>][<em>BarColor</em>], [<em>BackColorAllSeries</em>][] [<em>CandleOutlineColorSeries</em>].</p>
-<h3 id="parameter_12">Parameter</h3>
+<h3 id="parameter_14">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
-<h3 id="usage_18">Usage</h3>
+<h3 id="usage_20">Usage</h3>
 <pre><code class="cs">BackColorSeries
 BackColorSeries[int barsAgo]
 </code></pre>
 
 <p>When using this method with an index [<strong>int</strong> barsAgo] the background color for the referenced bar will be outputted.</p>
-<h3 id="example_26">Example</h3>
+<h3 id="example_28">Example</h3>
 <pre><code class="cs">// Which background color does the current bar have?
 Print (BackColorSeries[0]);
 // Set the current bar’s background color to blue
@@ -1447,30 +1503,30 @@ BackColorSeries[1] = Color.Green;
 </code></pre>
 
 <h2 id="backcolorallseries">BackColorAllSeries</h2>
-<h3 id="description_30">Description</h3>
+<h3 id="description_32">Description</h3>
 <p>Back color all series is a data series containing the background color for each bar. The difference to BackColorSeries is that the background color of the subchart is included.</p>
 <p>See [<em>Colors</em>], [<em>BarColorSeries</em>], [<em>BackColorSeries</em>], [<em>CandleOutlineColorSeries</em>].</p>
-<h3 id="parameter_13">Parameter</h3>
+<h3 id="parameter_15">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
-<h3 id="usage_19">Usage</h3>
+<h3 id="usage_21">Usage</h3>
 <pre><code class="cs">BackColorAllSeries
 BackColorAllSeries[int barsAgo]
 </code></pre>
 
 <p>When using the method with an index [<strong>int</strong> barsAgo] the background color for the referenced bar will be changed or returned.</p>
-<h3 id="example_27">Example</h3>
+<h3 id="example_29">Example</h3>
 <p>See [<em>BackColorSeries</em>].</p>
 <h2 id="candleoutlinecolor">CandleOutlineColor</h2>
-<h3 id="description_31">Description</h3>
+<h3 id="description_33">Description</h3>
 <p>Candle outline color changes the border/outline color (including the wick) of a bar.</p>
 <p>If the color of the bar is changed using BarColor and the outline is not changed using CandleOutlineColor, the outline color is adjusted to match the color of the bar.</p>
 <p>See [<em>Colors</em>], [<em>BarColor</em>], [<em>BackColor</em>], [<em>BackColorAll</em>].</p>
-<h3 id="parameter_14">Parameter</h3>
+<h3 id="parameter_16">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
-<h3 id="usage_20">Usage</h3>
+<h3 id="usage_22">Usage</h3>
 <p>CandleOutlineColor</p>
-<h3 id="example_28">Example</h3>
+<h3 id="example_30">Example</h3>
 <pre><code class="cs">if (SMA(14)[0] &gt; SMA(200)[0])
 CandleOutlineColor = Color.LimeGreen;
 else
@@ -1479,36 +1535,65 @@ CandleOutlineColor = Color.Red;
 
 <p><img alt="CandleOutlineColor" src="../media/image20.png" /></p>
 <h2 id="candleoutlinecolorseries">CandleOutlineColorSeries</h2>
-<h3 id="description_32">Description</h3>
+<h3 id="description_34">Description</h3>
 <p>Candle outline color series is a data series that saves the outline color for each bar.</p>
 <p>See [<em>Colors</em>], [<em>BarColorSeries</em>], [<em>BackColorSeries</em>], [<em>BackColorAllSeries</em>].</p>
-<h3 id="parameter_15">Parameter</h3>
+<h3 id="parameter_17">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
-<h3 id="usage_21">Usage</h3>
+<h3 id="usage_23">Usage</h3>
 <pre><code class="cs">CandleOutlineColorSeries
 CandleOutlineColorSeries[int barsAgo]
 </code></pre>
 
 <p>When using this method with an index [<strong>int</strong> barsAgo] the border color for the referenced bar will be outputted.</p>
 <p><strong>Caution: Color.Empty will be outputted for a bar unless it has been previously changed.</strong></p>
-<h3 id="example_29">Example</h3>
+<h3 id="example_31">Example</h3>
 <pre><code class="cs">// Set the outline color of the current bar to blue
 CandleOutlineColorSeries[0] = Color.Blue;
 // Change the outline color to the chart default value
 CandleOutlineColorSeries[0] = Color.Empty;
 </code></pre>
 
+<h2 id="email-function">Email function</h2>
+<h3 id="description_35">Description</h3>
+<p>Override method which allows to send mail .</p>
+<h3 id="parameter_18">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_8">Return value</h3>
+<p>string</p>
+<h3 id="usage_24">Usage</h3>
+<p>used for complicated calculation on a last bar</p>
+<h3 id="example_32">Example</h3>
+<pre><code class="cs">protected override void OnExecution(IExecution execution)
+{
+if (execution.Order != null &amp;&amp; execution.Order.OrderState == OrderState.Filled)
+{ 
+if (oEnter != null &amp;&amp; execution.Name == oEnter.Name)
+{
+// Enter-Order gefüllt
+if (_sendMail) this.SendEmail(Core.AccountManager.Core.Settings.MailDefaultFromAddress, Core.PreferenceManager.DefaultEmailAddress,
+execution.Instrument.Symbol + &quot; Order &quot; + execution.Name + &quot; ausgeführt.&quot;, &quot;Die Order für &quot; + execution.Instrument.Name + &quot; wurde ausgeführt. Invest: &quot; + (Trade.Quantity * Trade.AvgPrice).ToString(&quot;F2&quot;));
+}
+else if (oTStop != null &amp;&amp; execution.Name == oTStop.Name)
+{
+OrderStatus = 0; // Trend-Stopp-Order gefüllt
+if (_sendMail) this.SendEmail(Core.AccountManager.Core.Settings.MailDefaultFromAddress, Core.PreferenceManager.DefaultEmailAddress,
+execution.Instrument.Symbol +&quot; Order &quot; + execution.Name + &quot; ausgeführt.&quot;,
+execution.Instrument.Symbol +&quot; Order &quot; + execution.Name + &quot; ausgeführt. Profit:&quot; + Trade.ClosedProfitLoss.ToString(&quot;F2&quot;));
+}
+</code></pre>
+
 <h2 id="firsttickofbar">FirstTickOfBar</h2>
-<h3 id="description_33">Description</h3>
+<h3 id="description_36">Description</h3>
 <p>FirstTickOfBar is a property of the type "bool" that returns "true" if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
 This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnBarClose = false and the data feed is able to output real-time values.
 When using end-of-day data in a daily chart, the "FirstTickOfBar" is always true for the last bar.
 FirstTickOfBar should not be used outside of the OnBarUpdate() method.
 See [<em>Bars.TickCount</em>].</p>
-<h3 id="usage_22">Usage</h3>
+<h3 id="usage_25">Usage</h3>
 <p>FirstTickOfBar</p>
-<h3 id="example_30">Example</h3>
+<h3 id="example_33">Example</h3>
 <pre><code class="cs">// Within a tick-by-tick strategy, execute one part bar-by-bar only
 if (FirstTickOfBar)
 {
@@ -1519,31 +1604,31 @@ return;
 </code></pre>
 
 <h2 id="firsttickofbarmtf">FirstTickOfBarMtf</h2>
-<h3 id="description_34">Description</h3>
+<h3 id="description_37">Description</h3>
 <p>FirstTickOfBarMtf is the <strong>m</strong>ulti-<strong>t</strong>ime <strong>f</strong>rame variant of the [<em>FirstTickOfBar</em>] property.</p>
 <p>The setting of CalculateOnBarClose only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnBarClose setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.</p>
-<h3 id="usage_23">Usage</h3>
+<h3 id="usage_26">Usage</h3>
 <p>FirstTickOfBarMtf(BarsInProgress)</p>
-<h3 id="parameter_16">Parameter</h3>
+<h3 id="parameter_19">Parameter</h3>
 <p>FirstTickOfBarMtf(BarsInProgress).</p>
 <p>See [<em>BarsInProgress</em>].</p>
-<h3 id="example_31">Example</h3>
+<h3 id="example_34">Example</h3>
 <pre><code class="cs">if (FirstTickOfBarMtf(BarsInProgress))
 Print(&quot;A new bar has begun.&quot;);
 </code></pre>
 
 <h2 id="getcurrentask">GetCurrentAsk()</h2>
-<h3 id="description_35">Description</h3>
+<h3 id="description_38">Description</h3>
 <p>The GetCurrentAsk() method returns the current value of the ask side of the order book. If no level 1 data is available to AgenaTrader, then this function simply outputs the last trade value.</p>
 <p>See [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
-<h3 id="usage_24">Usage</h3>
+<h3 id="usage_27">Usage</h3>
 <p>GetCurrentAsk()</p>
-<h3 id="return-value_6">Return Value</h3>
+<h3 id="return-value_9">Return Value</h3>
 <p>double value</p>
-<h3 id="parameter_17">Parameter</h3>
+<h3 id="parameter_20">Parameter</h3>
 <p>none</p>
-<h3 id="example_32">Example</h3>
+<h3 id="example_35">Example</h3>
 <pre><code class="cs">If an entry condition is fulfilled, then 1 contract should be sold at the current ask price:
 private IOrder entryOrder = null;
 protected override void OnBarUpdate()
@@ -1555,17 +1640,35 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 }
 </code></pre>
 
+<h2 id="getcurrentaskvolume">GetCurrentAskVolume()</h2>
+<h3 id="description_39">Description</h3>
+<p>The GetCurrentAskVolume () method returns the current volume on the Ask page of the order book. This function is only executable if the data provider provides level 2 data.</p>
+<p>See [<em>GetCurrentBidVolume()</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<h3 id="usage_28">Usage</h3>
+<p>GetCurrentAskVolume()</p>
+<h3 id="return-value_10">Return Value</h3>
+<p>Long  value</p>
+<h3 id="parameter_21">Parameter</h3>
+<p>none</p>
+<h3 id="example_36">Example</h3>
+<pre><code class="cs">protected override void OnBarUpdate()
+{
+   if (GetCurrentAskVolume() &lt; GetCurrentBidVolume())
+       Print(&quot;AskVolume {0} &lt; BidVolume {1}&quot;, GetCurrentAskVolume(), GetCurrentBidVolume());
+
+</code></pre>
+
 <h2 id="getcurrentbid">GetCurrentBid()</h2>
-<h3 id="description_36">Description</h3>
+<h3 id="description_40">Description</h3>
 <p>The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.</p>
 <p>See [<em>GetCurrentAsk()</em>] and [<em>OnMarketData()</em>].</p>
-<h3 id="usage_25">Usage</h3>
+<h3 id="usage_29">Usage</h3>
 <p>GetCurrentBid()</p>
-<h3 id="return-value_7">Return Value</h3>
+<h3 id="return-value_11">Return Value</h3>
 <p>double value</p>
-<h3 id="parameter_18">Parameter</h3>
+<h3 id="parameter_22">Parameter</h3>
 <p>none</p>
-<h3 id="example_33">Example</h3>
+<h3 id="example_37">Example</h3>
 <p>If an entry condition is fulfilled, then 1 contract should be sold at the current bid price:</p>
 <pre><code class="cs">private IOrder entryOrder = null;
 protected override void OnBarUpdate()
@@ -1577,22 +1680,82 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 }
 </code></pre>
 
+<h2 id="getcurrentbidvolume">GetCurrentBidVolume()</h2>
+<h3 id="description_41">Description</h3>
+<p>The GetCurrentBidVolume () method returns the current volume on the Bid page of the order book. This function is only executable if the data provider provides level 2 data.</p>
+<p>See [<em>GetCurrentAskVolume</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<h3 id="usage_30">Usage</h3>
+<p>GetCurrentBidVolume()</p>
+<h3 id="return-value_12">Return Value</h3>
+<p>Long value</p>
+<h3 id="parameter_23">Parameter</h3>
+<p>none</p>
+<h3 id="example_38">Example</h3>
+<pre><code class="cs">protected override void OnBarUpdate()
+{
+   if (GetCurrentAskVolume() &lt; GetCurrentBidVolume())
+       Print(&quot;AskVolume {0} &lt; BidVolume {1}&quot;, GetCurrentAskVolume(), GetCurrentBidVolume());
+}
+</code></pre>
+
+<h2 id="getcurrentprice">GetCurrentPrice()</h2>
+<h3 id="description_42">Description</h3>
+<p>The GetCurrentPrice () method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales</p>
+<p>See [<em>GetCurrentAsk</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<h3 id="usage_31">Usage</h3>
+<p>GetCurrentPrice()</p>
+<h3 id="return-value_13">Return Value</h3>
+<p>none</p>
+<h3 id="parameter_24">Parameter</h3>
+<p>double</p>
+<h3 id="example_39">Example</h3>
+<p>If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.</p>
+<pre><code class="cs">private IOrder entryOrder = null;
+
+
+protected override void OnBarUpdate()
+{
+   // Einstiegsbedingung
+   if (Close[0] &gt; SMA(20)[0] &amp;&amp; entryOrder == null)
+       // Kauf 1 Kontrakt zum aktuellen BidKurs
+       entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,&quot;&quot;, &quot;Enter Long&quot;);
+}
+</code></pre>
+
+<h2 id="getcurrentspread">GetCurrentSpread()</h2>
+<h3 id="description_43">Description</h3>
+<p>The GetCurrentSpare () method returns the current spread.</p>
+<p>See [<em>GetCurrentAsk</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<h3 id="usage_32">Usage</h3>
+<p>GetCurrentSpread()</p>
+<h3 id="return-value_14">Return Value</h3>
+<p>none</p>
+<h3 id="parameter_25">Parameter</h3>
+<p>double</p>
+<h3 id="example_40">Example</h3>
+<p>If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.</p>
+<pre><code class="cs">protected override void OnBarUpdate()
+{
+       Print(&quot;Der aktuelle Spread ist {0}&quot;, GetCurrentSpread());
+}
+</code></pre>
+
 <h2 id="highestbar">HighestBar</h2>
-<h3 id="description_37">Description</h3>
+<h3 id="description_44">Description</h3>
 <p>The HighestBar() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.</p>
 <p>See [<em>LowestBar()</em>].</p>
-<h3 id="parameter_19">Parameter</h3>
+<h3 id="parameter_26">Parameter</h3>
 <p>period Number of bars within which the bar is searched for</p>
 <p>series Every data series, such as close, high, low, etc.</p>
-<h3 id="return-value_8">Return Value</h3>
+<h3 id="return-value_15">Return Value</h3>
 <pre><code class="cs">int barsAgo How many bars ago the high occurred
 </code></pre>
 
-<h3 id="usage_26">Usage</h3>
+<h3 id="usage_33">Usage</h3>
 <pre><code class="cs">HighestBar(IDataSeries series, int period)
 </code></pre>
 
-<h3 id="example_34">Example</h3>
+<h3 id="example_41">Example</h3>
 <pre><code class="cs">// How many bars ago was the highest high for the current session?
 Print(HighestBar(High, Bars.BarsSinceSession - 1));
 // What value did the market price have at the highest high of the session?
@@ -1600,16 +1763,16 @@ Print(&quot;The highest price for the session was: &quot; + Open[HighestBar(High
 </code></pre>
 
 <h2 id="historical">Historical</h2>
-<h3 id="description_38">Description</h3>
+<h3 id="description_45">Description</h3>
 <p>Historical allows you to check whether AgenaScript is working with historical or real-time data.
 As long as OnBarUpdate() is called up for historical data, then historical = true. As soon as live data is being used, then historical = false.
 During a backtest, historical is always true.</p>
-<h3 id="usage_27">Usage</h3>
+<h3 id="usage_34">Usage</h3>
 <p>Historical</p>
-<h3 id="return-value_9">Return Value</h3>
+<h3 id="return-value_16">Return Value</h3>
 <p><strong>true</strong> when using historical data
 <strong>false</strong> when using real-time data</p>
-<h3 id="example_35">Example</h3>
+<h3 id="example_42">Example</h3>
 <pre><code class="cs">protected override void OnBarUpdate()
 {
 // only execute for real-time data
@@ -1619,13 +1782,13 @@ if (Historical) return;
 </code></pre>
 
 <h2 id="initialize">Initialize()</h2>
-<h3 id="description_39">Description</h3>
+<h3 id="description_46">Description</h3>
 <p>The Initialize() method is called up once at the beginning of an indicator or strategy calculation. This method can be used to set indicator properties, initialize your own variables, or add plots.</p>
-<h3 id="parameter_20">Parameter</h3>
+<h3 id="parameter_27">Parameter</h3>
 <p>none</p>
-<h3 id="return-value_10">Return Value</h3>
+<h3 id="return-value_17">Return Value</h3>
 <p>none</p>
-<h3 id="usage_28">Usage</h3>
+<h3 id="usage_35">Usage</h3>
 <pre><code class="cs">protected override void Initialize()
 </code></pre>
 
@@ -1661,7 +1824,7 @@ if (Historical) return;
 <p><strong>Caution:</strong>
 The Initialize() method is not only called up at the beginning of an indicator or strategy calculation, but also if the chart is reloaded unexpectedly or if the properties dialog of indicators is opened and so on.
 Developers of custom AgenaScripts should NOT use this method for running their own routines, opening forms, performing license checks, etc. The OnStartUp() method should be used for these kind of tasks.</p>
-<h3 id="example_36">Example</h3>
+<h3 id="example_43">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Blue, &quot;myPlot&quot;));
@@ -1675,14 +1838,14 @@ CalculateOnBarClose = true;
 </code></pre>
 
 <h2 id="initrequirements">InitRequirements()</h2>
-<h3 id="description_40">Description</h3>
+<h3 id="description_47">Description</h3>
 <p>The InitRequirements() method is called up once at the beginning of an indicator and/or strategy calculation. This method is only necessary when using multi-bars.
 Within InitRequirements, no other programming commands are executed. For initializing, the Initialize() or OnStartUp() method should be used.</p>
-<h3 id="parameter_21">Parameter</h3>
+<h3 id="parameter_28">Parameter</h3>
 <p>none</p>
-<h3 id="return-value_11">Return Value</h3>
+<h3 id="return-value_18">Return Value</h3>
 <p>none</p>
-<h3 id="example_37">Example</h3>
+<h3 id="example_44">Example</h3>
 <pre><code class="cs">protected override void InitRequirements()
 {
 Add(DatafeedHistoryPeriodicity.Day, 1);
@@ -1691,13 +1854,13 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 </code></pre>
 
 <h2 id="inputpricetype">InputPriceType</h2>
-<h3 id="description_41">Description</h3>
+<h3 id="description_48">Description</h3>
 <p>The input price type property determines which price series is used by default when calculating an indicator, if no other data series is explicitly stated.
 InputPriceType can be set with the Initialize() method; this specification is then valid for all further calculations.
 If InputPriceType is in OnBarUpdate(), these changes are only valid starting with the next instruction.
 Every further appearance of InputPriceType will be ignored!</p>
 <p>See [<em>PriceType</em>]</p>
-<h3 id="usage_29">Usage</h3>
+<h3 id="usage_36">Usage</h3>
 <pre><code class="cs">InputPriceType
 </code></pre>
 
@@ -1731,16 +1894,16 @@ InputPriceType = PriceType.High;
 </code></pre>
 
 <h2 id="instrument">Instrument</h2>
-<h3 id="description_42">Description</h3>
+<h3 id="description_49">Description</h3>
 <p>With "instrument", information concerning the trading instrument (stock, future etc.) is made available.</p>
 <p>Detailed information can be found here: <em>Instruments</em>.</p>
 <h2 id="line">Line()</h2>
-<h3 id="description_43">Description</h3>
+<h3 id="description_50">Description</h3>
 <p>A line object is used for drawing a horizontal line in the chart. Usually, these are upper and lower trigger lines for indicators such as the RSI (70 and 30).
 The lines described here are not to be confused with lines from the drawing objects (see "DrawHorizontalLine").
 Line objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.</p>
 <p>See [<em>Plot</em>].</p>
-<h3 id="parameter_22">Parameter</h3>
+<h3 id="parameter_29">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1767,14 +1930,14 @@ Line objects can be added to an indicator with the help of the Add() method, and
 </tr>
 </tbody>
 </table>
-<h3 id="usage_30">Usage</h3>
+<h3 id="usage_37">Usage</h3>
 <pre><code class="cs">Line(Color color, double value, string name)
 Line(Pen pen, double value, string name)
 </code></pre>
 
 <h3 id="more-information_3">More Information</h3>
 <p>Information on the pen class: [<em>http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx</em>]</p>
-<h3 id="example_38">Example</h3>
+<h3 id="example_45">Example</h3>
 <pre><code class="cs">// Example 1
 // A new line with standard values drawn at the value of 70
 Add(new Line(Color.Black, 70, &quot;Upper&quot;));
@@ -1797,13 +1960,13 @@ Add(new Line(new Pen(Color.Red, 1), 10, &quot;MyLine&quot;));
 </code></pre>
 
 <h2 id="log">Log()</h2>
-<h3 id="description_44">Description</h3>
+<h3 id="description_51">Description</h3>
 <p>Log() allows you to write outputs in the AgenaTrader log file (log tab). 5 different log levels are supported.</p>
 <p>Note:</p>
 <p>If the log tab is not viewable, it can be displayed using the tools log.</p>
-<h3 id="usage_31">Usage</h3>
+<h3 id="usage_38">Usage</h3>
 <p><strong>Log</strong>(string message, LogLevel logLevel)</p>
-<h3 id="parameter_23">Parameter</h3>
+<h3 id="parameter_30">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1842,7 +2005,7 @@ Add(new Line(new Pen(Color.Red, 1), 10, &quot;MyLine&quot;));
 </tr>
 </tbody>
 </table>
-<h3 id="example_39">Example</h3>
+<h3 id="example_46">Example</h3>
 <pre><code class="cs">//Tab protocol
 Log(&quot;This is information.&quot;, InfoLogLevel.Info); //white
 Log(&quot;This is a message.&quot;, InfoLogLevel.Message); // blue
@@ -1856,19 +2019,19 @@ Log(&quot;This is an alert popup window.&quot;, InfoLogLevel.Alert); //green
 </code></pre>
 
 <h2 id="lowestbar">LowestBar</h2>
-<h3 id="description_45">Description</h3>
+<h3 id="description_52">Description</h3>
 <p>The LowestBar() method attempts to find the lowest bar within a predefined number of periods.</p>
 <p>See [<em>HighestBar()</em>].</p>
-<h3 id="parameter_24">Parameter</h3>
+<h3 id="parameter_31">Parameter</h3>
 <p>period Number of bars that will be searched for the lowest bar</p>
 <p>series Every data series, such as close, high, low etc.</p>
-<h3 id="return-value_12">Return Value</h3>
+<h3 id="return-value_19">Return Value</h3>
 <p><strong>int</strong> barsAgo How many bars ago the low occurred</p>
-<h3 id="usage_32">Usage</h3>
+<h3 id="usage_39">Usage</h3>
 <pre><code class="cs">LowestBar(IDataSeries series, int period)
 </code></pre>
 
-<h3 id="example_40">Example</h3>
+<h3 id="example_47">Example</h3>
 <pre><code class="cs">// How many bars ago was the lowest low of the session?
 Print(LowestBar(Low, Bars.BarsSinceSession - 1));
 // Which price did the lowest open of the current session have?
@@ -1876,7 +2039,7 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[Lowe
 </code></pre>
 
 <h2 id="marketdataeventargs">MarketDataEventArgs</h2>
-<h3 id="description_46">Description</h3>
+<h3 id="description_53">Description</h3>
 <p>The data type MarketDataEventArgs represents a change in the level 1 data and is used as a parameter of the OnMarketData() function.</p>
 <table>
 <thead>
@@ -1952,10 +2115,10 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[Lowe
 </tr>
 </tbody>
 </table>
-<h3 id="example_41">Example</h3>
+<h3 id="example_48">Example</h3>
 <p>See [<em>OnMarketData()</em>].</p>
 <h2 id="marketdeptheventargs">MarketDepthEventArgs</h2>
-<h3 id="description_47">Description</h3>
+<h3 id="description_54">Description</h3>
 <p>The data type MarketDepthEventArgs represents a change in the level 2 data (market depth) and is used as a parameter within OnMarketDepth().</p>
 <table>
 <thead>
@@ -2019,10 +2182,10 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[Lowe
 </tr>
 </tbody>
 </table>
-<h3 id="example_42">Example</h3>
+<h3 id="example_49">Example</h3>
 <p>See [<em>OnMarketDepth()</em>].</p>
 <h2 id="overlay">Overlay</h2>
-<h3 id="description_48">Description</h3>
+<h3 id="description_55">Description</h3>
 <p>The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.</p>
 <pre><code class="cs">Overlay = true
 </code></pre>
@@ -2033,9 +2196,9 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[Lowe
 
 <p>A separate chart window is opened (RSI)</p>
 <p>This property can be queried within the script and outputs a value of the type Boolean (true or false).</p>
-<h3 id="usage_33">Usage</h3>
+<h3 id="usage_40">Usage</h3>
 <p>Overlay</p>
-<h3 id="example_43">Example</h3>
+<h3 id="example_50">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
@@ -2045,16 +2208,16 @@ Overlay = false;
 </code></pre>
 
 <h2 id="paintpricemarkers">PaintPriceMarkers</h2>
-<h3 id="description_49">Description</h3>
+<h3 id="description_56">Description</h3>
 <p>The paint price markers property defines whether the so-called price markers for the indicator outputs are displayed on the right-hand chart border (in the price axis) or not. In some cases it makes sense to switch these off for a better overview in the chart.
 <strong>PaintPriceMarkers = true (default)</strong></p>
 <p>Price markers are shown in the price axis</p>
 <p><strong>PaintPriceMarkers = false</strong></p>
 <p>Price markers are not shown in the price axis</p>
 <p>This property can be queried within the script and returns a value of the type Boolean (true or false).</p>
-<h3 id="usage_34">Usage</h3>
+<h3 id="usage_41">Usage</h3>
 <p>PaintPriceMarkers</p>
-<h3 id="example_44">Example</h3>
+<h3 id="example_51">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
@@ -2064,26 +2227,47 @@ PaintPriceMarkers = false;
 </code></pre>
 
 <h2 id="playsound">PlaySound()</h2>
-<h3 id="description_50">Description</h3>
+<h3 id="description_57">Description</h3>
 <p>This method allows you to play a wav file.</p>
-<h3 id="usage_35">Usage</h3>
+<h3 id="usage_42">Usage</h3>
 <p><strong>PlaySound</strong>(wavFile)</p>
-<h3 id="return-value_13">Return Value</h3>
+<h3 id="return-value_20">Return Value</h3>
 <p>none</p>
-<h3 id="parameter_25">Parameter</h3>
+<h3 id="parameter_32">Parameter</h3>
 <p>wavFile File name of the wav file to be played</p>
-<h3 id="example_45">Example</h3>
+<h3 id="example_52">Example</h3>
 <pre><code class="cs">using System.IO;
 string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string file = &quot;\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav&quot;;
 PlaySound(path + file);
 </code></pre>
 
+<h2 id="parameter_33">Parameter()</h2>
+<h3 id="description_58">Description</h3>
+<p>Attribute which used for indicator customization</p>
+<h3 id="return-value_21">Return Value</h3>
+<p>None</p>
+<h3 id="parameter_34">Parameter</h3>
+<p>None</p>
+<h3 id="example_53">Example</h3>
+<pre><code class="cs">[Description(&quot;Period for the medium mean average&quot;)]
+        [Category(&quot;Parameters&quot;)]
+        [DisplayName(&quot;MA Medium&quot;)]
+        public int MA_Medium
+{
+            get { return _ma_medium; }
+            set
+    {
+                _ma_medium = value;
+            }
+        }
+</code></pre>
+
 <h2 id="plot">Plot()</h2>
-<h3 id="description_51">Description</h3>
+<h3 id="description_59">Description</h3>
 <p>A plot (drawing) is used to visually display indicators in a chart. Plot objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
 See [<em>Line</em>].</p>
-<h3 id="parameter_26">Parameter</h3>
+<h3 id="parameter_35">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -2146,7 +2330,7 @@ See [<em>Line</em>].</p>
 </tr>
 </tbody>
 </table>
-<h3 id="usage_36">Usage</h3>
+<h3 id="usage_43">Usage</h3>
 <pre><code class="cs">Plot(Color color, string name)
 Plot(Pen pen, string name)
 Plot(Color color, PlotStyle plotStyle, string name)
@@ -2155,7 +2339,7 @@ Plot(Pen pen, PlotStyle plotStyle, string name)
 
 <h3 id="more-information_4">More Information</h3>
 <p>Information on the pen class: [<em>http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx</em>]</p>
-<h3 id="example_46">Example</h3>
+<h3 id="example_54">Example</h3>
 <pre><code class="cs">// Example 1
 // Plot with standard values (line with line strength 1)
 Add(new Plot(Color.Green, &quot;MyPlot&quot;));
@@ -2181,23 +2365,23 @@ Add(new Plot(new Pen(Color.Blue, 6), PlotStyle.Dot, &quot;MyPlot&quot;));
 </code></pre>
 
 <h2 id="plotmethod">PlotMethod</h2>
-<h3 id="description_52">Description</h3>
+<h3 id="description_60">Description</h3>
 <p>In each indicator, the plot method can be overridden in order to add your own graphics (GDI+) to the price chart with the help of the graphics class (System.Drawing).</p>
 <p>See [<em>http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx</em>].</p>
 <p>The [<em>ChartControl</em>] object offers several parameters.</p>
 <p>More examples: [<em>Bar Numbering</em>][<em>PlotSample</em>], <em>Chart Background Image</em>.</p>
-<h3 id="parameter_27">Parameter</h3>
+<h3 id="parameter_36">Parameter</h3>
 <p>graphics The graphics object of the price chart (context)</p>
 <p>rectangle The size of the drawing area (type "public struct rectangle")</p>
 <p>double min The smallest price in the y-axis</p>
 <p>double max The biggest price in the y-axis</p>
-<h3 id="return-value_14">Return Value</h3>
+<h3 id="return-value_22">Return Value</h3>
 <p>none</p>
-<h3 id="usage_37">Usage</h3>
+<h3 id="usage_44">Usage</h3>
 <pre><code class="cs">public override void Plot(Graphics graphics, Rectangle r, double min, double max)
 </code></pre>
 
-<h3 id="example_47">Example</h3>
+<h3 id="example_55">Example</h3>
 <pre><code class="cs">using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -2264,7 +2448,7 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 </code></pre>
 
 <h2 id="pricetype">PriceType</h2>
-<h3 id="description_53">Description</h3>
+<h3 id="description_61">Description</h3>
 <p>Price type describes a form of price data.</p>
 <p>See [<em>InputPriceType</em>]</p>
 <p>Following variables are available:
@@ -2276,15 +2460,15 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 -   PriceType.Typical
 -   PriceType.Volume
 -   PriceType.Weighted</p>
-<h3 id="usage_38">Usage</h3>
+<h3 id="usage_45">Usage</h3>
 <p>PriceType</p>
-<h3 id="example_48">Example</h3>
+<h3 id="example_56">Example</h3>
 <p>See [<em>InputPriceType</em>]</p>
 <h2 id="print">Print()</h2>
-<h3 id="description_54">Description</h3>
+<h3 id="description_62">Description</h3>
 <p>The Print() method writes outputs in the AgenaTrader output window.
 See [<em>ClearOutputWindow()</em>].</p>
-<h3 id="usage_39">Usage</h3>
+<h3 id="usage_46">Usage</h3>
 <pre><code class="cs">Print(string message)
 Print(bool value)
 Print(double value)
@@ -2293,14 +2477,14 @@ Print(DateTime value)
 Print(string format, string message)
 </code></pre>
 
-<h3 id="parameter_28">Parameter</h3>
+<h3 id="parameter_37">Parameter</h3>
 <p>string Text an individual message text</p>
-<h3 id="return-value_15">Return Value</h3>
+<h3 id="return-value_23">Return Value</h3>
 <p>none</p>
 <h3 id="more-information_5">More Information</h3>
 <p>Information regarding output formatting: <em>Formatting numbers</em>.</p>
 <p>Hints about the String.Format() method: [<em>http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx</em>]</p>
-<h3 id="example_49">Example</h3>
+<h3 id="example_57">Example</h3>
 <pre><code class="cs">// &quot;Quick&amp;Dirty&quot; formatting of a number with 2 decimal points
 Print(Close[0].ToString(&quot;0.00&quot;));
 // Output day of the week from the timestamp for the bar
@@ -2310,53 +2494,53 @@ Print(&quot;One empty row afterwards \\n&quot;);
 </code></pre>
 
 <h2 id="removedrawobject">RemoveDrawObject()</h2>
-<h3 id="description_55">Description</h3>
+<h3 id="description_63">Description</h3>
 <p>The RemoveDrawObject() method removes a specific drawing object from the chart based on a unique identifier (tag).
 See [<em>RemoveDrawObjects()</em>].</p>
-<h3 id="usage_40">Usage</h3>
+<h3 id="usage_47">Usage</h3>
 <p>RemoveDrawObject(string tag)</p>
-<h3 id="return-value_16">Return Value</h3>
+<h3 id="return-value_24">Return Value</h3>
 <p>none</p>
-<h3 id="parameter_29">Parameter</h3>
+<h3 id="parameter_38">Parameter</h3>
 <p>string tag The clearly identifiable name for the drawing object</p>
-<h3 id="example_50">Example</h3>
+<h3 id="example_58">Example</h3>
 <pre><code class="cs">RemoveDrawObjects(&quot;My line&quot;);
 </code></pre>
 
 <h2 id="removedrawobjects">RemoveDrawObjects()</h2>
-<h3 id="description_56">Description</h3>
+<h3 id="description_64">Description</h3>
 <p>This method removes all drawings from the chart
 See [<em>RemoveDrawObject()</em>].</p>
-<h3 id="usage_41">Usage</h3>
+<h3 id="usage_48">Usage</h3>
 <p>RemoveDrawObjects()</p>
-<h3 id="return-value_17">Return Value</h3>
+<h3 id="return-value_25">Return Value</h3>
 <p>none</p>
-<h3 id="example_51">Example</h3>
+<h3 id="example_59">Example</h3>
 <pre><code class="cs">//Delete all drawings from the chart
 RemoveDrawObjects();
 </code></pre>
 
 <h2 id="rising">Rising()</h2>
-<h3 id="description_57">Description</h3>
+<h3 id="description_65">Description</h3>
 <p>With this method you can check if an uptrend exists, i.e. if the current value is bigger than the previous bar’s value.</p>
 <p>See [<em>CrossAbove()</em>], [<em>CrossBelow()</em>], [<em>Falling()</em>].</p>
-<h3 id="usage_42">Usage</h3>
+<h3 id="usage_49">Usage</h3>
 <pre><code class="cs">Rising(IDataSeries series)
 </code></pre>
 
-<h3 id="return-value_18">Return Value</h3>
+<h3 id="return-value_26">Return Value</h3>
 <p><strong>true</strong> If the data series is rising
 <strong>false</strong> If the data series is not rising</p>
-<h3 id="parameter_30">Parameter</h3>
+<h3 id="parameter_39">Parameter</h3>
 <p>series A data series such as an indicator, close, high etc.</p>
-<h3 id="example_52">Example</h3>
+<h3 id="example_60">Example</h3>
 <pre><code class="cs">// Check if SMA(20) is rising
 if (Rising(SMA(20)))
 Print(&quot;The SMA(20) is currently rising.&quot;);
 </code></pre>
 
 <h2 id="sessionbreaklines">SessionBreakLines</h2>
-<h3 id="description_58">Description</h3>
+<h3 id="description_66">Description</h3>
 <p>The property SessionBreakLines defines whether the vertical lines that represent a trading session stop are displayed within the chart.
 This may be useful for stocks and other instruments if you wish to display session breaks/trading stops.
 <strong>SessionBreakLines = true (default)</strong></p>
@@ -2364,9 +2548,9 @@ This may be useful for stocks and other instruments if you wish to display sessi
 <p><strong>SessionBreakLines = false</strong></p>
 <p>Session break lines are not shown</p>
 <p>This property can be queried within the script and outputs a value of the type Boolean (true or false).</p>
-<h3 id="usage_43">Usage</h3>
+<h3 id="usage_50">Usage</h3>
 <p>SessionBreakLines</p>
-<h3 id="example_53">Example</h3>
+<h3 id="example_61">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
@@ -2403,7 +2587,7 @@ Eurex (FDAX): <em>http://www.eurexchange.com/exchange-en/products/idx/dax/17206/
 <p>See [<em>Bars.TimeFrame</em>].</p>
 <p>When using multiple timeframes ([<em>Multibars</em>][<em>MultiBars</em>]) in an indicator, please see [<em>TimeFrames</em>].</p>
 <h2 id="today">ToDay()</h2>
-<h3 id="description_59">Description</h3>
+<h3 id="description_67">Description</h3>
 <p>To day is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C#.
 Experienced programmers can continue using the date-time function directly.</p>
 <p>To day outputs an int representation in the format of yyyymmdd.
@@ -2411,25 +2595,25 @@ Experienced programmers can continue using the date-time function directly.</p>
 <p>13.08.2012 would thus be 20120813.</p>
 <p>See [<em>ToTime</em>].</p>
 <p>Help with date-time: [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
-<h3 id="usage_44">Usage</h3>
+<h3 id="usage_51">Usage</h3>
 <p>ToDay(DateTime time)</p>
-<h3 id="example_54">Example</h3>
+<h3 id="example_62">Example</h3>
 <pre><code class="cs">// Do not trade on the 11&lt;sup&gt;th&lt;/sup&gt; of September
 if (ToDay(Time[0]) = 20130911)
 return;
 </code></pre>
 
 <h2 id="totime">ToTime()</h2>
-<h3 id="description_60">Description</h3>
+<h3 id="description_68">Description</h3>
 <p>To time is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C#.</p>
 <p>To time outputs an int representation in the format hhmmss.
 (hh = hour, mm = minute, ss = seconds)</p>
 <p>The time 07:30 will be displayed as 73000 and 14:15:12 will become 141512.</p>
 <p>See [<em>ToDay</em>].</p>
 <p>Help with date-time: [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
-<h3 id="usage_45">Usage</h3>
+<h3 id="usage_52">Usage</h3>
 <p>ToTime(DateTime time)</p>
-<h3 id="example_55">Example</h3>
+<h3 id="example_63">Example</h3>
 <pre><code class="cs">// Only enter trades between 08:15 and 16:35
 if (ToTime(Time[0]) &gt;= 81500 &amp;&amp; ToTime(Time[0]) &lt;= 163500)
 {
@@ -2438,18 +2622,18 @@ if (ToTime(Time[0]) &gt;= 81500 &amp;&amp; ToTime(Time[0]) &lt;= 163500)
 </code></pre>
 
 <h2 id="update">Update()</h2>
-<h3 id="description_61">Description</h3>
+<h3 id="description_69">Description</h3>
 <p>The Update() method calls up the OnBarUpdate method in order to recalculate the indicator values.</p>
 <p>Update() is to be used with caution and is intended for use by experienced programmers.</p>
-<h3 id="usage_46">Usage</h3>
+<h3 id="usage_53">Usage</h3>
 <pre><code class="cs">Update()
 </code></pre>
 
-<h3 id="return-value_19">Return Value</h3>
+<h3 id="return-value_27">Return Value</h3>
 <p>none</p>
-<h3 id="parameter_31">Parameter</h3>
+<h3 id="parameter_40">Parameter</h3>
 <p>none</p>
-<h3 id="example_56">Example</h3>
+<h3 id="example_64">Example</h3>
 <p>The effect of update can be illustrated with the help of 2 indicators.
 The first indicator, Ind1, uses a public variable from the indicator Ind2.</p>
 <p><strong>Code from Ind1:</strong></p>
@@ -2483,28 +2667,28 @@ If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in
 <p><strong>With Update() - Correct</strong>
 By calling up Update(), OnBarUpdate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.</p>
 <h2 id="value">Value</h2>
-<h3 id="description_62">Description</h3>
+<h3 id="description_70">Description</h3>
 <p>Value is a data series object containing the first data series of an indicator.</p>
 <p>When the Add() method is called up, a value object is automatically created and added to the values collection.</p>
 <p>Value is identical to Values[0].</p>
-<h3 id="usage_47">Usage</h3>
+<h3 id="usage_54">Usage</h3>
 <p>Value</p>
 <p>Value[<strong>int</strong> barsAgo]</p>
 <h3 id="more-information_6">More Information</h3>
 <p>The methods known for a collection, Set(), Reset(), and Count(), can be used for values.</p>
-<h3 id="example_57">Example</h3>
+<h3 id="example_65">Example</h3>
 <p>See [<em>Values</em>].</p>
 <h2 id="verticalgridlines">VerticalGridLines</h2>
-<h3 id="description_63">Description</h3>
+<h3 id="description_71">Description</h3>
 <p>The property VerticalGridLines defines whether or not the regularly spaced vertical lines (the so-called grid) are shown within the charting area.</p>
 <p><strong>VerticalGridLines = true (default)</strong></p>
 <p>Vertical grid lines are shown</p>
 <p><strong>VerticalGridLines = false</strong></p>
 <p>Vertical grid lines are not shown</p>
 <p>This property can be queried within the script and returns a value of the type Boolean (true or false).</p>
-<h3 id="usage_48">Usage</h3>
+<h3 id="usage_55">Usage</h3>
 <p>VerticalGridLines</p>
-<h3 id="example_58">Example</h3>
+<h3 id="example_66">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
 Add(new Plot(Color.Red, &quot;MyPlot1&quot;));
