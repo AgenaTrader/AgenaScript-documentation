@@ -332,7 +332,7 @@ Print(&quot;RealizedProfitLoss &quot; + Account.RealizedProfitLoss);
 
 <h2 id="barssinceentry">BarsSinceEntry()</h2>
 <h3 id="description_1">Description</h3>
-<p>The property “BarsSinceEntry” returns the number of bars that have occurred since the last entry into the market.</p>
+<p>The property "BarsSinceEntry" returns the number of bars that have occurred since the last entry into the market.</p>
 <h3 id="usage">Usage</h3>
 <pre><code class="cs">BarsSinceEntry()
 BarsSinceEntry(string signalName)
@@ -371,7 +371,7 @@ BarsSinceEntry(string signalName)
 
 <h2 id="barssinceexit">BarsSinceExit()</h2>
 <h3 id="description_2">Description</h3>
-<p>The property “BarsSinceExit” outputs the number of bars that have occurred since the last exit from the market.</p>
+<p>The property "BarsSinceExit" outputs the number of bars that have occurred since the last exit from the market.</p>
 <h3 id="usage_1">Usage</h3>
 <pre><code class="cs">BarsSinceExit()
 BarsSinceExit(string signalName)
@@ -436,7 +436,7 @@ Therefore we recommend that you check the status of the order with [<em>OnOrderU
 </code></pre>
 
 <h3 id="parameter_3">Parameter</h3>
-<p>An order object of the type “IOrder”</p>
+<p>An order object of the type "IOrder"</p>
 <h3 id="example_4">Example</h3>
 <pre><code class="cs">private IOrder myEntryOrder = null;
 private int barNumberOfOrder = 0;
@@ -473,7 +473,7 @@ CancelOrder(myEntryOrder);
 <tbody>
 <tr>
 <td>iOrder</td>
-<td>An order object of the type “IOrder”</td>
+<td>An order object of the type "IOrder"</td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -658,7 +658,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 </tbody>
 </table>
 <h3 id="return-value">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_10">Example</h3>
 <pre><code class="cs">// Enter a long position if the last entry is 10 bars in the past
 // and if two SMAs have crossed
@@ -701,15 +701,7 @@ EnterLongLimit(int quantity, double limitPrice, string signalName)
 </tr>
 <tr>
 <td>barsInProgressIndex</td>
-<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies.</td>
-</tr>
-<tr>
-<td>Index of the data series for which the entry order is to be executed.</td>
-<td></td>
-</tr>
-<tr>
-<td>See [<em>BarsInProgress</em>].</td>
-<td></td>
+<td>For [<em>Multibar</em>][<em>MultiBars</em>] strategies. Index of the data series for which the entry order is to be executed. See [<em>BarsInProgress</em>].</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -722,7 +714,7 @@ EnterLongLimit(int quantity, double limitPrice, string signalName)
 </tbody>
 </table>
 <h3 id="return-value_1">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_11">Example</h3>
 <pre><code class="cs">// A long position is placed if the last entry was 10 bars ago and the two SMAs have crossed each other
 if (BarsSinceEntry() &gt; 10 &amp;&amp; CrossAbove(SMA(10), SMA(20), 1))
@@ -785,7 +777,7 @@ EnterLongStop(int quantity, double stopPrice, string signalName)
 </tbody>
 </table>
 <h3 id="return-value_2">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_12">Example</h3>
 <pre><code class="cs">private IOrder myEntryOrder = null;
 // Place an entry order at the high of the current bar
@@ -853,7 +845,7 @@ EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 </tbody>
 </table>
 <h3 id="return-value_3">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_13">Example</h3>
 <pre><code class="cs">private IOrder myEntryOrder = null;
 // Place an entry stop at the high of the current bar
@@ -908,7 +900,7 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 </tbody>
 </table>
 <h3 id="return-value_4">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_14">Example</h3>
 <pre><code class="cs">// A short position will be placed if the last entry is 10 bars in the past and two SMAs have crossed each other
 if (BarsSinceEntry() &gt; 10 &amp;&amp; CrossBelow(SMA(10), SMA(20), 1))
@@ -971,7 +963,7 @@ EnterShortLimit(int quantity, double limitPrice, string signalName)
 </tbody>
 </table>
 <h3 id="return-value_5">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_15">Example</h3>
 <pre><code class="cs">// Enter a short position if the last entry is 10 bars in the past and two SMAs have crossed each other
 if (BarsSinceEntry() &gt; 10 &amp;&amp; CrossBelow(SMA(10), SMA(20), 1))
@@ -1034,7 +1026,7 @@ EnterShortStop(int quantity, double stopPrice, string signalName)
 </tbody>
 </table>
 <h3 id="return-value_6">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_16">Example</h3>
 <pre><code class="cs">private IOrder myEntryOrder = null;
 // Place an entry stop at the low of the current bar
@@ -1102,7 +1094,7 @@ EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string si
 </tbody>
 </table>
 <h3 id="return-value_7">Return Value</h3>
-<p>An order object of the type “IOrder”</p>
+<p>An order object of the type "IOrder"</p>
 <h3 id="example_17">Example</h3>
 <pre><code class="cs">private IOrder myEntryOrder = null;
 // Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
@@ -1218,7 +1210,7 @@ ExitLong(int quantity, string signalName, string fromEntry signal)
 </tbody>
 </table>
 <h3 id="return-value_8">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_20">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
@@ -1289,7 +1281,7 @@ ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEnt
 </tbody>
 </table>
 <h3 id="return-value_9">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_21">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
@@ -1359,7 +1351,7 @@ ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry
 </tbody>
 </table>
 <h3 id="return-value_10">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_22">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
@@ -1434,7 +1426,7 @@ ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string sign
 </tbody>
 </table>
 <h3 id="return-value_11">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_23">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
@@ -1499,7 +1491,7 @@ ExitShort(int quantity, string signalName, string fromEntry signal)
 </tbody>
 </table>
 <h3 id="return-value_12">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_24">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross each other
 if (CrossBelow(SMA(10), SMA(20), 1))
@@ -1570,7 +1562,7 @@ ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEn
 </tbody>
 </table>
 <h3 id="return-value_13">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_25">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross
 if (CrossBelow(SMA(10), SMA(20), 1))
@@ -1640,7 +1632,7 @@ ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntr
 </tbody>
 </table>
 <h3 id="return-value_14">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_26">Example</h3>
 <pre><code class="cs">// Enter if two SMAs have crossed
 if (CrossBelow(SMA(10), SMA(20), 1))
@@ -1715,7 +1707,7 @@ ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 </tbody>
 </table>
 <h3 id="return-value_15">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_27">Example</h3>
 <pre><code class="cs">// Enter if two SMAs cross each other
 if (CrossBelow(SMA(10), SMA(20), 1))
@@ -2036,7 +2028,7 @@ Print(&quot;Pieces &quot; + Position.Quantity);
 <p>See [<em>Position.Quantity</em>][<em>Position.MarketPosition</em>].</p>
 <h2 id="setprofittarget">SetProfitTarget()</h2>
 <h3 id="description_37">Description</h3>
-<p>Set profit target immediately creates a “take profit” order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
+<p>Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.</p>
 <p>See [<em>SetStopLoss()</em>], [<em>SetTrailStop()</em>].</p>
 <h3 id="usage_31">Usage</h3>
@@ -2068,7 +2060,7 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
                 - CalculationMode.Price (display as price value)                                                                                                                   
                 - CalculationMode.Ticks (display in ticks or pips)                                                                                                                 |
 </code></pre>
-<p>| value            | The distance between entry price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks. |
+<p>| value            | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
 | fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                 |</p>
 <h3 id="example_35">Example</h3>
 <pre><code class="cs">protected override void Initialize()
@@ -2113,8 +2105,8 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
                 - CalculationMode.Price (display as price value)                                                                                                                                                             
                 - CalculationMode.Ticks (display in ticks or pips)                                                                                                                                                           |
 </code></pre>
-<p>| simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
-| value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
+<p>| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |</p>
 <h3 id="example_36">Example</h3>
 <pre><code class="cs">protected override void Initialize()
@@ -2171,8 +2163,8 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 <pre><code>                - CalculationMode.Percent                                                                                                                                                                                    
                 - CalculationMode.Ticks                                                                                                                                                                                      |
 </code></pre>
-<p>| simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
-| value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
+<p>| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |</p>
 <h3 id="example_37">Example</h3>
 <pre><code class="cs">protected override void Initialize()
@@ -2240,7 +2232,7 @@ SetTrailStop(CalculationMode.Ticks, 30);
 | ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
 | signalName          | An unambiguous signal name (string)                                |</p>
 <h3 id="return-value_20">Return Value</h3>
-<p>an order object of the type “IOrder”</p>
+<p>an order object of the type "IOrder"</p>
 <h3 id="example_38">Example</h3>
 <pre><code class="cs">private IOrder entryOrder = null;
 protected override void OnBarUpdate()
