@@ -1170,6 +1170,11 @@ a double value for the unrealized profit or loss
 Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
 Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ```
+## GetScriptedCondition()
+### Description
+This method allows user to communicate between scripts.
+
+
 
 ## GetProfitLossAmount()
 ### Description
@@ -1244,13 +1249,13 @@ The individual properties are:
     - OrderAction.BuyToCover
     - OrderAction.Sell
     - OrderAction.SellShort
-    
+
 -   **AvgFillPrice
     **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry     price.
 
 -   **Filled
     **For partial versions, Filled is less than Quantity
-   
+
 -   **FromEntrySignal
     **The trading instrument in which the position exists..
       See *Instruments*.
@@ -1270,7 +1275,7 @@ The individual properties are:
     - OrderMode.Synthetic
 
 -   **OrderState
-    **The current status of the order can be queried (see *OnExecution* and *OnOrderUpdate*) 
+    **The current status of the order can be queried (see *OnExecution* and *OnOrderUpdate*)
     - OrderState.Accepted
     - OrderState.Cancelled
     - OrderState.CancelRejected
@@ -1283,9 +1288,9 @@ The individual properties are:
     - OrderState.ReplaceRejected
     - OrderState.Unknown
     - OrderState.Working
-    
+
 -   **OrderType
-    **Possible order types: 
+    **Possible order types:
     - OrderType.Limit
     - OrderType.Market
     - OrderType.Stop
@@ -1293,7 +1298,7 @@ The individual properties are:
 
 -   **Quantity
     **The quantity to be ordered
-    
+
 -   **StopPrice
 
 -   **Time
@@ -1301,16 +1306,17 @@ The individual properties are:
 
 -   **TimeFrame
     **The TimeFrame, which is valid for the order.
- 
+
 -   ***TimeFrame*
 
 Possible Methods:
 
 -   **order.*CancelOrder()*
-    **Delete the Order 
-    
+    **Delete the Order
+
 -   **order.ConfirmOrder()
-    **Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced. 
+    **Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
+
 
 ## MarketPosition
 See [*Position.MarketPosition*].
@@ -1846,6 +1852,3 @@ The individual factors are:
 **All factors are double values.**
 
 ![Performance Characteristics](./media/image10.png)
-
-
-
