@@ -64,7 +64,7 @@ Print("RealizedProfitLoss " + Account.RealizedProfitLoss);
 
 ## BarsSinceEntry()
 ### Description
-The property “BarsSinceEntry” returns the number of bars that have occurred since the last entry into the market.
+The property "BarsSinceEntry" returns the number of bars that have occurred since the last entry into the market.
 
 ### Usage
 ```cs
@@ -95,7 +95,7 @@ Print("The last entry was " + BarsSinceEntry() + " bars ago.");
 
 ## BarsSinceExit()
 ### Description
-The property “BarsSinceExit” outputs the number of bars that have occurred since the last exit from the market.
+The property "BarsSinceExit" outputs the number of bars that have occurred since the last exit from the market.
 
 ### Usage
 ```cs
@@ -155,7 +155,7 @@ CancelOrder(IOrder order)
 ```
 
 ### Parameter
-An order object of the type “IOrder”
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -188,7 +188,7 @@ ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ### Parameter
 |            |                                          |
 |------------|------------------------------------------|
-| iOrder     | An order object of the type “IOrder”     |
+| iOrder     | An order object of the type "IOrder"     |
 | quantity   | Number of units to be ordered            |
 | limitPrice | Limit price. Set this to 0 if not needed |
 | stopPrice  | Stop price. Set this to 0 if not needed  |
@@ -364,7 +364,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
                        Index of the data series for which the entry order is to be executed. See [*BarsInProgress*].  |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -396,18 +396,16 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 ```
 
 ### Parameter
-|                     |                                                                                                                                                                      |
-|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                                  |
-| quantity            | Amount of stocks/contracts/etc.                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                            
-                       Index of the data series for which the entry order is to be executed.                                                                                                 
-                       See [*BarsInProgress*].                                                                                                                                               |
-| limitPrice          | A double value for the limit price                                                                                                                                   |
+|             |                  |     
+|---------------------|-------------|
+| signalName          | An unambiguous name |
+| quantity            | Amount of stocks/contracts/etc.  |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*]. |
+| limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*] or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -449,7 +447,7 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*] command or until it reaches its expiry time (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -493,7 +491,7 @@ EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -532,7 +530,7 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
                        See [*BarsInProgress*].                                               |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -574,7 +572,7 @@ EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, 
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -614,7 +612,7 @@ EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -659,7 +657,7 @@ EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quanti
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-An order object of the type “IOrder”
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -772,7 +770,7 @@ ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEn
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -818,7 +816,7 @@ ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -863,7 +861,7 @@ ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, dou
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -911,7 +909,7 @@ ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -957,7 +955,7 @@ ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromE
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -1004,7 +1002,7 @@ ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -1049,7 +1047,7 @@ ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -1096,7 +1094,7 @@ ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -1422,7 +1420,7 @@ See [*Position.Quantity*][*Position.MarketPosition*].
 
 ## SetProfitTarget()
 ### Description
-Set profit target immediately creates a “take profit” order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
+Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.
 
 See [*SetStopLoss()*], [*SetTrailStop()*].
@@ -1443,7 +1441,7 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
                     - CalculationMode.Percent (display in percent)                                                                                                                     
                     - CalculationMode.Price (display as price value)                                                                                                                   
                     - CalculationMode.Ticks (display in ticks or pips)                                                                                                                 |
-| value            | The distance between entry price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks. |
+| value            | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
 | fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                 |
 
 ### Example
@@ -1480,8 +1478,8 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
                     - CalculationMode.Percent (display in percent)                                                                                                                                                               
                     - CalculationMode.Price (display as price value)                                                                                                                                                             
                     - CalculationMode.Ticks (display in ticks or pips)                                                                                                                                                           |
-| simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
-| value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
+| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
 
 ### Example
@@ -1543,8 +1541,8 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 
                     - CalculationMode.Percent                                                                                                                                                                                    
                     - CalculationMode.Ticks                                                                                                                                                                                      |
-| simulated        | When set to “true,” the stop order does not go live (as a market order) until the price has „touched“ it for the first time (meaning that it is executed just as it would be under real market conditions). |
-| value            | The distance between stop price and profit target. This is dependent upon the „mode“ but generally refers to a monetary value, a percentage or a value in ticks.                                            |
+| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
 
 ### Example
@@ -1598,7 +1596,7 @@ SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderTyp
 | signalName          | An unambiguous signal name (string)                                |
 
 ### Return Value
-an order object of the type “IOrder”
+an order object of the type "IOrder"
 
 ### Example
 ```cs
