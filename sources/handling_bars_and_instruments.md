@@ -112,6 +112,8 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.TailBottom*](#barstailbottom)
 
+[*IsCurrentBarLast*](#bariscurrentbarlast)
+
 With the **OnBarUpdate()** method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnBarUpdate()** is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnBarUpdate()** then you should first perform a test for null references using **if** (Bars != **null**).
 
@@ -773,7 +775,7 @@ None
 ### Usage
 Bars[0]. IsFalling;
 
-## Bars.TailTop 
+## Bars.TailTop
 ### Description
 Bar properties used for candle tail top height
 
@@ -786,7 +788,7 @@ None
 ### Usage
 Bars[0].TailTop;
 
-## Bars.TailBottom 
+## Bars.TailBottom
 ### Description
 Bar properties used for candle tail bottom height
 ### Parameter
@@ -801,6 +803,33 @@ Bars[0].TailBottom;
 
 ### Example
 **Print**("The total amount of ticks is " + Bars.TotalTicks);
+## BarsInProgress
+### Description
+Indicates if current bar is last in calculation.
+
+### Parameter
+none
+
+### Return value
+Type bool
+
+### Usage
+BarsInProgress
+
+### More Information
+used for complicated calculation on a last bar
+
+### Example
+```cs
+protected override void OnBarUpdate()
+        {
+            base.OnBarUpdate();
+            if (!IsCurrentBarLast)
+                return;
+            bool isUpdated;
+}
+```
+
 
 ## Data Series
 ### Description
