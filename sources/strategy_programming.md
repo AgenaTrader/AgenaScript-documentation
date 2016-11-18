@@ -82,10 +82,7 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the entry within an entry method.            |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                 
-
-                       Index for the data series for which the entry order was executed.                                          
-                       See *[BarsInProgress][*BarsInProgress*].*                                                                  |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index for the data series for which the entry order was executed. See *[BarsInProgress][*BarsInProgress*].* |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
@@ -111,11 +108,8 @@ BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 ### Parameter
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
-| signalName          | The signal name (string) that has been used to clearly label the exit within the exit method.                             |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                 
-
-                       Index of the data series for which the exit order has been executed.                                                       
-                       See [*BarsInProgress*].                                                                                                    |
+| signalName          | The signal name (string) that has been used to clearly label the exit within the exit method.    |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*]. |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
 ### Example
@@ -232,11 +226,10 @@ protected override void OnBarUpdate()
    oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, "ocoId","signalName");
    oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","signalName");
 
-
    CreateIfDoneGroup(new List<IOrder> { oEnterLong, oExitLong });
 
-
    oEnterLong.ConfirmOrder();
+}
 ```
 
 ## CreateOCOGroup()
@@ -268,9 +261,7 @@ protected override void OnBarUpdate()
    oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","signalName");
    oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "signalName");
 
-
    CreateOCOGroup(new List<IOrder> { oEnterLong, oEnterShort });
-
 
    oEnterLong.ConfirmOrder();
    oEnterShort.ConfirmOrder();
@@ -305,11 +296,8 @@ protected override void OnBarUpdate()
    oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "signalName");
    oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "signalName");
 
-
    CreateOROGroup(new List<IOrder> { oLimitLong, oStopLong });
 }
-
-
 ```
 
 
@@ -326,7 +314,7 @@ ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
 
 ### Parameter
-an int value containing the amount (stocks, contracts etc.)
+An int value containing the amount (stocks, contracts etc.)
 
 ### Example
 ```cs
@@ -360,8 +348,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 |---------------------|-----------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                     
-                       Index of the data series for which the entry order is to be executed. See [*BarsInProgress*].  |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*].  |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -405,7 +392,7 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*] or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -436,9 +423,9 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 ```
 
 ### Parameter
-|                     |                                                                                                                                                                                       |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                                                   |
+| |   |
+|---------------------|-------------------------------------------------------------------------------------------|
+| signalName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
 | barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies                                                                                                                                           
                        Index of the data series for which an entry order is to be executed.                                                                                                          
@@ -447,7 +434,7 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*] command or until it reaches its expiry time (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -479,19 +466,17 @@ EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 ```
 
 ### Parameter
-|                     |                                                                                                                                                                               |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                                           |
-| quantity            | Amount of stocks or contracts to be ordered                                                                                                                                   |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                                     
-                       Index of the data series for which the entry order is to be executed.                                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                                        |
-| stopPrice           | A double value for the stop price                                                                                                                                             |
-| limitPrice          | A double value for the limit price                                                                                                                                            |
+|    |     |
+|--------------|-------------------------|
+| signalName          | An unambiguous name       |
+| quantity            | Amount of stocks or contracts to be ordered   |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*].  |
+| stopPrice           | A double value for the stop price |
+| limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -605,14 +590,12 @@ EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                           |
 | quantity            | Amount to be ordered                                                                                          |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                     
-                       Index of the data series for which the entry order is to be executed.                                          
-                       See [*BarsInProgress*].                                                                                        |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*]. |
 | stopPrice           | A double value for the stop price                                                                             |
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -690,13 +673,15 @@ protected override void Initialize()
 EntriesPerDirection = 1;
 EntryHandling = EntryHandling.AllEntries;
 }
+
 protected override void OnBarUpdate()
 {
 if (CrossAbove(SMA(10), SMA(20), 1)
 EnterLong("SMA Cross Entry");
 if (CrossAbove(RSI(14, 3), 30, 1)
-EnterLong("RSI Cross Entry);
+EnterLong("RSI Cross Entry");
 }
+
 // Example 2
 // For each differently named entry signal, a long position will be opened
 protected override void Initialize()
@@ -704,12 +689,13 @@ protected override void Initialize()
 EntriesPerDirection = 1;
 EntryHandling = EntryHandling.UniqueEntries;
 }
+
 protected override void OnBarUpdate()
 {
 if (CrossAbove(SMA(10), SMA(20), 1)
 EnterLong("SMA Cross Entry");
 if (CrossAbove(RSI(14, 3), 30, 1)
-EnterLong("RSI Cross Entry);
+EnterLong("RSI Cross Entry");
 }
 ```
 
@@ -764,19 +750,18 @@ ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEn
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | quantity            | The quantity to be sold                                              |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                            
-                       Index of the data series for which the exit order is to be executed.  
-                       See [*BarsInProgress*].                                               |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].   |
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
 // Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA Cross Entry");
+
 // Close position
 if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLong();
@@ -809,9 +794,7 @@ ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the attached entry signal                                                                                                                        |
 | quantity            | Order quantity to be sold                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                    
-                       Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                       |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -823,6 +806,7 @@ an order object of the type "IOrder"
 // Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA Cross Entry");
+
 // Close position
 if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLongLimit(GetCurrentBid());
@@ -854,9 +838,7 @@ ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, dou
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                    
-                       Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                       |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].  |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -868,6 +850,7 @@ an order object of the type "IOrder"
 // Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA Cross Entry");
+
 // Close position
 if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLongStop(Low[0]);
@@ -901,21 +884,20 @@ ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                    
-                       Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                       |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
 // Enter if two SMAs cross each other
 if (CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA Cross Entry");
+
 // Close position
 if (CrossBelow(SMA(10), SMA(20), 1))
 ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
@@ -949,19 +931,18 @@ ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromE
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | Quantity            | Order quantity to be bought                                          |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                            
-                       Index of the data series for which the exit order is to be executed.  
-                       See [*BarsInProgress*].                                               |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
 // Enter if two SMAs cross each other
 if (CrossBelow(SMA(10), SMA(20), 1))
 EnterShort("SMA cross entry");
+
 // Close position
 if (CrossAbove(SMA(10), SMA(20), 1))
 ExitShort();
@@ -995,14 +976,12 @@ ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies                                                                                                                     
-                       Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                       |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
@@ -1040,20 +1019,19 @@ ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                    
-                       Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                       |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
 // Enter if two SMAs have crossed
 if (CrossBelow(SMA(10), SMA(20), 1))
 EnterShort("SMA cross entry");
+
 // Close position
 if (CrossAbove (SMA(10), SMA(20), 1))
 ExitShortStop(High[0]);
@@ -1086,21 +1064,20 @@ ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                    
-                       Index of the data series for which the exit order is to be executed.                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                       |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
-an order object of the type "IOrder"
+An order object of the type "IOrder"
 
 ### Example
 ```cs
 // Enter if two SMAs cross each other
 if (CrossBelow(SMA(10), SMA(20), 1))
 EnterShort("SMA cross entry");
+
 // Close position
 if (CrossAbove(SMA(10), SMA(20), 1))
 ExitShortStopLimit(High[0]+10*TickSize, High[0]);
@@ -1127,9 +1104,7 @@ AccountItem.CashValue
 AccountItem.RealizedProfitLoss
 
 ### Return Value
-a double value for the account item
-
-for historical bars, a zero (0) is returned
+A double value for the account item for historical bars, a zero (0) is returned
 
 ### Example
 ```cs
@@ -1161,7 +1136,7 @@ Potential values for the P/L type are:
 3 – P/L in ticks
 
 ### Return Value
-a double value for the unrealized profit or loss
+A double value for the unrealized profit or loss
 
 ### Example
 ```cs
@@ -1189,7 +1164,7 @@ GetProfitLossAmount(double profitLoss);
 Double
 
 ### Return Value
-a double value for the unrealized profit or loss
+A double value for the unrealized profit or loss
 
 ### Example
 ```cs
@@ -1242,38 +1217,37 @@ IOrder is an object that contains information about an order that is currently m
 The individual properties are:
 
 -   ** Action
-    **One of four possible positions in the market:
+    **One of four possible positions in the market:**
     - OrderAction.Buy
     - OrderAction.BuyToCover
     - OrderAction.Sell
     - OrderAction.SellShort
 
--   **AvgFillPrice
-    **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry     price.
+-   **AvgFillPrice**
+    **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry price.**
 
--   **Filled
-    **For partial versions, Filled is less than Quantity
+-   **Filled**
+    For partial versions, Filled is less than Quantity
 
--   **FromEntrySignal
-    **The trading instrument in which the position exists..
-      See *Instruments*.
+-   **FromEntrySignal**
+    The trading instrument in which the position exists... See *Instruments*.
 
--   **LimitPrice
+-   **LimitPrice**
 
--   **Name
-    **The unique SignalName  (maybe mistake SignalName)
+-   **Name**
+    The unique SignalName  (maybe mistake SignalName)
 
--   **OrderId
-    **The unique OrderId
+-   **OrderId**
+    The unique OrderId
 
--   **OrderMode
-    **One of three possible positions in the market:
+-   **OrderMode**
+    One of three possible positions in the market:
     - OrderMode.Direct
     - OrderMode.Dynamic
     - OrderMode.Synthetic
 
--   **OrderState
-    **The current status of the order can be queried (see *OnExecution* and *OnOrderUpdate*)
+-   **OrderState**
+    The current status of the order can be queried (see *OnExecution* and *OnOrderUpdate*)
     - OrderState.Accepted
     - OrderState.Cancelled
     - OrderState.CancelRejected
@@ -1287,33 +1261,33 @@ The individual properties are:
     - OrderState.Unknown
     - OrderState.Working
 
--   **OrderType
-    **Possible order types:
+-   **OrderType**
+    Possible order types:
     - OrderType.Limit
     - OrderType.Market
     - OrderType.Stop
     - OrderType.StopLimit
 
--   **Quantity
-    **The quantity to be ordered
+-   **Quantity**
+    The quantity to be ordered
 
--   **StopPrice
+-   **StopPrice**
 
--   **Time
-    **Time stamp
+-   **Time**
+    Time stamp
 
--   **TimeFrame
-    **The TimeFrame, which is valid for the order.
+-   **TimeFrame**
+    The TimeFrame, which is valid for the order.
 
--   ***TimeFrame*
+-   **TimeFrame**
 
 Possible Methods:
 
--   **order.*CancelOrder()*
-    **Delete the Order
+-   **order CancelOrder()**
+    Delete the Order
 
--   **order.ConfirmOrder()
-    **Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
+-   **order.ConfirmOrder()**
+    Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
 
 
 ## MarketPosition
@@ -1329,20 +1303,20 @@ See Performance Characteristics.
 
 The individual lists are:
 
--   **Performance.AllTrades
-    **A [*Trade*] collection object containing all trades generated by a strategy
+-   **Performance.AllTrades**
+    A [*Trade*] collection object containing all trades generated by a strategy.
 
--   **Performance.LongTrades
-    **A [*Trade*] collection object containing all long trades generated by a strategy
+-   **Performance.LongTrades**
+    A [*Trade*] collection object containing all long trades generated by a strategy.
 
--   **Performance.ShortTrades
-    **A [*Trade*] collection object containing all short trades generated by a strategy
+-   **Performance.ShortTrades**
+    A [*Trade*] collection object containing all short trades generated by a strategy.
 
--   **Performance.WinningTrades
-    **A [*Trade*] collection object containing all profitable trades generated by a strategy
+-   **Performance.WinningTrades**
+    A [*Trade*] collection object containing all profitable trades generated by a strategy.
 
--   **Performance.LosingTrades
-    **A [*Trade*] collection object containing all loss trades generated by a strategy
+-   **Performance.LosingTrades**
+    A [*Trade*] collection object containing all loss trades generated by a strategy.
 
 ### Example
 ```cs
@@ -1366,38 +1340,38 @@ Position is an object containing information regarding the position currently be
 
 The individual properties are:
 
--   **Position.AvgPrice
-    **The average buy or sell price of a position.
+-   **Position.AvgPrice**
+    The average buy or sell price of a position.
     For positions without partial executions, this is equal to the entry price.
 
--   **Position.CreatedDateTime
-    **Date and time at which the position was opened.
+-   **Position.CreatedDateTime**
+    Date and time at which the position was opened.
 
--   **Position.Instrument
-    **The trading instrument in which the position exists.
+-   **Position.Instrument**
+    The trading instrument in which the position exists.
     See *Instruments*.
 
--   **Position.MarketPosition
-    **One of three possible positions in the market:
+-   **Position.MarketPosition**
+    One of three possible positions in the market:
     - PositionType.Flat
     - PositionType.Long
     - PositionType.Short
 
--   **Position.OpenProfitLoss
-    **The currently not yet realized profit or loss.
+-   **Position.OpenProfitLoss**
+    The currently not yet realized profit or loss.
     See [*GetProfitLoss()*].
 
--   **Position.ProfitCurrency
-    **Profit (or loss) displayed as a currency amount.
+-   **Position.ProfitCurrency**
+    Profit (or loss) displayed as a currency amount.
 
--   **Position.ProfitPercent
-    **Profit (or loss) displayed in percent.
+-   **Position.ProfitPercent**
+    Profit (or loss) displayed in percent.
 
--   **Position.ProfitPoints
-    **Profit (or loss) displayed in points or pips.
+-   **Position.ProfitPoints**
+    Profit (or loss) displayed in points or pips.
 
--   **Position.Quantity
-    **Amount of stocks, contracts, CFDs etc. within a position.
+-   **Position.Quantity**
+    Amount of stocks, contracts, CFDs etc. within a position.
 
 ### Example
 ```cs
@@ -1433,16 +1407,15 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 ```
 
 ### Parameter
-|                  |                                                                                                                                                                   |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| currency         | Sets the profit target in a currency, for example 500€.                                                                                                           |
+|    |           |
+|------------------|------------------------------------|
+| currency         | Sets the profit target in a currency, for example 500€.  |
 | mode             | Possible values are:                                                                                                                                              
-
                     - CalculationMode.Percent (display in percent)                                                                                                                     
                     - CalculationMode.Price (display as price value)                                                                                                                   
-                    - CalculationMode.Ticks (display in ticks or pips)                                                                                                                 |
-| value            | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
-| fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                 |
+                    - CalculationMode.Ticks (display in ticks or pips)      |
+| value  | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
+| fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.   |
 
 ### Example
 ```cs
@@ -1470,14 +1443,13 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 ```
 
 ### Parameter
-|                  |                                                                                                                                                                                                             |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€                                                                                                                |
-| mode             | Potential values can be:                                                                                                                                                                                    
-
-                    - CalculationMode.Percent (display in percent)                                                                                                                                                               
+|      |      |
+|------------------|---------------------------------------|
+| currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€     |
+| mode             | Potential values can be:  
+                    - CalculationMode.Percent (display in percent)   
                     - CalculationMode.Price (display as price value)                                                                                                                                                             
-                    - CalculationMode.Ticks (display in ticks or pips)                                                                                                                                                           |
+                    - CalculationMode.Ticks (display in ticks or pips)    |
 | simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
 | value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
@@ -1534,13 +1506,12 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 ```
 
 ### Parameter
-|                  |                                                                                                                                                                                                             |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| currency         | The distance between the stop loss and the entry price                                                                                                                                                      |
-| mode             | Possible values are:                                                                                                                                                                                        
-
-                    - CalculationMode.Percent                                                                                                                                                                                    
-                    - CalculationMode.Ticks                                                                                                                                                                                      |
+|           |      |
+|------------------|---------------------------------------------------|
+| currency         | The distance between the stop loss and the entry price      |
+| mode             | Possible values are:  
+  - CalculationMode.Percent
+  - CalculationMode.Ticks   |
 | simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
 | value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
@@ -1767,7 +1738,6 @@ protected override void OnTermination()
     Print("Quantity " + trade.Quantity);
     Print("Timeframe " + trade.TimeFrame);
     Print("URL for the snapshot " + trade.Url);
-    Print("");
   }
 }
 ```
