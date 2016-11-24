@@ -176,25 +176,25 @@
 <p>The following methods can be used and therefore overwritten:</p>
 <ul>
 <li><a href="#onbarupdate"><em>OnBarUpdate()</em></a></li>
-<li><a href="#OnBrokerConnect"><em>OnBrokerConnect()</em></a></li>
-<li><a href="#OnBrokerDisconnect"><em>OnBrokerDisconnect()</em></a></li>
-<li><a href="#ChartPanelMouseMove"><em>ChartPanelMouseMove()</em></a></li>
-<li><a href="#OnChartPanelMouseDown"><em>OnChartPanelMouseDown()</em></a></li>
-<li><a href="#OnExecution"><em>OnExecution()</em></a></li>
-<li><a href="#OnMarketData"><em>OnMarketData()</em></a></li>
-<li><a href="#OnMarketDepth"><em>OnMarketDepth()</em></a></li>
-<li><a href="#OnOrderUpdate"><em>OnOrderUpdate()</em></a></li>
-<li><a href="#OnStartUp"><em>OnStartUp()</em></a></li>
-<li><a href="#OnTermination"><em>OnTermination()</em></a></li>
+<li><a href="#onbrokerconnect"><em>OnBrokerConnect()</em></a></li>
+<li><a href="#onbrokerdisconnect"><em>OnBrokerDisconnect()</em></a></li>
+<li><a href="#chartpanelmousemove"><em>ChartPanelMouseMove()</em></a></li>
+<li><a href="#onchartpanelmousedown"><em>OnChartPanelMouseDown()</em></a></li>
+<li><a href="#onexecution"><em>OnExecution()</em></a></li>
+<li><a href="#onmarketdata"><em>OnMarketData()</em></a></li>
+<li><a href="#onmarketdepth"><em>OnMarketDepth()</em></a></li>
+<li><a href="#onorderupdate"><em>OnOrderUpdate()</em></a></li>
+<li><a href="#onstartop"><em>OnStartUp()</em></a></li>
+<li><a href="#ontermination"><em>OnTermination()</em></a></li>
 </ul>
 <h2 id="onbarupdate">OnBarUpdate()</h2>
 <h3 id="description">Description</h3>
-<p>The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of <a href="#CalculateOnBarClose"><em>CalculateOnBarClose</em></a>, this will happen upon every incoming tick or when the bar has completed/closed.
+<p>The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of <a href="#calculateonbarclose"><em>CalculateOnBarClose</em></a>, this will happen upon every incoming tick or when the bar has completed/closed.
 OnBarUpdate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.</p>
 <p><strong>Caution:</strong>
 <strong>the numbering/indexing is different from the bar index – see <a href="#Bars"><em>Bars</em></a>.</strong></p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter">Parameter</h3>
 <p>none</p>
 <h3 id="return-value">Return Value</h3>
@@ -213,7 +213,7 @@ The editing begins with the oldest bar and goes up to the newest bar within the 
 <h2 id="onbrokerconnect">OnBrokerConnect()</h2>
 <h3 id="description_1">Description</h3>
 <p>OnBrokerConnect () method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect (), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.</p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_1">Parameter</h3>
 <p>none</p>
 <h3 id="return-value_1">Return Value</h3>
@@ -241,7 +241,7 @@ protected override void OnBrokerConnect()
 <h2 id="onbrokerdisconnect">OnBrokerDisconnect()</h2>
 <h3 id="description_2">Description</h3>
 <p>OnBrokerDisconnect() method is invoked each time the connection to the broker is interrupted.</p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_2">Parameter</h3>
 <p>An object from <em>TradingDatafeedChangedEventArgs</em></p>
 <h3 id="return-value_2">Return Value</h3>
@@ -370,7 +370,7 @@ namespace AgenaTrader.UserCode
 <p>The OnExecution() method is called up when an order is executed (filled).
 The status of a strategy can be changed by a strategy-managed order. This status change can be initiated by the changing of a volume, price or the status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for all events.</p>
 <p>OnExecution() will always be executed AFTER <a href="#OnOrderUpdate"><em>OnOrderUpdate()</em></a>.</p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_3">Parameter</h3>
 <p>An execution object of the type <em>IExecution</em></p>
 <h3 id="return-value_3">Return Value</h3>
@@ -403,7 +403,7 @@ protected override void OnExecution(IExecution execution)
 <p>The OnMarketData() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
 In a multibar indicator, the BarsInProgress method identifies the data series that was used for an information request for OnMarketData().
 OnMarketData() will not be called up for historical data.
-More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <p><strong>Notes regarding data from Yahoo (YFeed)</strong></p>
 <p>The field "LastPrice" equals – as usual – either the bid price or the ask price, depending on the last revenue turnover.</p>
 <p>The „MarketDataType“ field always equals the „last" value</p>
@@ -437,7 +437,7 @@ More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
 <p>The OnMarketDepth() method is called up whenever there is a change in the level 2 data (market depth).
 In a multibar indicator, the BarsInProgress method identifies the data series for which the OnMarketDepth() method is called up.
 OnMarketDepth is not called up for historical data.</p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="usage_5">Usage</h3>
 <pre><code class="cs">protected override void OnMarketDepth(MarketDepthEventArgs e)
 </code></pre>
@@ -461,7 +461,7 @@ OnMarketDepth is not called up for historical data.</p>
 A status change can therefore occur due to a change in the volume, price or status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for the relevant events.</p>
 <p><strong>Important note:</strong>
 <strong>If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.</strong></p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_6">Parameter</h3>
 <p>An order object of the type IOrder</p>
 <h3 id="return-value_6">Return Value</h3>
@@ -496,7 +496,7 @@ protected override void OnOrderUpdate(IOrder order)
 <p>The OnStartUp() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
 OnStartUp() is only called up once at the beginning of the script, after [<em>Initialize()</em>] and before [<em>OnBarUpdate()</em>] are called up.</p>
 <p>See [<em>OnTermination()</em>].</p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_7">Parameter</h3>
 <p>none</p>
 <h3 id="return-value_7">Return Value</h3>
@@ -521,7 +521,7 @@ protected override void OnStartUp()
 <h3 id="description_10">Description</h3>
 <p>The OnTermination() method can also be overridden in order to once again free up all the resources used in the script.</p>
 <p>See <a href="#Initialize"><em>Initialize()</em></a> and <a href="#OnStartUp"><em>OnStartUp()</em></a>.</p>
-<p>More information can be found here: <a href="#Events"><em>Events</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_8">Parameter</h3>
 <p>none</p>
 <h3 id="return-value_8">Return Value</h3>
