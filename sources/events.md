@@ -3,20 +3,21 @@
 
 AgenaTrader is an *event-oriented* application by definition.
 
-Programming in AgenaTrader using the various application programming interface ([*API*]) methods is based initially on the [*Overwriting*] of routines predefined for event handling.
+Programming in AgenaTrader using the various application programming interface (*API*) methods is based initially on the *Overwriting* of routines predefined for event handling.
 
 The following methods can be used and therefore overwritten:
 
--   [*OnBarUpdate()*]
--   [*OnBrokerConnect()*]
--   [*OnBrokerDisconnect()*]
--   [*OnChartPanelMouseDown()*]
--   [*OnExecution()*]
--   [*OnMarketData()*]
--   [*OnMarketDepth()*]
--   [*OnOrderUpdate()*]
--   [*OnStartUp()*]
--   [*OnTermination()*]
+- [*OnBarUpdate()*](#onbarupdate)
+- [*OnBrokerConnect()*](#OnBrokerConnect)
+- [*OnBrokerDisconnect()*](#OnBrokerDisconnect)
+- [*ChartPanelMouseMove()*](#ChartPanelMouseMove)
+- [*OnChartPanelMouseDown()*](#OnChartPanelMouseDown)
+- [*OnExecution()*](#OnExecution)
+- [*OnMarketData()*](#OnMarketData)
+- [*OnMarketDepth()*](#OnMarketDepth)
+- [*OnOrderUpdate()*](#OnOrderUpdate)
+- [*OnStartUp()*](#OnStartUp)
+- [*OnTermination()*](#OnTermination)
 
 ## OnBarUpdate()
 ### Description
@@ -24,7 +25,8 @@ The OnBarUpdate() method is called up whenever a bar changes; depending on the v
 OnBarUpdate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.
 
-Caution: the numbering/indexing is different from the bar index – see [*Bars*](#Bars).
+**Caution:**
+**the numbering/indexing is different from the bar index – see [*Bars*](#Bars).**
 
 More information can be found here: [*Events*](#Events).
 
@@ -87,7 +89,7 @@ OnBrokerDisconnect() method is invoked each time the connection to the broker is
 More information can be found here: [*Events*](#Events).
 
 ### Parameter
-An object of type TradingDatafeedChangedEventArgs
+An object from *TradingDatafeedChangedEventArgs*
 
 ### Return Value
 none
@@ -107,12 +109,14 @@ protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
        Print("Die Verbindung zum Broker wurde getrennt");
 }
 ```
-## OnChartPanelMouseDown()
+
+
+## ChartPanelMouseMove()
 ### Description
-Description
-In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the ChartControl.ChartPanelMouseDown event.
+In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the ChartControl.ChartPanelMouseMove event.
+
 ### Attention!
-It is important to remove the EventHandler from the OnTermination () method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
+It is important to remove the EventHandler from the OnTermination() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
 
 ### Example
 ```cs
@@ -132,13 +136,68 @@ using AgenaTrader.Helper;
 
 namespace AgenaTrader.UserCode
 {
-       public class MouseEvent : UserIndicator
+    public class ChartPanelMouseMove : UserIndicator
+    {
+        protected override void Initialize()
+        {
+            Overlay = true;
+        }
+
+        protected override void OnStartUp()
+        {
+            // Add event listener
+            if (ChartControl != null)
+                ChartControl.ChartPanelMouseMove += OnChartPanelMouseMove;
+        }
+
+        protected override void OnTermination()
+        {
+            // Remove event listener
+            if (ChartControl != null)
+                ChartControl.ChartPanelMouseMove -= OnChartPanelMouseMove;
+        }
+
+        private void OnChartPanelMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Print("X = {0}, Y = {1}", ChartControl.GetDateTimeByX(e.X), ChartControl.GetPriceByY(e.Y));
+        }
+    }
+}
+
+```
+
+## OnChartPanelMouseDown()
+### Description
+In an indicator, or strategy, the click event of the mouse can be processed. For this, it is necessary to program an EventHandler as a method and add this method to the ChartControl.ChartPanelMouseDown event.
+
+### Attention!
+It is important to remove the EventHandler from the OnTermination() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
+
+### Example
+```cs
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+using AgenaTrader.Helper;
+
+
+namespace AgenaTrader.UserCode
+{
+       public class ChartPanelMouseDown : UserIndicator
        {
                protected override void Initialize()
                {
                        Overlay = true;
                }
-               
+
                protected override void OnStartUp()
                {
                        // Add event listener
@@ -168,12 +227,12 @@ namespace AgenaTrader.UserCode
 The OnExecution() method is called up when an order is executed (filled).
 The status of a strategy can be changed by a strategy-managed order. This status change can be initiated by the changing of a volume, price or the status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for all events.
 
-OnExecution() will always be executed AFTER [*OnOrderUpdate()*].
+OnExecution() will always be executed AFTER [*OnOrderUpdate()*](#OnOrderUpdate).
 
-More information can be found here: [*Events*]
+More information can be found here: [*Events*](#Events).
 
 ### Parameter
-An execution object of the type IExecution
+An execution object of the type *IExecution*
 
 ### Return Value
 none
@@ -196,6 +255,7 @@ protected override void OnExecution(IExecution execution)
     // Example 1
     if (entryOrder != null && execution.Order == entryOrder)
     Print(execution.ToString());
+
     // Example 2
     if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
     Print(execution.ToString());
@@ -262,7 +322,7 @@ protected override void OnMarketDepth(MarketDepthEventArgs e)
 none
 
 ### Parameter
-[*MarketDepthEventArgs*] e
+An object from *MarketDepthEventArgs*
 
 ### Example
 ```cs
@@ -282,7 +342,7 @@ A status change can therefore occur due to a change in the volume, price or stat
 **Important note:**
 **If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.**
 
-More information can be found here: [*Events*].
+More information can be found here: [*Events*](#Events).
 
 ### Parameter
 An order object of the type IOrder
@@ -324,7 +384,7 @@ OnStartUp() is only called up once at the beginning of the script, after [*Initi
 
 See [*OnTermination()*].
 
-More information can be found here: [*Events*] .
+More information can be found here: [*Events*](#Events).
 
 ### Parameter
 none
@@ -371,7 +431,7 @@ protected override void OnTermination()
 
 ### More Information
 **Caution:**
-Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.
+**Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.**
 
 ### Example
 ```cs

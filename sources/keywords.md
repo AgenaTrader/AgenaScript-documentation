@@ -7,8 +7,8 @@ The add method allows you to add plots or line objects to the chart. When a new 
 Add() can be used with the Initialize() and the OnBarUpdate() methods.
 
 ### Parameter
-plot – a [*Plot*] object
-line – a [*Line*] object
+plot – a *Plot* object
+line – a *Line* object
 
 ### Usage
 ```cs
@@ -46,7 +46,7 @@ namespace AgenaTrader.UserCode
     Add(new Plot(Color.Red, "myFastSMA"));
     Add(new Plot(Color.Blue, "mySlowSMA"));
     }
-    
+
     protected override void OnBarUpdate()
     {
     //The set method is assigned to the value of the current bar
@@ -148,13 +148,13 @@ Information regarding the usage of attributes can be found here:
 
 The most commonly used attributes in AgenaScript are:
 
--   [*Browsable*]
--   [*Category*]
--   [*ConditionalValue*]
--   [*Description*]
--   [*DisplayName*]
--   [*TimeFrameRequirements*]
--   [*XmlIgnore*]
+- [*Browsable*](#Browsable)
+- [*Category*](#Category)
+- [*ConditionalValue*](#ConditionalValue)
+- [*Description*](#Description)
+- [*DisplayName*](#DisplayName)
+- [*TimeFrameRequirements*](#TimeFrameRequirements)
+- [*XmlIgnore*](#XmlIgnore)
 
 ## Browsable
 Browsable is an *[Attribut]e* within AgenaScript.
@@ -431,7 +431,7 @@ Occurred.Set(1); // Long
 else if ( CurrentBar %3 == 0 )
 Occurred.Set(-1); // Short
 else
-Occurred.Set(0); 
+Occurred.Set(0);
 }
 ```
 
@@ -626,8 +626,8 @@ protected override void OnBarUpdate()
             base.OnBarUpdate();
             if (!IsCurrentBarLast)
                 return;
-            bool isUpdated; 
-} 
+            bool isUpdated;
+}
 ```
 
 ## DatafeedHistoryPeriodicity
@@ -1531,7 +1531,7 @@ used for complicated calculation on a last bar
 protected override void OnExecution(IExecution execution)
 {
 if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
-{ 
+{
 if (oEnter != null && execution.Name == oEnter.Name)
 {
 // Enter-Order gefüllt
@@ -2681,6 +2681,3 @@ Add(new Plot(Color.Red, "MyPlot1"));
 VerticalGridLines = false;
 }
 ```
-
-
-
