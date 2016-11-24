@@ -8,27 +8,27 @@ Programming in AgenaTrader using the various application programming interface (
 The following methods can be used and therefore overwritten:
 
 - [*OnBarUpdate()*](#onbarupdate)
-- [*OnBrokerConnect()*](#OnBrokerConnect)
-- [*OnBrokerDisconnect()*](#OnBrokerDisconnect)
-- [*ChartPanelMouseMove()*](#ChartPanelMouseMove)
-- [*OnChartPanelMouseDown()*](#OnChartPanelMouseDown)
-- [*OnExecution()*](#OnExecution)
-- [*OnMarketData()*](#OnMarketData)
-- [*OnMarketDepth()*](#OnMarketDepth)
-- [*OnOrderUpdate()*](#OnOrderUpdate)
-- [*OnStartUp()*](#OnStartUp)
-- [*OnTermination()*](#OnTermination)
+- [*OnBrokerConnect()*](#onbrokerconnect)
+- [*OnBrokerDisconnect()*](#onbrokerdisconnect)
+- [*ChartPanelMouseMove()*](#chartpanelmousemove)
+- [*OnChartPanelMouseDown()*](#onchartpanelmousedown)
+- [*OnExecution()*](#onexecution)
+- [*OnMarketData()*](#onmarketdata)
+- [*OnMarketDepth()*](#onmarketdepth)
+- [*OnOrderUpdate()*](#onorderupdate)
+- [*OnStartUp()*](#onstartop)
+- [*OnTermination()*](#ontermination)
 
 ## OnBarUpdate()
 ### Description
-The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnBarClose*](#CalculateOnBarClose), this will happen upon every incoming tick or when the bar has completed/closed.
+The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnBarClose*](#calculateonbarclose), this will happen upon every incoming tick or when the bar has completed/closed.
 OnBarUpdate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.
 
 **Caution:**
 **the numbering/indexing is different from the bar index – see [*Bars*](#Bars).**
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 none
@@ -52,7 +52,7 @@ protected override void OnBarUpdate()
 ### Description
 OnBrokerConnect () method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect (), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 none
@@ -86,7 +86,7 @@ protected override void OnBrokerConnect()
 ### Description
 OnBrokerDisconnect() method is invoked each time the connection to the broker is interrupted.
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 An object from *TradingDatafeedChangedEventArgs*
@@ -229,7 +229,7 @@ The status of a strategy can be changed by a strategy-managed order. This status
 
 OnExecution() will always be executed AFTER [*OnOrderUpdate()*](#OnOrderUpdate).
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 An execution object of the type *IExecution*
@@ -267,7 +267,7 @@ protected override void OnExecution(IExecution execution)
 The OnMarketData() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
 In a multibar indicator, the BarsInProgress method identifies the data series that was used for an information request for OnMarketData().
 OnMarketData() will not be called up for historical data.
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 **Notes regarding data from Yahoo (YFeed)**
 
@@ -311,7 +311,7 @@ The OnMarketDepth() method is called up whenever there is a change in the level 
 In a multibar indicator, the BarsInProgress method identifies the data series for which the OnMarketDepth() method is called up.
 OnMarketDepth is not called up for historical data.
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Usage
 ```cs
@@ -342,7 +342,7 @@ A status change can therefore occur due to a change in the volume, price or stat
 **Important note:**
 **If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.**
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 An order object of the type IOrder
@@ -384,7 +384,7 @@ OnStartUp() is only called up once at the beginning of the script, after [*Initi
 
 See [*OnTermination()*].
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 none
@@ -416,7 +416,7 @@ The OnTermination() method can also be overridden in order to once again free up
 
 See [*Initialize()*](#Initialize) and [*OnStartUp()*](#OnStartUp).
 
-More information can be found here: [*Events*](#Events).
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 none
