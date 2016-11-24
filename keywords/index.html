@@ -320,8 +320,8 @@
 <p>The add method allows you to add plots or line objects to the chart. When a new plot object is added using Add(), this automatically creates a data series of the type DataSeries, which is attached to this object. The value collection allows you to reference and access this data series.
 Add() can be used with the Initialize() and the OnBarUpdate() methods.</p>
 <h3 id="parameter">Parameter</h3>
-<p>plot – a [<em>Plot</em>] object
-line – a [<em>Line</em>] object</p>
+<p>plot – a <em>Plot</em> object
+line – a <em>Line</em> object</p>
 <h3 id="usage">Usage</h3>
 <pre><code class="cs">Add(Plot plot)
 Add(Line line)
@@ -458,13 +458,13 @@ Information regarding the usage of attributes can be found here:</p>
 <p>[<em>http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx</em>]</p>
 <p>The most commonly used attributes in AgenaScript are:</p>
 <ul>
-<li>[<em>Browsable</em>]</li>
-<li>[<em>Category</em>]</li>
-<li>[<em>ConditionalValue</em>]</li>
-<li>[<em>Description</em>]</li>
-<li>[<em>DisplayName</em>]</li>
-<li>[<em>TimeFrameRequirements</em>]</li>
-<li>[<em>XmlIgnore</em>]</li>
+<li><a href="#Browsable"><em>Browsable</em></a></li>
+<li><a href="#Category"><em>Category</em></a></li>
+<li><a href="#ConditionalValue"><em>ConditionalValue</em></a></li>
+<li><a href="#Description"><em>Description</em></a></li>
+<li><a href="#DisplayName"><em>DisplayName</em></a></li>
+<li><a href="#TimeFrameRequirements"><em>TimeFrameRequirements</em></a></li>
+<li><a href="#XmlIgnore"><em>XmlIgnore</em></a></li>
 </ul>
 <h2 id="browsable">Browsable</h2>
 <p>Browsable is an <em>[Attribut]e</em> within AgenaScript.</p>
@@ -689,7 +689,7 @@ Occurred.Set(1); // Long
 else if ( CurrentBar %3 == 0 )
 Occurred.Set(-1); // Short
 else
-Occurred.Set(0); 
+Occurred.Set(0);
 }
 </code></pre>
 
@@ -874,8 +874,8 @@ Print(&quot;Call of OnBarUpdate for bar nr. &quot; + CurrentBar + &quot; of &quo
             base.OnBarUpdate();
             if (!IsCurrentBarLast)
                 return;
-            bool isUpdated; 
-} 
+            bool isUpdated;
+}
 </code></pre>
 
 <h2 id="datafeedhistoryperiodicity">DatafeedHistoryPeriodicity</h2>
@@ -1568,7 +1568,7 @@ CandleOutlineColorSeries[0] = Color.Empty;
 <pre><code class="cs">protected override void OnExecution(IExecution execution)
 {
 if (execution.Order != null &amp;&amp; execution.Order.OrderState == OrderState.Filled)
-{ 
+{
 if (oEnter != null &amp;&amp; execution.Name == oEnter.Name)
 {
 // Enter-Order gefüllt
