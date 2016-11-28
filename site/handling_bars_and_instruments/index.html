@@ -752,7 +752,7 @@ PlaySound(&quot;Alert1&quot;);
 <pre><code class="cs">if (Bars.SessionBreak)
 {
 Print(&quot;The stock exchange Xetra has just a trade pause&quot;);
-
+}
 </code></pre>
 
 <h2 id="barssessionend">Bars.SessionEnd</h2>
@@ -1399,15 +1399,16 @@ As soon as the <strong>OnBarUpdate()</strong> function is called up by AgenaScri
 double value2</p>
 <h3 id="return-value_28">Return value</h3>
 <p>Type int</p>
-<p>1 - Value1 is bigger than value2
--1 - Value1 is smaller than value2
-0 - Value1 and value2 are equal</p>
+<p>1 - value1 is bigger than value2
+-1 - value1 is smaller than value2
+0 - value1 and value2 are equal</p>
 <h3 id="usage_47">Usage</h3>
 <pre><code class="cs">Instrument.Compare(double Value1, double Value2)
 </code></pre>
 
 <h3 id="more-information_38">More Information</h3>
-<p><strong>Be aware this function compares prices based on TickSize.</strong> If the ticksize of your instrument is 0.01 these prices will be rounded and compared. If you want regular comparation of two numbers, you should use  operator greater than (&gt;) and smaller than (&lt;).</p>
+<p><strong>Be aware this function compares prices based on TickSize.</strong> If the ticksize of your instrument is 0.01 these prices will be rounded and compared on 2 decimal digits. If you want a regular comparation of two numbers, you should use the operator "greater than" (&gt;) or the operator "smaller than" (&lt;).</p>
+<p>More infomation about <a href="https://msdn.microsoft.com/en-us//library/75ks3aby(v=vs.110).aspx">math.round()</a></p>
 <p>If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:</p>
 <p>Compare(2, 1.99999) a 1, meaning 2 is bigger than 1.99999
 Compare(2, 2.000001) a 0, meaning the values are equal
@@ -1895,15 +1896,15 @@ namespace AgenaTrader.UserCode
 public class MultiBarDemo : UserIndicator
 {
 protected override void InitRequirements()
-&gt; {
-&gt;
-&gt; Add(DatafeedHistoryPeriodicity.Day, 1);
-&gt;
-&gt; Add(DatafeedHistoryPeriodicity.Week, 1);
-&gt;
-&gt; }
-&gt;
-&gt; protected override void Initialize()
+{
+
+ Add(DatafeedHistoryPeriodicity.Day, 1);
+
+ Add(DatafeedHistoryPeriodicity.Week, 1);
+
+ }
+
+ protected override void Initialize()
 {
 CalculateOnBarClose = true;
 }
