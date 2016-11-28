@@ -597,8 +597,9 @@ Bars.SessionBreak
 if (Bars.SessionBreak)
 {
 Print("The stock exchange Xetra has just a trade pause");
-
+}
 ```
+
 ## Bars.SessionEnd
 ### Description
 Bars.SessionEnd outputs the time for the end of the currently running trading session.
@@ -1512,9 +1513,9 @@ double value2
 ### Return value
 Type int
 
-1 - Value1 is bigger than value2
--1 - Value1 is smaller than value2
-0 - Value1 and value2 are equal
+1 - value1 is bigger than value2
+-1 - value1 is smaller than value2
+0 - value1 and value2 are equal
 
 ### Usage
 ```cs
@@ -1522,7 +1523,9 @@ Instrument.Compare(double Value1, double Value2)
 ```
 
 ### More Information
-**Be aware this function compares prices based on TickSize.** If the ticksize of your instrument is 0.01 these prices will be rounded and compared. If you want regular comparation of two numbers, you should use  operator greater than (>) and smaller than (<).
+**Be aware this function compares prices based on TickSize.** If the ticksize of your instrument is 0.01 these prices will be rounded and compared on 2 decimal digits. If you want a regular comparation of two numbers, you should use the operator "greater than" (>) or the operator "smaller than" (<).
+
+More infomation about [math.round()](https://msdn.microsoft.com/en-us//library/75ks3aby(v=vs.110).aspx)
 
 If the tick size is 0,00001 – as it usually is with FX values – then the following will be displayed:
 
@@ -2157,15 +2160,15 @@ namespace AgenaTrader.UserCode
 public class MultiBarDemo : UserIndicator
 {
 protected override void InitRequirements()
-> {
->
-> Add(DatafeedHistoryPeriodicity.Day, 1);
->
-> Add(DatafeedHistoryPeriodicity.Week, 1);
->
-> }
->
-> protected override void Initialize()
+{
+
+ Add(DatafeedHistoryPeriodicity.Day, 1);
+
+ Add(DatafeedHistoryPeriodicity.Week, 1);
+
+ }
+
+ protected override void Initialize()
 {
 CalculateOnBarClose = true;
 }
