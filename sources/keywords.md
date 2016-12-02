@@ -190,9 +190,9 @@ get { return Values[0]; }
 ```
 
 ## Category
-Category is an *[Attribute]* in AgenaScript.
+Category is an *[Attribute]* in AgenaScript and can be used on properties and classes.
 
-The category attribute defines under which category in the properties dialog the parameter is shown.
+The category attribute on properties defines under which category in the properties dialog the parameter is shown.
 If this attribute is missing, the parameters category is accepted as the standard.
 
 The following example shows how to create the new category "My Parameters" in the properties dialog:
@@ -207,6 +207,22 @@ set { _period = value; }
 ```
 
 ![Category](./media/image11.png)
+
+If you use the category *[Attribute]* on classes you are able to create subcategories for your scripts and group them all in one category.
+This is pretty useful if you are creating a package and you want to group a few indicators in a group with one name.
+
+The following example shows how to create a subfolder "My Package":
+```cs
+namespace AgenaTrader.UserCode
+{
+    [Description("Description what this indicator doing.")]
+    [Category("My Package")]
+    public class MyHolyGrail_Indicator : UserIndicator
+    {
+      //your class code
+    }
+}
+```
 
 ## ConditionalValue
 Conditional value is an *[Attribute]* in AgenaScript.
