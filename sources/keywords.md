@@ -113,7 +113,7 @@ Alert("Message text", true, pathOfSoundfile + nameOfSoundFile);
 
 ## AllowRemovalOfDrawObjects
 ### Description
-"AllowRemovalOfDrawObjects" is a property of indicators that can be set under [*Initialize()*].
+"AllowRemovalOfDrawObjects" is a property of indicators that can be set under [*Initialize()*](#initialize).
 
 **AllowRemovalOfDrawObjects = true**
 
@@ -144,17 +144,17 @@ AllowRemovalOfDrawObjects = true;
 Attribute is a component of the C\# language. Within AgenaScript, indicators, and strategies, you can use these attributes in the same manner as you would in C\#.
 Information regarding the usage of attributes can be found here:
 
-[*http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx*]
+[*http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx*](http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx)
 
 The most commonly used attributes in AgenaScript are:
 
-- [*Browsable*](#browsable)
-- [*Category*](#category)
-- [*ConditionalValue*](#conditionalvalue)
-- [*Description*](#description)
-- [*DisplayName*](#displayname)
-- [*TimeFrameRequirements*](#timeframerequirements)
-- [*XmlIgnore*](#xmlignore)
+-   [*Browsable*](#browsable)
+-   [*Category*](#category)
+-   [*ConditionalValue*](#conditionalvalue)
+-   [*Description*](#description)
+-   [*DisplayName*](#displayname)
+-   [*TimeFrameRequirements*](#timeframerequirements)
+-   [*XmlIgnore*](#xmlignore)
 
 ## Browsable
 Browsable is an [Attribute](#attribute) within AgenaScript.
@@ -295,11 +295,11 @@ If you want a script to use data from various timeframes, the class requires the
 The amount of data provided for the other timeframes will always be the same as the number of actual candles loaded into the chart. If there are 500 candles for a 5-minute chart, then 500 candles of another timeframe will also be loaded. In the first example above, 500 daily candles will be loaded. In the second example, 500 15-minute candles, 500 daily candles and 500 weekly candles will be loaded.
 The amount of data can become rather large very quickly, thus you should take precautions when using this attribute.
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 **Important:**
 
-If a class uses a different indicator that requires one or more secondary timeframes, then the "TimeFrameRequirements" attribute must be set for the class retrieving the data. An example for this can be seen here: [*GetDayBar*].
+If a class uses a different indicator that requires one or more secondary timeframes, then the "TimeFrameRequirements" attribute must be set for the class retrieving the data. An example for this can be seen here: [*GetDayBar*](#getdaybar).
 
 ## XMLIgnore
 XML ignore is an [Attribute](#attribute) in AgenaScript.
@@ -416,7 +416,7 @@ When an indicator is called up by another indicator, the CalculateOnBarClose pro
 CalculateOnBarClose
 
 ### More Information
-See [*Bars*].
+See [*Bars*](#bars).
 
 ### Example
 ```cs
@@ -468,7 +468,7 @@ The important properties are:
 -   FirstBarVisible, LastBarVisible
 -   GetXByBarIdx, GetYByValue
 
-An example can be seen here: [*PlotSample*].
+An example can be seen here: [*PlotSample*](#plotsample).
 
 **BarsPainted und BarsVisible:**
 
@@ -502,7 +502,7 @@ LastBarVisible would be Bars.Count -1.
 ## ClearOutputWindow()
 ### Description
 The ClearOutputWindow() method empties the output window. The method can be used within Initialize() as well as within OnBarUpdate().
-The output window contains all outputs that have been created with the [*Print()*] command.
+The output window contains all outputs that have been created with the [*Print()*](#print) command.
 Using the output window is a great method for code debugging.
 
 ### Usage
@@ -529,7 +529,7 @@ ClearOutputWindow();
 ### Description
 The CrossAbove() method allows you to check whether a crossing of two values has occurred (from bottom to top) within a predefined number of periods. The values can be a market price, an indicator, a data series or a constant value.
 
-See [*CrossBelow()*], [*Rising()*], [*Falling()*].
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
 
 ### Usage
 ```cs
@@ -565,7 +565,7 @@ Print("Long entry !!!");
 ### Description
 Using the CrossBelow() method, you can test whether or not a cross below has occurred within a predefined number of periods. The values can be the market price, an indicator, any data series, or a constant value.
 
-See [*CrossAbove()*], [*Rising()*], [*Falling()*].
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
 
 ### Usage
 ```cs
@@ -612,7 +612,7 @@ Current bar is a variable of the type int, which always contains the number of t
 CurrentBar
 
 ### More Information
-The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the [*Barindex*][*Bars*]. Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:
+The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the [*Barindex*](#barindex) and [*Bars*](#bars). Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:
 
 CurrentBar numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time\[0\] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time\[5\].
 For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.
@@ -654,23 +654,23 @@ Datafeed history periodicity is a data type.
 
 ### Definition
 public enum DatafeedHistoryPeriodicity
-- DatafeedHistoryPeriodicity.Tick
-- DatafeedHistoryPeriodicity.Second
-- DatafeedHistoryPeriodicity.Minute
-- DatafeedHistoryPeriodicity.Hour
-- DatafeedHistoryPeriodicity.Day
-- DatafeedHistoryPeriodicity.Week
-- DatafeedHistoryPeriodicity.Month
-- DatafeedHistoryPeriodicity.Volume
-- DatafeedHistoryPeriodicity.Range
-- DatafeedHistoryPeriodicity.Quarter
-- DatafeedHistoryPeriodicity.Year
-- DatafeedHistoryPeriodicity.HeikinAshi
-- DatafeedHistoryPeriodicity.Renko
-- DatafeedHistoryPeriodicity.LineBreak
-- DatafeedHistoryPeriodicity.Kagi
-- DatafeedHistoryPeriodicity.PointAndFigure
-- DatafeedHistoryPeriodicity.Custom
+-   DatafeedHistoryPeriodicity.Tick
+-   DatafeedHistoryPeriodicity.Second
+-   DatafeedHistoryPeriodicity.Minute
+-   DatafeedHistoryPeriodicity.Hour
+-   DatafeedHistoryPeriodicity.Day
+-   DatafeedHistoryPeriodicity.Week
+-   DatafeedHistoryPeriodicity.Month
+-   DatafeedHistoryPeriodicity.Volume
+-   DatafeedHistoryPeriodicity.Range
+-   DatafeedHistoryPeriodicity.Quarter
+-   DatafeedHistoryPeriodicity.Year
+-   DatafeedHistoryPeriodicity.HeikinAshi
+-   DatafeedHistoryPeriodicity.Renko
+-   DatafeedHistoryPeriodicity.LineBreak
+-   DatafeedHistoryPeriodicity.Kagi
+-   DatafeedHistoryPeriodicity.PointAndFigure
+-   DatafeedHistoryPeriodicity.Custom
 
 See *TimeFrame*, *TimeFrames*.
 
@@ -684,22 +684,22 @@ In the table below you will find 4 newly created data series (highlighted). Each
 ![DataSeries](./media/image12.png)
 
 ### Usable Data Series in AgenaTrader
-[*BoolSeries*]
+[*BoolSeries*](#boolseries)
 
-[*DataSeries*]
+[*DataSeries*](#dataseries)
 
-[*DateTimeSeries*]
+[*DateTimeSeries*](#datetimeseries)
 
-[*FloatSeries*]
+[*FloatSeries*](#floatseries)
 
-[*IntSeries*]
+[*IntSeries*](#intseries)
 
-[*LongSeries*]
+[*LongSeries*](#longseries)
 
-[*StringSeries*]
+[*StringSeries*](#stringseries)
 
 In addition, there are also data series such as ColorSeries, although these are only used for internal purposes and should not be used directly.
-To change the color of plots, please use [*PlotColors*].
+To change the color of plots, please use [*PlotColors*](#plotcolors).
 
 ### Set(), Reset() und ContainsValue()
 Each data series contains a **Set()**, **Reset()** and **ContainsValue()** method.
@@ -709,7 +709,7 @@ Programming with the help of the reset method can simplify otherwise complex log
 The ContainsValue() checks whether a data series has a value for a specific position.
 
 ### Information about Data Types
-[*http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx*]
+[*http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx*](http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx)
 
 ## BoolSeries
 ### Description
@@ -779,7 +779,7 @@ myBoolSeries.Set(false);
 
 ## DataSeries
 ### Description
-Data series is a [*DataSeries*][*Data series*] that can contain a double value for each bar. The number of elements in this series corresponds to the exact number of bars within the charts.
+Data series is a [*DataSeries*](#dataseries) that can contain a double value for each bar. The number of elements in this series corresponds to the exact number of bars within the charts.
 
 Data series for double values are the data series most commonly used for indicators.
 
@@ -1156,13 +1156,13 @@ See [*http://msdn.microsoft.com/de-de/library/03ybds8y.aspx*]
 Property DayOfWeek
 
 public enum DayOfWeek
-- DayOfWeek.Monday
-- DayOfWeek.Tuesday
-- DayOfWeek.Wednesday
-- DayOfWeek.Thursday
-- DayOfWeek.Friday
-- DayOfWeek.Saturday
-- DayOfWeek.Sunday
+-   DayOfWeek.Monday
+-   DayOfWeek.Tuesday
+-   DayOfWeek.Wednesday
+-   DayOfWeek.Thursday
+-   DayOfWeek.Friday
+-   DayOfWeek.Saturday
+-   DayOfWeek.Sunday
 
 ### Example
 ```cs
@@ -1274,7 +1274,7 @@ DrawVerticalLine("MyVerticalLine", 5, Color.Black);
 ### Description
 The Falling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.
 
-See [*CrossAbove()*], [*CrossBelow()*], [*Rising()*].
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
 
 ### Usage
 ```cs
@@ -1298,30 +1298,30 @@ Print("The SMA(20) is currently falling.");
 ## Colors
 AgenaScript provides you with the following commands for defining colors and making color changes to the chart:
 
-[*BarColor*] Color of a bar
+[*BarColor*](#barcolor) Color of a bar
 
-[*BackColor*] Background color of the chart
+[*BackColor*](#backcolor) Background color of the chart
 
-[*BackColorAll*] Background color of the chart and all panels
+[*BackColorAll*](#backcolorall) Background color of the chart and all panels
 
 ChartControl.UpColor Color of up ticks (up bars)
 ChartControl.DownColor Color of down ticks (down bars)
 
 For each bar, its colors are saved in the following data series. If these data series are written in, the color of the referenced bar will change.
 
-[*BarColorSeries*]
+[*BarColorSeries*](#barcolorseries)
 
-[*CandleOutlineColorSeries*]
+[*CandleOutlineColorSeries*](#candleoutlinecolorseries)
 
-[*BackColorSeries*]
+[*BackColorSeries*](#backcolorseries)
 
-[*BackColorAllSeries*]
+[*BackColorAllSeries*](#backcolorallseries)
 
 ## BarColor
 ### Description
 Bar color changes the color of a bar.
 
-See [*Colors*], [*BarColorSeries*], [*BackColor*], [*BackColorAll*], [*CandleOutlineColor*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 a color object of the type "public struct color"
@@ -1341,10 +1341,10 @@ if (Close[0] > SMA(14)[0]) BarColor = Color.Orange;
 ### Description
 Back color changes the background color of a bar or gives the current background color of a bar when queried.
 
-See [*Colors*], [*BarColor*], [*BackColorAll*], [*CandleOutlineColor*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
-a color object of the type "public struct color"
+A color object of the type "public struct color"
 
 ### Usage
 BackColor
@@ -1371,7 +1371,7 @@ BackColor = SMA(14)[0] >= Close[0] ? Color.Maroon : Color.LimeGreen;
 ### Description
 Back color all changes the background color of a bar within the chart window and in all subcharts.
 
-See [*Colors*], [*BarColor*], [*BackColor*], [*CandleOutlineColor*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 A color object of the type "public struct color"
@@ -1392,7 +1392,7 @@ BackColorAll = Color.Blue;
 ### Description
 Bar color series is a data series containing the color for each bar.
 
-See [*Colors*], [*BackColorSeries*], [*BackColorAllSeries*], [*CandleOutlineColorSeries*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 a color object of the type "public struct color"
@@ -1431,7 +1431,7 @@ BarColorSeries[2] = Color.Yellow;
 ### Description
 Back color series is a data series containing the background color for each bar. If the background color for the subcharts is to be included, please use "BackColorAllSeries" instead.
 
-See [*Colors*], [*BarColorSeries*][*BarColor*], [*BackColorAllSeries*][] [*CandleOutlineColorSeries*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 a color object of the type "public struct color"
@@ -1461,7 +1461,7 @@ BackColorSeries[1] = Color.Green;
 ### Description
 Back color all series is a data series containing the background color for each bar. The difference to BackColorSeries is that the background color of the subchart is included.
 
-See [*Colors*], [*BarColorSeries*], [*BackColorSeries*], [*CandleOutlineColorSeries*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 a color object of the type "public struct color"
@@ -1477,7 +1477,7 @@ BackColorAllSeries[int barsAgo]
 When using the method with an index \[**int** barsAgo\] the background color for the referenced bar will be changed or returned.
 
 ### Example
-See [*BackColorSeries*].
+See [*BackColorSeries*](#backcolorseries).
 
 ## CandleOutlineColor
 ### Description
@@ -1485,7 +1485,7 @@ Candle outline color changes the border/outline color (including the wick) of a 
 
 If the color of the bar is changed using BarColor and the outline is not changed using CandleOutlineColor, the outline color is adjusted to match the color of the bar.
 
-See [*Colors*], [*BarColor*], [*BackColor*], [*BackColorAll*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 a color object of the type "public struct color"
@@ -1507,7 +1507,7 @@ CandleOutlineColor = Color.Red;
 ### Description
 Candle outline color series is a data series that saves the outline color for each bar.
 
-See [*Colors*], [*BarColorSeries*], [*BackColorSeries*], [*BackColorAllSeries*].
+See [*Colors*](#colors), [*BarColor*](#barcolor), [*BackColor*](#backcolor), [*BackColorAll*](#backcolorall), [*BarColorSeries*](#barcolorseries), [*BackColorAll*](#backcolorall), [*CandleOutlineColor*](#candleoutlinecolor).
 
 ### Parameter
 a color object of the type "public struct color"
@@ -1590,7 +1590,7 @@ return;
 
 ## FirstTickOfBarMtf
 ### Description
-FirstTickOfBarMtf is the **multi-time frame** variant of the [*FirstTickOfBar*] property.
+FirstTickOfBarMtf is the **multi-time frame** variant of the [*FirstTickOfBar*](#firsttickofbar) property.
 
 The setting of CalculateOnBarClose only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnBarClose setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.
@@ -1601,7 +1601,7 @@ FirstTickOfBarMtf(BarsInProgress)
 ### Parameter
 FirstTickOfBarMtf(BarsInProgress).
 
-See [*BarsInProgress*].
+See [*BarsInProgress*](#barsinprogress).
 
 ### Example
 ```cs
@@ -1613,7 +1613,7 @@ Print("A new bar has begun.");
 ### Description
 The GetCurrentAsk() method returns the current value of the ask side of the order book. If no level 1 data is available to AgenaTrader, then this function simply outputs the last trade value.
 
-See [*GetCurrentBid()*] and [*OnMarketData()*].
+See [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
 
 ### Usage
 GetCurrentAsk()
@@ -1641,7 +1641,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 ### Description
 The GetCurrentAskVolume () method returns the current volume on the Ask page of the order book. This function is only executable if the data provider provides level 2 data.
 
-See [*GetCurrentBidVolume()*], [*GetCurrentBid()*] and [*OnMarketData()*].
+See [*GetCurrentBidVolume()*](#getcurrentbidvolume), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
 
 ### Usage
 GetCurrentAskVolume()
@@ -1665,7 +1665,7 @@ protected override void OnBarUpdate()
 ### Description
 The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.
 
-See [*GetCurrentAsk()*] and [*OnMarketData()*].
+See [*GetCurrentAsk()*](#getcurrentask) and [*OnMarketData()*](#onmarketdata).
 
 ### Usage
 GetCurrentBid()
@@ -1694,7 +1694,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 ### Description
 The GetCurrentBidVolume () method returns the current volume on the Bid page of the order book. This function is only executable if the data provider provides level 2 data.
 
-See [*GetCurrentAskVolume*], [*GetCurrentBid()*] and [*OnMarketData()*].
+See [*GetCurrentAskVolume*](#getcurrentaskvolume), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
 
 ### Usage
 GetCurrentBidVolume()
@@ -1716,9 +1716,9 @@ protected override void OnBarUpdate()
 
 ## GetCurrentPrice()
 ### Description
-The GetCurrentPrice () method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales
+The GetCurrentPrice() method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales
 
-See [*GetCurrentAsk*], [*GetCurrentBid()*] and [*OnMarketData()*].
+See [*GetCurrentAsk*](#getcurrentask), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](oOnmarketdata).
 
 ### Usage
 GetCurrentPrice()
@@ -1746,7 +1746,7 @@ protected override void OnBarUpdate()
 ### Description
 The GetCurrentSpare () method returns the current spread.
 
-See [*GetCurrentAsk*], [*GetCurrentBid()*] and [*OnMarketData()*].
+See [*GetCurrentAsk*](#getcurrentask), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](oOnmarketdata).
 
 ### Usage
 GetCurrentSpread()
@@ -1770,7 +1770,7 @@ protected override void OnBarUpdate()
 ### Description
 The HighestBar() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
 
-See [*LowestBar()*].
+See [*LowestBar()*](#lowestbar).
 
 ### Parameter
 period Number of bars within which the bar is searched for
@@ -1834,31 +1834,31 @@ protected override void Initialize()
 ```
 
 ### Important Keywords
-- [*Add()*]
-- [*AllowRemovalOfDrawObjects*]
-- [*AutoScale*]
-- [*BarsRequired*]
-- [*CalculateOnBarClose*]
-- [*ClearOutputWindow()*]
-- [*Displacement*]
-- [*DisplayInDataBox*]
-- [*DrawOnPricePanel*]
-- [*InputPriceType*]
-- [*Overlay*]
-- [*PaintPriceMarkers*]
-- [*SessionBreakLines*]
-- [*VerticalGridLines*]
+-   [*Add()*]
+-   [*AllowRemovalOfDrawObjects*]
+-   [*AutoScale*]
+-   [*BarsRequired*]
+-   [*CalculateOnBarClose*]
+-   [*ClearOutputWindow()*]
+-   [*Displacement*]
+-   [*DisplayInDataBox*]
+-   [*DrawOnPricePanel*]
+-   [*InputPriceType*]
+-   [*Overlay*]
+-   [*PaintPriceMarkers*]
+-   [*SessionBreakLines*]
+-   [*VerticalGridLines*]
 
 **Additional Keywords for Strategies**
 
-- [*DefaultQuantity*]
-- [*EntriesPerDirection*]
-- [*EntryHandling*]
-- [*SetStopLoss()*]
-- [*SetProfitTarget()*]
-- [*SetTrailStop()*]
-- [*TimeInForce*]
-- [*TraceOrders*]
+-   [*DefaultQuantity*]
+-   [*EntriesPerDirection*]
+-   [*EntryHandling*]
+-   [*SetStopLoss()*]
+-   [*SetProfitTarget()*]
+-   [*SetTrailStop()*]
+-   [*TimeInForce*]
+-   [*TraceOrders*]
 
 ### More Information
 **Caution:**
@@ -1906,7 +1906,7 @@ InputPriceType can be set with the Initialize() method; this specification is th
 If InputPriceType is in OnBarUpdate(), these changes are only valid starting with the next instruction.
 Every further appearance of InputPriceType will be ignored!
 
-See [*PriceType*]
+See [*PriceType*](#pricetype)
 
 ### Usage
 ```cs
@@ -2464,7 +2464,7 @@ RemoveDrawObjects();
 ### Description
 With this method you can check if an uptrend exists, i.e. if the current value is bigger than the previous bar’s value.
 
-See [*CrossAbove()*], [*CrossBelow()*], [*Falling()*].
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
 
 ### Usage
 ```cs
