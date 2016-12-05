@@ -7,17 +7,17 @@ Programming in AgenaTrader using the various application programming interface (
 
 The following methods can be used and therefore overwritten:
 
-- [*OnBarUpdate()*](#onbarupdate)
-- [*OnBrokerConnect()*](#onbrokerconnect)
-- [*OnBrokerDisconnect()*](#onbrokerdisconnect)
-- [*ChartPanelMouseMove()*](#chartpanelmousemove)
-- [*OnChartPanelMouseDown()*](#onchartpanelmousedown)
-- [*OnExecution()*](#onexecution)
-- [*OnMarketData()*](#onmarketdata)
-- [*OnMarketDepth()*](#onmarketdepth)
-- [*OnOrderUpdate()*](#onorderupdate)
-- [*OnStartUp()*](#onstartop)
-- [*OnTermination()*](#ontermination)
+-   [*OnBarUpdate()*](#onbarupdate)
+-   [*OnBrokerConnect()*](#onbrokerconnect)
+-   [*OnBrokerDisconnect()*](#onbrokerdisconnect)
+-   [*ChartPanelMouseMove()*](#chartpanelmousemove)
+-   [*OnChartPanelMouseDown()*](#onchartpanelmousedown)
+-   [*OnExecution()*](#onexecution)
+-   [*OnMarketData()*](#onmarketdata)
+-   [*OnMarketDepth()*](#onmarketdepth)
+-   [*OnOrderUpdate()*](#onorderupdate)
+-   [*OnStartUp()*](#onstartop)
+-   [*OnTermination()*](#ontermination)
 
 ## OnBarUpdate()
 ### Description
@@ -286,7 +286,10 @@ protected override void OnMarketData(MarketDataEventArgs e)
 none
 
 ### Parameter
+```cs
 [*MarketDataEventArgs*] e
+```
+
 
 ### Example
 ```cs
@@ -380,9 +383,9 @@ protected override void OnOrderUpdate(IOrder order)
 ## OnStartUp()
 ### Description
 The OnStartUp() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
-OnStartUp() is only called up once at the beginning of the script, after [*Initialize()*] and before [*OnBarUpdate()*] are called up.
+OnStartUp() is only called up once at the beginning of the script, after [*Initialize()*](#initialize) and before [*OnBarUpdate()*](#onbarupdate) are called up.
 
-See [*OnTermination()*].
+See [*OnTermination()*](#ontermination).
 
 More information can be found here: [*Events*](#events).
 
