@@ -82,7 +82,7 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the entry within an entry method.            |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index for the data series for which the entry order was executed. See *[BarsInProgress][*BarsInProgress*].* |
+| barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress)[*BarsInProgress*](#barsinprogress). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
@@ -109,7 +109,7 @@ BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the exit within the exit method.    |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*](#barsinprogress). |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
 ### Example
@@ -120,7 +120,7 @@ Print("The last exit was " + BarsSinceExit() + " bars ago.");
 ### Description
 CancelAllOrders deletes all oders (cancel) managed by the strategy.
 A cancel request is sent to the broker. Whether an or there is really deleted, can not be guaranteed. It may happen that an order has received a partial execution before it is deleted.
-Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*].
+Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*](#onorderupdate).
 
 ### Usage
 ```cs
@@ -141,7 +141,7 @@ protected override void OnBarUpdate()
 ### Description
 Cancel order deletes an order.
 
-A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*].
+A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*](#onorderupdate).
 
 ### Usage
 ```cs
@@ -306,7 +306,7 @@ protected override void OnBarUpdate()
 ### Description
 Change order changes an order.
 
-Default quantity defines the amount to be used in a strategy. Default quantity is set within the [*Initialize()*] method.
+Default quantity defines the amount to be used in a strategy. Default quantity is set within the [*Initialize()*](#initialize) method.
 
 ### Usage
 ```cs
@@ -328,9 +328,9 @@ DefaultQuantity = 100;
 ### Description
 Enter long creates a long position (buy).
 
-If a signature not containing an amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing an amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLongLimit()*], [*EnterLongStop()*], [*EnterLongStopLimit()*].
+See [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop), [*EnterLongStopLimit()*](#enterlongstoplimit).
 
 ### Usage
 ```cs
@@ -348,7 +348,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 |---------------------|-----------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*].  |
+| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -365,9 +365,9 @@ EnterLong("SMA cross entry");
 ### Description
 Enter long limit creates a limit order for entering a long position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLong()*], [*EnterLongStop()*], [*EnterLongStopLimit()*].
+See [*EnterLong()*](#enterlong), [*EnterLongStop()*](#enterlongstop), [*EnterLongStopLimit()*](#enterlongstoplimit).
 
 ### Usage
 ```cs
@@ -387,9 +387,9 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|-------------|
 | signalName          | An unambiguous name |
 | quantity            | Amount of stocks/contracts/etc.  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*]. |
 | limitPrice          | A double value for the limit price |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*] or until it reaches its expiry (see [*TimeInForce*]). |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
 An order object of the type "IOrder"
@@ -405,9 +405,9 @@ EnterLongLimit("SMA cross entry");
 ### Description
 Enter long stop creates a limit order for entering a long position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLong()*], [*EnterLongLimit()*], [*EnterLongStopLimit()*].
+See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStopLimit()*](#enterlongstoplimit).
 
 ### Usage
 ```cs
@@ -427,11 +427,11 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|-------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies                                                                                                                                           
+| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies                                                                                                                                           
                        Index of the data series for which an entry order is to be executed.                                                                                                          
-                       See [*BarsInProgress*].                                                                                                                                                                |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                                |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*] command or until it reaches its expiry time (see [*TimeInForce*]). |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
 An order object of the type "IOrder"
@@ -448,9 +448,9 @@ myEntryOrder = EnterLongStop(High[0], "Stop Long");
 ### Description
 Enter long stop limit creates a buy stop limit order for entering a long position.
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLong()*], [*EnterLongLimit()*], [*EnterLongStop()*].
+See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop).
 
 ### Usage
 ```cs
