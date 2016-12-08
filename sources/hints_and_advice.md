@@ -1,7 +1,7 @@
 # Hints & Advice
 
 ## Bar Numbering Within the Chart
-The following example demonstrates the usage of the plot method and the properties of the [*ChartControl*] object.
+The following example demonstrates the usage of the plot method and the properties of the [*ChartControl*](#chartcontrol) object.
 
 ![Bar Numbering Within the Chart](./media/image30.png)
 
@@ -271,11 +271,11 @@ Print("getPrice :" + getKurs(Kurs)); // 123.46
 ## Index Conversion
 There are two types of indexing in AgenaTrader.
 
-1. The bars are numbered from youngest to oldest.
+1.  The bars are numbered from youngest to oldest.
 This type is used in the OnBarUpdate() method.
 The last bar has an index of 0, while the oldest bar has the index Bars.Count-1.
 
-2. The bars are numbered from oldest to youngest.
+2.  The bars are numbered from oldest to youngest.
 This type is most commonly used in the Plot() method in “for” loops.
 The oldest Bbar receives an index of 0, while the youngest bar has the index Bars.Count-1.
 The following function can be used to recalculate the index types:
