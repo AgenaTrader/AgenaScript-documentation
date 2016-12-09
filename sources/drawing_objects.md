@@ -95,7 +95,7 @@ DrawArrowDown() draws an arrow pointing downwards:
 
 ![DrawArrowDown()](./media/image21.png)
 
-See [*DrawArrowUp()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs   
@@ -176,7 +176,7 @@ DrawArowUp() draws an arrow pointing upwards:
 
 ![DrawArrowUp()](./media/image23.png)
 
-See [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
@@ -209,7 +209,7 @@ DrawDiamond() draws a diamond:
 
 ![DrawDiamond()](./media/image24.png)
 
-See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
@@ -242,7 +242,7 @@ DrawDot() draws a dot:
 
 ![DrawDot()](./media/image25.png)
 
-See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawSquare()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
@@ -310,7 +310,7 @@ DrawEllipse("MyEllipse", true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yell
 ### Description
 DrawExtendedLine() draws a line with an infinite end point.
 
-See [*DrawLine()*], [*DrawHorizontalLine()*], [*DrawVerticalLine()*], [*DrawRay()*].
+See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawRay()*](#drawray).
 
 ### Usage
 ```cs
@@ -1140,6 +1140,3 @@ A drawing object of the type IVerticalLine (interface)
 // Draws a vertical line at the bar from 10 periods ago
 DrawVerticalLine("MyVerticalLine", 10, Color.Black);
 ```
-
-
-
