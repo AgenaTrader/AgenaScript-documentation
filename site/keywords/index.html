@@ -7,21 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
-  <title>Keywords - AgenaScript Documentation</title>
-  
-
   <link rel="shortcut icon" href="../favicon.ico">
   
-
-  
+  <title>Keywords - AgenaScript Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
-
   
   <script>
     // Current page data
@@ -32,9 +26,7 @@
   
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
-
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -54,7 +46,7 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
+	<ul class="current">
           
             <li>
     <li class="toctree-l1 ">
@@ -303,9 +295,8 @@
     <li>Keywords</li>
     <li class="wy-breadcrumbs-aside">
       
-        
-          <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="icon icon-github"> Edit on GitHub</a>
-        
+        <a href="https://github.com/AgenaTrader/AgenaScript-documentation/edit/master/docs/keywords.md"
+          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -433,7 +424,7 @@ Alert(&quot;Message text&quot;, true, pathOfSoundfile + nameOfSoundFile);
 
 <h2 id="allowremovalofdrawobjects">AllowRemovalOfDrawObjects</h2>
 <h3 id="description_2">Description</h3>
-<p>"AllowRemovalOfDrawObjects" is a property of indicators that can be set under [<em>Initialize()</em>].</p>
+<p>"AllowRemovalOfDrawObjects" is a property of indicators that can be set under <a href="#initialize"><em>Initialize()</em></a>.</p>
 <p><strong>AllowRemovalOfDrawObjects = true</strong></p>
 <p>Drawing objects that are drawn by an indicator or a strategy can be manually removed from the chart.</p>
 <p><strong>AllowRemovalOfDrawObjects = false (default)</strong></p>
@@ -455,7 +446,7 @@ AllowRemovalOfDrawObjects = true;
 <h2 id="attribute">Attribute</h2>
 <p>Attribute is a component of the C# language. Within AgenaScript, indicators, and strategies, you can use these attributes in the same manner as you would in C#.
 Information regarding the usage of attributes can be found here:</p>
-<p>[<em>http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx</em>]</p>
+<p><a href="http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/de-de/library/z0w1kczw%28v=vs.80%29.aspx</em></a></p>
 <p>The most commonly used attributes in AgenaScript are:</p>
 <ul>
 <li><a href="#browsable"><em>Browsable</em></a></li>
@@ -581,9 +572,9 @@ set { numStdDev = Math.Max(0, value); }
 
 <p>The amount of data provided for the other timeframes will always be the same as the number of actual candles loaded into the chart. If there are 500 candles for a 5-minute chart, then 500 candles of another timeframe will also be loaded. In the first example above, 500 daily candles will be loaded. In the second example, 500 15-minute candles, 500 daily candles and 500 weekly candles will be loaded.
 The amount of data can become rather large very quickly, thus you should take precautions when using this attribute.</p>
-<p>See [<em>MultiBars</em>].</p>
+<p>See <a href="#multibars"><em>MultiBars</em></a>.</p>
 <p><strong>Important:</strong></p>
-<p>If a class uses a different indicator that requires one or more secondary timeframes, then the "TimeFrameRequirements" attribute must be set for the class retrieving the data. An example for this can be seen here: [<em>GetDayBar</em>].</p>
+<p>If a class uses a different indicator that requires one or more secondary timeframes, then the "TimeFrameRequirements" attribute must be set for the class retrieving the data. An example for this can be seen here: <a href="#getdaybar"><em>GetDayBar</em></a>.</p>
 <h2 id="xmlignore">XMLIgnore</h2>
 <p>XML ignore is an <a href="#attribute">Attribute</a> in AgenaScript.</p>
 <p>AgenaTrader saves all parameter settings for the indicators in a template. The template files are saved in an XML format. In order to avoid a parameter being saved as part of the template, the attribute XML ignore can be set.</p>
@@ -678,7 +669,7 @@ When an indicator is called up by another indicator, the CalculateOnBarClose pro
 <h3 id="usage_5">Usage</h3>
 <p>CalculateOnBarClose</p>
 <h3 id="more-information">More Information</h3>
-<p>See [<em>Bars</em>].</p>
+<p>See <a href="#bars"><em>Bars</em></a>.</p>
 <h3 id="example_5">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
@@ -723,7 +714,7 @@ Occurred.Set(0);
 <li>FirstBarVisible, LastBarVisible</li>
 <li>GetXByBarIdx, GetYByValue</li>
 </ul>
-<p>An example can be seen here: [<em>PlotSample</em>].</p>
+<p>An example can be seen here: <a href="#plotsample"><em>PlotSample</em></a>.</p>
 <p><strong>BarsPainted und BarsVisible:</strong></p>
 <p>BarsPainted contains the number of bars that a chart <em>could</em> display from the left to right border with the current width and distance of the candles.
 BarsVisible contains the number of bars actually visible.</p>
@@ -742,7 +733,7 @@ BarsVisible contains the number of bars actually visible.</p>
 <h2 id="clearoutputwindow">ClearOutputWindow()</h2>
 <h3 id="description_8">Description</h3>
 <p>The ClearOutputWindow() method empties the output window. The method can be used within Initialize() as well as within OnBarUpdate().
-The output window contains all outputs that have been created with the [<em>Print()</em>] command.
+The output window contains all outputs that have been created with the <a href="#print"><em>Print()</em></a> command.
 Using the output window is a great method for code debugging.</p>
 <h3 id="usage_7">Usage</h3>
 <pre><code class="cs">ClearOutputWindow()
@@ -763,7 +754,7 @@ ClearOutputWindow();
 <h2 id="crossabove">CrossAbove()</h2>
 <h3 id="description_9">Description</h3>
 <p>The CrossAbove() method allows you to check whether a crossing of two values has occurred (from bottom to top) within a predefined number of periods. The values can be a market price, an indicator, a data series or a constant value.</p>
-<p>See [<em>CrossBelow()</em>], [<em>Rising()</em>], [<em>Falling()</em>].</p>
+<p>See <a href="#crossabove"><em>CrossAbove()</em></a>, <a href="#crossbelow"><em>CrossBelow()</em></a>, <a href="#rising"><em>Rising()</em></a>, <a href="#falling"><em>Falling()</em></a>.</p>
 <h3 id="usage_8">Usage</h3>
 <pre><code class="cs">CrossAbove(IDataSeries series1, double value, int lookBackPeriod)
 CrossAbove(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
@@ -810,7 +801,7 @@ Print(&quot;Long entry !!!&quot;);
 <h2 id="crossbelow">CrossBelow()</h2>
 <h3 id="description_10">Description</h3>
 <p>Using the CrossBelow() method, you can test whether or not a cross below has occurred within a predefined number of periods. The values can be the market price, an indicator, any data series, or a constant value.</p>
-<p>See [<em>CrossAbove()</em>], [<em>Rising()</em>], [<em>Falling()</em>].</p>
+<p>See <a href="#crossabove"><em>CrossAbove()</em></a>, <a href="#crossbelow"><em>CrossBelow()</em></a>, <a href="#rising"><em>Rising()</em></a>, <a href="#falling"><em>Falling()</em></a>.</p>
 <h3 id="usage_9">Usage</h3>
 <pre><code class="cs">CrossBelow(IDataSeries series1, double value, int lookBackPeriod)
 CrossBelow(IDataSeries series1, IDataSeries series2, int lookBackPeriod)
@@ -865,7 +856,7 @@ Print(&quot;Short entry !!!&quot;);
 <h3 id="usage_10">Usage</h3>
 <p>CurrentBar</p>
 <h3 id="more-information_1">More Information</h3>
-<p>The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the [<em>Barindex</em>][<em>Bars</em>]. Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:</p>
+<p>The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the <a href="#barindex"><em>Barindex</em></a> and <a href="#bars"><em>Bars</em></a>. Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:</p>
 <p>CurrentBar numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time[0] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time[5].
 For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.</p>
 <h3 id="example_10">Example</h3>
@@ -899,23 +890,23 @@ Print(&quot;Call of OnBarUpdate for bar nr. &quot; + CurrentBar + &quot; of &quo
 <p>Datafeed history periodicity is a data type.</p>
 <h3 id="definition">Definition</h3>
 <p>public enum DatafeedHistoryPeriodicity
-- DatafeedHistoryPeriodicity.Tick
-- DatafeedHistoryPeriodicity.Second
-- DatafeedHistoryPeriodicity.Minute
-- DatafeedHistoryPeriodicity.Hour
-- DatafeedHistoryPeriodicity.Day
-- DatafeedHistoryPeriodicity.Week
-- DatafeedHistoryPeriodicity.Month
-- DatafeedHistoryPeriodicity.Volume
-- DatafeedHistoryPeriodicity.Range
-- DatafeedHistoryPeriodicity.Quarter
-- DatafeedHistoryPeriodicity.Year
-- DatafeedHistoryPeriodicity.HeikinAshi
-- DatafeedHistoryPeriodicity.Renko
-- DatafeedHistoryPeriodicity.LineBreak
-- DatafeedHistoryPeriodicity.Kagi
-- DatafeedHistoryPeriodicity.PointAndFigure
-- DatafeedHistoryPeriodicity.Custom</p>
+-   DatafeedHistoryPeriodicity.Tick
+-   DatafeedHistoryPeriodicity.Second
+-   DatafeedHistoryPeriodicity.Minute
+-   DatafeedHistoryPeriodicity.Hour
+-   DatafeedHistoryPeriodicity.Day
+-   DatafeedHistoryPeriodicity.Week
+-   DatafeedHistoryPeriodicity.Month
+-   DatafeedHistoryPeriodicity.Volume
+-   DatafeedHistoryPeriodicity.Range
+-   DatafeedHistoryPeriodicity.Quarter
+-   DatafeedHistoryPeriodicity.Year
+-   DatafeedHistoryPeriodicity.HeikinAshi
+-   DatafeedHistoryPeriodicity.Renko
+-   DatafeedHistoryPeriodicity.LineBreak
+-   DatafeedHistoryPeriodicity.Kagi
+-   DatafeedHistoryPeriodicity.PointAndFigure
+-   DatafeedHistoryPeriodicity.Custom</p>
 <p>See <em>TimeFrame</em>, <em>TimeFrames</em>.</p>
 <h2 id="dataseries">DataSeries</h2>
 <h3 id="description_14">Description</h3>
@@ -925,15 +916,15 @@ Data series are used in exactly the same way as the close or time series. They c
 In the table below you will find 4 newly created data series (highlighted). Each data series has exactly one value of a special data type (int, bool, string) attached to it per bar. The indexing with barsAgo is thus identical to the data series provided by the system.</p>
 <p><img alt="DataSeries" src="../media/image12.png" /></p>
 <h3 id="usable-data-series-in-agenatrader">Usable Data Series in AgenaTrader</h3>
-<p>[<em>BoolSeries</em>]</p>
-<p>[<em>DataSeries</em>]</p>
-<p>[<em>DateTimeSeries</em>]</p>
-<p>[<em>FloatSeries</em>]</p>
-<p>[<em>IntSeries</em>]</p>
-<p>[<em>LongSeries</em>]</p>
-<p>[<em>StringSeries</em>]</p>
+<p><a href="#boolseries"><em>BoolSeries</em></a></p>
+<p><a href="#dataseries"><em>DataSeries</em></a></p>
+<p><a href="#datetimeseries"><em>DateTimeSeries</em></a></p>
+<p><a href="#floatseries"><em>FloatSeries</em></a></p>
+<p><a href="#intseries"><em>IntSeries</em></a></p>
+<p><a href="#longseries"><em>LongSeries</em></a></p>
+<p><a href="#stringseries"><em>StringSeries</em></a></p>
 <p>In addition, there are also data series such as ColorSeries, although these are only used for internal purposes and should not be used directly.
-To change the color of plots, please use [<em>PlotColors</em>].</p>
+To change the color of plots, please use <a href="#plotcolors"><em>PlotColors</em></a>.</p>
 <h3 id="set-reset-und-containsvalue">Set(), Reset() und ContainsValue()</h3>
 <p>Each data series contains a <strong>Set()</strong>, <strong>Reset()</strong> and <strong>ContainsValue()</strong> method.
 With Set(value) or Set(int barsAgo, value) you can place values into the data series for the current position, or in this case into the barsAgo position.
@@ -941,7 +932,7 @@ With Reset() or Reset(int barsAgo) you can delete a value from the data series f
 Programming with the help of the reset method can simplify otherwise complex logic. This is especially true for Boolean series, where only "true" or "false" values can be included.
 The ContainsValue() checks whether a data series has a value for a specific position.</p>
 <h3 id="information-about-data-types">Information about Data Types</h3>
-<p>[<em>http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx</em>]</p>
+<p><a href="http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/de-de/library/s1ax56ch%28v=vs.80%29.aspx</em></a></p>
 <h2 id="boolseries">BoolSeries</h2>
 <h3 id="description_15">Description</h3>
 <p>Bool series is a data series that contains a Boolean value for each bar. The number of elements in this series correlates with the exact number of bars within the chart.</p>
@@ -997,7 +988,7 @@ myBoolSeries.Set(false);
 
 <h2 id="dataseries_1">DataSeries</h2>
 <h3 id="description_16">Description</h3>
-<p>Data series is a [<em>DataSeries</em>][<em>Data series</em>] that can contain a double value for each bar. The number of elements in this series corresponds to the exact number of bars within the charts.</p>
+<p>Data series is a <a href="#dataseries"><em>DataSeries</em></a> that can contain a double value for each bar. The number of elements in this series corresponds to the exact number of bars within the charts.</p>
 <p>Data series for double values are the data series most commonly used for indicators.</p>
 <h3 id="create-a-new-data-series">Create a New Data Series</h3>
 <p>In the declaration area for variables:</p>
@@ -1292,13 +1283,13 @@ myDataSeries.Set(string.Format(&quot;{0:dddd}&quot;, Time[0]));
 <h3 id="definition_1">Definition</h3>
 <p>Property DayOfWeek</p>
 <p>public enum DayOfWeek
-- DayOfWeek.Monday
-- DayOfWeek.Tuesday
-- DayOfWeek.Wednesday
-- DayOfWeek.Thursday
-- DayOfWeek.Friday
-- DayOfWeek.Saturday
-- DayOfWeek.Sunday</p>
+-   DayOfWeek.Monday
+-   DayOfWeek.Tuesday
+-   DayOfWeek.Wednesday
+-   DayOfWeek.Thursday
+-   DayOfWeek.Friday
+-   DayOfWeek.Saturday
+-   DayOfWeek.Sunday</p>
 <h3 id="example_19">Example</h3>
 <pre><code class="cs">//Outputs the weekday for each bar
 Print(Time[0].DayOfWeek);
@@ -1387,7 +1378,7 @@ DrawVerticalLine(&quot;MyVerticalLine&quot;, 5, Color.Black);
 <h2 id="falling">Falling()</h2>
 <h3 id="description_26">Description</h3>
 <p>The Falling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.</p>
-<p>See [<em>CrossAbove()</em>], [<em>CrossBelow()</em>], [<em>Rising()</em>].</p>
+<p>See <a href="#crossabove"><em>CrossAbove()</em></a>, <a href="#crossbelow"><em>CrossBelow()</em></a>, <a href="#rising"><em>Rising()</em></a>, <a href="#falling"><em>Falling()</em></a>.</p>
 <h3 id="usage_15">Usage</h3>
 <pre><code class="cs">Falling(IDataSeries series)
 </code></pre>
@@ -1405,20 +1396,20 @@ Print(&quot;The SMA(20) is currently falling.&quot;);
 
 <h2 id="colors">Colors</h2>
 <p>AgenaScript provides you with the following commands for defining colors and making color changes to the chart:</p>
-<p>[<em>BarColor</em>] Color of a bar</p>
-<p>[<em>BackColor</em>] Background color of the chart</p>
-<p>[<em>BackColorAll</em>] Background color of the chart and all panels</p>
+<p><a href="#barcolor"><em>BarColor</em></a> Color of a bar</p>
+<p><a href="#backcolor"><em>BackColor</em></a> Background color of the chart</p>
+<p><a href="#backcolorall"><em>BackColorAll</em></a> Background color of the chart and all panels</p>
 <p>ChartControl.UpColor Color of up ticks (up bars)
 ChartControl.DownColor Color of down ticks (down bars)</p>
 <p>For each bar, its colors are saved in the following data series. If these data series are written in, the color of the referenced bar will change.</p>
-<p>[<em>BarColorSeries</em>]</p>
-<p>[<em>CandleOutlineColorSeries</em>]</p>
-<p>[<em>BackColorSeries</em>]</p>
-<p>[<em>BackColorAllSeries</em>]</p>
+<p><a href="#barcolorseries"><em>BarColorSeries</em></a></p>
+<p><a href="#candleoutlinecolorseries"><em>CandleOutlineColorSeries</em></a></p>
+<p><a href="#backcolorseries"><em>BackColorSeries</em></a></p>
+<p><a href="#backcolorallseries"><em>BackColorAllSeries</em></a></p>
 <h2 id="barcolor">BarColor</h2>
 <h3 id="description_27">Description</h3>
 <p>Bar color changes the color of a bar.</p>
-<p>See [<em>Colors</em>], [<em>BarColorSeries</em>], [<em>BackColor</em>], [<em>BackColorAll</em>], [<em>CandleOutlineColor</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_10">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <h3 id="usage_16">Usage</h3>
@@ -1432,9 +1423,9 @@ if (Close[0] &gt; SMA(14)[0]) BarColor = Color.Orange;
 <h2 id="backcolor">BackColor</h2>
 <h3 id="description_28">Description</h3>
 <p>Back color changes the background color of a bar or gives the current background color of a bar when queried.</p>
-<p>See [<em>Colors</em>], [<em>BarColor</em>], [<em>BackColorAll</em>], [<em>CandleOutlineColor</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_11">Parameter</h3>
-<p>a color object of the type "public struct color"</p>
+<p>A color object of the type "public struct color"</p>
 <h3 id="usage_17">Usage</h3>
 <p>BackColor</p>
 <h3 id="example_25">Example</h3>
@@ -1454,7 +1445,7 @@ BackColor = SMA(14)[0] &gt;= Close[0] ? Color.Maroon : Color.LimeGreen;
 <h2 id="backcolorall">BackColorAll</h2>
 <h3 id="description_29">Description</h3>
 <p>Back color all changes the background color of a bar within the chart window and in all subcharts.</p>
-<p>See [<em>Colors</em>], [<em>BarColor</em>], [<em>BackColor</em>], [<em>CandleOutlineColor</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_12">Parameter</h3>
 <p>A color object of the type "public struct color"</p>
 <h3 id="usage_18">Usage</h3>
@@ -1469,7 +1460,7 @@ BackColorAll = Color.Blue;
 <h2 id="barcolorseries">BarColorSeries</h2>
 <h3 id="description_30">Description</h3>
 <p>Bar color series is a data series containing the color for each bar.</p>
-<p>See [<em>Colors</em>], [<em>BackColorSeries</em>], [<em>BackColorAllSeries</em>], [<em>CandleOutlineColorSeries</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_13">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
@@ -1498,7 +1489,7 @@ BarColorSeries[2] = Color.Yellow;
 <h2 id="backcolorseries">BackColorSeries</h2>
 <h3 id="description_31">Description</h3>
 <p>Back color series is a data series containing the background color for each bar. If the background color for the subcharts is to be included, please use "BackColorAllSeries" instead.</p>
-<p>See [<em>Colors</em>], [<em>BarColorSeries</em>][<em>BarColor</em>], [<em>BackColorAllSeries</em>][] [<em>CandleOutlineColorSeries</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_14">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
@@ -1521,7 +1512,7 @@ BackColorSeries[1] = Color.Green;
 <h2 id="backcolorallseries">BackColorAllSeries</h2>
 <h3 id="description_32">Description</h3>
 <p>Back color all series is a data series containing the background color for each bar. The difference to BackColorSeries is that the background color of the subchart is included.</p>
-<p>See [<em>Colors</em>], [<em>BarColorSeries</em>], [<em>BackColorSeries</em>], [<em>CandleOutlineColorSeries</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_15">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
@@ -1532,12 +1523,12 @@ BackColorAllSeries[int barsAgo]
 
 <p>When using the method with an index [<strong>int</strong> barsAgo] the background color for the referenced bar will be changed or returned.</p>
 <h3 id="example_29">Example</h3>
-<p>See [<em>BackColorSeries</em>].</p>
+<p>See <a href="#backcolorseries"><em>BackColorSeries</em></a>.</p>
 <h2 id="candleoutlinecolor">CandleOutlineColor</h2>
 <h3 id="description_33">Description</h3>
 <p>Candle outline color changes the border/outline color (including the wick) of a bar.</p>
 <p>If the color of the bar is changed using BarColor and the outline is not changed using CandleOutlineColor, the outline color is adjusted to match the color of the bar.</p>
-<p>See [<em>Colors</em>], [<em>BarColor</em>], [<em>BackColor</em>], [<em>BackColorAll</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_16">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <h3 id="usage_22">Usage</h3>
@@ -1553,7 +1544,7 @@ CandleOutlineColor = Color.Red;
 <h2 id="candleoutlinecolorseries">CandleOutlineColorSeries</h2>
 <h3 id="description_34">Description</h3>
 <p>Candle outline color series is a data series that saves the outline color for each bar.</p>
-<p>See [<em>Colors</em>], [<em>BarColorSeries</em>], [<em>BackColorSeries</em>], [<em>BackColorAllSeries</em>].</p>
+<p>See <a href="#colors"><em>Colors</em></a>, <a href="#barcolor"><em>BarColor</em></a>, <a href="#backcolor"><em>BackColor</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#barcolorseries"><em>BarColorSeries</em></a>, <a href="#backcolorall"><em>BackColorAll</em></a>, <a href="#candleoutlinecolor"><em>CandleOutlineColor</em></a>.</p>
 <h3 id="parameter_17">Parameter</h3>
 <p>a color object of the type "public struct color"</p>
 <p>int barsAgo</p>
@@ -1623,14 +1614,14 @@ return;
 
 <h2 id="firsttickofbarmtf">FirstTickOfBarMtf</h2>
 <h3 id="description_37">Description</h3>
-<p>FirstTickOfBarMtf is the <strong>multi-time frame</strong> variant of the [<em>FirstTickOfBar</em>] property.</p>
+<p>FirstTickOfBarMtf is the <strong>multi-time frame</strong> variant of the <a href="#firsttickofbar"><em>FirstTickOfBar</em></a> property.</p>
 <p>The setting of CalculateOnBarClose only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnBarClose setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.</p>
 <h3 id="usage_26">Usage</h3>
 <p>FirstTickOfBarMtf(BarsInProgress)</p>
 <h3 id="parameter_19">Parameter</h3>
 <p>FirstTickOfBarMtf(BarsInProgress).</p>
-<p>See [<em>BarsInProgress</em>].</p>
+<p>See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</p>
 <h3 id="example_34">Example</h3>
 <pre><code class="cs">if (FirstTickOfBarMtf(BarsInProgress))
 Print(&quot;A new bar has begun.&quot;);
@@ -1639,7 +1630,7 @@ Print(&quot;A new bar has begun.&quot;);
 <h2 id="getcurrentask">GetCurrentAsk()</h2>
 <h3 id="description_38">Description</h3>
 <p>The GetCurrentAsk() method returns the current value of the ask side of the order book. If no level 1 data is available to AgenaTrader, then this function simply outputs the last trade value.</p>
-<p>See [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<p>See <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onmarketdata"><em>OnMarketData()</em></a>.</p>
 <h3 id="usage_27">Usage</h3>
 <p>GetCurrentAsk()</p>
 <h3 id="return-value_9">Return Value</h3>
@@ -1661,7 +1652,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 <h2 id="getcurrentaskvolume">GetCurrentAskVolume()</h2>
 <h3 id="description_39">Description</h3>
 <p>The GetCurrentAskVolume () method returns the current volume on the Ask page of the order book. This function is only executable if the data provider provides level 2 data.</p>
-<p>See [<em>GetCurrentBidVolume()</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<p>See <a href="#getcurrentbidvolume"><em>GetCurrentBidVolume()</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onmarketdata"><em>OnMarketData()</em></a>.</p>
 <h3 id="usage_28">Usage</h3>
 <p>GetCurrentAskVolume()</p>
 <h3 id="return-value_10">Return Value</h3>
@@ -1679,7 +1670,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 <h2 id="getcurrentbid">GetCurrentBid()</h2>
 <h3 id="description_40">Description</h3>
 <p>The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.</p>
-<p>See [<em>GetCurrentAsk()</em>] and [<em>OnMarketData()</em>].</p>
+<p>See <a href="#getcurrentask"><em>GetCurrentAsk()</em></a> and <a href="#onmarketdata"><em>OnMarketData()</em></a>.</p>
 <h3 id="usage_29">Usage</h3>
 <p>GetCurrentBid()</p>
 <h3 id="return-value_11">Return Value</h3>
@@ -1701,7 +1692,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 <h2 id="getcurrentbidvolume">GetCurrentBidVolume()</h2>
 <h3 id="description_41">Description</h3>
 <p>The GetCurrentBidVolume () method returns the current volume on the Bid page of the order book. This function is only executable if the data provider provides level 2 data.</p>
-<p>See [<em>GetCurrentAskVolume</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<p>See <a href="#getcurrentaskvolume"><em>GetCurrentAskVolume</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onmarketdata"><em>OnMarketData()</em></a>.</p>
 <h3 id="usage_30">Usage</h3>
 <p>GetCurrentBidVolume()</p>
 <h3 id="return-value_12">Return Value</h3>
@@ -1718,8 +1709,8 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 
 <h2 id="getcurrentprice">GetCurrentPrice()</h2>
 <h3 id="description_42">Description</h3>
-<p>The GetCurrentPrice () method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales</p>
-<p>See [<em>GetCurrentAsk</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<p>The GetCurrentPrice() method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales</p>
+<p>See <a href="#getcurrentask"><em>GetCurrentAsk</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="../oOnmarketdata"><em>OnMarketData()</em></a>.</p>
 <h3 id="usage_31">Usage</h3>
 <p>GetCurrentPrice()</p>
 <h3 id="return-value_13">Return Value</h3>
@@ -1742,7 +1733,7 @@ protected override void OnBarUpdate()
 <h2 id="getcurrentspread">GetCurrentSpread()</h2>
 <h3 id="description_43">Description</h3>
 <p>The GetCurrentSpare () method returns the current spread.</p>
-<p>See [<em>GetCurrentAsk</em>], [<em>GetCurrentBid()</em>] and [<em>OnMarketData()</em>].</p>
+<p>See <a href="#getcurrentask"><em>GetCurrentAsk</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="../oOnmarketdata"><em>OnMarketData()</em></a>.</p>
 <h3 id="usage_32">Usage</h3>
 <p>GetCurrentSpread()</p>
 <h3 id="return-value_14">Return Value</h3>
@@ -1760,7 +1751,7 @@ protected override void OnBarUpdate()
 <h2 id="highestbar">HighestBar</h2>
 <h3 id="description_44">Description</h3>
 <p>The HighestBar() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.</p>
-<p>See [<em>LowestBar()</em>].</p>
+<p>See <a href="#lowestbar"><em>LowestBar()</em></a>.</p>
 <h3 id="parameter_26">Parameter</h3>
 <p>period Number of bars within which the bar is searched for</p>
 <p>series Every data series, such as close, high, low, etc.</p>
@@ -1876,7 +1867,7 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 InputPriceType can be set with the Initialize() method; this specification is then valid for all further calculations.
 If InputPriceType is in OnBarUpdate(), these changes are only valid starting with the next instruction.
 Every further appearance of InputPriceType will be ignored!</p>
-<p>See [<em>PriceType</em>]</p>
+<p>See <a href="#pricetype"><em>PriceType</em></a></p>
 <h3 id="usage_36">Usage</h3>
 <pre><code class="cs">InputPriceType
 </code></pre>
@@ -2540,7 +2531,7 @@ RemoveDrawObjects();
 <h2 id="rising">Rising()</h2>
 <h3 id="description_65">Description</h3>
 <p>With this method you can check if an uptrend exists, i.e. if the current value is bigger than the previous bar’s value.</p>
-<p>See [<em>CrossAbove()</em>], [<em>CrossBelow()</em>], [<em>Falling()</em>].</p>
+<p>See <a href="#crossabove"><em>CrossAbove()</em></a>, <a href="#crossbelow"><em>CrossBelow()</em></a>, <a href="#rising"><em>Rising()</em></a>, <a href="#falling"><em>Falling()</em></a>.</p>
 <h3 id="usage_49">Usage</h3>
 <pre><code class="cs">Rising(IDataSeries series)
 </code></pre>
@@ -2742,10 +2733,10 @@ VerticalGridLines = false;
       </div>
 
     </section>
-
+    
   </div>
 
-<div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -2758,6 +2749,7 @@ VerticalGridLines = false;
       
     </span>
 </div>
+    <script src="../js/theme.js"></script>
 
 </body>
 </html>

@@ -7,21 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
-  <title>Handling bars and instruments - AgenaScript Documentation</title>
-  
-
   <link rel="shortcut icon" href="../favicon.ico">
   
-
-  
+  <title>Handling bars and instruments - AgenaScript Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
-
   
   <script>
     // Current page data
@@ -32,9 +26,7 @@
   
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
-
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -54,7 +46,7 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
+	<ul class="current">
           
             <li>
     <li class="toctree-l1 ">
@@ -303,9 +295,8 @@
     <li>Handling bars and instruments</li>
     <li class="wy-breadcrumbs-aside">
       
-        
-          <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="icon icon-github"> Edit on GitHub</a>
-        
+        <a href="https://github.com/AgenaTrader/AgenaScript-documentation/edit/master/docs/handling_bars_and_instruments.md"
+          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -329,18 +320,18 @@ The following example is based on an indicator value, such as with a moving aver
 To calculate a smoothed moving average, AgenaTrader needs a data series. In this example we will use the closing prices. All closing prices of a bar (candle) that are represented in the chart will be saved in a list and indexed.</p>
 <p>The current closing price, meaning the closing price of the bar that is on the right-hand side of the chart, will be assigned an index of 0. The bar to the left of that will have an index of 1 and so on. The oldest bar displayed will have an index value of 500.</p>
 <p>Whenever a new bar is added within a session it will become the new index 0; the bar to the left of it, which previously had an index of 0, will become index 1 and so on. The oldest bar will become index 501.
-Within a script (a self-created program/algorithm) the [<strong><em>Close</em></strong>] will be representative for the array (list) of all closing prices.
+Within a script (a self-created program/algorithm) the <a href="#close"><em>Close</em></a> will be representative for the array (list) of all closing prices.
 The last closing price is thus <em>Close [0]</em>; the closing price previous to this will become <em>Close [1]</em>, the value before that will become <em>Close [2]</em> and the oldest bar will be <em>Close [501]</em>. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.</p>
 <p>Obviously, every bar will not only have a closing value but also a <a href="#high"><em>High</em></a>, <a href="#low"><em>Low</em></a>, <a href="#open"><em>Open</em></a>, <a href="#median"><em>Median</em></a>, <a href="#typical"><em>Typical</em></a>, <a href="#weighted"><em>Weighted</em></a>, <a href="#time"><em>Time</em></a> and <a href="#volume"><em>Volume</em></a>. Thus, the high of the candle that occurred 10 days ago will be <em>High [10]</em>, yesterday’s low <em>Low [1]</em>...</p>
 <p><strong>Important tip:</strong></p>
 <p>The previous examples all assume that the calculations will occur at the end of a period. The value of the currently running index is not being taken into consideration.</p>
 <p>If you wish to use the values of the currently forming candle then you will need to set the value of</p>
-<p>[<em>CalculateOnBarClose</em>] to „false".</p>
+<p><a href="#calculateonbarclose"><em>CalculateOnBarClose</em></a> to „false".</p>
 <p>In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.</p>
 <p>With close [0] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high [0], low [0]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open [0] value will not change.</p>
 <h2 id="properties-of-bars">Properties of Bars</h2>
 <h3 id="properties-of-bars_1">Properties of Bars</h3>
-<p>"Bars" represents a list of all bars (candles) within a chart (see [<em>Functionality</em>][<em>Bars</em>]).</p>
+<p>"Bars" represents a list of all bars (candles) within a chart (see <a href="#functionality"><em>Functionality</em></a><a href="#bars"><em>Bars</em></a>).</p>
 <p>Bars (<strong>public</strong> IBars Bars) can be used directly in a script and equates to BarsArray [0] (see Bars.GetNextBeginEnd for more information).</p>
 <p>The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).</p>
 <p><a href="#barssincesession"><em>BarsSinceSession</em></a></p>
@@ -381,7 +372,7 @@ As soon as the function <strong>OnBarUpdate()</strong> is called up by AgenaScri
 <h2 id="barssincesession">BarsSinceSession</h2>
 <h3 id="description">Description</h3>
 <p>Bars.BarsSinceSession outputs the amount of bars that have occurred since the beginning of the current trading session.</p>
-<p>See further [<em>Properties</em>] of bars.</p>
+<p>See further <a href="#properties"><em>Properties</em></a> of bars.</p>
 <h3 id="return-value">Return Value</h3>
 <p>Type int Amount of Bars</p>
 <p>A value of -1 indicates a problem with referencing the correct session beginning.</p>
@@ -397,7 +388,7 @@ As soon as the function <strong>OnBarUpdate()</strong> is called up by AgenaScri
 <h2 id="barscount">Bars.Count</h2>
 <h3 id="description_1">Description</h3>
 <p>Bars.Count gives you the amount of bars in a data series.</p>
-<p>See [<em>Properties</em>] for additional information.</p>
+<p>See <a href="#properties"><em>Properties</em></a> for additional information.</p>
 <h3 id="return-value_1">Return Value</h3>
 <p>Type int Amount of Bars</p>
 <h3 id="usage_1">Usage</h3>
@@ -413,7 +404,7 @@ As soon as the function <strong>OnBarUpdate()</strong> is called up by AgenaScri
 <h2 id="barsfirstbarofsession">Bars.FirstBarOfSession</h2>
 <h3 id="description_2">Description</h3>
 <p>With Bars.FirstBarOfSession you can determine whether the current bar is the first bar of the trading session.</p>
-<p>See [<em>Properties</em>] of bars for more information.</p>
+<p>See <a href="#properties"><em>Properties</em></a> of bars for more information.</p>
 <h3 id="return-value_2">Return Value</h3>
 <p>Type bool</p>
 <p><strong>true</strong>: The bar is the first bar of the current trading session
@@ -2013,10 +2004,10 @@ if (BarsInProgress &gt; 0) return;
       </div>
 
     </section>
-
+    
   </div>
 
-<div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -2029,6 +2020,7 @@ if (BarsInProgress &gt; 0) return;
       
     </span>
 </div>
+    <script src="../js/theme.js"></script>
 
 </body>
 </html>
