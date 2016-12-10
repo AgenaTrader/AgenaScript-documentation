@@ -23,7 +23,7 @@ To calculate a smoothed moving average, AgenaTrader needs a data series. In this
 The current closing price, meaning the closing price of the bar that is on the right-hand side of the chart, will be assigned an index of 0. The bar to the left of that will have an index of 1 and so on. The oldest bar displayed will have an index value of 500.
 
 Whenever a new bar is added within a session it will become the new index 0; the bar to the left of it, which previously had an index of 0, will become index 1 and so on. The oldest bar will become index 501.
-Within a script (a self-created program/algorithm) the [***Close***] will be representative for the array (list) of all closing prices.
+Within a script (a self-created program/algorithm) the [*Close*](#close) will be representative for the array (list) of all closing prices.
 The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.
 
 Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
@@ -34,7 +34,7 @@ The previous examples all assume that the calculations will occur at the end of 
 
 If you wish to use the values of the currently forming candle then you will need to set the value of
 
-[*CalculateOnBarClose*] to „false".
+[*CalculateOnBarClose*](#calculateonbarclose) to „false".
 
 In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.
 
@@ -42,7 +42,7 @@ With close \[0\] you would receive the most recent value of the last price that 
 
 ## Properties of Bars
 ### Properties of Bars
-"Bars" represents a list of all bars (candles) within a chart (see [*Functionality*][*Bars*]).
+"Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#functionality)[*Bars*](#bars)).
 
 Bars (**public** IBars Bars) can be used directly in a script and equates to BarsArray \[0\] (see Bars.GetNextBeginEnd for more information).
 
@@ -121,7 +121,7 @@ As soon as the function **OnBarUpdate()** is called up by AgenaScript, it is ass
 ### Description
 Bars.BarsSinceSession outputs the amount of bars that have occurred since the beginning of the current trading session.
 
-See further [*Properties*] of bars.
+See further [*Properties*](#properties) of bars.
 
 ### Return Value
 Type int Amount of Bars
@@ -145,7 +145,7 @@ Print ("Since the start of the last trading session there have been" + Bars.Bars
 ### Description
 Bars.Count gives you the amount of bars in a data series.
 
-See [*Properties*] for additional information.
+See [*Properties*](#properties) for additional information.
 
 ### Return Value
 Type int Amount of Bars
@@ -169,7 +169,7 @@ Print ("There are a total of" + Bars.Count + "bars available.");
 ### Description
 With Bars.FirstBarOfSession you can determine whether the current bar is the first bar of the trading session.
 
-See [*Properties*] of bars for more information.
+See [*Properties*](#properties) of bars for more information.
 
 ### Return Value
 Type bool

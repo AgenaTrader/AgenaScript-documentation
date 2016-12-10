@@ -82,7 +82,7 @@ BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | signalName          | The signal name (string) that has been used to clearly label the entry within an entry method.            |
-| barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress)[*BarsInProgress*](#barsinprogress). |
+| barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress), [*BarsInProgress*](#barsinprogress). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
@@ -348,7 +348,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 |---------------------|-----------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -387,7 +387,7 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|-------------|
 | signalName          | An unambiguous name |
 | quantity            | Amount of stocks/contracts/etc.  |
-| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -427,9 +427,7 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|-------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies                                                                                                                                           
-                       Index of the data series for which an entry order is to be executed.                                                                                                          
-                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                                |
+| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
@@ -470,10 +468,10 @@ EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 |--------------|-------------------------|
 | signalName          | An unambiguous name       |
 | quantity            | Amount of stocks or contracts to be ordered   |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*].  |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price |
 | limitPrice          | A double value for the limit price |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
 An order object of the type "IOrder"
@@ -491,9 +489,9 @@ myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], "Stop Long");
 ### Description
 Enter short creates a market order for entering a short position (naked sell).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterShortLimit()*], [*EnterShortStop()*], [*EnterShortStopLimit()*].
+See [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortstop)(entershortstop), [*EnterShortStopLimit()*](#entershortstoplimit).
 
 ### Usage
 ```cs
@@ -510,9 +508,9 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | quantity            | Amount of stocks/contracts etc.                                      |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies                             
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies                             
                        Index of the data series for which the entry order is to be executed  
-                       See [*BarsInProgress*].                                               |
+                       See [*BarsInProgress*](#barsinprogress).                                               |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -528,9 +526,9 @@ EnterShort("SMA cross entry");
 ### Description
 Enter short limit creates a limit order for entering a short position (naked short).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterShort()*], [*EnterShortStop()*], [*EnterShortStopLimit()*].
+See [*EnterShort()*](#entershort), [*EnterShortStop()*](#entershortstop), [*EnterShortStopLimit()*](#entershortstoplimit).
 
 ### Usage
 ```cs
@@ -550,11 +548,11 @@ EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                                         |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                                    
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                                    
                        Index of the data series for which the entry order is to be executed.                                                                                                         
-                       See [*BarsInProgress*].                                                                                                                                                       |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                                       |
 | limitPrice          | A double value for the limit price                                                                                                                                           |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*]). |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -569,8 +567,8 @@ EnterShortLimit("SMA cross entry");
 ## EnterShortStop()
 ### Description
 Enter short stop creates a limit order for entering a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
-See [*EnterShort()*], [*EnterShortLimit()*], [*EnterShortStopLimit()*].
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*EnterShortStopLimit()*](#entershortstoplimit).
 
 ### Usage
 ```cs
@@ -590,7 +588,7 @@ EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                           |
 | quantity            | Amount to be ordered                                                                                          |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                             |
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
@@ -609,9 +607,9 @@ myEntryOrder = EnterShortStop(Low[0], "stop short");
 ### Description
 Enter short stop limit creates a sell stop limit order for entering a short position.
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterShort()*], [*EnterShortLimit()*], [*EnterShortStop()*].
+See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortstop).
 
 ### Usage
 ```cs
@@ -632,9 +630,9 @@ EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quanti
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                         |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies.                                                                                                                    
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                    
                        Index of the data series for which an entry order is to be placed.                                                                                            
-                       See [*BarsInProgress*].                                                                                                                                       |
+                       See [*BarsInProgress*](#barsinprogress).                                                                                                                                       |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -654,9 +652,9 @@ myEntryOrder = EnterShortStopLimit(Low[0]-2*TickSize, Low[0], "stop short");
 ### Description
 Entries per direction defines the maximum number of entries permitted in one direction (long or short).
 
-Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*].
+Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*](#entryhandling).
 
-Entries per direction is defined with the [*Initialize()*] method.
+Entries per direction is defined with the [*Initialize()*](#initialize) method.
 
 ### Usage
 **EntriesPerDirection**
@@ -701,13 +699,13 @@ EnterLong("RSI Cross Entry");
 
 ## EntryHandling
 ### Description
-Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*]).
+Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*](#entriesperdirection)).
 
-Entry handling is defined with the [*Initialize()*] method.
+Entry handling is defined with the [*Initialize()*](#initialize) method.
 
 **EntryHandling.AllEntries**
 
-AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in [*EntriesPerDirection*]) per direction (long or short) is reached, regardless of how the entry signals are named.
+AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in [*EntriesPerDirection*](#entriesperdirection)) per direction (long or short) is reached, regardless of how the entry signals are named.
 
 If entries per direction = 2, then enter long ("SMA crossover") and enter long ("range breakout") combined will reach the maximum number of long entries permitted.
 
@@ -720,14 +718,14 @@ If entries per direction = 2, then it is possible for two signals for enter long
 **EntryHandling**
 
 ### Example
-See [*EntriesPerDirection*].
+See [*EntriesPerDirection*](#entriesperdirection).
 
 ## ExcludeTradeHistoryInBacktest
 ## ExitLong()
 ### Description
 Exit long creates a sell market order for closing a long position (sell).
 
-If a signature not containing a set amount is used, the amount is set by [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit()*].
 
@@ -750,7 +748,7 @@ ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEn
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | quantity            | The quantity to be sold                                              |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].   |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).   |
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
@@ -771,7 +769,7 @@ ExitLong();
 ### Description
 Exit long limit creates a sell limit order for closing a long position (i.e. for selling).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit()*].
 
 ### Usage
@@ -794,7 +792,7 @@ ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the attached entry signal                                                                                                                        |
 | quantity            | Order quantity to be sold                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].  |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -816,7 +814,7 @@ ExitLongLimit(GetCurrentBid());
 ### Description
 Exit long stop creates a sell stop order for closing a long position (short).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit()*].
 
 ### Usage
@@ -838,7 +836,7 @@ ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, dou
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].  |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -860,7 +858,7 @@ ExitLongStop(Low[0]);
 ### Description
 Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit()*].
 
@@ -884,7 +882,7 @@ ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -909,7 +907,7 @@ ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
 ### Description
 Exit short creates a buy-to-cover market order for closing a short position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopLimit()*].
 
 ### Usage
@@ -931,7 +929,7 @@ ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromE
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | Quantity            | Order quantity to be bought                                          |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
@@ -952,7 +950,7 @@ ExitShort();
 ### Description
 Exit short limit creates a buy-to-cover limit order for closing a short position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopLimit()*].
 
@@ -976,7 +974,7 @@ ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*].  |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -996,7 +994,7 @@ ExitShortLimit(GetCurrentAsk());
 ## ExitShortStop()
 ### Description
 Exit short stop creates a buy-to-cover stop order for closing a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopLimit()*].
 
@@ -1019,7 +1017,7 @@ ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -1040,7 +1038,7 @@ ExitShortStop(High[0]);
 ## ExitShortStopLimit()
 ### Description
 Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*] or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
 See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit()*].
 
@@ -1064,7 +1062,7 @@ ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*][*MultiBars*] strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*]. |
+| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -1194,7 +1192,7 @@ Print("Das momentane Risiko der Strategie " + this.Name + " beträgt " + string.
 
 ## IsAutomated
 ### Description
-IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*Initialize()*] method.
+IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*Initialize()*](#initialize) method.
 
 If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*].
 
@@ -1584,7 +1582,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Ent
 ### Description
 The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.
 
-TimeInForce is specified with the [*Initialize()*] method.
+TimeInForce is specified with the [*Initialize()*](#initialize) method.
 
 Permitted values are:
 TimeInForce.day
@@ -1608,18 +1606,18 @@ TimeInForce = TimeInForce.Day;
 ## TraceOrders
 ### Description
 The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
-Trace orders can be specified with the [*Initialize()*] method.
+Trace orders can be specified with the [*Initialize()*](#initialize) method.
 
 When TraceOrders is activated, each order will display the following values in the output window:
 
-- Instrument
-- Time frame
-- Action
-- Type
-- Limit price
-- Stop price
-- Quantity
-- Name
+-   Instrument
+-   Time frame
+-   Action
+-   Type
+-   Limit price
+-   Stop price
+-   Quantity
+-   Name
 
 This information is useful when creating and debugging strategies.
 
