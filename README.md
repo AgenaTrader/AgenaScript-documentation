@@ -89,7 +89,7 @@ sed -i .bak -e 's%./media/%../media/%g' site/strategy_programming/index.html  &&
 We have already created a branch called *gh-pages* and all data from this branch will be displayed on GitHub Pages.
 
 ### Check mkdocs version
-The latest deploy of this documentation was created with *mkdocs version 0.16.0 (2016-11-04)*.
+The latest deploy of this documentation was created with **mkdocs version 0.16.0 (2016-11-04)**.
 Please use the following command to check your mkdocs version.
 ```bash
 mkdocs --version
