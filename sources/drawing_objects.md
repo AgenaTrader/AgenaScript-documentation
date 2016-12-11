@@ -6,9 +6,9 @@
 This drawing object draws an Andrew’s Pitchfork.
 
 Information concerning its usage:
-- [*http://vtadwiki.vtad.de/index.php/Andrews\_Pitchfork*]
-- [*http://www.volumen-analyse.de/blog/?p=917*]
-- [*http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews\_Pitchfork*]
+-   [*vtad.de*](http://vtadwiki.vtad.de/index.php/Andrews\_Pitchfork)
+-   [*hvolumen-analyse.de*](http://www.volumen-analyse.de/blog/?p=917)
+-   [*Godmode-Trader.de*](http://www.godmode-trader.de/wissen/index.php/Chartlehrgang:Andrews\_Pitchfork)
 
 ### Usage
 ```cs
@@ -295,10 +295,7 @@ A drawing object of the type IEllipse (interface)
 | endY         | y-value for the end of the ellipse                                                      |
 | color        | Border color of the drawing object                                                      |
 | areaColor    | Fill color of the drawing object                                                        |
-| areaOpacity  | Transparency of the fill color                                                          
-                Value between 0 and 10                                                                   
-                0 = completely transparent                                                               
-                10 = completely opaque                                                                   |
+| areaOpacity  | Transparency of the fill color value between 0 and 10 (0 = completely transparent , 10 = completely opaque) |
 
 ### Example
 ```cs
@@ -539,7 +536,7 @@ DrawGannFan("MyGannFan", true, 10, Low[10]);
 ### Description
 DrawLine() draws a (trend) line.
 
-See [*DrawHorizontalLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*].
+See [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
 
 ### Usage
 ```cs
@@ -584,7 +581,7 @@ DrawLine("MyLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Sol
 ### Description
 DrawHorizontalLine() draws a horizontal line in the chart.
 
-See [*DrawLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*], [*DrawRay()*].
+See [*DrawLine()*](#drawline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
 
 ### Usage
 ```cs
@@ -623,7 +620,7 @@ DrawHorizontalLine("MyHorizontalLine", 10, Color.Black);
 ### Description
 DrawRay() draws a (trend) line and extends it to infinity.
 
-See [*DrawLine()*], [*DrawHorizontalLine()*], [*DrawVerticalLine()*], [*DrawExtendedLine()*].
+See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline).
 
 ### Usage
 ```cs
@@ -696,10 +693,7 @@ A drawing object of the type IRectangle (interface)
 | endY         | y-value of the second rectangle corner                                                                 |
 | color        | Color of the drawing object                                                                            |
 | areaColor    | Fill color of the drawing object                                                                       |
-| areaOpacity  | Transparency of the fill color                                                                         
-                Value between 0 and 10                                                                                  
-                0 = completely transparent                                                                              
-                10 = completely opaque                                                                                  |
+| areaOpacity  | Transparency of the fill color. Value between 0 and 10 (0 = completely transparent, 10 = completely opaque) |
 
 ### Example
 ```cs
@@ -731,16 +725,11 @@ A drawing object of the type IRegion (interface)
 | startTime        | Start time for the drawing                                                        |
 | endBarsAgo       | Sets the preceding bar at which the drawing should end (0 = current bar)          |
 | endTime          | End time for the drawing                                                          |
-| series1, series2 | Every data series, for example an indicator, close, high, low and so on.          
-
-                    The respective value of the data series for the current bar is used as a y-value.  |
+| series1, series2 | Every data series, for example an indicator, close, high, low and so on. The respective value of the data series for the current bar is used as a y-value.  |
 | y                | Any double value                                                                  |
 | outlineColor     | Color for the border                                                              |
 | areaColor        | Fill color for the area                                                           |
-| areaOpacity      | Transparency of the fill color                                                    
-                    Value between 0 and 10                                                             
-                    0 = completely transparent                                                         
-                    10 = completely opaque                                                             |
+| areaOpacity      | Transparency of the fill color. Value between 0 and 10 (0 = completely transparent, 10 = completely opaque) |
 
 ### Example
 ```cs
@@ -772,10 +761,8 @@ A drawing object of the type IRegressionChannel (interface)
 | endBarsAgo       | Sets the preceding bar at which the regression channel should end (0 = current bar)     |
 | endTime          | End time for the regression channel                                                     |
 | color            | Color of the drawing object                                                             |
-| upperDashStyle,  
- middleDashStyle,  
- lowerDashStyle    |                                                                              
-| dashStyle    | Line style                                                                              |                                                                                           
+| upperDashStyle, middleDashStyle, lowerDashStyle    |                                                                              
+| dashStyle   | Line style                                                                              |                                                                                           
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
@@ -784,12 +771,8 @@ A drawing object of the type IRegressionChannel (interface)
 |              |                                                                                         |  
 |              |  You may have to integrate:                                                             |  
 |              |  using System.Drawing.Drawing2D;                                                        |
-| upperColor,      
- middleColor,      
- lowerColor        | Line color                                                                              |
-| upperWidth,      
- middleWidth,      
- lowerWidth        | Line strength                                                                           |
+| upperColor,  middleColor,    lowerColor        | Line color                                                                              |
+| upperWidth,   middleWidth,  lowerWidth        | Line strength                                                                           |
 
 ### Example
 ```cs
@@ -803,7 +786,7 @@ DrawSquare() draws a square:
 
 ![DrawSquare()](./media/image26.png)
 
-See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
 
 ### Usage
 ```cs
@@ -1040,7 +1023,7 @@ DrawTriangleUp() draws a small upwards-pointing triangle:
 
 ![DrawTriangleUp()](./media/image28.png)
 
-See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleDown()*].
 
 ### Usage
 ```cs
@@ -1073,7 +1056,7 @@ DrawTriangleDown() draws a small downwards-pointing triangle:
 
 ![DrawTriangleDown()](./media/image29.png)
 
-See [*DrawArrowUp()*], [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*].
 
 ### Usage
 ```cs
@@ -1104,7 +1087,7 @@ DrawTriangleDown("MyTriangleDown", true, 0, High[0] + 10*TickSize, Color.Red);
 ### Description
 DrawVerticalLine() draws a vertical line in the chart.
 
-See [*DrawLine()*], [*DrawHorizontalLine()*], [*DrawExtendedLine()*], [*DrawRay()*].
+See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
 
 ### Usage
 ```cs
