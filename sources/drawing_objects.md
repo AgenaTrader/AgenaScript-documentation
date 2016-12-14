@@ -24,15 +24,15 @@ A drawing object of the type IAndrewsPitchfork (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| start1BarsAgo | Number of bars ago for start point 1 (x-axis)                                          |
-| start1Time    | Date/time for start point 1 (x-axis)                                                   |
-| start1Y       | y-value for start point 1                                                              |
-| start2BarsAgo | Number of bars ago for start point 2 (x-axis)                                          |
-| start2Time    | Date/time for start point 2 (x-axis)                                                   |
-| start2Y       | y-value for start point 2                                                              |
-| start3BarsAgo | Number of bars ago for start point 3 (x-axis)                                          |
-| start3Time    | Date/time for start point 3 (x-axis)                                                   |
-| start3Y       | y-value for start point 3                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1 (x-axis)                                           |
+| start1Time     | Date/time for start point 1 (x-axis)                                                    |
+| start1Y        | y-value for start point 1                                                               |
+| start2BarsAgo  | Number of bars ago for start point 2 (x-axis)                                           |
+| start2Time     | Date/time for start point 2 (x-axis)                                                    |
+| start2Y        | y-value for start point 2                                                               |
+| start3BarsAgo  | Number of bars ago for start point 3 (x-axis)                                           |
+| start3Time     | Date/time for start point 3 (x-axis)                                                    |
+| start3Y        | y-value for start point 3                                                               |
 | color          | Color of the object                                                                     |
 | dashStyle      | Line styles:                                                                            |
 |                |  DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot DashStyle.Solid |
@@ -332,14 +332,14 @@ A drawing object of the type IExtendedLine (interface)
 | endY         | y-value for the end point                                                                               |
 | color        | Color of the drawing object                                                                             |
 | dashStyle    | Line style                                                                               |                                                                                           
-|              |  DashStyle.Dash                                                                         |  
-|              |  DashStyle.DashDot                                                                      |  
-|              |  DashStyle.DashDotDot                                                                   |  
-|              |  DashStyle.Dot                                                                          |  
-|              |  DashStyle.Solid                                                                        |  
-|              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
+|              |  DashStyle.Dash                                                                                         |  
+|              |  DashStyle.DashDot                                                                                      |  
+|              |  DashStyle.DashDotDot                                                                                   |  
+|              |  DashStyle.Dot                                                                                          |  
+|              |  DashStyle.Solid                                                                                        |  
+|              |                                                                                                         |  
+|              |  You may have to integrate:                                                                             |  
+|              |  using System.Drawing.Drawing2D;                                                                        |
 | width        | Line strength in points                                                                                 |
 
 ### Example
@@ -397,15 +397,15 @@ A drawing object of the type IFibonacciExtensions (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| start1BarsAgo  | Number of bars ago for start point 1                                                   |
-| start1Time     | Date/time for start point 1                                                            |
-| start1Y        | y-value for start point 1                                                              |
-| start2BarsAgo  | Number of bars ago for start point 2                                                   |
-| start2Time     | Date/time for start point 2                                                            |
-| start2Y        | y-value for the start point 2                                                          |
-| start3BarsAgo  | Number of bars ago for start point 3                                                   |
-| start3Time     | Date/time for start point 3                                                            |
-| start3Y        | y-value for start point 3                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1                                                    |
+| start1Time     | Date/time for start point 1                                                             |
+| start1Y        | y-value for start point 1                                                               |
+| start2BarsAgo  | Number of bars ago for start point 2                                                    |
+| start2Time     | Date/time for start point 2                                                             |
+| start2Y        | y-value for the start point 2                                                           |
+| start3BarsAgo  | Number of bars ago for start point 3                                                    |
+| start3Time     | Date/time for start point 3                                                             |
+| start3Y        | y-value for start point 3                                                               |
 
 ### Example
 ```cs
@@ -429,12 +429,12 @@ A drawing object of the type IFibonacciProjections (Interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| start1Time    | Date/time for start point 1                                                            |
-| start1Y       | y-value for start point 1                                                              |
-| start2Time    | Date/time for start point 2                                                            |
-| start2Y       | y-value for the start point 2                                                          |
-| start3Time    | Date/time for start point 3                                                            |
-| start3Y       | y-value for start point 3                                                              |
+| start1Time     | Date/time for start point 1                                                             |
+| start1Y        | y-value for start point 1                                                               |
+| start2Time     | Date/time for start point 2                                                             |
+| start2Y        | y-value for the start point 2                                                           |
+| start3Time     | Date/time for start point 3                                                             |
+| start3Y        | y-value for start point 3                                                               |
 
 ### Example
 ```cs
@@ -599,15 +599,15 @@ A drawing object of the type IHorizontalLine (interface)
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | y         | Any double value of your choice                                                         |
 | color     | Line color                                                                              |
-| dashStyle    | Line style                                                                              |                                                                                           
-|              |  DashStyle.Dash                                                                         |  
-|              |  DashStyle.DashDot                                                                      |  
-|              |  DashStyle.DashDotDot                                                                   |  
-|              |  DashStyle.Dot                                                                          |  
-|              |  DashStyle.Solid                                                                        |  
-|              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
+| dashStyle | Line style                                                                              |                                                                                           
+|           |  DashStyle.Dash                                                                         |  
+|           |  DashStyle.DashDot                                                                      |  
+|           |  DashStyle.DashDotDot                                                                   |  
+|           |  DashStyle.Dot                                                                          |  
+|           |  DashStyle.Solid                                                                        |  
+|           |                                                                                         |  
+|           |  You may have to integrate:                                                             |  
+|           |  using System.Drawing.Drawing2D;                                                        |
 | width     | Line strength                                                                           |
 
 ### Example
@@ -637,22 +637,22 @@ A drawing object of the type IRay (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| start1BarsAgo  | Number of bars ago for start point 1                                                   |
-| start1Time     | Date/time for anstartchor point 1                                                           |
-| start1Y        | y-value for start point 1                                                              |
-| start2BarsAgo  | Number of bars ago for start point 2                                                   |
-| start2Time     | Date/time for start point 2                                                            |
-| start2Y        | y-value for start point 2                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1                                                    |
+| start1Time     | Date/time for anstartchor point 1                                                       |
+| start1Y        | y-value for start point 1                                                               |
+| start2BarsAgo  | Number of bars ago for start point 2                                                    |
+| start2Time     | Date/time for start point 2                                                             |
+| start2Y        | y-value for start point 2                                                               |
 | color          | Color of the drawing object                                                             |
 | dashStyle      | Line style                                                                              |                                                                                           
-|              |  DashStyle.Dash                                                                         |  
-|              |  DashStyle.DashDot                                                                      |  
-|              |  DashStyle.DashDotDot                                                                   |  
-|              |  DashStyle.Dot                                                                          |  
-|              |  DashStyle.Solid                                                                        |  
-|              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
+|                |  DashStyle.Dash                                                                         |  
+|                |  DashStyle.DashDot                                                                      |  
+|                |  DashStyle.DashDotDot                                                                   |  
+|                |  DashStyle.Dot                                                                          |  
+|                |  DashStyle.Solid                                                                        |  
+|                |                                                                                         |  
+|                |  You may have to integrate:                                                             |  
+|                |  using System.Drawing.Drawing2D;                                                        |
 | width          | Line strength                                                                           |
 
 ### Example
@@ -762,15 +762,15 @@ A drawing object of the type IRegressionChannel (interface)
 | endTime          | End time for the regression channel                                                     |
 | color            | Color of the drawing object                                                             |
 | upperDashStyle, middleDashStyle, lowerDashStyle    |                                                                              
-| dashStyle   | Line style                                                                              |                                                                                           
-|              |  DashStyle.Dash                                                                         |  
-|              |  DashStyle.DashDot                                                                      |  
-|              |  DashStyle.DashDotDot                                                                   |  
-|              |  DashStyle.Dot                                                                          |  
-|              |  DashStyle.Solid                                                                        |  
-|              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
+| dashStyle        | Line style                                                                              |                                                                                           
+|                  |  DashStyle.Dash                                                                         |  
+|                  |  DashStyle.DashDot                                                                      |  
+|                  |  DashStyle.DashDotDot                                                                   |  
+|                  |  DashStyle.Dot                                                                          |  
+|                  |  DashStyle.Solid                                                                        |  
+|                  |                                                                                         |  
+|                  |  You may have to integrate:                                                             |  
+|                  |  using System.Drawing.Drawing2D;                                                        |
 | upperColor,  middleColor,    lowerColor        | Line color                                                                              |
 | upperWidth,   middleWidth,  lowerWidth        | Line strength                                                                           |
 
