@@ -12,8 +12,8 @@ Information concerning its usage:
 
 ### Usage
 ```cs
-DrawAndrewsPitchfork(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, DashStyle dashStyle, int width)
-DrawAndrewsPitchfork(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsBack, double start2Y, int start3BarsAgo, double start3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -24,15 +24,15 @@ A drawing object of the type IAndrewsPitchfork (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| anchor1BarsAgo | Number of bars ago for anchor point 1 (x-axis)                                          |
-| anchor1Time    | Date/time for anchor point 1 (x-axis)                                                   |
-| anchor1Y       | y-value for anchor point 1                                                              |
-| anchor2BarsAgo | Number of bars ago for anchor point 2 (x-axis)                                          |
-| anchor2Time    | Date/time for anchor point 2 (x-axis)                                                   |
-| anchor2Y       | y-value for anchor point 2                                                              |
-| anchor3BarsAgo | Number of bars ago for anchor point 3 (x-axis)                                          |
-| anchor3Time    | Date/time for anchor point 3 (x-axis)                                                   |
-| anchor3Y       | y-value for anchor point 3                                                              |
+| start1BarsAgo | Number of bars ago for start point 1 (x-axis)                                          |
+| start1Time    | Date/time for start point 1 (x-axis)                                                   |
+| start1Y       | y-value for start point 1                                                              |
+| start2BarsAgo | Number of bars ago for start point 2 (x-axis)                                          |
+| start2Time    | Date/time for start point 2 (x-axis)                                                   |
+| start2Y       | y-value for start point 2                                                              |
+| start3BarsAgo | Number of bars ago for start point 3 (x-axis)                                          |
+| start3Time    | Date/time for start point 3 (x-axis)                                                   |
+| start3Y       | y-value for start point 3                                                              |
 | color          | Color of the object                                                                     |
 | dashStyle      | Line styles:                                                                            |
 |                |  DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot DashStyle.Solid |
@@ -52,8 +52,8 @@ DrawArc() draws a circular arc.
 
 ### Usage
 ```cs
-DrawArc(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawArc(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
+DrawArc(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+DrawArc(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
 DrawArc(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
@@ -65,10 +65,10 @@ A drawing object of the type IArc (interface)
 |--------------|-----------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo | Number of bars ago for the starting point                                               |
+| barsBackStart| Number of bars ago for the starting point                                               |
 | startTime    | Date/time for the starting point                                                        |
 | startY       | y-value for the starting point                                                          |
-| endBarsAgo   | Number of bars ago for the end point                                                    |
+| barsBackEnd  | Number of bars ago for the end point                                                    |
 | endTime      | Date/time for the end point                                                             |
 | endY         | y-value for the end point                                                               |
 | color        | Color of the drawing object                                                             |
@@ -133,8 +133,8 @@ DrawArrowLine() draws an arrow:
 
 ### Usage
 ```cs
- DrawArrowLine (string name,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color)
- DrawArrowLine (string name,  bool  autoScale,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color, DashStyle dashStyle,  int  width)
+ DrawArrowLine (string name,  int  barsBackStart,  double  startY,  int  barsBackEnd,  double  endY, Color color)
+ DrawArrowLine (string name,  bool  autoScale,  int  barsBackStart,  double  startY,  int  barsBackEnd,  double  endY, Color color, DashStyle dashStyle,  int  width)
  DrawArrowLine (string name,  bool  autoScale, DateTime startTime,  double  startY, DateTime endTime,  double  endY, Color color, DashStyle dashStyle,  int  width)
 ```
 
@@ -146,10 +146,10 @@ A drawing object of the type IArrowLine (interface)
 |--------------|-----------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo | Sets the preceding bar at which the arrow should start (0 = current bar)                |
+| barsBackStart| Sets the preceding bar at which the arrow should start (0 = current bar)                |
 | startTime    | Date/time of the bar at which the arrow should start                                    |
 | startY       | y-value for the starting point of the arrow                                             |
-| endBarsAgo   | Sets the preceding bar at which the arrow should end (0 = current bar)                  |
+| barsBackEnd  | Sets the preceding bar at which the arrow should end (0 = current bar)                  |
 | endTime      | Date/time at which the arrow should end                                                 |
 | endY         | y-value at which the arrow should end                                                   |
 | color        | Color of the drawing object                                                             |
@@ -275,8 +275,8 @@ DrawEllipse() draws an ellipse.
 
 ### Usage
 ```cs
-DrawEllipse(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawEllipse(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, Color areaColor, int areaOpacity)
+DrawEllipse(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+DrawEllipse(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, Color areaColor, int areaOpacity)
 DrawEllipse(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
@@ -287,10 +287,10 @@ A drawing object of the type IEllipse (interface)
 |--------------|-----------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo | Sets the preceding bar at which the ellipse should start                                |
+| barsBackStart| Sets the preceding bar at which the ellipse should start                                |
 | startTime    | Date/time at which the ellipse should start                                             |
 | startY       | y-value for the start of the ellipse                                                    |
-| endBarsAgo   | Sets the preceding bar at which the ellipse should end (0 = current bar)                |
+| barsBackEnd  | Sets the preceding bar at which the ellipse should end (0 = current bar)                |
 | endTime      | Date/time at which the ellipse should end                                               |
 | endY         | y-value for the end of the ellipse                                                      |
 | color        | Border color of the drawing object                                                      |
@@ -311,8 +311,8 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 ### Usage
 ```cs
-DrawExtendedLine(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawExtendedLine(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
+DrawExtendedLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+DrawExtendedLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
 DrawExtendedLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
@@ -324,10 +324,10 @@ A drawing object of the type IExtendedLine (interface)
 |--------------|---------------------------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety                 |
-| startBarsAgo | Number of bars ago for the start point                                                                  |
+| barsBackStart| Number of bars ago for the start point                                                                  |
 | startTime    | Date/time for the start point                                                                           |
 | startY       | y-value for the start point                                                                             |
-| endBarsAgo   | Number of bars ago for the second point (a true end point does not exist; the line extends to infinity) |
+| barsBackEnd  | Number of bars ago for the second point (a true end point does not exist; the line extends to infinity) |
 | endTime      | Date/time for the end point                                                                             |
 | endY         | y-value for the end point                                                                               |
 | color        | Color of the drawing object                                                                             |
@@ -354,7 +354,7 @@ DrawFibonacciCircle() draws a Fibonacci circle.
 
 ### Usage
 ```cs
-DrawFibonacciCircle(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY)
+DrawFibonacciCircle(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY)
 DrawFibonacciCircle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
@@ -366,10 +366,10 @@ A drawing object of the type IFibonacciCircle (interface)
 |--------------|-----------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo | Defines the starting point in terms of bars ago                                         |
+| barsBackStart| Defines the starting point in terms of bars ago                                         |
 | startTime    | Date/time of the bar for the starting point                                             |
 | startY       | y-value for the start of the Fibonacci circle                                           |
-| endBarsAgo   | Defines the end point in terms of bars ago                                              |
+| barsBackEnd  | Defines the end point in terms of bars ago                                              |
 | endTime      | Date/time for the end of the Fibonacci circle                                           |
 | endY         | y-value for the end point of the Fibonacci circle                                       |
 
@@ -385,8 +385,8 @@ DrawFibonacciExtensions() draws Fibonacci extensions.
 
 ### Usage
 ```cs
-DrawFibonacciExtensions(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y)
-DrawFibonacciExtensions(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+DrawFibonacciExtensions(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y)
+DrawFibonacciExtensions(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
 ```
 
 ### Return Value
@@ -397,15 +397,15 @@ A drawing object of the type IFibonacciExtensions (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| anchor1BarsAgo | Number of bars ago for anchor point 1                                                   |
-| anchor1Time    | Date/time for anchor point 1                                                            |
-| anchor1Y       | y-value for anchor point 1                                                              |
-| anchor2BarsAgo | Number of bars ago for anchor point 2                                                   |
-| anchor2Time    | Date/time for anchor point 2                                                            |
-| anchor2Y       | y-value for the anchor point 2                                                          |
-| anchor3BarsAgo | Number of bars ago for anchor point 3                                                   |
-| anchor3Time    | Date/time for anchor point 3                                                            |
-| anchor3Y       | y-value for anchor point 3                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1                                                   |
+| start1Time     | Date/time for start point 1                                                            |
+| start1Y        | y-value for start point 1                                                              |
+| start2BarsAgo  | Number of bars ago for start point 2                                                   |
+| start2Time     | Date/time for start point 2                                                            |
+| start2Y        | y-value for the start point 2                                                          |
+| start3BarsAgo  | Number of bars ago for start point 3                                                   |
+| start3Time     | Date/time for start point 3                                                            |
+| start3Y        | y-value for start point 3                                                              |
 
 ### Example
 ```cs
@@ -418,7 +418,7 @@ Draw Fibonacci Projections () sketches Fibonacci Projections.
 
 ### Usage
 ```cs
-DrawFibonacciProjections(string name, bool autoScale, DateTime anchor1Time, double anchor1Y,DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+DrawFibonacciProjections(string name, bool autoScale, DateTime start1Time, double start1Y,DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
 ```
 
 ### Return Value
@@ -429,12 +429,12 @@ A drawing object of the type IFibonacciProjections (Interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| anchor1Time    | Date/time for anchor point 1                                                            |
-| anchor1Y       | y-value for anchor point 1                                                              |
-| anchor2Time    | Date/time for anchor point 2                                                            |
-| anchor2Y       | y-value for the anchor point 2                                                          |
-| anchor3Time    | Date/time for anchor point 3                                                            |
-| anchor3Y       | y-value for anchor point 3                                                              |
+| start1Time    | Date/time for start point 1                                                            |
+| start1Y       | y-value for start point 1                                                              |
+| start2Time    | Date/time for start point 2                                                            |
+| start2Y       | y-value for the start point 2                                                          |
+| start3Time    | Date/time for start point 3                                                            |
+| start3Y       | y-value for start point 3                                                              |
 
 ### Example
 ```cs
@@ -449,7 +449,7 @@ DrawFibonacciRetracements() draws Fibonacci retracements.
 
 ### Usage
 ```cs
-DrawFibonacciRetracements(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY)
+DrawFibonacciRetracements(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY)
 DrawFibonacciRetracements(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
@@ -461,10 +461,10 @@ A drawing object of the type IFibonacciRetracements (interface)
 |--------------|-----------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo | Defines how many bars ago the starting point of the Fibonacci retracement is located    |
+| barsBackStart| Defines how many bars ago the starting point of the Fibonacci retracement is located    |
 | startTime    | Date/time of the bar at which the Fibonacci retracement should begin                    |
 | startY       | y-value at which the Fibonacci retracement will begin                                   |
-| endBarsAgo   | Defines how many bars ago the end point of the Fibonacci retracement is located         |
+| barsBackEnd  | Defines how many bars ago the end point of the Fibonacci retracement is located         |
 | endTime      | Date/time at which the Fibonacci retracement should end                                 |
 | endY         | y-value at which the Fibonacci retracement should end                                   |
 
@@ -480,7 +480,7 @@ DrawFibonacciTimeExtensions() draws Fibonacci time extensions.
 
 ### Usage
 ```cs
-DrawFibonacciTimeExtensions(string name, int startBarsAgo, double startY, int endBarsAgo, double endY)
+DrawFibonacciTimeExtensions(string name, int barsBackStart, double startY, int barsBackEnd, double endY)
 DrawFibonacciTimeExtensions(string name, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
@@ -491,10 +491,10 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 |              |                                                       |
 |--------------|-------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object    |
-| startBarsAgo | Defines how many bars ago the extensions should start |
+| barsBackStart| Defines how many bars ago the extensions should start |
 | startTime    | Date/time at which the extensions should start        |
 | startY       | y-value at which the extensions should start          |
-| endBarsAgo   | Defines how many bars ago the extensions should end   |
+| barsBackEnd  | Defines how many bars ago the extensions should end   |
 | endTime      | Date/time at which the extensions should end          |
 | endY         | y-value at which the extensions should end            |
 
@@ -540,8 +540,8 @@ See [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawv
 
 ### Usage
 ```cs
-DrawLine(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawLine(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
+DrawLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+DrawLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
 DrawLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
@@ -553,10 +553,10 @@ A drawing object of the type ITrendLine (interface).
 |--------------|-----------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo | Number of bars ago for the starting point                                               |
+| barsBackStart| Number of bars ago for the starting point                                               |
 | startTime    | Date/time for the starting point                                                        |
 | startY       | y-value for the starting point                                                          |
-| endBarsAgo   | Number of bars ago for the end point                                                    |
+| barsBackEnd  | Number of bars ago for the end point                                                    |
 | endTime      | Date/time for the end point                                                             |
 | endY         | y-value for the end point                                                               |
 | color        | Color of the drawing object                                                             |
@@ -624,9 +624,9 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 ### Usage
 ```cs
-DrawRay(string name, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, Color color)
-DrawRay(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, Color color, DashStyle dashStyle, int width)
-DrawRay(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, Color color, DashStyle dashStyle, int width)
+DrawRay(string name, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, Color color)
+DrawRay(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, Color color, DashStyle dashStyle, int width)
+DrawRay(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -637,14 +637,14 @@ A drawing object of the type IRay (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| anchor1BarsAgo | Number of bars ago for anchor point 1                                                   |
-| anchor1Time    | Date/time for anchor point 1                                                            |
-| anchor1Y       | y-value for anchor point 1                                                              |
-| anchor2BarsAgo | Number of bars ago for anchor point 2                                                   |
-| anchor2Time    | Date/time for anchor point 2                                                            |
-| anchor2Y       | y-value for anchor point 2                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1                                                   |
+| start1Time     | Date/time for anstartchor point 1                                                           |
+| start1Y        | y-value for start point 1                                                              |
+| start2BarsAgo  | Number of bars ago for start point 2                                                   |
+| start2Time     | Date/time for start point 2                                                            |
+| start2Y        | y-value for start point 2                                                              |
 | color          | Color of the drawing object                                                             |
-| dashStyle    | Line style                                                                              |                                                                                           
+| dashStyle      | Line style                                                                              |                                                                                           
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
@@ -673,8 +673,8 @@ DrawRectangle() draws a rectangle.
 
 ### Usage
 ```cs
-DrawRectangle(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawRectangle(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, Color areaColor, int areaOpacity)
+DrawRectangle(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+DrawRectangle(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, Color areaColor, int areaOpacity)
 DrawRectangle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
@@ -685,10 +685,10 @@ A drawing object of the type IRectangle (interface)
 |--------------|--------------------------------------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                                                     |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety                |
-| startBarsAgo | Sets the preceding bar at which the one corner of the rectangle should be located (0 = current bar)    |
+| barsBackStart| Sets the preceding bar at which the one corner of the rectangle should be located (0 = current bar)    |
 | startTime    | Date/time at which the start of the one rectangle corner should be located                             |
 | startY       | y-value at which the one corner of the rectangle should be located                                     |
-| endBarsAgo   | Sets the preceding bar at which the second corner of the rectangle should be located (0 = current bar) |
+| barsBackEnd  | Sets the preceding bar at which the second corner of the rectangle should be located (0 = current bar) |
 | endTime      | Date/time of the second rectangle corner                                                               |
 | endY         | y-value of the second rectangle corner                                                                 |
 | color        | Color of the drawing object                                                                            |
@@ -708,8 +708,8 @@ DrawRegion() fills a specific area on a chart.
 
 ### Usage
 ```cs
-DrawRegion(string name, int startBarsAgo, int endBarsAgo, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string name, int startBarsAgo, int endBarsAgo, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
+DrawRegion(string name, int barsBackStart, int barsBackEnd, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
+DrawRegion(string name, int barsBackStart, int barsBackEnd, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
 DrawRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
 DrawRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
 ```
@@ -721,9 +721,9 @@ A drawing object of the type IRegion (interface)
 |                  |                                                                                   |
 |------------------|-----------------------------------------------------------------------------------|
 | name             | A clearly identifiable name for the drawing object                                |
-| startBarsAgo     | Sets the preceding bar at which the drawing should begin (0 = current bar)        |
+| barsBackStart    | Sets the preceding bar at which the drawing should begin (0 = current bar)        |
 | startTime        | Start time for the drawing                                                        |
-| endBarsAgo       | Sets the preceding bar at which the drawing should end (0 = current bar)          |
+| barsBackEnd      | Sets the preceding bar at which the drawing should end (0 = current bar)          |
 | endTime          | End time for the drawing                                                          |
 | series1, series2 | Every data series, for example an indicator, close, high, low and so on. The respective value of the data series for the current bar is used as a y-value.  |
 | y                | Any double value                                                                  |
@@ -743,8 +743,8 @@ DrawRegressionChannel() draws a regression channel.
 
 ### Usage
 ```cs
-DrawRegressionChannel(string name, int startBarsAgo, int endBarsAgo, Color color)
-DrawRegressionChannel(string name, bool autoScale, int startBarsAgo, int endBarsAgo, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
+DrawRegressionChannel(string name, int barsBackStart, int barsBackEnd, Color color)
+DrawRegressionChannel(string name, bool autoScale, int barsBackStart, int barsBackEnd, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
 DrawRegressionChannel(string name, bool autoScale, DateTime startTime, DateTime endTime, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
 ```
 
@@ -756,9 +756,9 @@ A drawing object of the type IRegressionChannel (interface)
 |------------------|-----------------------------------------------------------------------------------------|
 | name             | A clearly identifiable name for the drawing object                                      |
 | autoScale        | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| startBarsAgo     | Sets the preceding bar at which the regression channel should start (0 = current bar)   |
+| barsBackStart    | Sets the preceding bar at which the regression channel should start (0 = current bar)   |
 | startTime        | Start time for the regression channel                                                   |
-| endBarsAgo       | Sets the preceding bar at which the regression channel should end (0 = current bar)     |
+| barsBackEnd      | Sets the preceding bar at which the regression channel should end (0 = current bar)     |
 | endTime          | End time for the regression channel                                                     |
 | color            | Color of the drawing object                                                             |
 | upperDashStyle, middleDashStyle, lowerDashStyle    |                                                                              
@@ -948,8 +948,8 @@ DrawTrendChannel() draws a trend channel.
 
 ### Usage
 ```cs
-DrawTrendChannel(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y)
-DrawTrendChannel(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+DrawTrendChannel(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y)
+DrawTrendChannel(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
 ```
 
 ### Return Value
@@ -960,15 +960,15 @@ A drawing object of the type ITrendChannel (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| anchor1BarsAgo | Number of bars ago for anchor point 1 (x-axis)                                          |
-| anchor1Time    | Date/time for anchor point 1 (x-axis)                                                   |
-| anchor1Y       | y-value for anchor point 1                                                              |
-| anchor2BarsAgo | Number of bars ago for anchor point 2 (x-axis)                                          |
-| anchor2Time    | Date/time for anchor point 2 (x-axis)                                                   |
-| anchor2Y       | y-value for anchor point 2                                                              |
-| anchor3BarsAgo | Number of bars ago for anchor point 3 (x-axis)                                          |
-| anchor3Time    | Date/time for anchor point 3 (x-axis)                                                   |
-| anchor3Y       | y-value for anchor point 3                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1 (x-axis)                                           |
+| start1Time     | Date/time for start point 1 (x-axis)                                                    |
+| start1Y        | y-value for start point 1                                                               |
+| start2BarsAgo  | Number of bars ago for start point 2 (x-axis)                                           |
+| start2Time     | Date/time for start point 2 (x-axis)                                                    |
+| start2Y        | y-value for start point 2                                                               |
+| start3BarsAgo  | Number of bars ago for start point 3 (x-axis)                                           |
+| start3Time     | Date/time for start point 3 (x-axis)                                                    |
+| start3Y        | y-value for start point 3                                                               |
 
 ### Example
 ```cs
@@ -982,9 +982,9 @@ DrawTriangle() draws a triangle.
 
 ### Usage
 ```cs
-DrawTriangle(string name, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color)
-DrawTriangle(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, Color areaColor, int areaOpacity)
-DrawTriangle(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, Color areaColor, int areaOpacity)
+DrawTriangle(string name, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y, Color color)
+DrawTriangle(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y, Color color, Color areaColor, int areaOpacity)
+DrawTriangle(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -995,15 +995,15 @@ A drawing object of the type ITriangle (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| anchor1BarsAgo | Number of bars ago for anchor point 1 (x-axis)                                          |
-| anchor1Time    | Date/time for anchor point 1 (x-axis)                                                   |
-| anchor1Y       | y-value for anchor point 1                                                              |
-| anchor2BarsAgo | Number of bars ago for anchor point 2 (x-axis)                                          |
-| anchor2Time    | Date/time for anchor point 2 (x-axis)                                                   |
-| anchor2Y       | y-value for anchor point 2                                                              |
-| anchor3BarsAgo | Number of bars ago for anchor point 3 (x-axis)                                          |
-| anchor3Time    | Date/time for anchor point 3 (x-axis)                                                   |
-| anchor3Y       | y-value for anchor point 3                                                              |
+| start1BarsAgo  | Number of bars ago for start point 1 (x-axis)                                           |
+| start1Time     | Date/time for start point 1 (x-axis)                                                    |
+| start1Y        | y-value for start point 1                                                               |
+| start2BarsAgo  | Number of bars ago for start point 2 (x-axis)                                           |
+| start2Time     | Date/time for start point 2 (x-axis)                                                    |
+| start2Y        | y-value for start point 2                                                               |
+| start3BarsAgo  | Number of bars ago for start point 3 (x-axis)                                           |
+| start3Time     | Date/time for start point 3 (x-axis)                                                    |
+| start3Y        | y-value for start point 3                                                               |
 | color          | Color of the drawing object                                                             |
 | areaColor      | Fill color of the drawing object                                                        |
 | areaOpacity    | Transparency of the fill color                                                          
