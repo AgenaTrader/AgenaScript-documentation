@@ -75,14 +75,14 @@ BarsSinceEntry(string strategyName)
 For multi-bar strategies
 
 ```cs
-BarsSinceEntry(int barsInProgressIndex, string strategyName, int entriesAgo)
+BarsSinceEntry(int multibarSeriesIndex, string strategyName, int entriesAgo)
 ```
 
 ### Parameter
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | strategyName          | The strategy name (string) that has been used to clearly label the entry within an entry method.            |
-| barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress), [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress), [*BarsInProgress*](#barsinprogress). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
@@ -102,14 +102,14 @@ BarsSinceExit(string strategyName)
 
 For multi-bar strategies
 ```cs
-BarsSinceExit(int barsInProgressIndex, string strategyName, int exitsAgo)
+BarsSinceExit(int multibarSeriesIndex, string strategyName, int exitsAgo)
 ```
 
 ### Parameter
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | The Strategy name (string) that has been used to clearly label the exit within the exit method.    |
-| barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*](#barsinprogress). |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
 ### Example
