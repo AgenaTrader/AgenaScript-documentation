@@ -69,19 +69,19 @@ The property "BarsSinceEntry" returns the number of bars that have occurred sinc
 ### Usage
 ```cs
 BarsSinceEntry()
-BarsSinceEntry(string signalName)
+BarsSinceEntry(string strategyName)
 ```
 
 For multi-bar strategies
 
 ```cs
-BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
+BarsSinceEntry(int barsInProgressIndex, string strategyName, int entriesAgo)
 ```
 
 ### Parameter
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
-| signalName          | The signal name (string) that has been used to clearly label the entry within an entry method.            |
+| strategyName          | The strategy name (string) that has been used to clearly label the entry within an entry method.            |
 | barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress), [*BarsInProgress*](#barsinprogress). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
@@ -97,18 +97,18 @@ The property "BarsSinceExit" outputs the number of bars that have occurred since
 ### Usage
 ```cs
 BarsSinceExit()
-BarsSinceExit(string signalName)
+BarsSinceExit(string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
+BarsSinceExit(int barsInProgressIndex, string strategyName, int exitsAgo)
 ```
 
 ### Parameter
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
-| signalName          | The signal name (string) that has been used to clearly label the exit within the exit method.    |
+| strategyName          | The Strategy name (string) that has been used to clearly label the exit within the exit method.    |
 | barsInProgressIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*](#barsinprogress). |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
@@ -225,8 +225,8 @@ protected override void Initialize()
 
 protected override void OnBarUpdate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, "ocoId","signalName");
-   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","signalName");
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, "ocoId","strategyName");
+   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
 
    CreateIfDoneGroup(new List<IOrder> { oEnterLong, oExitLong });
 
@@ -260,8 +260,8 @@ protected override void Initialize()
 
 protected override void OnBarUpdate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","signalName");
-   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "signalName");
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
+   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
 
    CreateOCOGroup(new List<IOrder> { oEnterLong, oEnterShort });
 
@@ -295,8 +295,8 @@ protected override void Initialize()
 
 protected override void OnBarUpdate()
 {
-   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "signalName");
-   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "signalName");
+   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
+   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "strategyName");
 
    CreateOROGroup(new List<IOrder> { oLimitLong, oStopLong });
 }
@@ -348,7 +348,7 @@ EnterLong(int multibarSeriesIndex, int quantity, string strategyName)
 ### Parameter
 |                     |                                                                                               |
 |---------------------|-----------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                           |
+| strategyName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 
@@ -383,13 +383,13 @@ EnterLongLimit(int quantity, double limitPrice, string strategyName)
 
 For Multibar-Strategies
 ```cs
-EnterLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
+EnterLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
 ```
 
 ### Parameter
 |             |                  |     
 |---------------------|-------------|
-| signalName          | An unambiguous name |
+| strategyName          | An unambiguous name |
 | quantity            | Amount of stocks/contracts/etc.  |
 | multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price |
@@ -417,20 +417,20 @@ See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterL
 ### Usage
 ```cs
 EnterLongStop(double stopPrice)
-EnterLongStop(double stopPrice, string signalName)
+EnterLongStop(double stopPrice, string strategyName)
 EnterLongStop(int quantity, double stopPrice)
-EnterLongStop(int quantity, double stopPrice, string signalName)
+EnterLongStop(int quantity, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-EnterLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
+EnterLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
 ```
 
 ### Parameter
 | |   |
 |---------------------|-------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name    |
+| strategyName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
 | multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
@@ -458,20 +458,20 @@ See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterL
 ### Usage
 ```cs
 EnterLongStopLimit(double limitPrice, double stopPrice)
-EnterLongStopLimit(double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(double limitPrice, double stopPrice, string strategyName)
 EnterLongStopLimit(int quantity, double limitPrice, double stopPrice)
-EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-EnterLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 ### Parameter
 |    |     |
 |--------------|-------------------------|
-| signalName          | An unambiguous name       |
+| strategyName          | An unambiguous name       |
 | quantity            | Amount of stocks or contracts to be ordered   |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price |
@@ -501,17 +501,17 @@ See [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortsto
 ### Usage
 ```cs
 EnterShort()
-EnterShort(string signalName)
+EnterShort(string strategyName)
 EnterShort(int quantity)
-EnterShort(int quantity, string signalName)
+EnterShort(int quantity, string strategyName)
 For multi-bar strategies
-EnterShort(int multibarSeriesIndex, int quantity, string signalName)
+EnterShort(int multibarSeriesIndex, int quantity, string strategyName)
 ```
 
 ### Parameter
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                  |
+| strategyName          | An unambiguous name                                                  |
 | quantity            | Amount of stocks/contracts etc.                                      |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies                             
                        Index of the data series for which the entry order is to be executed  
@@ -538,20 +538,20 @@ See [*EnterShort()*](#entershort), [*EnterShortStop()*](#entershortstop), [*Ente
 ### Usage
 ```cs
 EnterShortLimit(double limitPrice)
-EnterShortLimit(double limitPrice, string signalName)
+EnterShortLimit(double limitPrice, string strategyName)
 EnterShortLimit(int quantity, double limitPrice)
-EnterShortLimit(int quantity, double limitPrice, string signalName)
+EnterShortLimit(int quantity, double limitPrice, string strategyName)
 ```
 
 For Multibar-Strategies
 ```cs
-EnterShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
+EnterShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
 ```
 
 ### Parameter
 |                     |                                                                                                                                                                              |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                                         |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                                    
                        Index of the data series for which the entry order is to be executed.                                                                                                         
@@ -578,20 +578,20 @@ See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*En
 ### Usage
 ```cs
 EnterShortStop(double stopPrice)
-EnterShortStop(double stopPrice, string signalName)
+EnterShortStop(double stopPrice, string strategyName)
 EnterShortStop(int quantity, double stopPrice)
-EnterShortStop(int quantity, double stopPrice, string signalName)
+EnterShortStop(int quantity, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-EnterShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
+EnterShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
 ```
 
 ### Parameter
 |                     |                                                                                                               |
 |---------------------|---------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                           |
+| strategyName          | An unambiguous name                                                                                           |
 | quantity            | Amount to be ordered                                                                                          |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                             |
@@ -619,21 +619,21 @@ See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*En
 ### Usage
 ```cs
 EnterShortStopLimit(double limitPrice, double stopPrice)
-EnterShortStopLimit(double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(double limitPrice, double stopPrice, string strategyName)
 EnterShortStopLimit(int quantity, double limitPrice, double stopPrice)
-EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 
 ```cs
-EnterShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                         |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                    
                        Index of the data series for which an entry order is to be placed.                                                                                            
@@ -739,19 +739,19 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 ExitLong()
 ExitLong(int quantity)
 ExitLong(string fromEntry signal)
-ExitLong(string signalName, string fromEntry signal)
-ExitLong(int quantity, string signalName, string fromEntry signal)
+ExitLong(string strategyName, string fromEntry signal)
+ExitLong(int quantity, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitLong(int multibarSeriesIndex, int quantity, string signalName, string fromEntry signal)
+ExitLong(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                  |
+| strategyName          | An unambiguous name                                                  |
 | quantity            | The quantity to be sold                                              |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).   |
 | fromEntry signal    | The name of the attached entry signal                                |
@@ -782,19 +782,19 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 ExitLongLimit(double limitPrice)
 ExitLongLimit(int quantity, double limitPrice)
 ExitLongLimit(double limitPrice, string fromEntry signal)
-ExitLongLimit(double limitPrice, string signalName, string fromEntry signal)
-ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(double limitPrice, string strategyName, string fromEntry signal)
+ExitLongLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the attached entry signal                                                                                                                        |
 | quantity            | Order quantity to be sold                                                                                                                                    |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
@@ -826,19 +826,19 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 ```cs
 ExitLongStop(int quantity, double stopPrice)
 ExitLongStop(double stopPrice, string fromEntry signal)
-ExitLongStop(double stopPrice, string signalName, string fromEntry signal)
-ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStop(double stopPrice, string strategyName, string fromEntry signal)
+ExitLongStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
+ExitLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)ExitLongStop
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
@@ -872,19 +872,19 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 ExitLongStopLimit(double limitPrice, double stopPrice)
 ExitLongStopLimit(int quantity, double limitPrice, double stopPrice)
 ExitLongStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
-ExitLongStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
-ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For Multibar-Strategies
 ```cs
-ExitLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
@@ -920,19 +920,19 @@ See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopL
 ExitShort()
 ExitShort(int quantity)
 ExitShort(string fromEntry signal)
-ExitShort(string signalName, string fromEntry signal)
-ExitShort(int quantity, string signalName, string fromEntry signal)
+ExitShort(string strategyName, string fromEntry signal)
+ExitShort(int quantity, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShort(int multibarSeriesIndex, int quantity, string signalName, string fromEntry signal)
+ExitShort(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
 |                     |                                                                      |
 |---------------------|----------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                  |
+| strategyName          | An unambiguous name                                                  |
 | Quantity            | Order quantity to be bought                                          |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | fromEntry signal    | The name of the associated entry signal                              |
@@ -964,19 +964,19 @@ See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopL
 ExitShortLimit(double limitPrice)
 ExitShortLimit(int quantity, double limitPrice)
 ExitShortLimit(double limitPrice, string fromEntry signal)
-ExitShortLimit(double limitPrice, string signalName, string fromEntry signal)
-ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitShortLimit(double limitPrice, string strategyName, string fromEntry signal)
+ExitShortLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
@@ -1007,19 +1007,19 @@ See [*ExitShort()*], [*ExitShortLimit()*], [*ExitShortStop()*], [*ExitShortStopL
 ```cs
 ExitShortStop(int quantity, double stopPrice)
 ExitShortStop(double stopPrice, string fromEntry signal)
-ExitShortStop(double stopPrice, string signalName, string fromEntry signal)
-ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStop(double stopPrice, string strategyName, string fromEntry signal)
+ExitShortStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
+ExitShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)ExitLongStop
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
@@ -1052,19 +1052,19 @@ See [*ExitLong()*], [*ExitLongLimit()*], [*ExitLongStop()*], [*ExitLongStopLimit
 ExitShortStopLimit(double limitPrice, double stopPrice)
 ExitShortStopLimit(int quantity, double limitPrice, double stopPrice)
 ExitShortStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
-ExitShortStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
-ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signalName          | An unambiguous name                                                                                                                                          |
+| strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
@@ -1536,7 +1536,7 @@ See [*OnOrderUpdate()*], [*OnExecution()*].
 
 ### Usage
 ```cs
-SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string signalName)
+SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string strategyName)
 ```
 
 ### Parameter
@@ -1567,7 +1567,7 @@ SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderTyp
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
 | ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
-| signalName          | An unambiguous signal name (string)                                |
+| strategyName          | An unambiguous signal name (string)                                |
 
 ### Return Value
 an order object of the type "IOrder"
