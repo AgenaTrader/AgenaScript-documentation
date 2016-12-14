@@ -190,7 +190,7 @@ A drawing object of the type IArrowUp (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Sets the preceding bar on which the arrow should be drawn (0 = current bar)             |
 | time      | Date/time at which the arrow should be drawn                                            |
@@ -223,7 +223,7 @@ A drawing object of the type IDiamond (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Defines the preceding bar on which the diamond should be drawn                          |
 | time      | Date/time of the bar on which the diamond should be drawn                               |
@@ -256,7 +256,7 @@ A drawing object of the type IDot (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Defines the preceding bar on which the dot should be drawn (0 = current bar)            |
 | time      | The date/time at which the dot should be drawn                                          |
@@ -285,7 +285,7 @@ A drawing object of the type IEllipse (interface)
 ### Parameter
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                      |
+| name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo | Sets the preceding bar at which the ellipse should start                                |
 | startTime    | Date/time at which the ellipse should start                                             |
@@ -322,7 +322,7 @@ A drawing object of the type IExtendedLine (interface)
 ### Parameter
 |              |                                                                                                         |
 |--------------|---------------------------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                                      |
+| name         | A clearly identifiable name for the drawing object                                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety                 |
 | startBarsAgo | Number of bars ago for the start point                                                                  |
 | startTime    | Date/time for the start point                                                                           |
@@ -364,7 +364,7 @@ A drawing object of the type IFibonacciCircle (interface)
 ### Parameter
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                      |
+| name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo | Defines the starting point in terms of bars ago                                         |
 | startTime    | Date/time of the bar for the starting point                                             |
@@ -395,7 +395,7 @@ A drawing object of the type IFibonacciExtensions (interface)
 ### Parameter
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
-| tag            | A clearly identifiable name for the drawing object                                      |
+| name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | anchor1BarsAgo | Number of bars ago for anchor point 1                                                   |
 | anchor1Time    | Date/time for anchor point 1                                                            |
@@ -427,7 +427,7 @@ A drawing object of the type IFibonacciProjections (Interface)
 ### Parameter
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
-| tag            | A clearly identifiable name for the drawing object                                      |
+| name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | anchor1Time    | Date/time for anchor point 1                                                            |
 | anchor1Y       | y-value for anchor point 1                                                              |
@@ -459,7 +459,7 @@ A drawing object of the type IFibonacciRetracements (interface)
 ### Parameter
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                      |
+| name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo | Defines how many bars ago the starting point of the Fibonacci retracement is located    |
 | startTime    | Date/time of the bar at which the Fibonacci retracement should begin                    |
@@ -490,7 +490,7 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 ### Parameter
 |              |                                                       |
 |--------------|-------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object    |
+| name         | A clearly identifiable name for the drawing object    |
 | startBarsAgo | Defines how many bars ago the extensions should start |
 | startTime    | Date/time at which the extensions should start        |
 | startY       | y-value at which the extensions should start          |
@@ -520,7 +520,7 @@ A drawing object of the type IGannFan (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Sets the preceding bar on which the Gann fan should be drawn                            |
 | time      | Date/time at which the Gann fan should start                                            |
@@ -551,7 +551,7 @@ A drawing object of the type ITrendLine (interface).
 ### Parameter
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                      |
+| name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo | Number of bars ago for the starting point                                               |
 | startTime    | Date/time for the starting point                                                        |
@@ -595,7 +595,7 @@ A drawing object of the type IHorizontalLine (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | y         | Any double value of your choice                                                         |
 | color     | Line color                                                                              |
@@ -635,7 +635,7 @@ A drawing object of the type IRay (interface)
 ### Parameter
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
-| tag            | A clearly identifiable name for the drawing object                                      |
+| name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | anchor1BarsAgo | Number of bars ago for anchor point 1                                                   |
 | anchor1Time    | Date/time for anchor point 1                                                            |
@@ -683,7 +683,7 @@ A drawing object of the type IRectangle (interface)
 ### Parameter
 |              |                                                                                                        |
 |--------------|--------------------------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                                     |
+| name         | A clearly identifiable name for the drawing object                                                     |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety                |
 | startBarsAgo | Sets the preceding bar at which the one corner of the rectangle should be located (0 = current bar)    |
 | startTime    | Date/time at which the start of the one rectangle corner should be located                             |
@@ -720,7 +720,7 @@ A drawing object of the type IRegion (interface)
 ### Parameter
 |                  |                                                                                   |
 |------------------|-----------------------------------------------------------------------------------|
-| tag              | A clearly identifiable name for the drawing object                                |
+| name             | A clearly identifiable name for the drawing object                                |
 | startBarsAgo     | Sets the preceding bar at which the drawing should begin (0 = current bar)        |
 | startTime        | Start time for the drawing                                                        |
 | endBarsAgo       | Sets the preceding bar at which the drawing should end (0 = current bar)          |
@@ -754,7 +754,7 @@ A drawing object of the type IRegressionChannel (interface)
 ### Parameter
 |                  |                                                                                         |
 |------------------|-----------------------------------------------------------------------------------------|
-| tag              | A clearly identifiable name for the drawing object                                      |
+| name             | A clearly identifiable name for the drawing object                                      |
 | autoScale        | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo     | Sets the preceding bar at which the regression channel should start (0 = current bar)   |
 | startTime        | Start time for the regression channel                                                   |
@@ -800,7 +800,7 @@ A drawing object of the type ISquare (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| Tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Sets the preceding bar at which the square should be drawn (0 = current bar)            |
 | Time      | Date/time of the bar at which the square should be drawn                                |
@@ -841,7 +841,7 @@ A drawing object of the type IText (interface)
 ### Parameter
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
-| Tag          | A clearly identifiable name for the drawing object                                          |
+| name         | A clearly identifiable name for the drawing object                                          |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety     |
 | Text         | Text to be displayed (may contain escape sequences)                                         |
 | barsAgo      | Sets how many bars ago the text should be displayed                                         |
@@ -916,7 +916,7 @@ A drawing object of the type ITextFixed (interface)
 ### Parameter
 |              |                                                                            |
 |--------------|----------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                         |
+| name         | A clearly identifiable name for the drawing object                         |
 | text         | The text to be displayed                                                   |
 | TextPosition | TextPosition.BottomLeft                                                    
                 TextPosition.BottomRight                                                    
@@ -958,7 +958,7 @@ A drawing object of the type ITrendChannel (interface)
 ### Parameter
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
-| tag            | A clearly identifiable name for the drawing object                                      |
+| name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | anchor1BarsAgo | Number of bars ago for anchor point 1 (x-axis)                                          |
 | anchor1Time    | Date/time for anchor point 1 (x-axis)                                                   |
@@ -993,7 +993,7 @@ A drawing object of the type ITriangle (interface)
 ### Parameter
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
-| tag            | A clearly identifiable name for the drawing object                                      |
+| name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | anchor1BarsAgo | Number of bars ago for anchor point 1 (x-axis)                                          |
 | anchor1Time    | Date/time for anchor point 1 (x-axis)                                                   |
@@ -1037,7 +1037,7 @@ A drawing object of the type ITriangleUp (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Sets how many bars ago the triangle should be drawn                                     |
 | time      | Date/time for the bar at which the triangle should be drawn                             |
@@ -1070,7 +1070,7 @@ A drawing object of the type ITriangleDown (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Sets how many bars ago the triangle should be drawn                                     |
 | time      | Date/time for the bar at which the triangle should be drawn                             |
@@ -1102,7 +1102,7 @@ A drawing object of the type IVerticalLine (interface)
 ### Parameter
 |           |                                                                            |
 |-----------|----------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                         |
+| name      | A clearly identifiable name for the drawing object                         |
 | barsAgo   | Sets how many bars ago the vertical line should be drawn (0 = current bar) |
 | time      | Date/time of the bar at which the vertical line should be drawn            |
 | color     | Line color                                                                 |
