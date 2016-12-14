@@ -153,20 +153,20 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-private IOrder myEntryOrder = null;
-private int barNumberOfOrder = 0;
+private IOrder entryOrder = null;
+private int barNumber = 0;
 protected override void OnBarUpdate()
 {
-// Place an entry stop at the high of the current bar
-if (myEntryOrder == null)
-{
-myEntryOrder = EnterLongStop(High[0], "stop long");
-barNumberOfOrder = CurrentBar;
-}
-// Delete the order after 3 bars
-if (Position.MarketPosition == PositionType.Flat &&
-CurrentBar > barNumberOfOrder + 3)
-CancelOrder(myEntryOrder);
+    // Place an entry stop at the high of the current bar
+    if (entryOrder == null)
+    {
+        entryOrder = EnterLongStop(High[0], "stop long");
+        barNumber = CurrentBar;
+    }
+    // Delete the order after 3 bars
+    if (Position.MarketPosition == PositionType.Flat &&
+    CurrentBar > barNumber + 3)
+        CancelOrder(entryOrder);
 }
 ```
 
@@ -192,8 +192,10 @@ ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 private IOrder stopOrder = null;
 protected override void OnBarUpdate()
 {
-// If the position is profiting by 4 ticks then set the stop to break-even
-if (stopOrder != null && stopOrder.StopPrice < Position.AvgPrice && Close[0] >= Position.AvgPrice + 4 * TickSize)
+// If the position is profiting by 10 ticks then set the stop to break-even
+if (stopOrder != null 
+    && Close[0] >= Position.AvgPrice + (10 * TickSize) 
+        && stopOrder.StopPrice < Position.AvgPrice)
 ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
 ```
@@ -335,12 +337,12 @@ See [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop), 
 ### Usage
 ```cs
 EnterLong()
-EnterLong(string signalName)
+EnterLong(string strategyName)
 EnterLong(int quantity)
-EnterLong(int quantity, string signalName)
+EnterLong(int quantity, string strategyName)
 
 //For multi-bar strategies
-EnterLong(int barsInProgressIndex, int quantity, string signalName)
+EnterLong(int multibarSeriesIndex, int quantity, string strategyName)
 ```
 
 ### Parameter
@@ -357,7 +359,8 @@ an order object of the type "IOrder"
 ```cs
 // Enter a long position if the last entry is 10 bars in the past
 // and if two SMAs have crossed
-if (BarsSinceEntry() > 10 && CrossAbove(SMA(10), SMA(20), 1))
+if (BarsSinceEntry() > 10 
+    && CrossAbove(SMA(10), SMA(20), 1))
 EnterLong("SMA cross entry");
 ```
 
@@ -372,9 +375,9 @@ See [*EnterLong()*](#enterlong), [*EnterLongStop()*](#enterlongstop), [*EnterLon
 ### Usage
 ```cs
 EnterLongLimit(double limitPrice)
-EnterLongLimit(double limitPrice, string signalName)
+EnterLongLimit(double limitPrice, string strategyName)
 EnterLongLimit(int quantity, double limitPrice)
-EnterLongLimit(int quantity, double limitPrice, string signalName)
+EnterLongLimit(int quantity, double limitPrice, string strategyName)
 ```
 
 For Multibar-Strategies
