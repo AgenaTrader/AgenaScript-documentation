@@ -244,21 +244,20 @@ protected override void OnExecution(IExecution execution)
 
 ### Example
 ```cs
-private IOrder entryOrder = null;
+private IOrder entry = null;
 protected override void OnBarUpdate()
 {
-    if (entryOrder == null && Close[0] > Open[0])
-    entryOrder = EnterLong();
+	if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+        	entry = EnterLong("EMACrossesSMA");
 }
 protected override void OnExecution(IExecution execution)
 {
-    // Example 1
-    if (entryOrder != null && execution.Order == entryOrder)
-    Print(execution.ToString());
-
-    // Example 2
-    if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
-    Print(execution.ToString());
+    // Example
+    if (entry != null && execution.Order == entry)
+    {
+    	Print(execution.Price.ToString());
+	Print(execution.Order.OrderState.ToString());
+    }
 }
 ```
 
@@ -331,9 +330,9 @@ An object from *MarketDepthEventArgs*
 ```cs
 protected override void OnMarketDepth(MarketDepthEventArgs e)
 {
-    // Output for the current ask price
-    if (e.MarketDataType == MarketDataType.Ask && e.Operation == Operation.Update)
-    Print("The current ask is" + e.Price + " " + e.Volume);
+    // Current Bit-Price
+    if (e.MarketDataType == MarketDataType.Bit)
+    	Print("The current bit is" + e.Price );
 }
 ```
 
@@ -360,23 +359,24 @@ protected override void OnOrderUpdate(IOrder order)
 
 ### Example
 ```cs
-private IOrder entryOrder = null;
+private IOrder entry = null;
 protected override void OnBarUpdate()
 {
-    if (entryOrder == null && Close[0] > Open[0])
-    entryOrder = EnterLong();
+    if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+        entry = EnterLong("EMACrossesSMA");
+		
+    if (entry != null && entry == order)
+    {
+        if (order.OrderState == OrderState.Filled)
+        {
+		PlaySound("OrderFilled.wav");
+		entryOrder = null;
+        }
+    }
 }
 protected override void OnOrderUpdate(IOrder order)
 {
-    if (entryOrder != null && entryOrder == order)
-    {
-        Print(order.ToString());
-        if (order.OrderState == OrderState.Cancelled)
-        {
-			Print("Order was canceled.");
-			entryOrder = null;
-        }
-    }
+
 }
 ```
 
