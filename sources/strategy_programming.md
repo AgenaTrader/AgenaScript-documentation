@@ -485,9 +485,9 @@ An order object of the type "IOrder"
 ```cs
 private IOrder stopOrder = null;
 // Place an entry stop at the high of the current bar
-// if the high is reached, a limit order will be placed 2 ticks above the high
+// if the high  is reached, at 5 ticks above the high.
 if (stopOrder == null)
-myEntryOrder = EnterLongStopLimit(High[0]+ (5*TickSize), High[0], "Stop Long Limit");
+    stopOrder = EnterLongStopLimit(High[0]+ (5*TickSize), High[0], "Stop Long Limit");
 ```
 
 ## EnterShort()
@@ -522,9 +522,10 @@ an order object of the type "IOrder"
 
 ### Example
 ```cs
-// A short position will be placed if the last entry is 10 bars in the past and two SMAs have crossed each other
-if (BarsSinceEntry() > 10 && CrossBelow(SMA(10), SMA(20), 1))
-EnterShort("SMA cross entry");
+// if the EMA14 crosses the SMA50 from above to below
+// the ADX is rising its values
+if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+    EnterShort("'EMACrossesSMA");
 ```
 
 ## EnterShortLimit()
@@ -602,10 +603,10 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-private IOrder myEntryOrder = null;
-// Place an entry stop at the low of the current bar
-if (myEntryOrder == null)
-myEntryOrder = EnterShortStop(Low[0], "stop short");
+private IOrder stopOrder = null;
+// Place an entry stop at the High of the current bar
+if (stopOrder == null)
+    stopOrder = EnterShortStop(High[0], "stop short");
 ```
 
 ## EnterShortStopLimit()
@@ -647,10 +648,10 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-private IOrder myEntryOrder = null;
+private IOrder stopOrder = null;
 // Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
-if (myEntryOrder == null)
-myEntryOrder = EnterShortStopLimit(Low[0]-2*TickSize, Low[0], "stop short");
+if (stopOrder == null)
+    stopOrder = EnterShortStopLimit(High[0] + (2*TickSize), High[0], "stop short");
 ```
 
 ## EntriesPerDirection
@@ -679,26 +680,19 @@ EntryHandling = EntryHandling.AllEntries;
 
 protected override void OnBarUpdate()
 {
-if (CrossAbove(SMA(10), SMA(20), 1)
-EnterLong("SMA Cross Entry");
-if (CrossAbove(RSI(14, 3), 30, 1)
-EnterLong("RSI Cross Entry");
+    if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+        EnterLong("SMA cross entry");
 }
 
 // Example 2
-// For each differently named entry signal, a long position will be opened
-protected override void Initialize()
-{
-EntriesPerDirection = 1;
-EntryHandling = EntryHandling.UniqueEntries;
-}
+
 
 protected override void OnBarUpdate()
 {
-if (CrossAbove(SMA(10), SMA(20), 1)
-EnterLong("SMA Cross Entry");
-if (CrossAbove(RSI(14, 3), 30, 1)
-EnterLong("RSI Cross Entry");
+    if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+        EnterLong("EMACrossesSMA");
+    else if (CrossAbove (MACD(2,2,5), 0, 1))
+        EnterLong("MACDCross");
 }
 ```
 
@@ -761,13 +755,13 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong("SMA Cross Entry");
+// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterLong("EMACrossesSMA");
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLong();
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLong();
 ```
 
 ## ExitLongLimit()
@@ -806,13 +800,13 @@ an order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong("SMA Cross Entry");
+// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterLong("EMACrossesSMA");
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongLimit(GetCurrentBid());
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLongLimit(Low[0]);
 ```
 
 ## ExitLongStop()
@@ -850,13 +844,13 @@ an order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong("SMA Cross Entry");
+// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterLong("EMACrossesSMA");
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongStop(Low[0]);
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLongStop(Low[0]);
 ```
 
 ## ExitLongStopLimit()
@@ -897,13 +891,13 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong("SMA Cross Entry");
+// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterLong("EMACrossesSMA");
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLongStopLimit(Low[0] - (15 * TickSize), Low[0]);
 ```
 
 ## ExitOnClose
@@ -942,13 +936,13 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross each other
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort("SMA cross entry");
+// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterShort("EMACrossesSMA");
 
-// Close position
-if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShort();
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShort();
 ```
 
 ## ExitShortLimit()
@@ -988,12 +982,12 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort("SMA cross entry");
-// Close position
-if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShortLimit(GetCurrentAsk());
+// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterShort("EMACrossesSMA");
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShortLimit(High[0] + (Ticksize * 2));
 ```
 
 ## ExitShortStop()
@@ -1031,13 +1025,12 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs have crossed
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort("SMA cross entry");
-
-// Close position
-if (CrossAbove (SMA(10), SMA(20), 1))
-ExitShortStop(High[0]);
+/// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterShort("EMACrossesSMA");
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShortStop(High[0] + (Ticksize * 2));
 ```
 
 ## ExitShortStopLimit()
@@ -1077,13 +1070,12 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter if two SMAs cross each other
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort("SMA cross entry");
-
-// Close position
-if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShortStopLimit(High[0]+10*TickSize, High[0]);
+/// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+     EnterShort("EMACrossesSMA");
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
 ```
 
 ## GetAccountValue()
@@ -1171,7 +1163,7 @@ A double value for the unrealized profit or loss
 
 ### Example
 ```cs
-Print("Das momentane Risiko der Strategie " + this.Name + " beträgt " +GetProfitLossAmount(Position.OpenProfitLoss) + " " + Instrument.Currency);
+Print("the current P&L " + this.Name + " is " + GetProfitLossAmount(Position.OpenProfitLoss) + " " + Instrument.Currency);
 ```
 
 ## GetProfitLossRisk()
@@ -1192,7 +1184,7 @@ A double value for the R-Multiple
 
 ### Example
 ```cs
-Print("Das momentane Risiko der Strategie " + this.Name + " beträgt " + string.Format( "{0:F1} R.", GetProfitLossRisk()));
+Print("the current P&L " + this.Name + " is " + string.Format( "{0:F1} R.", GetProfitLossRisk()));
 ```
 
 ## IsAutomated
@@ -1424,8 +1416,8 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 ```cs
 protected override void Initialize()
 {
-// Creates a profit target order 10 ticks above break-even
-SetProfitTarget(CalculationMode.Ticks, 10);
+// Creates a Target Order 20 ticks above the market
+SetProfitTarget(CalculationMode.Ticks, 20);
 }
 ```
 
@@ -1461,8 +1453,8 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 ```cs
 protected override void Initialize()
 {
-// Sets a stop of 500€
-SetStopLoss(500);
+// Sets profitTarget 15 Ticks above the market
+SetStopLoss("MACDEntry", CalculationMode.Ticks, 15, true);
 }
 ```
 
@@ -1523,8 +1515,8 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 ```cs
 protected override void Initialize()
 {
-// Sets a trailing stop of 30 ticks
-SetTrailStop(CalculationMode.Ticks, 30);
+// Sets a trailing at the low of the last candle
+    SetTrailStop(CalculationMode.Price, Low[0]);
 }
 ```
 
@@ -1577,9 +1569,9 @@ an order object of the type "IOrder"
 private IOrder entryOrder = null;
 protected override void OnBarUpdate()
 {
-// Entry conditions
-if (Close[0] > SMA(20)[0] && entryOrder == null)
-entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, "", "Enter long");
+
+if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+    entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, 1, 0, High[0], "", "LongEntry");
 }
 ```
 
