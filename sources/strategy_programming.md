@@ -350,18 +350,19 @@ EnterLong(int multibarSeriesIndex, int quantity, string strategyName)
 |---------------------|-----------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 
 ### Return Value
 an order object of the type "IOrder"
 
 ### Example
 ```cs
-// Enter a long position if the last entry is 10 bars in the past
-// and if two SMAs have crossed
-if (BarsSinceEntry() > 10 
-    && CrossAbove(SMA(10), SMA(20), 1))
-EnterLong("SMA cross entry");
+
+// if the EMA14 crosses the SMA50 from below to above
+// the ADX is rising its values
+if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+    EnterLong("SMACrossesEMA");
+
 ```
 
 ## EnterLongLimit()
@@ -382,7 +383,7 @@ EnterLongLimit(int quantity, double limitPrice, string strategyName)
 
 For Multibar-Strategies
 ```cs
-EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
+EnterLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
 ```
 
 ### Parameter
@@ -390,7 +391,7 @@ EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|-------------|
 | signalName          | An unambiguous name |
 | quantity            | Amount of stocks/contracts/etc.  |
-| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -399,9 +400,10 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-// A long position is placed if the last entry was 10 bars ago and the two SMAs have crossed each other
-if (BarsSinceEntry() > 10 && CrossAbove(SMA(10), SMA(20), 1))
-EnterLongLimit("SMA cross entry");
+// if the EMA14 crosses the SMA50 from below to above
+// the ADX is rising its values
+if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+    EnterLongLimit("SMACrossesEMA");
 ```
 
 ## EnterLongStop()
@@ -422,7 +424,7 @@ EnterLongStop(int quantity, double stopPrice, string signalName)
 
 For multi-bar strategies
 ```cs
-EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
+EnterLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
 ```
 
 ### Parameter
@@ -430,7 +432,7 @@ EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|-------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
@@ -439,10 +441,10 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-private IOrder myEntryOrder = null;
+private IOrder stopOrder = null;
 // Place an entry order at the high of the current bar
-if (myEntryOrder == null)
-myEntryOrder = EnterLongStop(High[0], "Stop Long");
+if (stopOrder == null)
+    stopOrder = EnterLongStop(Low[0], "Stop Long");
 ```
 
 ## EnterLongStopLimit()
@@ -463,7 +465,7 @@ EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 
 For multi-bar strategies
 ```cs
-EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
 ### Parameter
@@ -471,7 +473,7 @@ EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 |--------------|-------------------------|
 | signalName          | An unambiguous name       |
 | quantity            | Amount of stocks or contracts to be ordered   |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
@@ -481,11 +483,11 @@ An order object of the type "IOrder"
 
 ### Example
 ```cs
-private IOrder myEntryOrder = null;
+private IOrder stopOrder = null;
 // Place an entry stop at the high of the current bar
 // if the high is reached, a limit order will be placed 2 ticks above the high
-if (myEntryOrder == null)
-myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], "Stop Long");
+if (stopOrder == null)
+myEntryOrder = EnterLongStopLimit(High[0]+ (5*TickSize), High[0], "Stop Long Limit");
 ```
 
 ## EnterShort()
@@ -503,7 +505,7 @@ EnterShort(string signalName)
 EnterShort(int quantity)
 EnterShort(int quantity, string signalName)
 For multi-bar strategies
-EnterShort(int barsInProgressIndex, int quantity, string signalName)
+EnterShort(int multibarSeriesIndex, int quantity, string signalName)
 ```
 
 ### Parameter
@@ -511,7 +513,7 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | quantity            | Amount of stocks/contracts etc.                                      |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies                             
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies                             
                        Index of the data series for which the entry order is to be executed  
                        See [*BarsInProgress*](#barsinprogress).                                               |
 
@@ -543,7 +545,7 @@ EnterShortLimit(int quantity, double limitPrice, string signalName)
 
 For Multibar-Strategies
 ```cs
-EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
+EnterShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
 ```
 
 ### Parameter
@@ -551,7 +553,7 @@ EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                                         |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                                    
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                                    
                        Index of the data series for which the entry order is to be executed.                                                                                                         
                        See [*BarsInProgress*](#barsinprogress).                                                                                                                                                       |
 | limitPrice          | A double value for the limit price                                                                                                                                           |
@@ -583,7 +585,7 @@ EnterShortStop(int quantity, double stopPrice, string signalName)
 
 For multi-bar strategies
 ```cs
-EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
+EnterShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
 ```
 
 ### Parameter
@@ -591,7 +593,7 @@ EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                           |
 | quantity            | Amount to be ordered                                                                                          |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                             |
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
@@ -625,7 +627,7 @@ EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string si
 For multi-bar strategies
 
 ```cs
-EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
 ```
 
 ### Parameter
@@ -633,7 +635,7 @@ EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quanti
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                         |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                    
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                    
                        Index of the data series for which an entry order is to be placed.                                                                                            
                        See [*BarsInProgress*](#barsinprogress).                                                                                                                                       |
 | stopPrice           | A double value for the stop price                                                                                                                            |
@@ -743,7 +745,7 @@ ExitLong(int quantity, string signalName, string fromEntry signal)
 
 For multi-bar strategies
 ```cs
-ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
+ExitLong(int multibarSeriesIndex, int quantity, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -751,7 +753,7 @@ ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEn
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | quantity            | The quantity to be sold                                              |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).   |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).   |
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
@@ -786,7 +788,7 @@ ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEnt
 
 For multi-bar strategies
 ```cs
-ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -795,7 +797,7 @@ ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the attached entry signal                                                                                                                        |
 | quantity            | Order quantity to be sold                                                                                                                                    |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -830,7 +832,7 @@ ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry
 
 For multi-bar strategies
 ```cs
-ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
+ExitLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
 ```
 
 ### Parameter
@@ -839,7 +841,7 @@ ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, dou
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -876,7 +878,7 @@ ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string sign
 
 For Multibar-Strategies
 ```cs
-ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -885,7 +887,7 @@ ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -924,7 +926,7 @@ ExitShort(int quantity, string signalName, string fromEntry signal)
 
 For multi-bar strategies
 ```cs
-ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
+ExitShort(int multibarSeriesIndex, int quantity, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -932,7 +934,7 @@ ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromE
 |---------------------|----------------------------------------------------------------------|
 | signalName          | An unambiguous name                                                  |
 | Quantity            | Order quantity to be bought                                          |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
@@ -968,7 +970,7 @@ ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEn
 
 For multi-bar strategies
 ```cs
-ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -977,7 +979,7 @@ ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, d
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -1011,7 +1013,7 @@ ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntr
 
 For multi-bar strategies
 ```cs
-ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
+ExitShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
 ```
 
 ### Parameter
@@ -1020,7 +1022,7 @@ ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, do
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -1056,7 +1058,7 @@ ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 
 For multi-bar strategies
 ```cs
-ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -1065,7 +1067,7 @@ ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantit
 | signalName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| barsInProgressIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -1534,13 +1536,13 @@ See [*OnOrderUpdate()*], [*OnExecution()*].
 
 ### Usage
 ```cs
-SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string signalName)
+SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string signalName)
 ```
 
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
-| barsInProgressIndex | For multi-bar strategies.                                          
+| multibarSeriesIndex | For multi-bar strategies.                                          
                        Index of the data series for which the order is to be executed.     
                        See BarsInProgress.                                                 |
 | orderAction         | Possible values are:                                               
