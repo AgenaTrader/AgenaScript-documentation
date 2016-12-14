@@ -12,7 +12,7 @@ Information concerning its usage:
 
 ### Usage
 ```cs
-DrawAndrewsPitchfork(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsBack, double start2Y, int start3BarsAgo, double start3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string name, bool autoScale, int start1BarsBack, double start1Y, int start2BarsBack, double start2Y, int start3BarsBack, double start3Y, Color color, DashStyle dashStyle, int width)
 DrawAndrewsPitchfork(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, DashStyle dashStyle, int width)
 ```
 
@@ -24,13 +24,13 @@ A drawing object of the type IAndrewsPitchfork (interface)
 |----------------|-----------------------------------------------------------------------------------------|
 | name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| start1BarsAgo  | Number of bars ago for start point 1 (x-axis)                                           |
+| start1BarsBack | Number of bars ago for start point 1 (x-axis)                                           |
 | start1Time     | Date/time for start point 1 (x-axis)                                                    |
 | start1Y        | y-value for start point 1                                                               |
-| start2BarsAgo  | Number of bars ago for start point 2 (x-axis)                                           |
+| start2BarsBack | Number of bars ago for start point 2 (x-axis)                                           |
 | start2Time     | Date/time for start point 2 (x-axis)                                                    |
 | start2Y        | y-value for start point 2                                                               |
-| start3BarsAgo  | Number of bars ago for start point 3 (x-axis)                                           |
+| start3BarsBack | Number of bars ago for start point 3 (x-axis)                                           |
 | start3Time     | Date/time for start point 3 (x-axis)                                                    |
 | start3Y        | y-value for start point 3                                                               |
 | color          | Color of the object                                                                     |
