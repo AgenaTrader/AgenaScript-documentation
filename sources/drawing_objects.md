@@ -12,8 +12,8 @@ Information concerning its usage:
 
 ### Usage
 ```cs
-DrawAndrewsPitchfork(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, DashStyle dashStyle, int width)
-DrawAndrewsPitchfork(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, DashStyle dashStyle, int width)
+DrawAndrewsPitchfork(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -22,7 +22,7 @@ A drawing object of the type IAndrewsPitchfork (interface)
 ### Parameter
 |                |                                                                                         |
 |----------------|-----------------------------------------------------------------------------------------|
-| tag            | A clearly identifiable name for the drawing object                                      |
+| name           | A clearly identifiable name for the drawing object                                      |
 | autoScale      | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | anchor1BarsAgo | Number of bars ago for anchor point 1 (x-axis)                                          |
 | anchor1Time    | Date/time for anchor point 1 (x-axis)                                                   |
@@ -52,9 +52,9 @@ DrawArc() draws a circular arc.
 
 ### Usage
 ```cs
-DrawArcstring tag, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawArc(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
-DrawArc(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
+DrawArc(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
+DrawArc(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
+DrawArc(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -63,7 +63,7 @@ A drawing object of the type IArc (interface)
 ### Parameter
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                      |
+| name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo | Number of bars ago for the starting point                                               |
 | startTime    | Date/time for the starting point                                                        |
@@ -99,8 +99,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*Draw
 
 ### Usage
 ```cs   
-DrawArrowDown(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawArrowDown(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawArrowDown(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawArrowDown(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -109,7 +109,7 @@ A drawing object of the type IArrowDown (interface)
 ### Parameter
 |           |                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------|
-| tag       | A clearly identifiable name for the drawing object                                      |
+| name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | barsAgo   | Sets the preceding bar on which the arrow should be drawn (0 = current bar)             |
 | time      | Date/time of the bar on which the arrow should be drawn                                 |
@@ -133,9 +133,9 @@ DrawArrowLine() draws an arrow:
 
 ### Usage
 ```cs
- DrawArrowLine (string tag,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color)
- DrawArrowLine (string tag,  bool  autoScale,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color, DashStyle dashStyle,  int  width)
- DrawArrowLine (string tag,  bool  autoScale, DateTime startTime,  double  startY, DateTime endTime,  double  endY, Color color, DashStyle dashStyle,  int  width)
+ DrawArrowLine (string name,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color)
+ DrawArrowLine (string name,  bool  autoScale,  int  startBarsAgo,  double  startY,  int  endBarsAgo,  double  endY, Color color, DashStyle dashStyle,  int  width)
+ DrawArrowLine (string name,  bool  autoScale, DateTime startTime,  double  startY, DateTime endTime,  double  endY, Color color, DashStyle dashStyle,  int  width)
 ```
 
 ### Return Value
@@ -144,7 +144,7 @@ A drawing object of the type IArrowLine (interface)
 ### Parameter
 |              |                                                                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| tag          | A clearly identifiable name for the drawing object                                      |
+| name         | A clearly identifiable name for the drawing object                                      |
 | autoScale    | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | startBarsAgo | Sets the preceding bar at which the arrow should start (0 = current bar)                |
 | startTime    | Date/time of the bar at which the arrow should start                                    |
@@ -180,8 +180,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*Draw
 
 ### Usage
 ```cs
-DrawArrowUp(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawArrowUp(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawArrowUp(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawArrowUp(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -213,8 +213,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*Draw
 
 ### Usage
 ```cs
-DrawDiamond(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawDiamond(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawDiamond(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawDiamond(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -246,8 +246,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*Draw
 
 ### Usage
 ```cs
-DrawDot(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawDot(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawDot(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawDot(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -275,9 +275,9 @@ DrawEllipse() draws an ellipse.
 
 ### Usage
 ```cs
-DrawEllipse(string tag, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawEllipse(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, Color areaColor, int areaOpacity)
-DrawEllipse(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
+DrawEllipse(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
+DrawEllipse(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, Color areaColor, int areaOpacity)
+DrawEllipse(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
 A drawing object of the type IEllipse (interface)
@@ -311,9 +311,9 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 ### Usage
 ```cs
-DrawExtendedLine(string tag, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawExtendedLine(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
-DrawExtendedLine(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
+DrawExtendedLine(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
+DrawExtendedLine(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
+DrawExtendedLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -354,8 +354,8 @@ DrawFibonacciCircle() draws a Fibonacci circle.
 
 ### Usage
 ```cs
-DrawFibonacciCircle(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY)
-DrawFibonacciCircle(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
+DrawFibonacciCircle(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY)
+DrawFibonacciCircle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
 ### Return Value
@@ -385,8 +385,8 @@ DrawFibonacciExtensions() draws Fibonacci extensions.
 
 ### Usage
 ```cs
-DrawFibonacciExtensions(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y)
-DrawFibonacciExtensions(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+DrawFibonacciExtensions(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y)
+DrawFibonacciExtensions(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
 ```
 
 ### Return Value
@@ -418,7 +418,7 @@ Draw Fibonacci Projections () sketches Fibonacci Projections.
 
 ### Usage
 ```cs
-DrawFibonacciProjections(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y,DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+DrawFibonacciProjections(string name, bool autoScale, DateTime anchor1Time, double anchor1Y,DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
 ```
 
 ### Return Value
@@ -449,8 +449,8 @@ DrawFibonacciRetracements() draws Fibonacci retracements.
 
 ### Usage
 ```cs
-DrawFibonacciRetracements(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY)
-DrawFibonacciRetracements(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
+DrawFibonacciRetracements(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY)
+DrawFibonacciRetracements(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
 ### Return Value
@@ -480,8 +480,8 @@ DrawFibonacciTimeExtensions() draws Fibonacci time extensions.
 
 ### Usage
 ```cs
-DrawFibonacciTimeExtensions(string tag, int startBarsAgo, double startY, int endBarsAgo, double endY)
-DrawFibonacciTimeExtensions(string tag, DateTime startTime, double startY, DateTime endTime, double endY)
+DrawFibonacciTimeExtensions(string name, int startBarsAgo, double startY, int endBarsAgo, double endY)
+DrawFibonacciTimeExtensions(string name, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
 ### Return Value
@@ -510,8 +510,8 @@ DrawGannFan() draws a Gann fan.
 
 ### Usage
 ```cs
-DrawGannFan(string tag, bool autoScale, int barsAgo, double y)
-DrawGannFan(string tag, bool autoScale, DateTime time, double y)
+DrawGannFan(string name, bool autoScale, int barsAgo, double y)
+DrawGannFan(string name, bool autoScale, DateTime time, double y)
 ```
 
 ### Return Value
@@ -540,9 +540,9 @@ See [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawv
 
 ### Usage
 ```cs
-DrawLine(string tag, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawLine(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
-DrawLine(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
+DrawLine(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
+DrawLine(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, DashStyle dashStyle, int width)
+DrawLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -585,8 +585,8 @@ See [*DrawLine()*](#drawline), [*DrawVerticalLine()*](#drawverticalline), [*Draw
 
 ### Usage
 ```cs
-DrawHorizontalLine(string tag, double y, Color color)
-DrawHorizontalLine(string tag, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
+DrawHorizontalLine(string name, double y, Color color)
+DrawHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -624,9 +624,9 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 ### Usage
 ```cs
-DrawRay(string tag, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, Color color)
-DrawRay(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, Color color, DashStyle dashStyle, int width)
-DrawRay(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, Color color, DashStyle dashStyle, int width)
+DrawRay(string name, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, Color color)
+DrawRay(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, Color color, DashStyle dashStyle, int width)
+DrawRay(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -673,9 +673,9 @@ DrawRectangle() draws a rectangle.
 
 ### Usage
 ```cs
-DrawRectangle(string tag, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
-DrawRectangle(string tag, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, Color areaColor, int areaOpacity)
-DrawRectangle(string tag, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
+DrawRectangle(string name, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color)
+DrawRectangle(string name, bool autoScale, int startBarsAgo, double startY, int endBarsAgo, double endY, Color color, Color areaColor, int areaOpacity)
+DrawRectangle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
 A drawing object of the type IRectangle (interface)
@@ -708,10 +708,10 @@ DrawRegion() fills a specific area on a chart.
 
 ### Usage
 ```cs
-DrawRegion(string tag, int startBarsAgo, int endBarsAgo, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string tag, int startBarsAgo, int endBarsAgo, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string tag, DateTime startTime, DateTime endTime, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string tag, DateTime startTime, DateTime endTime, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
+DrawRegion(string name, int startBarsAgo, int endBarsAgo, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
+DrawRegion(string name, int startBarsAgo, int endBarsAgo, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
+DrawRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
+DrawRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -743,9 +743,9 @@ DrawRegressionChannel() draws a regression channel.
 
 ### Usage
 ```cs
-DrawRegressionChannel(string tag, int startBarsAgo, int endBarsAgo, Color color)
-DrawRegressionChannel(string tag, bool autoScale, int startBarsAgo, int endBarsAgo, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
-DrawRegressionChannel(string tag, bool autoScale, DateTime startTime, DateTime endTime, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
+DrawRegressionChannel(string name, int startBarsAgo, int endBarsAgo, Color color)
+DrawRegressionChannel(string name, bool autoScale, int startBarsAgo, int endBarsAgo, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
+DrawRegressionChannel(string name, bool autoScale, DateTime startTime, DateTime endTime, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
 ```
 
 ### Return Value
@@ -790,8 +790,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*D
 
 ### Usage
 ```cs
-DrawSqare(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawSqare(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawSqare(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawSqare(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -821,11 +821,11 @@ See [*DrawTextFixed()*], *PlotMethod*.
 
 ### Usage
 ```cs
-DrawText(string tag, string text, int barsAgo, double y, Color color)
-DrawText(string tag, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-DrawText(string tag, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-DrawText(string tag, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
-DrawText(string tag, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
+DrawText(string name, string text, int barsAgo, double y, Color color)
+DrawText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
+DrawText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
+DrawText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
+DrawText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
 **Important note:**
@@ -906,8 +906,8 @@ See [*DrawText()*].
 
 ### Usage
 ```cs
-DrawTextFixed(string tag, string text, TextPosition textPosition)
-DrawTextFixed(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity)
+DrawTextFixed(string name, string text, TextPosition textPosition)
+DrawTextFixed(string name, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -948,8 +948,8 @@ DrawTrendChannel() draws a trend channel.
 
 ### Usage
 ```cs
-DrawTrendChannel(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y)
-DrawTrendChannel(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
+DrawTrendChannel(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y)
+DrawTrendChannel(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y)
 ```
 
 ### Return Value
@@ -982,9 +982,9 @@ DrawTriangle() draws a triangle.
 
 ### Usage
 ```cs
-DrawTriangle(string tag, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color)
-DrawTriangle(string tag, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, Color areaColor, int areaOpacity)
-DrawTriangle(string tag, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, Color areaColor, int areaOpacity)
+DrawTriangle(string name, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color)
+DrawTriangle(string name, bool autoScale, int anchor1BarsAgo, double anchor1Y, int anchor2BarsAgo, double anchor2Y, int anchor3BarsAgo, double anchor3Y, Color color, Color areaColor, int areaOpacity)
+DrawTriangle(string name, bool autoScale, DateTime anchor1Time, double anchor1Y, DateTime anchor2Time, double anchor2Y, DateTime anchor3Time, double anchor3Y, Color color, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -1027,8 +1027,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*D
 
 ### Usage
 ```cs
-DrawTriangleUp(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawTriangleUp(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -1060,8 +1060,8 @@ See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*D
 
 ### Usage
 ```cs
-DrawTriangleDown(string tag, bool autoScale, int barsAgo, double y, Color color)
-DrawTriangleDown(string tag, bool autoScale, DateTime time, double y, Color color)
+DrawTriangleDown(string name, bool autoScale, int barsAgo, double y, Color color)
+DrawTriangleDown(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -1091,9 +1091,9 @@ See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*
 
 ### Usage
 ```cs
-DrawVerticalLine(string tag, int barsAgo, Color color)
-DrawVerticalLine(string tag, int barsAgo, Color color, DashStyle dashStyle, int width)
-DrawVerticalLine(string tag, DateTime time, Color color, DashStyle dashStyle, int width)
+DrawVerticalLine(string name, int barsAgo, Color color)
+DrawVerticalLine(string name, int barsAgo, Color color, DashStyle dashStyle, int width)
+DrawVerticalLine(string name, DateTime time, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
