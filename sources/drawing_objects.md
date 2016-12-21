@@ -786,7 +786,7 @@ DrawSquare() draws a square:
 
 ![DrawSquare()](./media/image26.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawTriangleUp()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
@@ -817,7 +817,7 @@ DrawSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
 ### Description
 DrawText() writes whatever text you want onto the chart.
 
-See [*DrawTextFixed()*], *PlotMethod*.
+See [*DrawTextFixed()*](#drawtextfixed), *PlotMethod*.
 
 ### Usage
 ```cs
@@ -851,24 +851,21 @@ A drawing object of the type IText (interface)
 | textColor    | Text color                                                                                  |
 | Font         | Font                                                                                        |
 | Alignment    | Possible values are:                                                                        
-                - StringAlignment.Center                                                                     
-                - StringAlignment.Far                                                                        
-                - StringAlignment.Near                                                                       |
+-   StringAlignment.Center                                                                     
+-   StringAlignment.Far                                                                        
+-   StringAlignment.Near                                                                       |
 | HAlign       | Possible values are:                                                                        
-                - HorizontalAlign.Left                                                                       
-                - HorizontalAlign.Center                                                                     
-                - HorizontalAlign.Right                                                                      |
+-   HorizontalAlign.Left                                                                       
+-   HorizontalAlign.Center                                                                     
+-   HorizontalAlign.Right                                                                      |
 | VAlign       | Possible values are:                                                                        
-                - VerticalAlign.Top                                                                          
-                - VerticalAlign.Center                                                                       
-                - VerticalAlign.Bottom                                                                       |
-| outlineColor | Border color around the text                                                                
-                For no border, select Color.Empty                                                            |
+-   VerticalAlign.Top                                                                          
+-   VerticalAlign.Center                                                                       
+-   VerticalAlign.Bottom                                                                       |
+| outlineColor | Border color around the text. For no border, select Color.Empty                                                            |
 | areaColor    | Fill color for the text box                                                                 |
-| areaOpacity  | Transparency of the fill color                                                              
-                Value between 0 and 10                                                                       
-                0 = completely transparent                                                                   
-                10 = completely opaque                                                                       |
+| areaOpacity  | Transparency of the fill color
+Value between 0 and 10, 0 = completely transparent, 10 = completely opaque                                                                       |
 
 ### Example
 ```cs
@@ -902,7 +899,7 @@ Color.Yellow, // Fill color
 ### Description
 DrawTextFixed() writes text into one of 5 predetermined locations on the chart.
 
-See [*DrawText()*].
+See [*DrawText()*](#drawtext).
 
 ### Usage
 ```cs
@@ -918,20 +915,14 @@ A drawing object of the type ITextFixed (interface)
 |--------------|----------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                         |
 | text         | The text to be displayed                                                   |
-| TextPosition | TextPosition.BottomLeft                                                    
-                TextPosition.BottomRight                                                    
-                TextPosition.Center                                                         
-                TextPosition.TopLeft                                                        
-                TextPosition.TopRight                                                       |
+| TextPosition | TextPosition.BottomLeft, TextPosition.BottomRight, TextPosition.Center, TextPosition.TopLeft, TextPosition.TopRight                                                       |
 | textColor    | Text color                                                                 |
 | font         | Font                                                                       |
 | outlineColor | Color for the border around the text. For no border color, use Color.Empty |
 | areaColor    | Fill color of the text box                                                 
                 For no fill color, use Color.Empty                                          |
 | areaOpacity  | Transparency of the fill color                                             
-                Value between 0 and 10                                                      
-                0 = completely transparent                                                  
-                10 = completely opaque                                                      |
+                Value between 0 and 10, 0 = completely transparent, 10 = completely opaque     |
 
 ### Example
 ```cs
@@ -1007,9 +998,7 @@ A drawing object of the type ITriangle (interface)
 | color          | Color of the drawing object                                                             |
 | areaColor      | Fill color of the drawing object                                                        |
 | areaOpacity    | Transparency of the fill color                                                          
-                  Value between 0 and 10                                                                   
-                  0 = completely transparent                                                               
-                  10 = completely opaque                                                                   |
+                  Value between 0 and 10, 0 = completely transparent, 10 = completely opaque                                                                   |
 
 ### Example
 ```cs
@@ -1023,7 +1012,7 @@ DrawTriangleUp() draws a small upwards-pointing triangle:
 
 ![DrawTriangleUp()](./media/image28.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleDown()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
@@ -1056,7 +1045,7 @@ DrawTriangleDown() draws a small downwards-pointing triangle:
 
 ![DrawTriangleDown()](./media/image29.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*], [*DrawDiamond()*], [*DrawDot()*], [*DrawSquare()*], [*DrawTriangleUp()*].
+See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup).
 
 ### Usage
 ```cs
@@ -1106,16 +1095,8 @@ A drawing object of the type IVerticalLine (interface)
 | barsAgo   | Sets how many bars ago the vertical line should be drawn (0 = current bar) |
 | time      | Date/time of the bar at which the vertical line should be drawn            |
 | color     | Line color                                                                 |
-| dashStyle | Line style                                                                 
-
-             DashStyle.Dash                                                              
-             DashStyle.DashDot                                                           
-             DashStyle.DashDotDot                                                        
-             DashStyle.Dot                                                               
-             DashStyle.Solid                                                             
-
-             You may have to integrate:                                                  
-             using System.Drawing.Drawing2D;                                             |
+| dashStyle | Line style: DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot, DashStyle.Solid
+You may have to integrate: using System.Drawing.Drawing2D;                                             |
 | width     | Line strength                                                              |
 
 ### Example

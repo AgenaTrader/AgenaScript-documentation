@@ -842,7 +842,7 @@ myDataSeries.Set(Math.Abs(High[0]-Low[0]));
 
 ## DateTimeSeries
 ### Description
-Date time series is a [*DataSeries*][*Data series*] that can record a date time value for each bar. The number of elements in this series corresponds to the number of bars in the chart.
+Date time series is a [*DataSeries*](#dataseries) that can record a date time value for each bar. The number of elements in this series corresponds to the number of bars in the chart.
 
 ### Create a New Data Series
 Create a new variable in the declaration area:
@@ -1150,7 +1150,7 @@ myDataSeries.Set(string.Format("{0:dddd}", Time[0]));
 
 Of course, all other methods defined within the C\# language for usage of date-time objects are also available, such as day, month, year, hour, minute, second, day of week etc.
 
-See [*http://msdn.microsoft.com/de-de/library/03ybds8y.aspx*]
+See [*http://msdn.microsoft.com/de-de/library/03ybds8y.aspx*](http://msdn.microsoft.com/de-de/library/03ybds8y.aspx)
 
 ### Definition
 Property DayOfWeek
