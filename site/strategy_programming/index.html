@@ -28,6 +28,16 @@
   <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74646070-1', 'agenatrader.github.io');
+      ga('send', 'pageview');
+  </script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -236,7 +246,7 @@
     <li>Strategy programming</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/AgenaTrader/AgenaScript-documentation/edit/master/docs/strategy_programming.md"
+        <a href="https://github.com/AgenaTrader/AgenaScript-documentation/edit/master/sources/strategy_programming.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -326,11 +336,11 @@ Print(&quot;RealizedProfitLoss &quot; + Account.RealizedProfitLoss);
 <p>The property "BarsSinceEntry" returns the number of bars that have occurred since the last entry into the market.</p>
 <h3 id="usage">Usage</h3>
 <pre><code class="cs">BarsSinceEntry()
-BarsSinceEntry(string signalName)
+BarsSinceEntry(string strategyName)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">BarsSinceEntry(int barsInProgressIndex, string signalName, int entriesAgo)
+<pre><code class="cs">BarsSinceEntry(int multibarSeriesIndex, string strategyName, int entriesAgo)
 </code></pre>
 
 <h3 id="parameter">Parameter</h3>
@@ -343,11 +353,11 @@ BarsSinceEntry(string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
-<td>The signal name (string) that has been used to clearly label the entry within an entry method.</td>
+<td>strategyName</td>
+<td>The strategy name (string) that has been used to clearly label the entry within an entry method.</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For *<a href="#multibar">Multibar*</a><a href="#multibars"><em>MultiBars</em></a> strategies. Index for the data series for which the entry order was executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>, <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -365,11 +375,11 @@ BarsSinceEntry(string signalName)
 <p>The property "BarsSinceExit" outputs the number of bars that have occurred since the last exit from the market.</p>
 <h3 id="usage_1">Usage</h3>
 <pre><code class="cs">BarsSinceExit()
-BarsSinceExit(string signalName)
+BarsSinceExit(string strategyName)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">BarsSinceExit(int barsInProgressIndex, string signalName, int exitsAgo)
+<pre><code class="cs">BarsSinceExit(int multibarSeriesIndex, string strategyName, int exitsAgo)
 </code></pre>
 
 <h3 id="parameter_1">Parameter</h3>
@@ -382,11 +392,11 @@ BarsSinceExit(string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
-<td>The signal name (string) that has been used to clearly label the exit within the exit method.</td>
+<td>strategyName</td>
+<td>The Strategy name (string) that has been used to clearly label the exit within the exit method.</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For *<a href="#multibar">Multibar*</a><a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order has been executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -429,20 +439,20 @@ Therefore we recommend that you check the status of the order with <a href="#ono
 <h3 id="parameter_3">Parameter</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_4">Example</h3>
-<pre><code class="cs">private IOrder myEntryOrder = null;
-private int barNumberOfOrder = 0;
+<pre><code class="cs">private IOrder entryOrder = null;
+private int barNumber = 0;
 protected override void OnBarUpdate()
 {
-// Place an entry stop at the high of the current bar
-if (myEntryOrder == null)
-{
-myEntryOrder = EnterLongStop(High[0], &quot;stop long&quot;);
-barNumberOfOrder = CurrentBar;
-}
-// Delete the order after 3 bars
-if (Position.MarketPosition == PositionType.Flat &amp;&amp;
-CurrentBar &gt; barNumberOfOrder + 3)
-CancelOrder(myEntryOrder);
+    // Place an entry stop at the high of the current bar
+    if (entryOrder == null)
+    {
+        entryOrder = EnterLongStop(High[0], &quot;stop long&quot;);
+        barNumber = CurrentBar;
+    }
+    // Delete the order after 3 bars
+    if (Position.MarketPosition == PositionType.Flat &amp;&amp;
+    CurrentBar &gt; barNumber + 3)
+        CancelOrder(entryOrder);
 }
 </code></pre>
 
@@ -484,8 +494,10 @@ CancelOrder(myEntryOrder);
 <pre><code class="cs">private IOrder stopOrder = null;
 protected override void OnBarUpdate()
 {
-// If the position is profiting by 4 ticks then set the stop to break-even
-if (stopOrder != null &amp;&amp; stopOrder.StopPrice &lt; Position.AvgPrice &amp;&amp; Close[0] &gt;= Position.AvgPrice + 4 * TickSize)
+// If the position is profiting by 10 ticks then set the stop to break-even
+if (stopOrder != null 
+    &amp;&amp; Close[0] &gt;= Position.AvgPrice + (10 * TickSize) 
+        &amp;&amp; stopOrder.StopPrice &lt; Position.AvgPrice)
 ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
 </code></pre>
@@ -512,8 +524,8 @@ protected override void Initialize()
 
 protected override void OnBarUpdate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, &quot;ocoId&quot;,&quot;signalName&quot;);
-   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;signalName&quot;);
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, &quot;ocoId&quot;,&quot;strategyName&quot;);
+   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;strategyName&quot;);
 
    CreateIfDoneGroup(new List&lt;IOrder&gt; { oEnterLong, oExitLong });
 
@@ -543,8 +555,8 @@ protected override void Initialize()
 
 protected override void OnBarUpdate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;signalName&quot;);
-   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,&quot;ocoId&quot;, &quot;signalName&quot;);
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;strategyName&quot;);
+   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,&quot;ocoId&quot;, &quot;strategyName&quot;);
 
    CreateOCOGroup(new List&lt;IOrder&gt; { oEnterLong, oEnterShort });
 
@@ -575,8 +587,8 @@ protected override void Initialize()
 
 protected override void OnBarUpdate()
 {
-   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,&quot;ocoId&quot;, &quot;signalName&quot;);
-   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, &quot;ocoId&quot;, &quot;signalName&quot;);
+   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,&quot;ocoId&quot;, &quot;strategyName&quot;);
+   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, &quot;ocoId&quot;, &quot;strategyName&quot;);
 
    CreateOROGroup(new List&lt;IOrder&gt; { oLimitLong, oStopLong });
 }
@@ -607,12 +619,12 @@ DefaultQuantity = 100;
 <p>See <a href="#enterlonglimit"><em>EnterLongLimit()</em></a>, <a href="#enterlongstop"><em>EnterLongStop()</em></a>, <a href="#enterlongstoplimit"><em>EnterLongStopLimit()</em></a>.</p>
 <h3 id="usage_9">Usage</h3>
 <pre><code class="cs">EnterLong()
-EnterLong(string signalName)
+EnterLong(string strategyName)
 EnterLong(int quantity)
-EnterLong(int quantity, string signalName)
+EnterLong(int quantity, string strategyName)
 
 //For multi-bar strategies
-EnterLong(int barsInProgressIndex, int quantity, string signalName)
+EnterLong(int multibarSeriesIndex, int quantity, string strategyName)
 </code></pre>
 
 <h3 id="parameter_9">Parameter</h3>
@@ -625,7 +637,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -633,7 +645,7 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 <td>The amount of stocks/contracts</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.  Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 </tbody>
@@ -641,10 +653,12 @@ EnterLong(int barsInProgressIndex, int quantity, string signalName)
 <h3 id="return-value">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_10">Example</h3>
-<pre><code class="cs">// Enter a long position if the last entry is 10 bars in the past
-// and if two SMAs have crossed
-if (BarsSinceEntry() &gt; 10 &amp;&amp; CrossAbove(SMA(10), SMA(20), 1))
-EnterLong(&quot;SMA cross entry&quot;);
+<pre><code class="cs">
+// if the EMA14 crosses the SMA50 from below to above
+// the ADX is rising its values
+if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+    EnterLong(&quot;SMACrossesEMA&quot;);
+
 </code></pre>
 
 <h2 id="enterlonglimit">EnterLongLimit()</h2>
@@ -654,13 +668,13 @@ EnterLong(&quot;SMA cross entry&quot;);
 <p>See <a href="#enterlong"><em>EnterLong()</em></a>, <a href="#enterlongstop"><em>EnterLongStop()</em></a>, <a href="#enterlongstoplimit"><em>EnterLongStopLimit()</em></a>.</p>
 <h3 id="usage_10">Usage</h3>
 <pre><code class="cs">EnterLongLimit(double limitPrice)
-EnterLongLimit(double limitPrice, string signalName)
+EnterLongLimit(double limitPrice, string strategyName)
 EnterLongLimit(int quantity, double limitPrice)
-EnterLongLimit(int quantity, double limitPrice, string signalName)
+EnterLongLimit(int quantity, double limitPrice, string strategyName)
 </code></pre>
 
 <p>For Multibar-Strategies</p>
-<pre><code class="cs">EnterLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
+<pre><code class="cs">EnterLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
 </code></pre>
 
 <h3 id="parameter_10">Parameter</h3>
@@ -673,7 +687,7 @@ EnterLongLimit(int quantity, double limitPrice, string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -681,7 +695,7 @@ EnterLongLimit(int quantity, double limitPrice, string signalName)
 <td>Amount of stocks/contracts/etc.</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a> and <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -697,9 +711,10 @@ EnterLongLimit(int quantity, double limitPrice, string signalName)
 <h3 id="return-value_1">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_11">Example</h3>
-<pre><code class="cs">// A long position is placed if the last entry was 10 bars ago and the two SMAs have crossed each other
-if (BarsSinceEntry() &gt; 10 &amp;&amp; CrossAbove(SMA(10), SMA(20), 1))
-EnterLongLimit(&quot;SMA cross entry&quot;);
+<pre><code class="cs">// if the EMA14 crosses the SMA50 from below to above
+// the ADX is rising its values
+if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+    EnterLongLimit(&quot;SMACrossesEMA&quot;);
 </code></pre>
 
 <h2 id="enterlongstop">EnterLongStop()</h2>
@@ -709,13 +724,13 @@ EnterLongLimit(&quot;SMA cross entry&quot;);
 <p>See <a href="#enterlong"><em>EnterLong()</em></a>, <a href="#enterlonglimit"><em>EnterLongLimit()</em></a>, <a href="#enterlongstoplimit"><em>EnterLongStopLimit()</em></a>.</p>
 <h3 id="usage_11">Usage</h3>
 <pre><code class="cs">EnterLongStop(double stopPrice)
-EnterLongStop(double stopPrice, string signalName)
+EnterLongStop(double stopPrice, string strategyName)
 EnterLongStop(int quantity, double stopPrice)
-EnterLongStop(int quantity, double stopPrice, string signalName)
+EnterLongStop(int quantity, double stopPrice, string strategyName)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">EnterLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
+<pre><code class="cs">EnterLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
 </code></pre>
 
 <h3 id="parameter_11">Parameter</h3>
@@ -728,7 +743,7 @@ EnterLongStop(int quantity, double stopPrice, string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -736,7 +751,7 @@ EnterLongStop(int quantity, double stopPrice, string signalName)
 <td>Amount of stocks or contracts etc.</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a> and <a href="#multibars"><em>MultiBars</em></a> strategies Index of the data series for which an entry order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -752,10 +767,10 @@ EnterLongStop(int quantity, double stopPrice, string signalName)
 <h3 id="return-value_2">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_12">Example</h3>
-<pre><code class="cs">private IOrder myEntryOrder = null;
+<pre><code class="cs">private IOrder stopOrder = null;
 // Place an entry order at the high of the current bar
-if (myEntryOrder == null)
-myEntryOrder = EnterLongStop(High[0], &quot;Stop Long&quot;);
+if (stopOrder == null)
+    stopOrder = EnterLongStop(Low[0], &quot;Stop Long&quot;);
 </code></pre>
 
 <h2 id="enterlongstoplimit">EnterLongStopLimit()</h2>
@@ -765,13 +780,13 @@ myEntryOrder = EnterLongStop(High[0], &quot;Stop Long&quot;);
 <p>See <a href="#enterlong"><em>EnterLong()</em></a>, <a href="#enterlonglimit"><em>EnterLongLimit()</em></a>, <a href="#enterlongstop"><em>EnterLongStop()</em></a>.</p>
 <h3 id="usage_12">Usage</h3>
 <pre><code class="cs">EnterLongStopLimit(double limitPrice, double stopPrice)
-EnterLongStopLimit(double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(double limitPrice, double stopPrice, string strategyName)
 EnterLongStopLimit(int quantity, double limitPrice, double stopPrice)
-EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
+EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">EnterLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
+<pre><code class="cs">EnterLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
 </code></pre>
 
 <h3 id="parameter_12">Parameter</h3>
@@ -784,7 +799,7 @@ EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -792,7 +807,7 @@ EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 <td>Amount of stocks or contracts to be ordered</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed.  See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -812,11 +827,11 @@ EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 <h3 id="return-value_3">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_13">Example</h3>
-<pre><code class="cs">private IOrder myEntryOrder = null;
+<pre><code class="cs">private IOrder stopOrder = null;
 // Place an entry stop at the high of the current bar
-// if the high is reached, a limit order will be placed 2 ticks above the high
-if (myEntryOrder == null)
-myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], &quot;Stop Long&quot;);
+// if the high  is reached, at 5 ticks above the high.
+if (stopOrder == null)
+    stopOrder = EnterLongStopLimit(High[0]+ (5*TickSize), High[0], &quot;Stop Long Limit&quot;);
 </code></pre>
 
 <h2 id="entershort">EnterShort()</h2>
@@ -826,11 +841,11 @@ myEntryOrder = EnterLongStopLimit(High[0]+2*TickSize, High[0], &quot;Stop Long&q
 <p>See <a href="#entershortlimit"><em>EnterShortLimit()</em></a>, <a href="#entershortstop"><em>EnterShortStop()</em></a>(entershortstop), <a href="#entershortstoplimit"><em>EnterShortStopLimit()</em></a>.</p>
 <h3 id="usage_13">Usage</h3>
 <pre><code class="cs">EnterShort()
-EnterShort(string signalName)
+EnterShort(string strategyName)
 EnterShort(int quantity)
-EnterShort(int quantity, string signalName)
+EnterShort(int quantity, string strategyName)
 For multi-bar strategies
-EnterShort(int barsInProgressIndex, int quantity, string signalName)
+EnterShort(int multibarSeriesIndex, int quantity, string strategyName)
 </code></pre>
 
 <h3 id="parameter_13">Parameter</h3>
@@ -843,7 +858,7 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -851,7 +866,7 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 <td>Amount of stocks/contracts etc.</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies</td>
 </tr>
 <tr>
@@ -867,9 +882,10 @@ EnterShort(int barsInProgressIndex, int quantity, string signalName)
 <h3 id="return-value_4">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_14">Example</h3>
-<pre><code class="cs">// A short position will be placed if the last entry is 10 bars in the past and two SMAs have crossed each other
-if (BarsSinceEntry() &gt; 10 &amp;&amp; CrossBelow(SMA(10), SMA(20), 1))
-EnterShort(&quot;SMA cross entry&quot;);
+<pre><code class="cs">// if the EMA14 crosses the SMA50 from above to below
+// the ADX is rising its values
+if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+    EnterShort(&quot;'EMACrossesSMA&quot;);
 </code></pre>
 
 <h2 id="entershortlimit">EnterShortLimit()</h2>
@@ -879,13 +895,13 @@ EnterShort(&quot;SMA cross entry&quot;);
 <p>See <a href="#entershort"><em>EnterShort()</em></a>, <a href="#entershortstop"><em>EnterShortStop()</em></a>, <a href="#entershortstoplimit"><em>EnterShortStopLimit()</em></a>.</p>
 <h3 id="usage_14">Usage</h3>
 <pre><code class="cs">EnterShortLimit(double limitPrice)
-EnterShortLimit(double limitPrice, string signalName)
+EnterShortLimit(double limitPrice, string strategyName)
 EnterShortLimit(int quantity, double limitPrice)
-EnterShortLimit(int quantity, double limitPrice, string signalName)
+EnterShortLimit(int quantity, double limitPrice, string strategyName)
 </code></pre>
 
 <p>For Multibar-Strategies</p>
-<pre><code class="cs">EnterShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName)
+<pre><code class="cs">EnterShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
 </code></pre>
 
 <h3 id="parameter_14">Parameter</h3>
@@ -898,7 +914,7 @@ EnterShortLimit(int quantity, double limitPrice, string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -906,7 +922,7 @@ EnterShortLimit(int quantity, double limitPrice, string signalName)
 <td>Amount to be ordered</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.</td>
 </tr>
 <tr>
@@ -942,13 +958,13 @@ If a signature not containing a set amount is used, the amount is set by the <a 
 See <a href="#entershort"><em>EnterShort()</em></a>, <a href="#entershortlimit"><em>EnterShortLimit()</em></a>, <a href="#entershortstoplimit"><em>EnterShortStopLimit()</em></a>.</p>
 <h3 id="usage_15">Usage</h3>
 <pre><code class="cs">EnterShortStop(double stopPrice)
-EnterShortStop(double stopPrice, string signalName)
+EnterShortStop(double stopPrice, string strategyName)
 EnterShortStop(int quantity, double stopPrice)
-EnterShortStop(int quantity, double stopPrice, string signalName)
+EnterShortStop(int quantity, double stopPrice, string strategyName)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">EnterShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName)
+<pre><code class="cs">EnterShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
 </code></pre>
 
 <h3 id="parameter_15">Parameter</h3>
@@ -961,7 +977,7 @@ EnterShortStop(int quantity, double stopPrice, string signalName)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -969,7 +985,7 @@ EnterShortStop(int quantity, double stopPrice, string signalName)
 <td>Amount to be ordered</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -985,10 +1001,10 @@ EnterShortStop(int quantity, double stopPrice, string signalName)
 <h3 id="return-value_6">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_16">Example</h3>
-<pre><code class="cs">private IOrder myEntryOrder = null;
-// Place an entry stop at the low of the current bar
-if (myEntryOrder == null)
-myEntryOrder = EnterShortStop(Low[0], &quot;stop short&quot;);
+<pre><code class="cs">private IOrder stopOrder = null;
+// Place an entry stop at the High of the current bar
+if (stopOrder == null)
+    stopOrder = EnterShortStop(High[0], &quot;stop short&quot;);
 </code></pre>
 
 <h2 id="entershortstoplimit">EnterShortStopLimit()</h2>
@@ -998,13 +1014,13 @@ myEntryOrder = EnterShortStop(Low[0], &quot;stop short&quot;);
 <p>See <a href="#entershort"><em>EnterShort()</em></a>, <a href="#entershortlimit"><em>EnterShortLimit()</em></a>, <a href="#entershortstop"><em>EnterShortStop()</em></a>.</p>
 <h3 id="usage_16">Usage</h3>
 <pre><code class="cs">EnterShortStopLimit(double limitPrice, double stopPrice)
-EnterShortStopLimit(double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(double limitPrice, double stopPrice, string strategyName)
 EnterShortStopLimit(int quantity, double limitPrice, double stopPrice)
-EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName)
+EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">EnterShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName)
+<pre><code class="cs">EnterShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
 </code></pre>
 
 <h3 id="parameter_16">Parameter</h3>
@@ -1017,7 +1033,7 @@ EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string si
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1025,7 +1041,7 @@ EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string si
 <td>Amount to be ordered</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.</td>
 </tr>
 <tr>
@@ -1053,10 +1069,10 @@ EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string si
 <h3 id="return-value_7">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_17">Example</h3>
-<pre><code class="cs">private IOrder myEntryOrder = null;
+<pre><code class="cs">private IOrder stopOrder = null;
 // Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
-if (myEntryOrder == null)
-myEntryOrder = EnterShortStopLimit(Low[0]-2*TickSize, Low[0], &quot;stop short&quot;);
+if (stopOrder == null)
+    stopOrder = EnterShortStopLimit(High[0] + (2*TickSize), High[0], &quot;stop short&quot;);
 </code></pre>
 
 <h2 id="entriesperdirection">EntriesPerDirection</h2>
@@ -1079,26 +1095,19 @@ EntryHandling = EntryHandling.AllEntries;
 
 protected override void OnBarUpdate()
 {
-if (CrossAbove(SMA(10), SMA(20), 1)
-EnterLong(&quot;SMA Cross Entry&quot;);
-if (CrossAbove(RSI(14, 3), 30, 1)
-EnterLong(&quot;RSI Cross Entry&quot;);
+    if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+        EnterLong(&quot;SMA cross entry&quot;);
 }
 
 // Example 2
-// For each differently named entry signal, a long position will be opened
-protected override void Initialize()
-{
-EntriesPerDirection = 1;
-EntryHandling = EntryHandling.UniqueEntries;
-}
+
 
 protected override void OnBarUpdate()
 {
-if (CrossAbove(SMA(10), SMA(20), 1)
-EnterLong(&quot;SMA Cross Entry&quot;);
-if (CrossAbove(RSI(14, 3), 30, 1)
-EnterLong(&quot;RSI Cross Entry&quot;);
+    if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+        EnterLong(&quot;EMACrossesSMA&quot;);
+    else if (CrossAbove (MACD(2,2,5), 0, 1))
+        EnterLong(&quot;MACDCross&quot;);
 }
 </code></pre>
 
@@ -1126,12 +1135,12 @@ If entries per direction = 2, then it is possible for two signals for enter long
 <pre><code class="cs">ExitLong()
 ExitLong(int quantity)
 ExitLong(string fromEntry signal)
-ExitLong(string signalName, string fromEntry signal)
-ExitLong(int quantity, string signalName, string fromEntry signal)
+ExitLong(string strategyName, string fromEntry signal)
+ExitLong(int quantity, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitLong(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
+<pre><code class="cs">ExitLong(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
 </code></pre>
 
 <h3 id="parameter_18">Parameter</h3>
@@ -1144,7 +1153,7 @@ ExitLong(int quantity, string signalName, string fromEntry signal)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1152,7 +1161,7 @@ ExitLong(int quantity, string signalName, string fromEntry signal)
 <td>The quantity to be sold</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1164,13 +1173,13 @@ ExitLong(int quantity, string signalName, string fromEntry signal)
 <h3 id="return-value_8">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_20">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong(&quot;SMA Cross Entry&quot;);
+<pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterLong(&quot;EMACrossesSMA&quot;);
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLong();
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLong();
 </code></pre>
 
 <h2 id="exitlonglimit">ExitLongLimit()</h2>
@@ -1182,12 +1191,12 @@ See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>]
 <pre><code class="cs">ExitLongLimit(double limitPrice)
 ExitLongLimit(int quantity, double limitPrice)
 ExitLongLimit(double limitPrice, string fromEntry signal)
-ExitLongLimit(double limitPrice, string signalName, string fromEntry signal)
-ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitLongLimit(double limitPrice, string strategyName, string fromEntry signal)
+ExitLongLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitLongLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
+<pre><code class="cs">ExitLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <h3 id="parameter_19">Parameter</h3>
@@ -1200,7 +1209,7 @@ ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEnt
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1212,7 +1221,7 @@ ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEnt
 <td>Order quantity to be sold</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1228,13 +1237,13 @@ ExitLongLimit(int quantity, double limitPrice, string signalName, string fromEnt
 <h3 id="return-value_9">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_21">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong(&quot;SMA Cross Entry&quot;);
+<pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterLong(&quot;EMACrossesSMA&quot;);
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongLimit(GetCurrentBid());
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLongLimit(Low[0]);
 </code></pre>
 
 <h2 id="exitlongstop">ExitLongStop()</h2>
@@ -1245,12 +1254,12 @@ See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>]
 <h3 id="usage_21">Usage</h3>
 <pre><code class="cs">ExitLongStop(int quantity, double stopPrice)
 ExitLongStop(double stopPrice, string fromEntry signal)
-ExitLongStop(double stopPrice, string signalName, string fromEntry signal)
-ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStop(double stopPrice, string strategyName, string fromEntry signal)
+ExitLongStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitLongStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
+<pre><code class="cs">ExitLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)ExitLongStop
 </code></pre>
 
 <h3 id="parameter_20">Parameter</h3>
@@ -1263,7 +1272,7 @@ ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1275,7 +1284,7 @@ ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry
 <td>The quantity to be sold</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1291,13 +1300,13 @@ ExitLongStop(int quantity, double stopPrice, string signalName, string fromEntry
 <h3 id="return-value_10">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_22">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong(&quot;SMA Cross Entry&quot;);
+<pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterLong(&quot;EMACrossesSMA&quot;);
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongStop(Low[0]);
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLongStop(Low[0]);
 </code></pre>
 
 <h2 id="exitlongstoplimit">ExitLongStopLimit()</h2>
@@ -1309,12 +1318,12 @@ ExitLongStop(Low[0]);
 <pre><code class="cs">ExitLongStopLimit(double limitPrice, double stopPrice)
 ExitLongStopLimit(int quantity, double limitPrice, double stopPrice)
 ExitLongStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
-ExitLongStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
-ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitLongStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For Multibar-Strategies</p>
-<pre><code class="cs">ExitLongStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+<pre><code class="cs">ExitLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <h3 id="parameter_21">Parameter</h3>
@@ -1327,7 +1336,7 @@ ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string sign
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1339,7 +1348,7 @@ ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string sign
 <td>The quantity to be sold</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1359,13 +1368,13 @@ ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string sign
 <h3 id="return-value_11">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_23">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross each other
-if (CrossAbove(SMA(10), SMA(20), 1))
-EnterLong(&quot;SMA Cross Entry&quot;);
+<pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterLong(&quot;EMACrossesSMA&quot;);
 
 // Close position
-if (CrossBelow(SMA(10), SMA(20), 1))
-ExitLongStopLimit(Low[0]-10*TickSize, Low[0]);
+if (CrossBelow(EMA(14), SMA(50), 2))
+    ExitLongStopLimit(Low[0] - (15 * TickSize), Low[0]);
 </code></pre>
 
 <h2 id="exitonclose">ExitOnClose</h2>
@@ -1379,12 +1388,12 @@ See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</e
 <pre><code class="cs">ExitShort()
 ExitShort(int quantity)
 ExitShort(string fromEntry signal)
-ExitShort(string signalName, string fromEntry signal)
-ExitShort(int quantity, string signalName, string fromEntry signal)
+ExitShort(string strategyName, string fromEntry signal)
+ExitShort(int quantity, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitShort(int barsInProgressIndex, int quantity, string signalName, string fromEntry signal)
+<pre><code class="cs">ExitShort(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
 </code></pre>
 
 <h3 id="parameter_22">Parameter</h3>
@@ -1397,7 +1406,7 @@ ExitShort(int quantity, string signalName, string fromEntry signal)
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1405,7 +1414,7 @@ ExitShort(int quantity, string signalName, string fromEntry signal)
 <td>Order quantity to be bought</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1417,13 +1426,13 @@ ExitShort(int quantity, string signalName, string fromEntry signal)
 <h3 id="return-value_12">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_24">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross each other
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort(&quot;SMA cross entry&quot;);
+<pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterShort(&quot;EMACrossesSMA&quot;);
 
-// Close position
-if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShort();
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShort();
 </code></pre>
 
 <h2 id="exitshortlimit">ExitShortLimit()</h2>
@@ -1435,12 +1444,12 @@ ExitShort();
 <pre><code class="cs">ExitShortLimit(double limitPrice)
 ExitShortLimit(int quantity, double limitPrice)
 ExitShortLimit(double limitPrice, string fromEntry signal)
-ExitShortLimit(double limitPrice, string signalName, string fromEntry signal)
-ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEntry signal)
+ExitShortLimit(double limitPrice, string strategyName, string fromEntry signal)
+ExitShortLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitShortLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, string signalName, string fromEntry signal)
+<pre><code class="cs">ExitShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <h3 id="parameter_23">Parameter</h3>
@@ -1453,7 +1462,7 @@ ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEn
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1465,7 +1474,7 @@ ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEn
 <td>Order quantity to be bought</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1481,12 +1490,12 @@ ExitShortLimit(int quantity, double limitPrice, string signalName, string fromEn
 <h3 id="return-value_13">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_25">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort(&quot;SMA cross entry&quot;);
-// Close position
-if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShortLimit(GetCurrentAsk());
+<pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterShort(&quot;EMACrossesSMA&quot;);
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShortLimit(High[0] + (Ticksize * 2));
 </code></pre>
 
 <h2 id="exitshortstop">ExitShortStop()</h2>
@@ -1497,12 +1506,12 @@ If a signature not containing a set amount is used, the amount is set by the <a 
 <h3 id="usage_25">Usage</h3>
 <pre><code class="cs">ExitShortStop(int quantity, double stopPrice)
 ExitShortStop(double stopPrice, string fromEntry signal)
-ExitShortStop(double stopPrice, string signalName, string fromEntry signal)
-ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStop(double stopPrice, string strategyName, string fromEntry signal)
+ExitShortStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitShortStop(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double stopPrice, string signalName, string fromEntry signal)ExitLongStop
+<pre><code class="cs">ExitShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)ExitLongStop
 </code></pre>
 
 <h3 id="parameter_24">Parameter</h3>
@@ -1515,7 +1524,7 @@ ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntr
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1527,7 +1536,7 @@ ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntr
 <td>Order quantity to be bought</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1543,13 +1552,12 @@ ExitShortStop(int quantity, double stopPrice, string signalName, string fromEntr
 <h3 id="return-value_14">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_26">Example</h3>
-<pre><code class="cs">// Enter if two SMAs have crossed
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort(&quot;SMA cross entry&quot;);
-
-// Close position
-if (CrossAbove (SMA(10), SMA(20), 1))
-ExitShortStop(High[0]);
+<pre><code class="cs">/// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterShort(&quot;EMACrossesSMA&quot;);
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShortStop(High[0] + (Ticksize * 2));
 </code></pre>
 
 <h2 id="exitshortstoplimit">ExitShortStopLimit()</h2>
@@ -1561,12 +1569,12 @@ If a signature not containing a set amount is used, the amount is set by the <a 
 <pre><code class="cs">ExitShortStopLimit(double limitPrice, double stopPrice)
 ExitShortStopLimit(int quantity, double limitPrice, double stopPrice)
 ExitShortStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
-ExitShortStopLimit(double limitPrice, double stopPrice, string signalName, string fromEntry signal)
-ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+ExitShortStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <p>For multi-bar strategies</p>
-<pre><code class="cs">ExitShortStopLimit(int barsInProgressIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string signalName, string fromEntry signal)
+<pre><code class="cs">ExitShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 </code></pre>
 
 <h3 id="parameter_25">Parameter</h3>
@@ -1579,7 +1587,7 @@ ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 </thead>
 <tbody>
 <tr>
-<td>signalName</td>
+<td>strategyName</td>
 <td>An unambiguous name</td>
 </tr>
 <tr>
@@ -1591,7 +1599,7 @@ ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 <td>Order quantity to be bought</td>
 </tr>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 <tr>
@@ -1611,13 +1619,12 @@ ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string sig
 <h3 id="return-value_15">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_27">Example</h3>
-<pre><code class="cs">// Enter if two SMAs cross each other
-if (CrossBelow(SMA(10), SMA(20), 1))
-EnterShort(&quot;SMA cross entry&quot;);
-
-// Close position
-if (CrossAbove(SMA(10), SMA(20), 1))
-ExitShortStopLimit(High[0]+10*TickSize, High[0]);
+<pre><code class="cs">/// Enter if two EMA crosses SMA and the ADX is rising
+if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+     EnterShort(&quot;EMACrossesSMA&quot;);
+// Close 
+if (CrossAbove(EMA(15), SMA(50), 2))
+    ExitShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
 </code></pre>
 
 <h2 id="getaccountvalue">GetAccountValue()</h2>
@@ -1678,7 +1685,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <h3 id="return-value_18">Return Value</h3>
 <p>A double value for the unrealized profit or loss</p>
 <h3 id="example_30">Example</h3>
-<pre><code class="cs">Print(&quot;Das momentane Risiko der Strategie &quot; + this.Name + &quot; beträgt &quot; +GetProfitLossAmount(Position.OpenProfitLoss) + &quot; &quot; + Instrument.Currency);
+<pre><code class="cs">Print(&quot;the current P&amp;L &quot; + this.Name + &quot; is &quot; + GetProfitLossAmount(Position.OpenProfitLoss) + &quot; &quot; + Instrument.Currency);
 </code></pre>
 
 <h2 id="getprofitlossrisk">GetProfitLossRisk()</h2>
@@ -1694,7 +1701,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <h3 id="return-value_19">Return Value</h3>
 <p>A double value for the R-Multiple</p>
 <h3 id="example_31">Example</h3>
-<pre><code class="cs">Print(&quot;Das momentane Risiko der Strategie &quot; + this.Name + &quot; beträgt &quot; + string.Format( &quot;{0:F1} R.&quot;, GetProfitLossRisk()));
+<pre><code class="cs">Print(&quot;the current P&amp;L &quot; + this.Name + &quot; is &quot; + string.Format( &quot;{0:F1} R.&quot;, GetProfitLossRisk()));
 </code></pre>
 
 <h2 id="isautomated">IsAutomated</h2>
@@ -1980,8 +1987,8 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 <h3 id="example_35">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
-// Creates a profit target order 10 ticks above break-even
-SetProfitTarget(CalculationMode.Ticks, 10);
+// Creates a Target Order 20 ticks above the market
+SetProfitTarget(CalculationMode.Ticks, 20);
 }
 </code></pre>
 
@@ -2043,8 +2050,8 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 <h3 id="example_36">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
-// Sets a stop of 500€
-SetStopLoss(500);
+// Sets profitTarget 15 Ticks above the market
+SetStopLoss(&quot;MACDEntry&quot;, CalculationMode.Ticks, 15, true);
 }
 </code></pre>
 
@@ -2115,8 +2122,8 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 <h3 id="example_37">Example</h3>
 <pre><code class="cs">protected override void Initialize()
 {
-// Sets a trailing stop of 30 ticks
-SetTrailStop(CalculationMode.Ticks, 30);
+// Sets a trailing at the low of the last candle
+    SetTrailStop(CalculationMode.Price, Low[0]);
 }
 </code></pre>
 
@@ -2125,7 +2132,7 @@ SetTrailStop(CalculationMode.Ticks, 30);
 <p>Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.</p>
 <p>See [<em>OnOrderUpdate()</em>], [<em>OnExecution()</em>].</p>
 <h3 id="usage_34">Usage</h3>
-<pre><code class="cs">SubmitOrder(int barsInProgressIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string signalName)
+<pre><code class="cs">SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string strategyName)
 </code></pre>
 
 <h3 id="parameter_34">Parameter</h3>
@@ -2138,7 +2145,7 @@ SetTrailStop(CalculationMode.Ticks, 30);
 </thead>
 <tbody>
 <tr>
-<td>barsInProgressIndex</td>
+<td>multibarSeriesIndex</td>
 <td>For multi-bar strategies.</td>
 </tr>
 <tr>
@@ -2176,16 +2183,16 @@ SetTrailStop(CalculationMode.Ticks, 30);
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
 | ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
-| signalName          | An unambiguous signal name (string)                                |</p>
+| strategyName          | An unambiguous signal name (string)                                |</p>
 <h3 id="return-value_20">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_38">Example</h3>
 <pre><code class="cs">private IOrder entryOrder = null;
 protected override void OnBarUpdate()
 {
-// Entry conditions
-if (Close[0] &gt; SMA(20)[0] &amp;&amp; entryOrder == null)
-entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Market, 1, 0, 0, &quot;&quot;, &quot;Enter long&quot;);
+
+if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
+    entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, 1, 0, High[0], &quot;&quot;, &quot;LongEntry&quot;);
 }
 </code></pre>
 
