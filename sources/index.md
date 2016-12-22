@@ -1,5 +1,7 @@
 ![AgenaTrader](./images/logo_100.png)
 
+**The following API documentation requires AgenaTrader in version 1.9.0.563**
+
 #Welcome to the official AgenaScript documentation!
 
 Want to learn more about the AgenaTrader scripting language? We've got the resources to help you get started. Start by browsing the documentation on the list below.
@@ -8,8 +10,6 @@ Want to learn more about the AgenaTrader scripting language? We've got the resou
 AgenaScript is AgenaTrader’s integrated programming language. The syntax is derived from C\# and thus closely resembles it.
 
 AgenaScript allows you to execute any ideas/methods that are too complex for the ConditionEscort. From simple indicators to entire applications where AgenaTrader is only required to run in the background, anything that can be written in .NET can be implemented.
-
-**The following API documentation requires AgenaTrader in version 1.9.0.563**
 
 Information contained in this help document:
 
