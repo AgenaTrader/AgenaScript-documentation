@@ -165,11 +165,11 @@
               
                 <h1 id="hints-advice">Hints &amp; Advice</h1>
 <h2 id="bar-numbering-within-the-chart">Bar Numbering Within the Chart</h2>
-<p>The following example demonstrates the usage of the plot method and the properties of the <a href="#chartcontrol"><em>ChartControl</em></a> object.</p>
+<p>The following example demonstrates the usage of the plot method and the properties of the <a href="#chart"><em>Chart</em></a> object.</p>
 <p><img alt="Bar Numbering Within the Chart" src="../media/image30.png" /></p>
 <p><strong>Note:</strong>
-For demonstration purposes, each time Paint is called up within the “Bar Numbering” section, “New” and “Dispose” will also be called up multiple times.
-From a performance point of view, this solution can be better implemented by using constant variable declarations and calling up “Dispose” within the OnTermination statement.</p>
+For demonstration purposes, each time Paint is called up within the "Bar Numbering" section, "New" and "Dispose" will also be called up multiple times.
+From a performance point of view, this solution can be better implemented by using constant variable declarations and calling up "Dispose" within the OnDispose statement.</p>
 <pre><code class="cs">using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -191,35 +191,35 @@ Pen pen = new Pen(Color.Blue);
 StringFormat sf = new StringFormat();
 SolidBrush brush = new SolidBrush(Color.Black);
 Font font = new Font(&quot;Arial&quot;, 10, FontStyle.Bold);
-protected override void Initialize()
+protected override void OnInit()
 {
-Overlay = true;
+IsOverlay = true;
 }
-protected override void OnTermination()
+protected override void OnDispose()
 {
 if (pen!=null) pen.Dispose();
 if (sf!=null) sf.Dispose();
 if (brush!=null) brush.Dispose();
 if (font!=null) font.Dispose();
 }
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {}
-public override void Plot(Graphics g, Rectangle r, double min, double max)
+public override void OnPaint(Graphics g, Rectangle r, double min, double max)
 {
-if (Bars == null || ChartControl == null) return;
-// Properties of ChartControl
+if (Bars == null || Chart == null) return;
+// Properties of Chart
 string s;
 s = &quot;bounds: &quot;+r.X.ToString()+&quot; &quot;+r.Y.ToString()+&quot; &quot;+r.Height.ToString()+&quot; &quot;+r.Width.ToString();
 g.DrawString(s, font, brush, 10, 50, sf);
 s = &quot;min: &quot;+Instrument.Round2TickSize(min).ToString()+&quot; max: &quot;+Instrument.Round2TickSize(max).ToString();
 g.DrawString(s, font, brush, 10, 70, sf);
-s = &quot;BarSpace: &quot;+ChartControl.BarSpace.ToString()+&quot; BarWidth: &quot;+ChartControl.BarWidth.ToString();
+s = &quot;BarSpace: &quot;+Chart.BarSpace.ToString()+&quot; BarWidth: &quot;+Chart.BarWidth.ToString();
 g.DrawString(s, font, brush, 10, 90, sf);
 s = &quot;Bars.Count: &quot;+Bars.Count.ToString();
 g.DrawString(s, font, brush, 10, 110, sf);
-s = &quot;BarsPainted: &quot;+ChartControl.BarsPainted.ToString() + &quot; FirstBarPainted: &quot;+ChartControl.FirstBarPainted.ToString() + &quot; LastBarPainted: &quot;+ChartControl.LastBarPainted.ToString();
+s = &quot;BarsPainted: &quot;+Chart.BarsPainted.ToString() + &quot; FirstBarPainted: &quot;+Chart.FirstBarPainted.ToString() + &quot; LastBarPainted: &quot;+Chart.LastBarPainted.ToString();
 g.DrawString(s, font, brush, 10, 130, sf);
-s = &quot;BarsVisible: &quot;+ChartControl.BarsVisible.ToString() + &quot; FirstBarVisible: &quot;+ChartControl.FirstBarVisible.ToString() + &quot; LastBarVisible: &quot;+ChartControl.LastBarVisible.ToString();
+s = &quot;BarsVisible: &quot;+Chart.BarsVisible.ToString() + &quot; FirstBarVisible: &quot;+Chart.FirstBarVisible.ToString() + &quot; LastBarVisible: &quot;+Chart.LastBarVisible.ToString();
 g.DrawString(s, font, brush, 10, 150, sf);
 // Bar numbering
 StringFormat _sf = new StringFormat();
@@ -227,12 +227,12 @@ SolidBrush _brush = new SolidBrush(Color.Blue);
 Font _font = new Font(&quot;Arial&quot;, 8);
 SizeF _stringSize = new SizeF();
 _sf.Alignment = StringAlignment.Center;
-for (int i=ChartControl.FirstBarVisible; i&lt;=ChartControl.LastBarVisible; i++)
+for (int i=Chart.FirstBarVisible; i&lt;=Chart.LastBarVisible; i++)
 {
 string text = i.ToString();
 _stringSize = g.MeasureString(text, _font);
-int x = ChartControl.GetXByBarIdx(Bars, i);
-int y = ChartControl.GetYByValue(this, High[Abs2Ago(i)] + 3*TickSize) - (int) _stringSize.Height;
+int x = Chart.GetXByBarIdx(Bars, i);
+int y = Chart.GetYByValue(this, High[Abs2Ago(i)] + 3*TickSize) - (int) _stringSize.Height;
 g.DrawString(text, _font, _brush, x, y, _sf);
 }
 _sf.Dispose();
@@ -241,7 +241,7 @@ _font.Dispose();
 }
 private int Abs2Ago(int idx)
 {
-return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
+return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 }
 }
 }
@@ -259,13 +259,13 @@ namespace AgenaTrader.UserCode
 public class BackgroundPicture : UserIndicator
 {
 Image img;
-protected override void OnStartUp()
+protected override void OnStart()
 {
 try { img = Image.FromFile(&quot;C:\\\\MyCar.jpg&quot;); } catch {}
 }
-public override void Plot(Graphics g, Rectangle r, double min, double max)
+public override void OnPaint(Graphics g, Rectangle r, double min, double max)
 {
-if (ChartControl == null || img == null) return;
+if (Chart == null || img == null) return;
 g.DrawImage(img,r);
 }
 }
@@ -305,7 +305,7 @@ foreach (FileInfo file in files) list.Add(file.Name);
 return new TypeConverter.StandardValuesCollection(list);
 }
 }
-protected override void OnStartUp()
+protected override void OnStart()
 {
 PlaySound(_soundFile);
 }
@@ -352,7 +352,7 @@ return s;
 </code></pre>
 
 <p>Converts a number into a currency with a thousands separator and 2 decimal places.
-The block separation per 1000 units can be set in “Culture”.</p>
+The block separation per 1000 units can be set in "Culture".</p>
 <pre><code class="cs">public string getWaehrungOhneSymbol(double d) {
 // Separate 1000s and two decimal points
 return d.ToString(&quot;\#,\#\#0.00&quot;);
@@ -402,7 +402,7 @@ return string.Format(CultureInfo.CurrentCulture, f, d);
 }
 </code></pre>
 
-<h3 id="example"><strong>Example</strong></h3>
+<h3 id="example">Example</h3>
 <pre><code class="cs">double profit = 1234.567890;
 Print(&quot;getCurrencyWithoutSymbol &quot;: + getWaehrungOhneSymbol(Gewinn)); // 1234.57
 Print(&quot;getCurrencyWithSymbol :&quot; + getWaehrungMitSymbol(Gewinn)); // $ 1,234.57
@@ -418,19 +418,19 @@ Print(&quot;getPrice :&quot; + getKurs(Kurs)); // 123.46
 <ol>
 <li>
 <p>The bars are numbered from youngest to oldest.
-This type is used in the OnBarUpdate() method.
+This type is used in the OnCalculate() method.
 The last bar has an index of 0, while the oldest bar has the index Bars.Count-1.</p>
 </li>
 <li>
 <p>The bars are numbered from oldest to youngest.
-This type is most commonly used in the Plot() method in “for” loops.
+This type is most commonly used in the OnPaint() method in "for" loops.
 The oldest Bbar receives an index of 0, while the youngest bar has the index Bars.Count-1.
 The following function can be used to recalculate the index types:</p>
 </li>
 </ol>
 <pre><code class="cs">private int Convert(int idx)
 {
-return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
+return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 }
 </code></pre>
 
@@ -474,12 +474,12 @@ namespace AgenaTrader.UserCode
 [Description(&quot;Demo of RoundedRectangles&quot;)]
 public class DemoRoundedRectangle : UserIndicator
 {
-protected override void Initialize()
+protected override void OnInit()
 {
-Overlay = true;
+IsOverlay = true;
 }
-protected override void OnBarUpdate() {}
-public override void Plot(Graphics g, Rectangle r, double min, double max)
+protected override void OnCalculate() {}
+public override void OnPaint(Graphics g, Rectangle r, double min, double max)
 {
 GraphicsPath path;
 // draws a rectangle with rounded corners
