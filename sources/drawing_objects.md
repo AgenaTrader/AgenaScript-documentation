@@ -1,7 +1,7 @@
 
 #DrawingObjects
 
-## DrawAndrewsPitchfork()
+## AddChartAndrewsPitchfork()
 ### Description
 This drawing object draws an Andrew’s Pitchfork.
 
@@ -12,8 +12,8 @@ Information concerning its usage:
 
 ### Usage
 ```cs
-DrawAndrewsPitchfork(string name, bool autoScale, int start1BarsBack, double start1Y, int start2BarsBack, double start2Y, int start3BarsBack, double start3Y, Color color, DashStyle dashStyle, int width)
-DrawAndrewsPitchfork(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, DashStyle dashStyle, int width)
+AddChartAndrewsPitchfork(string name, bool autoScale, int start1BarsBack, double start1Y, int start2BarsBack, double start2Y, int start3BarsBack, double start3Y, Color color, DashStyle dashStyle, int width)
+AddChartAndrewsPitchfork(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -34,27 +34,27 @@ A drawing object of the type IAndrewsPitchfork (interface)
 | start3Time     | Date/time for start point 3 (x-axis)                                                    |
 | start3Y        | y-value for start point 3                                                               |
 | color          | Color of the object                                                                     |
-| dashStyle      | Line styles:                                                                            |
+| dashStyle      | LevelLine styles:                                                                            |
 |                |  DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot DashStyle.Solid |
 |                | You need to integrate:                                                                  |
 |                | using System.Drawing.Drawing2D;.                                                        |
-| width          | Line strength in points                                                                 |
+| width          | LevelLine strength in points                                                                 |
 
 ### Example
 ```cs
 // Draw the Andrew’s Pitchfork (“MyAPF”)
-DrawAndrewsPitchfork("MyAPF", true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
+AddChartAndrewsPitchfork("MyAPF", true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
 ```
 
-## DrawArc()
+## AddChartArc()
 ### Description
-DrawArc() draws a circular arc.
+AddChartArc() draws a circular arc.
 
 ### Usage
 ```cs
-DrawArc(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
-DrawArc(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
-DrawArc(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
+AddChartArc(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+AddChartArc(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
+AddChartArc(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -72,7 +72,7 @@ A drawing object of the type IArc (interface)
 | endTime      | Date/time for the end point                                                             |
 | endY         | y-value for the end point                                                               |
 | color        | Color of the drawing object                                                             |
-| dashStyle    | Line style                                                                              |                                                                                           
+| dashStyle    | LevelLine style                                                                              |                                                                                           
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
@@ -81,26 +81,26 @@ A drawing object of the type IArc (interface)
 |              |                                                                                         |  
 |              |  You may have to integrate:                                                             |  
 |              |  using System.Drawing.Drawing2D;                                                        |
-| width        | Line strength in points                                                                 |
+| width        | LevelLine strength in points                                                                 |
 
 ### Example
 ```cs
-// Draws a blue arc
-DrawArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
+// AddChart a blue arc
+AddChartArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 ```
 
-## DrawArrowDown()
+## AddChartArrowDown()
 ### Description
-DrawArrowDown() draws an arrow pointing downwards:
+AddChartArrowDown() draws an arrow pointing downwards:
 
-![DrawArrowDown()](./media/image21.png)
+![AddChartArrowDown()](./media/image21.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs   
-DrawArrowDown(string name, bool autoScale, int barsAgo, double y, Color color)
-DrawArrowDown(string name, bool autoScale, DateTime time, double y, Color color)
+AddChartArrowDown(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartArrowDown(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -119,23 +119,23 @@ A drawing object of the type IArrowDown (interface)
 ### Example
 ```cs
 // Draws a red arrow 3 ticks above the high for the current bar
-DrawArrowDown("MyArrow", true, 0, High[0] + 3*TickSize, Color.Red);
+AddChartArrowDown("MyArrow", true, 0, High[0] + 3*TickSize, Color.Red);
 // Draws a red arrow on a three-bar reversal pattern
 if(High[2] > High[3] && High[1] > High[2] && Close[0] < Open[0])
-DrawArrowDown(CurrentBar.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
+AddChartArrowDown(ProcessingBarIndex.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
 ```
 
-## DrawArrowLine()
+## AddChartArrowLine()
 ### Description
-DrawArrowLine() draws an arrow:
+AddChartArrowLine() draws an arrow:
 
-![DrawArrowLine()](./media/image22.png)
+![AddChartArrowLine()](./media/image22.png)
 
 ### Usage
 ```cs
- DrawArrowLine (string name,  int  barsBackStart,  double  startY,  int  barsBackEnd,  double  endY, Color color)
- DrawArrowLine (string name,  bool  autoScale,  int  barsBackStart,  double  startY,  int  barsBackEnd,  double  endY, Color color, DashStyle dashStyle,  int  width)
- DrawArrowLine (string name,  bool  autoScale, DateTime startTime,  double  startY, DateTime endTime,  double  endY, Color color, DashStyle dashStyle,  int  width)
+ AddChartArrowLine (string name,  int  barsBackStart,  double  startY,  int  barsBackEnd,  double  endY, Color color)
+ AddChartArrowLine (string name,  bool  autoScale,  int  barsBackStart,  double  startY,  int  barsBackEnd,  double  endY, Color color, DashStyle dashStyle,  int  width)
+ AddChartArrowLine (string name,  bool  autoScale, DateTime startTime,  double  startY, DateTime endTime,  double  endY, Color color, DashStyle dashStyle,  int  width)
 ```
 
 ### Return Value
@@ -153,7 +153,7 @@ A drawing object of the type IArrowLine (interface)
 | endTime      | Date/time at which the arrow should end                                                 |
 | endY         | y-value at which the arrow should end                                                   |
 | color        | Color of the drawing object                                                             |
-| dashStyle    | Line style                                                                              |                                                                                           
+| dashStyle    | LevelLine style                                                                              |                                                                                           
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
@@ -162,26 +162,26 @@ A drawing object of the type IArrowLine (interface)
 |              |                                                                                         |  
 |              |  You may have to integrate:                                                             |  
 |              |  using System.Drawing.Drawing2D;                                                        |
-| width        | Line strength in points                                                                 |
+| width        | LevelLine strength in points                                                                 |
 
 ### Example
 ```cs
 // Draws a black arrow
-DrawArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
+AddChartArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 ```
 
-## DrawArrowUp()
+## AddChartArrowUp()
 ### Description
-DrawArowUp() draws an arrow pointing upwards:
+AddChartArowUp() draws an arrow pointing upwards:
 
-![DrawArrowUp()](./media/image23.png)
+![AddChartArrowUp()](./media/image23.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
-DrawArrowUp(string name, bool autoScale, int barsAgo, double y, Color color)
-DrawArrowUp(string name, bool autoScale, DateTime time, double y, Color color)
+AddChartArrowUp(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartArrowUp(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -200,21 +200,21 @@ A drawing object of the type IArrowUp (interface)
 ### Example
 ```cs
 // Draws a green arrow for the current bar 3 ticks below the low
-DrawArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
+AddChartArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
 ```
 
-## DrawDiamond()
+## AddChartDiamond()
 ### Description
-DrawDiamond() draws a diamond:
+AddChartDiamond() draws a diamond:
 
-![DrawDiamond()](./media/image24.png)
+![AddChartDiamond()](./media/image24.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
-DrawDiamond(string name, bool autoScale, int barsAgo, double y, Color color)
-DrawDiamond(string name, bool autoScale, DateTime time, double y, Color color)
+AddChartDiamond(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartDiamond(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -233,21 +233,21 @@ A drawing object of the type IDiamond (interface)
 ### Example
 ```cs
 // Draws a light blue diamond for the current bar 5 ticks below the low
-DrawDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
+AddChartDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 ```
 
-## DrawDot()
+## AddChartDot()
 ### Description
-DrawDot() draws a dot:
+AddChartDot() draws a dot:
 
-![DrawDot()](./media/image25.png)
+![AddChartDot()](./media/image25.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
 
 ### Usage
 ```cs
-DrawDot(string name, bool autoScale, int barsAgo, double y, Color color)
-DrawDot(string name, bool autoScale, DateTime time, double y, Color color)
+AddChartDot(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartDot(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -266,18 +266,18 @@ A drawing object of the type IDot (interface)
 ### Example
 ```cs
 // Draws an orange dot for the current bar 5 ticks above the high
-DrawDot("MyDot", true, 0, High[0] + 5*TickSize, Color.Orange);
+AddChartDot("MyDot", true, 0, High[0] + 5*TickSize, Color.Orange);
 ```
 
-## DrawEllipse()
+## AddChartEllipse()
 ### Description
-DrawEllipse() draws an ellipse.
+AddChartEllipse() draws an ellipse.
 
 ### Usage
 ```cs
-DrawEllipse(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
-DrawEllipse(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, Color areaColor, int areaOpacity)
-DrawEllipse(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
+AddChartEllipse(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+AddChartEllipse(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, Color areaColor, int areaOpacity)
+AddChartEllipse(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
 A drawing object of the type IEllipse (interface)
@@ -300,20 +300,20 @@ A drawing object of the type IEllipse (interface)
 ### Example
 ```cs
 // Draws a yellow ellipse from the current bar to 5 bars ago
-DrawEllipse("MyEllipse", true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
+AddChartEllipse("MyEllipse", true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
 ```
 
-## DrawExtendedLine()
+## AddChartExtendedLine()
 ### Description
-DrawExtendedLine() draws a line with an infinite end point.
+AddChartExtendedLine() draws a line with an infinite end point.
 
-See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawRay()*](#drawray).
+See [*AddChartLine()*](#drawline), [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartRay()*](#drawray).
 
 ### Usage
 ```cs
-DrawExtendedLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
-DrawExtendedLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
-DrawExtendedLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
+AddChartExtendedLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+AddChartExtendedLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
+AddChartExtendedLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -331,7 +331,7 @@ A drawing object of the type IExtendedLine (interface)
 | endTime      | Date/time for the end point                                                                             |
 | endY         | y-value for the end point                                                                               |
 | color        | Color of the drawing object                                                                             |
-| dashStyle    | Line style                                                                               |                                                                                           
+| dashStyle    | LevelLine style                                                                               |                                                                                           
 |              |  DashStyle.Dash                                                                                         |  
 |              |  DashStyle.DashDot                                                                                      |  
 |              |  DashStyle.DashDotDot                                                                                   |  
@@ -340,22 +340,22 @@ A drawing object of the type IExtendedLine (interface)
 |              |                                                                                                         |  
 |              |  You may have to integrate:                                                                             |  
 |              |  using System.Drawing.Drawing2D;                                                                        |
-| width        | Line strength in points                                                                                 |
+| width        | LevelLine strength in points                                                                                 |
 
 ### Example
 ```cs
 // Draws a line without an end point
-DrawExtendedLine("MyExt.Line", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
+AddChartExtendedLine("MyExt.LevelLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 ```
 
-## DrawFibonacciCircle()
+## AddChartFibonacciCircle()
 ### Description
-DrawFibonacciCircle() draws a Fibonacci circle.
+AddChartFibonacciCircle() draws a Fibonacci circle.
 
 ### Usage
 ```cs
-DrawFibonacciCircle(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY)
-DrawFibonacciCircle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
+AddChartFibonacciCircle(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY)
+AddChartFibonacciCircle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
 ### Return Value
@@ -376,17 +376,17 @@ A drawing object of the type IFibonacciCircle (interface)
 ### Example
 ```cs
 //Draws a Fibonacci circle
-DrawFibonacciCircle("MyFibCircle", true, 5, Low[5], 0, High[0]);
+AddChartFibonacciCircle("MyFibCircle", true, 5, Low[5], 0, High[0]);
 ```
 
-## DrawFibonacciExtensions()
+## AddChartFibonacciExtensions()
 ### Description
-DrawFibonacciExtensions() draws Fibonacci extensions.
+AddChartFibonacciExtensions() draws Fibonacci extensions.
 
 ### Usage
 ```cs
-DrawFibonacciExtensions(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y)
-DrawFibonacciExtensions(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
+AddChartFibonacciExtensions(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y)
+AddChartFibonacciExtensions(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
 ```
 
 ### Return Value
@@ -410,15 +410,15 @@ A drawing object of the type IFibonacciExtensions (interface)
 ### Example
 ```cs
 // Draws Fibonacci extensions
-DrawFibonacciExtensions("MyFibExt", true, 4, Low[4], 3, High[3], 1, Low[1]);
+AddChartFibonacciExtensions("MyFibExt", true, 4, Low[4], 3, High[3], 1, Low[1]);
 ```
-## DrawFibonacciProjections()
+## AddChartFibonacciProjections()
 ### Description
 Draw Fibonacci Projections () sketches Fibonacci Projections.
 
 ### Usage
 ```cs
-DrawFibonacciProjections(string name, bool autoScale, DateTime start1Time, double start1Y,DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
+AddChartFibonacciProjections(string name, bool autoScale, DateTime start1Time, double start1Y,DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
 ```
 
 ### Return Value
@@ -439,18 +439,18 @@ A drawing object of the type IFibonacciProjections (Interface)
 ### Example
 ```cs
 // zeichnet FibonacciProjections
-DrawFibonacciProjections("MyFibPro", true, Low[4], 3, High[3], 1, Low[1], 2);
+AddChartFibonacciProjections("MyFibPro", true, Low[4], 3, High[3], 1, Low[1], 2);
 
 ```
 
-## DrawFibonacciRetracements()
+## AddChartFibonacciRetracements()
 ### Description
-DrawFibonacciRetracements() draws Fibonacci retracements.
+AddChartFibonacciRetracements() draws Fibonacci retracements.
 
 ### Usage
 ```cs
-DrawFibonacciRetracements(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY)
-DrawFibonacciRetracements(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
+AddChartFibonacciRetracements(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY)
+AddChartFibonacciRetracements(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
 ### Return Value
@@ -471,17 +471,17 @@ A drawing object of the type IFibonacciRetracements (interface)
 ### Example
 ```cs
 // Draws Fibonnaci retracements
-DrawFibonacciRetracements("MyFibRet", true, 10, Low[10], 0, High[0]);
+AddChartFibonacciRetracements("MyFibRet", true, 10, Low[10], 0, High[0]);
 ```
 
-## DrawFibonacciTimeExtensions()
+## AddChartFibonacciTimeExtensions()
 ### Description
-DrawFibonacciTimeExtensions() draws Fibonacci time extensions.
+AddChartFibonacciTimeExtensions() draws Fibonacci time extensions.
 
 ### Usage
 ```cs
-DrawFibonacciTimeExtensions(string name, int barsBackStart, double startY, int barsBackEnd, double endY)
-DrawFibonacciTimeExtensions(string name, DateTime startTime, double startY, DateTime endTime, double endY)
+AddChartFibonacciTimeExtensions(string name, int barsBackStart, double startY, int barsBackEnd, double endY)
+AddChartFibonacciTimeExtensions(string name, DateTime startTime, double startY, DateTime endTime, double endY)
 ```
 
 ### Return Value
@@ -501,17 +501,17 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 ### Example
 ```cs
 // Draws Fibonacci time extensions
-DrawFibonacciTimeExtensions("MyFibTimeExt", 10, Low[10], 0, High[0]);
+AddChartFibonacciTimeExtensions("MyFibTimeExt", 10, Low[10], 0, High[0]);
 ```
 
-## DrawGannFan()
+## AddChartGannFan()
 ### Description
-DrawGannFan() draws a Gann fan.
+AddChartGannFan() draws a Gann fan.
 
 ### Usage
 ```cs
-DrawGannFan(string name, bool autoScale, int barsAgo, double y)
-DrawGannFan(string name, bool autoScale, DateTime time, double y)
+AddChartGannFan(string name, bool autoScale, int barsAgo, double y)
+AddChartGannFan(string name, bool autoScale, DateTime time, double y)
 ```
 
 ### Return Value
@@ -529,20 +529,20 @@ A drawing object of the type IGannFan (interface)
 ### Example
 ```cs
 // Shows a Gann fan at the low of the bar from 10 periods ago
-DrawGannFan("MyGannFan", true, 10, Low[10]);
+AddChartGannFan("MyGannFan", true, 10, Low[10]);
 ```
 
-## DrawLine()
+## AddChartLine()
 ### Description
-DrawLine() draws a (trend) line.
+AddChartLine() draws a (trend) line.
 
-See [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
+See [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
 
 ### Usage
 ```cs
-DrawLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
-DrawLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
-DrawLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
+AddChartLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+AddChartLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
+AddChartLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -560,7 +560,7 @@ A drawing object of the type ITrendLine (interface).
 | endTime      | Date/time for the end point                                                             |
 | endY         | y-value for the end point                                                               |
 | color        | Color of the drawing object                                                             |
-| dashStyle    | Line style                                                                              |                                                                                           
+| dashStyle    | LevelLine style                                                                              |                                                                                           
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
@@ -569,24 +569,24 @@ A drawing object of the type ITrendLine (interface).
 |              |                                                                                         |  
 |              |  You may have to integrate:                                                             |  
 |              |  using System.Drawing.Drawing2D;                                                        |
-| width        | Line strength in points                                                                 |
+| width        | LevelLine strength in points                                                                 |
 
 ### Example
 ```cs
 // Draws a line
-DrawLine("MyLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
+AddChartLine("MyLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 ```
 
-## DrawHorizontalLine()
+## AddChartHorizontalLine()
 ### Description
-DrawHorizontalLine() draws a horizontal line in the chart.
+AddChartHorizontalLine() draws a horizontal line in the chart.
 
-See [*DrawLine()*](#drawline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
+See [*AddChartLine()*](#drawline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
 
 ### Usage
 ```cs
-DrawHorizontalLine(string name, double y, Color color)
-DrawHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
+AddChartHorizontalLine(string name, double y, Color color)
+AddChartHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -598,8 +598,8 @@ A drawing object of the type IHorizontalLine (interface)
 | name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | y         | Any double value of your choice                                                         |
-| color     | Line color                                                                              |
-| dashStyle | Line style                                                                              |                                                                                           
+| color     | LevelLine color                                                                              |
+| dashStyle | LevelLine style                                                                              |                                                                                           
 |           |  DashStyle.Dash                                                                         |  
 |           |  DashStyle.DashDot                                                                      |  
 |           |  DashStyle.DashDotDot                                                                   |  
@@ -608,25 +608,25 @@ A drawing object of the type IHorizontalLine (interface)
 |           |                                                                                         |  
 |           |  You may have to integrate:                                                             |  
 |           |  using System.Drawing.Drawing2D;                                                        |
-| width     | Line strength                                                                           |
+| width     | LevelLine strength                                                                           |
 
 ### Example
 ```cs
 // Draws a horizontal line at y=10
-DrawHorizontalLine("MyHorizontalLine", 10, Color.Black);
+AddChartHorizontalLine("MyHorizontalLine", 10, Color.Black);
 ```
 
-## DrawRay()
+## AddChartRay()
 ### Description
-DrawRay() draws a (trend) line and extends it to infinity.
+AddChartRay() draws a (trend) line and extends it to infinity.
 
-See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawVerticalLine()*](#drawverticalline), [*DrawExtendedLine()*](#drawextendedline).
+See [*AddChartLine()*](#drawline), [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline).
 
 ### Usage
 ```cs
-DrawRay(string name, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, Color color)
-DrawRay(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, Color color, DashStyle dashStyle, int width)
-DrawRay(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, Color color, DashStyle dashStyle, int width)
+AddChartRay(string name, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, Color color)
+AddChartRay(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, Color color, DashStyle dashStyle, int width)
+AddChartRay(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -644,7 +644,7 @@ A drawing object of the type IRay (interface)
 | start2Time     | Date/time for start point 2                                                             |
 | start2Y        | y-value for start point 2                                                               |
 | color          | Color of the drawing object                                                             |
-| dashStyle      | Line style                                                                              |                                                                                           
+| dashStyle      | LevelLine style                                                                              |                                                                                           
 |                |  DashStyle.Dash                                                                         |  
 |                |  DashStyle.DashDot                                                                      |  
 |                |  DashStyle.DashDotDot                                                                   |  
@@ -653,29 +653,29 @@ A drawing object of the type IRay (interface)
 |                |                                                                                         |  
 |                |  You may have to integrate:                                                             |  
 |                |  using System.Drawing.Drawing2D;                                                        |
-| width          | Line strength                                                                           |
+| width          | LevelLine strength                                                                           |
 
 ### Example
 ```cs
 // Draws a line from the bar from 10 periods ago to the current bar (x-axis)
 // --> line is extended to the right
 // from y=3 to y=7
-DrawRay("MyRay", 10, 3, 0, 7, Color.Green);
+AddChartRay("MyRay", 10, 3, 0, 7, Color.Green);
 // Draws a line from the current bar to the bar from 10 periods ago
 // --> line is extended to the left
 // from y=3 to y=7
-DrawRay("MyRay", 0, 3, 10, 7, Color.Green);
+AddChartRay("MyRay", 0, 3, 10, 7, Color.Green);
 ```
 
-## DrawRectangle()
+## AddChartRectangle()
 ### Description
-DrawRectangle() draws a rectangle.
+AddChartRectangle() draws a rectangle.
 
 ### Usage
 ```cs
-DrawRectangle(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
-DrawRectangle(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, Color areaColor, int areaOpacity)
-DrawRectangle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
+AddChartRectangle(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
+AddChartRectangle(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, Color areaColor, int areaOpacity)
+AddChartRectangle(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, Color areaColor, int areaOpacity)
 ```
 ### Return Value
 A drawing object of the type IRectangle (interface)
@@ -699,19 +699,19 @@ A drawing object of the type IRectangle (interface)
 ```cs
 // Draws a green rectangle from the low of 10 periods ago to the high of 5 periods ago
 // with a fill color of pale green and a transparency of 2
-DrawRectangle("MyRect", true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
+AddChartRectangle("MyRect", true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
 ```
 
-## DrawRegion()
+## AddChartRegion()
 ### Description
-DrawRegion() fills a specific area on a chart.
+AddChartRegion() fills a specific area on a chart.
 
 ### Usage
 ```cs
-DrawRegion(string name, int barsBackStart, int barsBackEnd, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string name, int barsBackStart, int barsBackEnd, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
-DrawRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartRegion(string name, int barsBackStart, int barsBackEnd, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartRegion(string name, int barsBackStart, int barsBackEnd, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series, double y, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartRegion(string name, DateTime startTime, DateTime endTime, IDataSeries series1, IDataSeries series2, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -734,18 +734,18 @@ A drawing object of the type IRegion (interface)
 ### Example
 ```cs
 // Fills the area between the upper and lower Bollinger Bands
-DrawRegion("MyRegion", CurrentBar, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
+AddChartRegion("MyRegion", ProcessingBarIndex, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
 ```
 
-## DrawRegressionChannel()
+## AddChartRegressionChannel()
 ### Description
-DrawRegressionChannel() draws a regression channel.
+AddChartRegressionChannel() draws a regression channel.
 
 ### Usage
 ```cs
-DrawRegressionChannel(string name, int barsBackStart, int barsBackEnd, Color color)
-DrawRegressionChannel(string name, bool autoScale, int barsBackStart, int barsBackEnd, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
-DrawRegressionChannel(string name, bool autoScale, DateTime startTime, DateTime endTime, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
+AddChartRegressionChannel(string name, int barsBackStart, int barsBackEnd, Color color)
+AddChartRegressionChannel(string name, bool autoScale, int barsBackStart, int barsBackEnd, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
+AddChartRegressionChannel(string name, bool autoScale, DateTime startTime, DateTime endTime, Color upperColor, DashStyle upperDashStyle, int upperWidth, Color middleColor, DashStyle middleDashStyle, int middleWidth, Color lowerColor, DashStyle lowerDashStyle, int lowerWidth)
 ```
 
 ### Return Value
@@ -762,7 +762,7 @@ A drawing object of the type IRegressionChannel (interface)
 | endTime          | End time for the regression channel                                                     |
 | color            | Color of the drawing object                                                             |
 | upperDashStyle, middleDashStyle, lowerDashStyle    |                                                                              
-| dashStyle        | Line style                                                                              |                                                                                           
+| dashStyle        | LevelLine style                                                                              |                                                                                           
 |                  |  DashStyle.Dash                                                                         |  
 |                  |  DashStyle.DashDot                                                                      |  
 |                  |  DashStyle.DashDotDot                                                                   |  
@@ -771,22 +771,22 @@ A drawing object of the type IRegressionChannel (interface)
 |                  |                                                                                         |  
 |                  |  You may have to integrate:                                                             |  
 |                  |  using System.Drawing.Drawing2D;                                                        |
-| upperColor,  middleColor,    lowerColor        | Line color                                                                              |
-| upperWidth,   middleWidth,  lowerWidth        | Line strength                                                                           |
+| upperColor,  middleColor,    lowerColor        | LevelLine color                                                                              |
+| upperWidth,   middleWidth,  lowerWidth        | LevelLine strength                                                                           |
 
 ### Example
 ```cs
 // Draws a regression channel from the low of the bar from 10 days ago to the high of the bar from 5 days ago.
-DrawRegressionChannel("MyRegChannel", 10, 0, Color.Black);
+AddChartRegressionChannel("MyRegChannel", 10, 0, Color.Black);
 ```
 
-## DrawSquare()
+## AddChartSquare()
 ### Description
-DrawSquare() draws a square:
+AddChartSquare() draws a square:
 
-![DrawSquare()](./media/image26.png)
+![AddChartSquare()](./media/image26.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawTriangleUp()*](#drawtriangleup), [*DrawTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*], [*AddChartDiamond()*], [*AddChartDot()*], [*AddChartTriangleUp()*], [*AddChartTriangleDown()*].
 
 ### Usage
 ```cs
@@ -810,22 +810,22 @@ A drawing object of the type ISquare (interface)
 ### Example
 ```cs
 // Draws a dark red square at the current bar 10 ticks above the high
-DrawSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
+AddChartSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
 ```
 
-## DrawText()
+## AddChartText()
 ### Description
-DrawText() writes whatever text you want onto the chart.
+AddChartText() writes whatever text you want onto the chart.
 
-See [*DrawTextFixed()*](#drawtextfixed), *PlotMethod*.
+See [*AddChartTextFixed()*], *PlotMethod*.
 
 ### Usage
 ```cs
-DrawText(string name, string text, int barsAgo, double y, Color color)
-DrawText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-DrawText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-DrawText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
-DrawText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartText(string name, string text, int barsAgo, double y, Color color)
+AddChartText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
 **Important note:**
@@ -851,37 +851,40 @@ A drawing object of the type IText (interface)
 | textColor    | Text color                                                                                  |
 | Font         | Font                                                                                        |
 | Alignment    | Possible values are:                                                                        
--   StringAlignment.Center                                                                     
--   StringAlignment.Far                                                                        
--   StringAlignment.Near                                                                       |
+                - StringAlignment.Center                                                                     
+                - StringAlignment.Far                                                                        
+                - StringAlignment.Near                                                                       |
 | HAlign       | Possible values are:                                                                        
--   HorizontalAlign.Left                                                                       
--   HorizontalAlign.Center                                                                     
--   HorizontalAlign.Right                                                                      |
+                - HorizontalAlign.Left                                                                       
+                - HorizontalAlign.Center                                                                     
+                - HorizontalAlign.Right                                                                      |
 | VAlign       | Possible values are:                                                                        
--   VerticalAlign.Top                                                                          
--   VerticalAlign.Center                                                                       
--   VerticalAlign.Bottom                                                                       |
-| outlineColor | Border color around the text. For no border, select Color.Empty                                                            |
+                - VerticalAlign.Top                                                                          
+                - VerticalAlign.Center                                                                       
+                - VerticalAlign.Bottom                                                                       |
+| outlineColor | Border color around the text                                                                
+                For no border, select Color.Empty                                                            |
 | areaColor    | Fill color for the text box                                                                 |
-| areaOpacity  | Transparency of the fill color
-Value between 0 and 10, 0 = completely transparent, 10 = completely opaque                                                                       |
+| areaOpacity  | Transparency of the fill color                                                              
+                Value between 0 and 255                                                                       
+                0 = completely transparent                                                                   
+                255 = completely opaque                                                                       |
 
 ### Example
 ```cs
 // writes text at y=3.0
-DrawText("MyText", "This is sample text.", 10, 3, Color.Black);
+AddChartText("MyText", "This is sample text.", 10, 3, Color.Black);
 // writes red text in the font Arial 7
-DrawText("MyText", false, "This is sample text.", Time[0], Close[0]+50*TickSize, 0,
+AddChartText("MyText", false, "This is sample text.", Time[0], Close[0]+50*TickSize, 0,
 Color.Red, new Font("Arial",7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
 ```
 
 This leads to the following result:
 
-![DrawText()](./media/image27.png)
+![AddChartText()](./media/image27.png)
 
 ```cs
-DrawText("MyTag",true,"Text",1,
+AddChartText("MyTag",true,"Text",1,
 // barsAgo
 High[1], // y
 10, // yPixelOffset
@@ -895,16 +898,16 @@ Color.Yellow, // Fill color
 100); // Opacity
 ```
 
-## DrawTextFixed()
+## AddChartTextFixed()
 ### Description
-DrawTextFixed() writes text into one of 5 predetermined locations on the chart.
+AddChartTextFixed() writes text into one of 5 predetermined locations on the chart.
 
-See [*DrawText()*](#drawtext).
+See [*AddChartText()*].
 
 ### Usage
 ```cs
-DrawTextFixed(string name, string text, TextPosition textPosition)
-DrawTextFixed(string name, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartTextFixed(string name, string text, TextPosition textPosition)
+AddChartTextFixed(string name, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -915,32 +918,38 @@ A drawing object of the type ITextFixed (interface)
 |--------------|----------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                         |
 | text         | The text to be displayed                                                   |
-| TextPosition | TextPosition.BottomLeft, TextPosition.BottomRight, TextPosition.Center, TextPosition.TopLeft, TextPosition.TopRight                                                       |
+| TextPosition | TextPosition.BottomLeft                                                    
+                TextPosition.BottomRight                                                    
+                TextPosition.Center                                                         
+                TextPosition.TopLeft                                                        
+                TextPosition.TopRight                                                       |
 | textColor    | Text color                                                                 |
 | font         | Font                                                                       |
 | outlineColor | Color for the border around the text. For no border color, use Color.Empty |
 | areaColor    | Fill color of the text box                                                 
                 For no fill color, use Color.Empty                                          |
 | areaOpacity  | Transparency of the fill color                                             
-                Value between 0 and 10, 0 = completely transparent, 10 = completely opaque     |
+                Value between 0 and 255                                                      
+                0 = completely transparent                                                  
+                255 = completely opaque                                                      |
 
 ### Example
 ```cs
 // Writes text into the middle of the chart
-DrawTextFixed("MyText", "This is sample text.", TextPosition.Center);
+AddChartTextFixed("MyText", "This is sample text.", TextPosition.Center);
 // Writes red text with a blue border into the middle of the chart
-DrawTextFixed("MyText", "This is sample text.", TextPosition.Center,
+AddChartTextFixed("MyText", "This is sample text.", TextPosition.Center,
 Color.Red, new Font("Arial",35), Color.Blue, Color.Empty, 10);
 ```
 
-## DrawTrendChannel()
+## AddChartTrendChannel()
 ### Description
-DrawTrendChannel() draws a trend channel.
+AddChartTrendChannel() draws a trend channel.
 
 ### Usage
 ```cs
-DrawTrendChannel(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y)
-DrawTrendChannel(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
+AddChartTrendChannel(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y)
+AddChartTrendChannel(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y)
 ```
 
 ### Return Value
@@ -964,18 +973,18 @@ A drawing object of the type ITrendChannel (interface)
 ### Example
 ```cs
 // Draws a trend channel
-DrawTrendChannel("MyTrendChannel", true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
+AddChartTrendChannel("MyTrendChannel", true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
 ```
 
-## DrawTriangle()
+## AddChartTriangle()
 ### Description
-DrawTriangle() draws a triangle.
+AddChartTriangle() draws a triangle.
 
 ### Usage
 ```cs
-DrawTriangle(string name, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y, Color color)
-DrawTriangle(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y, Color color, Color areaColor, int areaOpacity)
-DrawTriangle(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, Color areaColor, int areaOpacity)
+AddChartTriangle(string name, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y, Color color)
+AddChartTriangle(string name, bool autoScale, int start1BarsAgo, double start1Y, int start2BarsAgo, double start2Y, int start3BarsAgo, double start3Y, Color color, Color areaColor, int areaOpacity)
+AddChartTriangle(string name, bool autoScale, DateTime start1Time, double start1Y, DateTime start2Time, double start2Y, DateTime start3Time, double start3Y, Color color, Color areaColor, int areaOpacity)
 ```
 
 ### Return Value
@@ -998,26 +1007,28 @@ A drawing object of the type ITriangle (interface)
 | color          | Color of the drawing object                                                             |
 | areaColor      | Fill color of the drawing object                                                        |
 | areaOpacity    | Transparency of the fill color                                                          
-                  Value between 0 and 10, 0 = completely transparent, 10 = completely opaque                                                                   |
+                  Value between 0 and 10                                                                   
+                  0 = completely transparent                                                               
+                  10 = completely opaque                                                                   |
 
 ### Example
 ```cs
 // Draws a green triangle
-DrawTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
+AddChartTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 ```
 
-## DrawTriangleUp()
+## AddChartTriangleUp()
 ### Description
-DrawTriangleUp() draws a small upwards-pointing triangle:
+AddChartTriangleUp() draws a small upwards-pointing triangle:
 
-![DrawTriangleUp()](./media/image28.png)
+![AddChartTriangleUp()](./media/image28.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*], [*AddChartDiamond()*], [*AddChartDot()*], [*AddChartSquare()*], [*AddChartTriangleDown()*].
 
 ### Usage
 ```cs
-DrawTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
-DrawTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
+AddChartTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -1036,21 +1047,21 @@ A drawing object of the type ITriangleUp (interface)
 ### Example
 ```cs
 // Draws a small light green triangle at the current bar 10 ticks below the low
-DrawTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
+AddChartTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 ```
 
-## DrawTriangleDown()
+## AddChartTriangleDown()
 ### Description
-DrawTriangleDown() draws a small downwards-pointing triangle:
+AddChartTriangleDown() draws a small downwards-pointing triangle:
 
-![DrawTriangleDown()](./media/image29.png)
+![AddChartTriangleDown()](./media/image29.png)
 
-See [*DrawArrowUp()*](#drawarrowup), [*DrawArrowDown()*](#drawarrowdown), [*DrawDiamond()*](#drawdiamond), [*DrawDot()*](#drawdot), [*DrawSquare()*](#drawsquare), [*DrawTriangleUp()*](#drawtriangleup).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*], [*AddChartDiamond()*], [*AddChartDot()*], [*AddChartSquare()*], [*AddChartTriangleUp()*].
 
 ### Usage
 ```cs
-DrawTriangleDown(string name, bool autoScale, int barsAgo, double y, Color color)
-DrawTriangleDown(string name, bool autoScale, DateTime time, double y, Color color)
+AddChartTriangleDown(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartTriangleDown(string name, bool autoScale, DateTime time, double y, Color color)
 ```
 
 ### Return Value
@@ -1069,20 +1080,20 @@ A drawing object of the type ITriangleDown (interface)
 ### Example
 ```cs
 // Draws a small red triangle at the current bar 10 ticks above the high
-DrawTriangleDown("MyTriangleDown", true, 0, High[0] + 10*TickSize, Color.Red);
+AddChartTriangleDown("MyTriangleDown", true, 0, High[0] + 10*TickSize, Color.Red);
 ```
 
-## DrawVerticalLine()
+## AddChartVerticalLine()
 ### Description
-DrawVerticalLine() draws a vertical line in the chart.
+AddChartVerticalLine() draws a vertical line in the chart.
 
-See [*DrawLine()*](#drawline), [*DrawHorizontalLine()*](#drawhorizontalline), [*DrawExtendedLine()*](#drawextendedline), [*DrawRay()*](#drawray).
+See [*AddChartLine()*](#drawline), [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
 
 ### Usage
 ```cs
-DrawVerticalLine(string name, int barsAgo, Color color)
-DrawVerticalLine(string name, int barsAgo, Color color, DashStyle dashStyle, int width)
-DrawVerticalLine(string name, DateTime time, Color color, DashStyle dashStyle, int width)
+AddChartVerticalLine(string name, int barsAgo, Color color)
+AddChartVerticalLine(string name, int barsAgo, Color color, DashStyle dashStyle, int width)
+AddChartVerticalLine(string name, DateTime time, Color color, DashStyle dashStyle, int width)
 ```
 
 ### Return Value
@@ -1094,13 +1105,21 @@ A drawing object of the type IVerticalLine (interface)
 | name      | A clearly identifiable name for the drawing object                         |
 | barsAgo   | Sets how many bars ago the vertical line should be drawn (0 = current bar) |
 | time      | Date/time of the bar at which the vertical line should be drawn            |
-| color     | Line color                                                                 |
-| dashStyle | Line style: DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot, DashStyle.Solid
-You may have to integrate: using System.Drawing.Drawing2D;                                             |
-| width     | Line strength                                                              |
+| color     | LevelLine color                                                                 |
+| dashStyle | LevelLine style                                                                 
+
+             DashStyle.Dash                                                              
+             DashStyle.DashDot                                                           
+             DashStyle.DashDotDot                                                        
+             DashStyle.Dot                                                               
+             DashStyle.Solid                                                             
+
+             You may have to integrate:                                                  
+             using System.Drawing.Drawing2D;                                             |
+| width     | LevelLine strength                                                              |
 
 ### Example
 ```cs
 // Draws a vertical line at the bar from 10 periods ago
-DrawVerticalLine("MyVerticalLine", 10, Color.Black);
+AddChartVerticalLine("MyVerticalLine", 10, Color.Black);
 ```

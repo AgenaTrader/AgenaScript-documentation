@@ -62,65 +62,65 @@ Print("OverNightMargin " + Account.OverNightMargin);
 Print("RealizedProfitLoss " + Account.RealizedProfitLoss);
 ```
 
-## BarsSinceEntry()
+## BarsCountFromTradeOpen()
 ### Description
-The property "BarsSinceEntry" returns the number of bars that have occurred since the last entry into the market.
+The property "BarsCountFromTradeOpen" returns the number of bars that have occurred since the last entry into the market.
 
 ### Usage
 ```cs
-BarsSinceEntry()
-BarsSinceEntry(string strategyName)
+BarsCountFromTradeOpen()
+BarsCountFromTradeOpen(string strategyName)
 ```
 
 For multi-bar strategies
 
 ```cs
-BarsSinceEntry(int multibarSeriesIndex, string strategyName, int entriesAgo)
+BarsCountFromTradeOpen(int multibarSeriesIndex, string strategyName, int entriesAgo)
 ```
 
 ### Parameter
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | strategyName          | The strategy name (string) that has been used to clearly label the entry within an entry method.            |
-| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInProgress*](#barsinprogress), [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInCalculation*](#barsinprogress), [*BarsInCalculation*](#barsinprogress). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
 ```cs
-Print("The last entry was " + BarsSinceEntry() + " bars ago.");
+Print("The last entry was " + BarsCountFromTradeOpen() + " bars ago.");
 ```
 
-## BarsSinceExit()
+## BarsCountFromTradeClose()
 ### Description
-The property "BarsSinceExit" outputs the number of bars that have occurred since the last exit from the market.
+The property "BarsCountFromTradeClose" outputs the number of bars that have occurred since the last exit from the market.
 
 ### Usage
 ```cs
-BarsSinceExit()
-BarsSinceExit(string strategyName)
+BarsCountFromTradeClose()
+BarsCountFromTradeClose(string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-BarsSinceExit(int multibarSeriesIndex, string strategyName, int exitsAgo)
+BarsCountFromTradeClose(int multibarSeriesIndex, string strategyName, int exitsAgo)
 ```
 
 ### Parameter
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | The Strategy name (string) that has been used to clearly label the exit within the exit method.    |
-| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInCalculation*](#barsinprogress). |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
 ### Example
 ```cs
-Print("The last exit was " + BarsSinceExit() + " bars ago.");
+Print("The last exit was " + BarsCountFromTradeClose() + " bars ago.");
 ```
 ## CancelAllOrders()
 ### Description
 CancelAllOrders deletes all oders (cancel) managed by the strategy.
 A cancel request is sent to the broker. Whether an or there is really deleted, can not be guaranteed. It may happen that an order has received a partial execution before it is deleted.
-Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*](#onorderupdate).
+Therefore we recommend that you check the status of the order with [*OnOrderChanged()*](#onorderupdate).
 
 ### Usage
 ```cs
@@ -131,9 +131,9 @@ None
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-   if (BarsSinceEntry() >= 30)
+   if (BarsCountFromTradeOpen() >= 30)
        CancelAllOrders();
 }
 ```
@@ -141,7 +141,7 @@ protected override void OnBarUpdate()
 ### Description
 Cancel order deletes an order.
 
-A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderUpdate()*](#onorderupdate).
+A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderChanged()*](#onorderupdate).
 
 ### Usage
 ```cs
@@ -155,28 +155,28 @@ An order object of the type "IOrder"
 ```cs
 private IOrder entryOrder = null;
 private int barNumber = 0;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
     // Place an entry stop at the high of the current bar
     if (entryOrder == null)
     {
-        entryOrder = EnterLongStop(High[0], "stop long");
-        barNumber = CurrentBar;
+        entryOrder = OpenLongStop(High[0], "stop long");
+        barNumber = ProcessingBarIndex;
     }
     // Delete the order after 3 bars
-    if (Position.MarketPosition == PositionType.Flat &&
-    CurrentBar > barNumber + 3)
+    if (Position.PositionType == PositionType.Flat &&
+    ProcessingBarIndex > barNumber + 3)
         CancelOrder(entryOrder);
 }
 ```
 
-## ChangeOrder()
+## ReplaceOrder()
 ### Description
 Change order, as the name suggests, changes an order.
 
 ### Usage
 ```cs
-ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
+ReplaceOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
 
 ### Parameter
@@ -190,13 +190,13 @@ ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ### Example
 ```cs
 private IOrder stopOrder = null;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 // If the position is profiting by 10 ticks then set the stop to break-even
-if (stopOrder != null
-    && Close[0] >= Position.AvgPrice + (10 * TickSize)
+if (stopOrder != null 
+    && Close[0] >= Position.AvgPrice + (10 * TickSize) 
         && stopOrder.StopPrice < Position.AvgPrice)
-ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
+ReplaceOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
 ```
 ## CreateIfDoneGroup()
@@ -217,16 +217,16 @@ private IOrder oEnterLong = null;
 private IOrder oExitLong = null;
 
 
-protected override void Initialize()
+protected override void OnInit()
 {
    IsAutomated = false;
 }
 
 
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultQuantity, 0, 0, "ocoId","strategyName");
-   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, "ocoId","strategyName");
+   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
 
    CreateIfDoneGroup(new List<IOrder> { oEnterLong, oExitLong });
 
@@ -252,16 +252,16 @@ private IOrder oEnterLong = null;
 private IOrder oEnterShort = null;
 
 
-protected override void Initialize()
+protected override void OnInit()
 {
    IsAutomated = false;
 }
 
 
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
-   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
+   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
+   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
 
    CreateOCOGroup(new List<IOrder> { oEnterLong, oEnterShort });
 
@@ -287,16 +287,16 @@ private IOrder oStopLong = null;
 private IOrder oLimitLong = null;
 
 
-protected override void Initialize()
+protected override void OnInit()
 {
    IsAutomated = false;
 }
 
 
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
-   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "strategyName");
+   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
+   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultOrderQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "strategyName");
 
    CreateOROGroup(new List<IOrder> { oLimitLong, oStopLong });
 }
@@ -304,15 +304,15 @@ protected override void OnBarUpdate()
 
 
 ## DataSeriesConfigurable
-## DefaultQuantity
+## DefaultOrderQuantity
 ### Description
 Change order changes an order.
 
-Default quantity defines the amount to be used in a strategy. Default quantity is set within the [*Initialize()*](#initialize) method.
+Default quantity defines the amount to be used in a strategy. Default quantity is set within the [*OnInit()*](#initialize) method.
 
 ### Usage
 ```cs
-ChangeOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
+ReplaceOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 ```
 
 ### Parameter
@@ -320,29 +320,29 @@ An int value containing the amount (stocks, contracts etc.)
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-DefaultQuantity = 100;
+DefaultOrderQuantity = 100;
 }
 ```
 
-## EnterLong()
+## OpenLong()
 ### Description
 Enter long creates a long position (buy).
 
-If a signature not containing an amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing an amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop), [*EnterLongStopLimit()*](#enterlongstoplimit).
+See [*OpenLongLimit()*](#enterlonglimit), [*OpenLongStop()*](#enterlongstop), [*OpenLongStopLimit()*](#enterlongstoplimit).
 
 ### Usage
 ```cs
-EnterLong()
-EnterLong(string strategyName)
-EnterLong(int quantity)
-EnterLong(int quantity, string strategyName)
+OpenLong()
+OpenLong(string strategyName)
+OpenLong(int quantity)
+OpenLong(int quantity, string strategyName)
 
 //For multi-bar strategies
-EnterLong(int multibarSeriesIndex, int quantity, string strategyName)
+OpenLong(int multibarSeriesIndex, int quantity, string strategyName)
 ```
 
 ### Parameter
@@ -350,7 +350,7 @@ EnterLong(int multibarSeriesIndex, int quantity, string strategyName)
 |---------------------|-----------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -360,30 +360,30 @@ an order object of the type "IOrder"
 
 // if the EMA14 crosses the SMA50 from below to above
 // the ADX is rising its values
-if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-    EnterLong("SMACrossesEMA");
+if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+    OpenLong("SMACrossesEMA");
 
 ```
 
-## EnterLongLimit()
+## OpenLongLimit()
 ### Description
 Enter long limit creates a limit order for entering a long position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLong()*](#enterlong), [*EnterLongStop()*](#enterlongstop), [*EnterLongStopLimit()*](#enterlongstoplimit).
+See [*OpenLong()*](#enterlong), [*OpenLongStop()*](#enterlongstop), [*OpenLongStopLimit()*](#enterlongstoplimit).
 
 ### Usage
 ```cs
-EnterLongLimit(double limitPrice)
-EnterLongLimit(double limitPrice, string strategyName)
-EnterLongLimit(int quantity, double limitPrice)
-EnterLongLimit(int quantity, double limitPrice, string strategyName)
+OpenLongLimit(double limitPrice)
+OpenLongLimit(double limitPrice, string strategyName)
+OpenLongLimit(int quantity, double limitPrice)
+OpenLongLimit(int quantity, double limitPrice, string strategyName)
 ```
 
 For Multibar-Strategies
 ```cs
-EnterLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
+OpenLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
 ```
 
 ### Parameter
@@ -391,7 +391,7 @@ EnterLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|-------------|
 | strategyName          | An unambiguous name |
 | quantity            | Amount of stocks/contracts/etc.  |
-| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -402,29 +402,29 @@ An order object of the type "IOrder"
 ```cs
 // if the EMA14 crosses the SMA50 from below to above
 // the ADX is rising its values
-if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-    EnterLongLimit("SMACrossesEMA");
+if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+    OpenLongLimit("SMACrossesEMA");
 ```
 
-## EnterLongStop()
+## OpenLongStop()
 ### Description
 Enter long stop creates a limit order for entering a long position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStopLimit()*](#enterlongstoplimit).
+See [*OpenLong()*](#enterlong), [*OpenLongLimit()*](#enterlonglimit), [*OpenLongStopLimit()*](#enterlongstoplimit).
 
 ### Usage
 ```cs
-EnterLongStop(double stopPrice)
-EnterLongStop(double stopPrice, string strategyName)
-EnterLongStop(int quantity, double stopPrice)
-EnterLongStop(int quantity, double stopPrice, string strategyName)
+OpenLongStop(double stopPrice)
+OpenLongStop(double stopPrice, string strategyName)
+OpenLongStop(int quantity, double stopPrice)
+OpenLongStop(int quantity, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-EnterLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
+OpenLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
 ```
 
 ### Parameter
@@ -432,7 +432,7 @@ EnterLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|-------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
@@ -444,28 +444,28 @@ An order object of the type "IOrder"
 private IOrder stopOrder = null;
 // Place an entry order at the high of the current bar
 if (stopOrder == null)
-    stopOrder = EnterLongStop(Low[0], "Stop Long");
+    stopOrder = OpenLongStop(Low[0], "Stop Long");
 ```
 
-## EnterLongStopLimit()
+## OpenLongStopLimit()
 ### Description
 Enter long stop limit creates a buy stop limit order for entering a long position.
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterLong()*](#enterlong), [*EnterLongLimit()*](#enterlonglimit), [*EnterLongStop()*](#enterlongstop).
+See [*OpenLong()*](#enterlong), [*OpenLongLimit()*](#enterlonglimit), [*OpenLongStop()*](#enterlongstop).
 
 ### Usage
 ```cs
-EnterLongStopLimit(double limitPrice, double stopPrice)
-EnterLongStopLimit(double limitPrice, double stopPrice, string strategyName)
-EnterLongStopLimit(int quantity, double limitPrice, double stopPrice)
-EnterLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
+OpenLongStopLimit(double limitPrice, double stopPrice)
+OpenLongStopLimit(double limitPrice, double stopPrice, string strategyName)
+OpenLongStopLimit(int quantity, double limitPrice, double stopPrice)
+OpenLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-EnterLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
+OpenLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 ### Parameter
@@ -473,7 +473,7 @@ EnterLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantit
 |--------------|-------------------------|
 | strategyName          | An unambiguous name       |
 | quantity            | Amount of stocks or contracts to be ordered   |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInCalculation*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
@@ -487,25 +487,25 @@ private IOrder stopOrder = null;
 // Place an entry stop at the high of the current bar
 // if the high  is reached, at 5 ticks above the high.
 if (stopOrder == null)
-    stopOrder = EnterLongStopLimit(High[0]+ (5*TickSize), High[0], "Stop Long Limit");
+    stopOrder = OpenLongStopLimit(High[0]+ (5*TickSize), High[0], "Stop Long Limit");
 ```
 
-## EnterShort()
+## OpenShort()
 ### Description
 Enter short creates a market order for entering a short position (naked sell).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortstop)(entershortstop), [*EnterShortStopLimit()*](#entershortstoplimit).
+See [*OpenShortLimit()*](#entershortlimit), [*OpenShortStop()*](#entershortstop)(entershortstop), [*OpenShortStopLimit()*](#entershortstoplimit).
 
 ### Usage
 ```cs
-EnterShort()
-EnterShort(string strategyName)
-EnterShort(int quantity)
-EnterShort(int quantity, string strategyName)
+OpenShort()
+OpenShort(string strategyName)
+OpenShort(int quantity)
+OpenShort(int quantity, string strategyName)
 For multi-bar strategies
-EnterShort(int multibarSeriesIndex, int quantity, string strategyName)
+OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
 ```
 
 ### Parameter
@@ -513,7 +513,9 @@ EnterShort(int multibarSeriesIndex, int quantity, string strategyName)
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | quantity            | Amount of stocks/contracts etc.                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies Index of the data series for which the entry order is to be executed See [*BarsInProgress*](#barsinprogress).   |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies                             
+                       Index of the data series for which the entry order is to be executed  
+                       See [*BarsInCalculation*](#barsinprogress).                                               |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -522,29 +524,29 @@ an order object of the type "IOrder"
 ```cs
 // if the EMA14 crosses the SMA50 from above to below
 // the ADX is rising its values
-if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-    EnterShort("'EMACrossesSMA");
+if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+    OpenShort("'EMACrossesSMA");
 ```
 
-## EnterShortLimit()
+## OpenShortLimit()
 ### Description
 Enter short limit creates a limit order for entering a short position (naked short).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterShort()*](#entershort), [*EnterShortStop()*](#entershortstop), [*EnterShortStopLimit()*](#entershortstoplimit).
+See [*OpenShort()*](#entershort), [*OpenShortStop()*](#entershortstop), [*OpenShortStopLimit()*](#entershortstoplimit).
 
 ### Usage
 ```cs
-EnterShortLimit(double limitPrice)
-EnterShortLimit(double limitPrice, string strategyName)
-EnterShortLimit(int quantity, double limitPrice)
-EnterShortLimit(int quantity, double limitPrice, string strategyName)
+OpenShortLimit(double limitPrice)
+OpenShortLimit(double limitPrice, string strategyName)
+OpenShortLimit(int quantity, double limitPrice)
+OpenShortLimit(int quantity, double limitPrice, string strategyName)
 ```
 
 For Multibar-Strategies
 ```cs
-EnterShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
+OpenShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
 ```
 
 ### Parameter
@@ -552,8 +554,9 @@ EnterShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, 
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                                         |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.
-Index of the data series for which the entry order is to be executed.  See [*BarsInProgress*](#barsinprogress).                                                                                                                                                       |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                                    
+                       Index of the data series for which the entry order is to be executed.                                                                                                         
+                       See [*BarsInCalculation*](#barsinprogress).                                                                                                                                                       |
 | limitPrice          | A double value for the limit price                                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -563,27 +566,27 @@ an order object of the type "IOrder"
 ### Example
 ```cs
 // Enter a short position if the last entry is 10 bars in the past and two SMAs have crossed each other
-if (BarsSinceEntry() > 10 && CrossBelow(SMA(10), SMA(20), 1))
-EnterShortLimit("SMA cross entry");
+if (BarsCountFromTradeOpen() > 10 && CrossBelow(SMA(10), SMA(20), 1))
+OpenShortLimit("SMA cross entry");
 ```
 
-## EnterShortStop()
+## OpenShortStop()
 ### Description
 Enter short stop creates a limit order for entering a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*EnterShortStopLimit()*](#entershortstoplimit).
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
+See [*OpenShort()*](#entershort), [*OpenShortLimit()*](#entershortlimit), [*OpenShortStopLimit()*](#entershortstoplimit).
 
 ### Usage
 ```cs
-EnterShortStop(double stopPrice)
-EnterShortStop(double stopPrice, string strategyName)
-EnterShortStop(int quantity, double stopPrice)
-EnterShortStop(int quantity, double stopPrice, string strategyName)
+OpenShortStop(double stopPrice)
+OpenShortStop(double stopPrice, string strategyName)
+OpenShortStop(int quantity, double stopPrice)
+OpenShortStop(int quantity, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 ```cs
-EnterShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
+OpenShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
 ```
 
 ### Parameter
@@ -591,7 +594,7 @@ EnterShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                                           |
 | quantity            | Amount to be ordered                                                                                          |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                             |
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
@@ -603,29 +606,29 @@ An order object of the type "IOrder"
 private IOrder stopOrder = null;
 // Place an entry stop at the High of the current bar
 if (stopOrder == null)
-    stopOrder = EnterShortStop(High[0], "stop short");
+    stopOrder = OpenShortStop(High[0], "stop short");
 ```
 
-## EnterShortStopLimit()
+## OpenShortStopLimit()
 ### Description
 Enter short stop limit creates a sell stop limit order for entering a short position.
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*EnterShort()*](#entershort), [*EnterShortLimit()*](#entershortlimit), [*EnterShortStop()*](#entershortstop).
+See [*OpenShort()*](#entershort), [*OpenShortLimit()*](#entershortlimit), [*OpenShortStop()*](#entershortstop).
 
 ### Usage
 ```cs
-EnterShortStopLimit(double limitPrice, double stopPrice)
-EnterShortStopLimit(double limitPrice, double stopPrice, string strategyName)
-EnterShortStopLimit(int quantity, double limitPrice, double stopPrice)
-EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
+OpenShortStopLimit(double limitPrice, double stopPrice)
+OpenShortStopLimit(double limitPrice, double stopPrice, string strategyName)
+OpenShortStopLimit(int quantity, double limitPrice, double stopPrice)
+OpenShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 For multi-bar strategies
 
 ```cs
-EnterShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
+OpenShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
 ```
 
 ### Parameter
@@ -633,8 +636,9 @@ EnterShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quanti
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                         |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which an entry order is to be placed.
-See [*BarsInProgress*](#barsinprogress).                                                                                                                                       |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                    
+                       Index of the data series for which an entry order is to be placed.                                                                                            
+                       See [*BarsInCalculation*](#barsinprogress).                                                                                                                                       |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -647,7 +651,7 @@ An order object of the type "IOrder"
 private IOrder stopOrder = null;
 // Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
 if (stopOrder == null)
-    stopOrder = EnterShortStopLimit(High[0] + (2*TickSize), High[0], "stop short");
+    stopOrder = OpenShortStopLimit(High[0] + (2*TickSize), High[0], "stop short");
 ```
 
 ## EntriesPerDirection
@@ -656,7 +660,7 @@ Entries per direction defines the maximum number of entries permitted in one dir
 
 Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*](#entryhandling).
 
-Entries per direction is defined with the [*Initialize()*](#initialize) method.
+Entries per direction is defined with the [*OnInit()*](#initialize) method.
 
 ### Usage
 **EntriesPerDirection**
@@ -668,27 +672,27 @@ An int value for the maximum entries permitted in one direction.
 ```cs
 // Example 1
 // If one of the two entry conditions is true and a long position is opened, then the other entry signal will be ignored
-protected override void Initialize()
+protected override void OnInit()
 {
 EntriesPerDirection = 1;
 EntryHandling = EntryHandling.AllEntries;
 }
 
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-    if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-        EnterLong("SMA cross entry");
+    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+        OpenLong("SMA cross entry");
 }
 
 // Example 2
 
 
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-    if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-        EnterLong("EMACrossesSMA");
+    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+        OpenLong("EMACrossesSMA");
     else if (CrossAbove (MACD(2,2,5), 0, 1))
-        EnterLong("MACDCross");
+        OpenLong("MACDCross");
 }
 ```
 
@@ -696,7 +700,7 @@ protected override void OnBarUpdate()
 ### Description
 Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*](#entriesperdirection)).
 
-Entry handling is defined with the [*Initialize()*](#initialize) method.
+Entry handling is defined with the [*OnInit()*](#initialize) method.
 
 **EntryHandling.AllEntries**
 
@@ -716,26 +720,26 @@ If entries per direction = 2, then it is possible for two signals for enter long
 See [*EntriesPerDirection*](#entriesperdirection).
 
 ## ExcludeTradeHistoryInBacktest
-## ExitLong()
+## CloseLong()
 ### Description
 Exit long creates a sell market order for closing a long position (sell).
 
-If a signature not containing a set amount is used, the amount is set by [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitstoplimit).
+See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
 
 ### Usage
 ```cs
-ExitLong()
-ExitLong(int quantity)
-ExitLong(string fromEntry signal)
-ExitLong(string strategyName, string fromEntry signal)
-ExitLong(int quantity, string strategyName, string fromEntry signal)
+CloseLong()
+CloseLong(int quantity)
+CloseLong(string fromEntry signal)
+CloseLong(string strategyName, string fromEntry signal)
+CloseLong(int quantity, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitLong(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
+CloseLong(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -743,7 +747,7 @@ ExitLong(int multibarSeriesIndex, int quantity, string strategyName, string from
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | quantity            | The quantity to be sold                                              |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).   |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).   |
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
@@ -752,33 +756,33 @@ An order object of the type "IOrder"
 ### Example
 ```cs
 // Enter if two EMA crosses SMA and the ADX is rising
-if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterLong("EMACrossesSMA");
+if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenLong("EMACrossesSMA");
 
 // Close position
 if (CrossBelow(EMA(14), SMA(50), 2))
-    ExitLong();
+    CloseLong();
 ```
 
-## ExitLongLimit()
+## CloseLongLimit()
 ### Description
 Exit long limit creates a sell limit order for closing a long position (i.e. for selling).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitstoplimit).
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
+See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
 
 ### Usage
 ```cs
-ExitLongLimit(double limitPrice)
-ExitLongLimit(int quantity, double limitPrice)
-ExitLongLimit(double limitPrice, string fromEntry signal)
-ExitLongLimit(double limitPrice, string strategyName, string fromEntry signal)
-ExitLongLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
+CloseLongLimit(double limitPrice)
+CloseLongLimit(int quantity, double limitPrice)
+CloseLongLimit(double limitPrice, string fromEntry signal)
+CloseLongLimit(double limitPrice, string strategyName, string fromEntry signal)
+CloseLongLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
+CloseLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -787,7 +791,7 @@ ExitLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the attached entry signal                                                                                                                        |
 | quantity            | Order quantity to be sold                                                                                                                                    |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -797,32 +801,32 @@ an order object of the type "IOrder"
 ### Example
 ```cs
 // Enter if two EMA crosses SMA and the ADX is rising
-if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterLong("EMACrossesSMA");
+if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenLong("EMACrossesSMA");
 
 // Close position
 if (CrossBelow(EMA(14), SMA(50), 2))
-    ExitLongLimit(Low[0]);
+    CloseLongLimit(Low[0]);
 ```
 
-## ExitLongStop()
+## CloseLongStop()
 ### Description
 Exit long stop creates a sell stop order for closing a long position (short).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitstoplimit).
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
+See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
 
 ### Usage
 ```cs
-ExitLongStop(int quantity, double stopPrice)
-ExitLongStop(double stopPrice, string fromEntry signal)
-ExitLongStop(double stopPrice, string strategyName, string fromEntry signal)
-ExitLongStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
+CloseLongStop(int quantity, double stopPrice)
+CloseLongStop(double stopPrice, string fromEntry signal)
+CloseLongStop(double stopPrice, string strategyName, string fromEntry signal)
+CloseLongStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)ExitLongStop
+CloseLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)CloseLongStop
 ```
 
 ### Parameter
@@ -831,7 +835,7 @@ ExitLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, dou
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -841,34 +845,34 @@ an order object of the type "IOrder"
 ### Example
 ```cs
 // Enter if two EMA crosses SMA and the ADX is rising
-if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterLong("EMACrossesSMA");
+if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenLong("EMACrossesSMA");
 
 // Close position
 if (CrossBelow(EMA(14), SMA(50), 2))
-    ExitLongStop(Low[0]);
+    CloseLongStop(Low[0]);
 ```
 
-## ExitLongStopLimit()
+## CloseLongStopLimit()
 ### Description
 Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitstoplimit).
+See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
 
 ### Usage
 ```cs
-ExitLongStopLimit(double limitPrice, double stopPrice)
-ExitLongStopLimit(int quantity, double limitPrice, double stopPrice)
-ExitLongStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
-ExitLongStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
-ExitLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+CloseLongStopLimit(double limitPrice, double stopPrice)
+CloseLongStopLimit(int quantity, double limitPrice, double stopPrice)
+CloseLongStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
+CloseLongStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+CloseLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For Multibar-Strategies
 ```cs
-ExitLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+CloseLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -877,7 +881,7 @@ ExitLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -888,35 +892,35 @@ An order object of the type "IOrder"
 ### Example
 ```cs
 // Enter if two EMA crosses SMA and the ADX is rising
-if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterLong("EMACrossesSMA");
+if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenLong("EMACrossesSMA");
 
 // Close position
 if (CrossBelow(EMA(14), SMA(50), 2))
-    ExitLongStopLimit(Low[0] - (15 * TickSize), Low[0]);
+    CloseLongStopLimit(Low[0] - (15 * TickSize), Low[0]);
 ```
 
 ## ExitOnClose
 ## ExitOnCloseSeconds
-## ExitShort()
+## CloseShort()
 ### Description
 Exit short creates a buy-to-cover market order for closing a short position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*ExitShort()*](#exitshort), [*ExitShortLimit()*](#exitshortlimit), [*ExitShortStop()*](#exitshortstop), [*ExitShortStopLimit()*](#exitshortstoplimit).
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
+See [*CloseShort()*], [*CloseShortLimit()*], [*CloseShortStop()*], [*CloseShortStopLimit()*].
 
 ### Usage
 ```cs
-ExitShort()
-ExitShort(int quantity)
-ExitShort(string fromEntry signal)
-ExitShort(string strategyName, string fromEntry signal)
-ExitShort(int quantity, string strategyName, string fromEntry signal)
+CloseShort()
+CloseShort(int quantity)
+CloseShort(string fromEntry signal)
+CloseShort(string strategyName, string fromEntry signal)
+CloseShort(int quantity, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShort(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
+CloseShort(int multibarSeriesIndex, int quantity, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -924,7 +928,7 @@ ExitShort(int multibarSeriesIndex, int quantity, string strategyName, string fro
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | Quantity            | Order quantity to be bought                                          |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
@@ -933,34 +937,34 @@ An order object of the type "IOrder"
 ### Example
 ```cs
 // Enter if two EMA crosses SMA and the ADX is rising
-if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterShort("EMACrossesSMA");
+if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenShort("EMACrossesSMA");
 
-// Close
+// Close 
 if (CrossAbove(EMA(15), SMA(50), 2))
-    ExitShort();
+    CloseShort();
 ```
 
-## ExitShortLimit()
+## CloseShortLimit()
 ### Description
 Exit short limit creates a buy-to-cover limit order for closing a short position (buy).
 
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*ExitShort()*](#exitshort), [*ExitShortLimit()*](#exitshortlimit), [*ExitShortStop()*](#exitshortstop), [*ExitShortStopLimit()*](#exitshortstoplimit).
+See [*CloseShort()*], [*CloseShortLimit()*], [*CloseShortStop()*], [*CloseShortStopLimit()*].
 
 ### Usage
 ```cs
-ExitShortLimit(double limitPrice)
-ExitShortLimit(int quantity, double limitPrice)
-ExitShortLimit(double limitPrice, string fromEntry signal)
-ExitShortLimit(double limitPrice, string strategyName, string fromEntry signal)
-ExitShortLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
+CloseShortLimit(double limitPrice)
+CloseShortLimit(int quantity, double limitPrice)
+CloseShortLimit(double limitPrice, string fromEntry signal)
+CloseShortLimit(double limitPrice, string strategyName, string fromEntry signal)
+CloseShortLimit(int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
+CloseShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -969,7 +973,7 @@ ExitShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -979,31 +983,31 @@ An order object of the type "IOrder"
 ### Example
 ```cs
 // Enter if two EMA crosses SMA and the ADX is rising
-if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterShort("EMACrossesSMA");
-// Close
+if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenShort("EMACrossesSMA");
+// Close 
 if (CrossAbove(EMA(15), SMA(50), 2))
-    ExitShortLimit(High[0] + (Ticksize * 2));
+    CloseShortLimit(High[0] + (Ticksize * 2));
 ```
 
-## ExitShortStop()
+## CloseShortStop()
 ### Description
 Exit short stop creates a buy-to-cover stop order for closing a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*ExitShort()*](#exitshort), [*ExitShortLimit()*](#exitshortlimit), [*ExitShortStop()*](#exitshortstop), [*ExitShortStopLimit()*](#exitshortstoplimit).
+See [*CloseShort()*], [*CloseShortLimit()*], [*CloseShortStop()*], [*CloseShortStopLimit()*].
 
 ### Usage
 ```cs
-ExitShortStop(int quantity, double stopPrice)
-ExitShortStop(double stopPrice, string fromEntry signal)
-ExitShortStop(double stopPrice, string strategyName, string fromEntry signal)
-ExitShortStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
+CloseShortStop(int quantity, double stopPrice)
+CloseShortStop(double stopPrice, string fromEntry signal)
+CloseShortStop(double stopPrice, string strategyName, string fromEntry signal)
+CloseShortStop(int quantity, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)ExitLongStop
+CloseShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName, string fromEntry signal)CloseLongStop
 ```
 
 ### Parameter
@@ -1012,7 +1016,7 @@ ExitShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -1022,32 +1026,32 @@ An order object of the type "IOrder"
 ### Example
 ```cs
 /// Enter if two EMA crosses SMA and the ADX is rising
-if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterShort("EMACrossesSMA");
-// Close
+if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenShort("EMACrossesSMA");
+// Close 
 if (CrossAbove(EMA(15), SMA(50), 2))
-    ExitShortStop(High[0] + (Ticksize * 2));
+    CloseShortStop(High[0] + (Ticksize * 2));
 ```
 
-## ExitShortStopLimit()
+## CloseShortStopLimit()
 ### Description
 Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultQuantity*](#defaultquantity) or taken from the strategy dialog window.
+If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*ExitLong()*](#exitlong), [*ExitLongLimit()*](#exitlonglimit), [*ExitLongStop()*](#exitlongstop), [*ExitLongStopLimit()*](#exitstoplimit).
+See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
 
 ### Usage
 ```cs
-ExitShortStopLimit(double limitPrice, double stopPrice)
-ExitShortStopLimit(int quantity, double limitPrice, double stopPrice)
-ExitShortStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
-ExitShortStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
-ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+CloseShortStopLimit(double limitPrice, double stopPrice)
+CloseShortStopLimit(int quantity, double limitPrice, double stopPrice)
+CloseShortStopLimit(double limitPrice, double stopPrice, string fromEntry signal)
+CloseShortStopLimit(double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+CloseShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 For multi-bar strategies
 ```cs
-ExitShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
+CloseShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName, string fromEntry signal)
 ```
 
 ### Parameter
@@ -1056,7 +1060,7 @@ ExitShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantit
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInProgress*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -1067,18 +1071,18 @@ An order object of the type "IOrder"
 ### Example
 ```cs
 /// Enter if two EMA crosses SMA and the ADX is rising
-if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-     EnterShort("EMACrossesSMA");
-// Close
+if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+     OpenShort("EMACrossesSMA");
+// Close 
 if (CrossAbove(EMA(15), SMA(50), 2))
-    ExitShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
+    CloseShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
 ```
 
 ## GetAccountValue()
 ### Description
 Get account value outputs information regarding the account for which the current strategy is being carried out.
 
-See [*GetProfitLoss()*](#getprofitloss).
+See [*GetProfitLoss()*].
 
 ### Usage
 ```cs
@@ -1108,7 +1112,7 @@ Print("The current P/L already realized is " + GetAccountValue(AccountItem.Reali
 ### Description
 Get profit loss outputs the currently unrealized profit or loss for a running position.
 
-See [*GetAccountValue()*](#getaccountvalue).
+See [*GetAccountValue()*].
 
 ### Usage
 ```cs
@@ -1122,7 +1126,7 @@ Potential values for the P/L type are:
 
 1 – Percent: P/L in percent
 
-2 – Risk: P/L in Van Tharp R-multiples [*vantharp.com*](http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp)
+2 – Risk: P/L in Van Tharp R-multiples ([*http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp*])
 
 3 – P/L in ticks
 
@@ -1144,7 +1148,7 @@ This method allows user to communicate between scripts.
 ### Description
 GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.
 
-See [*GetAccountValue()*](#getaccountvalue).
+See [*GetAccountValue()*].
 
 ### Usage
 ```cs
@@ -1166,7 +1170,7 @@ Print("the current P&L " + this.Name + " is " + GetProfitLossAmount(Position.Ope
 ### Description
 GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.
 
-See [*GetAccountValue()*](#getaccountvalue).
+See [*GetAccountValue()*].
 
 ### Usage
 ```cs
@@ -1185,16 +1189,16 @@ Print("the current P&L " + this.Name + " is " + string.Format( "{0:F1} R.", GetP
 
 ## IsAutomated
 ### Description
-IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*Initialize()*](#initialize) method.
+IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*OnInit()*](#initialize) method.
 
-If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*](#confirmorder).
+If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*].
 
 ### Parameter
 Bool value
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
    IsAutomated = false;
 }
@@ -1207,8 +1211,8 @@ IOrder is an object that contains information about an order that is currently m
 
 The individual properties are:
 
--   Action
-One of four possible positions in the market:
+-   ** Action
+    **One of four possible positions in the market:**
     - OrderAction.Buy
     - OrderAction.BuyToCover
     - OrderAction.Sell
@@ -1233,31 +1237,31 @@ One of four possible positions in the market:
 
 -   **OrderMode**
     One of three possible positions in the market:
-    -   OrderMode.Direct
-    -   OrderMode.Dynamic
-    -   OrderMode.Synthetic
+    - OrderMode.Direct
+    - OrderMode.Dynamic
+    - OrderMode.Synthetic
 
 -   **OrderState**
-    The current status of the order can be queried (see *OnExecution* and *OnOrderUpdate*)
-    -   OrderState.Accepted
-    -   OrderState.Cancelled
-    -   OrderState.CancelRejected
-    -   OrderState.Filled
-    -   OrderState.PartFilled
-    -   OrderState.PendingCancel
-    -   OrderState.PendingReplace
-    -   OrderState.PendingSubmit
-    -   OrderState.Rejected
-    -   OrderState.ReplaceRejected
-    -   OrderState.Unknown
-    -   OrderState.Working
+    The current status of the order can be queried (see *OnOrderExecution* and *OnOrderChanged*)
+    - OrderState.Accepted
+    - OrderState.Cancelled
+    - OrderState.CancelRejected
+    - OrderState.Filled
+    - OrderState.PartFilled
+    - OrderState.PendingCancel
+    - OrderState.PendingReplace
+    - OrderState.PendingSubmit
+    - OrderState.Rejected
+    - OrderState.ReplaceRejected
+    - OrderState.Unknown
+    - OrderState.Working
 
 -   **OrderType**
     Possible order types:
-    -   OrderType.Limit
-    -   OrderType.Market
-    -   OrderType.Stop
-    -   OrderType.StopLimit
+    - OrderType.Limit
+    - OrderType.Market
+    - OrderType.Stop
+    - OrderType.StopLimit
 
 -   **Quantity**
     The quantity to be ordered
@@ -1281,8 +1285,8 @@ Possible Methods:
     Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
 
 
-## MarketPosition
-See [*Position.MarketPosition*](#marketposition).
+## PositionType
+See [*Position.PositionType*].
 
 ## Performance
 ### Description
@@ -1295,24 +1299,24 @@ See Performance Characteristics.
 The individual lists are:
 
 -   **Performance.AllTrades**
-    A [*Trade*](#trade) collection object containing all trades generated by a strategy.
+    A [*Trade*] collection object containing all trades generated by a strategy.
 
 -   **Performance.LongTrades**
-    A [*Trade*](#trade) collection object containing all long trades generated by a strategy.
+    A [*Trade*] collection object containing all long trades generated by a strategy.
 
 -   **Performance.ShortTrades**
-    A [*Trade*](#trade) collection object containing all short trades generated by a strategy.
+    A [*Trade*] collection object containing all short trades generated by a strategy.
 
 -   **Performance.WinningTrades**
-    A [*Trade*](#trade) collection object containing all profitable trades generated by a strategy.
+    A [*Trade*] collection object containing all profitable trades generated by a strategy.
 
 -   **Performance.LosingTrades**
-    A [*Trade*](#trade) collection object containing all loss trades generated by a strategy.
+    A [*Trade*] collection object containing all loss trades generated by a strategy.
 
 ### Example
 ```cs
 // When exiting a strategy, create a performance evaluation
-protected override void OnTermination()
+protected override void OnDispose()
 {
 Print("Performance evaluation of the strategy : " + this.Name);
 Print("----------------------------------------------------");
@@ -1342,15 +1346,15 @@ The individual properties are:
     The trading instrument in which the position exists.
     See *Instruments*.
 
--   **Position.MarketPosition**
+-   **Position.PositionType**
     One of three possible positions in the market:
-    -   PositionType.Flat
-    -   PositionType.Long
-    -   PositionType.Short
+    - PositionType.Flat
+    - PositionType.Long
+    - PositionType.Short
 
 -   **Position.OpenProfitLoss**
     The currently not yet realized profit or loss.
-    See [*GetProfitLoss()*](#getprofitloss).
+    See [*GetProfitLoss()*].
 
 -   **Position.ProfitCurrency**
     Profit (or loss) displayed as a currency amount.
@@ -1366,12 +1370,12 @@ The individual properties are:
 
 ### Example
 ```cs
-if (Position.MarketPosition != PositionType.Flat)
+if (Position.PositionType != PositionType.Flat)
 {
 Print("Average price " + Position.AvgPrice);
 Print("Opening time " + Position.CreatedDateTime);
 Print("Instrument " + Position.Instrument);
-Print("Current positioning " + Position.MarketPosition);
+Print("Current positioning " + Position.PositionType);
 Print("Unrealized P/L " + Position.OpenProfitLoss);
 Print("P/L (currency) " + Position.ProfitCurrency);
 Print("P/L (in percent) " + Position.ProfitPercent);
@@ -1381,20 +1385,20 @@ Print("Pieces " + Position.Quantity);
 ```
 
 ## Quantity
-See [*Position.Quantity*](#quantity), [*Position.MarketPosition*](#marketposition).
+See [*Position.Quantity*][*Position.PositionType*].
 
-## SetProfitTarget()
+## SetUpProfitTarget()
 ### Description
 Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
-If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.
+If the profit target is static, you can also define SetUpProfitTarget() with the OnInit() method.
 
-See [*SetStopLoss()*](#setstoploss), [*SetTrailStop()*](#settrailstop).
+See [*SetUpStopLoss()*], [*SetUpTrailStop()*].
 
 ### Usage
 ```cs
-SetProfitTarget(double currency)
-SetProfitTarget(CalculationMode mode, double value)
-SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
+SetUpProfitTarget(double currency)
+SetUpProfitTarget(CalculationMode mode, double value)
+SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 ```
 
 ### Parameter
@@ -1402,35 +1406,35 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 |------------------|------------------------------------|
 | currency         | Sets the profit target in a currency, for example 500€.  |
 | mode             | Possible values are:                                                                                                                                              
--   CalculationMode.Percent (display in percent)                                                                                                                     
--   CalculationMode.Price (display as price value)                                                                                                                   
--   CalculationMode.Ticks (display in ticks or pips)      |
+                    - CalculationMode.Percent (display in percent)                                                                                                                     
+                    - CalculationMode.Price (display as price value)                                                                                                                   
+                    - CalculationMode.Ticks (display in ticks or pips)      |
 | value  | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
 | fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.   |
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 // Creates a Target Order 20 ticks above the market
-SetProfitTarget(CalculationMode.Ticks, 20);
+SetUpProfitTarget(CalculationMode.Ticks, 20);
 }
 ```
 
-## SetStopLoss()
+## SetUpStopLoss()
 ### Description
 Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.
 
-If the stop loss is static, then SetStopLoss() can be defined with the Initialize() method.
+If the stop loss is static, then SetUpStopLoss() can be defined with the OnInit() method.
 
-See [*SetProfitTarget()*](#setprofittarget), [*SetTrailStop()*](#settrailstop).
+See [*SetUpProfitTarget()*], [*SetUpTrailStop()*].
 
 ### Usage
 ```cs
-SetStopLoss(double currency)
-SetStopLoss(double currency, bool simulated)
-SetStopLoss(CalculationMode mode, double value)
-SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool simulated)
+SetUpStopLoss(double currency)
+SetUpStopLoss(double currency, bool simulated)
+SetUpStopLoss(CalculationMode mode, double value)
+SetUpStopLoss(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 ```
 
 ### Parameter
@@ -1438,35 +1442,35 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 |------------------|---------------------------------------|
 | currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€     |
 | mode             | Potential values can be:  
--   CalculationMode.Percent (display in percent)   
--   CalculationMode.Price (display as price value)
--   CalculationMode.Ticks (display in ticks or pips)    |
+                    - CalculationMode.Percent (display in percent)   
+                    - CalculationMode.Price (display as price value)                                                                                                                                                             
+                    - CalculationMode.Ticks (display in ticks or pips)    |
 | simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
 | value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 // Sets profitTarget 15 Ticks above the market
-SetStopLoss("MACDEntry", CalculationMode.Ticks, 15, true);
+SetUpStopLoss("MACDEntry", CalculationMode.Ticks, 15, true);
 }
 ```
 
-## SetTrailStop()
+## SetUpTrailStop()
 ### Description
 Set trail stop creates a trail stop order after an entry order is generated. Its purpose is to protect you from losses, and after reaching break-even, to protect your gains.
 
 The order is sent directly to the broker and becomes effective immediately.
 
-If the stop loss price and the offset value are static, you can define SetTrailStop() with the Initialize() method.
+If the stop loss price and the offset value are static, you can define SetUpTrailStop() with the OnInit() method.
 
-If you use SetTrailStop() within the [*OnBarUpdate()*](#onbarupdate) method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.
+If you use SetUpTrailStop() within the [*OnCalculate()*] method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.
 
 **Functionality:**
 
-Assuming that you have SetTrailStop(CalculationMode.Ticks, 30) selected:
+Assuming that you have SetUpTrailStop(CalculationMode.Ticks, 30) selected:
 
 In a long position, the stop will be 30 ticks from the previously reached high. If the market makes a new high, the stop will be adjusted. However, the stop will no longer be moved downwards.
 
@@ -1474,26 +1478,26 @@ In a short position, this behavior starts with the most recent low.
 
 **Tips:**
 
-It is not possible to use SetStopLoss and SetTrailStop for the same position at the same time within one strategy. The SetStopLoss() method will always have precedence over the other methods.
+It is not possible to use SetUpStopLoss and SetUpTrailStop for the same position at the same time within one strategy. The SetUpStopLoss() method will always have precedence over the other methods.
 
 However, it is possible to use both variants parallel to each other in the same strategy if they are referencing different entry signals.
 
 Partial executions of a single order will cause a separate trading stop for each partial position.
 
-If a SetProfitTarget() is used in addition to a SetTrailStop(), then both orders will be automatically linked to form an OCO order.
+If a SetUpProfitTarget() is used in addition to a SetUpTrailStop(), then both orders will be automatically linked to form an OCO order.
 
 It is always a stop market order that is generated, and not a stop limit order.
 
 If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.
 
-See [*SetStopLoss()*](#setstoploss), [*SetProfitTarget()*](#setprofittarget).
+See [*SetUpStopLoss()*], [*SetUpProfitTarget()*].
 
 ### Usage
 ```cs
-SetTrailStop(double currency)
-SetTrailStop(double currency, bool simulated)
-SetTrailStop(CalculationMode mode, double value)
-SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool simulated)
+SetUpTrailStop(double currency)
+SetUpTrailStop(double currency, bool simulated)
+SetUpTrailStop(CalculationMode mode, double value)
+SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 ```
 
 ### Parameter
@@ -1501,18 +1505,18 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 |------------------|---------------------------------------------------|
 | currency         | The distance between the stop loss and the entry price      |
 | mode             | Possible values are:  
--   CalculationMode.Percent
--   CalculationMode.Ticks   |
+  - CalculationMode.Percent
+  - CalculationMode.Ticks   |
 | simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
 | value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 // Sets a trailing at the low of the last candle
-    SetTrailStop(CalculationMode.Price, Low[0]);
+    SetUpTrailStop(CalculationMode.Price, Low[0]);
 }
 ```
 
@@ -1520,7 +1524,7 @@ protected override void Initialize()
 ### Description
 Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
 
-See [*OnOrderUpdate()*](#onorderupdate), [*OnExecution()*](#onexecution).
+See [*OnOrderChanged()*], [*OnOrderExecution()*].
 
 ### Usage
 ```cs
@@ -1530,17 +1534,27 @@ SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderTyp
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
-| multibarSeriesIndex | For multi-bar strategies. Index of the data series for which the order is to be executed. See BarsInProgress.                                                 |
+| multibarSeriesIndex | For multi-bar strategies.                                          
+                       Index of the data series for which the order is to be executed.     
+                       See BarsInCalculation.                                                 |
 | orderAction         | Possible values are:                                               
 
--   OrderAction.Buy: Buy order for a long entry                                          
+                       OrderAction.Buy                                                     
+                       Buy order for a long entry                                          
 
--   OrderAction.Sell: Sell order for closing a long position                              
+                       OrderAction.Sell                                                    
+                       Sell order for closing a long position                              
 
--   OrderAction.SellShort: Sell order for a short entry                                        
+                       OrderAction.SellShort                                               
+                       Sell order for a short entry                                        
 
--   OrderAction.BuyToCover: Buy order for closing a short position                              |
-| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                                 |
+                       OrderAction.BuyToCover                                              
+                       Buy order for closing a short position                              |
+| orderType           | Possible values:                                                   
+                       OrderType.Limit                                                     
+                       OrderType.Market                                                    
+                       OrderType.Stop                                                      
+                       OrderType.StopLimit                                                 |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
@@ -1553,10 +1567,10 @@ an order object of the type "IOrder"
 ### Example
 ```cs
 private IOrder entryOrder = null;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 
-if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
+if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
     entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, 1, 0, High[0], "", "LongEntry");
 }
 ```
@@ -1565,7 +1579,7 @@ if (CrossBelow(EMA(14), SMA(50), 1) && Rising(ADX(20)))
 ### Description
 The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.
 
-TimeInForce is specified with the [*Initialize()*](#initialize) method.
+TimeInForce is specified with the [*OnInit()*](#initialize) method.
 
 Permitted values are:
 TimeInForce.day
@@ -1580,18 +1594,18 @@ TimeInForce.gtd
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 TimeInForce = TimeInForce.Day;
 }
 ```
 
-## TraceOrders
+## PrintOrders
 ### Description
 The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
-Trace orders can be specified with the [*Initialize()*](#initialize) method.
+Trace orders can be specified with the [*OnInit()*](#initialize) method.
 
-When TraceOrders is activated, each order will display the following values in the output window:
+When PrintOrders is activated, each order will display the following values in the output window:
 
 -   Instrument
 -   Time frame
@@ -1605,7 +1619,7 @@ When TraceOrders is activated, each order will display the following values in t
 This information is useful when creating and debugging strategies.
 
 ### Usage
-TraceOrders
+PrintOrders
 
 ### Parameter
 none
@@ -1616,10 +1630,10 @@ none
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 ClearOutputWindow();
-TraceOrders = true;
+PrintOrders = true;
 }
 ```
 
@@ -1658,11 +1672,11 @@ The individual properties are:
 -   **Trade.Instrument**
     Description of the trading instrument
 
--   **Trade.MarketPosition**
+-   **Trade.PositionType**
     Positioning within the market
-    -   PositionType.Flat
-    -   PositionType.Long
-    -   PositionType.Short
+    - PositionType.Flat
+    - PositionType.Long
+    - PositionType.Short
 
 -   **Trade.OpenProfitLoss**
     Unrealized profit/loss of a running position
@@ -1693,7 +1707,7 @@ The individual properties are:
 
 ### Example
 ```cs
-protected override void OnTermination()
+protected override void OnDispose()
 {
   if (Performance.AllTrades.Count < 1) return;
   foreach (ITrade trade in Performance.AllTrades)
@@ -1709,7 +1723,7 @@ protected override void OnTermination()
     Print("Exit price " + trade.ExitPrice);
     Print("Exit reason " + trade.ExitReason);
     Print("Instrument " + trade.Instrument);
-    Print("Positioning " + trade.MarketPosition);
+    Print("Positioning " + trade.PositionType);
     Print("Unrealized P/L " + trade.OpenProfitLoss);
     Print("P/L (currency) " + trade.ProfitCurrency);
     Print("P/L " + trade.ProfitLoss);
@@ -1737,7 +1751,7 @@ The following are available:
 -   all winning trades
 -   all losing trades
 
-See [*Performance*](#performance).
+See [*Performance*].
 
 The individual factors are:
 
