@@ -9,6 +9,8 @@ AgenaScript is AgenaTrader’s integrated programming language. The syntax is de
 
 AgenaScript allows you to execute any ideas/methods that are too complex for the ConditionEscort. From simple indicators to entire applications where AgenaTrader is only required to run in the background, anything that can be written in .NET can be implemented.
 
+**The following API documentation requires AgenaTrader in version 1.9.0.563**
+
 Information contained in this help document:
 
 [Handling bars and instruments](./handling_bars_and_instruments.md#handling-bars-and-instruments)
@@ -34,5 +36,3 @@ All drawing objects that can be used within the chart can also be accessed using
 [Hints and advice](./hints_and_advice.md#hints-and-advice)
 
 This section provides solutions to problems of an unusual nature. To solve such problems, you need to be able to trace and understand source code and programming. More advanced programmers and users may find solutions and suggestions that could help them in their own programming.
-
-
