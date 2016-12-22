@@ -1,13 +1,13 @@
 # Hints & Advice
 
 ## Bar Numbering Within the Chart
-The following example demonstrates the usage of the plot method and the properties of the [*ChartControl*](#chartcontrol) object.
+The following example demonstrates the usage of the plot method and the properties of the [*Chart*](#chart) object.
 
 ![Bar Numbering Within the Chart](./media/image30.png)
 
 **Note:**
-For demonstration purposes, each time Paint is called up within the “Bar Numbering” section, “New” and “Dispose” will also be called up multiple times.
-From a performance point of view, this solution can be better implemented by using constant variable declarations and calling up “Dispose” within the OnTermination statement.
+For demonstration purposes, each time Paint is called up within the "Bar Numbering" section, "New" and "Dispose" will also be called up multiple times.
+From a performance point of view, this solution can be better implemented by using constant variable declarations and calling up "Dispose" within the OnDispose statement.
 ```cs
 using System;
 using System.Collections.Generic;
@@ -30,35 +30,35 @@ Pen pen = new Pen(Color.Blue);
 StringFormat sf = new StringFormat();
 SolidBrush brush = new SolidBrush(Color.Black);
 Font font = new Font("Arial", 10, FontStyle.Bold);
-protected override void Initialize()
+protected override void OnInit()
 {
-Overlay = true;
+IsOverlay = true;
 }
-protected override void OnTermination()
+protected override void OnDispose()
 {
 if (pen!=null) pen.Dispose();
 if (sf!=null) sf.Dispose();
 if (brush!=null) brush.Dispose();
 if (font!=null) font.Dispose();
 }
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {}
-public override void Plot(Graphics g, Rectangle r, double min, double max)
+public override void OnPaint(Graphics g, Rectangle r, double min, double max)
 {
-if (Bars == null || ChartControl == null) return;
-// Properties of ChartControl
+if (Bars == null || Chart == null) return;
+// Properties of Chart
 string s;
 s = "bounds: "+r.X.ToString()+" "+r.Y.ToString()+" "+r.Height.ToString()+" "+r.Width.ToString();
 g.DrawString(s, font, brush, 10, 50, sf);
 s = "min: "+Instrument.Round2TickSize(min).ToString()+" max: "+Instrument.Round2TickSize(max).ToString();
 g.DrawString(s, font, brush, 10, 70, sf);
-s = "BarSpace: "+ChartControl.BarSpace.ToString()+" BarWidth: "+ChartControl.BarWidth.ToString();
+s = "BarSpace: "+Chart.BarSpace.ToString()+" BarWidth: "+Chart.BarWidth.ToString();
 g.DrawString(s, font, brush, 10, 90, sf);
 s = "Bars.Count: "+Bars.Count.ToString();
 g.DrawString(s, font, brush, 10, 110, sf);
-s = "BarsPainted: "+ChartControl.BarsPainted.ToString() + " FirstBarPainted: "+ChartControl.FirstBarPainted.ToString() + " LastBarPainted: "+ChartControl.LastBarPainted.ToString();
+s = "BarsPainted: "+Chart.BarsPainted.ToString() + " FirstBarPainted: "+Chart.FirstBarPainted.ToString() + " LastBarPainted: "+Chart.LastBarPainted.ToString();
 g.DrawString(s, font, brush, 10, 130, sf);
-s = "BarsVisible: "+ChartControl.BarsVisible.ToString() + " FirstBarVisible: "+ChartControl.FirstBarVisible.ToString() + " LastBarVisible: "+ChartControl.LastBarVisible.ToString();
+s = "BarsVisible: "+Chart.BarsVisible.ToString() + " FirstBarVisible: "+Chart.FirstBarVisible.ToString() + " LastBarVisible: "+Chart.LastBarVisible.ToString();
 g.DrawString(s, font, brush, 10, 150, sf);
 // Bar numbering
 StringFormat _sf = new StringFormat();
@@ -66,12 +66,12 @@ SolidBrush _brush = new SolidBrush(Color.Blue);
 Font _font = new Font("Arial", 8);
 SizeF _stringSize = new SizeF();
 _sf.Alignment = StringAlignment.Center;
-for (int i=ChartControl.FirstBarVisible; i<=ChartControl.LastBarVisible; i++)
+for (int i=Chart.FirstBarVisible; i<=Chart.LastBarVisible; i++)
 {
 string text = i.ToString();
 _stringSize = g.MeasureString(text, _font);
-int x = ChartControl.GetXByBarIdx(Bars, i);
-int y = ChartControl.GetYByValue(this, High[Abs2Ago(i)] + 3*TickSize) - (int) _stringSize.Height;
+int x = Chart.GetXByBarIdx(Bars, i);
+int y = Chart.GetYByValue(this, High[Abs2Ago(i)] + 3*TickSize) - (int) _stringSize.Height;
 g.DrawString(text, _font, _brush, x, y, _sf);
 }
 _sf.Dispose();
@@ -80,7 +80,7 @@ _font.Dispose();
 }
 private int Abs2Ago(int idx)
 {
-return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
+return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 }
 }
 }
@@ -99,13 +99,13 @@ namespace AgenaTrader.UserCode
 public class BackgroundPicture : UserIndicator
 {
 Image img;
-protected override void OnStartUp()
+protected override void OnStart()
 {
 try { img = Image.FromFile("C:\\\\MyCar.jpg"); } catch {}
 }
-public override void Plot(Graphics g, Rectangle r, double min, double max)
+public override void OnPaint(Graphics g, Rectangle r, double min, double max)
 {
-if (ChartControl == null || img == null) return;
+if (Chart == null || img == null) return;
 g.DrawImage(img,r);
 }
 }
@@ -147,7 +147,7 @@ foreach (FileInfo file in files) list.Add(file.Name);
 return new TypeConverter.StandardValuesCollection(list);
 }
 }
-protected override void OnStartUp()
+protected override void OnStart()
 {
 PlaySound(_soundFile);
 }
@@ -198,7 +198,7 @@ return s;
 ```
 
 Converts a number into a currency with a thousands separator and 2 decimal places.
-The block separation per 1000 units can be set in “Culture”.
+The block separation per 1000 units can be set in "Culture".
 ```cs
 public string getWaehrungOhneSymbol(double d) {
 // Separate 1000s and two decimal points
@@ -256,7 +256,7 @@ return string.Format(CultureInfo.CurrentCulture, f, d);
 }
 ```
 
-### **Example**
+### Example
 ```cs
 double profit = 1234.567890;
 Print("getCurrencyWithoutSymbol ": + getWaehrungOhneSymbol(Gewinn)); // 1234.57
@@ -272,17 +272,17 @@ Print("getPrice :" + getKurs(Kurs)); // 123.46
 There are two types of indexing in AgenaTrader.
 
 1.  The bars are numbered from youngest to oldest.
-This type is used in the OnBarUpdate() method.
+This type is used in the OnCalculate() method.
 The last bar has an index of 0, while the oldest bar has the index Bars.Count-1.
 
 2.  The bars are numbered from oldest to youngest.
-This type is most commonly used in the Plot() method in “for” loops.
+This type is most commonly used in the OnPaint() method in "for" loops.
 The oldest Bbar receives an index of 0, while the youngest bar has the index Bars.Count-1.
 The following function can be used to recalculate the index types:
 ```cs
 private int Convert(int idx)
 {
-return Math.Max(0,Bars.Count-idx-1-(CalculateOnBarClose?1:0));
+return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 }
 ```
 
@@ -332,12 +332,12 @@ namespace AgenaTrader.UserCode
 [Description("Demo of RoundedRectangles")]
 public class DemoRoundedRectangle : UserIndicator
 {
-protected override void Initialize()
+protected override void OnInit()
 {
-Overlay = true;
+IsOverlay = true;
 }
-protected override void OnBarUpdate() {}
-public override void Plot(Graphics g, Rectangle r, double min, double max)
+protected override void OnCalculate() {}
+public override void OnPaint(Graphics g, Rectangle r, double min, double max)
 {
 GraphicsPath path;
 // draws a rectangle with rounded corners
