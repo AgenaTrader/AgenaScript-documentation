@@ -26,7 +26,7 @@ Whenever a new bar is added within a session it will become the new index 0; the
 Within a script (a self-created program/algorithm) the [*Close*](#close) will be representative for the array (list) of all closing prices.
 The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.
 
-Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
+Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical)(#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
 
 **Important tip:**
 
@@ -42,7 +42,7 @@ With close \[0\] you would receive the most recent value of the last price that 
 
 ## Properties of Bars
 ### Properties of Bars
-"Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#functionality)[*Bars*](#bars)).
+"Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#functionality)(#functionality)[*Bars*](#bars)).
 
 Bars (**public** IBars Bars) can be used directly in a script and equates to BarsArray \[0\] (see Bars.GetNextSessionTimeSpan for more information).
 
@@ -54,7 +54,7 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.IsFirstBarInSession*](#barsfirstbarinsession)
 
-[*Bars.GetBar*](#barsgetbar)
+[*Bars.GetBar*](#barsgetbar)(#barsgetbar)
 
 [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago)
 
@@ -66,7 +66,7 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.GetSessionBegin*](#getsessionbegin)
 
-[*Bars.GetOpen*](#barsgetopen)
+[*Bars.GetOpen*](barsgetopen)(#barsgetopen)
 
 [*Bars.GetHigh*](#barsgethigh)
 
@@ -211,9 +211,9 @@ Bars.GetBar(DateTime time)
 ```
 
 ### More Information
-For the indexing of bars please see [*Functionality*][*Bars*]
+For the indexing of bars please see [*Functionality*](#functionality), [*Bars*](#bars)
 
-For more information about using DateTime see [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
+For more information about using DateTime see [http://msdn.microsoft.com/de-de/library/system.datetime.aspx](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
 ### Example
 ```cs
@@ -224,7 +224,7 @@ Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new Dat
 ### Description
 Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.
 
-See: [*Bars.GetBar*], [*Bars.GetByIndex*](#barsgetbyindex), [*Bars.GetBarIndex*](#barsgetbarindex).
+See: [*Bars.GetBar*](#barsgetbar), [*Bars.GetByIndex*](#barsgetbyindex), [*Bars.GetBarIndex*](#barsgetbarindex).
 
 ### Parameter
 Type DateTime
@@ -241,9 +241,9 @@ Bars.GetBarsAgo(DateTime time)
 ```
 
 ### More Information
-For more information about indexing please see [*Functionality*][*Bars*]
+For more information about indexing please see [*Functionality*](#functionality), [*Bars*](#bars)
 
-For more information about using DateTime see [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
+For more information about using DateTime see [http://msdn.microsoft.com/de-de/library/system.datetime.aspx](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
 ### Example
 ```cs
@@ -251,16 +251,16 @@ Print("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.Get
 ```
 
 ## Bars.GetClose
-Bars.GetClose(int index) – see [*Bars.GetOpen*].
+Bars.GetClose(int index) – see [*Bars.GetOpen*](barsgetopen).
 
 ## Bars.GetHigh
-Bars.GetHigh(int index) – see [*Bars.GetOpen*].
+Bars.GetHigh(int index) – see [*Bars.GetOpen*](barsgetopen).
 
 ## Bars.GetByIndex
 ### Description
 Bars.GetByIndex outputs the index for the specified bar object
 
-See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetBarIndex*](#barsgetbarindex)(#barsgetindex).
+See [*Bars.GetBar*](#barsgetbar)(#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetBarIndex*](#barsgetbarindex)(#barsgetindex).
 
 ### Parameter
 Type int Index
@@ -274,7 +274,7 @@ Bars.GetByIndex (int Index)
 ```
 
 ### More Information
-For indexing of bars see [*Functionality*][*Bars*](#bars)
+For indexing of bars see [*Functionality*](#functionality), [*Bars*](#bars)
 
 ### Example
 ```cs
@@ -285,7 +285,7 @@ Print(Close[0] + " and " + Bars.GetByIndex(ProcessingBarIndex).Close + " are equ
 ### Description
 Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
 
-See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex).
+See [*Bars.GetBar*](#barsgetbar)(#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex).
 
 ### Parameter
 Type IBar bar
@@ -302,7 +302,7 @@ Bars.GetBarIndex (DateTime dt)
 ```
 
 ### More Information
-For more information about indexing see [*Functionality*][*Bars*]
+For more information about indexing see [*Functionality*](#functionality), [*Bars*](#bars)
 
 ### Example
 ```cs
@@ -312,7 +312,7 @@ Print(barsAgo + " and " + Bars.GetBarIndex(bar) + " are equal in this example.")
 ```
 
 ## Bars.GetLow
-Bars.GetLow(int index) – see [*Bars.GetOpen*].
+Bars.GetLow(int index) – see [*Bars.GetOpen*](barsgetopen).
 
 ## Bars.GetNextSessionTimeSpan
 ### Description
@@ -363,7 +363,7 @@ Print("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
 
 ## Bars.GetSessionBegin
 ### Description
-Bars.GetSessionBegin provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other [*Properties*] of bars.
+Bars.GetSessionBegin provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other [*Properties*](#properties) of bars.
 
 ### Parameter
 None
@@ -387,14 +387,14 @@ Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionBegin(new DateT
 ### Description
 For reasons of compatibility, the following methods are available.
 
-- Bars.GetOpen(int index) outputs the open for the bars referenced with &lt;index&gt;.
-- Bars.GetHigh(int index) outputs the high for the bars referenced with &lt;index&gt;.
-- Bars.GetLow(int index) outputs the low for the bars referenced with &lt;index&gt;.
-- Bars.GetClose(int index) outputs the close for the bars referenced with &lt;index&gt;.
-- Bars.GetTime(int index) outputs the timestamp for the bars referenced with &lt;index&gt;.
-- Bars.GetVolume(int index) outputs the volume for the bars referenced with &lt;index&gt;.
+-   Bars.GetOpen(int index) outputs the open for the bars referenced with &lt;index&gt;.
+-   Bars.GetHigh(int index) outputs the high for the bars referenced with &lt;index&gt;.
+-   Bars.GetLow(int index) outputs the low for the bars referenced with &lt;index&gt;.
+-   Bars.GetClose(int index) outputs the close for the bars referenced with &lt;index&gt;.
+-   Bars.GetTime(int index) outputs the timestamp for the bars referenced with &lt;index&gt;.
+-   Bars.GetVolume(int index) outputs the volume for the bars referenced with &lt;index&gt;.
 
-**Caution**: The indexing will deviate from the [*Indexing*][*Bars*] normally used.
+**Caution**: The indexing will deviate from the [*Indexing*], [*Bars*](#bars) normally used.
 Here, the indexing will begin with 0 for the oldest bar (on the left of the chart) and end with the newest bar on the right of the chart (=Bars.Count-1).
 
 The indexing can easily be recalculated:
@@ -414,16 +414,16 @@ Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume
 Type DateTime for GetTime
 
 ## Bars.GetTime
-Bars.GetTime(int index) – see [*Bars.GetOpen*].
+Bars.GetTime(int index) – see [*Bars.GetOpen*](barsgetopen).
 
 ## Bars.GetVolume
-Bars.GetVolume(int index) – see [*Bars.GetOpen*].
+Bars.GetVolume(int index) – see [*Bars.GetOpen*](barsgetopen).
 
 ## Bars.Instrument
 ### Description
 Bars.Instrument outputs an instrument object for the trading instrument displayed within the chart.
 
-See [*Properties*] for more information.
+See [*Properties*](#properties) for more information.
 
 ### Parameter
 None
@@ -435,7 +435,7 @@ Type Instrument
 Bars.Instrument
 
 ### More Information
-For more information regarding the trading instruments please see [*Instrument*].
+For more information regarding the trading instruments please see [*Instrument*](#instrument).
 
 ### Example
 ```cs
@@ -448,7 +448,7 @@ Print("The currently displayed trading instrument has the symbol " + i.Symbol);
 ### Description
 Bars.IsEod can be used to check whether they are end-of-day bars.
 
-See [*Properties*] for more information.
+See [*Properties*](#properties) for more information.
 
 ### Parameter
 None
@@ -460,7 +460,7 @@ Type bool
 Bars.IsEod
 
 ### More Information
-Within [*OnCalculate()*], this property can be used without having to test for null reference. As soon as the method OnCalculate () is called by AgenaScript, there is always a bar object.
+Within [*OnCalculate()*](#oncalculate), this property can be used without having to test for null reference. As soon as the method OnCalculate () is called by AgenaScript, there is always a bar object.
 
 If this property  used outside of OnCalculate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
 
@@ -494,7 +494,7 @@ if(Bars.IsIntraday) {
 ### Description
 With Bars.IsNtb it can be checked whether it is not-time-based bars. For example Ntb bars are Point & Figure or Renko Charts.
 
-See [*Properties*] for more information.
+See [*Properties*](#properties) for more information.
 
 ### Parameter
 None
@@ -506,7 +506,7 @@ Type bool
 Bars.IsNtb
 
 ### More Information
-[*OnCalculate()*] property can be used without having to test for null reference first. As soon as the method OnCalculate () is called by AgenaScript, there is always a bar object. If this property is used outside of OnCalculate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
+[*OnCalculate()*](#oncalculate) property can be used without having to test for null reference first. As soon as the method OnCalculate () is called by AgenaScript, there is always a bar object. If this property is used outside of OnCalculate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
 ### Example
 ```cs
 Print("Die angezeigten Bars sind Ntb: " + Bars.IsNtb);
@@ -528,7 +528,7 @@ A percentage value; 30% will be outputted as 0.3
 Bars.LastBarCompleteness
 
 ### More Information
-With [*OnCalculate()*] this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
+With [*OnCalculate()*](#oncalculate) this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnCalculate() you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
@@ -579,7 +579,7 @@ Print("The currently running trading session started at " + Bars.CurrentSessionB
 ### Description
 Bars.IsSessionBreak can be used to determine whether the bars are within the commercial trading session in the commercial breaks defined in the marketplace escort.
 
-See [*Properties*] for more information.
+See [*Properties*](#properties) for more information.
 
 ### Parameter
 None
@@ -651,7 +651,7 @@ Print("The next trading session starts at " + Bars.NextSessionBeginTime);
 ## Bars.NextSessionEndTime
 ### Description
 Bars.NextSessionEndTime outputs the date and time for the end of the next session.
-See [*Properties*] for more information.
+See [*Properties*](#properties) for more information.
 
 ### Parameter
 None
@@ -676,7 +676,7 @@ Print("The next trading session ends at " + Bars.NextSessionEndTime);
 ### Description
 Bars.TicksCountForLastBar outputs the total numbers of ticks contained within a bar.
 
-More information can be found in [*Properties*] of bars.
+More information can be found in [*Properties*](#properties) of bars.
 
 ### Parameter
 None
@@ -688,7 +688,7 @@ Type int
 Bars.TicksCountForLastBar
 
 ### More Information
-With [*OnCalculate()*] this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
+With [*OnCalculate()*](#oncalculate) this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
@@ -701,7 +701,7 @@ Print("The current bar consists of " + Bars.TicksCountForLastBar + " Ticks.");
 ### Description
 Bars.TimeFrame outputs the timeframe object containing information regarding the currently used timeframe.
 
-More information can be found here: [*Properties*]
+More information can be found here: [*Properties*](#properties)
 
 ### Parameter
 None
@@ -713,9 +713,9 @@ Type ITimeFrame
 Bars.TimeFrame
 
 ### More Information
-For more information about timeframe objects please see [*TimeFrame*].
+For more information about timeframe objects please see [*TimeFrame*](#timeframe).
 
-With [*OnCalculate()*] this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
+With [*OnCalculate()*](#oncalculate) this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnCalculate(),you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
@@ -732,7 +732,7 @@ Print(tf.PeriodicityValue); // outputs "30"
 ### Description
 Bars.TicksCountInTotal outputs the total number of ticks from the moment the function is called up.
 
-More information can be found here: [*Properties*].
+More information can be found here: [*Properties*](#properties).
 
 ### Parameter
 None
@@ -746,7 +746,7 @@ Bars.TicksCountInTotal
 ### More Information
 The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.
 
-With [*OnCalculate()*] this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
+With [*OnCalculate()*](#oncalculate) this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
 
 If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
 
@@ -761,7 +761,10 @@ None
 None
 
 ### Usage
-Bars[0]. isGrowing;
+```cs
+//Usage within a 30 minute chart
+Bars[0].isGrowing;
+```
 
 ## Bars.IsFalling
 ### Description
@@ -774,7 +777,10 @@ None
 None
 
 ### Usage
-Bars[0]. IsFalling;
+```cs
+//Usage within a 30 minute chart
+Bars[0].IsFalling;
+```
 
 ## Bars.TailTop
 ### Description
@@ -799,7 +805,10 @@ None
 None
 
 ### Usage
+```cs
+//Usage within a 30 minute chart
 Bars[0].TailBottom;
+```
 
 
 ### Example
@@ -848,7 +857,7 @@ The following are available:
 
 [*Median*](#median) [*Medians*](#medians)
 
-[*Typical*](#Typical) [*Typicals*](#typicals)
+[*Typical*](#typical)(#Typical) [*Typicals*](#typicals)
 
 [*Weighted*](#weighted) [*Weighteds*](#weighteds)
 
@@ -860,10 +869,10 @@ The following are available:
 
 ## Open
 ### Description
-Open is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical opening prices are saved.
+Open is a [*DataSeries*], [*Data series*] of the type [*DataSeries*], in which the historical opening prices are saved.
 
 ### Parameter
-BarsAgo Index Value (see [*Bars*])
+BarsAgo Index Value (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -872,7 +881,7 @@ Open[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*].
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
 ```cs
@@ -902,7 +911,7 @@ Opens\[0\]\[0\] is equivalent to Open\[0\].
 In addition, please see [*MultiBars*] for more information.
 
 ### Parameter
-barsAgo Index value for the individual bars within the data series (see [*Bars*])
+barsAgo Index value for the individual bars within the data series (see [*Bars*](#bars))
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
@@ -912,17 +921,17 @@ Opens[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*].
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example: [*Multibars*][*MultiBars*].
+See example: [*Multibars*](#multibars).
 
 ## High
 ### Description
-High is a *[DataSerie][*Data series*]s* of the type [*DataSeries*], in which the historical high prices are saved.
+High is a [*DataSeries*] of the type [*DataSeries*], in which the historical high prices are saved.
 
 ### Parameter
-barsAgo IndexValue (see [*Bars*])
+barsAgo IndexValue (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -931,7 +940,7 @@ High[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*].
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
 ```cs
@@ -959,10 +968,10 @@ Highs\[2\] the high data series of all bars in a weekly timeframe
 
 Highs\[0\]\[0\] is equivalent to High\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
-barsAgo Index value for the individual bars within the data series (see [*Bars*])
+barsAgo Index value for the individual bars within the data series (see [*Bars*](#bars))
 barSeriesIndex Index value for the various timeframes
 
 ### Usage
@@ -972,17 +981,17 @@ Highs[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*].
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-Please see examples under [*Multibars*][*MultiBars*].
+Please see examples under [*Multibars*](#multibars).
 
 ## Low
 ### Description
-Low is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical low prices are saved.
+Low is a [*DataSeries*] of the type [*DataSeries*], in which the historical low prices are saved.
 
 ### Parameter
-barsAgo IndexValue (see [*Bars*])
+barsAgo IndexValue (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -991,7 +1000,7 @@ Low[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*].
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
 ```cs
@@ -1019,7 +1028,7 @@ Lows\[2\] the low data series for all bars in a weekly timeframe
 
 Lows\[0\]\[0\] is equivalent to Low\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value for the individual bars within the data series
@@ -1032,17 +1041,17 @@ Lows[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example [*Multibars*][*MultiBars*].
+See example [*Multibars*](#multibars).
 
 ## Close
 ### Description
-Close is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical closing prices are saved.
+Close is a [*DataSeries*] of the type [*DataSeries*], in which the historical closing prices are saved.
 
 ### Parameter
-barsAgo Index value (see [*Bars*])
+barsAgo Index value (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -1051,7 +1060,7 @@ Close[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 Indicators are usually calculated using the closing prices.
 
@@ -1083,7 +1092,7 @@ Closes\[2\] the close data series of all bars in a weekly timeframe
 
 Closes\[0\]\[0\] is equivalent to Close\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value of the individual bars within the data series
@@ -1096,21 +1105,21 @@ Closes[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example [*Multibars*][*MultiBars*].
+See example [*Multibars*](#multibars).
 
 ## Median
 ### Description
-Median is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical median values are saved.
+Median is a [*DataSeries*] of the type [*DataSeries*], in which the historical median values are saved.
 
 The median price of a bar is calculated using (high + low) / 2
 
-See [*Typical*] & [*Weighted*].
+See [*Typical*](#typical) & [*Weighted*].
 
 ### Parameter
-barsAgo Index value (see [*Bars*])
+barsAgo Index value (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -1119,7 +1128,7 @@ Median[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 Further information about median, typical und weighted:
 [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*]
@@ -1150,7 +1159,7 @@ Medians\[2\] the median data series of all bars in a weekly timeframe
 
 Medians\[0\]\[0\] is equivalent to Medians\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value for the individual bars within a data series
@@ -1163,12 +1172,12 @@ Medians[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
-Further information on median: http://www.investopedia.com/terms/m/median.asp
+Further information on median: [http://www.investopedia.com/terms/m/median.asp](http://www.investopedia.com/terms/m/median.asp)
 
 ### Example
-See example in [*Multibars*][*MultiBars*].
+See example in [*Multibars*](#multibars).
 
 ## Typical
 ### Description
@@ -1179,7 +1188,7 @@ The typical price of a bar is calculated using (high + low + close) / 3.
 See [*Median*] and [*Weighted*].
 
 ### Parameter
-barsAgo Index value (see [*Bars*])
+barsAgo Index value (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -1188,7 +1197,7 @@ Typical[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 Further information on typical: *https://technicianapp.com/resources/typical-price/*
 
@@ -1204,7 +1213,7 @@ Print("SMA(14) calculated using the typical price: " + Instrument.Round2TickSize
 
 ## Typicals
 ### Description
-Typicals is an array of *DataSeries* that contains all [*Typical*] data series.
+Typicals is an array of *DataSeries* that contains all [*Typical*](#typical) data series.
 
 This array is only of value to indicators and strategies that make use of multiple timeframes.
 
@@ -1218,7 +1227,7 @@ Typicals\[2\] the typical data series of all bars in a weekly timeframe
 
 Typicals\[0\]\[0\] is equivalent to Typicals\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value of the individual bars within a data series
@@ -1231,21 +1240,21 @@ Typicals[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example [*Multibars*][*MultiBars*].
+See example [*Multibars*](#multibars).
 
 ## Weighted
 ### Description
-Weighted is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical weighted values are saved.
+Weighted is a [*DataSeries*] of the type [*DataSeries*], in which the historical weighted values are saved.
 
 The weighted price of a bar is calculated using the formula (high + low + 2*close) / 4 and then weighted on the closing price.
 
-See also [*Median*] and [*Typical*].
+See also [*Median*] and [*Typical*](#typical).
 
 ### Parameter
-barsAgo Index value (see [*Bars*])
+barsAgo Index value (see [*Bars*](#bars))
 
 ### Usage
 ## Weighted
@@ -1254,7 +1263,7 @@ Weighted[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-points.html
 
@@ -1284,7 +1293,7 @@ Weighteds\[2\] the weighted data series of all bars in a weekly timeframe
 
 Weighteds\[0\]\[0\] is equivalent to Weighteds\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value of the individual bars within a data series
@@ -1297,17 +1306,17 @@ Weighteds[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example under [*Multibars*][*MultiBars*].
+See example under [*Multibars*](#multibars).
 
 ## Time
 ### Description
-Time is a [*DataSeries*][*Data series*] of the type [*DateTimeSeries*], in which the timestamps of the individual bars are saved.
+Time is a [*DataSeries*] of the type [*DateTimeSeries*], in which the timestamps of the individual bars are saved.
 
 ### Parameter
-barsAgo Index value (see [*Bars*])
+barsAgo Index value (see [*Bars*](#bars))
 
 ### Usage
 ```cs
@@ -1316,7 +1325,7 @@ Time[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
 ```cs
@@ -1341,7 +1350,7 @@ Times\[2\] the time data series of all bars in a weekly timeframe
 
 Times\[0\]\[0\] is equivalent to Times\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value for the individual bars within a data series
@@ -1354,17 +1363,17 @@ Times[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example [*Multibars*][*MultiBars*].
+See example [*Multibars*](#multibars).
 
 ## Volume
 ### Description
-Volume is a [*DataSeries*][*Data series*] of the type [*DataSeries*], in which the historical volume information is saved.
+Volume is a [*DataSeries*] of the type [*DataSeries*], in which the historical volume information is saved.
 
 ### Parameter
-barsAgo Index value (see [*Bars*])
+barsAgo Index value (see [*Bars*](#bars))
 
 ### Usage
 Volume
@@ -1372,7 +1381,7 @@ Volume
 Volume\[**int** barsAgo\]
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 The value returned by the [*VOL()*] indicator is identical with the volume described here;
 for example, Vol()\[3\] will have the same value as Volume\[3\].
@@ -1403,7 +1412,7 @@ Volumes\[2\] the volume data series of all bars in the weekly timeframe
 
 Volumes\[0\]\[0\] is equivalent to Volumes\[0\].
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barsAgo Index value of the individual bars within a data series
@@ -1417,10 +1426,10 @@ Volumes[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*].
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 ### Example
-See example [*Multibars*][*MultiBars*].
+See example [*Multibars*](#multibars).
 
 ## TimeFrame
 ### Description
@@ -1445,9 +1454,9 @@ TimeFrames \[0\] Timeframe of the primary data series (chart timeframe)
 TimeFrames \[1\] **Print**(TimeFrames\[1\]); // returns "1 Day"
 TimeFrames \[2\] **Print**(TimeFrames\[2\]); // returns "1 Week"
 
-TimeFrames \[0\] is equivalent to [*TimeFrame*].
+TimeFrames \[0\] is equivalent to [*TimeFrame*](#timeframe).
 
-See [*MultiBars*].
+See [*MultiBars*](#multibars).
 
 ### Parameter
 barSeriesIndex Index value for the various timeframes
@@ -2136,7 +2145,7 @@ Value.Set(High[0] - Close[0]);
 ## Multibars
 ### Description
 An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
-The same method applies for your self-programmed indicators. A 5 minute chart will call up the [*OnCalculate()*] for each 5 minute bar.
+The same method applies for your self-programmed indicators. A 5 minute chart will call up the [*OnCalculate()*](#oncalculate) for each 5 minute bar.
 If you want your self-created indicator to use a different timeframe, this is possible using multibars.
 
 ### Example
@@ -2220,7 +2229,7 @@ ProcessingBarIndexes\[2\] Current bar for the weekly bars
 
 ProcessingBarIndexes\[0\] is equivalent to [*ProcessingBarIndex*][ProcessingBarIndex].
 
-Also see [*MultiBars*].
+Also see [*MultiBars*](#multibars).
 
 ### Parameter
 barSeriesIndex Index value for the various timeframes
@@ -2247,7 +2256,7 @@ With **\[TimeFrameRequirements("1 Day", "1 Week")\]** two timeframes will be add
 
 If OnCalculate() is called up by the primary data series, then BarsInCalculation will equal zero. If OnCalculate() is called up by the daily bars, then BarsInCalculation will equal 1. Weekly bars will have a value of 2.
 
-See [*Multibars*][*MultiBars*] and [*ProcessingBarIndexes*].
+See [*Multibars*](#multibars) and [*ProcessingBarIndexes*].
 
 ### Parameter
 none

@@ -95,7 +95,7 @@ AddChartArrowDown() draws an arrow pointing downwards:
 
 ![AddChartArrowDown()](./media/image21.png)
 
-See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
 
 ### Usage
 ```cs   
@@ -176,7 +176,7 @@ AddChartArowUp() draws an arrow pointing upwards:
 
 ![AddChartArrowUp()](./media/image23.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
 
 ### Usage
 ```cs
@@ -209,7 +209,7 @@ AddChartDiamond() draws a diamond:
 
 ![AddChartDiamond()](./media/image24.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
 
 ### Usage
 ```cs
@@ -242,7 +242,7 @@ AddChartDot() draws a dot:
 
 ![AddChartDot()](./media/image25.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#drawarrowdown), [*AddChartDiamond()*](#drawdiamond), [*AddChartDot()*](#drawdot), [*AddChartSquare()*](#drawsquare), [*AddChartTriangleUp()*](#drawtriangleup), [*AddChartTriangleDown()*](#drawtriangledown).
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
 
 ### Usage
 ```cs
@@ -786,7 +786,7 @@ AddChartSquare() draws a square:
 
 ![AddChartSquare()](./media/image26.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*], [*AddChartDiamond()*], [*AddChartDot()*], [*AddChartTriangleUp()*], [*AddChartTriangleDown()*].
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -817,7 +817,7 @@ AddChartSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
 ### Description
 AddChartText() writes whatever text you want onto the chart.
 
-See [*AddChartTextFixed()*], *PlotMethod*.
+See [*AddChartTextFixed()*](#addcharttextfixed).
 
 ### Usage
 ```cs
@@ -850,25 +850,25 @@ A drawing object of the type IText (interface)
 | yPixelOffset | Vertical offset of the text; positive numbers move it up, and negative numbers move it down |
 | textColor    | Text color                                                                                  |
 | Font         | Font                                                                                        |
-| Alignment    | Possible values are:                                                                        
-                - StringAlignment.Center                                                                     
-                - StringAlignment.Far                                                                        
-                - StringAlignment.Near                                                                       |
-| HAlign       | Possible values are:                                                                        
-                - HorizontalAlign.Left                                                                       
-                - HorizontalAlign.Center                                                                     
-                - HorizontalAlign.Right                                                                      |
-| VAlign       | Possible values are:                                                                        
-                - VerticalAlign.Top                                                                          
-                - VerticalAlign.Center                                                                       
-                - VerticalAlign.Bottom                                                                       |
-| outlineColor | Border color around the text                                                                
-                For no border, select Color.Empty                                                            |
+| Alignment    | Possible values are:
+-   StringAlignment.Center
+-   StringAlignment.Far
+-   StringAlignment.Near                                                                       |
+| HAlign       | Possible values are:
+-   HorizontalAlign.Left
+-   HorizontalAlign.Center
+-   HorizontalAlign.Right                                                                      |
+| VAlign       | Possible values are:
+-   VerticalAlign.Top
+-   VerticalAlign.Center
+-   VerticalAlign.Bottom                                                                       |
+| outlineColor | Border color around the text
+For no border, select Color.Empty                                                            |
 | areaColor    | Fill color for the text box                                                                 |
-| areaOpacity  | Transparency of the fill color                                                              
-                Value between 0 and 255                                                                       
-                0 = completely transparent                                                                   
-                255 = completely opaque                                                                       |
+| areaOpacity  | Transparency of the fill color
+Value between 0 and 255
+0 = completely transparent
+255 = completely opaque                                                                       |
 
 ### Example
 ```cs
@@ -902,7 +902,7 @@ Color.Yellow, // Fill color
 ### Description
 AddChartTextFixed() writes text into one of 5 predetermined locations on the chart.
 
-See [*AddChartText()*].
+See [*AddChartText()*](#addcharttext).
 
 ### Usage
 ```cs
@@ -918,19 +918,19 @@ A drawing object of the type ITextFixed (interface)
 |--------------|----------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                         |
 | text         | The text to be displayed                                                   |
-| TextPosition | TextPosition.BottomLeft                                                    
-                TextPosition.BottomRight                                                    
-                TextPosition.Center                                                         
-                TextPosition.TopLeft                                                        
+| TextPosition | TextPosition.BottomLeft
+TextPosition.BottomRight
+                TextPosition.Center
+                TextPosition.TopLeft
                 TextPosition.TopRight                                                       |
 | textColor    | Text color                                                                 |
 | font         | Font                                                                       |
 | outlineColor | Color for the border around the text. For no border color, use Color.Empty |
-| areaColor    | Fill color of the text box                                                 
-                For no fill color, use Color.Empty                                          |
-| areaOpacity  | Transparency of the fill color                                             
-                Value between 0 and 255                                                      
-                0 = completely transparent                                                  
+| areaColor    | Fill color of the text box
+For no fill color, use Color.Empty                                          |
+| areaOpacity  | Transparency of the fill color
+Value between 0 and 255
+                0 = completely transparent
                 255 = completely opaque                                                      |
 
 ### Example
@@ -1006,9 +1006,9 @@ A drawing object of the type ITriangle (interface)
 | start3Y        | y-value for start point 3                                                               |
 | color          | Color of the drawing object                                                             |
 | areaColor      | Fill color of the drawing object                                                        |
-| areaOpacity    | Transparency of the fill color                                                          
-                  Value between 0 and 10                                                                   
-                  0 = completely transparent                                                               
+| areaOpacity    | Transparency of the fill color
+Value between 0 and 10
+                  0 = completely transparent
                   10 = completely opaque                                                                   |
 
 ### Example
@@ -1023,7 +1023,7 @@ AddChartTriangleUp() draws a small upwards-pointing triangle:
 
 ![AddChartTriangleUp()](./media/image28.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*], [*AddChartDiamond()*], [*AddChartDot()*], [*AddChartSquare()*], [*AddChartTriangleDown()*].
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -1056,7 +1056,7 @@ AddChartTriangleDown() draws a small downwards-pointing triangle:
 
 ![AddChartTriangleDown()](./media/image29.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*], [*AddChartDiamond()*], [*AddChartDot()*], [*AddChartSquare()*], [*AddChartTriangleUp()*].
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup).
 
 ### Usage
 ```cs
@@ -1106,16 +1106,9 @@ A drawing object of the type IVerticalLine (interface)
 | barsAgo   | Sets how many bars ago the vertical line should be drawn (0 = current bar) |
 | time      | Date/time of the bar at which the vertical line should be drawn            |
 | color     | LevelLine color                                                                 |
-| dashStyle | LevelLine style                                                                 
-
-             DashStyle.Dash                                                              
-             DashStyle.DashDot                                                           
-             DashStyle.DashDotDot                                                        
-             DashStyle.Dot                                                               
-             DashStyle.Solid                                                             
-
-             You may have to integrate:                                                  
-             using System.Drawing.Drawing2D;                                             |
+| dashStyle | LevelLine style: DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot, DashStyle.Solid
+You may have to integrate:
+using System.Drawing.Drawing2D;                                             |
 | width     | LevelLine strength                                                              |
 
 ### Example

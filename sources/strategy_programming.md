@@ -550,12 +550,12 @@ OpenShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 ```
 
 ### Parameter
-|                     |                                                                                                                                                                              |
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                                                                                                                          |
-| quantity            | Amount to be ordered                                                                                                                                                         |
+|    |  |
+|---------------------|-------------------------------------------------|
+| strategyName          | An unambiguous name     |
+| quantity            | Amount to be ordered   |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).   |
-| limitPrice          | A double value for the limit price                                                                                                                                           |
+| limitPrice          | A double value for the limit price   |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
@@ -724,7 +724,7 @@ Exit long creates a sell market order for closing a long position (sell).
 
 If a signature not containing a set amount is used, the amount is set by [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
+See [*CloseLong()*](#closelong), [*CloseLongLimit()*](#closelonglimit), [*CloseLongStop()*](#closelongstop), [*CloseLongStopLimit()*](#closelongstoplimit).
 
 ### Usage
 ```cs
@@ -767,7 +767,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 Exit long limit creates a sell limit order for closing a long position (i.e. for selling).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
+See [*CloseLong()*](#closelong), [*CloseLongLimit()*](#closelonglimit), [*CloseLongStop()*](#closelongstop), [*CloseLongStopLimit()*](#closelongstoplimit).
 
 ### Usage
 ```cs
@@ -812,7 +812,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 Exit long stop creates a sell stop order for closing a long position (short).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
+See [*CloseLong()*](#closelong), [*CloseLongLimit()*](#closelonglimit), [*CloseLongStop()*](#closelongstop), [*CloseLongStopLimit()*](#closelongstoplimit).
 
 ### Usage
 ```cs
@@ -857,7 +857,7 @@ Exit long stop limit creates a sell stop limit order for closing a long position
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
+See [*CloseLong()*](#closelong), [*CloseLongLimit()*](#closelonglimit), [*CloseLongStop()*](#closelongstop), [*CloseLongStopLimit()*](#closelongstoplimit).
 
 ### Usage
 ```cs
@@ -905,7 +905,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 Exit short creates a buy-to-cover market order for closing a short position (buy).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
-See [*CloseShort()*], [*CloseShortLimit()*], [*CloseShortStop()*], [*CloseShortStopLimit()*].
+See [*CloseShort()*](#closeshort), [*CloseShortLimit()*](#closeshortlimit), [*CloseShortStop()*](#closeshortstop), [*CloseShortStopLimit()*](#closeshortstoplimit).
 
 ### Usage
 ```cs
@@ -949,7 +949,7 @@ Exit short limit creates a buy-to-cover limit order for closing a short position
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*CloseShort()*], [*CloseShortLimit()*], [*CloseShortStop()*], [*CloseShortStopLimit()*].
+See [*CloseShort()*](#closeshort)(#closeshort), [*CloseShortLimit()*](#closeshortlimit), [*CloseShortStop()*](#closeshortstop), [*CloseShortStopLimit()*](#closeshortstoplimit).
 
 ### Usage
 ```cs
@@ -993,7 +993,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 Exit short stop creates a buy-to-cover stop order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*CloseShort()*], [*CloseShortLimit()*], [*CloseShortStop()*], [*CloseShortStopLimit()*].
+See [*CloseShort()*](#closeshort), [*CloseShortLimit()*](#closeshortlimit), [*CloseShortStop()*](#closeshortstop), [*CloseShortStopLimit()*](#closeshortstoplimit).
 
 ### Usage
 ```cs
@@ -1009,13 +1009,12 @@ CloseShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 ```
 
 ### Parameter
-|                     |                                                                                                                                                              |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                                                                                                          |
-| fromEntry signal    | The name of the associated entry signal                                                                                                                      |
-| quantity            | Order quantity to be bought                                                                                                                                  |
+|  |                                                                                                                                                              |  |---------------------|---------------------------------------------------------------|
+| strategyName          | An unambiguous name    |
+| fromEntry signal    | The name of the associated entry signal    |
+| quantity            | Order quantity to be bought    |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
-| stopPrice           | A double value for the stop price                                                                                                                            |
+| stopPrice           | A double value for the stop price    |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
@@ -1036,7 +1035,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultquantity) or taken from the strategy dialog window.
 
-See [*CloseLong()*], [*CloseLongLimit()*], [*CloseLongStop()*], [*CloseLongStopLimit()*].
+See [*CloseLong()*](#closelong), [*CloseLongLimit()*](#closelonglimit), [*CloseLongStop()*](#closelongstop), [*CloseLongStopLimit()*](#closelongstoplimit).
 
 ### Usage
 ```cs
@@ -1053,14 +1052,14 @@ CloseShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quanti
 ```
 
 ### Parameter
-|                     |                                                                                                                                                              |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                                                                                                          |
-| fromEntry signal    | The name of the associated entry signal                                                                                                                      |
-| quantity            | Order quantity to be bought                                                                                                                                  |
+|    |     |
+|---------------------|----------------------------------|
+| strategyName          | An unambiguous name      |
+| fromEntry signal    | The name of the associated entry signal    |
+| quantity            | Order quantity to be bought      |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
-| limitPrice          | A double value for the limit price                                                                                                                           |
-| stopPrice           | A double value for the stop price                                                                                                                            |
+| limitPrice          | A double value for the limit price    |
+| stopPrice           | A double value for the stop price      |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
 ### Return Value
@@ -1080,7 +1079,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 ### Description
 Get account value outputs information regarding the account for which the current strategy is being carried out.
 
-See [*GetProfitLoss()*].
+See [*GetProfitLoss()*](#getprofitloss).
 
 ### Usage
 ```cs
@@ -1110,7 +1109,7 @@ Print("The current P/L already realized is " + GetAccountValue(AccountItem.Reali
 ### Description
 Get profit loss outputs the currently unrealized profit or loss for a running position.
 
-See [*GetAccountValue()*].
+See [*GetAccountValue()*](#getaccountvalue).
 
 ### Usage
 ```cs
@@ -1124,7 +1123,7 @@ Potential values for the P/L type are:
 
 1 – Percent: P/L in percent
 
-2 – Risk: P/L in Van Tharp R-multiples ([*http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp*])
+2 – Risk: P/L in Van Tharp R-multiples [*www.vantharp.com*](http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp)
 
 3 – P/L in ticks
 
@@ -1146,7 +1145,7 @@ This method allows user to communicate between scripts.
 ### Description
 GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.
 
-See [*GetAccountValue()*].
+See [*GetAccountValue()*](#getaccountvalue).
 
 ### Usage
 ```cs
@@ -1168,7 +1167,7 @@ Print("the current P&L " + this.Name + " is " + GetProfitLossAmount(Position.Ope
 ### Description
 GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.
 
-See [*GetAccountValue()*].
+See [*GetAccountValue()*](#getaccountvalue).
 
 ### Usage
 ```cs
@@ -1189,7 +1188,7 @@ Print("the current P&L " + this.Name + " is " + string.Format( "{0:F1} R.", GetP
 ### Description
 IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*OnInit()*](#initialize) method.
 
-If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*].
+If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*](#confirmorder).
 
 ### Parameter
 Bool value
@@ -1209,12 +1208,12 @@ IOrder is an object that contains information about an order that is currently m
 
 The individual properties are:
 
--   ** Action
+-   Action
     **One of four possible positions in the market:**
-    - OrderAction.Buy
-    - OrderAction.BuyToCover
-    - OrderAction.Sell
-    - OrderAction.SellShort
+    -   OrderAction.Buy
+    -   OrderAction.BuyToCover
+    -   OrderAction.Sell
+    -   OrderAction.SellShort
 
 -   **AvgFillPrice**
     **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry price.**
@@ -1235,31 +1234,31 @@ The individual properties are:
 
 -   **OrderMode**
     One of three possible positions in the market:
-    - OrderMode.Direct
-    - OrderMode.Dynamic
-    - OrderMode.Synthetic
+    -   OrderMode.Direct
+    -   OrderMode.Dynamic
+    -   OrderMode.Synthetic
 
 -   **OrderState**
     The current status of the order can be queried (see *OnOrderExecution* and *OnOrderChanged*)
-    - OrderState.Accepted
-    - OrderState.Cancelled
-    - OrderState.CancelRejected
-    - OrderState.Filled
-    - OrderState.PartFilled
-    - OrderState.PendingCancel
-    - OrderState.PendingReplace
-    - OrderState.PendingSubmit
-    - OrderState.Rejected
-    - OrderState.ReplaceRejected
-    - OrderState.Unknown
-    - OrderState.Working
+    -   OrderState.Accepted
+    -   OrderState.Cancelled
+    -   OrderState.CancelRejected
+    -   OrderState.Filled
+    -   OrderState.PartFilled
+    -   OrderState.PendingCancel
+    -   OrderState.PendingReplace
+    -   OrderState.PendingSubmit
+    -   OrderState.Rejected
+    -   OrderState.ReplaceRejected
+    -   OrderState.Unknown
+    -   OrderState.Working
 
 -   **OrderType**
     Possible order types:
-    - OrderType.Limit
-    - OrderType.Market
-    - OrderType.Stop
-    - OrderType.StopLimit
+    -   OrderType.Limit
+    -   OrderType.Market
+    -   OrderType.Stop
+    -   OrderType.StopLimit
 
 -   **Quantity**
     The quantity to be ordered
@@ -1297,19 +1296,19 @@ See Performance Characteristics.
 The individual lists are:
 
 -   **Performance.AllTrades**
-    A [*Trade*] collection object containing all trades generated by a strategy.
+    A [*Trade*](#trade) collection object containing all trades generated by a strategy.
 
 -   **Performance.LongTrades**
-    A [*Trade*] collection object containing all long trades generated by a strategy.
+    A [*Trade*](#trade) collection object containing all long trades generated by a strategy.
 
 -   **Performance.ShortTrades**
-    A [*Trade*] collection object containing all short trades generated by a strategy.
+    A [*Trade*](#trade) collection object containing all short trades generated by a strategy.
 
 -   **Performance.WinningTrades**
-    A [*Trade*] collection object containing all profitable trades generated by a strategy.
+    A [*Trade*](#trade) collection object containing all profitable trades generated by a strategy.
 
 -   **Performance.LosingTrades**
-    A [*Trade*] collection object containing all loss trades generated by a strategy.
+    A [*Trade*](#trade) collection object containing all loss trades generated by a strategy.
 
 ### Example
 ```cs
@@ -1346,13 +1345,13 @@ The individual properties are:
 
 -   **Position.PositionType**
     One of three possible positions in the market:
-    - PositionType.Flat
-    - PositionType.Long
-    - PositionType.Short
+    -   PositionType.Flat
+    -   PositionType.Long
+    -   PositionType.Short
 
 -   **Position.OpenProfitLoss**
     The currently not yet realized profit or loss.
-    See [*GetProfitLoss()*].
+    See [*GetProfitLoss()*](#getprofitloss).
 
 -   **Position.ProfitCurrency**
     Profit (or loss) displayed as a currency amount.
@@ -1383,14 +1382,14 @@ Print("Pieces " + Position.Quantity);
 ```
 
 ## Quantity
-See [*Position.Quantity*][*Position.PositionType*].
+See [*Position.Quantity*], [*Position.PositionType*].
 
 ## SetUpProfitTarget()
 ### Description
 Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetUpProfitTarget() with the OnInit() method.
 
-See [*SetUpStopLoss()*], [*SetUpTrailStop()*].
+See [*SetUpStopLoss()*](#setupstoploss), [*SetUpTrailStop()*].
 
 ### Usage
 ```cs
@@ -1403,10 +1402,10 @@ SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 |    |           |
 |------------------|------------------------------------|
 | currency         | Sets the profit target in a currency, for example 500€.  |
-| mode             | Possible values are:                                                                                                                                              
-                    - CalculationMode.Percent (display in percent)                                                                                                                     
-                    - CalculationMode.Price (display as price value)                                                                                                                   
-                    - CalculationMode.Ticks (display in ticks or pips)      |
+| mode             | Possible values are:
+-   CalculationMode.Percent (display in percent)
+-   CalculationMode.Price (display as price value)
+-   CalculationMode.Ticks (display in ticks or pips)      |
 | value  | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
 | fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.   |
 
@@ -1425,7 +1424,7 @@ Set stop loss creates a stop loss order after an entry order is placed. The orde
 
 If the stop loss is static, then SetUpStopLoss() can be defined with the OnInit() method.
 
-See [*SetUpProfitTarget()*], [*SetUpTrailStop()*].
+See [*SetUpProfitTarget()*](#setupprofittarget), [*SetUpTrailStop()*].
 
 ### Usage
 ```cs
@@ -1439,10 +1438,10 @@ SetUpStopLoss(string fromEntry signal, CalculationMode mode, double value, bool 
 |      |      |
 |------------------|---------------------------------------|
 | currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€     |
-| mode             | Potential values can be:  
-                    - CalculationMode.Percent (display in percent)   
-                    - CalculationMode.Price (display as price value)                                                                                                                                                             
-                    - CalculationMode.Ticks (display in ticks or pips)    |
+| mode             | Potential values can be:
+-   CalculationMode.Percent (display in percent)
+-   CalculationMode.Price (display as price value)
+-   CalculationMode.Ticks (display in ticks or pips)    |
 | simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
 | value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
@@ -1464,7 +1463,7 @@ The order is sent directly to the broker and becomes effective immediately.
 
 If the stop loss price and the offset value are static, you can define SetUpTrailStop() with the OnInit() method.
 
-If you use SetUpTrailStop() within the [*OnCalculate()*] method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.
+If you use SetUpTrailStop() within the [*OnCalculate()*](#oncalculate) method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.
 
 **Functionality:**
 
@@ -1488,7 +1487,7 @@ It is always a stop market order that is generated, and not a stop limit order.
 
 If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.
 
-See [*SetUpStopLoss()*], [*SetUpProfitTarget()*].
+See [*SetUpStopLoss()*](#setupstoploss), [*SetUpProfitTarget()*](#setupprofittarget).
 
 ### Usage
 ```cs
@@ -1503,8 +1502,8 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 |------------------|---------------------------------------------------|
 | currency         | The distance between the stop loss and the entry price      |
 | mode             | Possible values are:  
-  - CalculationMode.Percent
-  - CalculationMode.Ticks   |
+-   CalculationMode.Percent
+-   CalculationMode.Ticks   |
 | simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
 | value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
 | fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
@@ -1522,7 +1521,7 @@ protected override void OnInit()
 ### Description
 Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
 
-See [*OnOrderChanged()*], [*OnOrderExecution()*].
+See [*OnOrderChanged()*](#onorderchanged), [*OnOrderExecution()*](#onorderexecution).
 
 ### Usage
 ```cs
@@ -1532,27 +1531,22 @@ SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderTyp
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
-| multibarSeriesIndex | For multi-bar strategies.                                          
-                       Index of the data series for which the order is to be executed.     
-                       See BarsInCalculation.                                                 |
-| orderAction         | Possible values are:                                               
+| multibarSeriesIndex | For multi-bar strategies.
+Index of the data series for which the order is to be executed.
+See BarsInCalculation.                                                 |
+| orderAction         | Possible values are:
+OrderAction.Buy
+Buy order for a long entry
 
-                       OrderAction.Buy                                                     
-                       Buy order for a long entry                                          
+OrderAction.Sell
+Sell order for closing a long position
 
-                       OrderAction.Sell                                                    
-                       Sell order for closing a long position                              
+OrderAction.SellShort
+Sell order for a short entry
 
-                       OrderAction.SellShort                                               
-                       Sell order for a short entry                                        
-
-                       OrderAction.BuyToCover                                              
-                       Buy order for closing a short position                              |
-| orderType           | Possible values:                                                   
-                       OrderType.Limit                                                     
-                       OrderType.Market                                                    
-                       OrderType.Stop                                                      
-                       OrderType.StopLimit                                                 |
+OrderAction.BuyToCover
+Buy order for closing a short position                              |
+| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                                 |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
@@ -1601,7 +1595,7 @@ TimeInForce = TimeInForce.Day;
 ## PrintOrders
 ### Description
 The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
-Trace orders can be specified with the [*OnInit()*](#initialize) method.
+Trace orders can be specified with the [*OnInit()*](#oninit) method.
 
 When PrintOrders is activated, each order will display the following values in the output window:
 
@@ -1672,9 +1666,9 @@ The individual properties are:
 
 -   **Trade.PositionType**
     Positioning within the market
-    - PositionType.Flat
-    - PositionType.Long
-    - PositionType.Short
+    -   PositionType.Flat
+    -   PositionType.Long
+    -   PositionType.Short
 
 -   **Trade.OpenProfitLoss**
     Unrealized profit/loss of a running position
@@ -1749,7 +1743,7 @@ The following are available:
 -   all winning trades
 -   all losing trades
 
-See [*Performance*].
+See [*Performance*](#performance).
 
 The individual factors are:
 
