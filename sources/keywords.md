@@ -4,16 +4,16 @@
 ## Add()
 ### Description
 The add method allows you to add plots or line objects to the chart. When a new plot object is added using Add(), this automatically creates a data series of the type DataSeries, which is attached to this object. The value collection allows you to reference and access this data series.
-Add() can be used with the Initialize() and the OnBarUpdate() methods.
+Add() can be used with the OnInit() and the OnCalculate() methods.
 
 ### Parameter
-plot – a *Plot* object
-line – a *Line* object
+plot – a *OnPaint* object
+line – a *LevelLine* object
 
 ### Usage
 ```cs
-Add(Plot plot)
-Add(Line line)
+Add(OnPaint plot)
+Add(LevelLine line)
 ```
 
 ### Example
@@ -36,22 +36,22 @@ namespace AgenaTrader.UserCode
   [Description("Enter the description for the new custom indicator here")]
   public class MyIndicator : UserIndicator
   {
-    protected override void Initialize()
+    protected override void OnInit()
     {
     // Two blue lines will be placed into the chart, one at 70 and the other at 30
-    Add(new Line(Color.Blue, 70, "UpperLine"));
-    Add(new Line(Color.Blue, 30, "LowerLine"));
+    Add(new LevelLine(Color.Blue, 70, "UpperLine"));
+    Add(new LevelLine(Color.Blue, 30, "LowerLine"));
 
     // Add 2 plots
-    Add(new Plot(Color.Red, "myFastSMA"));
-    Add(new Plot(Color.Blue, "mySlowSMA"));
+    Add(new OnPaint(Color.Red, "myFastSMA"));
+    Add(new OnPaint(Color.Blue, "mySlowSMA"));
     }
 
-    protected override void OnBarUpdate()
+    protected override void OnCalculate()
     {
     //The set method is assigned to the value of the current bar
-    FastSMA.Set( SMA(8)[0] ); // is identical with Values[0].Set( SMA(8)[0] );
-    SlowSMA.Set( SMA(50)[0] ); // is identical with Values[1].Set( SMA(50)[0] );
+    FastSMA.Set( SMA(8)[0] ); // is identical with Outputs[0].Set( SMA(8)[0] );
+    SlowSMA.Set( SMA(50)[0] ); // is identical with Outputs[1].Set( SMA(50)[0] );
     }
 
     // Two data series are made available here
@@ -61,31 +61,30 @@ namespace AgenaTrader.UserCode
     [XmlIgnore()]
     public DataSeries FastSMA
     {
-      get { return Values[0]; }
+      get { return Outputs[0]; }
     }
 
     [Browsable(false)]
     [XmlIgnore()]
     public DataSeries SlowSMA
     {
-      get { return Values[1]; }
+      get { return Outputs[1]; }
     }
   }
 }
 ```
 
-## Alert()
+## ShowAlert()
 ### Description
-The alert method creates an acoustic and/or visual alarm.
+The ShowAlert method creates an acoustic and/or visual alarm.
 
 ### Usage
 ```cs
-Alert(string message, bool showMessageBox, string soundLocation);
-Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the "re-arm seconds" parameter are ignored.
-Alert(string id, AlertPriority priority, string message, string soundLocation, int rearmSeconds, Color backColor, Color forColor);
+ShowAlert(string message, bool showMessageBox, string soundLocation);
+//Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the "re-arm seconds" parameter are ignored.
+ShowAlert(string id, AlertPriority priority, string message, string soundLocation, int rearmSeconds, Color backColor, Color forColor);
 ```
 
-###
 ### Return Value
 None
 
@@ -111,15 +110,15 @@ string nameOfSoundFile = "MyAlertSoundFile.wav";
 Alert("Message text", true, pathOfSoundfile + nameOfSoundFile);
 ```
 
-## AllowRemovalOfDrawObjects
+## AllowRemovalOfChartDrawings
 ### Description
-"AllowRemovalOfDrawObjects" is a property of indicators that can be set under [*Initialize()*](#initialize).
+"AllowRemovalOfChartDrawings" is a property of indicators that can be set under [*OnInit()*](#oninit).
 
-**AllowRemovalOfDrawObjects = true**
+**AllowRemovalOfChartDrawings = true**
 
 Drawing objects that are drawn by an indicator or a strategy can be manually removed from the chart.
 
-**AllowRemovalOfDrawObjects = false (default)**
+**AllowRemovalOfChartDrawings = false (default)**
 
 Drawing objects that have been created by a strategy or indicator CANNOT be manually removed from the chart. They are removed once the indicator or strategy is removed.
 
@@ -127,16 +126,16 @@ This property can be queried and will return "true" or "false".
 
 ### Usage
 ```cs
-AllowRemovalOfDrawObjects
+AllowRemovalOfChartDrawings
 ```
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //Drawing objects can be manually removed from the chart
-AllowRemovalOfDrawObjects = true;
+AllowRemovalOfChartDrawings = true;
 }
 ```
 
@@ -185,7 +184,7 @@ set { period = Math.Max(1, value); }
 [XmlIgnore]
 public DataSeries Lower
 {
-get { return Values[0]; }
+get { return Outputs[0]; }
 }
 ```
 
@@ -339,18 +338,18 @@ set { _textFont = SerializableFont.FromString(value); }
 }
 ```
 
-## AutoScale
+## IsAutoScale
 ### Description
-Auto scale is a property of indicators that can be set within the Initialize() method.
+Auto scale is a property of indicators that can be set within the OnInit() method.
 
 ```cs
-AutoScale = true (default)
+IsAutoScale = true (default)
 ```
 
 The price axis (y-axis) of the chart is set so that all plots and lines of an indicator are visible.
 
 ```cs
-AutoScale = false
+IsAutoScale = false
 ```
 
 Plots and lines of an indicator or strategy are not accounted for in the scaling of the y-axis. Therefore they may lie outside of the visible chart area.
@@ -358,72 +357,72 @@ Plots and lines of an indicator or strategy are not accounted for in the scaling
 This property can be queried and will return either "true" or "false".
 
 ### Usage
-AutoScale
+IsAutoScale
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //Scale the chart so that all drawing objects are visible
-AutoScale = true;
+IsAutoScale = true;
 }
 ```
 
-## BarsRequired
+## RequiredBarsCount
 ### Description
-The property "BarsRequired" determines how many historical bars are required for an indicator or a strategy to call up the OnBarUpdate() method for the first time and thus begin the calculations. Bars required should be set within the Initialize() method.
+The property "RequiredBarsCount" determines how many historical bars are required for an indicator or a strategy to call up the OnCalculate() method for the first time and thus begin the calculations. Bars required should be set within the OnInit() method.
 The setting should be chosen carefully. If you require 100 days for the calculation of a moving average, then you should ensure that at least 100 days of historical data are loaded.
 The property can be queried in the script and will return an int value.
 
-When OnBarUpdate is called up for the first time, the CurrentBar property is 0 regardless of the value of BarsRequired.
+When OnCalculate is called up for the first time, the ProcessingBarIndex property is 0 regardless of the value of RequiredBarsCount.
 
 ### Usage
-BarsRequired
+RequiredBarsCount
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //The indicator requires a minimum of 50 bars loaded into the history
-BarsRequired = 50;
+RequiredBarsCount = 50;
 }
 ```
 
-## CalculateOnBarClose
+## CalculateOnClosedBar
 ### Description
-The property "CalculateOnBarClose" determines the events for which AgenaTrader can call up the OnBarUpdate() method.
+The property "CalculateOnClosedBar" determines the events for which AgenaTrader can call up the OnCalculate() method.
 
 ```cs
-CalculateOnBarClose = true
+CalculateOnClosedBar = true
 ```
 
-**OnBarUpdate()** is called up when a bar is closed and the next incoming tick creates a new bar.
+**OnCalculate()** is called up when a bar is closed and the next incoming tick creates a new bar.
 
 ```cs
-CalculateOnBarClose = false
+CalculateOnClosedBar = false
 ```
 
-OnBarUpdate() is called up for each new incoming tick.
+OnCalculate() is called up for each new incoming tick.
 If you are running AgenaTrader on older hardware, this may cause performance issues with instruments that are highly liquid.
 The property can be queried in the script and will return a value of the type Boolean (true or false).
-CalculateOnBarClose can be used within Initialize() and also within OnBarUpdate().
-OnBarUpdate is only called up for the closing price of each bar with historical data, even if CalculateOnBarClose is set to false.
-When an indicator is called up by another indicator, the CalculateOnBarClose property of the retrieved indicator overwrites the indicator performing the retrieving.
+CalculateOnClosedBar can be used within OnInit() and also within OnCalculate().
+OnCalculate is only called up for the closing price of each bar with historical data, even if CalculateOnClosedBar is set to false.
+When an indicator is called up by another indicator, the CalculateOnClosedBar property of the retrieved indicator overwrites the indicator performing the retrieving.
 
 ### Usage
-CalculateOnBarClose
+CalculateOnClosedBar
 
 ### More Information
 See [*Bars*](#bars).
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 //Indicator calculation should only occur when a bar has closed/finished
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 ## Occurred
@@ -441,18 +440,18 @@ In scripted condition for short, long, none signal indication
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-if ( CurrentBar %2 == 0 )
+if ( ProcessingBarIndex %2 == 0 )
 Occurred.Set(1); // Long
-else if ( CurrentBar %3 == 0 )
+else if ( ProcessingBarIndex %3 == 0 )
 Occurred.Set(-1); // Short
 else
 Occurred.Set(0);
 }
 ```
 
-## ChartControl
+## Chart
 Chart control is an object that provides reading access of various properties for the chart.
 
 The important properties are:
@@ -501,7 +500,7 @@ LastBarVisible would be Bars.Count -1.
 
 ## ClearOutputWindow()
 ### Description
-The ClearOutputWindow() method empties the output window. The method can be used within Initialize() as well as within OnBarUpdate().
+The ClearOutputWindow() method empties the output window. The method can be used within OnInit() as well as within OnCalculate().
 The output window contains all outputs that have been created with the [*Print()*](#print) command.
 Using the output window is a great method for code debugging.
 
@@ -518,7 +517,7 @@ none
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 // Delete the content of the output window
 ClearOutputWindow();
@@ -529,7 +528,7 @@ ClearOutputWindow();
 ### Description
 The CrossAbove() method allows you to check whether a crossing of two values has occurred (from bottom to top) within a predefined number of periods. The values can be a market price, an indicator, a data series or a constant value.
 
-See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*IsSerieRising()*](#isserierising), [*IsSerieFalling()*](#isseriefalling).
 
 ### Usage
 ```cs
@@ -565,7 +564,7 @@ Print("Long entry !!!");
 ### Description
 Using the CrossBelow() method, you can test whether or not a cross below has occurred within a predefined number of periods. The values can be the market price, an indicator, any data series, or a constant value.
 
-See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*IsSerieRising()*](#isserierising), [*IsSerieFalling()*](#isseriefalling).
 
 ### Usage
 ```cs
@@ -598,9 +597,9 @@ if (CrossBelow(SMA(20), SMA(50), 1) && Close[1] > Close[0])
 Print("Short entry !!!");
 ```
 
-## CurrentBar
+## ProcessingBarIndex
 ### Description
-Current bar is a method of indexing bars used in the OnBarUpdate() method. If a chart contains 500 bars and an indicator is to be calculated on the basis of these, then AgenaTrader will begin calculating from the oldest bar. The oldest bar receives the number 0. Once the calculation for this bar has been completed, the OnBarUpdate() method is called up for the next bar, which in turn receives the number 1. This continues until the last bar, which receives a value of 500.
+Current bar is a method of indexing bars used in the OnCalculate() method. If a chart contains 500 bars and an indicator is to be calculated on the basis of these, then AgenaTrader will begin calculating from the oldest bar. The oldest bar receives the number 0. Once the calculation for this bar has been completed, the OnCalculate() method is called up for the next bar, which in turn receives the number 1. This continues until the last bar, which receives a value of 500.
 
 ### Parameter
 none
@@ -609,22 +608,22 @@ none
 Current bar is a variable of the type int, which always contains the number of the bar currently being used.
 
 ### Usage
-CurrentBar
+ProcessingBarIndex
 
 ### More Information
-The OnBarUpdate() method uses numbering different from that of CurrentBar in terms of the [*Barindex*](#barindex) and [*Bars*](#bars). Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:
+The OnCalculate() method uses numbering different from that of ProcessingBarIndex in terms of the [*Barindex*](#barindex) and [*Bars*](#bars). Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:
 
-CurrentBar numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time\[0\] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time\[5\].
-For using multiple timeframes (multi-bars) in an indicator, see CurrentBars.
+ProcessingBarIndex numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time\[0\] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time\[5\].
+For using multiple timeframes (multi-bars) in an indicator, see ProcessingBarIndexes.
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-Print("Call of OnBarUpdate for bar nr. " + CurrentBar + " of " + Time[0]);
+Print("Call of OnCalculate for bar nr. " + ProcessingBarIndex + " of " + Time[0]);
 }
 ```
-## IsCurrentBarLast
+## IsProcessingBarIndexLast
 ### Description
 Indicates if current bar is last in calculation.
 
@@ -639,10 +638,10 @@ used for complicated calculation on a last bar
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-            base.OnBarUpdate();
-            if (!IsCurrentBarLast)
+            base.OnCalculate();
+            if (!IsProcessingBarIndexLast)
                 return;
             bool isUpdated;
 }
@@ -722,12 +721,12 @@ In the area for the declaration of variables, simply declare a new variable:
 //Variable declaration
 private BoolSeries myBoolSeries;
 ```
-With the Initialize() method, this variable assigns a new instance of the Bool series:
+With the OnInit() method, this variable assigns a new instance of the Bool series:
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myBoolSeries = new BoolSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -768,7 +767,7 @@ Print ("For the bar of " + Time[0] + " ago the value of the data series is: " + 
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 if (Close[0] > Open[0])
 myBoolSeries.Set(true);
@@ -790,13 +789,13 @@ In the declaration area for variables:
 //Variable declaration
 private DataSeries myDataSeries;
 ```
-With the Initialize() method, this variable is assigned a new instance:
+With the OnInit() method, this variable is assigned a new instance:
 
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myDataSeries = new DataSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -809,7 +808,7 @@ myDataSeries.Set(Bars[0].Close);
 
 Writing a value in the past into the data series:
 ```cs
-myDataSeries.Set(int barsAgo, duble Value);
+myDataSeries.Set(int barsAgo, double Value);
 ```
 
 ### Delete Values
@@ -851,13 +850,13 @@ Create a new variable in the declaration area:
 //Variable declaration
 private DateTimeSeries myDataSeries;
 ```
-Assign a new instance of DateTimeSeries for the variable with the Initialize() method:
+Assign a new instance of DateTimeSeries for the variable with the OnInit() method:
 
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myDataSeries = new DateTimeSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -900,7 +899,7 @@ Print ("For the bar from " + Time[0] + " ago the value of the data series is: " 
 ### Example
 ```cs
 //Saves the difference of -6 hours (eastern time, New York) for a time zone conversion
-myDataSeries.Set(Time[0].AddHours(-6);
+myDataSeries.Set(Time[0].AddHours(-6));
 ```
 
 ## FloatSeries
@@ -914,13 +913,13 @@ Create a new variable in the declaration area:
 //Variable declaration
 private FloatSeries myDataSeries;
 ```
-Assign a new instance of the FloatSeries to the variable with the Initialize() method:
+Assign a new instance of the FloatSeries to the variable with the OnInit() method:
 
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myDatatSeries = new FloatSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -975,13 +974,13 @@ Create a new variable in the declaration area:
 private IntSeries myDataSeries;
 ```
 
-Assign an instance of the int series to the variable with the Initialize() method:
+Assign an instance of the int series to the variable with the OnInit() method:
 
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myDataSeries = new IntSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -1033,12 +1032,12 @@ Create a new variable in the declaration area:
 //Variable declaration
 private LongSeries myDataSeries;
 ```
-Assign a new instance of the long series to the variable with the Initialize() method:
+Assign a new instance of the long series to the variable with the OnInit() method:
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myDataSeries = new LongSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -1092,13 +1091,13 @@ Create a new variable in the declaration area:
 private StringSeries myDataSeries;
 ```
 
-Assign an instance of string series to the variable with the Initialize() method:
+Assign an instance of string series to the variable with the OnInit() method:
 
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 myDataSeries = new StringSeries(this);
-CalculateOnBarClose = true;
+CalculateOnClosedBar = true;
 }
 ```
 
@@ -1192,57 +1191,57 @@ int Offset Number of bars by which the indicator is to be moved.
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //Displacement of the plot by one bar to the right
 Displacement = 1;
 }
 ```
 
-## DisplayInDataBox
+## IsShowInDataBox
 ### Description
-The property "DisplayInDataBox" states whether the value of an indicator is contained in the data box of the chart or not.
+The property "IsShowInDataBox" states whether the value of an indicator is contained in the data box of the chart or not.
 
 The property can be queried in the script and returns a value of the type Boolean (true or false).
 ```cs
-DisplayInDataBox = true (default)
+IsShowInDataBox = true (default)
 ```
 
 The indicator values are displayed in the data box.
 ```cs
-DisplayInDataBox = false
+IsShowInDataBox = false
 ```
 
 The indicator values are not displayed in the data box.
 
 The following image displays the values of 3 smoothed averages in the data box.
 
-![DisplayInDataBox](./media/image14.png)
+![IsShowInDataBox](./media/image14.png)
 
 ### Usage
-DisplayInDataBox
+IsShowInDataBox
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //Values will not be shown in the data box
-DisplayInDataBox = false;
+IsShowInDataBox = false;
 }
 ```
 
-## DrawOnPricePanel
+## IsAddDrawingsToPricePanel
 ### Description
-The property "DrawOnPricePanel" determines the panel in which the drawing objects are drawn.
+The property "IsAddDrawingsToPricePanel" determines the panel in which the drawing objects are drawn.
 ```cs
-DrawOnPricePanel = true (default)
+IsAddDrawingsToPricePanel = true (default)
 ```
 
 Drawing objects are shown in the price chart
 ```cs
-DrawOnPricePanel = false
+IsAddDrawingsToPricePanel = false
 ```
 
 Drawing objects are drawn in the panel (subchart) assigned to the indicator
@@ -1251,34 +1250,34 @@ If the indicator is already assigned to the price chart (overlay = true) then th
 The property can be queried within the script and returns a Boolean value.
 
 ### Usage
-DrawOnPricePanel
+IsAddDrawingsToPricePanel
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 // Indicator is drawn in a new subchart
-Overlay = false;
-Add(new Plot(Color.Red, "MyPlot1"));
+IsOverlay = false;
+Add(new OnPaint(Color.Red, "MyPlot1"));
 // Drawing object is drawn in the price chart
-DrawOnPricePanel = true;
+IsAddDrawingsToPricePanel = true;
 }
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 // Draws a vertical line in the price chart for the bar from 5 minutes ago
-DrawVerticalLine("MyVerticalLine", 5, Color.Black);
+AddChartVerticalLine("MyVerticalLine", 5, Color.Black);
 }
 ```
 
-## Falling()
+## IsSerieFalling()
 ### Description
-The Falling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.
+The IsSerieFalling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.
 
-See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*IsSerieRising()*](#isserierising), [*IsSerieFalling()*](#isseriefalling).
 
 ### Usage
 ```cs
-Falling(IDataSeries series)
+IsSerieFalling(IDataSeries series)
 ```
 
 ### Return Value
@@ -1291,7 +1290,7 @@ series a data series such as an indicator, close, high etc.
 ### Example
 ```cs
 // Check whether SMA(20) is falling
-if (Falling(SMA(20)))
+if (IsSerieFalling(SMA(20)))
 Print("The SMA(20) is currently falling.");
 ```
 
@@ -1304,8 +1303,8 @@ AgenaScript provides you with the following commands for defining colors and mak
 
 [*BackColorAll*](#backcolorall) Background color of the chart and all panels
 
-ChartControl.UpColor Color of up ticks (up bars)
-ChartControl.DownColor Color of down ticks (down bars)
+Chart.UpColor Color of up ticks (up bars)
+Chart.DownColor Color of down ticks (down bars)
 
 For each bar, its colors are saved in the following data series. If these data series are written in, the color of the referenced bar will change.
 
@@ -1410,9 +1409,9 @@ When using the method with an index \[**int** barsAgo\] the color for the refere
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-if (CurrentBar == Bars.Count-1-(CalculateOnBarClose?1:0))
+if (ProcessingBarIndex == Bars.Count-1-(CalculateOnClosedBar?1:0))
 {
 // Color the current bar blue
 // This is identical to BarColor = color.Blue
@@ -1533,7 +1532,7 @@ CandleOutlineColorSeries[0] = Color.Empty;
 ```
 ## Email function
 ### Description
-Override method which allows to send mail .
+Override method which allows to send mail.
 
 ### Parameter
 None
@@ -1546,7 +1545,7 @@ used for complicated calculation on a last bar
 
 ### Example
 ```cs
-protected override void OnExecution(IExecution execution)
+protected override void OnOrderExecution(IExecution execution)
 {
 if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
 {
@@ -1569,10 +1568,10 @@ execution.Instrument.Symbol +" Order " + execution.Name + " ausgeführt. Profit:
 ## FirstTickOfBar
 ### Description
 FirstTickOfBar is a property of the type "bool" that returns "true" if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
-This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnBarClose = false and the data feed is able to output real-time values.
+This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnClosedBar = false and the data feed is able to output real-time values.
 When using end-of-day data in a daily chart, the "FirstTickOfBar" is always true for the last bar.
-FirstTickOfBar should not be used outside of the OnBarUpdate() method.
-See [*Bars.TickCount*].
+FirstTickOfBar should not be used outside of the OnCalculate() method.
+See [*Bars.TicksCountForLastBar*].
 
 ### Usage
 FirstTickOfBar
@@ -1583,7 +1582,7 @@ FirstTickOfBar
 if (FirstTickOfBar)
 {
 if (CCI(20)[1] < -250)
-EnterLong();
+OpenLong();
 return;
 }
 ```
@@ -1592,20 +1591,20 @@ return;
 ### Description
 FirstTickOfBarMtf is the **multi-time frame** variant of the [*FirstTickOfBar*](#firsttickofbar) property.
 
-The setting of CalculateOnBarClose only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnBarClose setting.
+The setting of CalculateOnClosedBar only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnClosedBar setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.
 
 ### Usage
-FirstTickOfBarMtf(BarsInProgress)
+FirstTickOfBarMtf(BarsInCalculation)
 
 ### Parameter
-FirstTickOfBarMtf(BarsInProgress).
+FirstTickOfBarMtf(BarsInCalculation).
 
-See [*BarsInProgress*](#barsinprogress).
+See [*BarsInCalculation*](#barsinprogress).
 
 ### Example
 ```cs
-if (FirstTickOfBarMtf(BarsInProgress))
+if (FirstTickOfBarMtf(BarsInCalculation))
 Print("A new bar has begun.");
 ```
 
@@ -1613,7 +1612,7 @@ Print("A new bar has begun.");
 ### Description
 The GetCurrentAsk() method returns the current value of the ask side of the order book. If no level 1 data is available to AgenaTrader, then this function simply outputs the last trade value.
 
-See [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
+See [*GetCurrentBid()*](#getcurrentbid) and [*OnLevel1()*](#onlevel1).
 
 ### Usage
 GetCurrentAsk()
@@ -1628,7 +1627,7 @@ none
 ```cs
 If an entry condition is fulfilled, then 1 contract should be sold at the current ask price:
 private IOrder entryOrder = null;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 // Entry condition
 if (Close[0] < SMA(20)[0] && entryOrder == null)
@@ -1641,7 +1640,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 ### Description
 The GetCurrentAskVolume () method returns the current volume on the Ask page of the order book. This function is only executable if the data provider provides level 2 data.
 
-See [*GetCurrentBidVolume()*](#getcurrentbidvolume), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
+See [*GetCurrentBidVolume()*](#getcurrentbidvolume), [*GetCurrentBid()*](#getcurrentbid) and [*OnLevel1()*](#onlevel1).
 
 ### Usage
 GetCurrentAskVolume()
@@ -1654,7 +1653,7 @@ none
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
    if (GetCurrentAskVolume() < GetCurrentBidVolume())
        Print("AskVolume {0} < BidVolume {1}", GetCurrentAskVolume(), GetCurrentBidVolume());
@@ -1665,7 +1664,7 @@ protected override void OnBarUpdate()
 ### Description
 The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.
 
-See [*GetCurrentAsk()*](#getcurrentask) and [*OnMarketData()*](#onmarketdata).
+See [*GetCurrentAsk()*](#getcurrentask) and [*OnLevel1()*](#onlevel1).
 
 ### Usage
 GetCurrentBid()
@@ -1681,7 +1680,7 @@ If an entry condition is fulfilled, then 1 contract should be sold at the curren
 
 ```cs
 private IOrder entryOrder = null;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 // Entry condition
 if (Close[0] > SMA(20)[0] && entryOrder == null)
@@ -1694,7 +1693,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 ### Description
 The GetCurrentBidVolume () method returns the current volume on the Bid page of the order book. This function is only executable if the data provider provides level 2 data.
 
-See [*GetCurrentAskVolume*](#getcurrentaskvolume), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](#onmarketdata).
+See [*GetCurrentAskVolume*](#getcurrentaskvolume), [*GetCurrentBid()*](#getcurrentbid) and [*OnLevel1()*](#onlevel1).
 
 ### Usage
 GetCurrentBidVolume()
@@ -1707,7 +1706,7 @@ none
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
    if (GetCurrentAskVolume() < GetCurrentBidVolume())
        Print("AskVolume {0} < BidVolume {1}", GetCurrentAskVolume(), GetCurrentBidVolume());
@@ -1718,7 +1717,7 @@ protected override void OnBarUpdate()
 ### Description
 The GetCurrentPrice() method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales
 
-See [*GetCurrentAsk*](#getcurrentask), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](oOnmarketdata).
+See [*GetCurrentAsk*](#getcurrentask), [*GetCurrentBid()*](#getcurrentbid) and [*OnLevel1()*](#onlevel1).
 
 ### Usage
 GetCurrentPrice()
@@ -1734,7 +1733,7 @@ If an initial condition is fulfilled, 1 contract should be purchased at the curr
 ```cs
 private IOrder entryOrder = null;
 
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
    // Einstiegsbedingung
    if (Close[0] > SMA(20)[0] && entryOrder == null)
@@ -1746,7 +1745,7 @@ protected override void OnBarUpdate()
 ### Description
 The GetCurrentSpare () method returns the current spread.
 
-See [*GetCurrentAsk*](#getcurrentask), [*GetCurrentBid()*](#getcurrentbid) and [*OnMarketData()*](oOnmarketdata).
+See [*GetCurrentAsk*](#getcurrentask), [*GetCurrentBid()*](#getcurrentbid) and [*OnLevel1()*](#onlevel1).
 
 ### Usage
 GetCurrentSpread()
@@ -1760,17 +1759,17 @@ double
 ### Example
 If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
        Print("Der aktuelle Spread ist {0}", GetCurrentSpread());
 }
 ```
 
-## HighestBar
+## GetSerieHighestValue
 ### Description
-The HighestBar() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
+The GetSerieHighestValue() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
 
-See [*LowestBar()*](#lowestbar).
+See [*GetSerieLowestValue()*](#getserielowestvalue).
 
 ### Parameter
 period Number of bars within which the bar is searched for
@@ -1784,21 +1783,21 @@ int barsAgo How many bars ago the high occurred
 
 ### Usage
 ```cs
-HighestBar(IDataSeries series, int period)
+GetSerieHighestValue(IDataSeries series, int period)
 ```
 
 ### Example
 ```cs
 // How many bars ago was the highest high for the current session?
-Print(HighestBar(High, Bars.BarsSinceSession - 1));
+Print(GetSerieHighestValue(High, Bars.BarsCountForSession - 1));
 // What value did the market price have at the highest high of the session?
-Print("The highest price for the session was: " + Open[HighestBar(High, Bars.BarsSinceSession - 1)]);
+Print("The highest price for the session was: " + Open[GetSerieHighestValue(High, Bars.BarsCountForSession - 1)]);
 ```
 
 ## Historical
 ### Description
 Historical allows you to check whether AgenaScript is working with historical or real-time data.
-As long as OnBarUpdate() is called up for historical data, then historical = true. As soon as live data is being used, then historical = false.
+As long as OnCalculate() is called up for historical data, then historical = true. As soon as live data is being used, then historical = false.
 During a backtest, historical is always true.
 
 ### Usage
@@ -1810,17 +1809,17 @@ Historical
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 // only execute for real-time data
-if (Historical) return;
+if (IsHistoricalMode) return;
 // Trading technique
 }
 ```
 
-## Initialize()
+## OnInit()
 ### Description
-The Initialize() method is called up once at the beginning of an indicator or strategy calculation. This method can be used to set indicator properties, initialize your own variables, or add plots.
+The OnInit() method is called up once at the beginning of an indicator or strategy calculation. This method can be used to set indicator properties, initialize your own variables, or add plots.
 
 ### Parameter
 none
@@ -1830,59 +1829,59 @@ none
 
 ### Usage
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 ```
 
 ### Important Keywords
 -   [*Add()*]
--   [*AllowRemovalOfDrawObjects*]
--   [*AutoScale*]
--   [*BarsRequired*]
--   [*CalculateOnBarClose*]
+-   [*AllowRemovalOfChartDrawings*]
+-   [*IsAutoScale*]
+-   [*RequiredBarsCount*]
+-   [*CalculateOnClosedBar*]
 -   [*ClearOutputWindow()*]
 -   [*Displacement*]
--   [*DisplayInDataBox*]
--   [*DrawOnPricePanel*]
+-   [*IsShowInDataBox*]
+-   [*IsAddDrawingsToPricePanel*]
 -   [*InputPriceType*]
--   [*Overlay*]
--   [*PaintPriceMarkers*]
+-   [*IsOverlay*]
+-   [*IsShowPriceMarkers*]
 -   [*SessionBreakLines*]
--   [*VerticalGridLines*]
+-   [*IsShowChartVerticalGrid*]
 
 **Additional Keywords for Strategies**
 
--   [*DefaultQuantity*]
+-   [*DefaultOrderQuantity*]
 -   [*EntriesPerDirection*]
 -   [*EntryHandling*]
--   [*SetStopLoss()*]
--   [*SetProfitTarget()*]
--   [*SetTrailStop()*]
+-   [*SetUpStopLoss()*]
+-   [*SetUpProfitTarget()*]
+-   [*SetUpTrailStop()*]
 -   [*TimeInForce*]
--   [*TraceOrders*]
+-   [*PrintOrders*]
 
 ### More Information
 **Caution:**
-The Initialize() method is not only called up at the beginning of an indicator or strategy calculation, but also if the chart is reloaded unexpectedly or if the properties dialog of indicators is opened and so on.
-Developers of custom AgenaScripts should NOT use this method for running their own routines, opening forms, performing license checks, etc. The OnStartUp() method should be used for these kind of tasks.
+The OnInit() method is not only called up at the beginning of an indicator or strategy calculation, but also if the chart is reloaded unexpectedly or if the properties dialog of indicators is opened and so on.
+Developers of custom AgenaScripts should NOT use this method for running their own routines, opening forms, performing license checks, etc. The OnStart() method should be used for these kind of tasks.
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Blue, "myPlot"));
+Add(new OnPaint(Color.Blue, "myPlot"));
 ClearOutputWindow();
-AutoScale = false;
-Overlay = true;
-PaintPriceMarkers = false;
-DisplayInDataBox = false;
-CalculateOnBarClose = true;
+IsAutoScale = false;
+IsOverlay = true;
+IsShowPriceMarkers = false;
+IsShowInDataBox = false;
+CalculateOnClosedBar = true;
 }
 ```
 
-## InitRequirements()
+## OnBarsRequirements()
 ### Description
-The InitRequirements() method is called up once at the beginning of an indicator and/or strategy calculation. This method is only necessary when using multi-bars.
-Within InitRequirements, no other programming commands are executed. For initializing, the Initialize() or OnStartUp() method should be used.
+The OnBarsRequirements() method is called up once at the beginning of an indicator and/or strategy calculation. This method is only necessary when using multi-bars.
+Within OnBarsRequirements, no other programming commands are executed. For initializing, the OnInit() or OnStart() method should be used.
 
 ### Parameter
 none
@@ -1892,7 +1891,7 @@ none
 
 ### Example
 ```cs
-protected override void InitRequirements()
+protected override void OnBarsRequirements()
 {
 Add(DatafeedHistoryPeriodicity.Day, 1);
 Add(DatafeedHistoryPeriodicity.Week, 1);
@@ -1902,8 +1901,8 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 ## InputPriceType
 ### Description
 The input price type property determines which price series is used by default when calculating an indicator, if no other data series is explicitly stated.
-InputPriceType can be set with the Initialize() method; this specification is then valid for all further calculations.
-If InputPriceType is in OnBarUpdate(), these changes are only valid starting with the next instruction.
+InputPriceType can be set with the OnInit() method; this specification is then valid for all further calculations.
+If InputPriceType is in OnCalculate(), these changes are only valid starting with the next instruction.
 Every further appearance of InputPriceType will be ignored!
 
 See [*PriceType*](#pricetype)
@@ -1915,21 +1914,21 @@ InputPriceType
 
 ### Example1
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
 ClearOutputWindow();
 InputPriceType = PriceType.Low;
 }
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-// The input data series for the indicator (input) is low
-Print(Low[0] + " " + Input[0] + " " + InputPriceType);
+// The input data series for the indicator (InSeries) is low
+Print(Low[0] + " " + InSeries[0] + " " + InputPriceType);
 }
 ```
 
 ### Example2
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 // These values are identical
 // since close is used as the input data series by default
@@ -1940,7 +1939,7 @@ InputPriceType = PriceType.Low;
 Print(SMA(20)[0] + " " + SMA(Low, 20)[0]);
 InputPriceType = PriceType.High;
 // The instructions will be ignored
-// Input = low is still in effect
+// InSeries = low is still in effect
 }
 ```
 
@@ -1950,61 +1949,59 @@ With "instrument", information concerning the trading instrument (stock, future 
 
 Detailed information can be found here: *Instruments*.
 
-## Line()
+## LevelLine()
 ### Description
 A line object is used for drawing a horizontal line in the chart. Usually, these are upper and lower trigger lines for indicators such as the RSI (70 and 30).
-The lines described here are not to be confused with lines from the drawing objects (see "DrawHorizontalLine").
-Line objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.
+The lines described here are not to be confused with lines from the drawing objects (see "AddChartHorizontalLine").
+LevelLine objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.
 
-See [*Plot*].
+See [*OnPaint*].
 
 ### Parameter
 |       |                                                              |
 |-------|--------------------------------------------------------------|
-| Color | Line color                                                   |
+| Color | LevelLine color                                                   |
 | Name  | Description                                                  |
 | Pen   | A pen object                                                 |
 | Value | Defines which value on the y-axis the line will be drawn for |
 
 ### Usage
 ```cs
-Line(Color color, double value, string name)
-Line(Pen pen, double value, string name)
+LevelLine(Color color, double value, string name)
+LevelLine(Pen pen, double value, string name)
 ```
 
 ### More Information
-Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*]
+Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx*](http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx)
 
 ### Example
 ```cs
 // Example 1
 // A new line with standard values drawn at the value of 70
-Add(new Line(Color.Black, 70, "Upper"));
+Add(new LevelLine(Color.Black, 70, "Upper"));
 // Example 2
 // A new line with self-defined values
-private Line line;
+private LevelLine line;
 private Pen pen;
-protected override void Initialize()
+protected override void OnInit()
 {
 // Define a red pen with the line strength 1
 pen = new Pen(Color.Red, 1);
 // Define a horizontal line at 10
-line = new Line(pen, 10, "MyLine");
+line = new LevelLine(pen, 10, "MyLine");
 // add the defined line to the indicator
 Add(line);
 }
 // Example 3
 // Short form for the line in example 2
-Add(new Line(new Pen(Color.Red, 1), 10, "MyLine"));
+Add(new LevelLine(new Pen(Color.Red, 1), 10, "MyLine"));
 ```
 
 ## Log()
 ### Description
 Log() allows you to write outputs in the AgenaTrader log file (log tab). 5 different log levels are supported.
 
-Note:
-
-If the log tab is not viewable, it can be displayed using the tools log.
+Note: If the log tab is not viewable, it can be displayed using the tools log.
 
 ### Usage
 **Log**(string message, LogLevel logLevel)
@@ -2013,32 +2010,42 @@ If the log tab is not viewable, it can be displayed using the tools log.
 |          |                      |
 |----------|----------------------|
 | message  | Text (message)       |
-| logLevel | Possible values are                     
-            InfoLogLevel.Info                          
-            InfoLogLevel.Message                        
-            InfoLogLevel.Warning  
-            InfoLogLevel.Alert    
-            InfoLogLevel.Error    |
+| logLevel | Possible values are: InfoLogLevel.Info, InfoLogLevel.Message, InfoLogLevel.Warning, InfoLogLevel.ShowAlert, InfoLogLevel.Error |
 
 ### Example
 ```cs
 //Tab protocol
 Log("This is information.", InfoLogLevel.Info); //white
-Log("This is a message.", InfoLogLevel.Message); // blue
-Log("This is a warning.", InfoLogLevel.Warning); // yellow
+Log("This is a message.", InfoLogLevel.Message); // white
+Log("This is a warning.", InfoLogLevel.Warning); // blue
 Log("This is an alarm.", InfoLogLevel. AlertLog); //green
 Log("This is a mistake.", InfoLogLevel.Error); // red
 //Tab messags
-Log("This is a message (messages).", InfoLogLevel.Message); //gray
+Log("This is a message (messages).", InfoLogLevel.Message); //white
 //PopUp & protocoll
-Log("This is an alert popup window.", InfoLogLevel.Alert); //green
+Log("This is an alert popup window.", InfoLogLevel.ShowAlert); //green
+
+Output-Tab:
+InfoLogLevel.Message = send to Tab "Messages" not "Log"
+
+Action:
+InfoLogLevel.Error: also the AT-Status-Line is red and flashes
+InfoLogLevel.ShowAlert: opens also a modeless messagebox
+
+Crossreference:
+a crossreference to
+Print()
+ShowAlert()
+
+Summary: * - InfoLogLevel.ShowAlert Color: green Tab: Log Action: modeless Messagebox * - InfoLogLevel.Warning Color: blue Tab: Log * - InfoLogLevel.Info Color: white Tab: Log * - InfoLogLevel.Error Color: red Tab: Log Action: AT-Status-Line: red + flashing (Error) * - InfoLogLevel.Message Color: white Tab: Messages
+
 ```
 
-## LowestBar
+## GetSerieLowestValue
 ### Description
-The LowestBar() method attempts to find the lowest bar within a predefined number of periods.
+The GetSerieLowestValue() method attempts to find the lowest bar within a predefined number of periods.
 
-See [*HighestBar()*].
+See [*GetSerieHighestValue()*].
 
 ### Parameter
 period Number of bars that will be searched for the lowest bar
@@ -2050,20 +2057,20 @@ series Every data series, such as close, high, low etc.
 
 ### Usage
 ```cs
-LowestBar(IDataSeries series, int period)
+GetSerieLowestValue(IDataSeries series, int period)
 ```
 
 ### Example
 ```cs
 // How many bars ago was the lowest low of the session?
-Print(LowestBar(Low, Bars.BarsSinceSession - 1));
+Print(GetSerieLowestValue(Low, Bars.BarsCountForSession - 1));
 // Which price did the lowest open of the current session have?
-Print("The lowest open price of the current session was: " + Open[LowestBar(Low, Bars.BarsSinceSession - 1)]);
+Print("The lowest open price of the current session was: " + Open[GetSerieLowestValue(Low, Bars.BarsCountForSession - 1)]);
 ```
 
-## MarketDataEventArgs
+## Level1Args
 ### Description
-The data type MarketDataEventArgs represents a change in the level 1 data and is used as a parameter of the OnMarketData() function.
+The data type Level1Args represents a change in the level 1 data and is used as a parameter of the OnLevel1() function.
 
 |                |                                                                                                                                  |
 |----------------|----------------------------------------------------------------------------------------------------------------------------------|
@@ -2073,23 +2080,17 @@ The data type MarketDataEventArgs represents a change in the level 1 data and is
 | BidPrice       | Current bid price.                                                                                                               |
 | Instrument     | An object of the type instrument that contains the trading instrument for which the level 1 data is outputted. See *Instruments* |
 | LastPrice      | Last traded price                                                                                                                |
-| MarketDataType | Potential values are:                                                                                                                                                                                                                                                      
-                  MarketDataType.Ask                                                                                                                                                                                                                                      
-                  MarketDataType.AskSize                                                                                                                                                                                                                                         
-                  MarketDataType.Bid                                                                                                                                                                                                                                         
-                  MarketDataType.BidSize                                                                                                                                                                                                                                   
-                  MarketDataType.Last                                                                                                                                                                                                                                     
-                  MarketDataType.Volume                                                                                                             |
+| MarketDataType | Potential values are: MarketDataType.Ask, MarketDataType.AskSize, MarketDataType.Bid, MarketDataType.BidSize, MarketDataType.Last, MarketDataType.Volume     |
 | Price          | This is equal to last price. This field only exists for compatability reasons                                                    |
 | Time           | A date-time value containing the timestamp of the change                                                                         |
 | Volume         | A long value that shows the volume                                                                                               |
 
 ### Example
-See [*OnMarketData()*].
+See [*OnLevel1()*].
 
-## MarketDepthEventArgs
+## Level1Args
 ### Description
-The data type MarketDepthEventArgs represents a change in the level 2 data (market depth) and is used as a parameter within OnMarketDepth().
+The data type Level1Args represents a change in the level 2 data (market depth) and is used as a parameter within OnLevel2().
 
 |                |                                                                |
 |----------------|----------------------------------------------------------------|
@@ -2108,20 +2109,20 @@ The data type MarketDepthEventArgs represents a change in the level 2 data (mark
 | Volume         | A long value that shows the volume                             |
 
 ### Example
-See [*OnMarketDepth()*].
+See [*OnLevel2()*].
 
-## Overlay
+## IsOverlay
 ### Description
 The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.
 
 ```cs
-Overlay = true
+IsOverlay = true
 ```
 
 The indicator is drawn above the price (for example an [*SMA*])
 
 ```cs
-Overlay = false (default)
+IsOverlay = false (default)
 ```
 
 A separate chart window is opened (RSI)
@@ -2129,41 +2130,41 @@ A separate chart window is opened (RSI)
 This property can be queried within the script and outputs a value of the type Boolean (true or false).
 
 ### Usage
-Overlay
+IsOverlay
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //The indicator should be displayed within a separate window
-Overlay = false;
+IsOverlay = false;
 }
 ```
 
-## PaintPriceMarkers
+## IsShowPriceMarkers
 ### Description
 The paint price markers property defines whether the so-called price markers for the indicator outputs are displayed on the right-hand chart border (in the price axis) or not. In some cases it makes sense to switch these off for a better overview in the chart.
-**PaintPriceMarkers = true (default)**
+**IsShowPriceMarkers = true (default)**
 
 Price markers are shown in the price axis
 
-**PaintPriceMarkers = false**
+**IsShowPriceMarkers = false**
 
 Price markers are not shown in the price axis
 
 This property can be queried within the script and returns a value of the type Boolean (true or false).
 
 ### Usage
-PaintPriceMarkers
+IsShowPriceMarkers
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //Do not show price markers in the price axis
-PaintPriceMarkers = false;
+IsShowPriceMarkers = false;
 }
 ```
 
@@ -2213,23 +2214,23 @@ _ma_medium = value;
 }
 ```
 
-## Plot()
+## OnPaint()
 ### Description
-A plot (drawing) is used to visually display indicators in a chart. Plot objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
-See [*Line*].
+A plot (drawing) is used to visually display indicators in a chart. OnPaint objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
+See [*LevelLine*].
 
 ### Parameter
 |           |                        |
 |-----------|------------------------|
 | Color     | Drawing color          |
 | Pen       | Pen object             |
-| PlotStyle | Line type                          
+| PlotStyle | LevelLine type                          
              PlotStyle.Bar                    
              PlotStyle.Block                  
              PlotStyle.Cross                     
              PlotStyle.Dot              
              PlotStyle.Hash                       
-             PlotStyle.Line                  
+             PlotStyle.LevelLine                  
              PlotStyle.Square                   
              PlotStyle.TriangleDown            
              PlotStyle.TriangleUp    |
@@ -2237,10 +2238,10 @@ See [*Line*].
 
 ### Usage
 ```cs
-Plot(Color color, string name)
-Plot(Pen pen, string name)
-Plot(Color color, PlotStyle plotStyle, string name)
-Plot(Pen pen, PlotStyle plotStyle, string name)
+OnPaint(Color color, string name)
+OnPaint(Pen pen, string name)
+OnPaint(Color color, PlotStyle plotStyle, string name)
+OnPaint(Pen pen, PlotStyle plotStyle, string name)
 ```
 
 ### More Information
@@ -2249,26 +2250,26 @@ Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.d
 ### Example
 ```cs
 // Example 1
-// Plot with standard values (line with line strength 1)
-Add(new Plot(Color.Green, "MyPlot"));
+// OnPaint with standard values (line with line strength 1)
+Add(new OnPaint(Color.Green, "MyPlot"));
 // Example 2
 // user-defined values for pen and plot style
-private Plot plot;
+private OnPaint plot;
 private Pen pen;
-protected override void Initialize()
+protected override void OnInit()
 {
 // a red pen with the line strength of 6 is defined
 pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-plot = new Plot(pen, PlotStyle.Dot, "MyPlot");
+plot = new OnPaint(pen, PlotStyle.Dot, "MyPlot");
 // The defined plot is to be used as a representation for an indicator
 Add(plot);
 }
 // Example 3
 // Abbreviation of example 2
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(new Pen(Color.Blue, 6), PlotStyle.Dot, "MyPlot"));
+Add(new OnPaint(new Pen(Color.Blue, 6), PlotStyle.Dot, "MyPlot"));
 }
 ```
 
@@ -2278,7 +2279,7 @@ In each indicator, the plot method can be overridden in order to add your own gr
 
 See [*http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx*].
 
-The [*ChartControl*] object offers several parameters.
+The [*Chart*] object offers several parameters.
 
 More examples: [*Bar Numbering*][*PlotSample*], *Chart Background Image*.
 
@@ -2296,7 +2297,7 @@ none
 
 ### Usage
 ```cs
-public override void Plot(Graphics graphics, Rectangle r, double min, double max)
+public override void OnPaint(Graphics graphics, Rectangle r, double min, double max)
 ```
 
 ### Example
@@ -2317,19 +2318,19 @@ public class PlotSample : UserIndicator
 private StringFormat stringFormat = new StringFormat();
 private SolidBrush brush = new SolidBrush(Color.Black);
 private Font font = new Font("Arial", 10);
-protected override void Initialize()
+protected override void OnInit()
 {
-ChartOnly = true;
-Overlay = true;
+IsChartOnlyIndicator = true;
+IsOverlay = true;
 }
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {}
-protected override void OnTermination()
+protected override void OnDispose()
 {
 brush.Dispose();
 stringFormat.Dispose();
 }
-public override void Plot(Graphics graphics, Rectangle r, double min, double max)
+public override void OnPaint(Graphics graphics, Rectangle r, double min, double max)
 {
 // Fill a rectangle
 SolidBrush tmpBrush = new SolidBrush(Color.LightGray);
@@ -2337,14 +2338,14 @@ graphics.FillRectangle(tmpBrush, new Rectangle (0, 0, 300, 300));
 tmpBrush.Dispose();
 // Draw a red line from top left to bottom right
 Pen pen = new Pen(Color.Red);
-graphics.DrawLine(pen, r.X, r.Y, r.X + r.Width, r.Y + r.Height);
+graphics.AddChartLine(pen, r.X, r.Y, r.X + r.Width, r.Y + r.Height);
 // Draw a red line from bottom left to top right
 // Use anti-alias (the line appears smoother)
 // The current settings for the smoothing are saved
 // Restore after drawing
 SmoothingMode oldSmoothingMode = graphics.SmoothingMode; //Save settings
 graphics.SmoothingMode = SmoothingMode.AntiAlias; // Use higher smoothing settings
-graphics.DrawLine(pen, r.X, r.Y + r.Height, r.X + r.Width, r.Y);
+graphics.AddChartLine(pen, r.X, r.Y + r.Height, r.X + r.Width, r.Y);
 graphics.SmoothingMode = oldSmoothingMode; // Settings restored
 pen.Dispose();
 // Text in the upper left corner (position 10,35)
@@ -2356,7 +2357,7 @@ brush.Color = Color.Aquamarine;
 graphics.FillRectangle(brush, r.X + 10, r.Y + r.Height - 20, 140, 19);
 // Draw outside line
 pen = new Pen(Color.Black);
-graphics.DrawRectangle(pen, r.X + 10, r.Y + r.Height - 20, 140, 19);
+graphics.AddChartRectangle(pen, r.X + 10, r.Y + r.Height - 20, 140, 19);
 pen.Dispose();
 // Write text
 brush.Color = Color.Red;
@@ -2424,13 +2425,13 @@ Print(string.Format("{0:dddd}", Time[0]));
 Print("One empty row afterwards \\n");
 ```
 
-## RemoveDrawObject()
+## RemoveChartDrawing()
 ### Description
-The RemoveDrawObject() method removes a specific drawing object from the chart based on a unique identifier (tag).
-See [*RemoveDrawObjects()*].
+The RemoveChartDrawing() method removes a specific drawing object from the chart based on a unique identifier (tag).
+See [*RemoveChartDrawings()*].
 
 ### Usage
-RemoveDrawObject(string tag)
+RemoveChartDrawings(string tag)
 
 ### Return Value
 none
@@ -2440,16 +2441,16 @@ string tag The clearly identifiable name for the drawing object
 
 ### Example
 ```cs
-RemoveDrawObjects("My line");
+RemoveChartDrawings("My line");
 ```
 
-## RemoveDrawObjects()
+## RemoveChartDrawings()
 ### Description
 This method removes all drawings from the chart
-See [*RemoveDrawObject()*].
+See [*RemoveChartDrawings()*].
 
 ### Usage
-RemoveDrawObjects()
+RemoveChartDrawings()
 
 ### Return Value
 none
@@ -2457,18 +2458,18 @@ none
 ### Example
 ```cs
 //Delete all drawings from the chart
-RemoveDrawObjects();
+RemoveChartDrawings();
 ```
 
-## Rising()
+## IsSerieRising()
 ### Description
 With this method you can check if an uptrend exists, i.e. if the current value is bigger than the previous bar’s value.
 
-See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*Rising()*](#rising), [*Falling()*](#falling).
+See [*CrossAbove()*](#crossabove), [*CrossBelow()*](#crossbelow), [*IsSerieRising()*](#isserierising), [*IsSerieFalling()*](#isseriefalling).
 
 ### Usage
 ```cs
-Rising(IDataSeries series)
+IsSerieRising(IDataSeries series)
 ```
 
 ### Return Value
@@ -2481,7 +2482,7 @@ series A data series such as an indicator, close, high etc.
 ### Example
 ```cs
 // Check if SMA(20) is rising
-if (Rising(SMA(20)))
+if (IsSerieRising(SMA(20)))
 Print("The SMA(20) is currently rising.");
 ```
 
@@ -2504,9 +2505,9 @@ SessionBreakLines
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 //Session break lines should not be shown
 SessionBreakLines = false;
 }
@@ -2550,7 +2551,7 @@ See [*Bars.TimeFrame*].
 
 When using multiple timeframes ([*Multibars*][*MultiBars*]) in an indicator, please see [*TimeFrames*].
 
-## ToDay()
+## GetDayAsInt()
 ### Description
 To day is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C\#.
 Experienced programmers can continue using the date-time function directly.
@@ -2560,21 +2561,21 @@ To day outputs an int representation in the format of yyyymmdd.
 
 13.08.2012 would thus be 20120813.
 
-See [*ToTime*].
+See [*GetTimeAsInt*].
 
 Help with date-time: [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
 
 ### Usage
-ToDay(DateTime time)
+GetDayAsInt(DateTime time)
 
 ### Example
 ```cs
 // Do not trade on the 11<sup>th</sup> of September
-if (ToDay(Time[0]) = 20130911)
+if (GetDayAsInt(Time[0]) = 20130911)
 return;
 ```
 
-## ToTime()
+## GetTimeAsInt()
 ### Description
 To time is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C\#.
 
@@ -2583,17 +2584,17 @@ To time outputs an int representation in the format hhmmss.
 
 The time 07:30 will be displayed as 73000 and 14:15:12 will become 141512.
 
-See [*ToDay*].
+See [*GetDayAsInt*].
 
 Help with date-time: [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
 
 ### Usage
-ToTime(DateTime time)
+GetTimeAsInt(DateTime time)
 
 ### Example
 ```cs
 // Only enter trades between 08:15 and 16:35
-if (ToTime(Time[0]) >= 81500 && ToTime(Time[0]) <= 163500)
+if (GetTimeAsInt(Time[0]) >= 81500 && GetTimeAsInt(Time[0]) <= 163500)
 {
 // Any trading technique
 }
@@ -2601,7 +2602,7 @@ if (ToTime(Time[0]) >= 81500 && ToTime(Time[0]) <= 163500)
 
 ## Update()
 ### Description
-The Update() method calls up the OnBarUpdate method in order to recalculate the indicator values.
+The Update() method calls up the OnCalculate method in order to recalculate the indicator values.
 
 Update() is to be used with caution and is intended for use by experienced programmers.
 
@@ -2624,7 +2625,7 @@ The first indicator, Ind1, uses a public variable from the indicator Ind2.
 ```cs
 public class Ind1 : UserIndicator
 {
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 Print( Ind2().MyPublicVariable );
 }
@@ -2634,7 +2635,7 @@ Print( Ind2().MyPublicVariable );
 **Code from Ind2:**
 ```cs
 private double myPublicVariable = 0;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
 myPublicVariable = 1;
 }
@@ -2652,7 +2653,7 @@ return myPublicVariable;
 If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in Ind2. Without Update(), the value of MyPublicVariable would be returned. In this case it would be 0.
 
 **With Update() - Correct**
-By calling up Update(), OnBarUpdate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.
+By calling up Update(), OnCalculate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.
 
 ## Value
 ### Description
@@ -2673,29 +2674,29 @@ The methods known for a collection, Set(), Reset(), and Count(), can be used for
 ### Example
 See [*Values*].
 
-## VerticalGridLines
+## IsShowChartVerticalGrid
 ### Description
-The property VerticalGridLines defines whether or not the regularly spaced vertical lines (the so-called grid) are shown within the charting area.
+The property IsShowChartVerticalGrid defines whether or not the regularly spaced vertical lines (the so-called grid) are shown within the charting area.
 
-**VerticalGridLines = true (default)**
+**IsShowChartVerticalGrid = true (default)**
 
 Vertical grid lines are shown
 
-**VerticalGridLines = false**
+**IsShowChartVerticalGrid = false**
 
 Vertical grid lines are not shown
 
 This property can be queried within the script and returns a value of the type Boolean (true or false).
 
 ### Usage
-VerticalGridLines
+IsShowChartVerticalGrid
 
 ### Example
 ```cs
-protected override void Initialize()
+protected override void OnInit()
 {
-Add(new Plot(Color.Red, "MyPlot1"));
+Add(new OnPaint(Color.Red, "MyPlot1"));
 // Vertical grid lines shall not be shown within the chart
-VerticalGridLines = false;
+IsShowChartVerticalGrid = false;
 }
 ```
