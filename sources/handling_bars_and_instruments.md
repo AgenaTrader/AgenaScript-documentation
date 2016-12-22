@@ -48,23 +48,23 @@ Bars (**public** IBars Bars) can be used directly in a script and equates to Bar
 
 The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).
 
-[*BarsCountForSession*](#barssincesession)
+[*BarsCountForSession*](#barscountforsession)
 
 [*Bars.Count*](#barscount)
 
-[*Bars.IsFirstBarInSession*](#barsfirstbarofsession)
+[*Bars.IsFirstBarInSession*](#barsfirstbarinsession)
 
 [*Bars.GetBar*](#barsgetbar)
 
-[*Bars.GetBarsAgo*](#barsgetbarsago)
+[*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago)
 
-[*Bars.GetByIndex*](#barsgetbyindex)
+[*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex)
 
-[*Bars.GetBarIndex*](#barsgetindex)
+[*Bars.GetBarIndex*](#barsgetbarindex)(#barsgetindex)
 
-[*Bars.GetNextSessionTimeSpan*](#barsgetnextbeginend)
+[*Bars.GetNextSessionTimeSpan*](#getnextsessiontimespan)
 
-[*Bars.GetSessionBegin*](#barsgetsessiondate)
+[*Bars.GetSessionBegin*](#getsessionbegin)
 
 [*Bars.GetOpen*](#barsgetopen)
 
@@ -86,23 +86,23 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.IsNtb*](#barsisntb)
 
-[*Bars.LastBarCompleteness*](#barspercentcomplete)
+[*Bars.LastBarCompleteness*](#barslastbarcompleteness)
 
-[*Bars.CurrentSessionBeginTime*](#barssessionbegin)
+[*Bars.CurrentSessionBeginTime*](#currentsessionbegintime)
 
-[*Bars.SessionBread*](#barssessionbreak)
+[*Bars.SessionBreak*](#barssessionbreak)
 
-[*Bars.CurrentSessionEndTime*](#barssessionend)
+[*Bars.CurrentSessionEndTime*](#currentsessionendtime)
 
-[*Bars.NextSessionBeginTime*](#barssessionnextbegin)
+[*Bars.NextSessionBeginTime*](#nextsessionbegintime)
 
-[*Bars.NextSessionEndTime*](#barssessionnextend)
+[*Bars.NextSessionEndTime*](#nextsessionendtime)
 
-[*Bars.TicksCountForLastBar*](#barstickcount)
+[*Bars.TicksCountForLastBar*](#tickscountforlastbar)
 
 [*Bars.TimeFrame*](#barstimeframe)
 
-[*Bars.TicksCountInTotal*](#barstotalticks)
+[*Bars.TicksCountInTotal*](#barstickscountintotal)
 
 [*Bars.IsGrowing*](#barsisgrowing)
 
@@ -194,7 +194,7 @@ Print ("The current trading session started at" + Time [0]);
 ### Description
 Bars.GetBar outputs the first bars (from oldest to newest) that correspond to the specified date/time.
 
-See [*Bars.GetBarsAgo*], [*Bars.GetByIndex*], [*Bars.GetBarIndex*].
+See [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex), [*Bars.GetBarIndex*](#barsgetbarindex).
 
 ### Parameter
 Type DateTime
@@ -224,7 +224,7 @@ Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new Dat
 ### Description
 Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.
 
-See: [*Bars.GetBar*], [*Bars.GetByIndex*], [*Bars.GetBarIndex*].
+See: [*Bars.GetBar*], [*Bars.GetByIndex*](#barsgetbyindex), [*Bars.GetBarIndex*](#barsgetbarindex).
 
 ### Parameter
 Type DateTime
@@ -260,7 +260,7 @@ Bars.GetHigh(int index) – see [*Bars.GetOpen*].
 ### Description
 Bars.GetByIndex outputs the index for the specified bar object
 
-See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetBarIndex*](#barsgetindex).
+See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetBarIndex*](#barsgetbarindex)(#barsgetindex).
 
 ### Parameter
 Type int Index
@@ -285,7 +285,7 @@ Print(Close[0] + " and " + Bars.GetByIndex(ProcessingBarIndex).Close + " are equ
 ### Description
 Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
 
-See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex).
+See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex).
 
 ### Parameter
 Type IBar bar

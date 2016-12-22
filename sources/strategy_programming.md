@@ -82,7 +82,7 @@ BarsCountFromTradeOpen(int multibarSeriesIndex, string strategyName, int entries
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | strategyName          | The strategy name (string) that has been used to clearly label the entry within an entry method.            |
-| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInCalculation*](#barsinprogress), [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInCalculation*](#barsinprogress), [*BarsInCalculation*](#barsinprogress). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
@@ -193,8 +193,8 @@ private IOrder stopOrder = null;
 protected override void OnCalculate()
 {
 // If the position is profiting by 10 ticks then set the stop to break-even
-if (stopOrder != null 
-    && Close[0] >= Position.AvgPrice + (10 * TickSize) 
+if (stopOrder != null
+    && Close[0] >= Position.AvgPrice + (10 * TickSize)
         && stopOrder.StopPrice < Position.AvgPrice)
 ReplaceOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
@@ -554,9 +554,7 @@ OpenShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                                                                                                          |
 | quantity            | Amount to be ordered                                                                                                                                                         |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                                    
-                       Index of the data series for which the entry order is to be executed.                                                                                                         
-                       See [*BarsInCalculation*](#barsinprogress).                                                                                                                                                       |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).   |
 | limitPrice          | A double value for the limit price                                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -940,7 +938,7 @@ An order object of the type "IOrder"
 if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
      OpenShort("EMACrossesSMA");
 
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     CloseShort();
 ```
@@ -985,7 +983,7 @@ An order object of the type "IOrder"
 // Enter if two EMA crosses SMA and the ADX is rising
 if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
      OpenShort("EMACrossesSMA");
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     CloseShortLimit(High[0] + (Ticksize * 2));
 ```
@@ -1028,7 +1026,7 @@ An order object of the type "IOrder"
 /// Enter if two EMA crosses SMA and the ADX is rising
 if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
      OpenShort("EMACrossesSMA");
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     CloseShortStop(High[0] + (Ticksize * 2));
 ```
@@ -1073,7 +1071,7 @@ An order object of the type "IOrder"
 /// Enter if two EMA crosses SMA and the ADX is rising
 if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
      OpenShort("EMACrossesSMA");
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     CloseShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
 ```
