@@ -495,8 +495,8 @@ protected override void OnBarUpdate()
 protected override void OnBarUpdate()
 {
 // If the position is profiting by 10 ticks then set the stop to break-even
-if (stopOrder != null 
-    &amp;&amp; Close[0] &gt;= Position.AvgPrice + (10 * TickSize) 
+if (stopOrder != null
+    &amp;&amp; Close[0] &gt;= Position.AvgPrice + (10 * TickSize)
         &amp;&amp; stopOrder.StopPrice &lt; Position.AvgPrice)
 ChangeOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
 }
@@ -867,15 +867,7 @@ EnterShort(int multibarSeriesIndex, int quantity, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies</td>
-</tr>
-<tr>
-<td>Index of the data series for which the entry order is to be executed</td>
-<td></td>
-</tr>
-<tr>
-<td>See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
-<td></td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies Index of the data series for which the entry order is to be executed See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -926,11 +918,7 @@ EnterShortLimit(int quantity, double limitPrice, string strategyName)
 <td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.</td>
 </tr>
 <tr>
-<td>Index of the data series for which the entry order is to be executed.</td>
-<td></td>
-</tr>
-<tr>
-<td>See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
+<td>Index of the data series for which the entry order is to be executed.  See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
 <td></td>
 </tr>
 <tr>
@@ -1042,11 +1030,7 @@ EnterShortStopLimit(int quantity, double limitPrice, double stopPrice, string st
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.</td>
-</tr>
-<tr>
-<td>Index of the data series for which an entry order is to be placed.</td>
-<td></td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which an entry order is to be placed.</td>
 </tr>
 <tr>
 <td>See <a href="#barsinprogress"><em>BarsInProgress</em></a>.</td>
@@ -1130,7 +1114,7 @@ If entries per direction = 2, then it is possible for two signals for enter long
 <h3 id="description_20">Description</h3>
 <p>Exit long creates a sell market order for closing a long position (sell).</p>
 <p>If a signature not containing a set amount is used, the amount is set by <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<p>See <a href="#exitlong"><em>ExitLong()</em></a>, <a href="#exitlonglimit"><em>ExitLongLimit()</em></a>, <a href="#exitlongstop"><em>ExitLongStop()</em></a>, <a href="#exitstoplimit"><em>ExitLongStopLimit()</em></a>.</p>
 <h3 id="usage_19">Usage</h3>
 <pre><code class="cs">ExitLong()
 ExitLong(int quantity)
@@ -1186,7 +1170,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h3 id="description_21">Description</h3>
 <p>Exit long limit creates a sell limit order for closing a long position (i.e. for selling).</p>
 <p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.
-See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+See <a href="#exitlong"><em>ExitLong()</em></a>, <a href="#exitlonglimit"><em>ExitLongLimit()</em></a>, <a href="#exitlongstop"><em>ExitLongStop()</em></a>, <a href="#exitstoplimit"><em>ExitLongStopLimit()</em></a>.</p>
 <h3 id="usage_20">Usage</h3>
 <pre><code class="cs">ExitLongLimit(double limitPrice)
 ExitLongLimit(int quantity, double limitPrice)
@@ -1250,7 +1234,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h3 id="description_22">Description</h3>
 <p>Exit long stop creates a sell stop order for closing a long position (short).</p>
 <p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.
-See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+See <a href="#exitlong"><em>ExitLong()</em></a>, <a href="#exitlonglimit"><em>ExitLongLimit()</em></a>, <a href="#exitlongstop"><em>ExitLongStop()</em></a>, <a href="#exitstoplimit"><em>ExitLongStopLimit()</em></a>.</p>
 <h3 id="usage_21">Usage</h3>
 <pre><code class="cs">ExitLongStop(int quantity, double stopPrice)
 ExitLongStop(double stopPrice, string fromEntry signal)
@@ -1313,7 +1297,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h3 id="description_23">Description</h3>
 <p>Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).</p>
 <p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<p>See <a href="#exitlong"><em>ExitLong()</em></a>, <a href="#exitlonglimit"><em>ExitLongLimit()</em></a>, <a href="#exitlongstop"><em>ExitLongStop()</em></a>, <a href="#exitstoplimit"><em>ExitLongStopLimit()</em></a>.</p>
 <h3 id="usage_22">Usage</h3>
 <pre><code class="cs">ExitLongStopLimit(double limitPrice, double stopPrice)
 ExitLongStopLimit(int quantity, double limitPrice, double stopPrice)
@@ -1383,7 +1367,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h3 id="description_24">Description</h3>
 <p>Exit short creates a buy-to-cover market order for closing a short position (buy).</p>
 <p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.
-See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</em>], [<em>ExitShortStopLimit()</em>].</p>
+See <a href="#exitshort"><em>ExitShort()</em></a>, <a href="#exitshortlimit"><em>ExitShortLimit()</em></a>, <a href="#exitshortstop"><em>ExitShortStop()</em></a>, <a href="#exitshortstoplimit"><em>ExitShortStopLimit()</em></a>.</p>
 <h3 id="usage_23">Usage</h3>
 <pre><code class="cs">ExitShort()
 ExitShort(int quantity)
@@ -1430,7 +1414,7 @@ ExitShort(int quantity, string strategyName, string fromEntry signal)
 if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
      EnterShort(&quot;EMACrossesSMA&quot;);
 
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     ExitShort();
 </code></pre>
@@ -1439,7 +1423,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h3 id="description_25">Description</h3>
 <p>Exit short limit creates a buy-to-cover limit order for closing a short position (buy).</p>
 <p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</em>], [<em>ExitShortStopLimit()</em>].</p>
+<p>See <a href="#exitshort"><em>ExitShort()</em></a>, <a href="#exitshortlimit"><em>ExitShortLimit()</em></a>, <a href="#exitshortstop"><em>ExitShortStop()</em></a>, <a href="#exitshortstoplimit"><em>ExitShortStopLimit()</em></a>.</p>
 <h3 id="usage_24">Usage</h3>
 <pre><code class="cs">ExitShortLimit(double limitPrice)
 ExitShortLimit(int quantity, double limitPrice)
@@ -1493,7 +1477,7 @@ ExitShortLimit(int quantity, double limitPrice, string strategyName, string from
 <pre><code class="cs">// Enter if two EMA crosses SMA and the ADX is rising
 if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
      EnterShort(&quot;EMACrossesSMA&quot;);
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     ExitShortLimit(High[0] + (Ticksize * 2));
 </code></pre>
@@ -1502,7 +1486,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h3 id="description_26">Description</h3>
 <p>Exit short stop creates a buy-to-cover stop order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See [<em>ExitShort()</em>], [<em>ExitShortLimit()</em>], [<em>ExitShortStop()</em>], [<em>ExitShortStopLimit()</em>].</p>
+<p>See <a href="#exitshort"><em>ExitShort()</em></a>, <a href="#exitshortlimit"><em>ExitShortLimit()</em></a>, <a href="#exitshortstop"><em>ExitShortStop()</em></a>, <a href="#exitshortstoplimit"><em>ExitShortStopLimit()</em></a>.</p>
 <h3 id="usage_25">Usage</h3>
 <pre><code class="cs">ExitShortStop(int quantity, double stopPrice)
 ExitShortStop(double stopPrice, string fromEntry signal)
@@ -1555,7 +1539,7 @@ ExitShortStop(int quantity, double stopPrice, string strategyName, string fromEn
 <pre><code class="cs">/// Enter if two EMA crosses SMA and the ADX is rising
 if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
      EnterShort(&quot;EMACrossesSMA&quot;);
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     ExitShortStop(High[0] + (Ticksize * 2));
 </code></pre>
@@ -1564,7 +1548,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h3 id="description_27">Description</h3>
 <p>Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
 If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See [<em>ExitLong()</em>], [<em>ExitLongLimit()</em>], [<em>ExitLongStop()</em>], [<em>ExitLongStopLimit()</em>].</p>
+<p>See <a href="#exitlong"><em>ExitLong()</em></a>, <a href="#exitlonglimit"><em>ExitLongLimit()</em></a>, <a href="#exitlongstop"><em>ExitLongStop()</em></a>, <a href="#exitstoplimit"><em>ExitLongStopLimit()</em></a>.</p>
 <h3 id="usage_26">Usage</h3>
 <pre><code class="cs">ExitShortStopLimit(double limitPrice, double stopPrice)
 ExitShortStopLimit(int quantity, double limitPrice, double stopPrice)
@@ -1622,7 +1606,7 @@ ExitShortStopLimit(int quantity, double limitPrice, double stopPrice, string str
 <pre><code class="cs">/// Enter if two EMA crosses SMA and the ADX is rising
 if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; Rising(ADX(20)))
      EnterShort(&quot;EMACrossesSMA&quot;);
-// Close 
+// Close
 if (CrossAbove(EMA(15), SMA(50), 2))
     ExitShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
 </code></pre>
@@ -1630,7 +1614,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h2 id="getaccountvalue">GetAccountValue()</h2>
 <h3 id="description_28">Description</h3>
 <p>Get account value outputs information regarding the account for which the current strategy is being carried out.</p>
-<p>See [<em>GetProfitLoss()</em>].</p>
+<p>See <a href="#getprofitloss"><em>GetProfitLoss()</em></a>.</p>
 <h3 id="usage_27">Usage</h3>
 <pre><code class="cs">GetAccountValue(AccountItem accountItem)
 </code></pre>
@@ -1651,7 +1635,7 @@ Print(&quot;The current P/L already realized is &quot; + GetAccountValue(Account
 <h2 id="getprofitloss">GetProfitLoss()</h2>
 <h3 id="description_29">Description</h3>
 <p>Get profit loss outputs the currently unrealized profit or loss for a running position.</p>
-<p>See [<em>GetAccountValue()</em>].</p>
+<p>See <a href="#getaccountvalue"><em>GetAccountValue()</em></a>.</p>
 <h3 id="usage_28">Usage</h3>
 <pre><code class="cs">GetProfitLoss(int pLType);
 </code></pre>
@@ -1660,7 +1644,7 @@ Print(&quot;The current P/L already realized is &quot; + GetAccountValue(Account
 <p>Potential values for the P/L type are:</p>
 <p>0 – Amount: P/L as a currency amount</p>
 <p>1 – Percent: P/L in percent</p>
-<p>2 – Risk: P/L in Van Tharp R-multiples ([<em>http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp</em>])</p>
+<p>2 – Risk: P/L in Van Tharp R-multiples <a href="http://www.vantharp.com/tharp-concepts/risk-and-r-multiples.asp"><em>vantharp.com</em></a></p>
 <p>3 – P/L in ticks</p>
 <h3 id="return-value_17">Return Value</h3>
 <p>A double value for the unrealized profit or loss</p>
@@ -1675,7 +1659,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <h2 id="getprofitlossamount">GetProfitLossAmount()</h2>
 <h3 id="description_31">Description</h3>
 <p>GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.</p>
-<p>See [<em>GetAccountValue()</em>].</p>
+<p>See <a href="#getaccountvalue"><em>GetAccountValue()</em></a>.</p>
 <h3 id="usage_29">Usage</h3>
 <pre><code class="cs">GetProfitLossAmount(double profitLoss);
 </code></pre>
@@ -1691,7 +1675,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <h2 id="getprofitlossrisk">GetProfitLossRisk()</h2>
 <h3 id="description_32">Description</h3>
 <p>GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.</p>
-<p>See [<em>GetAccountValue()</em>].</p>
+<p>See <a href="#getaccountvalue"><em>GetAccountValue()</em></a>.</p>
 <h3 id="usage_30">Usage</h3>
 <pre><code class="cs">GetProfitLossRisk();
 </code></pre>
@@ -1707,7 +1691,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <h2 id="isautomated">IsAutomated</h2>
 <h3 id="description_33">Description</h3>
 <p>IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the <a href="#initialize"><em>Initialize()</em></a> method.</p>
-<p>If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[<em>ConfirmOrder()</em>].</p>
+<p>If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.<a href="#confirmorder"><em>ConfirmOrder()</em></a>.</p>
 <h3 id="parameter_30">Parameter</h3>
 <p>Bool value</p>
 <h3 id="example_32">Example</h3>
@@ -1723,8 +1707,8 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <p>The individual properties are:</p>
 <ul>
 <li>
-<p><strong> Action
-    </strong>One of four possible positions in the market:**</p>
+<p>Action
+One of four possible positions in the market:</p>
 <ul>
 <li>OrderAction.Buy</li>
 <li>OrderAction.BuyToCover</li>
@@ -1823,7 +1807,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 </li>
 </ul>
 <h2 id="marketposition">MarketPosition</h2>
-<p>See [<em>Position.MarketPosition</em>].</p>
+<p>See <a href="#marketposition"><em>Position.MarketPosition</em></a>.</p>
 <h2 id="performance">Performance</h2>
 <h3 id="description_35">Description</h3>
 <p>Performance is an object containing information regarding all trades that have been generated by a strategy.</p>
@@ -1833,23 +1817,23 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 <ul>
 <li>
 <p><strong>Performance.AllTrades</strong>
-    A [<em>Trade</em>] collection object containing all trades generated by a strategy.</p>
+    A <a href="#trade"><em>Trade</em></a> collection object containing all trades generated by a strategy.</p>
 </li>
 <li>
 <p><strong>Performance.LongTrades</strong>
-    A [<em>Trade</em>] collection object containing all long trades generated by a strategy.</p>
+    A <a href="#trade"><em>Trade</em></a> collection object containing all long trades generated by a strategy.</p>
 </li>
 <li>
 <p><strong>Performance.ShortTrades</strong>
-    A [<em>Trade</em>] collection object containing all short trades generated by a strategy.</p>
+    A <a href="#trade"><em>Trade</em></a> collection object containing all short trades generated by a strategy.</p>
 </li>
 <li>
 <p><strong>Performance.WinningTrades</strong>
-    A [<em>Trade</em>] collection object containing all profitable trades generated by a strategy.</p>
+    A <a href="#trade"><em>Trade</em></a> collection object containing all profitable trades generated by a strategy.</p>
 </li>
 <li>
 <p><strong>Performance.LosingTrades</strong>
-    A [<em>Trade</em>] collection object containing all loss trades generated by a strategy.</p>
+    A <a href="#trade"><em>Trade</em></a> collection object containing all loss trades generated by a strategy.</p>
 </li>
 </ul>
 <h3 id="example_33">Example</h3>
@@ -1898,7 +1882,7 @@ Print(&quot;Result: &quot; + Account.RealizedProfitLoss + &quot; &quot; + Accoun
 <li>
 <p><strong>Position.OpenProfitLoss</strong>
     The currently not yet realized profit or loss.
-    See [<em>GetProfitLoss()</em>].</p>
+    See <a href="#getprofitloss"><em>GetProfitLoss()</em></a>.</p>
 </li>
 <li>
 <p><strong>Position.ProfitCurrency</strong>
@@ -1933,12 +1917,12 @@ Print(&quot;Pieces &quot; + Position.Quantity);
 </code></pre>
 
 <h2 id="quantity">Quantity</h2>
-<p>See [<em>Position.Quantity</em>][<em>Position.MarketPosition</em>].</p>
+<p>See <a href="#quantity"><em>Position.Quantity</em></a>, <a href="#marketposition"><em>Position.MarketPosition</em></a>.</p>
 <h2 id="setprofittarget">SetProfitTarget()</h2>
 <h3 id="description_37">Description</h3>
 <p>Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetProfitTarget() with the Initialize() method.</p>
-<p>See [<em>SetStopLoss()</em>], [<em>SetTrailStop()</em>].</p>
+<p>See <a href="#setstoploss"><em>SetStopLoss()</em></a>, <a href="#settrailstop"><em>SetTrailStop()</em></a>.</p>
 <h3 id="usage_31">Usage</h3>
 <pre><code class="cs">SetProfitTarget(double currency)
 SetProfitTarget(CalculationMode mode, double value)
@@ -1963,15 +1947,15 @@ SetProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 <td>Possible values are:</td>
 </tr>
 <tr>
-<td>- CalculationMode.Percent (display in percent)</td>
+<td>-   CalculationMode.Percent (display in percent)</td>
 <td></td>
 </tr>
 <tr>
-<td>- CalculationMode.Price (display as price value)</td>
+<td>-   CalculationMode.Price (display as price value)</td>
 <td></td>
 </tr>
 <tr>
-<td>- CalculationMode.Ticks (display in ticks or pips)</td>
+<td>-   CalculationMode.Ticks (display in ticks or pips)</td>
 <td></td>
 </tr>
 <tr>
@@ -1996,7 +1980,7 @@ SetProfitTarget(CalculationMode.Ticks, 20);
 <h3 id="description_38">Description</h3>
 <p>Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.</p>
 <p>If the stop loss is static, then SetStopLoss() can be defined with the Initialize() method.</p>
-<p>See [<em>SetProfitTarget()</em>], [<em>SetTrailStop()</em>].</p>
+<p>See <a href="#setprofittarget"><em>SetProfitTarget()</em></a>, <a href="#settrailstop"><em>SetTrailStop()</em></a>.</p>
 <h3 id="usage_32">Usage</h3>
 <pre><code class="cs">SetStopLoss(double currency)
 SetStopLoss(double currency, bool simulated)
@@ -2022,15 +2006,15 @@ SetStopLoss(string fromEntry signal, CalculationMode mode, double value, bool si
 <td>Potential values can be:</td>
 </tr>
 <tr>
-<td>- CalculationMode.Percent (display in percent)</td>
+<td>-   CalculationMode.Percent (display in percent)</td>
 <td></td>
 </tr>
 <tr>
-<td>- CalculationMode.Price (display as price value)</td>
+<td>-   CalculationMode.Price (display as price value)</td>
 <td></td>
 </tr>
 <tr>
-<td>- CalculationMode.Ticks (display in ticks or pips)</td>
+<td>-   CalculationMode.Ticks (display in ticks or pips)</td>
 <td></td>
 </tr>
 <tr>
@@ -2060,7 +2044,7 @@ SetStopLoss(&quot;MACDEntry&quot;, CalculationMode.Ticks, 15, true);
 <p>Set trail stop creates a trail stop order after an entry order is generated. Its purpose is to protect you from losses, and after reaching break-even, to protect your gains.</p>
 <p>The order is sent directly to the broker and becomes effective immediately.</p>
 <p>If the stop loss price and the offset value are static, you can define SetTrailStop() with the Initialize() method.</p>
-<p>If you use SetTrailStop() within the [<em>OnBarUpdate()</em>] method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.</p>
+<p>If you use SetTrailStop() within the <a href="#onbarupdate"><em>OnBarUpdate()</em></a> method, you must make sure that the parameters are readjusted to the initial value, otherwise the most recently used settings will be used for the new position.</p>
 <p><strong>Functionality:</strong></p>
 <p>Assuming that you have SetTrailStop(CalculationMode.Ticks, 30) selected:</p>
 <p>In a long position, the stop will be 30 ticks from the previously reached high. If the market makes a new high, the stop will be adjusted. However, the stop will no longer be moved downwards.</p>
@@ -2072,7 +2056,7 @@ SetStopLoss(&quot;MACDEntry&quot;, CalculationMode.Ticks, 15, true);
 <p>If a SetProfitTarget() is used in addition to a SetTrailStop(), then both orders will be automatically linked to form an OCO order.</p>
 <p>It is always a stop market order that is generated, and not a stop limit order.</p>
 <p>If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.</p>
-<p>See [<em>SetStopLoss()</em>], [<em>SetProfitTarget()</em>].</p>
+<p>See <a href="#setstoploss"><em>SetStopLoss()</em></a>, <a href="#setprofittarget"><em>SetProfitTarget()</em></a>.</p>
 <h3 id="usage_33">Usage</h3>
 <pre><code class="cs">SetTrailStop(double currency)
 SetTrailStop(double currency, bool simulated)
@@ -2098,11 +2082,11 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 <td>Possible values are:</td>
 </tr>
 <tr>
-<td>- CalculationMode.Percent</td>
+<td>-   CalculationMode.Percent</td>
 <td></td>
 </tr>
 <tr>
-<td>- CalculationMode.Ticks</td>
+<td>-   CalculationMode.Ticks</td>
 <td></td>
 </tr>
 <tr>
@@ -2130,7 +2114,7 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 <h2 id="submitorder">SubmitOrder()</h2>
 <h3 id="description_40">Description</h3>
 <p>Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.</p>
-<p>See [<em>OnOrderUpdate()</em>], [<em>OnExecution()</em>].</p>
+<p>See <a href="#onorderupdate"><em>OnOrderUpdate()</em></a>, <a href="#onexecution"><em>OnExecution()</em></a>.</p>
 <h3 id="usage_34">Usage</h3>
 <pre><code class="cs">SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string strategyName)
 </code></pre>
@@ -2146,15 +2130,7 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 <tbody>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For multi-bar strategies.</td>
-</tr>
-<tr>
-<td>Index of the data series for which the order is to be executed.</td>
-<td></td>
-</tr>
-<tr>
-<td>See BarsInProgress.</td>
-<td></td>
+<td>For multi-bar strategies. Index of the data series for which the order is to be executed. See BarsInProgress.</td>
 </tr>
 <tr>
 <td>orderAction</td>
@@ -2162,28 +2138,26 @@ SetTrailStop(string fromEntry signal, CalculationMode mode, double value, bool s
 </tr>
 </tbody>
 </table>
-<pre><code>                   OrderAction.Buy                                                     
-                   Buy order for a long entry
-
-                   OrderAction.Sell                                                    
-                   Sell order for closing a long position
-
-                   OrderAction.SellShort                                               
-                   Sell order for a short entry
-
-                   OrderAction.BuyToCover                                              
-                   Buy order for closing a short position                              |
-</code></pre>
-<p>| orderType           | Possible values:                                                 <br />
-                       OrderType.Limit                                                   <br />
-                       OrderType.Market                                                  <br />
-                       OrderType.Stop                                                    <br />
-                       OrderType.StopLimit                                                 |
+<ul>
+<li>
+<p>OrderAction.Buy: Buy order for a long entry                                          </p>
+</li>
+<li>
+<p>OrderAction.Sell: Sell order for closing a long position                              </p>
+</li>
+<li>
+<p>OrderAction.SellShort: Sell order for a short entry                                        </p>
+</li>
+<li>
+<p>OrderAction.BuyToCover: Buy order for closing a short position                              |
+| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                                 |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
 | ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
 | strategyName          | An unambiguous signal name (string)                                |</p>
+</li>
+</ul>
 <h3 id="return-value_20">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_38">Example</h3>
@@ -2378,7 +2352,7 @@ TraceOrders = true;
 <li>all winning trades</li>
 <li>all losing trades</li>
 </ul>
-<p>See [<em>Performance</em>].</p>
+<p>See <a href="#performance"><em>Performance</em></a>.</p>
 <p>The individual factors are:</p>
 <ul>
 <li><strong>AvgEtd</strong>
