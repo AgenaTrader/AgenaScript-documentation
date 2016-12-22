@@ -466,7 +466,7 @@ If this property  used outside of OnCalculate (), then a corresponding test shou
 
 ### Example
 ```cs
-Print("Die Bars sind Eod: " + Bars.IsEod);
+Print("The bars are EOD: " + Bars.IsEod);
 ```
 ## Bars.IsIntraday
 ### Description
@@ -506,10 +506,10 @@ Type bool
 Bars.IsNtb
 
 ### More Information
-[*OnCalculate()*](#oncalculate) property can be used without having to test for null reference first. As soon as the method OnCalculate () is called by AgenaScript, there is always a bar object. If this property is used outside of OnCalculate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
+[*OnCalculate()*](#oncalculate) property can be used without having to test for null reference first. As soon as the method OnCalculate() is called by AgenaScript, there is always a bar object. If this property is used outside of OnCalculate(), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).
 ### Example
 ```cs
-Print("Die angezeigten Bars sind Ntb: " + Bars.IsNtb);
+Print("The bars are Ntb: " + Bars.IsNtb);
 ```
 
 
