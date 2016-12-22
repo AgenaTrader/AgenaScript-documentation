@@ -1,28 +1,27 @@
 
 #Events
-
 AgenaTrader is an *event-oriented* application by definition.
 
 Programming in AgenaTrader using the various application programming interface (*API*) methods is based initially on the *Overwriting* of routines predefined for event handling.
 
 The following methods can be used and therefore overwritten:
 
--   [*OnBarUpdate()*](#onbarupdate)
+-   [*OnCalculate()*](#oncalculate)
 -   [*OnBrokerConnect()*](#onbrokerconnect)
 -   [*OnBrokerDisconnect()*](#onbrokerdisconnect)
--   [*ChartPanelMouseMove()*](#chartpanelmousemove)
+-   [*OnChartPanelMouseMove()*](#onchartpanelmousemove)
 -   [*OnChartPanelMouseDown()*](#onchartpanelmousedown)
--   [*OnExecution()*](#onexecution)
--   [*OnMarketData()*](#onmarketdata)
--   [*OnMarketDepth()*](#onmarketdepth)
--   [*OnOrderUpdate()*](#onorderupdate)
--   [*OnStartUp()*](#onstartop)
--   [*OnTermination()*](#ontermination)
+-   [*OnOrderExecution()*](#onorderexecution)
+-   [*OnLevel1()*](#onlevel1)
+-   [*OnLevel2()*](#onlevel2)
+-   [*OnOrderChanged()*](#onorderupdate)
+-   [*OnStart()*](#onstartop)
+-   [*OnDispose()*](#ondispose)
 
-## OnBarUpdate()
+## OnCalculate()
 ### Description
-The OnBarUpdate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnBarClose*](#calculateonbarclose), this will happen upon every incoming tick or when the bar has completed/closed.
-OnBarUpdate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
+The OnCalculate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnClosedBar*](#CalculateOnClosedBar), this will happen upon every incoming tick or when the bar has completed/closed.
+OnCalculate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.
 
 **Caution:**
@@ -38,19 +37,19 @@ none
 
 ### Usage
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 ```
 
 ### Example
 ```cs
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-    Print("Calling of OnBarUpdate for the bar number " + CurrentBar + " from " +Time[0]);
+    Print("Calling of OnCalculate for the bar number " + ProcessingBarIndex + " from " +Time[0]);
 }
 ```
 ## OnBrokerConnect()
 ### Description
-OnBrokerConnect () method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect (), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.
+OnBrokerConnect() method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect(), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.
 
 More information can be found here: [*Events*](#events).
 
@@ -73,7 +72,7 @@ private IOrder _trailingStop = null;
 
 protected override void OnBrokerConnect()
 {
-   if (Trade != null && Trade.MarketPosition != PositionType.Flat)
+   if (Trade != null && Trade.PositionType != PositionType.Flat)
    {
        _takeProfit = Orders.FirstOrDefault(o => o.Name == this.GetType().Name && o.OrderType ==OrderType.Limit);
        _trailingStop = Orders.FirstOrDefault(o => o.Name == this.GetType().Name && o.OrderType ==OrderType.Stop);
@@ -104,19 +103,19 @@ protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
 protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
 {
    if (e.Connected)
-       Print("Die Verbindung zum Broker wird getrennt");
+       Print("The connection to the broker will be disconnected.");
    else
-       Print("Die Verbindung zum Broker wurde getrennt");
+       Print("The connection to the broker was disconnected.");
 }
 ```
 
 
-## ChartPanelMouseMove()
+## OnChartPanelMouseMove()
 ### Description
-In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the ChartControl.ChartPanelMouseMove event.
+In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the Chart.ChartPanelMouseMove event.
 
 ### Attention!
-It is important to remove the EventHandler from the OnTermination() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
+It is important to remove the EventHandler from the OnDispose() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
 
 ### Example
 ```cs
@@ -138,40 +137,39 @@ namespace AgenaTrader.UserCode
 {
     public class ChartPanelMouseMove : UserIndicator
     {
-        protected override void Initialize()
+        protected override void OnInit()
         {
-            Overlay = true;
+            IsOverlay = true;
         }
 
-        protected override void OnStartUp()
+        protected override void OnStart()
         {
             // Add event listener
-            if (ChartControl != null)
-                ChartControl.ChartPanelMouseMove += OnChartPanelMouseMove;
+            if (Chart != null)
+                Chart.ChartPanelMouseMove += OnChartPanelMouseMove;
         }
 
-        protected override void OnTermination()
+        protected override void OnDispose()
         {
             // Remove event listener
-            if (ChartControl != null)
-                ChartControl.ChartPanelMouseMove -= OnChartPanelMouseMove;
+            if (Chart != null)
+                Chart.ChartPanelMouseMove -= OnChartPanelMouseMove;
         }
 
         private void OnChartPanelMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            Print("X = {0}, Y = {1}", ChartControl.GetDateTimeByX(e.X), ChartControl.GetPriceByY(e.Y));
+            Print("X = {0}, Y = {1}", Chart.GetDateTimeByX(e.X), Chart.GetPriceByY(e.Y));
         }
     }
 }
-
 ```
 
 ## OnChartPanelMouseDown()
 ### Description
-In an indicator, or strategy, the click event of the mouse can be processed. For this, it is necessary to program an EventHandler as a method and add this method to the ChartControl.ChartPanelMouseDown event.
+In an indicator, or strategy, the click event of the mouse can be processed. For this, it is necessary to program an EventHandler as a method and add this method to the Chart.ChartPanelMouseDown event.
 
 ### Attention!
-It is important to remove the EventHandler from the OnTermination() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
+It is important to remove the EventHandler from the OnDispose() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.
 
 ### Example
 ```cs
@@ -193,41 +191,41 @@ namespace AgenaTrader.UserCode
 {
        public class ChartPanelMouseDown : UserIndicator
        {
-               protected override void Initialize()
+               protected override void OnInit()
                {
-                       Overlay = true;
+                       IsOverlay = true;
                }
 
-               protected override void OnStartUp()
+               protected override void OnStart()
                {
                        // Add event listener
-                       if (ChartControl != null)
-                               ChartControl.ChartPanelMouseDown += OnChartPanelMouseDown;
+                       if (Chart != null)
+                               Chart.ChartPanelMouseDown += OnChartPanelMouseDown;
                }
 
 
-               protected override void OnTermination()
+               protected override void OnDispose()
                {
                        // Remove event listener
-                       if (ChartControl != null)
-                               ChartControl.ChartPanelMouseDown -= OnChartPanelMouseDown;
+                       if (Chart != null)
+                               Chart.ChartPanelMouseDown -= OnChartPanelMouseDown;
                }
 
 
                private void OnChartPanelMouseDown(object sender,System.Windows.Forms.MouseEventArgs e)
                {
-                       Print("X = {0}, Y = {1}", ChartControl.GetDateTimeByX(e.X),ChartControl.GetPriceByY(e.Y));
+                       Print("X = {0}, Y = {1}", Chart.GetDateTimeByX(e.X),Chart.GetPriceByY(e.Y));
                }
        }
 }
 ```
 
-## OnExecution()
+## OnOrderExecution()
 ### Description
-The OnExecution() method is called up when an order is executed (filled).
+The OnOrderExecution() method is called up when an order is executed (filled).
 The status of a strategy can be changed by a strategy-managed order. This status change can be initiated by the changing of a volume, price or the status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for all events.
 
-OnExecution() will always be executed AFTER [*OnOrderUpdate()*](#OnOrderUpdate).
+OnOrderExecution() will always be executed AFTER [*OnOrderChanged()*](#onorderchanged).
 
 More information can be found here: [*Events*](#events).
 
@@ -239,18 +237,18 @@ none
 
 ### Usage
 ```cs
-protected override void OnExecution(IExecution execution)
+protected override void OnOrderExecution(IExecution execution)
 ```
 
 ### Example
 ```cs
 private IOrder entry = null;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-	if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-        	entry = EnterLong("EMACrossesSMA");
+	if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+        	entry = OpenLong("EMACrossesSMA");
 }
-protected override void OnExecution(IExecution execution)
+protected override void OnOrderExecution(IExecution execution)
 {
     // Example
     if (entry != null && execution.Order == entry)
@@ -261,24 +259,24 @@ protected override void OnExecution(IExecution execution)
 }
 ```
 
-## OnMarketData()
+## OnLevel1()
 ### Description
-The OnMarketData() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
-In a multibar indicator, the BarsInProgress method identifies the data series that was used for an information request for OnMarketData().
-OnMarketData() will not be called up for historical data.
+The OnLevel1() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
+In a multibar indicator, the BarsInCalculation method identifies the data series that was used for an information request for OnLevel1().
+OnLevel1() will not be called up for historical data.
 More information can be found here: [*Events*](#events).
 
 **Notes regarding data from Yahoo (YFeed)**
 
 The field "LastPrice" equals – as usual – either the bid price or the ask price, depending on the last revenue turnover.
 
-The „MarketDataType“ field always equals the „last" value
+The MarketDataType" field always equals the "last" value
 
 The fields "Volume", "BidSize" and "AskSize" are always 0.
 
 ### Usage
 ```cs
-protected override void OnMarketData(MarketDataEventArgs e)
+protected override void OnLevel1(Level1Args e)
 ```
 
 ### Return Value
@@ -286,13 +284,13 @@ none
 
 ### Parameter
 ```cs
-[*MarketDataEventArgs*] e
+[*Level1Args*] e
 ```
 
 
 ### Example
 ```cs
-protected override void OnMarketData(MarketDataEventArgs e)
+protected override void OnLevel1(Level1Args e)
 {
     Print("AskPrice "+e.AskPrice);
     Print("AskSize "+e.AskSize);
@@ -307,42 +305,42 @@ protected override void OnMarketData(MarketDataEventArgs e)
 }
 ```
 
-## OnMarketDepth()
+## OnLevel2()
 ### Description
-The OnMarketDepth() method is called up whenever there is a change in the level 2 data (market depth).
-In a multibar indicator, the BarsInProgress method identifies the data series for which the OnMarketDepth() method is called up.
-OnMarketDepth is not called up for historical data.
+The OnLevel2() method is called up whenever there is a change in the level 2 data (market depth).
+In a multibar indicator, the BarsInCalculation method identifies the data series for which the OnLevel2() method is called up.
+OnLevel2 is not called up for historical data.
 
 More information can be found here: [*Events*](#events).
 
 ### Usage
 ```cs
-protected override void OnMarketDepth(MarketDepthEventArgs e)
+protected override void OnLevel2(Level2Args e)
 ```
 
 ### Return Value
 none
 
 ### Parameter
-An object from *MarketDepthEventArgs*
+An object from *Level2Args*
 
 ### Example
 ```cs
-protected override void OnMarketDepth(MarketDepthEventArgs e)
+protected override void OnLevel2(Level2Args e)
 {
     // Current Bit-Price
     if (e.MarketDataType == MarketDataType.Bit)
-    	Print("The current bit is" + e.Price );
+    	Print("The current bit is " + e.Price );
 }
 ```
 
-## OnOrderUpdate()
+## OnOrderChanged()
 ### Description
-The OnOrderUpdate() method is called up whenever the status is changed by a strategy-managed order.
+The OnOrderChanged() method is called up whenever the status is changed by a strategy-managed order.
 A status change can therefore occur due to a change in the volume, price or status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for the relevant events.
 
 **Important note:**
-**If a strategy is to be controlled by order executions, we highly recommend that you use OnExecution() instead of OnOrderUpdate(). Otherwise there may be problems with partial executions.**
+**If a strategy is to be controlled by order executions, we highly recommend that you use OnOrderExecution() instead of OnOrderChanged(). Otherwise there may be problems with partial executions.**
 
 More information can be found here: [*Events*](#events).
 
@@ -354,17 +352,17 @@ None
 
 ### Usage
 ```cs
-protected override void OnOrderUpdate(IOrder order)
+protected override void OnOrderChanged(IOrder order)
 ```
 
 ### Example
 ```cs
 private IOrder entry = null;
-protected override void OnBarUpdate()
+protected override void OnCalculate()
 {
-    if (CrossAbove(EMA(14), SMA(50), 1) && Rising(ADX(20)))
-        entry = EnterLong("EMACrossesSMA");
-		
+    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+        entry = OpenLong("EMACrossesSMA");
+
     if (entry != null && entry == order)
     {
         if (order.OrderState == OrderState.Filled)
@@ -374,18 +372,18 @@ protected override void OnBarUpdate()
         }
     }
 }
-protected override void OnOrderUpdate(IOrder order)
+protected override void OnOrderChanged(IOrder order)
 {
 
 }
 ```
 
-## OnStartUp()
+## OnStart()
 ### Description
-The OnStartUp() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
-OnStartUp() is only called up once at the beginning of the script, after [*Initialize()*](#initialize) and before [*OnBarUpdate()*](#onbarupdate) are called up.
+The OnStart() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
+OnStart() is only called up once at the beginning of the script, after [*OnInit()*](#oninit) and before [*OnCalculate()*](#oncalculate) are called up.
 
-See [*OnTermination()*](#ontermination).
+See [*OnDispose()*](#ondispose).
 
 More information can be found here: [*Events*](#events).
 
@@ -397,15 +395,15 @@ none
 
 ### Usage
 ```cs
-protected override void OnStartUp()
+protected override void OnStart()
 ```
 
 ### Example
 ```cs
 private myForm Window;
-protected override void OnStartUp()
+protected override void OnStart()
 {
-    if (ChartControl != null)
+    if (Chart != null)
     {
     Window = new myForm();
     Window.Show();
@@ -413,11 +411,11 @@ protected override void OnStartUp()
 }
 ```
 
-## OnTermination()
+## OnDispose()
 ### Description
-The OnTermination() method can also be overridden in order to once again free up all the resources used in the script.
+The OnDispose() method can also be overridden in order to once again free up all the resources used in the script.
 
-See [*Initialize()*](#Initialize) and [*OnStartUp()*](#OnStartUp).
+See [*OnInit()*](#oninit) and [*OnStart()*](#onstart).
 
 More information can be found here: [*Events*](#events).
 
@@ -429,7 +427,7 @@ none
 
 ### Usage
 ```cs
-protected override void OnTermination()
+protected override void OnDispose()
 ```
 
 ### More Information
@@ -438,7 +436,7 @@ protected override void OnTermination()
 
 ### Example
 ```cs
-protected override void OnTermination()
+protected override void OnDispose()
 {
     if (Window != null)
     {
