@@ -295,7 +295,7 @@ A drawing object of the type IEllipse (interface)
 | endY         | y-value for the end of the ellipse                                                      |
 | color        | Border color of the drawing object                                                      |
 | areaColor    | Fill color of the drawing object                                                        |
-| areaOpacity  | Transparency of the fill color value between 0 and 10 (0 = completely transparent , 10 = completely opaque) |
+| areaOpacity  | Transparency of the fill color value between 0 and 255 (0 = completely transparent , 255 = completely opaque) |
 
 ### Example
 ```cs
@@ -693,7 +693,7 @@ A drawing object of the type IRectangle (interface)
 | endY         | y-value of the second rectangle corner                                                                 |
 | color        | Color of the drawing object                                                                            |
 | areaColor    | Fill color of the drawing object                                                                       |
-| areaOpacity  | Transparency of the fill color. Value between 0 and 10 (0 = completely transparent, 10 = completely opaque) |
+| areaOpacity  | Transparency of the fill color. Value between 0 and 255 (0 = completely transparent, 255 = completely opaque) |
 
 ### Example
 ```cs
@@ -729,7 +729,7 @@ A drawing object of the type IRegion (interface)
 | y                | Any double value                                                                  |
 | outlineColor     | Color for the border                                                              |
 | areaColor        | Fill color for the area                                                           |
-| areaOpacity      | Transparency of the fill color. Value between 0 and 10 (0 = completely transparent, 10 = completely opaque) |
+| areaOpacity      | Transparency of the fill color. Value between 0 and 255 (0 = completely transparent, 255 = completely opaque) |
 
 ### Example
 ```cs
@@ -1007,9 +1007,9 @@ A drawing object of the type ITriangle (interface)
 | color          | Color of the drawing object                                                             |
 | areaColor      | Fill color of the drawing object                                                        |
 | areaOpacity    | Transparency of the fill color
-Value between 0 and 10
+Value between 0 and 255
                   0 = completely transparent
-                  10 = completely opaque                                                                   |
+                  255 = completely opaque                                                                   |
 
 ### Example
 ```cs
