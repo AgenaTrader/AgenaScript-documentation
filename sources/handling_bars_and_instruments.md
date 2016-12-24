@@ -26,7 +26,7 @@ Whenever a new bar is added within a session it will become the new index 0; the
 Within a script (a self-created program/algorithm) the [*Close*](#close) will be representative for the array (list) of all closing prices.
 The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.
 
-Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical)(#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
+Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low)(#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical)(#typical), [*Weighted*](#weighted)(#weighted), [*Time*](#time)(#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
 
 **Important tip:**
 
@@ -348,7 +348,7 @@ When using the time signature, the date and time of the supplied bar will be use
 
 When using the time signature, a timestamp is transmitted that corresponds exactly to the beginning or the end time of a session.
 
-More information can be found here [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*]
+More information can be found here [*http://msdn.microsoft.com/de-de/library/system.datetime.aspx*](http://msdn.microsoft.com/de-de/library/system.datetime.aspx)
 
 ### Example
 ```cs
@@ -394,7 +394,7 @@ For reasons of compatibility, the following methods are available.
 -   Bars.GetTime(int index) outputs the timestamp for the bars referenced with &lt;index&gt;.
 -   Bars.GetVolume(int index) outputs the volume for the bars referenced with &lt;index&gt;.
 
-**Caution**: The indexing will deviate from the [*Indexing*], [*Bars*](#bars) normally used.
+**Caution**: The indexing will deviate from the [*Indexing*](#indexing), [*Bars*](#bars) normally used.
 Here, the indexing will begin with 0 for the oldest bar (on the left of the chart) and end with the newest bar on the right of the chart (=Bars.Count-1).
 
 The indexing can easily be recalculated:
@@ -566,7 +566,7 @@ Type DateTime
 Bars.GetSessionBegin
 
 ### More Information
-The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*] .
+The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*](#instrumentexchange) .
 
 ![Bars.CurrentSessionBeginTime](./media/image3.png)
 
@@ -615,7 +615,7 @@ Type DateTime
 Bars.GetSessionEnd
 
 ### More Information
-The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*] function.
+The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrumentexchange) function.
 
 ![Bars.CurrentSessionEndTime](./media/image4.png)
 
@@ -639,7 +639,7 @@ Type DateTime
 Bars.GetSessionNextBegin
 
 ### More Information
-The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*] function.
+The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*](#instrumentexchange) function.
 
 ![Bars.NextSessionBeginTime](./media/image3.png)
 
@@ -663,7 +663,7 @@ Type DateTime
 Bars.GetSessionNextEnd
 
 ### More Information
-The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*] function.
+The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrumentexchange) function.
 
 ![Bars.NextSessionEndTime](./media/image4.png)
 
@@ -762,7 +762,6 @@ None
 
 ### Usage
 ```cs
-//Usage within a 30 minute chart
 Bars[0].isGrowing;
 ```
 
@@ -778,7 +777,6 @@ None
 
 ### Usage
 ```cs
-//Usage within a 30 minute chart
 Bars[0].IsFalling;
 ```
 
@@ -793,7 +791,9 @@ None
 None
 
 ### Usage
+```cs
 Bars[0].TailTop;
+```
 
 ## Bars.TailBottom
 ### Description
@@ -813,6 +813,7 @@ Bars[0].TailBottom;
 
 ### Example
 **Print**("The total amount of ticks is " + Bars.TicksCountInTotal);
+
 ## BarsInCalculation
 ### Description
 Indicates if current bar is last in calculation.
@@ -851,7 +852,7 @@ The following are available:
 
 [*High*](#high) [*Highs*](#highs)
 
-[*Low*](#low) [*Lows*](#lows)
+[*Low*](#low)(#low) [*Lows*](#lows)
 
 [*Close*](#close) [*Closes*](#closes)
 
@@ -859,7 +860,7 @@ The following are available:
 
 [*Typical*](#typical)(#Typical) [*Typicals*](#typicals)
 
-[*Weighted*](#weighted) [*Weighteds*](#weighteds)
+[*Weighted*](#weighted)(#weighted) [*Weighteds*](#weighteds)
 
 [*Time*](#time) [*Times*](#times)
 
@@ -869,7 +870,7 @@ The following are available:
 
 ## Open
 ### Description
-Open is a [*DataSeries*], [*Data series*] of the type [*DataSeries*], in which the historical opening prices are saved.
+Open is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical opening prices are saved.
 
 ### Parameter
 BarsAgo Index Value (see [*Bars*](#bars))
@@ -908,7 +909,7 @@ Opens\[2\] The open data series of all bars in a weekly timeframe
 
 Opens\[0\]\[0\] is equivalent to Open\[0\].
 
-In addition, please see [*MultiBars*] for more information.
+In addition, please see [*MultiBars*](#multibars) for more information.
 
 ### Parameter
 barsAgo Index value for the individual bars within the data series (see [*Bars*](#bars))
@@ -928,7 +929,7 @@ See example: [*Multibars*](#multibars).
 
 ## High
 ### Description
-High is a [*DataSeries*] of the type [*DataSeries*], in which the historical high prices are saved.
+High is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical high prices are saved.
 
 ### Parameter
 barsAgo IndexValue (see [*Bars*](#bars))
@@ -954,7 +955,7 @@ Print("SMA(14) Calculated using the high prices: " + Instrument.Round2TickSize(S
 
 ## Highs
 ### Description
-Highs is an array of [*DataSeries*][1] that contains all high data series.
+Highs is an array of \[*DataSeries*\]\[1\] that contains all high data series.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
 
@@ -988,7 +989,7 @@ Please see examples under [*Multibars*](#multibars).
 
 ## Low
 ### Description
-Low is a [*DataSeries*] of the type [*DataSeries*], in which the historical low prices are saved.
+Low is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical low prices are saved.
 
 ### Parameter
 barsAgo IndexValue (see [*Bars*](#bars))
@@ -1014,7 +1015,7 @@ Print("SMA(14) calculated using the high prices: " + Instrument.Round2TickSize(S
 
 ## Lows
 ### Description
-Lows is an array of [*DataSeries*][1] that contains all [*Low*] data series.
+Lows is an array of \[*DataSeries*\]\[1\] that contains all [*Low*](#low) data series.
 
 This array is only of value to indicators or strategies that use data from multiple time units.
 
@@ -1048,7 +1049,7 @@ See example [*Multibars*](#multibars).
 
 ## Close
 ### Description
-Close is a [*DataSeries*] of the type [*DataSeries*], in which the historical closing prices are saved.
+Close is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical closing prices are saved.
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1078,7 +1079,7 @@ Print("SMA(14) calculated using the closing prices: " + Instrument.Round2TickSiz
 
 ## Closes
 ### Description
-Closes is an array of [*DataSeries*][1] that contains all [*Low*] data series.
+Closes is an array of \[*DataSeries*\]\[1\] that contains all [*Low*](#low) data series.
 
 This array is only of importance to indicators or strategies that use data from multiple time units.
 
@@ -1112,11 +1113,11 @@ See example [*Multibars*](#multibars).
 
 ## Median
 ### Description
-Median is a [*DataSeries*] of the type [*DataSeries*], in which the historical median values are saved.
+Median is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical median values are saved.
 
 The median price of a bar is calculated using (high + low) / 2
 
-See [*Typical*](#typical) & [*Weighted*].
+See [*Typical*](#typical) & [*Weighted*](#weighted).
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1131,7 +1132,7 @@ Median[int barsAgo]
 The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
 Further information about median, typical und weighted:
-[*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*]
+[*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*](http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html)
 
 ### Example
 ```cs
@@ -1145,7 +1146,7 @@ Print("SMA(14) calculated using the median prices: " + Instrument.Round2TickSize
 
 ## Medians
 ### Description
-Medians is an array of [*DataSeries*][1] that contains all [*Median*] data series.
+Medians is an array of \[*DataSeries*\]\[1\] that contains all [*Median*](#median) data series.
 
 This array is only of value to indicators or strategies that use data from multiple timeframes.
 
@@ -1181,11 +1182,11 @@ See example in [*Multibars*](#multibars).
 
 ## Typical
 ### Description
-Typical is a *DataSeries* of the type [*DataSeries*], in which the historical typical values are saved.
+Typical is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical typical values are saved.
 
 The typical price of a bar is calculated using (high + low + close) / 3.
 
-See [*Median*] and [*Weighted*].
+See [*Median*](#median) and [*Weighted*](#weighted).
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1199,7 +1200,7 @@ Typical[int barsAgo]
 ### More Information
 The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
-Further information on typical: *https://technicianapp.com/resources/typical-price/*
+Further information on typical: [*https://technicianapp.com/resources/typical-price/*](https://technicianapp.com/resources/typical-price/)
 
 ### Example
 ```cs
@@ -1247,11 +1248,11 @@ See example [*Multibars*](#multibars).
 
 ## Weighted
 ### Description
-Weighted is a [*DataSeries*] of the type [*DataSeries*], in which the historical weighted values are saved.
+Weighted is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical weighted values are saved.
 
 The weighted price of a bar is calculated using the formula (high + low + 2*close) / 4 and then weighted on the closing price.
 
-See also [*Median*] and [*Typical*](#typical).
+See also [*Median*](#median) and [*Typical*](#typical).
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1265,7 +1266,7 @@ Weighted[int barsAgo]
 ### More Information
 The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
-Information regarding weighted: http://www.stock-trading-infocentre.com/pivot-points.html
+Information regarding weighted: [*http://www.stock-trading-infocentre.com/pivot-points.html*](http://www.stock-trading-infocentre.com/pivot-points.html)
 
 ### Example
 ```cs
@@ -1279,7 +1280,7 @@ Print("SMA(14) calculated using the weighted price: " + Instrument.Round2TickSiz
 
 ## Weighteds
 ### Description
-Weighteds is an array of [*DataSeries*][1] that contains all [*Weighted*] data series.
+Weighteds is an array of \[*DataSeries*\]\[1\] that contains all [*Weighted*](#weighted) data series.
 
 The array is only of value for indicators and strategies that use data from multiple timeframes.
 
@@ -1313,7 +1314,7 @@ See example under [*Multibars*](#multibars).
 
 ## Time
 ### Description
-Time is a [*DataSeries*] of the type [*DateTimeSeries*], in which the timestamps of the individual bars are saved.
+Time is a [*DataSeries*](#dataseries) of the type [*DateTimeSeries*](#datatimeseries), in which the timestamps of the individual bars are saved.
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1337,7 +1338,7 @@ Print(Time[5]);
 
 ## Times
 ### Description
-Times is an array of *DataSeries* that contains all [*Time*] data series.
+Times is an array of [*DataSeries*](#dataseries) that contains all [*Time*](#time) data series.
 
 This array is only of value to indicators and strategies that make use of multiple timeframes.
 A new entry is added to the array whenever a new timeframe is added to an indicator or strategy.
@@ -1370,7 +1371,7 @@ See example [*Multibars*](#multibars).
 
 ## Volume
 ### Description
-Volume is a [*DataSeries*] of the type [*DataSeries*], in which the historical volume information is saved.
+Volume is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical volume information is saved.
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1383,7 +1384,7 @@ Volume\[**int** barsAgo\]
 ### More Information
 The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
 
-The value returned by the [*VOL()*] indicator is identical with the volume described here;
+The value returned by the [*VOL()*](#vol) indicator is identical with the volume described here;
 for example, Vol()\[3\] will have the same value as Volume\[3\].
 
 ### Example
@@ -1398,7 +1399,7 @@ Print("SMA(14) calculated using the volume: " + Instrument.Round2TickSize(SMA(Vo
 
 ## Volumes
 ### Description
-Volumes is an array of *DataSeries* that contains all [*Volume*] data series.
+Volumes is an array of [*DataSeries*](#dataseries) that contains all [*Volume*](#volume) data series.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
 
@@ -1585,9 +1586,9 @@ Instrument.Digits
 ### More Information
 Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.
 
-This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*] and [*Instrument.Round2Ticks*][*Instrument.Round2TickSize*].
+This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*](#ticksize) and [*Instrument.Round2Ticks*](instrumentround2ticks), [*Instrument.Round2TickSize*](#instrumentround2ticksize).
 
-More information can be found here: [*Formatting of Numbers*].
+More information can be found here: *Formatting of Numbers*.
 
 ### Example
 ```cs
@@ -1610,7 +1611,7 @@ Instrument.ETF
 ### More Information
 What is an ETF?
 
-Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*]
+Wikipedia: [*http://de.wikipedia.org/wiki/Exchange-traded\_fund*](http://de.wikipedia.org/wiki/Exchange-traded_fund*)
 
 ### Example
 ```cs
@@ -1708,7 +1709,7 @@ Instrument.InstrumentType
 ### More Information
 Potential values are: future, stock, index, currency, option, CFD and unknown.
 
-There is no ETF type. ETFs are considered to be of the type "stock" – see [*Instrument.ETF*].
+There is no ETF type. ETFs are considered to be of the type "stock" – see [*Instrument.ETF*](#instrumentetf).
 
 The instrument type can also be viewed within the Instrument Escort:
 
@@ -1837,9 +1838,9 @@ Instrument.Round2TickSize(double MarketPrice)
 The number of decimal places to which the price is rounded depends on the instrument.
 If, for example, an instrument is a stock, then the rounding will be performed to 2 decimal places. For a Forex instrument, it may be carried out to 4 or 5 decimal places.
 
-See [*TickSize*] and [*Instrument.Digits*].
+See [*TickSize*](#ticksize) and [*Instrument.Digits*](#instrumentdigits).
 
-Example of professional [*Formatting*][*Formatting of Numbers*].
+Example of professional [*Formatting*](#formatting), *Formatting of Numbers*.
 
 ### Example
 ```cs
@@ -1886,16 +1887,16 @@ double
 Instrument.TickSize or simply TickSize
 
 ### More Information
-The keyword [*TickSize*] is equivalent to Instrument.TickSize. Both information requests will produce the same value and are thus interchangeable.
+The keyword [*TickSize*](#ticksize) is equivalent to Instrument.TickSize. Both information requests will produce the same value and are thus interchangeable.
 
 ### Example
 Stock: 0.01
 ES future: 0.25
 EUR/USD: 0.00001
 
-See [*Instrument.PointValue*] and [*Instrument.Digits*].
+See [*Instrument.PointValue*](instrumentpointvalue) and [*Instrument.Digits*](#instrumentdigits).
 
-Examples of professional [*Formatting*][*Formatting of Numbers*].
+Examples of professional [*Formatting*](#formatting), *Formatting of Numbers*.
 
 ### Example
 ```cs
@@ -1937,7 +1938,7 @@ vline.Pen.Width = 3;
 
 ## InSeries
 ### Description
-InSeries is a [*DataSeries*] object in which the input data for an indicator or strategy is stored.
+InSeries is a [*DataSeries*](#dataseries) object in which the input data for an indicator or strategy is stored.
 
 If the indicator is used without any explicit instructions for the input data, then the closing price for the current market prices will be used.
 
@@ -1967,13 +1968,13 @@ Print("The input data for the indicators are " + Input[0]);
 
 ## Lines
 ### Description
-Lines is a collection that contains all [*LevelLine*] objects of an indicator.
+Lines is a collection that contains all [*LevelLine*](#levelline) objects of an indicator.
 
-When a line object is added to the indicator using the [*Add()*] method, this line is automatically added to the "lines" collection.
+When a line object is added to the indicator using the [*Add()*](#add) method, this line is automatically added to the "lines" collection.
 
 The order of the add commands determines how these lines are sorted. The first information request of Add() will create Lines\[0\], the next information request will be Lines\[1\] etc.
 
-See [*Plots*].
+See [*Plots*](#plots).
 
 ### Usage
 ```cs
@@ -2010,7 +2011,7 @@ Lines[0].DashStyle = DashStyle.Solid;
 ### Description
 PlotColors is a collection that contains all color series of all plot objects.
 
-When a plot is added using the [*Add()*] method it automatically creates a color series object and is added to the PlotColors collection.
+When a plot is added using the [*Add()*](#add) method it automatically creates a color series object and is added to the PlotColors collection.
 
 The order of the add commands determines how the plot colors are sorted. The first information request of Add() will create PlotColors\[0\], the following information request will create PlotColors\[1\] etc.
 
@@ -2021,7 +2022,7 @@ PlotColors[int PlotIndex][int barsAgo]
 
 ### More Information
 More information regarding the collection class:
-[*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*]
+[*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*](http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx)
 
 ### Example
 ```cs
@@ -2087,7 +2088,7 @@ When a plot object is added to an indicator using the Add() method, it is also a
 
 The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots\[0\], the following information request will create Plots\[1\] etc.
 
-See [*Lines*].
+See [*Lines*](#lines).
 
 ### Usage
 ```cs
@@ -2131,7 +2132,7 @@ Outputs[int index][int barsAgo]
 The methods known for a collection, Set() Reset() and Count(), are applicable for values.
 
 Information on the class collection:
-[*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*]
+[*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*](http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx)
 
 ### Example
 ```cs
@@ -2193,14 +2194,14 @@ Print(SMA(Closes[2], 14)[0]);
 ```
 
 ### Additional Notes
-When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*], [*Highs*], [*Lows*], [*Closes*], [*Medians*], [*Typicals*], [*Weighteds*], [*Times*] and [*Volumes*]. The indexing will occur in the order of the addition of the new timeframes.
+When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*](#opens), [*Highs*](#highs), [*Lows*](#lows), [*Closes*](#closes), [*Medians*](#medians), [*Typicals*](#typicals), [*Weighteds*](#weighteds), [*Times*](#times) and [*Volumes*](#volumes). The indexing will occur in the order of the addition of the new timeframes.
 Closes\[0\]\[0\] is equivalent to Close\[0\].
 Closes\[1\]\[0\] equals the current closing price for the daily data series
 Closes\[2\]\[0\] equals the current closing price for the weekly data series
 
 "Closes" is, of course, interchangeable with Opens, Highs, Lows etc.
 
-See [*ProcessingBarIndexes*], [*BarsInCalculation*], [*TimeFrames*], [*TimeFrameRequirements*].
+See [*ProcessingBarIndexes*](#processingbarindexes), [*BarsInCalculation*](#barsincalculation), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](timeframerequirements).
 
 Additional syntax methods are available for multibars:
 ```cs
@@ -2215,7 +2216,7 @@ double w = MultiBars.GetBarsItem(TF_Week).Close[0];
 
 ## ProcessingBarIndexes
 ### Description
-ProcessingBarIndexes is an array of int values that contains the number of *[ProcessingBarIndex]s* for each bar.
+ProcessingBarIndexes is an array of int values that contains the number of [*ProcessingBarIndex*](#processingbarindex) for each bar.
 
 This array is only of value for indicators or strategies that use data from multiple timeframes.
 
@@ -2227,7 +2228,7 @@ ProcessingBarIndexes\[0\] Current bar for the primary data series (chart timefra
 ProcessingBarIndexes\[1\] Current bar for the daily bars
 ProcessingBarIndexes\[2\] Current bar for the weekly bars
 
-ProcessingBarIndexes\[0\] is equivalent to [*ProcessingBarIndex*][ProcessingBarIndex].
+ProcessingBarIndexes\[0\] is equivalent to [*ProcessingBarIndex*](#processingbarindex).
 
 Also see [*MultiBars*](#multibars).
 
@@ -2256,7 +2257,7 @@ With **\[TimeFrameRequirements("1 Day", "1 Week")\]** two timeframes will be add
 
 If OnCalculate() is called up by the primary data series, then BarsInCalculation will equal zero. If OnCalculate() is called up by the daily bars, then BarsInCalculation will equal 1. Weekly bars will have a value of 2.
 
-See [*Multibars*](#multibars) and [*ProcessingBarIndexes*].
+See [*Multibars*](#multibars) and [*ProcessingBarIndexes*](#processingbarindexes).
 
 ### Parameter
 none
