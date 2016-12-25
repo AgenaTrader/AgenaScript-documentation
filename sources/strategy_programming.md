@@ -513,9 +513,9 @@ OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | quantity            | Amount of stocks/contracts etc.                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies                             
-                       Index of the data series for which the entry order is to be executed  
-                       See [*BarsInCalculation*](#barsinprogress).                                               |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies
+Index of the data series for which the entry order is to be executed
+See [*BarsInCalculation*](#barsinprogress).     |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -632,11 +632,11 @@ OpenShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantit
 ### Parameter
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                                                                                                          |
-| quantity            | Amount to be ordered                                                                                                                                         |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.                                                                                                                    
-                       Index of the data series for which an entry order is to be placed.                                                                                            
-                       See [*BarsInCalculation*](#barsinprogress).                                                                                                                                       |
+| strategyName          | An unambiguous name      |
+| quantity   | Amount to be ordered       |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.
+Index of the data series for which an entry order is to be placed.
+See [*BarsInCalculation*](#barsinprogress).       |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -1283,7 +1283,7 @@ Possible Methods:
 
 
 ## PositionType
-See [*Position.PositionType*].
+See [*Position.PositionType*](#positionpositiontype).
 
 ## Performance
 ### Description
@@ -1382,14 +1382,14 @@ Print("Pieces " + Position.Quantity);
 ```
 
 ## Quantity
-See [*Position.Quantity*], [*Position.PositionType*].
+See [*Position.Quantity*](#positionquantity), [*Position.PositionType*](#positionpositiontype).
 
 ## SetUpProfitTarget()
 ### Description
 Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetUpProfitTarget() with the OnInit() method.
 
-See [*SetUpStopLoss()*](#setupstoploss), [*SetUpTrailStop()*].
+See [*SetUpStopLoss()*](#setupstoploss), [*SetUpTrailStop()*](#setuptrailstop).
 
 ### Usage
 ```cs
@@ -1424,7 +1424,7 @@ Set stop loss creates a stop loss order after an entry order is placed. The orde
 
 If the stop loss is static, then SetUpStopLoss() can be defined with the OnInit() method.
 
-See [*SetUpProfitTarget()*](#setupprofittarget), [*SetUpTrailStop()*].
+See [*SetUpProfitTarget()*](#setupprofittarget), [*SetUpTrailStop()*](#setuptrailstop).
 
 ### Usage
 ```cs
