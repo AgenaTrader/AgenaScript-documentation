@@ -814,7 +814,7 @@ Bars[0].TailBottom;
 ### Example
 **Print**("The total amount of ticks is " + Bars.TicksCountInTotal);
 
-## BarsInCalculation
+## ProcessingBarSeriesIndex
 ### Description
 Indicates if current bar is last in calculation.
 
@@ -825,7 +825,7 @@ none
 Type bool
 
 ### Usage
-BarsInCalculation
+ProcessingBarSeriesIndex
 
 ### More Information
 used for complicated calculation on a last bar
@@ -1469,7 +1469,7 @@ TimeFrames [int barSeriesIndex]
 
 ### Example
 ```cs
-if (BarsInCalculation == 0 && ProcessingBarIndex == 0)
+if (ProcessingBarSeriesIndex == 0 && ProcessingBarIndex == 0)
 for (int i = BarsArray.Count-1; i >= 0; i--)
 Print("The Indicator " + this.Name + " uses Bars of the Timeframe " + TimeFrames[i]);
 ```
@@ -2201,7 +2201,7 @@ Closes\[2\]\[0\] equals the current closing price for the weekly data series
 
 "Closes" is, of course, interchangeable with Opens, Highs, Lows etc.
 
-See [*ProcessingBarIndexes*](#processingbarindexes), [*BarsInCalculation*](#barsincalculation), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](timeframerequirements).
+See [*ProcessingBarIndexes*](#processingbarindexes), [*ProcessingBarSeriesIndex*](#processingbarseriesindex), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](timeframerequirements).
 
 Additional syntax methods are available for multibars:
 ```cs
@@ -2247,15 +2247,15 @@ for (int i=0; i<ProcessingBarIndexes.Count; i++)
 if (ProcessingBarIndexes[i] < 20) return;
 ```
 
-## BarsInCalculation
+## ProcessingBarSeriesIndex
 ### Description
 Within a multibars script, multiple bars objects are available. The OnCalculate() method
-will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the BarsInCalculation method.
+will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the ProcessingBarSeriesIndex property.
 
-BarsInCalculation is only of value for indicators or strategies that use data from multiple timeframes.
+ProcessingBarSeriesIndex is only of value for indicators or strategies that use data from multiple timeframes.
 With **\[TimeFrameRequirements("1 Day", "1 Week")\]** two timeframes will be added to the primary chart timeframe.
 
-If OnCalculate() is called up by the primary data series, then BarsInCalculation will equal zero. If OnCalculate() is called up by the daily bars, then BarsInCalculation will equal 1. Weekly bars will have a value of 2.
+If OnCalculate() is called up by the primary data series, then ProcessingBarSeriesIndex will equal zero. If OnCalculate() is called up by the daily bars, then ProcessingBarSeriesIndex will equal 1. Weekly bars will have a value of 2.
 
 See [*Multibars*](#multibars) and [*ProcessingBarIndexes*](#processingbarindexes).
 
@@ -2263,7 +2263,7 @@ See [*Multibars*](#multibars) and [*ProcessingBarIndexes*](#processingbarindexes
 none
 
 ### Usage
-BarsInCalculation
+ProcessingBarSeriesIndex
 
 ### More Information
 Within a script that only works with primary timeframes, the value will always equal zero.
@@ -2272,11 +2272,11 @@ Within a script that only works with primary timeframes, the value will always e
 ```cs
 // To demonstrate the methodology
 // set CalculateOnClosedBar=false
-Print(Time[0] + " " + BarsInCalculation);
+Print(Time[0] + " " + ProcessingBarSeriesIndex);
 // Calculate only for the chart timeframe
 protected override void OnCalculate()
 {
-if (BarsInCalculation > 0) return;
+if (ProcessingBarSeriesIndex > 0) return;
 // Logic for the primary data series
 }
 ```
