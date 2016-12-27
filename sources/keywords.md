@@ -1595,16 +1595,16 @@ The setting of CalculateOnClosedBar only affects the primary timeframe (chart ti
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.
 
 ### Usage
-FirstTickOfBarMtf(BarsInCalculation)
+FirstTickOfBarMtf(ProcessingBarSeriesIndex)
 
 ### Parameter
-FirstTickOfBarMtf(BarsInCalculation).
+FirstTickOfBarMtf(ProcessingBarSeriesIndex).
 
-See [*BarsInCalculation*](#barsinprogress).
+See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).
 
 ### Example
 ```cs
-if (FirstTickOfBarMtf(BarsInCalculation))
+if (FirstTickOfBarMtf(ProcessingBarSeriesIndex))
 Print("A new bar has begun.");
 ```
 

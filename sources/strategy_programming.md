@@ -82,7 +82,7 @@ BarsCountFromTradeOpen(int multibarSeriesIndex, string strategyName, int entries
 |                     |                                                                                                           |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | strategyName          | The strategy name (string) that has been used to clearly label the entry within an entry method.            |
-| multibarSeriesIndex | For *[Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*BarsInCalculation*](#barsinprogress), [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index for the data series for which the entry order was executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex), [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | entriesAgo          | Number of entries in the past. A zero indicates the number of bars that have formed after the last entry. |
 
 ### Example
@@ -109,7 +109,7 @@ BarsCountFromTradeClose(int multibarSeriesIndex, string strategyName, int exitsA
 |                     |                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | The Strategy name (string) that has been used to clearly label the exit within the exit method.    |
-| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
 
 ### Example
@@ -350,7 +350,7 @@ OpenLong(int multibarSeriesIndex, int quantity, string strategyName)
 |---------------------|-----------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                           |
 | quantity            | The amount of stocks/contracts                                                                |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -391,7 +391,7 @@ OpenLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|-------------|
 | strategyName          | An unambiguous name |
 | quantity            | Amount of stocks/contracts/etc.  |
-| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -432,7 +432,7 @@ OpenLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, dou
 |---------------------|-------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name    |
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
@@ -473,7 +473,7 @@ OpenLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity
 |--------------|-------------------------|
 | strategyName          | An unambiguous name       |
 | quantity            | Amount of stocks or contracts to be ordered   |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*BarsInCalculation*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 | stopPrice           | A double value for the stop price |
 | limitPrice          | A double value for the limit price |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
@@ -515,7 +515,7 @@ OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
 | quantity            | Amount of stocks/contracts etc.                                      |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies
 Index of the data series for which the entry order is to be executed
-See [*BarsInCalculation*](#barsinprogress).     |
+See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).     |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -554,7 +554,7 @@ OpenShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 |---------------------|-------------------------------------------------|
 | strategyName          | An unambiguous name     |
 | quantity            | Amount to be ordered   |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress).   |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).   |
 | limitPrice          | A double value for the limit price   |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
@@ -592,7 +592,7 @@ OpenShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                                                           |
 | quantity            | Amount to be ordered                                                                                          |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | stopPrice           | A double value for the stop price                                                                             |
 | liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
 
@@ -636,7 +636,7 @@ OpenShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantit
 | quantity   | Amount to be ordered       |
 | multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.
 Index of the data series for which an entry order is to be placed.
-See [*BarsInCalculation*](#barsinprogress).       |
+See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).       |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -745,7 +745,7 @@ CloseLong(int multibarSeriesIndex, int quantity, string strategyName, string fro
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | quantity            | The quantity to be sold                                              |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).   |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).   |
 | fromEntry signal    | The name of the attached entry signal                                |
 
 ### Return Value
@@ -789,7 +789,7 @@ CloseLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the attached entry signal                                                                                                                        |
 | quantity            | Order quantity to be sold                                                                                                                                    |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -833,7 +833,7 @@ CloseLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -879,7 +879,7 @@ CloseLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantit
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | The quantity to be sold                                                                                                                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -926,7 +926,7 @@ CloseShort(int multibarSeriesIndex, int quantity, string strategyName, string fr
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | Quantity            | Order quantity to be bought                                          |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | fromEntry signal    | The name of the associated entry signal                              |
 
 ### Return Value
@@ -971,7 +971,7 @@ CloseShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, 
 | strategyName          | An unambiguous name                                                                                                                                          |
 | fromEntry signal    | The name of the associated entry signal                                                                                                                      |
 | quantity            | Order quantity to be bought                                                                                                                                  |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress).  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -1013,7 +1013,7 @@ CloseShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 | strategyName          | An unambiguous name    |
 | fromEntry signal    | The name of the associated entry signal    |
 | quantity            | Order quantity to be bought    |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | stopPrice           | A double value for the stop price    |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
 
@@ -1057,7 +1057,7 @@ CloseShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quanti
 | strategyName          | An unambiguous name      |
 | fromEntry signal    | The name of the associated entry signal    |
 | quantity            | Order quantity to be bought      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*BarsInCalculation*](#barsinprogress). |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | limitPrice          | A double value for the limit price    |
 | stopPrice           | A double value for the stop price      |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -1533,7 +1533,7 @@ SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderTyp
 |---------------------|--------------------------------------------------------------------|
 | multibarSeriesIndex | For multi-bar strategies.
 Index of the data series for which the order is to be executed.
-See BarsInCalculation.                                                 |
+See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                                                 |
 | orderAction         | Possible values are:
 OrderAction.Buy
 Buy order for a long entry

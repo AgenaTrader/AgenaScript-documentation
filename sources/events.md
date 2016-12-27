@@ -262,7 +262,7 @@ protected override void OnOrderExecution(IExecution execution)
 ## OnLevel1()
 ### Description
 The OnLevel1() method is called up when a change in level 1 data has occurred, meaning whenever there is a change in the bid price, ask price, bid volume, or ask volume, and of course in the last price after a real turnover has occurred.
-In a multibar indicator, the BarsInCalculation method identifies the data series that was used for an information request for OnLevel1().
+In a multibar indicator, the rocessingBarSeriesIndex property identifies the data series that was used for an information request for OnLevel1().
 OnLevel1() will not be called up for historical data.
 More information can be found here: [*Events*](#events).
 
@@ -308,7 +308,7 @@ protected override void OnLevel1(Level1Args e)
 ## OnLevel2()
 ### Description
 The OnLevel2() method is called up whenever there is a change in the level 2 data (market depth).
-In a multibar indicator, the BarsInCalculation method identifies the data series for which the OnLevel2() method is called up.
+In a multibar indicator, the ProcessingBarSeriesIndex property identifies the data series for which the OnLevel2() method is called up.
 OnLevel2 is not called up for historical data.
 
 More information can be found here: [*Events*](#events).

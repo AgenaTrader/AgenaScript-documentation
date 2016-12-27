@@ -26,7 +26,7 @@ Whenever a new bar is added within a session it will become the new index 0; the
 Within a script (a self-created program/algorithm) the [*Close*](#close) will be representative for the array (list) of all closing prices.
 The last closing price is thus *Close \[0\]*; the closing price previous to this will become *Close \[1\]*, the value before that will become *Close \[2\]* and the oldest bar will be *Close \[501\]*. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.
 
-Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low)(#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical)(#typical), [*Weighted*](#weighted)(#weighted), [*Time*](#time)(#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
+Obviously, every bar will not only have a closing value but also a [*High*](#high), [*Low*](#low), [*Open*](#open), [*Median*](#median), [*Typical*](#typical), [*Weighted*](#weighted), [*Time*](#time) and [*Volume*](#volume). Thus, the high of the candle that occurred 10 days ago will be *High \[10\]*, yesterday’s low *Low \[1\]*...
 
 **Important tip:**
 
@@ -54,19 +54,19 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.IsFirstBarInSession*](#barsfirstbarinsession)
 
-[*Bars.GetBar*](#barsgetbar)(#barsgetbar)
+[*Bars.GetBar*](#barsgetbar)
 
-[*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago)
+[*Bars.GetBarsAgo*](#barsgetbarsago)
 
-[*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex)
+[*Bars.GetByIndex*](#barsgetbyindex)
 
-[*Bars.GetBarIndex*](#barsgetbarindex)(#barsgetindex)
+[*Bars.GetBarIndex*](#barsgetbarindex)
 
 [*Bars.GetNextSessionTimeSpan*](#getnextsessiontimespan)
 
 [*Bars.GetSessionBegin*](#getsessionbegin)
 
-[*Bars.GetOpen*](barsgetopen)(#barsgetopen)
+[*Bars.GetOpen*](barsgetopen)
 
 [*Bars.GetHigh*](#barsgethigh)
 
