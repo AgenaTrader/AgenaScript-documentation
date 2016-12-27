@@ -141,7 +141,7 @@
                 
                     <li><a class="toctree-l4" href="#barstailbottom">Bars.TailBottom</a></li>
                 
-                    <li><a class="toctree-l4" href="#barsincalculation">BarsInCalculation</a></li>
+                    <li><a class="toctree-l4" href="#processingbarseriesindex">ProcessingBarSeriesIndex</a></li>
                 
                     <li><a class="toctree-l4" href="#data-series">Data Series</a></li>
                 
@@ -237,7 +237,7 @@
                 
                     <li><a class="toctree-l4" href="#processingbarindexes">ProcessingBarIndexes</a></li>
                 
-                    <li><a class="toctree-l4" href="#barsincalculation_1">BarsInCalculation</a></li>
+                    <li><a class="toctree-l4" href="#processingbarseriesindex_1">ProcessingBarSeriesIndex</a></li>
                 
             
             </ul>
@@ -907,7 +907,7 @@ Bars[0].TailBottom;
 
 <h3 id="example_21">Example</h3>
 <p><strong>Print</strong>("The total amount of ticks is " + Bars.TicksCountInTotal);</p>
-<h2 id="barsincalculation">BarsInCalculation</h2>
+<h2 id="processingbarseriesindex">ProcessingBarSeriesIndex</h2>
 <h3 id="description_27">Description</h3>
 <p>Indicates if current bar is last in calculation.</p>
 <h3 id="parameter_22">Parameter</h3>
@@ -915,7 +915,7 @@ Bars[0].TailBottom;
 <h3 id="return-value_27">Return value</h3>
 <p>Type bool</p>
 <h3 id="usage_26">Usage</h3>
-<p>BarsInCalculation</p>
+<p>ProcessingBarSeriesIndex</p>
 <h3 id="more-information_19">More Information</h3>
 <p>used for complicated calculation on a last bar</p>
 <h3 id="example_22">Example</h3>
@@ -1376,7 +1376,7 @@ TimeFrames [2] <strong>Print</strong>(TimeFrames[2]); // returns "1 Week"</p>
 </code></pre>
 
 <h3 id="example_41">Example</h3>
-<pre><code class="cs">if (BarsInCalculation == 0 &amp;&amp; ProcessingBarIndex == 0)
+<pre><code class="cs">if (ProcessingBarSeriesIndex == 0 &amp;&amp; ProcessingBarIndex == 0)
 for (int i = BarsArray.Count-1; i &gt;= 0; i--)
 Print(&quot;The Indicator &quot; + this.Name + &quot; uses Bars of the Timeframe &quot; + TimeFrames[i]);
 </code></pre>
@@ -1935,7 +1935,7 @@ Closes[0][0] is equivalent to Close[0].
 Closes[1][0] equals the current closing price for the daily data series
 Closes[2][0] equals the current closing price for the weekly data series</p>
 <p>"Closes" is, of course, interchangeable with Opens, Highs, Lows etc.</p>
-<p>See <a href="#processingbarindexes"><em>ProcessingBarIndexes</em></a>, <a href="#barsincalculation"><em>BarsInCalculation</em></a>, <a href="#timeframes"><em>TimeFrames</em></a>, <a href="../timeframerequirements"><em>TimeFrameRequirements</em></a>.</p>
+<p>See <a href="#processingbarindexes"><em>ProcessingBarIndexes</em></a>, <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>, <a href="#timeframes"><em>TimeFrames</em></a>, <a href="../timeframerequirements"><em>TimeFrameRequirements</em></a>.</p>
 <p>Additional syntax methods are available for multibars:</p>
 <pre><code class="cs">// Declare the variable TF_DAY and define it
 private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
@@ -1969,28 +1969,28 @@ for (int i=0; i&lt;ProcessingBarIndexes.Count; i++)
 if (ProcessingBarIndexes[i] &lt; 20) return;
 </code></pre>
 
-<h2 id="barsincalculation_1">BarsInCalculation</h2>
+<h2 id="processingbarseriesindex_1">ProcessingBarSeriesIndex</h2>
 <h3 id="description_72">Description</h3>
 <p>Within a multibars script, multiple bars objects are available. The OnCalculate() method
-will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the BarsInCalculation method.</p>
-<p>BarsInCalculation is only of value for indicators or strategies that use data from multiple timeframes.
+will therefore also be called up for every bar within your script. In order to include/exclude events of specific data series, you can use the ProcessingBarSeriesIndex property.</p>
+<p>ProcessingBarSeriesIndex is only of value for indicators or strategies that use data from multiple timeframes.
 With <strong>[TimeFrameRequirements("1 Day", "1 Week")]</strong> two timeframes will be added to the primary chart timeframe.</p>
-<p>If OnCalculate() is called up by the primary data series, then BarsInCalculation will equal zero. If OnCalculate() is called up by the daily bars, then BarsInCalculation will equal 1. Weekly bars will have a value of 2.</p>
+<p>If OnCalculate() is called up by the primary data series, then ProcessingBarSeriesIndex will equal zero. If OnCalculate() is called up by the daily bars, then ProcessingBarSeriesIndex will equal 1. Weekly bars will have a value of 2.</p>
 <p>See <a href="#multibars"><em>Multibars</em></a> and <a href="#processingbarindexes"><em>ProcessingBarIndexes</em></a>.</p>
 <h3 id="parameter_58">Parameter</h3>
 <p>none</p>
 <h3 id="usage_69">Usage</h3>
-<p>BarsInCalculation</p>
+<p>ProcessingBarSeriesIndex</p>
 <h3 id="more-information_55">More Information</h3>
 <p>Within a script that only works with primary timeframes, the value will always equal zero.</p>
 <h3 id="example_66">Example</h3>
 <pre><code class="cs">// To demonstrate the methodology
 // set CalculateOnClosedBar=false
-Print(Time[0] + &quot; &quot; + BarsInCalculation);
+Print(Time[0] + &quot; &quot; + ProcessingBarSeriesIndex);
 // Calculate only for the chart timeframe
 protected override void OnCalculate()
 {
-if (BarsInCalculation &gt; 0) return;
+if (ProcessingBarSeriesIndex &gt; 0) return;
 // Logic for the primary data series
 }
 </code></pre>
