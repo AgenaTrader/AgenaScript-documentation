@@ -1627,12 +1627,12 @@ return;
 <p>The setting of CalculateOnClosedBar only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnClosedBar setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.</p>
 <h3 id="usage_26">Usage</h3>
-<p>FirstTickOfBarMtf(BarsInCalculation)</p>
+<p>FirstTickOfBarMtf(ProcessingBarSeriesIndex)</p>
 <h3 id="parameter_19">Parameter</h3>
-<p>FirstTickOfBarMtf(BarsInCalculation).</p>
-<p>See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</p>
+<p>FirstTickOfBarMtf(ProcessingBarSeriesIndex).</p>
+<p>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</p>
 <h3 id="example_34">Example</h3>
-<pre><code class="cs">if (FirstTickOfBarMtf(BarsInCalculation))
+<pre><code class="cs">if (FirstTickOfBarMtf(ProcessingBarSeriesIndex))
 Print(&quot;A new bar has begun.&quot;);
 </code></pre>
 

@@ -358,7 +358,7 @@ BarsCountFromTradeOpen(string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For *<a href="#multibar">Multibar*</a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index for the data series for which the entry order was executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>, <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For *<a href="#multibar">Multibar*</a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index for the data series for which the entry order was executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>, <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>entriesAgo</td>
@@ -397,7 +397,7 @@ BarsCountFromTradeClose(string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For *<a href="#multibar">Multibar*</a><a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order has been executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For *<a href="#multibar">Multibar*</a><a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order has been executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>exitsAgo</td>
@@ -646,7 +646,7 @@ OpenLong(int multibarSeriesIndex, int quantity, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.  Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.  Index of the data series for which the entry order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -696,7 +696,7 @@ OpenLongLimit(int quantity, double limitPrice, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a> and <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a> and <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -752,7 +752,7 @@ OpenLongStop(int quantity, double stopPrice, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a> and <a href="#multibars"><em>MultiBars</em></a> strategies Index of the data series for which an entry order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a> and <a href="#multibars"><em>MultiBars</em></a> strategies Index of the data series for which an entry order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>stopPrice</td>
@@ -808,7 +808,7 @@ OpenLongStopLimit(int quantity, double limitPrice, double stopPrice, string stra
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed.  See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed.  See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>stopPrice</td>
@@ -874,7 +874,7 @@ OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
 <td></td>
 </tr>
 <tr>
-<td>See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 <td></td>
 </tr>
 </tbody>
@@ -923,7 +923,7 @@ OpenShortLimit(int quantity, double limitPrice, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -978,7 +978,7 @@ OpenShortStop(int quantity, double stopPrice, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>stopPrice</td>
@@ -1041,7 +1041,7 @@ OpenShortStopLimit(int quantity, double limitPrice, double stopPrice, string str
 <td></td>
 </tr>
 <tr>
-<td>See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 <td></td>
 </tr>
 <tr>
@@ -1154,7 +1154,7 @@ CloseLong(int quantity, string strategyName, string fromEntry signal)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>fromEntry signal</td>
@@ -1214,7 +1214,7 @@ CloseLongLimit(int quantity, double limitPrice, string strategyName, string from
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -1277,7 +1277,7 @@ CloseLongStop(int quantity, double stopPrice, string strategyName, string fromEn
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>stopPrice</td>
@@ -1341,7 +1341,7 @@ CloseLongStopLimit(int quantity, double limitPrice, double stopPrice, string str
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -1407,7 +1407,7 @@ CloseShort(int quantity, string strategyName, string fromEntry signal)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>fromEntry signal</td>
@@ -1467,7 +1467,7 @@ CloseShortLimit(int quantity, double limitPrice, string strategyName, string fro
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -1511,7 +1511,7 @@ CloseShortStop(int quantity, double stopPrice, string strategyName, string fromE
 | strategyName          | An unambiguous name    |
 | fromEntry signal    | The name of the associated entry signal    |
 | quantity            | Order quantity to be bought    |
-| multibarSeriesIndex | For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>. |
+| multibarSeriesIndex | For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>. |
 | stopPrice           | A double value for the stop price    |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |</p>
 <h3 id="return-value_14">Return Value</h3>
@@ -1565,7 +1565,7 @@ CloseShortStopLimit(int quantity, double limitPrice, double stopPrice, string st
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#barsinprogress"><em>BarsInCalculation</em></a>.</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>limitPrice</td>
@@ -2118,7 +2118,7 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 <td></td>
 </tr>
 <tr>
-<td>See BarsInCalculation.</td>
+<td>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 <td></td>
 </tr>
 <tr>

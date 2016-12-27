@@ -332,7 +332,7 @@ To calculate a smoothed moving average, AgenaTrader needs a data series. In this
 <p>Whenever a new bar is added within a session it will become the new index 0; the bar to the left of it, which previously had an index of 0, will become index 1 and so on. The oldest bar will become index 501.
 Within a script (a self-created program/algorithm) the <a href="#close"><em>Close</em></a> will be representative for the array (list) of all closing prices.
 The last closing price is thus <em>Close [0]</em>; the closing price previous to this will become <em>Close [1]</em>, the value before that will become <em>Close [2]</em> and the oldest bar will be <em>Close [501]</em>. The number within the squared brackets represents the index. AgenaTrader allows you to use the „bars ago" expression for this in general cases.</p>
-<p>Obviously, every bar will not only have a closing value but also a <a href="#high"><em>High</em></a>, <a href="#low"><em>Low</em></a>(#low), <a href="#open"><em>Open</em></a>, <a href="#median"><em>Median</em></a>, <a href="#typical"><em>Typical</em></a>(#typical), <a href="#weighted"><em>Weighted</em></a>(#weighted), <a href="#time"><em>Time</em></a>(#time) and <a href="#volume"><em>Volume</em></a>. Thus, the high of the candle that occurred 10 days ago will be <em>High [10]</em>, yesterday’s low <em>Low [1]</em>...</p>
+<p>Obviously, every bar will not only have a closing value but also a <a href="#high"><em>High</em></a>, <a href="#low"><em>Low</em></a>, <a href="#open"><em>Open</em></a>, <a href="#median"><em>Median</em></a>, <a href="#typical"><em>Typical</em></a>, <a href="#weighted"><em>Weighted</em></a>, <a href="#time"><em>Time</em></a> and <a href="#volume"><em>Volume</em></a>. Thus, the high of the candle that occurred 10 days ago will be <em>High [10]</em>, yesterday’s low <em>Low [1]</em>...</p>
 <p><strong>Important tip:</strong></p>
 <p>The previous examples all assume that the calculations will occur at the end of a period. The value of the currently running index is not being taken into consideration.</p>
 <p>If you wish to use the values of the currently forming candle then you will need to set the value of</p>
@@ -347,13 +347,13 @@ The last closing price is thus <em>Close [0]</em>; the closing price previous to
 <p><a href="#barscountforsession"><em>BarsCountForSession</em></a></p>
 <p><a href="#barscount"><em>Bars.Count</em></a></p>
 <p><a href="#barsfirstbarinsession"><em>Bars.IsFirstBarInSession</em></a></p>
-<p><a href="#barsgetbar"><em>Bars.GetBar</em></a>(#barsgetbar)</p>
-<p><a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>(#barsgetbarsago)</p>
-<p><a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>(#barsgetbyindex)</p>
-<p><a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>(#barsgetindex)</p>
+<p><a href="#barsgetbar"><em>Bars.GetBar</em></a></p>
+<p><a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a></p>
+<p><a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a></p>
+<p><a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a></p>
 <p><a href="#getnextsessiontimespan"><em>Bars.GetNextSessionTimeSpan</em></a></p>
 <p><a href="#getsessionbegin"><em>Bars.GetSessionBegin</em></a></p>
-<p><a href="../barsgetopen"><em>Bars.GetOpen</em></a>(#barsgetopen)</p>
+<p><a href="../barsgetopen"><em>Bars.GetOpen</em></a></p>
 <p><a href="#barsgethigh"><em>Bars.GetHigh</em></a></p>
 <p><a href="#barsgetlow"><em>Bars.GetLow</em></a></p>
 <p><a href="#barsgetclose"><em>Bars.GetClose</em></a></p>
