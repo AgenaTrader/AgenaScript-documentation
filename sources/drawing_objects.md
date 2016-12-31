@@ -815,17 +815,20 @@ AddChartSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
 
 ## AddChartText()
 ### Description
-AddChartText() writes whatever text you want onto the chart.
+AddChartText() writes whatever text you want onto the chart using price and datetime coordinates.
 
 See [*AddChartTextFixed()*](#addcharttextfixed).
 
 ### Usage
-```cs
-AddChartText(string name, string text, int barsAgo, double y, Color color)
-AddChartText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-AddChartText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-AddChartText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
-AddChartText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
+```cs   
+AddChartText(string tag, string text, int barsAgo, double y, Color color);
+AddChartText(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, string text, int barsAgo, double y, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, DateTime x, double y, int pixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color outlineColor, Color areaColor);
+AddChartText(string tag, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, DateTime x, double y, int pixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color outlineColor, Color areaColor);   
 ```
 
 **Important note:**
@@ -850,25 +853,13 @@ A drawing object of the type IText (interface)
 | yPixelOffset | Vertical offset of the text; positive numbers move it up, and negative numbers move it down |
 | textColor    | Text color                                                                                  |
 | Font         | Font                                                                                        |
-| Alignment    | Possible values are:
--   StringAlignment.Center
--   StringAlignment.Far
--   StringAlignment.Near                                                                       |
-| HAlign       | Possible values are:
--   HorizontalAlign.Left
--   HorizontalAlign.Center
--   HorizontalAlign.Right                                                                      |
-| VAlign       | Possible values are:
--   VerticalAlign.Top
--   VerticalAlign.Center
--   VerticalAlign.Bottom                                                                       |
-| outlineColor | Border color around the text
-For no border, select Color.Empty                                                            |
-| areaColor    | Fill color for the text box                                                                 |
+| Alignment    | Possible values are: StringAlignment.Center, StringAlignment.Far, StringAlignment.Near     |
+| HAlign       | Possible values are: HorizontalAlign.Left, HorizontalAlign.Center, HorizontalAlign.Right   |
+| VAlign       | Possible values are: VerticalAlign.Top, VerticalAlign.Center, VerticalAlign.Bottom   |
+| outlineColor | Border color around the text (for no border, select Color.Empty)  |
+| areaColor    | Fill color for the text box    |
 | areaOpacity  | Transparency of the fill color
-Value between 0 and 255
-0 = completely transparent
-255 = completely opaque                                                                       |
+Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)    |
 
 ### Example
 ```cs
@@ -906,8 +897,9 @@ See [*AddChartText()*](#addcharttext).
 
 ### Usage
 ```cs
-AddChartTextFixed(string name, string text, TextPosition textPosition)
-AddChartTextFixed(string name, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity)
+AddChartTextFixed(string tag, string text, TextPosition textPosition);
+AddChartTextFixed(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor);
+AddChartTextFixed(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity);
 ```
 
 ### Return Value
@@ -918,28 +910,19 @@ A drawing object of the type ITextFixed (interface)
 |--------------|----------------------------------------------------------------------------|
 | name         | A clearly identifiable name for the drawing object                         |
 | text         | The text to be displayed                                                   |
-| TextPosition | TextPosition.BottomLeft
-TextPosition.BottomRight
-                TextPosition.Center
-                TextPosition.TopLeft
-                TextPosition.TopRight                                                       |
+| TextPosition | TextPosition.BottomLeft, TextPosition.BottomRight, TextPosition.Center, TextPosition.TopLeft, TextPosition.TopRight  |
 | textColor    | Text color                                                                 |
 | font         | Font                                                                       |
 | outlineColor | Color for the border around the text. For no border color, use Color.Empty |
-| areaColor    | Fill color of the text box
-For no fill color, use Color.Empty                                          |
-| areaOpacity  | Transparency of the fill color
-Value between 0 and 255
-                0 = completely transparent
-                255 = completely opaque                                                      |
+| areaColor    | Fill color of the text box. For no fill color, use Color.Empty   |
+| areaOpacity  | Transparency of the fill color. Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)  |
 
 ### Example
 ```cs
 // Writes text into the middle of the chart
 AddChartTextFixed("MyText", "This is sample text.", TextPosition.Center);
 // Writes red text with a blue border into the middle of the chart
-AddChartTextFixed("MyText", "This is sample text.", TextPosition.Center,
-Color.Red, new Font("Arial",35), Color.Blue, Color.Empty, 10);
+AddChartTextFixed("MyText", "This is sample text.", TextPosition.Center, Color.Red, new Font("Arial",35), Color.Blue, Color.Empty, 10);
 ```
 
 ## AddChartTrendChannel()
