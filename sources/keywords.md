@@ -2004,7 +2004,9 @@ Log() allows you to write outputs in the AgenaTrader log file (log tab). 5 diffe
 Note: If the log tab is not viewable, it can be displayed using the tools log.
 
 ### Usage
+```cs
 **Log**(string message, LogLevel logLevel)
+```
 
 ### Parameter
 |          |                      |
@@ -2025,21 +2027,22 @@ Log("This is a message (messages).", InfoLogLevel.Message); //white
 //PopUp & protocoll
 Log("This is an alert popup window.", InfoLogLevel.ShowAlert); //green
 
-Output-Tab:
-InfoLogLevel.Message = send to Tab "Messages" not "Log"
+//Output-Tab:
+//InfoLogLevel.Message = send to Tab "Messages" not "Log"
 
-Action:
+//Action:
+/*
 InfoLogLevel.Error: also the AT-Status-Line is red and flashes
 InfoLogLevel.ShowAlert: opens also a modeless messagebox
+*/
+
+/*
+Summary: * - InfoLogLevel.ShowAlert Color: green Tab: Log Action: modeless Messagebox * - InfoLogLevel.Warning Color: blue Tab: Log * - InfoLogLevel.Info Color: white Tab: Log * - InfoLogLevel.Error Color: red Tab: Log Action: AT-Status-Line: red + flashing (Error) * - InfoLogLevel.Message Color: white Tab: Messages
+*/
+```
 
 Crossreference:
-a crossreference to
-Print()
-ShowAlert()
-
-Summary: * - InfoLogLevel.ShowAlert Color: green Tab: Log Action: modeless Messagebox * - InfoLogLevel.Warning Color: blue Tab: Log * - InfoLogLevel.Info Color: white Tab: Log * - InfoLogLevel.Error Color: red Tab: Log Action: AT-Status-Line: red + flashing (Error) * - InfoLogLevel.Message Color: white Tab: Messages
-
-```
+a crossreference to Print() and ShowAlert()
 
 ## GetSerieLowestValue
 ### Description
