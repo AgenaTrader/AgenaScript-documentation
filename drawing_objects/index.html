@@ -1837,14 +1837,17 @@ AddChartSquare(&quot;MySquare&quot;, true, 0, High[0] + 10*TickSize, Color.DarkR
 
 <h2 id="addcharttext">AddChartText()</h2>
 <h3 id="description_22">Description</h3>
-<p>AddChartText() writes whatever text you want onto the chart.</p>
+<p>AddChartText() writes whatever text you want onto the chart using price and datetime coordinates.</p>
 <p>See <a href="#addcharttextfixed"><em>AddChartTextFixed()</em></a>.</p>
 <h3 id="usage_22">Usage</h3>
-<pre><code class="cs">AddChartText(string name, string text, int barsAgo, double y, Color color)
-AddChartText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-AddChartText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity)
-AddChartText(string name, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
-AddChartText(string name, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment HAlign, VerticalAlignment VAlign, Color outlineColor, Color areaColor, int areaOpacity)
+<pre><code class="cs">AddChartText(string tag, string text, int barsAgo, double y, Color color);
+AddChartText(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, string text, int barsAgo, double y, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, DateTime x, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, DateTime x, double y, int pixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color outlineColor, Color areaColor);
+AddChartText(string tag, bool autoScale, string text, int barsAgo, double y, int yPixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color outlineColor, Color areaColor, int areaOpacity);
+AddChartText(string tag, bool autoScale, string text, DateTime x, double y, int pixelOffset, Color textColor, Font font, StringAlignment alignment, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color outlineColor, Color areaColor);   
 </code></pre>
 
 <p><strong>Important note:</strong>
@@ -1902,59 +1905,19 @@ using System.Windows.Forms.VisualStyles;
 </tr>
 <tr>
 <td>Alignment</td>
-<td>Possible values are:</td>
-</tr>
-<tr>
-<td>-   StringAlignment.Center</td>
-<td></td>
-</tr>
-<tr>
-<td>-   StringAlignment.Far</td>
-<td></td>
-</tr>
-<tr>
-<td>-   StringAlignment.Near</td>
-<td></td>
+<td>Possible values are: StringAlignment.Center, StringAlignment.Far, StringAlignment.Near</td>
 </tr>
 <tr>
 <td>HAlign</td>
-<td>Possible values are:</td>
-</tr>
-<tr>
-<td>-   HorizontalAlign.Left</td>
-<td></td>
-</tr>
-<tr>
-<td>-   HorizontalAlign.Center</td>
-<td></td>
-</tr>
-<tr>
-<td>-   HorizontalAlign.Right</td>
-<td></td>
+<td>Possible values are: HorizontalAlign.Left, HorizontalAlign.Center, HorizontalAlign.Right</td>
 </tr>
 <tr>
 <td>VAlign</td>
-<td>Possible values are:</td>
-</tr>
-<tr>
-<td>-   VerticalAlign.Top</td>
-<td></td>
-</tr>
-<tr>
-<td>-   VerticalAlign.Center</td>
-<td></td>
-</tr>
-<tr>
-<td>-   VerticalAlign.Bottom</td>
-<td></td>
+<td>Possible values are: VerticalAlign.Top, VerticalAlign.Center, VerticalAlign.Bottom</td>
 </tr>
 <tr>
 <td>outlineColor</td>
-<td>Border color around the text</td>
-</tr>
-<tr>
-<td>For no border, select Color.Empty</td>
-<td></td>
+<td>Border color around the text (for no border, select Color.Empty)</td>
 </tr>
 <tr>
 <td>areaColor</td>
@@ -1965,15 +1928,7 @@ using System.Windows.Forms.VisualStyles;
 <td>Transparency of the fill color</td>
 </tr>
 <tr>
-<td>Value between 0 and 255</td>
-<td></td>
-</tr>
-<tr>
-<td>0 = completely transparent</td>
-<td></td>
-</tr>
-<tr>
-<td>255 = completely opaque</td>
+<td>Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)</td>
 <td></td>
 </tr>
 </tbody>
@@ -2007,8 +1962,9 @@ Color.Yellow, // Fill color
 <p>AddChartTextFixed() writes text into one of 5 predetermined locations on the chart.</p>
 <p>See <a href="#addcharttext"><em>AddChartText()</em></a>.</p>
 <h3 id="usage_23">Usage</h3>
-<pre><code class="cs">AddChartTextFixed(string name, string text, TextPosition textPosition)
-AddChartTextFixed(string name, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity)
+<pre><code class="cs">AddChartTextFixed(string tag, string text, TextPosition textPosition);
+AddChartTextFixed(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor);
+AddChartTextFixed(string tag, string text, TextPosition textPosition, Color textColor, Font font, Color outlineColor, Color areaColor, int areaOpacity);
 </code></pre>
 
 <h3 id="return-value_23">Return Value</h3>
@@ -2032,23 +1988,7 @@ AddChartTextFixed(string name, string text, TextPosition textPosition, Color tex
 </tr>
 <tr>
 <td>TextPosition</td>
-<td>TextPosition.BottomLeft</td>
-</tr>
-<tr>
-<td>TextPosition.BottomRight</td>
-<td></td>
-</tr>
-<tr>
-<td>TextPosition.Center</td>
-<td></td>
-</tr>
-<tr>
-<td>TextPosition.TopLeft</td>
-<td></td>
-</tr>
-<tr>
-<td>TextPosition.TopRight</td>
-<td></td>
+<td>TextPosition.BottomLeft, TextPosition.BottomRight, TextPosition.Center, TextPosition.TopLeft, TextPosition.TopRight</td>
 </tr>
 <tr>
 <td>textColor</td>
@@ -2064,27 +2004,11 @@ AddChartTextFixed(string name, string text, TextPosition textPosition, Color tex
 </tr>
 <tr>
 <td>areaColor</td>
-<td>Fill color of the text box</td>
-</tr>
-<tr>
-<td>For no fill color, use Color.Empty</td>
-<td></td>
+<td>Fill color of the text box. For no fill color, use Color.Empty</td>
 </tr>
 <tr>
 <td>areaOpacity</td>
-<td>Transparency of the fill color</td>
-</tr>
-<tr>
-<td>Value between 0 and 255</td>
-<td></td>
-</tr>
-<tr>
-<td>0 = completely transparent</td>
-<td></td>
-</tr>
-<tr>
-<td>255 = completely opaque</td>
-<td></td>
+<td>Transparency of the fill color. Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)</td>
 </tr>
 </tbody>
 </table>
@@ -2092,8 +2016,7 @@ AddChartTextFixed(string name, string text, TextPosition textPosition, Color tex
 <pre><code class="cs">// Writes text into the middle of the chart
 AddChartTextFixed(&quot;MyText&quot;, &quot;This is sample text.&quot;, TextPosition.Center);
 // Writes red text with a blue border into the middle of the chart
-AddChartTextFixed(&quot;MyText&quot;, &quot;This is sample text.&quot;, TextPosition.Center,
-Color.Red, new Font(&quot;Arial&quot;,35), Color.Blue, Color.Empty, 10);
+AddChartTextFixed(&quot;MyText&quot;, &quot;This is sample text.&quot;, TextPosition.Center, Color.Red, new Font(&quot;Arial&quot;,35), Color.Blue, Color.Empty, 10);
 </code></pre>
 
 <h2 id="addcharttrendchannel">AddChartTrendChannel()</h2>

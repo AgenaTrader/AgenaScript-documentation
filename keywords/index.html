@@ -1589,14 +1589,14 @@ if (oEnter != null &amp;&amp; execution.Name == oEnter.Name)
 {
 // Enter-Order gefüllt
 if (_sendMail) this.SendEmail(Core.AccountManager.Core.Settings.MailDefaultFromAddress, Core.PreferenceManager.DefaultEmailAddress,
-execution.Instrument.Symbol + &quot; Order &quot; + execution.Name + &quot; ausgeführt.&quot;, &quot;Die Order für &quot; + execution.Instrument.Name + &quot; wurde ausgeführt. Invest: &quot; + (Trade.Quantity * Trade.AvgPrice).ToString(&quot;F2&quot;));
+execution.Instrument.Symbol + &quot; order &quot; + execution.Name + &quot; executed.&quot;, &quot;The order for &quot; + execution.Instrument.Name + &quot; was executed. Invest: &quot; + (Trade.Quantity * Trade.AvgPrice).ToString(&quot;F2&quot;));
 }
 else if (oTStop != null &amp;&amp; execution.Name == oTStop.Name)
 {
 OrderStatus = 0; // Trend-Stopp-Order gefüllt
 if (_sendMail) this.SendEmail(Core.AccountManager.Core.Settings.MailDefaultFromAddress, Core.PreferenceManager.DefaultEmailAddress,
-execution.Instrument.Symbol +&quot; Order &quot; + execution.Name + &quot; ausgeführt.&quot;,
-execution.Instrument.Symbol +&quot; Order &quot; + execution.Name + &quot; ausgeführt. Profit:&quot; + Trade.ClosedProfitLoss.ToString(&quot;F2&quot;));
+execution.Instrument.Symbol +&quot; order &quot; + execution.Name + &quot; executed.&quot;,
+execution.Instrument.Symbol +&quot; order &quot; + execution.Name + &quot; executed. Profit:&quot; + Trade.ClosedProfitLoss.ToString(&quot;F2&quot;));
 }
 }
 }
@@ -1608,7 +1608,7 @@ execution.Instrument.Symbol +&quot; Order &quot; + execution.Name + &quot; ausge
 This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnClosedBar = false and the data feed is able to output real-time values.
 When using end-of-day data in a daily chart, the "FirstTickOfBar" is always true for the last bar.
 FirstTickOfBar should not be used outside of the OnCalculate() method.
-See [<em>Bars.TicksCountForLastBar</em>].</p>
+See <a href="#barstickscountforlastbar"><em>Bars.TicksCountForLastBar</em></a>.</p>
 <h3 id="usage_25">Usage</h3>
 <p>FirstTickOfBar</p>
 <h3 id="example_33">Example</h3>
@@ -1811,31 +1811,31 @@ if (IsHistoricalMode) return;
 
 <h3 id="important-keywords">Important Keywords</h3>
 <ul>
-<li>[<em>Add()</em>]</li>
-<li>[<em>AllowRemovalOfChartDrawings</em>]</li>
-<li>[<em>IsAutoScale</em>]</li>
-<li>[<em>RequiredBarsCount</em>]</li>
-<li>[<em>CalculateOnClosedBar</em>]</li>
-<li>[<em>ClearOutputWindow()</em>]</li>
-<li>[<em>Displacement</em>]</li>
-<li>[<em>IsShowInDataBox</em>]</li>
-<li>[<em>IsAddDrawingsToPricePanel</em>]</li>
-<li>[<em>InputPriceType</em>]</li>
-<li>[<em>IsOverlay</em>]</li>
-<li>[<em>IsShowPriceMarkers</em>]</li>
-<li>[<em>SessionBreakLines</em>]</li>
-<li>[<em>IsShowChartVerticalGrid</em>]</li>
+<li><a href="#add"><em>Add()</em></a></li>
+<li><a href="#allowremovalofchartdrawings"><em>AllowRemovalOfChartDrawings</em></a></li>
+<li><a href="#isautoscale"><em>IsAutoScale</em></a></li>
+<li><a href="#requiredbarscount"><em>RequiredBarsCount</em></a></li>
+<li><a href="../calculateonclosedbar"><em>CalculateOnClosedBar</em></a></li>
+<li><a href="#clearoutputwindows"><em>ClearOutputWindow()</em></a></li>
+<li><a href="../displacement"><em>Displacement</em></a></li>
+<li><a href="#isshowindatabox"><em>IsShowInDataBox</em></a></li>
+<li><a href="#isadddrawingstopricepanel"><em>IsAddDrawingsToPricePanel</em></a></li>
+<li><a href="#inputpricetype"><em>InputPriceType</em></a></li>
+<li><a href="#isoverlay"><em>IsOverlay</em></a></li>
+<li><a href="#isshowpricemarkers"><em>IsShowPriceMarkers</em></a></li>
+<li><a href="#sessionbreaklines"><em>SessionBreakLines</em></a></li>
+<li><a href="#isshowchartverticalgrid"><em>IsShowChartVerticalGrid</em></a></li>
 </ul>
 <p><strong>Additional Keywords for Strategies</strong></p>
 <ul>
-<li>[<em>DefaultOrderQuantity</em>]</li>
-<li>[<em>EntriesPerDirection</em>]</li>
-<li>[<em>EntryHandling</em>]</li>
-<li>[<em>SetUpStopLoss()</em>]</li>
-<li>[<em>SetUpProfitTarget()</em>]</li>
-<li>[<em>SetUpTrailStop()</em>]</li>
-<li>[<em>TimeInForce</em>]</li>
-<li>[<em>PrintOrders</em>]</li>
+<li><a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a></li>
+<li><a href="#entriesperdirection"><em>EntriesPerDirection</em></a></li>
+<li><a href="#entryhandling"><em>EntryHandling</em></a></li>
+<li><a href="#setupstoploss"><em>SetUpStopLoss()</em></a></li>
+<li><a href="#setupprofittarget"><em>SetUpProfitTarget()</em></a></li>
+<li><a href="#setuptrailstop"><em>SetUpTrailStop()</em></a></li>
+<li><a href="#timeinforce"><em>TimeInForce</em></a></li>
+<li><a href="#printorders"><em>PrintOrders</em></a></li>
 </ul>
 <h3 id="more-information_2">More Information</h3>
 <p><strong>Caution:</strong>
@@ -1919,7 +1919,7 @@ InputPriceType = PriceType.High;
 <p>A line object is used for drawing a horizontal line in the chart. Usually, these are upper and lower trigger lines for indicators such as the RSI (70 and 30).
 The lines described here are not to be confused with lines from the drawing objects (see "AddChartHorizontalLine").
 LevelLine objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.</p>
-<p>See [<em>OnPaint</em>].</p>
+<p>See <a href="#onpaint"><em>OnPaint</em></a>.</p>
 <h3 id="parameter_29">Parameter</h3>
 <table>
 <thead>
@@ -1981,7 +1981,9 @@ Add(new LevelLine(new Pen(Color.Red, 1), 10, &quot;MyLine&quot;));
 <p>Log() allows you to write outputs in the AgenaTrader log file (log tab). 5 different log levels are supported.</p>
 <p>Note: If the log tab is not viewable, it can be displayed using the tools log.</p>
 <h3 id="usage_38">Usage</h3>
-<p><strong>Log</strong>(string message, LogLevel logLevel)</p>
+<pre><code class="cs">**Log**(string message, LogLevel logLevel)
+</code></pre>
+
 <h3 id="parameter_30">Parameter</h3>
 <table>
 <thead>
@@ -2013,26 +2015,26 @@ Log(&quot;This is a message (messages).&quot;, InfoLogLevel.Message); //white
 //PopUp &amp; protocoll
 Log(&quot;This is an alert popup window.&quot;, InfoLogLevel.ShowAlert); //green
 
-Output-Tab:
-InfoLogLevel.Message = send to Tab &quot;Messages&quot; not &quot;Log&quot;
+//Output-Tab:
+//InfoLogLevel.Message = send to Tab &quot;Messages&quot; not &quot;Log&quot;
 
-Action:
+//Action:
+/*
 InfoLogLevel.Error: also the AT-Status-Line is red and flashes
 InfoLogLevel.ShowAlert: opens also a modeless messagebox
+*/
 
-Crossreference:
-a crossreference to
-Print()
-ShowAlert()
-
+/*
 Summary: * - InfoLogLevel.ShowAlert Color: green Tab: Log Action: modeless Messagebox * - InfoLogLevel.Warning Color: blue Tab: Log * - InfoLogLevel.Info Color: white Tab: Log * - InfoLogLevel.Error Color: red Tab: Log Action: AT-Status-Line: red + flashing (Error) * - InfoLogLevel.Message Color: white Tab: Messages
-
+*/
 </code></pre>
 
+<p>Crossreference:
+a crossreference to Print() and ShowAlert()</p>
 <h2 id="getserielowestvalue">GetSerieLowestValue</h2>
 <h3 id="description_52">Description</h3>
 <p>The GetSerieLowestValue() method attempts to find the lowest bar within a predefined number of periods.</p>
-<p>See [<em>GetSerieHighestValue()</em>].</p>
+<p>See <a href="#getseriehighestvalue"><em>GetSerieHighestValue()</em></a>.</p>
 <h3 id="parameter_31">Parameter</h3>
 <p>period Number of bars that will be searched for the lowest bar</p>
 <p>series Every data series, such as close, high, low etc.</p>
@@ -2103,7 +2105,7 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[GetS
 </tbody>
 </table>
 <h3 id="example_48">Example</h3>
-<p>See [<em>OnLevel1()</em>].</p>
+<p>See <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h2 id="level1args_1">Level1Args</h2>
 <h3 id="description_54">Description</h3>
 <p>The data type Level1Args represents a change in the level 2 data (market depth) and is used as a parameter within OnLevel2().</p>
@@ -2117,15 +2119,7 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[GetS
 <tbody>
 <tr>
 <td>MarketDataType</td>
-<td>Potential values are:</td>
-</tr>
-<tr>
-<td>MarketDataType.Ask</td>
-<td></td>
-</tr>
-<tr>
-<td>MarketDataType.Bid</td>
-<td></td>
+<td>Potential values are: MarketDataType.Ask, MarketDataType.Bid</td>
 </tr>
 <tr>
 <td>MarketMaker</td>
@@ -2140,19 +2134,7 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[GetS
 <td>Represents the action caused by a change in the order book.</td>
 </tr>
 <tr>
-<td>Values can be:</td>
-<td></td>
-</tr>
-<tr>
-<td>Operation.Insert</td>
-<td></td>
-</tr>
-<tr>
-<td>Operation.Remove</td>
-<td></td>
-</tr>
-<tr>
-<td>Operation.Update</td>
+<td>Values can be: Operation.Insert, Operation.Remove, Operation.Update</td>
 <td></td>
 </tr>
 <tr>
@@ -2170,14 +2152,14 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[GetS
 </tbody>
 </table>
 <h3 id="example_49">Example</h3>
-<p>See [<em>OnLevel2()</em>].</p>
+<p>See <a href="#onlevel2"><em>OnLevel2()</em></a>.</p>
 <h2 id="isoverlay">IsOverlay</h2>
 <h3 id="description_55">Description</h3>
 <p>The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.</p>
 <pre><code class="cs">IsOverlay = true
 </code></pre>
 
-<p>The indicator is drawn above the price (for example an [<em>SMA</em>])</p>
+<p>The indicator is drawn above the price (for example an <em>SMA</em>)</p>
 <pre><code class="cs">IsOverlay = false (default)
 </code></pre>
 
@@ -2253,7 +2235,7 @@ _ma_medium = value;
 <h2 id="onpaint">OnPaint()</h2>
 <h3 id="description_59">Description</h3>
 <p>A plot (drawing) is used to visually display indicators in a chart. OnPaint objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
-See [<em>LevelLine</em>].</p>
+See <a href="#levelline"><em>LevelLine</em></a>.</p>
 <h3 id="parameter_35">Parameter</h3>
 <table>
 <thead>
@@ -2273,43 +2255,7 @@ See [<em>LevelLine</em>].</p>
 </tr>
 <tr>
 <td>PlotStyle</td>
-<td>LevelLine type</td>
-</tr>
-<tr>
-<td>PlotStyle.Bar</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.Block</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.Cross</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.Dot</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.Hash</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.LevelLine</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.Square</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.TriangleDown</td>
-<td></td>
-</tr>
-<tr>
-<td>PlotStyle.TriangleUp</td>
-<td></td>
+<td>LevelLine type: PlotStyle.Bar, PlotStyle.Block, PlotStyle.Cross, PlotStyle.Dot, PlotStyle.Hash, PlotStyle.LevelLine, PlotStyle.Square, PlotStyle.TriangleDown, PlotStyle.TriangleUp</td>
 </tr>
 <tr>
 <td>Name</td>
@@ -2325,7 +2271,7 @@ OnPaint(Pen pen, PlotStyle plotStyle, string name)
 </code></pre>
 
 <h3 id="more-information_4">More Information</h3>
-<p>Information on the pen class: [<em>http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx</em>]</p>
+<p>Information on the pen class: <a href="http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx"><em>http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx</em></a></p>
 <h3 id="example_54">Example</h3>
 <pre><code class="cs">// Example 1
 // OnPaint with standard values (line with line strength 1)
@@ -2354,9 +2300,9 @@ Add(new OnPaint(new Pen(Color.Blue, 6), PlotStyle.Dot, &quot;MyPlot&quot;));
 <h2 id="plotmethod">PlotMethod</h2>
 <h3 id="description_60">Description</h3>
 <p>In each indicator, the plot method can be overridden in order to add your own graphics (GDI+) to the price chart with the help of the graphics class (System.Drawing).</p>
-<p>See [<em>http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx</em>].</p>
-<p>The [<em>Chart</em>] object offers several parameters.</p>
-<p>More examples: [<em>Bar Numbering</em>][<em>PlotSample</em>], <em>Chart Background Image</em>.</p>
+<p>See <a href="http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx"><em>http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx</em></a>.</p>
+<p>The <em>Chart</em> object offers several parameters.</p>
+<p>More examples: <em>Bar Numbering</em>, <em>PlotSample</em>, <em>Chart Background Image</em>.</p>
 <h3 id="parameter_36">Parameter</h3>
 <p>graphics The graphics object of the price chart (context)</p>
 <p>rectangle The size of the drawing area (type "public struct rectangle")</p>
@@ -2437,7 +2383,7 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 <h2 id="pricetype">PriceType</h2>
 <h3 id="description_61">Description</h3>
 <p>Price type describes a form of price data.</p>
-<p>See [<em>InputPriceType</em>]</p>
+<p>See <a href="#inputpricetypes"><em>InputPriceType</em></a></p>
 <p>Following variables are available:
 -   PriceType.Close
 -   PriceType.High
@@ -2450,11 +2396,11 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 <h3 id="usage_45">Usage</h3>
 <p>PriceType</p>
 <h3 id="example_56">Example</h3>
-<p>See [<em>InputPriceType</em>]</p>
+<p>See <a href="#inputpricetype"><em>InputPriceType</em></a></p>
 <h2 id="print">Print()</h2>
 <h3 id="description_62">Description</h3>
 <p>The Print() method writes outputs in the AgenaTrader output window.
-See [<em>ClearOutputWindow()</em>].</p>
+See <a href="#clearoutputwindow"><em>ClearOutputWindow()</em></a>.</p>
 <h3 id="usage_46">Usage</h3>
 <pre><code class="cs">Print(string message)
 Print(bool value)
@@ -2470,7 +2416,7 @@ Print(string format, string message)
 <p>none</p>
 <h3 id="more-information_5">More Information</h3>
 <p>Information regarding output formatting: <em>Formatting numbers</em>.</p>
-<p>Hints about the String.Format() method: [<em>http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx</em>]</p>
+<p>Hints about the String.Format() method: <a href="http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx</em></a></p>
 <h3 id="example_57">Example</h3>
 <pre><code class="cs">// &quot;Quick&amp;Dirty&quot; formatting of a number with 2 decimal points
 Print(Close[0].ToString(&quot;0.00&quot;));
@@ -2483,7 +2429,7 @@ Print(&quot;One empty row afterwards \\n&quot;);
 <h2 id="removechartdrawing">RemoveChartDrawing()</h2>
 <h3 id="description_63">Description</h3>
 <p>The RemoveChartDrawing() method removes a specific drawing object from the chart based on a unique identifier (tag).
-See [<em>RemoveChartDrawings()</em>].</p>
+See <a href="#removechartdrawings"><em>RemoveChartDrawings()</em></a>.</p>
 <h3 id="usage_47">Usage</h3>
 <p>RemoveChartDrawings(string tag)</p>
 <h3 id="return-value_24">Return Value</h3>
@@ -2497,7 +2443,7 @@ See [<em>RemoveChartDrawings()</em>].</p>
 <h2 id="removechartdrawings">RemoveChartDrawings()</h2>
 <h3 id="description_64">Description</h3>
 <p>This method removes all drawings from the chart
-See [<em>RemoveChartDrawings()</em>].</p>
+See <a href="#removechartdrawings"><em>RemoveChartDrawings()</em></a>.</p>
 <h3 id="usage_48">Usage</h3>
 <p>RemoveChartDrawings()</p>
 <h3 id="return-value_25">Return Value</h3>
@@ -2549,7 +2495,7 @@ SessionBreakLines = false;
 <h2 id="ticksize">TickSize</h2>
 <p>A tick is the smallest possible price change of a financial instrument within an exchange. If, for example, the trading prices are specified to 2 decimal places, then a tick equals 0.01. You can expect Forex instruments to be specified to within 4 or 5 decimal places. A tick is called a pip in Forex trading and usually equals 0.0001 or 0.00001.
 The tick value is usually predefined by the exchange and does not (usually) change.
-See [<em>Instrument.TickSize</em>].</p>
+See <a href="#instrumentticksize"><em>Instrument.TickSize</em></a>.</p>
 <p>Usually, a tick is displayed as a decimal number. Historically speaking (especially in American exchanges) stocks have been noted with tick sizes of 1/16 of a dollar.
 This notation is still widespread within commodities. Corn futures (ZC) are noted in ¼ US cents/bushel (usually equals 12.50 US$ per contract).
 US treasury bonds are noted in a tick size of 1/32 points, which equals 31.25$.
@@ -2567,12 +2513,12 @@ and the next value after this is 150’00</p>
 The next notation after 17-247 is 17-25 and then 17-252, 17-255 etc.
 After 17-317 comes 18.</p>
 <p>The individual contract specifications can be found on the websites of the respective exchanges.</p>
-<p>CME: [<em>www.cmegroup.com</em>] under Products &amp; Trading
-Eurex (FDAX): <em>http://www.eurexchange.com/exchange-en/products/idx/dax/17206/</em></p>
-<p>See [<em>Instrument.TickSize</em>].</p>
+<p>CME: <a href="http://www.cmegroup.com"><em>http://www.cmegroup.com</em></a> under Products &amp; Trading
+Eurex (FDAX): <a href="http://www.eurexchange.com/exchange-en/products/idx/dax/17206/"><em>http://www.eurexchange.com/exchange-en/products/idx/dax/17206/</em></a></p>
+<p>See <a href="#instrumentticksize"><em>Instrument.TickSize</em></a>.</p>
 <h2 id="timeframe">TimeFrame</h2>
-<p>See [<em>Bars.TimeFrame</em>].</p>
-<p>When using multiple timeframes ([<em>Multibars</em>][<em>MultiBars</em>]) in an indicator, please see [<em>TimeFrames</em>].</p>
+<p>See <a href="../barstimeframe"><em>Bars.TimeFrame</em></a>.</p>
+<p>When using multiple timeframes (<a href="#multibars"><em>Multibars</em></a>) in an indicator, please see <a href="#timeframes"><em>TimeFrames</em></a>.</p>
 <h2 id="getdayasint">GetDayAsInt()</h2>
 <h3 id="description_67">Description</h3>
 <p>To day is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C#.
@@ -2580,8 +2526,8 @@ Experienced programmers can continue using the date-time function directly.</p>
 <p>To day outputs an int representation in the format of yyyymmdd.
 (yyyy = year, mm = month, dd = day)</p>
 <p>13.08.2012 would thus be 20120813.</p>
-<p>See [<em>GetTimeAsInt</em>].</p>
-<p>Help with date-time: [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
+<p>See <a href="#gettimeasint"><em>GetTimeAsInt</em></a>.</p>
+<p>Help with date-time: <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx"><em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em></a></p>
 <h3 id="usage_51">Usage</h3>
 <p>GetDayAsInt(DateTime time)</p>
 <h3 id="example_62">Example</h3>
@@ -2596,8 +2542,8 @@ return;
 <p>To time outputs an int representation in the format hhmmss.
 (hh = hour, mm = minute, ss = seconds)</p>
 <p>The time 07:30 will be displayed as 73000 and 14:15:12 will become 141512.</p>
-<p>See [<em>GetDayAsInt</em>].</p>
-<p>Help with date-time: [<em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em>]</p>
+<p>See <a href="#getdayasint"><em>GetDayAsInt</em></a>.</p>
+<p>Help with date-time: <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx"><em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em></a></p>
 <h3 id="usage_52">Usage</h3>
 <p>GetTimeAsInt(DateTime time)</p>
 <h3 id="example_63">Example</h3>
@@ -2664,7 +2610,7 @@ By calling up Update(), OnCalculate() is initially executed by Ind2. This sets M
 <h3 id="more-information_6">More Information</h3>
 <p>The methods known for a collection, Set(), Reset(), and Count(), can be used for values.</p>
 <h3 id="example_65">Example</h3>
-<p>See [<em>Values</em>].</p>
+<p>See <a href="#values"><em>Values</em></a>.</p>
 <h2 id="isshowchartverticalgrid">IsShowChartVerticalGrid</h2>
 <h3 id="description_71">Description</h3>
 <p>The property IsShowChartVerticalGrid defines whether or not the regularly spaced vertical lines (the so-called grid) are shown within the charting area.</p>
