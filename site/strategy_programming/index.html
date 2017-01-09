@@ -512,8 +512,8 @@ ReplaceOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPr
 <h3 id="parameter_5">Parameter</h3>
 <p>An order object of type IOrder as a list</p>
 <h3 id="example_6">Example</h3>
-<pre><code class="cs">private IOrder oEnterLong = null;
-private IOrder oExitLong = null;
+<pre><code class="cs">private IOrder oopenlong = null;
+private IOrder oenterlong = null;
 
 
 protected override void OnInit()
@@ -524,12 +524,12 @@ protected override void OnInit()
 
 protected override void OnCalculate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, &quot;ocoId&quot;,&quot;strategyName&quot;);
-   oExitLong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;strategyName&quot;);
+   oopenlong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, &quot;ocoId&quot;,&quot;strategyName&quot;);
+   oenterlong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;strategyName&quot;);
 
-   CreateIfDoneGroup(new List&lt;IOrder&gt; { oEnterLong, oExitLong });
+   CreateIfDoneGroup(new List&lt;IOrder&gt; { oopenlong, oenterlong });
 
-   oEnterLong.ConfirmOrder();
+   oopenlong.ConfirmOrder();
 }
 </code></pre>
 
@@ -543,7 +543,7 @@ protected override void OnCalculate()
 <h3 id="parameter_6">Parameter</h3>
 <p>An order object of type IOrder as a list</p>
 <h3 id="example_7">Example</h3>
-<pre><code class="cs">private IOrder oEnterLong = null;
+<pre><code class="cs">private IOrder oopenlong = null;
 private IOrder oEnterShort = null;
 
 
@@ -555,12 +555,12 @@ protected override void OnInit()
 
 protected override void OnCalculate()
 {
-   oEnterLong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;strategyName&quot;);
+   oopenlong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, &quot;ocoId&quot;,&quot;strategyName&quot;);
    oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,&quot;ocoId&quot;, &quot;strategyName&quot;);
 
-   CreateOCOGroup(new List&lt;IOrder&gt; { oEnterLong, oEnterShort });
+   CreateOCOGroup(new List&lt;IOrder&gt; { oopenlong, oEnterShort });
 
-   oEnterLong.ConfirmOrder();
+   oopenlong.ConfirmOrder();
    oEnterShort.ConfirmOrder();
 }
 </code></pre>
@@ -598,7 +598,7 @@ protected override void OnCalculate()
 <h2 id="defaultorderquantity">DefaultOrderQuantity</h2>
 <h3 id="description_9">Description</h3>
 <p>Change order changes an order.</p>
-<p>Default quantity defines the amount to be used in a strategy. Default quantity is set within the <a href="#initialize"><em>OnInit()</em></a> method.</p>
+<p>Default quantity defines the amount to be used in a strategy. Default quantity is set within the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <h3 id="usage_8">Usage</h3>
 <pre><code class="cs">ReplaceOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 </code></pre>
@@ -615,8 +615,8 @@ DefaultOrderQuantity = 100;
 <h2 id="openlong">OpenLong()</h2>
 <h3 id="description_10">Description</h3>
 <p>Enter long creates a long position (buy).</p>
-<p>If a signature not containing an amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#enterlonglimit"><em>OpenLongLimit()</em></a>, <a href="#enterlongstop"><em>OpenLongStop()</em></a>, <a href="#enterlongstoplimit"><em>OpenLongStopLimit()</em></a>.</p>
+<p>If a signature not containing an amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openlonglimit"><em>OpenLongLimit()</em></a>, <a href="#openlongstop"><em>OpenLongStop()</em></a>, <a href="#openlongstoplimit"><em>OpenLongStopLimit()</em></a>.</p>
 <h3 id="usage_9">Usage</h3>
 <pre><code class="cs">OpenLong()
 OpenLong(string strategyName)
@@ -664,8 +664,8 @@ if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
 <h2 id="openlonglimit">OpenLongLimit()</h2>
 <h3 id="description_11">Description</h3>
 <p>Enter long limit creates a limit order for entering a long position (buy).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#enterlong"><em>OpenLong()</em></a>, <a href="#enterlongstop"><em>OpenLongStop()</em></a>, <a href="#enterlongstoplimit"><em>OpenLongStopLimit()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openlong"><em>OpenLong()</em></a>, <a href="#openlongstop"><em>OpenLongStop()</em></a>, <a href="#openlongstoplimit"><em>OpenLongStopLimit()</em></a>.</p>
 <h3 id="usage_10">Usage</h3>
 <pre><code class="cs">OpenLongLimit(double limitPrice)
 OpenLongLimit(double limitPrice, string strategyName)
@@ -720,8 +720,8 @@ if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
 <h2 id="openlongstop">OpenLongStop()</h2>
 <h3 id="description_12">Description</h3>
 <p>Enter long stop creates a limit order for entering a long position (buy).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#enterlong"><em>OpenLong()</em></a>, <a href="#enterlonglimit"><em>OpenLongLimit()</em></a>, <a href="#enterlongstoplimit"><em>OpenLongStopLimit()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openlong"><em>OpenLong()</em></a>, <a href="#openlonglimit"><em>OpenLongLimit()</em></a>, <a href="#openlongstoplimit"><em>OpenLongStopLimit()</em></a>.</p>
 <h3 id="usage_11">Usage</h3>
 <pre><code class="cs">OpenLongStop(double stopPrice)
 OpenLongStop(double stopPrice, string strategyName)
@@ -776,8 +776,8 @@ if (stopOrder == null)
 <h2 id="openlongstoplimit">OpenLongStopLimit()</h2>
 <h3 id="description_13">Description</h3>
 <p>Enter long stop limit creates a buy stop limit order for entering a long position.</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#enterlong"><em>OpenLong()</em></a>, <a href="#enterlonglimit"><em>OpenLongLimit()</em></a>, <a href="#enterlongstop"><em>OpenLongStop()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openlong"><em>OpenLong()</em></a>, <a href="#openlonglimit"><em>OpenLongLimit()</em></a>, <a href="#openlongstop"><em>OpenLongStop()</em></a>.</p>
 <h3 id="usage_12">Usage</h3>
 <pre><code class="cs">OpenLongStopLimit(double limitPrice, double stopPrice)
 OpenLongStopLimit(double limitPrice, double stopPrice, string strategyName)
@@ -837,8 +837,8 @@ if (stopOrder == null)
 <h2 id="openshort">OpenShort()</h2>
 <h3 id="description_14">Description</h3>
 <p>Enter short creates a market order for entering a short position (naked sell).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#entershortlimit"><em>OpenShortLimit()</em></a>, <a href="#entershortstop"><em>OpenShortStop()</em></a>(entershortstop), <a href="#entershortstoplimit"><em>OpenShortStopLimit()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openshortlimit"><em>OpenShortLimit()</em></a>, <a href="#openshortstop"><em>OpenShortStop()</em></a>(entershortstop), <a href="#openshortstoplimit"><em>OpenShortStopLimit()</em></a>..</p>
 <h3 id="usage_13">Usage</h3>
 <pre><code class="cs">OpenShort()
 OpenShort(string strategyName)
@@ -891,8 +891,8 @@ if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
 <h2 id="openshortlimit">OpenShortLimit()</h2>
 <h3 id="description_15">Description</h3>
 <p>Enter short limit creates a limit order for entering a short position (naked short).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#entershort"><em>OpenShort()</em></a>, <a href="#entershortstop"><em>OpenShortStop()</em></a>, <a href="#entershortstoplimit"><em>OpenShortStopLimit()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openshort"><em>OpenShort()</em></a>, <a href="#openshortstop"><em>OpenShortStop()</em></a>, <a href="#openshortstoplimit"><em>OpenShortStopLimit()</em></a>..</p>
 <h3 id="usage_14">Usage</h3>
 <pre><code class="cs">OpenShortLimit(double limitPrice)
 OpenShortLimit(double limitPrice, string strategyName)
@@ -946,8 +946,8 @@ OpenShortLimit(&quot;SMA cross entry&quot;);
 <h2 id="openshortstop">OpenShortStop()</h2>
 <h3 id="description_16">Description</h3>
 <p>Enter short stop creates a limit order for entering a short position.
-If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
-See <a href="#entershort"><em>OpenShort()</em></a>, <a href="#entershortlimit"><em>OpenShortLimit()</em></a>, <a href="#entershortstoplimit"><em>OpenShortStopLimit()</em></a>.</p>
+If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
+See <a href="#openshort"><em>OpenShort()</em></a>, <a href="#openshortlimit"><em>OpenShortLimit()</em></a>, <a href="#openshortstoplimit"><em>OpenShortStopLimit()</em></a>..</p>
 <h3 id="usage_15">Usage</h3>
 <pre><code class="cs">OpenShortStop(double stopPrice)
 OpenShortStop(double stopPrice, string strategyName)
@@ -1002,8 +1002,8 @@ if (stopOrder == null)
 <h2 id="openshortstoplimit">OpenShortStopLimit()</h2>
 <h3 id="description_17">Description</h3>
 <p>Enter short stop limit creates a sell stop limit order for entering a short position.</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#entershort"><em>OpenShort()</em></a>, <a href="#entershortlimit"><em>OpenShortLimit()</em></a>, <a href="#entershortstop"><em>OpenShortStop()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#openshort"><em>OpenShort()</em></a>, <a href="#openshortlimit"><em>OpenShortLimit()</em></a>, <a href="#openshortstop"><em>OpenShortStop()</em></a>.</p>
 <h3 id="usage_16">Usage</h3>
 <pre><code class="cs">OpenShortStopLimit(double limitPrice, double stopPrice)
 OpenShortStopLimit(double limitPrice, double stopPrice, string strategyName)
@@ -1071,7 +1071,7 @@ if (stopOrder == null)
 <h3 id="description_18">Description</h3>
 <p>Entries per direction defines the maximum number of entries permitted in one direction (long or short).</p>
 <p>Whether the name of the entry signal is taken into consideration or not is defined within <a href="#entryhandling"><em>EntryHandling</em></a>.</p>
-<p>Entries per direction is defined with the <a href="#initialize"><em>OnInit()</em></a> method.</p>
+<p>Entries per direction is defined with the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <h3 id="usage_17">Usage</h3>
 <p><strong>EntriesPerDirection</strong></p>
 <h3 id="parameter_17">Parameter</h3>
@@ -1106,7 +1106,7 @@ protected override void OnCalculate()
 <h2 id="entryhandling">EntryHandling</h2>
 <h3 id="description_19">Description</h3>
 <p>Entry handling decides how the maximum number of entries permitted in one direction is interpreted (<a href="#entriesperdirection"><em>EntriesPerDirection</em></a>).</p>
-<p>Entry handling is defined with the <a href="#initialize"><em>OnInit()</em></a> method.</p>
+<p>Entry handling is defined with the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <p><strong>EntryHandling.AllEntries</strong></p>
 <p>AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in <a href="#entriesperdirection"><em>EntriesPerDirection</em></a>) per direction (long or short) is reached, regardless of how the entry signals are named.</p>
 <p>If entries per direction = 2, then enter long ("SMA crossover") and enter long ("range breakout") combined will reach the maximum number of long entries permitted.</p>
@@ -1121,7 +1121,7 @@ If entries per direction = 2, then it is possible for two signals for enter long
 <h2 id="closelong">CloseLong()</h2>
 <h3 id="description_20">Description</h3>
 <p>Exit long creates a sell market order for closing a long position (sell).</p>
-<p>If a signature not containing a set amount is used, the amount is set by <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>If a signature not containing a set amount is used, the amount is set by <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
 <p>See <a href="#closelong"><em>CloseLong()</em></a>, <a href="#closelonglimit"><em>CloseLongLimit()</em></a>, <a href="#closelongstop"><em>CloseLongStop()</em></a>, <a href="#closelongstoplimit"><em>CloseLongStopLimit()</em></a>.</p>
 <h3 id="usage_19">Usage</h3>
 <pre><code class="cs">CloseLong()
@@ -1177,7 +1177,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h2 id="closelonglimit">CloseLongLimit()</h2>
 <h3 id="description_21">Description</h3>
 <p>Exit long limit creates a sell limit order for closing a long position (i.e. for selling).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
 See <a href="#closelong"><em>CloseLong()</em></a>, <a href="#closelonglimit"><em>CloseLongLimit()</em></a>, <a href="#closelongstop"><em>CloseLongStop()</em></a>, <a href="#closelongstoplimit"><em>CloseLongStopLimit()</em></a>.</p>
 <h3 id="usage_20">Usage</h3>
 <pre><code class="cs">CloseLongLimit(double limitPrice)
@@ -1241,7 +1241,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h2 id="closelongstop">CloseLongStop()</h2>
 <h3 id="description_22">Description</h3>
 <p>Exit long stop creates a sell stop order for closing a long position (short).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
 See <a href="#closelong"><em>CloseLong()</em></a>, <a href="#closelonglimit"><em>CloseLongLimit()</em></a>, <a href="#closelongstop"><em>CloseLongStop()</em></a>, <a href="#closelongstoplimit"><em>CloseLongStopLimit()</em></a>.</p>
 <h3 id="usage_21">Usage</h3>
 <pre><code class="cs">CloseLongStop(int quantity, double stopPrice)
@@ -1304,7 +1304,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h2 id="closelongstoplimit">CloseLongStopLimit()</h2>
 <h3 id="description_23">Description</h3>
 <p>Exit long stop limit creates a sell stop limit order for closing a long position (i.e. selling).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
 <p>See <a href="#closelong"><em>CloseLong()</em></a>, <a href="#closelonglimit"><em>CloseLongLimit()</em></a>, <a href="#closelongstop"><em>CloseLongStop()</em></a>, <a href="#closelongstoplimit"><em>CloseLongStopLimit()</em></a>.</p>
 <h3 id="usage_22">Usage</h3>
 <pre><code class="cs">CloseLongStopLimit(double limitPrice, double stopPrice)
@@ -1374,7 +1374,7 @@ if (CrossBelow(EMA(14), SMA(50), 2))
 <h2 id="closeshort">CloseShort()</h2>
 <h3 id="description_24">Description</h3>
 <p>Exit short creates a buy-to-cover market order for closing a short position (buy).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.
 See <a href="#closeshort"><em>CloseShort()</em></a>, <a href="#closeshortlimit"><em>CloseShortLimit()</em></a>, <a href="#closeshortstop"><em>CloseShortStop()</em></a>, <a href="#closeshortstoplimit"><em>CloseShortStopLimit()</em></a>.</p>
 <h3 id="usage_23">Usage</h3>
 <pre><code class="cs">CloseShort()
@@ -1430,8 +1430,8 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h2 id="closeshortlimit">CloseShortLimit()</h2>
 <h3 id="description_25">Description</h3>
 <p>Exit short limit creates a buy-to-cover limit order for closing a short position (buy).</p>
-<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
-<p>See <a href="#closeshort"><em>CloseShort()</em></a>(#closeshort), <a href="#closeshortlimit"><em>CloseShortLimit()</em></a>, <a href="#closeshortstop"><em>CloseShortStop()</em></a>, <a href="#closeshortstoplimit"><em>CloseShortStopLimit()</em></a>.</p>
+<p>If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+<p>See <a href="#closeshort"><em>CloseShort()</em></a>, <a href="#closeshortlimit"><em>CloseShortLimit()</em></a>, <a href="#closeshortstop"><em>CloseShortStop()</em></a>, <a href="#closeshortstoplimit"><em>CloseShortStopLimit()</em></a>.</p>
 <h3 id="usage_24">Usage</h3>
 <pre><code class="cs">CloseShortLimit(double limitPrice)
 CloseShortLimit(int quantity, double limitPrice)
@@ -1493,7 +1493,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h2 id="closeshortstop">CloseShortStop()</h2>
 <h3 id="description_26">Description</h3>
 <p>Exit short stop creates a buy-to-cover stop order for closing a short position.
-If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
 <p>See <a href="#closeshort"><em>CloseShort()</em></a>, <a href="#closeshortlimit"><em>CloseShortLimit()</em></a>, <a href="#closeshortstop"><em>CloseShortStop()</em></a>, <a href="#closeshortstoplimit"><em>CloseShortStopLimit()</em></a>.</p>
 <h3 id="usage_25">Usage</h3>
 <pre><code class="cs">CloseShortStop(int quantity, double stopPrice)
@@ -1528,7 +1528,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
 <h2 id="closeshortstoplimit">CloseShortStopLimit()</h2>
 <h3 id="description_27">Description</h3>
 <p>Exit short stop limit creates a buy-to-cover stop limit order for closing a short position.
-If a signature not containing a set amount is used, the amount is set by the <a href="#defaultquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
+If a signature not containing a set amount is used, the amount is set by the <a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a> or taken from the strategy dialog window.</p>
 <p>See <a href="#closelong"><em>CloseLong()</em></a>, <a href="#closelonglimit"><em>CloseLongLimit()</em></a>, <a href="#closelongstop"><em>CloseLongStop()</em></a>, <a href="#closelongstoplimit"><em>CloseLongStopLimit()</em></a>.</p>
 <h3 id="usage_26">Usage</h3>
 <pre><code class="cs">CloseShortStopLimit(double limitPrice, double stopPrice)
@@ -1671,7 +1671,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 
 <h2 id="isautomated">IsAutomated</h2>
 <h3 id="description_33">Description</h3>
-<p>IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the <a href="#initialize"><em>OnInit()</em></a> method.</p>
+<p>IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <p>If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.<a href="#confirmorder"><em>ConfirmOrder()</em></a>.</p>
 <h3 id="parameter_30">Parameter</h3>
 <p>Bool value</p>
@@ -2162,7 +2162,7 @@ if (CrossBelow(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
 <h2 id="timeinforce">TimeInForce</h2>
 <h3 id="description_41">Description</h3>
 <p>The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.</p>
-<p>TimeInForce is specified with the <a href="#initialize"><em>OnInit()</em></a> method.</p>
+<p>TimeInForce is specified with the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <p>Permitted values are:
 TimeInForce.day
 TimeInForce.loc
