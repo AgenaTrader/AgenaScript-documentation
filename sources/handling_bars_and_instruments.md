@@ -782,7 +782,7 @@ Bars[0].IsFalling;
 
 ## Bars.TailTop
 ### Description
-Bar properties used for candle tail top height
+With this property you are able to get the height of the top candle tail.
 
 ### Parameter
 None
@@ -795,9 +795,15 @@ None
 Bars[0].TailTop;
 ```
 
+### Example
+```cs
+Print("The height of the top candle tail is: " + Bars.TailTop);
+```
+
 ## Bars.TailBottom
 ### Description
-Bar properties used for candle tail bottom height
+With this property you are able to get the height of the bottom candle tail.
+
 ### Parameter
 None
 
@@ -806,10 +812,13 @@ None
 
 ### Usage
 ```cs
-//Usage within a 30 minute chart
 Bars[0].TailBottom;
 ```
 
+### Example
+```cs
+Print("The height of the bottom candle tail is: " + Bars.TailBottom);
+```
 
 ### Example
 **Print**("The total amount of ticks is " + Bars.TicksCountInTotal);
