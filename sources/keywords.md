@@ -1765,11 +1765,11 @@ protected override void OnCalculate()
 }
 ```
 
-## GetSerieHighestValue
+## GetSeriesHighestValue
 ### Description
-The GetSerieHighestValue() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
+The GetSeriesHighestValue() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.
 
-See [*GetSerieLowestValue()*](#getserielowestvalue).
+See [*GetSeriesLowestValue()*](#getserieslowestvalue).
 
 ### Parameter
 period Number of bars within which the bar is searched for
@@ -1783,15 +1783,15 @@ int barsAgo How many bars ago the high occurred
 
 ### Usage
 ```cs
-GetSerieHighestValue(IDataSeries series, int period)
+GetSeriesHighestValue(IDataSeries series, int period)
 ```
 
 ### Example
 ```cs
 // How many bars ago was the highest high for the current session?
-Print(GetSerieHighestValue(High, Bars.BarsCountForSession - 1));
+Print(GetSeriesHighestValue(High, Bars.BarsCountForSession - 1));
 // What value did the market price have at the highest high of the session?
-Print("The highest price for the session was: " + Open[GetSerieHighestValue(High, Bars.BarsCountForSession - 1)]);
+Print("The highest price for the session was: " + Open[GetSeriesHighestValue(High, Bars.BarsCountForSession - 1)]);
 ```
 
 ## Historical
@@ -2044,11 +2044,11 @@ Summary: * - InfoLogLevel.ShowAlert Color: green Tab: Log Action: modeless Messa
 Crossreference:
 a crossreference to Print() and ShowAlert()
 
-## GetSerieLowestValue
+## GetSeriesLowestValue
 ### Description
-The GetSerieLowestValue() method attempts to find the lowest bar within a predefined number of periods.
+The GetSeriesLowestValue() method attempts to find the lowest bar within a predefined number of periods.
 
-See [*GetSerieHighestValue()*](#getseriehighestvalue).
+See [*GetSeriesHighestValue()*](#getserieshighestvalue).
 
 ### Parameter
 period Number of bars that will be searched for the lowest bar
@@ -2060,15 +2060,15 @@ series Every data series, such as close, high, low etc.
 
 ### Usage
 ```cs
-GetSerieLowestValue(IDataSeries series, int period)
+GetSeriesLowestValue(IDataSeries series, int period)
 ```
 
 ### Example
 ```cs
 // How many bars ago was the lowest low of the session?
-Print(GetSerieLowestValue(Low, Bars.BarsCountForSession - 1));
+Print(GetSeriesLowestValue(Low, Bars.BarsCountForSession - 1));
 // Which price did the lowest open of the current session have?
-Print("The lowest open price of the current session was: " + Open[GetSerieLowestValue(Low, Bars.BarsCountForSession - 1)]);
+Print("The lowest open price of the current session was: " + Open[GetSeriesLowestValue(Low, Bars.BarsCountForSession - 1)]);
 ```
 
 ## Level1Args
