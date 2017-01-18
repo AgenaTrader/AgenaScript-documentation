@@ -1,5 +1,8 @@
 # Hints & Advice
 
+**Note:**
+Code changes made in self-scripted indicators are automatically applied to conditions in which this indicators are used if the changes were made in the "body" of e.g. "OnCalculate/OnBarUpdate. Changes of parameters, outputs series, etc. require a manual edit of the conditions.
+
 ## Bar Numbering Within the Chart
 The following example demonstrates the usage of the plot method and the properties of the [*Chart*](#chart) object.
 
