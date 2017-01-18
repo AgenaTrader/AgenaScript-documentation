@@ -43,7 +43,7 @@ A drawing object of the type IAndrewsPitchfork (interface)
 ### Example
 ```cs
 // Draw the Andrew’s Pitchfork (“MyAPF”)
-AddChartAndrewsPitchfork("MyAPF", true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
+AddChartAndrewsPitchfork("MyAPF-" + ProcessingBarIndex, true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
 ```
 
 ## AddChartArc()
@@ -86,7 +86,7 @@ A drawing object of the type IArc (interface)
 ### Example
 ```cs
 // AddChart a blue arc
-AddChartArc("MyArc", true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
+AddChartArc("MyArc-" + ProcessingBarIndex, true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 ```
 
 ## AddChartArrowDown()
@@ -119,7 +119,7 @@ A drawing object of the type IArrowDown (interface)
 ### Example
 ```cs
 // Draws a red arrow 3 ticks above the high for the current bar
-AddChartArrowDown("MyArrow", true, 0, High[0] + 3*TickSize, Color.Red);
+AddChartArrowDown("MyArrow-" + ProcessingBarIndex, true, 0, High[0] + 3*TickSize, Color.Red);
 // Draws a red arrow on a three-bar reversal pattern
 if(High[2] > High[3] && High[1] > High[2] && Close[0] < Open[0])
 AddChartArrowDown(ProcessingBarIndex.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
@@ -167,7 +167,7 @@ A drawing object of the type IArrowLine (interface)
 ### Example
 ```cs
 // Draws a black arrow
-AddChartArrowLine("MyArrow", false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
+AddChartArrowLine("MyArrow-" + ProcessingBarIndex, false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 ```
 
 ## AddChartArrowUp()
@@ -200,7 +200,7 @@ A drawing object of the type IArrowUp (interface)
 ### Example
 ```cs
 // Draws a green arrow for the current bar 3 ticks below the low
-AddChartArrowUp("MyArrow", true, 0, Low[0] - 3*TickSize, Color.Green);
+AddChartArrowUp("MyArrow-" + ProcessingBarIndex, true, 0, Low[0] - 3*TickSize, Color.Green);
 ```
 
 ## AddChartDiamond()
@@ -233,7 +233,7 @@ A drawing object of the type IDiamond (interface)
 ### Example
 ```cs
 // Draws a light blue diamond for the current bar 5 ticks below the low
-AddChartDiamond("MyDiamond", true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
+AddChartDiamond("MyDiamond-" + ProcessingBarIndex, true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 ```
 
 ## AddChartDot()
@@ -266,7 +266,7 @@ A drawing object of the type IDot (interface)
 ### Example
 ```cs
 // Draws an orange dot for the current bar 5 ticks above the high
-AddChartDot("MyDot", true, 0, High[0] + 5*TickSize, Color.Orange);
+AddChartDot("MyDot-" + ProcessingBarIndex, true, 0, High[0] + 5*TickSize, Color.Orange);
 ```
 
 ## AddChartEllipse()
@@ -300,7 +300,7 @@ A drawing object of the type IEllipse (interface)
 ### Example
 ```cs
 // Draws a yellow ellipse from the current bar to 5 bars ago
-AddChartEllipse("MyEllipse", true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
+AddChartEllipse("MyEllipse-" + ProcessingBarIndex, true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
 ```
 
 ## AddChartExtendedLine()
@@ -345,7 +345,7 @@ A drawing object of the type IExtendedLine (interface)
 ### Example
 ```cs
 // Draws a line without an end point
-AddChartExtendedLine("MyExt.LevelLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
+AddChartExtendedLine("MyExt.LevelLine-" + ProcessingBarIndex, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 ```
 
 ## AddChartFibonacciCircle()
@@ -376,7 +376,7 @@ A drawing object of the type IFibonacciCircle (interface)
 ### Example
 ```cs
 //Draws a Fibonacci circle
-AddChartFibonacciCircle("MyFibCircle", true, 5, Low[5], 0, High[0]);
+AddChartFibonacciCircle("MyFibCircle-" + ProcessingBarIndex, true, 5, Low[5], 0, High[0]);
 ```
 
 ## AddChartFibonacciExtensions()
@@ -410,7 +410,7 @@ A drawing object of the type IFibonacciExtensions (interface)
 ### Example
 ```cs
 // Draws Fibonacci extensions
-AddChartFibonacciExtensions("MyFibExt", true, 4, Low[4], 3, High[3], 1, Low[1]);
+AddChartFibonacciExtensions("MyFibExt-" + ProcessingBarIndex, true, 4, Low[4], 3, High[3], 1, Low[1]);
 ```
 ## AddChartFibonacciProjections()
 ### Description
@@ -439,7 +439,7 @@ A drawing object of the type IFibonacciProjections (Interface)
 ### Example
 ```cs
 // zeichnet FibonacciProjections
-AddChartFibonacciProjections("MyFibPro", true, Low[4], 3, High[3], 1, Low[1], 2);
+AddChartFibonacciProjections("MyFibPro-" + ProcessingBarIndex, true, Low[4], 3, High[3], 1, Low[1], 2);
 
 ```
 
@@ -471,7 +471,7 @@ A drawing object of the type IFibonacciRetracements (interface)
 ### Example
 ```cs
 // Draws Fibonnaci retracements
-AddChartFibonacciRetracements("MyFibRet", true, 10, Low[10], 0, High[0]);
+AddChartFibonacciRetracements("MyFibRet-" + ProcessingBarIndex, true, 10, Low[10], 0, High[0]);
 ```
 
 ## AddChartFibonacciTimeExtensions()
@@ -501,7 +501,7 @@ A drawing object of the type IFibonacciTimeExtensions (interface)
 ### Example
 ```cs
 // Draws Fibonacci time extensions
-AddChartFibonacciTimeExtensions("MyFibTimeExt", 10, Low[10], 0, High[0]);
+AddChartFibonacciTimeExtensions("MyFibTimeExt-" + ProcessingBarIndex, 10, Low[10], 0, High[0]);
 ```
 
 ## AddChartGannFan()
@@ -529,7 +529,7 @@ A drawing object of the type IGannFan (interface)
 ### Example
 ```cs
 // Shows a Gann fan at the low of the bar from 10 periods ago
-AddChartGannFan("MyGannFan", true, 10, Low[10]);
+AddChartGannFan("MyGannFan-" + ProcessingBarIndex, true, 10, Low[10]);
 ```
 
 ## AddChartLine()
@@ -574,7 +574,7 @@ A drawing object of the type ITrendLine (interface).
 ### Example
 ```cs
 // Draws a line
-AddChartLine("MyLine", false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
+AddChartLine("MyLine-" + ProcessingBarIndex, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 ```
 
 ## AddChartHorizontalLine()
@@ -613,7 +613,7 @@ A drawing object of the type IHorizontalLine (interface)
 ### Example
 ```cs
 // Draws a horizontal line at y=10
-AddChartHorizontalLine("MyHorizontalLine", 10, Color.Black);
+AddChartHorizontalLine("MyHorizontalLine-" + ProcessingBarIndex, 10, Color.Black);
 ```
 
 ## AddChartRay()
@@ -660,11 +660,11 @@ A drawing object of the type IRay (interface)
 // Draws a line from the bar from 10 periods ago to the current bar (x-axis)
 // --> line is extended to the right
 // from y=3 to y=7
-AddChartRay("MyRay", 10, 3, 0, 7, Color.Green);
+AddChartRay("MyRay-" + ProcessingBarIndex, 10, 3, 0, 7, Color.Green);
 // Draws a line from the current bar to the bar from 10 periods ago
 // --> line is extended to the left
 // from y=3 to y=7
-AddChartRay("MyRay", 0, 3, 10, 7, Color.Green);
+AddChartRay("MyRay-" + ProcessingBarIndex, 0, 3, 10, 7, Color.Green);
 ```
 
 ## AddChartRectangle()
@@ -699,7 +699,7 @@ A drawing object of the type IRectangle (interface)
 ```cs
 // Draws a green rectangle from the low of 10 periods ago to the high of 5 periods ago
 // with a fill color of pale green and a transparency of 2
-AddChartRectangle("MyRect", true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
+AddChartRectangle("MyRect-" + ProcessingBarIndex, true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
 ```
 
 ## AddChartRegion()
@@ -734,7 +734,7 @@ A drawing object of the type IRegion (interface)
 ### Example
 ```cs
 // Fills the area between the upper and lower Bollinger Bands
-AddChartRegion("MyRegion", ProcessingBarIndex, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
+AddChartRegion("MyRegion-" + ProcessingBarIndex, ProcessingBarIndex, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
 ```
 
 ## AddChartRegressionChannel()
@@ -777,7 +777,7 @@ A drawing object of the type IRegressionChannel (interface)
 ### Example
 ```cs
 // Draws a regression channel from the low of the bar from 10 days ago to the high of the bar from 5 days ago.
-AddChartRegressionChannel("MyRegChannel", 10, 0, Color.Black);
+AddChartRegressionChannel("MyRegChannel-" + ProcessingBarIndex, 10, 0, Color.Black);
 ```
 
 ## AddChartSquare()
@@ -810,7 +810,7 @@ A drawing object of the type ISquare (interface)
 ### Example
 ```cs
 // Draws a dark red square at the current bar 10 ticks above the high
-AddChartSquare("MySquare", true, 0, High[0] + 10*TickSize, Color.DarkRed);
+AddChartSquare("MySquare-" + ProcessingBarIndex, true, 0, High[0] + 10*TickSize, Color.DarkRed);
 ```
 
 ## AddChartText()
@@ -864,9 +864,9 @@ Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)   
 ### Example
 ```cs
 // writes text at y=3.0
-AddChartText("MyText", "This is sample text.", 10, 3, Color.Black);
+AddChartText("MyText-" + ProcessingBarIndex, "This is sample text.", 10, 3, Color.Black);
 // writes red text in the font Arial 7
-AddChartText("MyText", false, "This is sample text.", Time[0], Close[0]+50*TickSize, 0,
+AddChartText("MyText-" + ProcessingBarIndex, false, "This is sample text.", Time[0], Close[0]+50*TickSize, 0,
 Color.Red, new Font("Arial",7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
 ```
 
@@ -875,7 +875,7 @@ This leads to the following result:
 ![AddChartText()](./media/image27.png)
 
 ```cs
-AddChartText("MyTag",true,"Text",1,
+AddChartText("MyTag-" + ProcessingBarIndex,true,"Text",1,
 // barsAgo
 High[1], // y
 10, // yPixelOffset
@@ -956,7 +956,7 @@ A drawing object of the type ITrendChannel (interface)
 ### Example
 ```cs
 // Draws a trend channel
-AddChartTrendChannel("MyTrendChannel", true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
+AddChartTrendChannel("MyTrendChannel-" + ProcessingBarIndex, true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
 ```
 
 ## AddChartTriangle()
@@ -997,7 +997,7 @@ Value between 0 and 255
 ### Example
 ```cs
 // Draws a green triangle
-AddChartTriangle("tag1", 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
+AddChartTriangle("tag1-" + ProcessingBarIndex, 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 ```
 
 ## AddChartTriangleUp()
@@ -1030,7 +1030,7 @@ A drawing object of the type ITriangleUp (interface)
 ### Example
 ```cs
 // Draws a small light green triangle at the current bar 10 ticks below the low
-AddChartTriangleUp("MyTriangleUp", true, 0, Low[0] - 10*TickSize, Color.LightGreen);
+AddChartTriangleUp("MyTriangleUp-" + ProcessingBarIndex, true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 ```
 
 ## AddChartTriangleDown()
@@ -1063,7 +1063,7 @@ A drawing object of the type ITriangleDown (interface)
 ### Example
 ```cs
 // Draws a small red triangle at the current bar 10 ticks above the high
-AddChartTriangleDown("MyTriangleDown", true, 0, High[0] + 10*TickSize, Color.Red);
+AddChartTriangleDown("MyTriangleDown-" + ProcessingBarIndex, true, 0, High[0] + 10*TickSize, Color.Red);
 ```
 
 ## AddChartVerticalLine()
@@ -1097,5 +1097,5 @@ using System.Drawing.Drawing2D;                                             |
 ### Example
 ```cs
 // Draws a vertical line at the bar from 10 periods ago
-AddChartVerticalLine("MyVerticalLine", 10, Color.Black);
+AddChartVerticalLine("MyVerticalLine-" + ProcessingBarIndex, 10, Color.Black);
 ```
