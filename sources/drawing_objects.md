@@ -532,6 +532,45 @@ A drawing object of the type IGannFan (interface)
 AddChartGannFan("MyGannFan-" + ProcessingBarIndex, true, 10, Low[10]);
 ```
 
+## AddChartHorizontalLine()
+### Description
+AddChartHorizontalLine() draws a horizontal line in the chart.
+
+See [*AddChartLine()*](#drawline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
+
+### Usage
+```cs
+AddChartHorizontalLine(string name, double y, Color color)
+AddChartHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
+```
+
+### Return Value
+A drawing object of the type IHorizontalLine (interface)
+
+### Parameter
+|           |                                                                                         |
+|-----------|-----------------------------------------------------------------------------------------|
+| name      | A clearly identifiable name for the drawing object                                      |
+| autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
+| y         | Any double value of your choice                                                         |
+| color     | LevelLine color                                                                              |
+| dashStyle | LevelLine style                                                                              |                                                                                           
+|           |  DashStyle.Dash                                                                         |  
+|           |  DashStyle.DashDot                                                                      |  
+|           |  DashStyle.DashDotDot                                                                   |  
+|           |  DashStyle.Dot                                                                          |  
+|           |  DashStyle.Solid                                                                        |  
+|           |                                                                                         |  
+|           |  You may have to integrate:                                                             |  
+|           |  using System.Drawing.Drawing2D;                                                        |
+| width     | LevelLine strength                                                                           |
+
+### Example
+```cs
+// Draws a horizontal line at y=10
+AddChartHorizontalLine("MyHorizontalLine-" + ProcessingBarIndex, 10, Color.Black);
+```
+
 ## AddChartLine()
 ### Description
 AddChartLine() draws a (trend) line.
@@ -575,45 +614,6 @@ A drawing object of the type ITrendLine (interface).
 ```cs
 // Draws a line
 AddChartLine("MyLine-" + ProcessingBarIndex, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
-```
-
-## AddChartHorizontalLine()
-### Description
-AddChartHorizontalLine() draws a horizontal line in the chart.
-
-See [*AddChartLine()*](#drawline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
-
-### Usage
-```cs
-AddChartHorizontalLine(string name, double y, Color color)
-AddChartHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
-```
-
-### Return Value
-A drawing object of the type IHorizontalLine (interface)
-
-### Parameter
-|           |                                                                                         |
-|-----------|-----------------------------------------------------------------------------------------|
-| name      | A clearly identifiable name for the drawing object                                      |
-| autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| y         | Any double value of your choice                                                         |
-| color     | LevelLine color                                                                              |
-| dashStyle | LevelLine style                                                                              |                                                                                           
-|           |  DashStyle.Dash                                                                         |  
-|           |  DashStyle.DashDot                                                                      |  
-|           |  DashStyle.DashDotDot                                                                   |  
-|           |  DashStyle.Dot                                                                          |  
-|           |  DashStyle.Solid                                                                        |  
-|           |                                                                                         |  
-|           |  You may have to integrate:                                                             |  
-|           |  using System.Drawing.Drawing2D;                                                        |
-| width     | LevelLine strength                                                                           |
-
-### Example
-```cs
-// Draws a horizontal line at y=10
-AddChartHorizontalLine("MyHorizontalLine-" + ProcessingBarIndex, 10, Color.Black);
 ```
 
 ## AddChartRay()
@@ -1000,39 +1000,6 @@ Value between 0 and 255
 AddChartTriangle("tag1-" + ProcessingBarIndex, 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 ```
 
-## AddChartTriangleUp()
-### Description
-AddChartTriangleUp() draws a small upwards-pointing triangle:
-
-![AddChartTriangleUp()](./media/image28.png)
-
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleDown()*](#addcharttriangledown).
-
-### Usage
-```cs
-AddChartTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
-AddChartTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
-```
-
-### Return Value
-A drawing object of the type ITriangleUp (interface)
-
-### Parameter
-|           |                                                                                         |
-|-----------|-----------------------------------------------------------------------------------------|
-| name      | A clearly identifiable name for the drawing object                                      |
-| autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
-| barsAgo   | Sets how many bars ago the triangle should be drawn                                     |
-| time      | Date/time for the bar at which the triangle should be drawn                             |
-| y         | y-value at which the triangle should be drawn                                           |
-| color     | Color of the drawing object                                                             |
-
-### Example
-```cs
-// Draws a small light green triangle at the current bar 10 ticks below the low
-AddChartTriangleUp("MyTriangleUp-" + ProcessingBarIndex, true, 0, Low[0] - 10*TickSize, Color.LightGreen);
-```
-
 ## AddChartTriangleDown()
 ### Description
 AddChartTriangleDown() draws a small downwards-pointing triangle:
@@ -1064,6 +1031,39 @@ A drawing object of the type ITriangleDown (interface)
 ```cs
 // Draws a small red triangle at the current bar 10 ticks above the high
 AddChartTriangleDown("MyTriangleDown-" + ProcessingBarIndex, true, 0, High[0] + 10*TickSize, Color.Red);
+```
+
+## AddChartTriangleUp()
+### Description
+AddChartTriangleUp() draws a small upwards-pointing triangle:
+
+![AddChartTriangleUp()](./media/image28.png)
+
+See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleDown()*](#addcharttriangledown).
+
+### Usage
+```cs
+AddChartTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
+```
+
+### Return Value
+A drawing object of the type ITriangleUp (interface)
+
+### Parameter
+|           |                                                                                         |
+|-----------|-----------------------------------------------------------------------------------------|
+| name      | A clearly identifiable name for the drawing object                                      |
+| autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
+| barsAgo   | Sets how many bars ago the triangle should be drawn                                     |
+| time      | Date/time for the bar at which the triangle should be drawn                             |
+| y         | y-value at which the triangle should be drawn                                           |
+| color     | Color of the drawing object                                                             |
+
+### Example
+```cs
+// Draws a small light green triangle at the current bar 10 ticks below the low
+AddChartTriangleUp("MyTriangleUp-" + ProcessingBarIndex, true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 ```
 
 ## AddChartVerticalLine()
