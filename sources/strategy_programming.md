@@ -62,6 +62,33 @@ Print("OverNightMargin " + Account.OverNightMargin);
 Print("RealizedProfitLoss " + Account.RealizedProfitLoss);
 ```
 
+## BarsCountFromTradeClose()
+### Description
+The property "BarsCountFromTradeClose" outputs the number of bars that have occurred since the last exit from the market.
+
+### Usage
+```cs
+BarsCountFromTradeClose()
+BarsCountFromTradeClose(string strategyName)
+```
+
+For multi-bar strategies
+```cs
+BarsCountFromTradeClose(int multibarSeriesIndex, string strategyName, int exitsAgo)
+```
+
+### Parameter
+|                     |                                                                                                                           |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| strategyName          | The Strategy name (string) that has been used to clearly label the exit within the exit method.    |
+| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
+| exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
+
+### Example
+```cs
+Print("The last exit was " + BarsCountFromTradeClose() + " bars ago.");
+```
+
 ## BarsCountFromTradeOpen()
 ### Description
 The property "BarsCountFromTradeOpen" returns the number of bars that have occurred since the last entry into the market.
@@ -90,32 +117,6 @@ BarsCountFromTradeOpen(int multibarSeriesIndex, string strategyName, int entries
 Print("The last entry was " + BarsCountFromTradeOpen() + " bars ago.");
 ```
 
-## BarsCountFromTradeClose()
-### Description
-The property "BarsCountFromTradeClose" outputs the number of bars that have occurred since the last exit from the market.
-
-### Usage
-```cs
-BarsCountFromTradeClose()
-BarsCountFromTradeClose(string strategyName)
-```
-
-For multi-bar strategies
-```cs
-BarsCountFromTradeClose(int multibarSeriesIndex, string strategyName, int exitsAgo)
-```
-
-### Parameter
-|                     |                                                                                                                           |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------|
-| strategyName          | The Strategy name (string) that has been used to clearly label the exit within the exit method.    |
-| multibarSeriesIndex | For *[Multibar*](#multibar)[*MultiBars*](#multibars) strategies. Index of the data series for which the exit order has been executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
-| exitsAgo            | Number of exits that have occurred in the past. A zero indicates the number of bars that have formed after the last exit. |
-
-### Example
-```cs
-Print("The last exit was " + BarsCountFromTradeClose() + " bars ago.");
-```
 ## CancelAllOrders()
 ### Description
 CancelAllOrders deletes all oders (cancel) managed by the strategy.
@@ -137,6 +138,7 @@ protected override void OnCalculate()
        CancelAllOrders();
 }
 ```
+
 ## CancelOrder()
 ### Description
 Cancel order deletes an order.
@@ -170,35 +172,7 @@ protected override void OnCalculate()
 }
 ```
 
-## ReplaceOrder()
-### Description
-Change order, as the name suggests, changes an order.
 
-### Usage
-```cs
-ReplaceOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
-```
-
-### Parameter
-|            |                                          |
-|------------|------------------------------------------|
-| iOrder     | An order object of the type "IOrder"     |
-| quantity   | Number of units to be ordered            |
-| limitPrice | Limit price. Set this to 0 if not needed |
-| stopPrice  | Stop price. Set this to 0 if not needed  |
-
-### Example
-```cs
-private IOrder stopOrder = null;
-protected override void OnCalculate()
-{
-// If the position is profiting by 10 ticks then set the stop to break-even
-if (stopOrder != null
-    && Close[0] >= Position.AvgPrice + (10 * TickSize)
-        && stopOrder.StopPrice < Position.AvgPrice)
-ReplaceOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
-}
-```
 ## CreateIfDoneGroup()
 ### Description
 If two orders are linked to one another via a CreateIfDoneGroup, it means that if the one order has been executed, the second linked order is activated.
@@ -325,6 +299,71 @@ protected override void OnInit()
 DefaultOrderQuantity = 100;
 }
 ```
+
+## EntriesPerDirection
+### Description
+Entries per direction defines the maximum number of entries permitted in one direction (long or short).
+
+Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*](#entryhandling).
+
+Entries per direction is defined with the [*OnInit()*](#oninit) method.
+
+### Usage
+**EntriesPerDirection**
+
+### Parameter
+An int value for the maximum entries permitted in one direction.
+
+### Example
+```cs
+// Example 1
+// If one of the two entry conditions is true and a long position is opened, then the other entry signal will be ignored
+protected override void OnInit()
+{
+EntriesPerDirection = 1;
+EntryHandling = EntryHandling.AllEntries;
+}
+
+protected override void OnCalculate()
+{
+    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+        OpenLong("SMA cross entry");
+}
+
+// Example 2
+
+
+protected override void OnCalculate()
+{
+    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
+        OpenLong("EMACrossesSMA");
+    else if (CrossAbove (MACD(2,2,5), 0, 1))
+        OpenLong("MACDCross");
+}
+```
+
+## EntryHandling
+### Description
+Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*](#entriesperdirection)).
+
+Entry handling is defined with the [*OnInit()*](#oninit) method.
+
+**EntryHandling.AllEntries**
+
+AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in [*EntriesPerDirection*](#entriesperdirection)) per direction (long or short) is reached, regardless of how the entry signals are named.
+
+If entries per direction = 2, then enter long ("SMA crossover") and enter long ("range breakout") combined will reach the maximum number of long entries permitted.
+
+**EntryHandling.UniqueEntries**
+
+AgenaTrader continues to generate entry orders until the maximum number of entries (defined in entries per direction) in one direction (long or short) for the differently named entry signals has been reached.
+If entries per direction = 2, then it is possible for two signals for enter long ("SMA crossover") *and* 2 signals for enter long ("range breakout") to be traded.
+
+### Usage
+**EntryHandling**
+
+### Example
+See [*EntriesPerDirection*](#entriesperdirection).
 
 ## OpenLong()
 ### Description
@@ -652,70 +691,6 @@ if (stopOrder == null)
     stopOrder = OpenShortStopLimit(High[0] + (2*TickSize), High[0], "stop short");
 ```
 
-## EntriesPerDirection
-### Description
-Entries per direction defines the maximum number of entries permitted in one direction (long or short).
-
-Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*](#entryhandling).
-
-Entries per direction is defined with the [*OnInit()*](#oninit) method.
-
-### Usage
-**EntriesPerDirection**
-
-### Parameter
-An int value for the maximum entries permitted in one direction.
-
-### Example
-```cs
-// Example 1
-// If one of the two entry conditions is true and a long position is opened, then the other entry signal will be ignored
-protected override void OnInit()
-{
-EntriesPerDirection = 1;
-EntryHandling = EntryHandling.AllEntries;
-}
-
-protected override void OnCalculate()
-{
-    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-        OpenLong("SMA cross entry");
-}
-
-// Example 2
-
-
-protected override void OnCalculate()
-{
-    if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-        OpenLong("EMACrossesSMA");
-    else if (CrossAbove (MACD(2,2,5), 0, 1))
-        OpenLong("MACDCross");
-}
-```
-
-## EntryHandling
-### Description
-Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*](#entriesperdirection)).
-
-Entry handling is defined with the [*OnInit()*](#oninit) method.
-
-**EntryHandling.AllEntries**
-
-AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in [*EntriesPerDirection*](#entriesperdirection)) per direction (long or short) is reached, regardless of how the entry signals are named.
-
-If entries per direction = 2, then enter long ("SMA crossover") and enter long ("range breakout") combined will reach the maximum number of long entries permitted.
-
-**EntryHandling.UniqueEntries**
-
-AgenaTrader continues to generate entry orders until the maximum number of entries (defined in entries per direction) in one direction (long or short) for the differently named entry signals has been reached.
-If entries per direction = 2, then it is possible for two signals for enter long ("SMA crossover") *and* 2 signals for enter long ("range breakout") to be traded.
-
-### Usage
-**EntryHandling**
-
-### Example
-See [*EntriesPerDirection*](#entriesperdirection).
 
 ## ExcludeTradeHistoryInBacktest
 ## CloseLong()
@@ -1135,11 +1110,6 @@ A double value for the unrealized profit or loss
 Print("The current risk for the strategy " + this.Name + " is " + GetProfitLoss(1) + " " + Instrument.Currency);
 Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ```
-## GetScriptedCondition()
-### Description
-This method allows user to communicate between scripts.
-
-
 
 ## GetProfitLossAmount()
 ### Description
@@ -1183,6 +1153,12 @@ A double value for the R-Multiple
 ```cs
 Print("the current P&L " + this.Name + " is " + string.Format( "{0:F1} R.", GetProfitLossRisk()));
 ```
+
+## GetScriptedCondition()
+### Description
+This method allows user to communicate between scripts.
+
+
 
 ## IsAutomated
 ### Description
@@ -1281,10 +1257,6 @@ Possible Methods:
 -   **order.ConfirmOrder()**
     Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
 
-
-## PositionType
-See [*Position.PositionType*](#positionpositiontype).
-
 ## Performance
 ### Description
 Performance is an object containing information regarding all trades that have been generated by a strategy.
@@ -1381,9 +1353,78 @@ Print("Pieces " + Position.Quantity);
 }
 ```
 
+## PositionType
+See [*Position.PositionType*](#positionpositiontype).
+
+## PrintOrders
+### Description
+The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
+Trace orders can be specified with the [*OnInit()*](#oninit) method.
+
+When PrintOrders is activated, each order will display the following values in the output window:
+
+-   Instrument
+-   Time frame
+-   Action
+-   Type
+-   Limit price
+-   Stop price
+-   Quantity
+-   Name
+
+This information is useful when creating and debugging strategies.
+
+### Usage
+PrintOrders
+
+### Parameter
+none
+
+### Return Value
+**true** Tracing is currently switched on
+**false** Tracing is switched off
+
+### Example
+```cs
+protected override void OnInit()
+{
+ClearOutputWindow();
+PrintOrders = true;
+}
+```
+
 ## Quantity
 See [*Position.Quantity*](#positionquantity), [*Position.PositionType*](#positionpositiontype).
 
+## ReplaceOrder()
+### Description
+Change order, as the name suggests, changes an order.
+
+### Usage
+```cs
+ReplaceOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
+```
+
+### Parameter
+|            |                                          |
+|------------|------------------------------------------|
+| iOrder     | An order object of the type "IOrder"     |
+| quantity   | Number of units to be ordered            |
+| limitPrice | Limit price. Set this to 0 if not needed |
+| stopPrice  | Stop price. Set this to 0 if not needed  |
+
+### Example
+```cs
+private IOrder stopOrder = null;
+protected override void OnCalculate()
+{
+// If the position is profiting by 10 ticks then set the stop to break-even
+if (stopOrder != null
+    && Close[0] >= Position.AvgPrice + (10 * TickSize)
+        && stopOrder.StopPrice < Position.AvgPrice)
+ReplaceOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPrice);
+}
+```
 ## SetUpProfitTarget()
 ### Description
 Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
@@ -1417,6 +1458,7 @@ protected override void OnInit()
 SetUpProfitTarget(CalculationMode.Ticks, 20);
 }
 ```
+
 
 ## SetUpStopLoss()
 ### Description
@@ -1589,43 +1631,6 @@ TimeInForce.gtd
 protected override void OnInit()
 {
 TimeInForce = TimeInForce.Day;
-}
-```
-
-## PrintOrders
-### Description
-The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
-Trace orders can be specified with the [*OnInit()*](#oninit) method.
-
-When PrintOrders is activated, each order will display the following values in the output window:
-
--   Instrument
--   Time frame
--   Action
--   Type
--   Limit price
--   Stop price
--   Quantity
--   Name
-
-This information is useful when creating and debugging strategies.
-
-### Usage
-PrintOrders
-
-### Parameter
-none
-
-### Return Value
-**true** Tracing is currently switched on
-**false** Tracing is switched off
-
-### Example
-```cs
-protected override void OnInit()
-{
-ClearOutputWindow();
-PrintOrders = true;
 }
 ```
 
