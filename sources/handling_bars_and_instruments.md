@@ -48,31 +48,31 @@ Bars (**public** IBars Bars) can be used directly in a script and equates to Bar
 
 The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).
 
-[*BarsCountForSession*](#barscountforsession)
-
 [*Bars.Count*](#barscount)
 
-[*Bars.IsFirstBarInSession*](#barsfirstbarinsession)
+[*Bars.CurrentSessionBeginTime*](#currentsessionbegintime)
+
+[*Bars.CurrentSessionEndTime*](#currentsessionendtime)
 
 [*Bars.GetBar*](#barsgetbar)
+
+[*Bars.GetBarIndex*](#barsgetbarindex)
 
 [*Bars.GetBarsAgo*](#barsgetbarsago)
 
 [*Bars.GetByIndex*](#barsgetbyindex)
 
-[*Bars.GetBarIndex*](#barsgetbarindex)
-
-[*Bars.GetNextSessionTimeSpan*](#getnextsessiontimespan)
-
-[*Bars.GetSessionBegin*](#getsessionbegin)
-
-[*Bars.GetOpen*](barsgetopen)
+[*Bars.GetClose*](#barsgetclose)
 
 [*Bars.GetHigh*](#barsgethigh)
 
 [*Bars.GetLow*](#barsgetlow)
 
-[*Bars.GetClose*](#barsgetclose)
+[*Bars.GetNextSessionTimeSpan*](#getnextsessiontimespan)
+
+[*Bars.GetOpen*](barsgetopen)
+
+[*Bars.GetSessionBegin*](#getsessionbegin)
 
 [*Bars.GetTime*](#barsgettime)
 
@@ -82,64 +82,42 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.IsEod*](#barsiseod)
 
+[*Bars.IsFalling*](#barsisfalling)
+
+[*Bars.IsFirstBarInSession*](#barsfirstbarinsession)
+
+[*Bars.IsGrowing*](#barsisgrowing)
+
 [*Bars.IsIntraday*](#barsisintraday)
 
 [*Bars.IsNtb*](#barsisntb)
 
-[*Bars.LastBarCompleteness*](#barslastbarcompleteness)
-
-[*Bars.CurrentSessionBeginTime*](#currentsessionbegintime)
-
 [*Bars.SessionBreak*](#barssessionbreak)
 
-[*Bars.CurrentSessionEndTime*](#currentsessionendtime)
+[*Bars.LastBarCompleteness*](#barslastbarcompleteness)
 
 [*Bars.NextSessionBeginTime*](#nextsessionbegintime)
 
 [*Bars.NextSessionEndTime*](#nextsessionendtime)
 
-[*Bars.TicksCountForLastBar*](#tickscountforlastbar)
-
-[*Bars.TimeFrame*](#barstimeframe)
-
-[*Bars.TicksCountInTotal*](#barstickscountintotal)
-
-[*Bars.IsGrowing*](#barsisgrowing)
-
-[*Bars.IsFalling*](#barsisfalling)
+[*Bars.TailBottom*](#barstailbottom)
 
 [*Bars.TailTop*](#barstailtop)
 
-[*Bars.TailBottom*](#barstailbottom)
+[*Bars.TicksCountForLastBar*](#tickscountforlastbar)
+
+[*Bars.TicksCountInTotal*](#barstickscountintotal)
+
+[*Bars.TimeFrame*](#barstimeframe)
+
+[*BarsCountForSession*](#barscountforsession)
 
 [*IsProcessingBarIndexLast*](#isprocessingbarindexlast)
 
 With the **OnCalculate()** method you can use any properties you want without having to test for a null reference.
 As soon as the function **OnCalculate()** is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of **OnCalculate()** then you should first perform a test for null references using **if** (Bars != **null**).
 
-## BarsCountForSession
-### Description
-Bars.BarsCountForSession outputs the amount of bars that have occurred since the beginning of the current trading session.
 
-See further [*Properties*](#properties) of bars.
-
-### Return Value
-Type int Amount of Bars
-
-A value of -1 indicates a problem with referencing the correct session beginning.
-
-### Usage
-Bars.BarsCountForSession
-
-### Further Information
-Within *OnCalculate()* this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
-
-If this property is used outside of OnCalculate() then you should test for a null reference before executing it. You can test using *if* (Bars!= *null*) .
-
-### Example
-```cs
-Print ("Since the start of the last trading session there have been" + Bars.BarsCountForSession + "bars.");
-```
 
 ## Bars.Count
 ### Description
@@ -165,29 +143,53 @@ When you specify how many bars are to be loaded within AgenaTrader, then the val
 Print ("There are a total of" + Bars.Count + "bars available.");
 ```
 
-## Bars.IsFirstBarInSession
+## Bars.CurrentSessionBeginTime
 ### Description
-With Bars.IsFirstBarInSession you can determine whether the current bar is the first bar of the trading session.
+Bars.CurrentSessionBeginTime outputs the date and time for the beginning of the current trading session.
 
-See [*Properties*](#properties) of bars for more information.
+Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.
+
+### Parameter
+None
 
 ### Return Value
-Type bool
-
-**true**: The bar is the first bar of the current trading session
-**false**: The bar is not the first bar of the current trading session
+Type DateTime
 
 ### Usage
-Bars.IsFirstBarInSession
+Bars.GetSessionBegin
 
 ### More Information
-With *OnCalculate()* this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up, an object will become available.
-If this property is called up outside of OnCalculate() you should test for a null reference using if (Bars != null).
+The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*](#instrumentexchange) .
+
+![Bars.CurrentSessionBeginTime](./media/image3.png)
 
 ### Example
 ```cs
-if (Bars.IsFirstBarInSession)
-Print ("The current trading session started at" + Time [0]);
+Print("The currently running trading session started at " + Bars.CurrentSessionBeginTime );
+```
+
+## Bars.CurrentSessionEndTime
+### Description
+Bars.CurrentSessionEndTime outputs the time for the end of the currently running trading session.
+Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.
+
+### Parameter
+None
+
+### Return Value
+Type DateTime
+
+### Usage
+Bars.GetSessionEnd
+
+### More Information
+The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrumentexchange) function.
+
+![Bars.CurrentSessionEndTime](./media/image4.png)
+
+### Example
+```cs
+Print("The current trading session will end at " + Bars.CurrentSessionEndTime);
 ```
 
 ## Bars.GetBar
@@ -220,6 +222,36 @@ For more information about using DateTime see [http://msdn.microsoft.com/de-de/l
 Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new DateTime(2012, 01, 03, 18, 0, 0)).Close);
 ```
 
+## Bars.GetBarIndex
+### Description
+Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
+
+See [*Bars.GetBar*](#barsgetbar)(#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex).
+
+### Parameter
+Type IBar bar
+or
+Type DateTime
+
+### Return Value
+Type int The bar index of the specified bar object or DateTime object
+
+### Usage
+```cs
+Bars.GetBarIndex (IBar bar)
+Bars.GetBarIndex (DateTime dt)
+```
+
+### More Information
+For more information about indexing see [*Functionality*](#functionality), [*Bars*](#bars)
+
+### Example
+```cs
+int barsAgo = 5;
+IBar bar = Bars.GetBar(Time[barsAgo]);
+Print(barsAgo + " and " + Bars.GetBarIndex(bar) + " are equal in this example.");
+```
+
 ## Bars.GetBarsAgo
 ### Description
 Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.
@@ -250,12 +282,6 @@ For more information about using DateTime see [http://msdn.microsoft.com/de-de/l
 Print("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.GetBarsAgo(new DateTime(2012, 01, 03, 18, 0, 0)));
 ```
 
-## Bars.GetClose
-Bars.GetClose(int index) – see [*Bars.GetOpen*](barsgetopen).
-
-## Bars.GetHigh
-Bars.GetHigh(int index) – see [*Bars.GetOpen*](barsgetopen).
-
 ## Bars.GetByIndex
 ### Description
 Bars.GetByIndex outputs the index for the specified bar object
@@ -280,36 +306,12 @@ For indexing of bars see [*Functionality*](#functionality), [*Bars*](#bars)
 ```cs
 Print(Close[0] + " and " + Bars.GetByIndex(ProcessingBarIndex).Close + " are equal in this example.");
 ```
+## Bars.GetClose
+Bars.GetClose(int index) – see [*Bars.GetOpen*](barsgetopen).
 
-## Bars.GetBarIndex
-### Description
-Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
+## Bars.GetHigh
+Bars.GetHigh(int index) – see [*Bars.GetOpen*](barsgetopen).
 
-See [*Bars.GetBar*](#barsgetbar)(#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex).
-
-### Parameter
-Type IBar bar
-or
-Type DateTime
-
-### Return Value
-Type int The bar index of the specified bar object or DateTime object
-
-### Usage
-```cs
-Bars.GetBarIndex (IBar bar)
-Bars.GetBarIndex (DateTime dt)
-```
-
-### More Information
-For more information about indexing see [*Functionality*](#functionality), [*Bars*](#bars)
-
-### Example
-```cs
-int barsAgo = 5;
-IBar bar = Bars.GetBar(Time[barsAgo]);
-Print(barsAgo + " and " + Bars.GetBarIndex(bar) + " are equal in this example.");
-```
 
 ## Bars.GetLow
 Bars.GetLow(int index) – see [*Bars.GetOpen*](barsgetopen).
@@ -361,28 +363,6 @@ Print("Session Start: " + sessionBegin + " Session End: " + sessionEnd);
 }
 ```
 
-## Bars.GetSessionBegin
-### Description
-Bars.GetSessionBegin provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other [*Properties*](#properties) of bars.
-
-### Parameter
-None
-
-### Return value
-Type DateTime
-
-### Usage
-Bars.GetSessionBegin(DateTime dt)
-
-### Further Information
-The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.
-
-![Bars.CurrentSessionBeginTime](./media/image3.png)
-### Example
-```cs
-Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionBegin(new DateTime(2015, 03, 25)) + " begonnen.");
-}
-```
 ## Bars.GetOpen
 ### Description
 For reasons of compatibility, the following methods are available.
@@ -412,6 +392,30 @@ int index (0 .. Bars.Count-1)
 Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume
 
 Type DateTime for GetTime
+
+
+## Bars.GetSessionBegin
+### Description
+Bars.GetSessionBegin provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other [*Properties*](#properties) of bars.
+
+### Parameter
+None
+
+### Return value
+Type DateTime
+
+### Usage
+Bars.GetSessionBegin(DateTime dt)
+
+### Further Information
+The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.
+
+![Bars.CurrentSessionBeginTime](./media/image3.png)
+### Example
+```cs
+Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionBegin(new DateTime(2015, 03, 25)) + " begonnen.");
+}
+```
 
 ## Bars.GetTime
 Bars.GetTime(int index) – see [*Bars.GetOpen*](barsgetopen).
@@ -468,6 +472,61 @@ If this property  used outside of OnCalculate (), then a corresponding test shou
 ```cs
 Print("The bars are EOD: " + Bars.IsEod);
 ```
+## Bars.IsFalling
+### Description
+Bar properties used when Bar is falling down.
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+```cs
+Bars[0].IsFalling;
+```
+
+## Bars.IsFirstBarInSession
+### Description
+With Bars.IsFirstBarInSession you can determine whether the current bar is the first bar of the trading session.
+
+See [*Properties*](#properties) of bars for more information.
+
+### Return Value
+Type bool
+
+**true**: The bar is the first bar of the current trading session
+**false**: The bar is not the first bar of the current trading session
+
+### Usage
+Bars.IsFirstBarInSession
+
+### More Information
+With *OnCalculate()* this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up, an object will become available.
+If this property is called up outside of OnCalculate() you should test for a null reference using if (Bars != null).
+
+### Example
+```cs
+if (Bars.IsFirstBarInSession)
+Print ("The current trading session started at" + Time [0]);
+```
+
+## Bars.isGrowing
+### Description
+Bar properties used when Bar is growing up.
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+```cs
+Bars[0].isGrowing;
+```
+
 ## Bars.IsIntraday
 ### Description
 Bars.IsIntraday returns a boolean which indicates if the TimeFrame is intra-day.
@@ -512,6 +571,30 @@ Bars.IsNtb
 Print("The bars are Ntb: " + Bars.IsNtb);
 ```
 
+## Bars.IsSessionBreak
+### Description
+Bars.IsSessionBreak can be used to determine whether the bars are within the commercial trading session in the commercial breaks defined in the marketplace escort.
+
+See [*Properties*](#properties) for more information.
+
+### Parameter
+None
+
+### Return Value
+Type bool
+
+### Usage
+Bars.IsSessionBreak
+
+### More Information
+![Bars.CurrentSessionEndTime](./media/image4.png)
+### Example
+```cs
+if (Bars.IsSessionBreak)
+{
+Print("The stock exchange Xetra has just a trade pause");
+}
+```
 
 ## Bars.LastBarCompleteness
 ### Description
@@ -548,80 +631,6 @@ remind = false;
 PlaySound("Alert1");
 }
 }
-```
-
-## Bars.CurrentSessionBeginTime
-### Description
-Bars.CurrentSessionBeginTime outputs the date and time for the beginning of the current trading session.
-
-Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.
-
-### Parameter
-None
-
-### Return Value
-Type DateTime
-
-### Usage
-Bars.GetSessionBegin
-
-### More Information
-The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*](#instrumentexchange) .
-
-![Bars.CurrentSessionBeginTime](./media/image3.png)
-
-### Example
-```cs
-Print("The currently running trading session started at " + Bars.CurrentSessionBeginTime );
-```
-
-## Bars.IsSessionBreak
-### Description
-Bars.IsSessionBreak can be used to determine whether the bars are within the commercial trading session in the commercial breaks defined in the marketplace escort.
-
-See [*Properties*](#properties) for more information.
-
-### Parameter
-None
-
-### Return Value
-Type bool
-
-### Usage
-Bars.IsSessionBreak
-
-### More Information
-![Bars.CurrentSessionEndTime](./media/image4.png)
-### Example
-```cs
-if (Bars.IsSessionBreak)
-{
-Print("The stock exchange Xetra has just a trade pause");
-}
-```
-
-## Bars.CurrentSessionEndTime
-### Description
-Bars.CurrentSessionEndTime outputs the time for the end of the currently running trading session.
-Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.
-
-### Parameter
-None
-
-### Return Value
-Type DateTime
-
-### Usage
-Bars.GetSessionEnd
-
-### More Information
-The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrumentexchange) function.
-
-![Bars.CurrentSessionEndTime](./media/image4.png)
-
-### Example
-```cs
-Print("The current trading session will end at " + Bars.CurrentSessionEndTime);
 ```
 
 ## Bars.NextSessionBeginTime
@@ -672,6 +681,46 @@ The time for the returned value will correlate with the value specified within t
 Print("The next trading session ends at " + Bars.NextSessionEndTime);
 ```
 
+## Bars.TailBottom
+### Description
+With this property you are able to get the height of the bottom candle tail.
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+```cs
+Bars[0].TailBottom;
+```
+
+### Example
+```cs
+Print("The height of the bottom candle tail is: " + Bars.TailBottom);
+```
+
+## Bars.TailTop
+### Description
+With this property you are able to get the height of the top candle tail.
+
+### Parameter
+None
+
+### Return Value
+None
+
+### Usage
+```cs
+Bars[0].TailTop;
+```
+
+### Example
+```cs
+Print("The height of the top candle tail is: " + Bars.TailTop);
+```
+
 ## Bars.TicksCountForLastBar
 ### Description
 Bars.TicksCountForLastBar outputs the total numbers of ticks contained within a bar.
@@ -695,6 +744,33 @@ If this property is used outside of OnCalculate(), you should test for a null re
 ### Example
 ```cs
 Print("The current bar consists of " + Bars.TicksCountForLastBar + " Ticks.");
+```
+
+## Bars.TicksCountInTotal
+### Description
+Bars.TicksCountInTotal outputs the total number of ticks from the moment the function is called up.
+
+More information can be found here: [*Properties*](#properties).
+
+### Parameter
+None
+
+### Return Value
+Type int
+
+### Usage
+Bars.TicksCountInTotal
+
+### More Information
+The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.
+
+With [*OnCalculate()*](#oncalculate) this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
+
+If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
+
+### Example
+```cs
+**Print**("The total amount of ticks is " + Bars.TicksCountInTotal);
 ```
 
 ## Bars.TimeFrame
@@ -728,100 +804,29 @@ Print(tf.Periodicity); // outputs "Minute"
 Print(tf.PeriodicityValue); // outputs "30"
 ```
 
-## Bars.TicksCountInTotal
+## BarsCountForSession
 ### Description
-Bars.TicksCountInTotal outputs the total number of ticks from the moment the function is called up.
+Bars.BarsCountForSession outputs the amount of bars that have occurred since the beginning of the current trading session.
 
-More information can be found here: [*Properties*](#properties).
-
-### Parameter
-None
+See further [*Properties*](#properties) of bars.
 
 ### Return Value
-Type int
+Type int Amount of Bars
+
+A value of -1 indicates a problem with referencing the correct session beginning.
 
 ### Usage
-Bars.TicksCountInTotal
+Bars.BarsCountForSession
 
-### More Information
-The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.
+### Further Information
+Within *OnCalculate()* this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
 
-With [*OnCalculate()*](#oncalculate) this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.
-
-If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using *if* (Bars != *null*)
-
-## Bars.isGrowing
-### Description
-Bar properties used when Bar is growing up.
-
-### Parameter
-None
-
-### Return Value
-None
-
-### Usage
-```cs
-Bars[0].isGrowing;
-```
-
-## Bars.IsFalling
-### Description
-Bar properties used when Bar is falling down.
-
-### Parameter
-None
-
-### Return Value
-None
-
-### Usage
-```cs
-Bars[0].IsFalling;
-```
-
-## Bars.TailTop
-### Description
-With this property you are able to get the height of the top candle tail.
-
-### Parameter
-None
-
-### Return Value
-None
-
-### Usage
-```cs
-Bars[0].TailTop;
-```
+If this property is used outside of OnCalculate() then you should test for a null reference before executing it. You can test using *if* (Bars!= *null*) .
 
 ### Example
 ```cs
-Print("The height of the top candle tail is: " + Bars.TailTop);
+Print ("Since the start of the last trading session there have been" + Bars.BarsCountForSession + "bars.");
 ```
-
-## Bars.TailBottom
-### Description
-With this property you are able to get the height of the bottom candle tail.
-
-### Parameter
-None
-
-### Return Value
-None
-
-### Usage
-```cs
-Bars[0].TailBottom;
-```
-
-### Example
-```cs
-Print("The height of the bottom candle tail is: " + Bars.TailBottom);
-```
-
-### Example
-**Print**("The total amount of ticks is " + Bars.TicksCountInTotal);
 
 ## ProcessingBarSeriesIndex
 ### Description
