@@ -131,9 +131,9 @@
                 
                     <li><a class="toctree-l4" href="#addchartgannfan">AddChartGannFan()</a></li>
                 
-                    <li><a class="toctree-l4" href="#addchartline">AddChartLine()</a></li>
-                
                     <li><a class="toctree-l4" href="#addcharthorizontalline">AddChartHorizontalLine()</a></li>
+                
+                    <li><a class="toctree-l4" href="#addchartline">AddChartLine()</a></li>
                 
                     <li><a class="toctree-l4" href="#addchartray">AddChartRay()</a></li>
                 
@@ -153,9 +153,9 @@
                 
                     <li><a class="toctree-l4" href="#addcharttriangle">AddChartTriangle()</a></li>
                 
-                    <li><a class="toctree-l4" href="#addcharttriangleup">AddChartTriangleUp()</a></li>
-                
                     <li><a class="toctree-l4" href="#addcharttriangledown">AddChartTriangleDown()</a></li>
+                
+                    <li><a class="toctree-l4" href="#addcharttriangleup">AddChartTriangleUp()</a></li>
                 
                     <li><a class="toctree-l4" href="#addchartverticalline">AddChartVerticalLine()</a></li>
                 
@@ -303,7 +303,7 @@ AddChartAndrewsPitchfork(string name, bool autoScale, DateTime start1Time, doubl
 </table>
 <h3 id="example">Example</h3>
 <pre><code class="cs">// Draw the Andrew’s Pitchfork (“MyAPF”)
-AddChartAndrewsPitchfork(&quot;MyAPF&quot;, true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
+AddChartAndrewsPitchfork(&quot;MyAPF-&quot; + ProcessingBarIndex, true, 4, Low[4], 3, High[3], 1, Low[1], Color.Black, DashStyle.Solid, 2);
 </code></pre>
 
 <h2 id="addchartarc">AddChartArc()</h2>
@@ -406,7 +406,7 @@ AddChartArc(string name, bool autoScale, DateTime startTime, double startY, Date
 </table>
 <h3 id="example_1">Example</h3>
 <pre><code class="cs">// AddChart a blue arc
-AddChartArc(&quot;MyArc&quot;, true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
+AddChartArc(&quot;MyArc-&quot; + ProcessingBarIndex, true, 10, 10, 0, 20, Color.Blue, DashStyle.Solid, 3);
 </code></pre>
 
 <h2 id="addchartarrowdown">AddChartArrowDown()</h2>
@@ -458,7 +458,7 @@ AddChartArrowDown(string name, bool autoScale, DateTime time, double y, Color co
 </table>
 <h3 id="example_2">Example</h3>
 <pre><code class="cs">// Draws a red arrow 3 ticks above the high for the current bar
-AddChartArrowDown(&quot;MyArrow&quot;, true, 0, High[0] + 3*TickSize, Color.Red);
+AddChartArrowDown(&quot;MyArrow-&quot; + ProcessingBarIndex, true, 0, High[0] + 3*TickSize, Color.Red);
 // Draws a red arrow on a three-bar reversal pattern
 if(High[2] &gt; High[3] &amp;&amp; High[1] &gt; High[2] &amp;&amp; Close[0] &lt; Open[0])
 AddChartArrowDown(ProcessingBarIndex.ToString(), true, 0, High[0] + 3*TickSize, Color.Red);
@@ -565,7 +565,7 @@ AddChartArrowDown(ProcessingBarIndex.ToString(), true, 0, High[0] + 3*TickSize, 
 </table>
 <h3 id="example_3">Example</h3>
 <pre><code class="cs">// Draws a black arrow
-AddChartArrowLine(&quot;MyArrow&quot;, false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
+AddChartArrowLine(&quot;MyArrow-&quot; + ProcessingBarIndex, false, 10, 10, 0, 5, Color.Black, DashStyle.Solid, 4);
 </code></pre>
 
 <h2 id="addchartarrowup">AddChartArrowUp()</h2>
@@ -617,7 +617,7 @@ AddChartArrowUp(string name, bool autoScale, DateTime time, double y, Color colo
 </table>
 <h3 id="example_4">Example</h3>
 <pre><code class="cs">// Draws a green arrow for the current bar 3 ticks below the low
-AddChartArrowUp(&quot;MyArrow&quot;, true, 0, Low[0] - 3*TickSize, Color.Green);
+AddChartArrowUp(&quot;MyArrow-&quot; + ProcessingBarIndex, true, 0, Low[0] - 3*TickSize, Color.Green);
 </code></pre>
 
 <h2 id="addchartdiamond">AddChartDiamond()</h2>
@@ -669,7 +669,7 @@ AddChartDiamond(string name, bool autoScale, DateTime time, double y, Color colo
 </table>
 <h3 id="example_5">Example</h3>
 <pre><code class="cs">// Draws a light blue diamond for the current bar 5 ticks below the low
-AddChartDiamond(&quot;MyDiamond&quot;, true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
+AddChartDiamond(&quot;MyDiamond-&quot; + ProcessingBarIndex, true, 0, Low[0] - 5*TickSize, Color.SteelBlue);
 </code></pre>
 
 <h2 id="addchartdot">AddChartDot()</h2>
@@ -721,7 +721,7 @@ AddChartDot(string name, bool autoScale, DateTime time, double y, Color color)
 </table>
 <h3 id="example_6">Example</h3>
 <pre><code class="cs">// Draws an orange dot for the current bar 5 ticks above the high
-AddChartDot(&quot;MyDot&quot;, true, 0, High[0] + 5*TickSize, Color.Orange);
+AddChartDot(&quot;MyDot-&quot; + ProcessingBarIndex, true, 0, High[0] + 5*TickSize, Color.Orange);
 </code></pre>
 
 <h2 id="addchartellipse">AddChartEllipse()</h2>
@@ -792,7 +792,7 @@ AddChartEllipse(string name, bool autoScale, DateTime startTime, double startY, 
 </table>
 <h3 id="example_7">Example</h3>
 <pre><code class="cs">// Draws a yellow ellipse from the current bar to 5 bars ago
-AddChartEllipse(&quot;MyEllipse&quot;, true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
+AddChartEllipse(&quot;MyEllipse-&quot; + ProcessingBarIndex, true, 5, High[5], 0, Close[0], Color.Yellow, Color.Yellow, 1);
 </code></pre>
 
 <h2 id="addchartextendedline">AddChartExtendedLine()</h2>
@@ -896,7 +896,7 @@ AddChartExtendedLine(string name, bool autoScale, DateTime startTime, double sta
 </table>
 <h3 id="example_8">Example</h3>
 <pre><code class="cs">// Draws a line without an end point
-AddChartExtendedLine(&quot;MyExt.LevelLine&quot;, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
+AddChartExtendedLine(&quot;MyExt.LevelLine-&quot; + ProcessingBarIndex, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 </code></pre>
 
 <h2 id="addchartfibonaccicircle">AddChartFibonacciCircle()</h2>
@@ -954,7 +954,7 @@ AddChartFibonacciCircle(string name, bool autoScale, DateTime startTime, double 
 </table>
 <h3 id="example_9">Example</h3>
 <pre><code class="cs">//Draws a Fibonacci circle
-AddChartFibonacciCircle(&quot;MyFibCircle&quot;, true, 5, Low[5], 0, High[0]);
+AddChartFibonacciCircle(&quot;MyFibCircle-&quot; + ProcessingBarIndex, true, 5, Low[5], 0, High[0]);
 </code></pre>
 
 <h2 id="addchartfibonacciextensions">AddChartFibonacciExtensions()</h2>
@@ -1024,7 +1024,7 @@ AddChartFibonacciExtensions(string name, bool autoScale, DateTime start1Time, do
 </table>
 <h3 id="example_10">Example</h3>
 <pre><code class="cs">// Draws Fibonacci extensions
-AddChartFibonacciExtensions(&quot;MyFibExt&quot;, true, 4, Low[4], 3, High[3], 1, Low[1]);
+AddChartFibonacciExtensions(&quot;MyFibExt-&quot; + ProcessingBarIndex, true, 4, Low[4], 3, High[3], 1, Low[1]);
 </code></pre>
 
 <h2 id="addchartfibonacciprojections">AddChartFibonacciProjections()</h2>
@@ -1081,7 +1081,7 @@ AddChartFibonacciExtensions(&quot;MyFibExt&quot;, true, 4, Low[4], 3, High[3], 1
 </table>
 <h3 id="example_11">Example</h3>
 <pre><code class="cs">// zeichnet FibonacciProjections
-AddChartFibonacciProjections(&quot;MyFibPro&quot;, true, Low[4], 3, High[3], 1, Low[1], 2);
+AddChartFibonacciProjections(&quot;MyFibPro-&quot; + ProcessingBarIndex, true, Low[4], 3, High[3], 1, Low[1], 2);
 
 </code></pre>
 
@@ -1140,7 +1140,7 @@ AddChartFibonacciRetracements(string name, bool autoScale, DateTime startTime, d
 </table>
 <h3 id="example_12">Example</h3>
 <pre><code class="cs">// Draws Fibonnaci retracements
-AddChartFibonacciRetracements(&quot;MyFibRet&quot;, true, 10, Low[10], 0, High[0]);
+AddChartFibonacciRetracements(&quot;MyFibRet-&quot; + ProcessingBarIndex, true, 10, Low[10], 0, High[0]);
 </code></pre>
 
 <h2 id="addchartfibonaccitimeextensions">AddChartFibonacciTimeExtensions()</h2>
@@ -1194,7 +1194,7 @@ AddChartFibonacciTimeExtensions(string name, DateTime startTime, double startY, 
 </table>
 <h3 id="example_13">Example</h3>
 <pre><code class="cs">// Draws Fibonacci time extensions
-AddChartFibonacciTimeExtensions(&quot;MyFibTimeExt&quot;, 10, Low[10], 0, High[0]);
+AddChartFibonacciTimeExtensions(&quot;MyFibTimeExt-&quot; + ProcessingBarIndex, 10, Low[10], 0, High[0]);
 </code></pre>
 
 <h2 id="addchartgannfan">AddChartGannFan()</h2>
@@ -1240,22 +1240,105 @@ AddChartGannFan(string name, bool autoScale, DateTime time, double y)
 </table>
 <h3 id="example_14">Example</h3>
 <pre><code class="cs">// Shows a Gann fan at the low of the bar from 10 periods ago
-AddChartGannFan(&quot;MyGannFan&quot;, true, 10, Low[10]);
+AddChartGannFan(&quot;MyGannFan-&quot; + ProcessingBarIndex, true, 10, Low[10]);
+</code></pre>
+
+<h2 id="addcharthorizontalline">AddChartHorizontalLine()</h2>
+<h3 id="description_15">Description</h3>
+<p>AddChartHorizontalLine() draws a horizontal line in the chart.</p>
+<p>See <a href="#drawline"><em>AddChartLine()</em></a>, <a href="#drawverticalline"><em>AddChartVerticalLine()</em></a>, <a href="#drawextendedline"><em>AddChartExtendedLine()</em></a>, <a href="#drawray"><em>AddChartRay()</em></a>.</p>
+<h3 id="usage_15">Usage</h3>
+<pre><code class="cs">AddChartHorizontalLine(string name, double y, Color color)
+AddChartHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
+</code></pre>
+
+<h3 id="return-value_15">Return Value</h3>
+<p>A drawing object of the type IHorizontalLine (interface)</p>
+<h3 id="parameter_15">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>A clearly identifiable name for the drawing object</td>
+</tr>
+<tr>
+<td>autoScale</td>
+<td>Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Any double value of your choice</td>
+</tr>
+<tr>
+<td>color</td>
+<td>LevelLine color</td>
+</tr>
+<tr>
+<td>dashStyle</td>
+<td>LevelLine style</td>
+</tr>
+<tr>
+<td></td>
+<td>DashStyle.Dash</td>
+</tr>
+<tr>
+<td></td>
+<td>DashStyle.DashDot</td>
+</tr>
+<tr>
+<td></td>
+<td>DashStyle.DashDotDot</td>
+</tr>
+<tr>
+<td></td>
+<td>DashStyle.Dot</td>
+</tr>
+<tr>
+<td></td>
+<td>DashStyle.Solid</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>You may have to integrate:</td>
+</tr>
+<tr>
+<td></td>
+<td>using System.Drawing.Drawing2D;</td>
+</tr>
+<tr>
+<td>width</td>
+<td>LevelLine strength</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example_15">Example</h3>
+<pre><code class="cs">// Draws a horizontal line at y=10
+AddChartHorizontalLine(&quot;MyHorizontalLine-&quot; + ProcessingBarIndex, 10, Color.Black);
 </code></pre>
 
 <h2 id="addchartline">AddChartLine()</h2>
-<h3 id="description_15">Description</h3>
+<h3 id="description_16">Description</h3>
 <p>AddChartLine() draws a (trend) line.</p>
 <p>See <a href="#drawhorizontalline"><em>AddChartHorizontalLine()</em></a>, <a href="#drawverticalline"><em>AddChartVerticalLine()</em></a>, <a href="#drawextendedline"><em>AddChartExtendedLine()</em></a>, <a href="#drawray"><em>AddChartRay()</em></a>.</p>
-<h3 id="usage_15">Usage</h3>
+<h3 id="usage_16">Usage</h3>
 <pre><code class="cs">AddChartLine(string name, int barsBackStart, double startY, int barsBackEnd, double endY, Color color)
 AddChartLine(string name, bool autoScale, int barsBackStart, double startY, int barsBackEnd, double endY, Color color, DashStyle dashStyle, int width)
 AddChartLine(string name, bool autoScale, DateTime startTime, double startY, DateTime endTime, double endY, Color color, DashStyle dashStyle, int width)
 </code></pre>
 
-<h3 id="return-value_15">Return Value</h3>
+<h3 id="return-value_16">Return Value</h3>
 <p>A drawing object of the type ITrendLine (interface).</p>
-<h3 id="parameter_15">Parameter</h3>
+<h3 id="parameter_16">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1342,92 +1425,9 @@ AddChartLine(string name, bool autoScale, DateTime startTime, double startY, Dat
 </tr>
 </tbody>
 </table>
-<h3 id="example_15">Example</h3>
-<pre><code class="cs">// Draws a line
-AddChartLine(&quot;MyLine&quot;, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
-</code></pre>
-
-<h2 id="addcharthorizontalline">AddChartHorizontalLine()</h2>
-<h3 id="description_16">Description</h3>
-<p>AddChartHorizontalLine() draws a horizontal line in the chart.</p>
-<p>See <a href="#drawline"><em>AddChartLine()</em></a>, <a href="#drawverticalline"><em>AddChartVerticalLine()</em></a>, <a href="#drawextendedline"><em>AddChartExtendedLine()</em></a>, <a href="#drawray"><em>AddChartRay()</em></a>.</p>
-<h3 id="usage_16">Usage</h3>
-<pre><code class="cs">AddChartHorizontalLine(string name, double y, Color color)
-AddChartHorizontalLine(string name, bool autoScale, double y, Color color, DashStyle dashStyle, int width)
-</code></pre>
-
-<h3 id="return-value_16">Return Value</h3>
-<p>A drawing object of the type IHorizontalLine (interface)</p>
-<h3 id="parameter_16">Parameter</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>A clearly identifiable name for the drawing object</td>
-</tr>
-<tr>
-<td>autoScale</td>
-<td>Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety</td>
-</tr>
-<tr>
-<td>y</td>
-<td>Any double value of your choice</td>
-</tr>
-<tr>
-<td>color</td>
-<td>LevelLine color</td>
-</tr>
-<tr>
-<td>dashStyle</td>
-<td>LevelLine style</td>
-</tr>
-<tr>
-<td></td>
-<td>DashStyle.Dash</td>
-</tr>
-<tr>
-<td></td>
-<td>DashStyle.DashDot</td>
-</tr>
-<tr>
-<td></td>
-<td>DashStyle.DashDotDot</td>
-</tr>
-<tr>
-<td></td>
-<td>DashStyle.Dot</td>
-</tr>
-<tr>
-<td></td>
-<td>DashStyle.Solid</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>You may have to integrate:</td>
-</tr>
-<tr>
-<td></td>
-<td>using System.Drawing.Drawing2D;</td>
-</tr>
-<tr>
-<td>width</td>
-<td>LevelLine strength</td>
-</tr>
-</tbody>
-</table>
 <h3 id="example_16">Example</h3>
-<pre><code class="cs">// Draws a horizontal line at y=10
-AddChartHorizontalLine(&quot;MyHorizontalLine&quot;, 10, Color.Black);
+<pre><code class="cs">// Draws a line
+AddChartLine(&quot;MyLine-&quot; + ProcessingBarIndex, false, 10, Close[10], 0, Close[0], Color.Black, DashStyle.Solid, 1);
 </code></pre>
 
 <h2 id="addchartray">AddChartRay()</h2>
@@ -1533,11 +1533,11 @@ AddChartRay(string name, bool autoScale, DateTime start1Time, double start1Y, Da
 <pre><code class="cs">// Draws a line from the bar from 10 periods ago to the current bar (x-axis)
 // --&gt; line is extended to the right
 // from y=3 to y=7
-AddChartRay(&quot;MyRay&quot;, 10, 3, 0, 7, Color.Green);
+AddChartRay(&quot;MyRay-&quot; + ProcessingBarIndex, 10, 3, 0, 7, Color.Green);
 // Draws a line from the current bar to the bar from 10 periods ago
 // --&gt; line is extended to the left
 // from y=3 to y=7
-AddChartRay(&quot;MyRay&quot;, 0, 3, 10, 7, Color.Green);
+AddChartRay(&quot;MyRay-&quot; + ProcessingBarIndex, 0, 3, 10, 7, Color.Green);
 </code></pre>
 
 <h2 id="addchartrectangle">AddChartRectangle()</h2>
@@ -1609,7 +1609,7 @@ AddChartRectangle(string name, bool autoScale, DateTime startTime, double startY
 <h3 id="example_18">Example</h3>
 <pre><code class="cs">// Draws a green rectangle from the low of 10 periods ago to the high of 5 periods ago
 // with a fill color of pale green and a transparency of 2
-AddChartRectangle(&quot;MyRect&quot;, true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
+AddChartRectangle(&quot;MyRect-&quot; + ProcessingBarIndex, true, 10, Low[10], 5, High[5], Color.PaleGreen, Color.PaleGreen, 2);
 </code></pre>
 
 <h2 id="addchartregion">AddChartRegion()</h2>
@@ -1677,7 +1677,7 @@ AddChartRegion(string name, DateTime startTime, DateTime endTime, IDataSeries se
 </table>
 <h3 id="example_19">Example</h3>
 <pre><code class="cs">// Fills the area between the upper and lower Bollinger Bands
-AddChartRegion(&quot;MyRegion&quot;, ProcessingBarIndex, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
+AddChartRegion(&quot;MyRegion-&quot; + ProcessingBarIndex, ProcessingBarIndex, 0, Bollinger(2, 14).Upper, Bollinger(2, 14).Lower, Color.Empty, Color.Lime, 100);
 </code></pre>
 
 <h2 id="addchartregressionchannel">AddChartRegressionChannel()</h2>
@@ -1780,7 +1780,7 @@ AddChartRegressionChannel(string name, bool autoScale, DateTime startTime, DateT
 </table>
 <h3 id="example_20">Example</h3>
 <pre><code class="cs">// Draws a regression channel from the low of the bar from 10 days ago to the high of the bar from 5 days ago.
-AddChartRegressionChannel(&quot;MyRegChannel&quot;, 10, 0, Color.Black);
+AddChartRegressionChannel(&quot;MyRegChannel-&quot; + ProcessingBarIndex, 10, 0, Color.Black);
 </code></pre>
 
 <h2 id="addchartsquare">AddChartSquare()</h2>
@@ -1832,7 +1832,7 @@ DrawSqare(string name, bool autoScale, DateTime time, double y, Color color)
 </table>
 <h3 id="example_21">Example</h3>
 <pre><code class="cs">// Draws a dark red square at the current bar 10 ticks above the high
-AddChartSquare(&quot;MySquare&quot;, true, 0, High[0] + 10*TickSize, Color.DarkRed);
+AddChartSquare(&quot;MySquare-&quot; + ProcessingBarIndex, true, 0, High[0] + 10*TickSize, Color.DarkRed);
 </code></pre>
 
 <h2 id="addcharttext">AddChartText()</h2>
@@ -1935,15 +1935,15 @@ using System.Windows.Forms.VisualStyles;
 </table>
 <h3 id="example_22">Example</h3>
 <pre><code class="cs">// writes text at y=3.0
-AddChartText(&quot;MyText&quot;, &quot;This is sample text.&quot;, 10, 3, Color.Black);
+AddChartText(&quot;MyText-&quot; + ProcessingBarIndex, &quot;This is sample text.&quot;, 10, 3, Color.Black);
 // writes red text in the font Arial 7
-AddChartText(&quot;MyText&quot;, false, &quot;This is sample text.&quot;, Time[0], Close[0]+50*TickSize, 0,
+AddChartText(&quot;MyText-&quot; + ProcessingBarIndex, false, &quot;This is sample text.&quot;, Time[0], Close[0]+50*TickSize, 0,
 Color.Red, new Font(&quot;Arial&quot;,7), StringAlignment.Center, Color.Blue, Color.DarkOliveGreen, 10);
 </code></pre>
 
 <p>This leads to the following result:</p>
 <p><img alt="AddChartText()" src="../media/image27.png" /></p>
-<pre><code class="cs">AddChartText(&quot;MyTag&quot;,true,&quot;Text&quot;,1,
+<pre><code class="cs">AddChartText(&quot;MyTag-&quot; + ProcessingBarIndex,true,&quot;Text&quot;,1,
 // barsAgo
 High[1], // y
 10, // yPixelOffset
@@ -2086,7 +2086,7 @@ AddChartTrendChannel(string name, bool autoScale, DateTime start1Time, double st
 </table>
 <h3 id="example_24">Example</h3>
 <pre><code class="cs">// Draws a trend channel
-AddChartTrendChannel(&quot;MyTrendChannel&quot;, true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
+AddChartTrendChannel(&quot;MyTrendChannel-&quot; + ProcessingBarIndex, true, 10, Low[10], 0, High[0], 10, High[10] + 5 * TickSize);
 </code></pre>
 
 <h2 id="addcharttriangle">AddChartTriangle()</h2>
@@ -2181,74 +2181,22 @@ AddChartTriangle(string name, bool autoScale, DateTime start1Time, double start1
 </table>
 <h3 id="example_25">Example</h3>
 <pre><code class="cs">// Draws a green triangle
-AddChartTriangle(&quot;tag1&quot;, 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
-</code></pre>
-
-<h2 id="addcharttriangleup">AddChartTriangleUp()</h2>
-<h3 id="description_26">Description</h3>
-<p>AddChartTriangleUp() draws a small upwards-pointing triangle:</p>
-<p><img alt="AddChartTriangleUp()" src="../media/image28.png" /></p>
-<p>See <a href="#drawarrowup"><em>AddChartArrowUp()</em></a>, <a href="#addchartarrowdown"><em>AddChartArrowDown()</em></a>, <a href="#addchartdiamond"><em>AddChartDiamond()</em></a>, <a href="#addchartdot"><em>AddChartDot()</em></a>, <a href="#addchartsquare"><em>AddChartSquare()</em></a>, <a href="#addcharttriangledown"><em>AddChartTriangleDown()</em></a>.</p>
-<h3 id="usage_26">Usage</h3>
-<pre><code class="cs">AddChartTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
-AddChartTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
-</code></pre>
-
-<h3 id="return-value_26">Return Value</h3>
-<p>A drawing object of the type ITriangleUp (interface)</p>
-<h3 id="parameter_26">Parameter</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>A clearly identifiable name for the drawing object</td>
-</tr>
-<tr>
-<td>autoScale</td>
-<td>Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety</td>
-</tr>
-<tr>
-<td>barsAgo</td>
-<td>Sets how many bars ago the triangle should be drawn</td>
-</tr>
-<tr>
-<td>time</td>
-<td>Date/time for the bar at which the triangle should be drawn</td>
-</tr>
-<tr>
-<td>y</td>
-<td>y-value at which the triangle should be drawn</td>
-</tr>
-<tr>
-<td>color</td>
-<td>Color of the drawing object</td>
-</tr>
-</tbody>
-</table>
-<h3 id="example_26">Example</h3>
-<pre><code class="cs">// Draws a small light green triangle at the current bar 10 ticks below the low
-AddChartTriangleUp(&quot;MyTriangleUp&quot;, true, 0, Low[0] - 10*TickSize, Color.LightGreen);
+AddChartTriangle(&quot;tag1-&quot; + ProcessingBarIndex, 4, Low[4], 3, High[3], 1, Low[1], Color.Green);
 </code></pre>
 
 <h2 id="addcharttriangledown">AddChartTriangleDown()</h2>
-<h3 id="description_27">Description</h3>
+<h3 id="description_26">Description</h3>
 <p>AddChartTriangleDown() draws a small downwards-pointing triangle:</p>
 <p><img alt="AddChartTriangleDown()" src="../media/image29.png" /></p>
 <p>See <a href="#drawarrowup"><em>AddChartArrowUp()</em></a>, <a href="#addchartarrowdown"><em>AddChartArrowDown()</em></a>, <a href="#addchartdiamond"><em>AddChartDiamond()</em></a>, <a href="#addchartdot"><em>AddChartDot()</em></a>, <a href="#addchartsquare"><em>AddChartSquare()</em></a>, <a href="#addcharttriangleup"><em>AddChartTriangleUp()</em></a>.</p>
-<h3 id="usage_27">Usage</h3>
+<h3 id="usage_26">Usage</h3>
 <pre><code class="cs">AddChartTriangleDown(string name, bool autoScale, int barsAgo, double y, Color color)
 AddChartTriangleDown(string name, bool autoScale, DateTime time, double y, Color color)
 </code></pre>
 
-<h3 id="return-value_27">Return Value</h3>
+<h3 id="return-value_26">Return Value</h3>
 <p>A drawing object of the type ITriangleDown (interface)</p>
-<h3 id="parameter_27">Parameter</h3>
+<h3 id="parameter_26">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -2283,9 +2231,61 @@ AddChartTriangleDown(string name, bool autoScale, DateTime time, double y, Color
 </tr>
 </tbody>
 </table>
-<h3 id="example_27">Example</h3>
+<h3 id="example_26">Example</h3>
 <pre><code class="cs">// Draws a small red triangle at the current bar 10 ticks above the high
-AddChartTriangleDown(&quot;MyTriangleDown&quot;, true, 0, High[0] + 10*TickSize, Color.Red);
+AddChartTriangleDown(&quot;MyTriangleDown-&quot; + ProcessingBarIndex, true, 0, High[0] + 10*TickSize, Color.Red);
+</code></pre>
+
+<h2 id="addcharttriangleup">AddChartTriangleUp()</h2>
+<h3 id="description_27">Description</h3>
+<p>AddChartTriangleUp() draws a small upwards-pointing triangle:</p>
+<p><img alt="AddChartTriangleUp()" src="../media/image28.png" /></p>
+<p>See <a href="#drawarrowup"><em>AddChartArrowUp()</em></a>, <a href="#addchartarrowdown"><em>AddChartArrowDown()</em></a>, <a href="#addchartdiamond"><em>AddChartDiamond()</em></a>, <a href="#addchartdot"><em>AddChartDot()</em></a>, <a href="#addchartsquare"><em>AddChartSquare()</em></a>, <a href="#addcharttriangledown"><em>AddChartTriangleDown()</em></a>.</p>
+<h3 id="usage_27">Usage</h3>
+<pre><code class="cs">AddChartTriangleUp(string name, bool autoScale, int barsAgo, double y, Color color)
+AddChartTriangleUp(string name, bool autoScale, DateTime time, double y, Color color)
+</code></pre>
+
+<h3 id="return-value_27">Return Value</h3>
+<p>A drawing object of the type ITriangleUp (interface)</p>
+<h3 id="parameter_27">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>A clearly identifiable name for the drawing object</td>
+</tr>
+<tr>
+<td>autoScale</td>
+<td>Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety</td>
+</tr>
+<tr>
+<td>barsAgo</td>
+<td>Sets how many bars ago the triangle should be drawn</td>
+</tr>
+<tr>
+<td>time</td>
+<td>Date/time for the bar at which the triangle should be drawn</td>
+</tr>
+<tr>
+<td>y</td>
+<td>y-value at which the triangle should be drawn</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Color of the drawing object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example_27">Example</h3>
+<pre><code class="cs">// Draws a small light green triangle at the current bar 10 ticks below the low
+AddChartTriangleUp(&quot;MyTriangleUp-&quot; + ProcessingBarIndex, true, 0, Low[0] - 10*TickSize, Color.LightGreen);
 </code></pre>
 
 <h2 id="addchartverticalline">AddChartVerticalLine()</h2>
@@ -2345,7 +2345,7 @@ AddChartVerticalLine(string name, DateTime time, Color color, DashStyle dashStyl
 </table>
 <h3 id="example_28">Example</h3>
 <pre><code class="cs">// Draws a vertical line at the bar from 10 periods ago
-AddChartVerticalLine(&quot;MyVerticalLine&quot;, 10, Color.Black);
+AddChartVerticalLine(&quot;MyVerticalLine-&quot; + ProcessingBarIndex, 10, Color.Black);
 </code></pre>
               
             </div>
