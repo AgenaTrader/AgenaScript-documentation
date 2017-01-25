@@ -77,31 +77,31 @@
                 
                     <li><a class="toctree-l4" href="#properties-of-bars">Properties of Bars</a></li>
                 
-                    <li><a class="toctree-l4" href="#barscountforsession">BarsCountForSession</a></li>
-                
                     <li><a class="toctree-l4" href="#barscount">Bars.Count</a></li>
                 
-                    <li><a class="toctree-l4" href="#barsisfirstbarinsession">Bars.IsFirstBarInSession</a></li>
+                    <li><a class="toctree-l4" href="#barscurrentsessionbegintime">Bars.CurrentSessionBeginTime</a></li>
+                
+                    <li><a class="toctree-l4" href="#barscurrentsessionendtime">Bars.CurrentSessionEndTime</a></li>
                 
                     <li><a class="toctree-l4" href="#barsgetbar">Bars.GetBar</a></li>
                 
+                    <li><a class="toctree-l4" href="#barsgetbarindex">Bars.GetBarIndex</a></li>
+                
                     <li><a class="toctree-l4" href="#barsgetbarsago">Bars.GetBarsAgo</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetbyindex">Bars.GetByIndex</a></li>
                 
                     <li><a class="toctree-l4" href="#barsgetclose">Bars.GetClose</a></li>
                 
                     <li><a class="toctree-l4" href="#barsgethigh">Bars.GetHigh</a></li>
                 
-                    <li><a class="toctree-l4" href="#barsgetbyindex">Bars.GetByIndex</a></li>
-                
-                    <li><a class="toctree-l4" href="#barsgetbarindex">Bars.GetBarIndex</a></li>
-                
                     <li><a class="toctree-l4" href="#barsgetlow">Bars.GetLow</a></li>
                 
                     <li><a class="toctree-l4" href="#barsgetnextsessiontimespan">Bars.GetNextSessionTimeSpan</a></li>
                 
-                    <li><a class="toctree-l4" href="#barsgetsessionbegin">Bars.GetSessionBegin</a></li>
-                
                     <li><a class="toctree-l4" href="#barsgetopen">Bars.GetOpen</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsgetsessionbegin">Bars.GetSessionBegin</a></li>
                 
                     <li><a class="toctree-l4" href="#barsgettime">Bars.GetTime</a></li>
                 
@@ -111,35 +111,35 @@
                 
                     <li><a class="toctree-l4" href="#barsiseod">Bars.IsEod</a></li>
                 
+                    <li><a class="toctree-l4" href="#barsisfalling">Bars.IsFalling</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsisfirstbarinsession">Bars.IsFirstBarInSession</a></li>
+                
+                    <li><a class="toctree-l4" href="#barsisgrowing">Bars.isGrowing</a></li>
+                
                     <li><a class="toctree-l4" href="#barsisintraday">Bars.IsIntraday</a></li>
                 
                     <li><a class="toctree-l4" href="#barsisntb">Bars.IsNtb</a></li>
                 
-                    <li><a class="toctree-l4" href="#barslastbarcompleteness">Bars.LastBarCompleteness</a></li>
-                
-                    <li><a class="toctree-l4" href="#barscurrentsessionbegintime">Bars.CurrentSessionBeginTime</a></li>
-                
                     <li><a class="toctree-l4" href="#barsissessionbreak">Bars.IsSessionBreak</a></li>
                 
-                    <li><a class="toctree-l4" href="#barscurrentsessionendtime">Bars.CurrentSessionEndTime</a></li>
+                    <li><a class="toctree-l4" href="#barslastbarcompleteness">Bars.LastBarCompleteness</a></li>
                 
                     <li><a class="toctree-l4" href="#barsnextsessionbegintime">Bars.NextSessionBeginTime</a></li>
                 
                     <li><a class="toctree-l4" href="#barsnextsessionendtime">Bars.NextSessionEndTime</a></li>
                 
-                    <li><a class="toctree-l4" href="#barstickscountforlastbar">Bars.TicksCountForLastBar</a></li>
-                
-                    <li><a class="toctree-l4" href="#barstimeframe">Bars.TimeFrame</a></li>
-                
-                    <li><a class="toctree-l4" href="#barstickscountintotal">Bars.TicksCountInTotal</a></li>
-                
-                    <li><a class="toctree-l4" href="#barsisgrowing">Bars.isGrowing</a></li>
-                
-                    <li><a class="toctree-l4" href="#barsisfalling">Bars.IsFalling</a></li>
+                    <li><a class="toctree-l4" href="#barstailbottom">Bars.TailBottom</a></li>
                 
                     <li><a class="toctree-l4" href="#barstailtop">Bars.TailTop</a></li>
                 
-                    <li><a class="toctree-l4" href="#barstailbottom">Bars.TailBottom</a></li>
+                    <li><a class="toctree-l4" href="#barstickscountforlastbar">Bars.TicksCountForLastBar</a></li>
+                
+                    <li><a class="toctree-l4" href="#barstickscountintotal">Bars.TicksCountInTotal</a></li>
+                
+                    <li><a class="toctree-l4" href="#barstimeframe">Bars.TimeFrame</a></li>
+                
+                    <li><a class="toctree-l4" href="#barscountforsession">BarsCountForSession</a></li>
                 
                     <li><a class="toctree-l4" href="#processingbarseriesindex">ProcessingBarSeriesIndex</a></li>
                 
@@ -344,96 +344,96 @@ The last closing price is thus <em>Close [0]</em>; the closing price previous to
 <p>"Bars" represents a list of all bars (candles) within a chart (see <a href="#functionality"><em>Functionality</em></a>(#functionality)<a href="#bars"><em>Bars</em></a>).</p>
 <p>Bars (<strong>public</strong> IBars Bars) can be used directly in a script and equates to BarsArray [0] (see Bars.GetNextSessionTimeSpan for more information).</p>
 <p>The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).</p>
-<p><a href="#barscountforsession"><em>BarsCountForSession</em></a></p>
 <p><a href="#barscount"><em>Bars.Count</em></a></p>
-<p><a href="#barsfirstbarinsession"><em>Bars.IsFirstBarInSession</em></a></p>
+<p><a href="#currentsessionbegintime"><em>Bars.CurrentSessionBeginTime</em></a></p>
+<p><a href="#currentsessionendtime"><em>Bars.CurrentSessionEndTime</em></a></p>
 <p><a href="#barsgetbar"><em>Bars.GetBar</em></a></p>
+<p><a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a></p>
 <p><a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a></p>
 <p><a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a></p>
-<p><a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a></p>
-<p><a href="#getnextsessiontimespan"><em>Bars.GetNextSessionTimeSpan</em></a></p>
-<p><a href="#getsessionbegin"><em>Bars.GetSessionBegin</em></a></p>
-<p><a href="../barsgetopen"><em>Bars.GetOpen</em></a></p>
+<p><a href="#barsgetclose"><em>Bars.GetClose</em></a></p>
 <p><a href="#barsgethigh"><em>Bars.GetHigh</em></a></p>
 <p><a href="#barsgetlow"><em>Bars.GetLow</em></a></p>
-<p><a href="#barsgetclose"><em>Bars.GetClose</em></a></p>
+<p><a href="#getnextsessiontimespan"><em>Bars.GetNextSessionTimeSpan</em></a></p>
+<p><a href="../barsgetopen"><em>Bars.GetOpen</em></a></p>
+<p><a href="#getsessionbegin"><em>Bars.GetSessionBegin</em></a></p>
 <p><a href="#barsgettime"><em>Bars.GetTime</em></a></p>
 <p><a href="#barsgetvolume"><em>Bars.GetVolume</em></a></p>
 <p><a href="#barsinstrument"><em>Bars.Instrument</em></a></p>
 <p><a href="#barsiseod"><em>Bars.IsEod</em></a></p>
+<p><a href="#barsisfalling"><em>Bars.IsFalling</em></a></p>
+<p><a href="#barsfirstbarinsession"><em>Bars.IsFirstBarInSession</em></a></p>
+<p><a href="#barsisgrowing"><em>Bars.IsGrowing</em></a></p>
 <p><a href="#barsisintraday"><em>Bars.IsIntraday</em></a></p>
 <p><a href="#barsisntb"><em>Bars.IsNtb</em></a></p>
-<p><a href="#barslastbarcompleteness"><em>Bars.LastBarCompleteness</em></a></p>
-<p><a href="#currentsessionbegintime"><em>Bars.CurrentSessionBeginTime</em></a></p>
 <p><a href="#barssessionbreak"><em>Bars.SessionBreak</em></a></p>
-<p><a href="#currentsessionendtime"><em>Bars.CurrentSessionEndTime</em></a></p>
+<p><a href="#barslastbarcompleteness"><em>Bars.LastBarCompleteness</em></a></p>
 <p><a href="#nextsessionbegintime"><em>Bars.NextSessionBeginTime</em></a></p>
 <p><a href="#nextsessionendtime"><em>Bars.NextSessionEndTime</em></a></p>
-<p><a href="#tickscountforlastbar"><em>Bars.TicksCountForLastBar</em></a></p>
-<p><a href="#barstimeframe"><em>Bars.TimeFrame</em></a></p>
-<p><a href="#barstickscountintotal"><em>Bars.TicksCountInTotal</em></a></p>
-<p><a href="#barsisgrowing"><em>Bars.IsGrowing</em></a></p>
-<p><a href="#barsisfalling"><em>Bars.IsFalling</em></a></p>
-<p><a href="#barstailtop"><em>Bars.TailTop</em></a></p>
 <p><a href="#barstailbottom"><em>Bars.TailBottom</em></a></p>
+<p><a href="#barstailtop"><em>Bars.TailTop</em></a></p>
+<p><a href="#tickscountforlastbar"><em>Bars.TicksCountForLastBar</em></a></p>
+<p><a href="#barstickscountintotal"><em>Bars.TicksCountInTotal</em></a></p>
+<p><a href="#barstimeframe"><em>Bars.TimeFrame</em></a></p>
+<p><a href="#barscountforsession"><em>BarsCountForSession</em></a></p>
 <p><a href="#isprocessingbarindexlast"><em>IsProcessingBarIndexLast</em></a></p>
 <p>With the <strong>OnCalculate()</strong> method you can use any properties you want without having to test for a null reference.
 As soon as the function <strong>OnCalculate()</strong> is called up by AgenaScript, it is assumed that an object is also available. If you wish to use these properties outside of <strong>OnCalculate()</strong> then you should first perform a test for null references using <strong>if</strong> (Bars != <strong>null</strong>).</p>
-<h2 id="barscountforsession">BarsCountForSession</h2>
-<h3 id="description">Description</h3>
-<p>Bars.BarsCountForSession outputs the amount of bars that have occurred since the beginning of the current trading session.</p>
-<p>See further <a href="#properties"><em>Properties</em></a> of bars.</p>
-<h3 id="return-value">Return Value</h3>
-<p>Type int Amount of Bars</p>
-<p>A value of -1 indicates a problem with referencing the correct session beginning.</p>
-<h3 id="usage">Usage</h3>
-<p>Bars.BarsCountForSession</p>
-<h3 id="further-information">Further Information</h3>
-<p>Within <em>OnCalculate()</em> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
-<p>If this property is used outside of OnCalculate() then you should test for a null reference before executing it. You can test using <em>if</em> (Bars!= <em>null</em>) .</p>
-<h3 id="example">Example</h3>
-<pre><code class="cs">Print (&quot;Since the start of the last trading session there have been&quot; + Bars.BarsCountForSession + &quot;bars.&quot;);
-</code></pre>
-
 <h2 id="barscount">Bars.Count</h2>
-<h3 id="description_1">Description</h3>
+<h3 id="description">Description</h3>
 <p>Bars.Count gives you the amount of bars in a data series.</p>
 <p>See <a href="#properties"><em>Properties</em></a> for additional information.</p>
-<h3 id="return-value_1">Return Value</h3>
+<h3 id="return-value">Return Value</h3>
 <p>Type int Amount of Bars</p>
-<h3 id="usage_1">Usage</h3>
+<h3 id="usage">Usage</h3>
 <p>Bars.Count</p>
 <h3 id="more-information">More Information</h3>
 <p>The value of <em>ProcessingBarIndex</em> can only be lesser than or equal to Bars.Count - 1</p>
 <p>When you specify how many bars are to be loaded within AgenaTrader, then the value of Bars.Count is equal to this setting. In the following example, Bars.Count would give back a value of 500.</p>
 <p><img alt="Bars.Count" src="../media/image1.png" /></p>
-<h3 id="example_1">Example</h3>
+<h3 id="example">Example</h3>
 <pre><code class="cs">Print (&quot;There are a total of&quot; + Bars.Count + &quot;bars available.&quot;);
 </code></pre>
 
-<h2 id="barsisfirstbarinsession">Bars.IsFirstBarInSession</h2>
-<h3 id="description_2">Description</h3>
-<p>With Bars.IsFirstBarInSession you can determine whether the current bar is the first bar of the trading session.</p>
-<p>See <a href="#properties"><em>Properties</em></a> of bars for more information.</p>
-<h3 id="return-value_2">Return Value</h3>
-<p>Type bool</p>
-<p><strong>true</strong>: The bar is the first bar of the current trading session
-<strong>false</strong>: The bar is not the first bar of the current trading session</p>
-<h3 id="usage_2">Usage</h3>
-<p>Bars.IsFirstBarInSession</p>
+<h2 id="barscurrentsessionbegintime">Bars.CurrentSessionBeginTime</h2>
+<h3 id="description_1">Description</h3>
+<p>Bars.CurrentSessionBeginTime outputs the date and time for the beginning of the current trading session.</p>
+<p>Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.</p>
+<h3 id="parameter">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_1">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_1">Usage</h3>
+<p>Bars.GetSessionBegin</p>
 <h3 id="more-information_1">More Information</h3>
-<p>With <em>OnCalculate()</em> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up, an object will become available.
-If this property is called up outside of OnCalculate() you should test for a null reference using if (Bars != null).</p>
+<p>The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> .</p>
+<p><img alt="Bars.CurrentSessionBeginTime" src="../media/image3.png" /></p>
+<h3 id="example_1">Example</h3>
+<pre><code class="cs">Print(&quot;The currently running trading session started at &quot; + Bars.CurrentSessionBeginTime );
+</code></pre>
+
+<h2 id="barscurrentsessionendtime">Bars.CurrentSessionEndTime</h2>
+<h3 id="description_2">Description</h3>
+<p>Bars.CurrentSessionEndTime outputs the time for the end of the currently running trading session.
+Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.</p>
+<h3 id="parameter_1">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_2">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_2">Usage</h3>
+<p>Bars.GetSessionEnd</p>
+<h3 id="more-information_2">More Information</h3>
+<p>The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
+<p><img alt="Bars.CurrentSessionEndTime" src="../media/image4.png" /></p>
 <h3 id="example_2">Example</h3>
-<pre><code class="cs">if (Bars.IsFirstBarInSession)
-Print (&quot;The current trading session started at&quot; + Time [0]);
+<pre><code class="cs">Print(&quot;The current trading session will end at &quot; + Bars.CurrentSessionEndTime);
 </code></pre>
 
 <h2 id="barsgetbar">Bars.GetBar</h2>
 <h3 id="description_3">Description</h3>
 <p>Bars.GetBar outputs the first bars (from oldest to newest) that correspond to the specified date/time.</p>
 <p>See <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>, <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>, <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>.</p>
-<h3 id="parameter">Parameter</h3>
+<h3 id="parameter_2">Parameter</h3>
 <p>Type DateTime</p>
 <h3 id="return-value_3">Return Value</h3>
 <p>Type IBar Bar Object, for the bars corresponding to the timestamp</p>
@@ -443,86 +443,86 @@ For a timestamp younger than the newest bar: index of the last bar</p>
 <pre><code class="cs">Bars.GetBar(DateTime time)
 </code></pre>
 
-<h3 id="more-information_2">More Information</h3>
+<h3 id="more-information_3">More Information</h3>
 <p>For the indexing of bars please see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a></p>
 <p>For more information about using DateTime see <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx">http://msdn.microsoft.com/de-de/library/system.datetime.aspx</a></p>
 <h3 id="example_3">Example</h3>
 <pre><code class="cs">Print (&quot;The closing price for 01.03.2012 at 18:00:00 was &quot; + Bars.GetBar(new DateTime(2012, 01, 03, 18, 0, 0)).Close);
 </code></pre>
 
-<h2 id="barsgetbarsago">Bars.GetBarsAgo</h2>
-<h3 id="description_4">Description</h3>
-<p>Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.</p>
-<p>See: <a href="#barsgetbar"><em>Bars.GetBar</em></a>, <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>, <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>.</p>
-<h3 id="parameter_1">Parameter</h3>
-<p>Type DateTime</p>
-<h3 id="return-value_4">Return Value</h3>
-<p>Type int Index of the bar that corresponds to the timestamp</p>
-<p>With a timestamp older than the oldest bar: 0 (null)
-With a timestamp newer than the youngest bar: index of the last bar</p>
-<h3 id="usage_4">Usage</h3>
-<pre><code class="cs">Bars.GetBarsAgo(DateTime time)
-</code></pre>
-
-<h3 id="more-information_3">More Information</h3>
-<p>For more information about indexing please see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a></p>
-<p>For more information about using DateTime see <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx">http://msdn.microsoft.com/de-de/library/system.datetime.aspx</a></p>
-<h3 id="example_4">Example</h3>
-<pre><code class="cs">Print(&quot;The bar for 01.03.2012 at 18:00:00 O’clock has an index of &quot; + Bars.GetBarsAgo(new DateTime(2012, 01, 03, 18, 0, 0)));
-</code></pre>
-
-<h2 id="barsgetclose">Bars.GetClose</h2>
-<p>Bars.GetClose(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
-<h2 id="barsgethigh">Bars.GetHigh</h2>
-<p>Bars.GetHigh(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
-<h2 id="barsgetbyindex">Bars.GetByIndex</h2>
-<h3 id="description_5">Description</h3>
-<p>Bars.GetByIndex outputs the index for the specified bar object</p>
-<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>(#barsgetbar), <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>(#barsgetbarsago), <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>(#barsgetindex).</p>
-<h3 id="parameter_2">Parameter</h3>
-<p>Type int Index</p>
-<h3 id="return-value_5">Return Value</h3>
-<p>Type IBar Bar object for the specified index</p>
-<h3 id="usage_5">Usage</h3>
-<pre><code class="cs">Bars.GetByIndex (int Index)
-</code></pre>
-
-<h3 id="more-information_4">More Information</h3>
-<p>For indexing of bars see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a></p>
-<h3 id="example_5">Example</h3>
-<pre><code class="cs">Print(Close[0] + &quot; and &quot; + Bars.GetByIndex(ProcessingBarIndex).Close + &quot; are equal in this example.&quot;);
-</code></pre>
-
 <h2 id="barsgetbarindex">Bars.GetBarIndex</h2>
-<h3 id="description_6">Description</h3>
+<h3 id="description_4">Description</h3>
 <p>Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.</p>
 <p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>(#barsgetbar), <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>(#barsgetbarsago), <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>(#barsgetbyindex).</p>
 <h3 id="parameter_3">Parameter</h3>
 <p>Type IBar bar
 or
 Type DateTime</p>
-<h3 id="return-value_6">Return Value</h3>
+<h3 id="return-value_4">Return Value</h3>
 <p>Type int The bar index of the specified bar object or DateTime object</p>
-<h3 id="usage_6">Usage</h3>
+<h3 id="usage_4">Usage</h3>
 <pre><code class="cs">Bars.GetBarIndex (IBar bar)
 Bars.GetBarIndex (DateTime dt)
 </code></pre>
 
-<h3 id="more-information_5">More Information</h3>
+<h3 id="more-information_4">More Information</h3>
 <p>For more information about indexing see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a></p>
-<h3 id="example_6">Example</h3>
+<h3 id="example_4">Example</h3>
 <pre><code class="cs">int barsAgo = 5;
 IBar bar = Bars.GetBar(Time[barsAgo]);
 Print(barsAgo + &quot; and &quot; + Bars.GetBarIndex(bar) + &quot; are equal in this example.&quot;);
 </code></pre>
 
+<h2 id="barsgetbarsago">Bars.GetBarsAgo</h2>
+<h3 id="description_5">Description</h3>
+<p>Bars.GetBarsAgo outputs the index of the first bars (from oldest to newest) that correspond to the specified date/time.</p>
+<p>See: <a href="#barsgetbar"><em>Bars.GetBar</em></a>, <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>, <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>.</p>
+<h3 id="parameter_4">Parameter</h3>
+<p>Type DateTime</p>
+<h3 id="return-value_5">Return Value</h3>
+<p>Type int Index of the bar that corresponds to the timestamp</p>
+<p>With a timestamp older than the oldest bar: 0 (null)
+With a timestamp newer than the youngest bar: index of the last bar</p>
+<h3 id="usage_5">Usage</h3>
+<pre><code class="cs">Bars.GetBarsAgo(DateTime time)
+</code></pre>
+
+<h3 id="more-information_5">More Information</h3>
+<p>For more information about indexing please see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a></p>
+<p>For more information about using DateTime see <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx">http://msdn.microsoft.com/de-de/library/system.datetime.aspx</a></p>
+<h3 id="example_5">Example</h3>
+<pre><code class="cs">Print(&quot;The bar for 01.03.2012 at 18:00:00 O’clock has an index of &quot; + Bars.GetBarsAgo(new DateTime(2012, 01, 03, 18, 0, 0)));
+</code></pre>
+
+<h2 id="barsgetbyindex">Bars.GetByIndex</h2>
+<h3 id="description_6">Description</h3>
+<p>Bars.GetByIndex outputs the index for the specified bar object</p>
+<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>(#barsgetbar), <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>(#barsgetbarsago), <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>(#barsgetindex).</p>
+<h3 id="parameter_5">Parameter</h3>
+<p>Type int Index</p>
+<h3 id="return-value_6">Return Value</h3>
+<p>Type IBar Bar object for the specified index</p>
+<h3 id="usage_6">Usage</h3>
+<pre><code class="cs">Bars.GetByIndex (int Index)
+</code></pre>
+
+<h3 id="more-information_6">More Information</h3>
+<p>For indexing of bars see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a></p>
+<h3 id="example_6">Example</h3>
+<pre><code class="cs">Print(Close[0] + &quot; and &quot; + Bars.GetByIndex(ProcessingBarIndex).Close + &quot; are equal in this example.&quot;);
+</code></pre>
+
+<h2 id="barsgetclose">Bars.GetClose</h2>
+<p>Bars.GetClose(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
+<h2 id="barsgethigh">Bars.GetHigh</h2>
+<p>Bars.GetHigh(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgetlow">Bars.GetLow</h2>
 <p>Bars.GetLow(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgetnextsessiontimespan">Bars.GetNextSessionTimeSpan</h2>
 <h3 id="description_7">Description</h3>
 <p>Bars.GetNextSessionTimeSpan outputs the date and time for the beginning and end of a trading session.</p>
 <p>See <a href="#barssessionbegin"><em>Bars.CurrentSessionBeginTime</em></a>, <a href="#barssessionend"><em>Bars.CurrentSessionEndTime</em></a>, <a href="#barssessionnextbegin"><em>Bars.NextSessionBeginTime</em></a>, <a href="#barssessionnextend"><em>Bars.NextSessionEndTime</em></a>.</p>
-<h3 id="parameter_4">Parameter</h3>
+<h3 id="parameter_6">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -559,7 +559,7 @@ The date for the beginning and the end of a trading session are connected compon
 Bars.GetNextSessionTimeSpan(DateTime time, out DateTime sessionBegin, out DateTime sessionEnd)
 </code></pre>
 
-<h3 id="more-information_6">More Information</h3>
+<h3 id="more-information_7">More Information</h3>
 <p>The two signatures will not necessarily output the same result.
 When using the bar signature, the supplied bar will be inspected for its session template association. The beginning and end of the next session will be taken from this template.</p>
 <p>When using the time signature, the date and time of the supplied bar will be used to calculate the data for the current and the following sessions.</p>
@@ -575,25 +575,8 @@ Print(&quot;Session Start: &quot; + sessionBegin + &quot; Session End: &quot; + 
 }
 </code></pre>
 
-<h2 id="barsgetsessionbegin">Bars.GetSessionBegin</h2>
-<h3 id="description_8">Description</h3>
-<p>Bars.GetSessionBegin provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other <a href="#properties"><em>Properties</em></a> of bars.</p>
-<h3 id="parameter_5">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_8">Return value</h3>
-<p>Type DateTime</p>
-<h3 id="usage_8">Usage</h3>
-<p>Bars.GetSessionBegin(DateTime dt)</p>
-<h3 id="further-information_1">Further Information</h3>
-<p>The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.</p>
-<p><img alt="Bars.CurrentSessionBeginTime" src="../media/image3.png" /></p>
-<h3 id="example_8">Example</h3>
-<pre><code class="cs">Print(&quot;Die Handelssitzung am 25.03.2015 hat um &quot;+ Bars.GetSessionBegin(new DateTime(2015, 03, 25)) + &quot; begonnen.&quot;);
-}
-</code></pre>
-
 <h2 id="barsgetopen">Bars.GetOpen</h2>
-<h3 id="description_9">Description</h3>
+<h3 id="description_8">Description</h3>
 <p>For reasons of compatibility, the following methods are available.</p>
 <ul>
 <li>Bars.GetOpen(int index) outputs the open for the bars referenced with &lt;index&gt;.</li>
@@ -612,11 +595,28 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 }
 </code></pre>
 
-<h3 id="parameter_6">Parameter</h3>
+<h3 id="parameter_7">Parameter</h3>
 <p>int index (0 .. Bars.Count-1)</p>
-<h3 id="return-value_9">Return Value</h3>
+<h3 id="return-value_8">Return Value</h3>
 <p>Type double for GetOpen, GetHigh, GetLow, GetClose and GetVolume</p>
 <p>Type DateTime for GetTime</p>
+<h2 id="barsgetsessionbegin">Bars.GetSessionBegin</h2>
+<h3 id="description_9">Description</h3>
+<p>Bars.GetSessionBegin provides the date and time of the particular session start. The date and time for the start of the current trading session are also correctly indicated when the function is called from a bar in the past. See also other <a href="#properties"><em>Properties</em></a> of bars.</p>
+<h3 id="parameter_8">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_9">Return value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_8">Usage</h3>
+<p>Bars.GetSessionBegin(DateTime dt)</p>
+<h3 id="further-information">Further Information</h3>
+<p>The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.</p>
+<p><img alt="Bars.CurrentSessionBeginTime" src="../media/image3.png" /></p>
+<h3 id="example_8">Example</h3>
+<pre><code class="cs">Print(&quot;Die Handelssitzung am 25.03.2015 hat um &quot;+ Bars.GetSessionBegin(new DateTime(2015, 03, 25)) + &quot; begonnen.&quot;);
+}
+</code></pre>
+
 <h2 id="barsgettime">Bars.GetTime</h2>
 <p>Bars.GetTime(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgetvolume">Bars.GetVolume</h2>
@@ -625,13 +625,13 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 <h3 id="description_10">Description</h3>
 <p>Bars.Instrument outputs an instrument object for the trading instrument displayed within the chart.</p>
 <p>See <a href="#properties"><em>Properties</em></a> for more information.</p>
-<h3 id="parameter_7">Parameter</h3>
+<h3 id="parameter_9">Parameter</h3>
 <p>None</p>
 <h3 id="return-value_10">Return Value</h3>
 <p>Type Instrument</p>
 <h3 id="usage_9">Usage</h3>
 <p>Bars.Instrument</p>
-<h3 id="more-information_7">More Information</h3>
+<h3 id="more-information_8">More Information</h3>
 <p>For more information regarding the trading instruments please see <a href="#instrument"><em>Instrument</em></a>.</p>
 <h3 id="example_9">Example</h3>
 <pre><code class="cs">// both outputs will provide the same result
@@ -644,30 +644,70 @@ Print(&quot;The currently displayed trading instrument has the symbol &quot; + i
 <h3 id="description_11">Description</h3>
 <p>Bars.IsEod can be used to check whether they are end-of-day bars.</p>
 <p>See <a href="#properties"><em>Properties</em></a> for more information.</p>
-<h3 id="parameter_8">Parameter</h3>
+<h3 id="parameter_10">Parameter</h3>
 <p>None</p>
 <h3 id="return-value_11">Return Value</h3>
 <p>Type bool</p>
 <h3 id="usage_10">Usage</h3>
 <p>Bars.IsEod</p>
-<h3 id="more-information_8">More Information</h3>
+<h3 id="more-information_9">More Information</h3>
 <p>Within <a href="#oncalculate"><em>OnCalculate()</em></a>, this property can be used without having to test for null reference. As soon as the method OnCalculate () is called by AgenaScript, there is always a bar object.</p>
 <p>If this property  used outside of OnCalculate (), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).</p>
 <h3 id="example_10">Example</h3>
 <pre><code class="cs">Print(&quot;The bars are EOD: &quot; + Bars.IsEod);
 </code></pre>
 
-<h2 id="barsisintraday">Bars.IsIntraday</h2>
+<h2 id="barsisfalling">Bars.IsFalling</h2>
 <h3 id="description_12">Description</h3>
-<p>Bars.IsIntraday returns a boolean which indicates if the TimeFrame is intra-day.</p>
+<p>Bar properties used when Bar is falling down.</p>
+<h3 id="parameter_11">Parameter</h3>
+<p>None</p>
 <h3 id="return-value_12">Return Value</h3>
+<p>None</p>
+<h3 id="usage_11">Usage</h3>
+<pre><code class="cs">Bars[0].IsFalling;
+</code></pre>
+
+<h2 id="barsisfirstbarinsession">Bars.IsFirstBarInSession</h2>
+<h3 id="description_13">Description</h3>
+<p>With Bars.IsFirstBarInSession you can determine whether the current bar is the first bar of the trading session.</p>
+<p>See <a href="#properties"><em>Properties</em></a> of bars for more information.</p>
+<h3 id="return-value_13">Return Value</h3>
+<p>Type bool</p>
+<p><strong>true</strong>: The bar is the first bar of the current trading session
+<strong>false</strong>: The bar is not the first bar of the current trading session</p>
+<h3 id="usage_12">Usage</h3>
+<p>Bars.IsFirstBarInSession</p>
+<h3 id="more-information_10">More Information</h3>
+<p>With <em>OnCalculate()</em> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up, an object will become available.
+If this property is called up outside of OnCalculate() you should test for a null reference using if (Bars != null).</p>
+<h3 id="example_11">Example</h3>
+<pre><code class="cs">if (Bars.IsFirstBarInSession)
+Print (&quot;The current trading session started at&quot; + Time [0]);
+</code></pre>
+
+<h2 id="barsisgrowing">Bars.isGrowing</h2>
+<h3 id="description_14">Description</h3>
+<p>Bar properties used when Bar is growing up.</p>
+<h3 id="parameter_12">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_14">Return Value</h3>
+<p>None</p>
+<h3 id="usage_13">Usage</h3>
+<pre><code class="cs">Bars[0].isGrowing;
+</code></pre>
+
+<h2 id="barsisintraday">Bars.IsIntraday</h2>
+<h3 id="description_15">Description</h3>
+<p>Bars.IsIntraday returns a boolean which indicates if the TimeFrame is intra-day.</p>
+<h3 id="return-value_15">Return Value</h3>
 <p><strong>bool</strong></p>
 <p>It returns "true" if TimeFrame is intra-day (e.g. 1 min, 15 min, 1 hour, etc.) and "false" in other cases.</p>
-<h3 id="usage_11">Usage</h3>
+<h3 id="usage_14">Usage</h3>
 <pre><code class="cs">Bars.IsIntraday
 </code></pre>
 
-<h3 id="example_11">Example</h3>
+<h3 id="example_12">Example</h3>
 <pre><code class="cs">if(Bars.IsIntraday) {
     Print(&quot;TimeFrame is Intraday.&quot;);
 } else {
@@ -676,34 +716,53 @@ Print(&quot;The currently displayed trading instrument has the symbol &quot; + i
 </code></pre>
 
 <h2 id="barsisntb">Bars.IsNtb</h2>
-<h3 id="description_13">Description</h3>
+<h3 id="description_16">Description</h3>
 <p>With Bars.IsNtb it can be checked whether it is not-time-based bars. For example Ntb bars are Point &amp; Figure or Renko Charts.</p>
 <p>See <a href="#properties"><em>Properties</em></a> for more information.</p>
-<h3 id="parameter_9">Parameter</h3>
+<h3 id="parameter_13">Parameter</h3>
 <p>None</p>
-<h3 id="return-value_13">Return Value</h3>
+<h3 id="return-value_16">Return Value</h3>
 <p>Type bool</p>
-<h3 id="usage_12">Usage</h3>
+<h3 id="usage_15">Usage</h3>
 <p>Bars.IsNtb</p>
-<h3 id="more-information_9">More Information</h3>
+<h3 id="more-information_11">More Information</h3>
 <p><a href="#oncalculate"><em>OnCalculate()</em></a> property can be used without having to test for null reference first. As soon as the method OnCalculate() is called by AgenaScript, there is always a bar object. If this property is used outside of OnCalculate(), then a corresponding test should be set to zero reference, e.g. With if (bars! = Null).</p>
-<h3 id="example_12">Example</h3>
+<h3 id="example_13">Example</h3>
 <pre><code class="cs">Print(&quot;The bars are Ntb: &quot; + Bars.IsNtb);
 </code></pre>
 
+<h2 id="barsissessionbreak">Bars.IsSessionBreak</h2>
+<h3 id="description_17">Description</h3>
+<p>Bars.IsSessionBreak can be used to determine whether the bars are within the commercial trading session in the commercial breaks defined in the marketplace escort.</p>
+<p>See <a href="#properties"><em>Properties</em></a> for more information.</p>
+<h3 id="parameter_14">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_17">Return Value</h3>
+<p>Type bool</p>
+<h3 id="usage_16">Usage</h3>
+<p>Bars.IsSessionBreak</p>
+<h3 id="more-information_12">More Information</h3>
+<p><img alt="Bars.CurrentSessionEndTime" src="../media/image4.png" /></p>
+<h3 id="example_14">Example</h3>
+<pre><code class="cs">if (Bars.IsSessionBreak)
+{
+Print(&quot;The stock exchange Xetra has just a trade pause&quot;);
+}
+</code></pre>
+
 <h2 id="barslastbarcompleteness">Bars.LastBarCompleteness</h2>
-<h3 id="description_14">Description</h3>
+<h3 id="description_18">Description</h3>
 <p>Bars.LastBarCompleteness outputs the value that displays what percentage a bar has already completed. A bar with a period of 10 minutes has completed 50% after 5 minutes.</p>
 <p>For non-time-based charts (Kagi, LineBreak, Renko, Range, P&amp;F etc.) this will output 0 during backtesting.</p>
-<h3 id="return-value_14">Return Value</h3>
+<h3 id="return-value_18">Return Value</h3>
 <p><strong>double</strong></p>
 <p>A percentage value; 30% will be outputted as 0.3</p>
-<h3 id="usage_13">Usage</h3>
+<h3 id="usage_17">Usage</h3>
 <p>Bars.LastBarCompleteness</p>
-<h3 id="more-information_10">More Information</h3>
+<h3 id="more-information_13">More Information</h3>
 <p>With <a href="#oncalculate"><em>OnCalculate()</em></a> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
 <p>If this property is used outside of OnCalculate() you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
-<h3 id="example_13">Example</h3>
+<h3 id="example_15">Example</h3>
 <pre><code class="cs">// A 60 minute chart is looked at from an intraday perspective
 // every 5 minutes before the current bar closes
 // an acoustic signal shall be played
@@ -720,125 +779,120 @@ PlaySound(&quot;Alert1&quot;);
 }
 </code></pre>
 
-<h2 id="barscurrentsessionbegintime">Bars.CurrentSessionBeginTime</h2>
-<h3 id="description_15">Description</h3>
-<p>Bars.CurrentSessionBeginTime outputs the date and time for the beginning of the current trading session.</p>
-<p>Date and time for the beginning of the current trading session will be displayed correctly when the function is used on a bar that has occurred in the past.</p>
-<h3 id="parameter_10">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_15">Return Value</h3>
-<p>Type DateTime</p>
-<h3 id="usage_14">Usage</h3>
-<p>Bars.GetSessionBegin</p>
-<h3 id="more-information_11">More Information</h3>
-<p>The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> .</p>
-<p><img alt="Bars.CurrentSessionBeginTime" src="../media/image3.png" /></p>
-<h3 id="example_14">Example</h3>
-<pre><code class="cs">Print(&quot;The currently running trading session started at &quot; + Bars.CurrentSessionBeginTime );
-</code></pre>
-
-<h2 id="barsissessionbreak">Bars.IsSessionBreak</h2>
-<h3 id="description_16">Description</h3>
-<p>Bars.IsSessionBreak can be used to determine whether the bars are within the commercial trading session in the commercial breaks defined in the marketplace escort.</p>
-<p>See <a href="#properties"><em>Properties</em></a> for more information.</p>
-<h3 id="parameter_11">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_16">Return Value</h3>
-<p>Type bool</p>
-<h3 id="usage_15">Usage</h3>
-<p>Bars.IsSessionBreak</p>
-<h3 id="more-information_12">More Information</h3>
-<p><img alt="Bars.CurrentSessionEndTime" src="../media/image4.png" /></p>
-<h3 id="example_15">Example</h3>
-<pre><code class="cs">if (Bars.IsSessionBreak)
-{
-Print(&quot;The stock exchange Xetra has just a trade pause&quot;);
-}
-</code></pre>
-
-<h2 id="barscurrentsessionendtime">Bars.CurrentSessionEndTime</h2>
-<h3 id="description_17">Description</h3>
-<p>Bars.CurrentSessionEndTime outputs the time for the end of the currently running trading session.
-Date and time for the end of the current trading session will, in this case, also be outputted correctly when the function is used on a previous bar.</p>
-<h3 id="parameter_12">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_17">Return Value</h3>
-<p>Type DateTime</p>
-<h3 id="usage_16">Usage</h3>
-<p>Bars.GetSessionEnd</p>
-<h3 id="more-information_13">More Information</h3>
-<p>The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
-<p><img alt="Bars.CurrentSessionEndTime" src="../media/image4.png" /></p>
-<h3 id="example_16">Example</h3>
-<pre><code class="cs">Print(&quot;The current trading session will end at &quot; + Bars.CurrentSessionEndTime);
-</code></pre>
-
 <h2 id="barsnextsessionbegintime">Bars.NextSessionBeginTime</h2>
-<h3 id="description_18">Description</h3>
+<h3 id="description_19">Description</h3>
 <p>Bars.NextSessionBeginTime outputs the date and time for the start of the next trading session.
 Date and time for the next session will be correctly outputted when the function is used on a bar in the past.</p>
-<h3 id="parameter_13">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_18">Return Value</h3>
-<p>Type DateTime</p>
-<h3 id="usage_17">Usage</h3>
-<p>Bars.GetSessionNextBegin</p>
-<h3 id="more-information_14">More Information</h3>
-<p>The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
-<p><img alt="Bars.NextSessionBeginTime" src="../media/image3.png" /></p>
-<h3 id="example_17">Example</h3>
-<pre><code class="cs">Print(&quot;The next trading session starts at &quot; + Bars.NextSessionBeginTime);
-</code></pre>
-
-<h2 id="barsnextsessionendtime">Bars.NextSessionEndTime</h2>
-<h3 id="description_19">Description</h3>
-<p>Bars.NextSessionEndTime outputs the date and time for the end of the next session.
-See <a href="#properties"><em>Properties</em></a> for more information.</p>
-<h3 id="parameter_14">Parameter</h3>
+<h3 id="parameter_15">Parameter</h3>
 <p>None</p>
 <h3 id="return-value_19">Return Value</h3>
 <p>Type DateTime</p>
 <h3 id="usage_18">Usage</h3>
+<p>Bars.GetSessionNextBegin</p>
+<h3 id="more-information_14">More Information</h3>
+<p>The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
+<p><img alt="Bars.NextSessionBeginTime" src="../media/image3.png" /></p>
+<h3 id="example_16">Example</h3>
+<pre><code class="cs">Print(&quot;The next trading session starts at &quot; + Bars.NextSessionBeginTime);
+</code></pre>
+
+<h2 id="barsnextsessionendtime">Bars.NextSessionEndTime</h2>
+<h3 id="description_20">Description</h3>
+<p>Bars.NextSessionEndTime outputs the date and time for the end of the next session.
+See <a href="#properties"><em>Properties</em></a> for more information.</p>
+<h3 id="parameter_16">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_20">Return Value</h3>
+<p>Type DateTime</p>
+<h3 id="usage_19">Usage</h3>
 <p>Bars.GetSessionNextEnd</p>
 <h3 id="more-information_15">More Information</h3>
 <p>The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
 <p><img alt="Bars.NextSessionEndTime" src="../media/image4.png" /></p>
-<h3 id="example_18">Example</h3>
+<h3 id="example_17">Example</h3>
 <pre><code class="cs">Print(&quot;The next trading session ends at &quot; + Bars.NextSessionEndTime);
 </code></pre>
 
+<h2 id="barstailbottom">Bars.TailBottom</h2>
+<h3 id="description_21">Description</h3>
+<p>With this property you are able to get the height of the bottom candle tail.</p>
+<h3 id="parameter_17">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_21">Return Value</h3>
+<p>None</p>
+<h3 id="usage_20">Usage</h3>
+<pre><code class="cs">Bars[0].TailBottom;
+</code></pre>
+
+<h3 id="example_18">Example</h3>
+<pre><code class="cs">Print(&quot;The height of the bottom candle tail is: &quot; + Bars.TailBottom);
+</code></pre>
+
+<h2 id="barstailtop">Bars.TailTop</h2>
+<h3 id="description_22">Description</h3>
+<p>With this property you are able to get the height of the top candle tail.</p>
+<h3 id="parameter_18">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_22">Return Value</h3>
+<p>None</p>
+<h3 id="usage_21">Usage</h3>
+<pre><code class="cs">Bars[0].TailTop;
+</code></pre>
+
+<h3 id="example_19">Example</h3>
+<pre><code class="cs">Print(&quot;The height of the top candle tail is: &quot; + Bars.TailTop);
+</code></pre>
+
 <h2 id="barstickscountforlastbar">Bars.TicksCountForLastBar</h2>
-<h3 id="description_20">Description</h3>
+<h3 id="description_23">Description</h3>
 <p>Bars.TicksCountForLastBar outputs the total numbers of ticks contained within a bar.</p>
 <p>More information can be found in <a href="#properties"><em>Properties</em></a> of bars.</p>
-<h3 id="parameter_15">Parameter</h3>
+<h3 id="parameter_19">Parameter</h3>
 <p>None</p>
-<h3 id="return-value_20">Return Value</h3>
+<h3 id="return-value_23">Return Value</h3>
 <p>Type int</p>
-<h3 id="usage_19">Usage</h3>
+<h3 id="usage_22">Usage</h3>
 <p>Bars.TicksCountForLastBar</p>
 <h3 id="more-information_16">More Information</h3>
 <p>With <a href="#oncalculate"><em>OnCalculate()</em></a> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
 <p>If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
-<h3 id="example_19">Example</h3>
+<h3 id="example_20">Example</h3>
 <pre><code class="cs">Print(&quot;The current bar consists of &quot; + Bars.TicksCountForLastBar + &quot; Ticks.&quot;);
 </code></pre>
 
+<h2 id="barstickscountintotal">Bars.TicksCountInTotal</h2>
+<h3 id="description_24">Description</h3>
+<p>Bars.TicksCountInTotal outputs the total number of ticks from the moment the function is called up.</p>
+<p>More information can be found here: <a href="#properties"><em>Properties</em></a>.</p>
+<h3 id="parameter_20">Parameter</h3>
+<p>None</p>
+<h3 id="return-value_24">Return Value</h3>
+<p>Type int</p>
+<h3 id="usage_23">Usage</h3>
+<p>Bars.TicksCountInTotal</p>
+<h3 id="more-information_17">More Information</h3>
+<p>The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.</p>
+<p>With <a href="#oncalculate"><em>OnCalculate()</em></a> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
+<h3 id="example_21">Example</h3>
+<pre><code class="cs">**Print**(&quot;The total amount of ticks is &quot; + Bars.TicksCountInTotal);
+</code></pre>
+
 <h2 id="barstimeframe">Bars.TimeFrame</h2>
-<h3 id="description_21">Description</h3>
+<h3 id="description_25">Description</h3>
 <p>Bars.TimeFrame outputs the timeframe object containing information regarding the currently used timeframe.</p>
 <p>More information can be found here: <a href="#properties"><em>Properties</em></a></p>
-<h3 id="parameter_16">Parameter</h3>
+<h3 id="parameter_21">Parameter</h3>
 <p>None</p>
-<h3 id="return-value_21">Return Value</h3>
+<h3 id="return-value_25">Return Value</h3>
 <p>Type ITimeFrame</p>
-<h3 id="usage_20">Usage</h3>
+<h3 id="usage_24">Usage</h3>
 <p>Bars.TimeFrame</p>
-<h3 id="more-information_17">More Information</h3>
+<h3 id="more-information_18">More Information</h3>
 <p>For more information about timeframe objects please see <a href="#timeframe"><em>TimeFrame</em></a>.</p>
 <p>With <a href="#oncalculate"><em>OnCalculate()</em></a> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
 <p>If this property is used outside of OnCalculate(),you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
-<h3 id="example_20">Example</h3>
+<h3 id="example_22">Example</h3>
 <pre><code class="cs">//Usage within a 30 minute chart
 TimeFrame tf = (TimeFrame) Bars.TimeFrame;
 Print(Bars.TimeFrame); // outputs &quot;30 Min&quot;
@@ -846,67 +900,22 @@ Print(tf.Periodicity); // outputs &quot;Minute&quot;
 Print(tf.PeriodicityValue); // outputs &quot;30&quot;
 </code></pre>
 
-<h2 id="barstickscountintotal">Bars.TicksCountInTotal</h2>
-<h3 id="description_22">Description</h3>
-<p>Bars.TicksCountInTotal outputs the total number of ticks from the moment the function is called up.</p>
-<p>More information can be found here: <a href="#properties"><em>Properties</em></a>.</p>
-<h3 id="parameter_17">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_22">Return Value</h3>
-<p>Type int</p>
-<h3 id="usage_21">Usage</h3>
-<p>Bars.TicksCountInTotal</p>
-<h3 id="more-information_18">More Information</h3>
-<p>The data type int has a positive value range of 2147483647. When you assume 10 ticks per second, there will be no overlaps within 2 trading months with a daily runtime of 24 hours.</p>
-<p>With <a href="#oncalculate"><em>OnCalculate()</em></a> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
-<p>If this property is used outside of OnCalculate(), you should test for a null reference before executing it. You can test using <em>if</em> (Bars != <em>null</em>)</p>
-<h2 id="barsisgrowing">Bars.isGrowing</h2>
-<h3 id="description_23">Description</h3>
-<p>Bar properties used when Bar is growing up.</p>
-<h3 id="parameter_18">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_23">Return Value</h3>
-<p>None</p>
-<h3 id="usage_22">Usage</h3>
-<pre><code class="cs">Bars[0].isGrowing;
-</code></pre>
-
-<h2 id="barsisfalling">Bars.IsFalling</h2>
-<h3 id="description_24">Description</h3>
-<p>Bar properties used when Bar is falling down.</p>
-<h3 id="parameter_19">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_24">Return Value</h3>
-<p>None</p>
-<h3 id="usage_23">Usage</h3>
-<pre><code class="cs">Bars[0].IsFalling;
-</code></pre>
-
-<h2 id="barstailtop">Bars.TailTop</h2>
-<h3 id="description_25">Description</h3>
-<p>Bar properties used for candle tail top height</p>
-<h3 id="parameter_20">Parameter</h3>
-<p>None</p>
-<h3 id="return-value_25">Return Value</h3>
-<p>None</p>
-<h3 id="usage_24">Usage</h3>
-<pre><code class="cs">Bars[0].TailTop;
-</code></pre>
-
-<h2 id="barstailbottom">Bars.TailBottom</h2>
+<h2 id="barscountforsession">BarsCountForSession</h2>
 <h3 id="description_26">Description</h3>
-<p>Bar properties used for candle tail bottom height</p>
-<h3 id="parameter_21">Parameter</h3>
-<p>None</p>
+<p>Bars.BarsCountForSession outputs the amount of bars that have occurred since the beginning of the current trading session.</p>
+<p>See further <a href="#properties"><em>Properties</em></a> of bars.</p>
 <h3 id="return-value_26">Return Value</h3>
-<p>None</p>
+<p>Type int Amount of Bars</p>
+<p>A value of -1 indicates a problem with referencing the correct session beginning.</p>
 <h3 id="usage_25">Usage</h3>
-<pre><code class="cs">//Usage within a 30 minute chart
-Bars[0].TailBottom;
+<p>Bars.BarsCountForSession</p>
+<h3 id="further-information_1">Further Information</h3>
+<p>Within <em>OnCalculate()</em> this property can be used without having to test for a null reference. As soon as the OnCalculate() method is called up by AgenaScript, the object will become available.</p>
+<p>If this property is used outside of OnCalculate() then you should test for a null reference before executing it. You can test using <em>if</em> (Bars!= <em>null</em>) .</p>
+<h3 id="example_23">Example</h3>
+<pre><code class="cs">Print (&quot;Since the start of the last trading session there have been&quot; + Bars.BarsCountForSession + &quot;bars.&quot;);
 </code></pre>
 
-<h3 id="example_21">Example</h3>
-<p><strong>Print</strong>("The total amount of ticks is " + Bars.TicksCountInTotal);</p>
 <h2 id="processingbarseriesindex">ProcessingBarSeriesIndex</h2>
 <h3 id="description_27">Description</h3>
 <p>Indicates if current bar is last in calculation.</p>
@@ -918,7 +927,7 @@ Bars[0].TailBottom;
 <p>ProcessingBarSeriesIndex</p>
 <h3 id="more-information_19">More Information</h3>
 <p>used for complicated calculation on a last bar</p>
-<h3 id="example_22">Example</h3>
+<h3 id="example_24">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
         {
             base.OnCalculate();
@@ -955,7 +964,7 @@ Open[int barsAgo]
 
 <h3 id="more-information_20">More Information</h3>
 <p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_23">Example</h3>
+<h3 id="example_25">Example</h3>
 <pre><code class="cs">// Opening price for the current period
 Print(Time[0] + &quot; &quot; + Open[0]);
 // Opening price for the bars of 5 periods ago
@@ -985,7 +994,7 @@ Opens[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_21">More Information</h3>
 <p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_24">Example</h3>
+<h3 id="example_26">Example</h3>
 <p>See example: <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="high">High</h2>
 <h3 id="description_31">Description</h3>
@@ -999,7 +1008,7 @@ High[int barsAgo]
 
 <h3 id="more-information_22">More Information</h3>
 <p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_25">Example</h3>
+<h3 id="example_27">Example</h3>
 <pre><code class="cs">// High values of the current period
 Print(Time[0] + &quot; &quot; + High[0]);
 // High values of the bar from 5 periods ago
@@ -1029,7 +1038,7 @@ Highs[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_23">More Information</h3>
 <p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_26">Example</h3>
+<h3 id="example_28">Example</h3>
 <p>Please see examples under <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="low">Low</h2>
 <h3 id="description_33">Description</h3>
@@ -1043,7 +1052,7 @@ Low[int barsAgo]
 
 <h3 id="more-information_24">More Information</h3>
 <p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_27">Example</h3>
+<h3 id="example_29">Example</h3>
 <pre><code class="cs">// Lowest value of the current period
 Print(Time[0] + &quot; &quot; + Low[0]);
 // Lowest value of the bar from 5 periods ago
@@ -1073,7 +1082,7 @@ Lows[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_25">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_28">Example</h3>
+<h3 id="example_30">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="close">Close</h2>
 <h3 id="description_35">Description</h3>
@@ -1088,7 +1097,7 @@ Close[int barsAgo]
 <h3 id="more-information_26">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Indicators are usually calculated using the closing prices.</p>
-<h3 id="example_29">Example</h3>
+<h3 id="example_31">Example</h3>
 <pre><code class="cs">// Closing price of the current period
 Print(Time[0] + &quot; &quot; + Close[0]);
 // Closing price of the bar from 5 periods ago
@@ -1120,7 +1129,7 @@ Closes[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_27">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_30">Example</h3>
+<h3 id="example_32">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="median">Median</h2>
 <h3 id="description_37">Description</h3>
@@ -1138,7 +1147,7 @@ Median[int barsAgo]
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Further information about median, typical und weighted:
 <a href="http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html"><em>http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html</em></a></p>
-<h3 id="example_31">Example</h3>
+<h3 id="example_33">Example</h3>
 <pre><code class="cs">// Median price for the current period
 Print(Time[0] + &quot; &quot; + Median[0]);
 // Median price of the bar from 5 periods ago
@@ -1169,7 +1178,7 @@ Medians[int barSeriesIndex][int barsAgo]
 <h3 id="more-information_29">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Further information on median: <a href="http://www.investopedia.com/terms/m/median.asp">http://www.investopedia.com/terms/m/median.asp</a></p>
-<h3 id="example_32">Example</h3>
+<h3 id="example_34">Example</h3>
 <p>See example in <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="typical">Typical</h2>
 <h3 id="description_39">Description</h3>
@@ -1186,7 +1195,7 @@ Typical[int barsAgo]
 <h3 id="more-information_30">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Further information on typical: <a href="https://technicianapp.com/resources/typical-price/"><em>https://technicianapp.com/resources/typical-price/</em></a></p>
-<h3 id="example_33">Example</h3>
+<h3 id="example_35">Example</h3>
 <pre><code class="cs">// Typical price for the current period
 Print(Time[0] + &quot; &quot; + Typical[0]);
 // Typical price of the bar from 5 periods ago
@@ -1216,7 +1225,7 @@ Typicals[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_31">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_34">Example</h3>
+<h3 id="example_36">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="weighted">Weighted</h2>
 <h3 id="description_41">Description</h3>
@@ -1233,7 +1242,7 @@ Typicals[int barSeriesIndex][int barsAgo]
 <h3 id="more-information_32">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Information regarding weighted: <a href="http://www.stock-trading-infocentre.com/pivot-points.html"><em>http://www.stock-trading-infocentre.com/pivot-points.html</em></a></p>
-<h3 id="example_35">Example</h3>
+<h3 id="example_37">Example</h3>
 <pre><code class="cs">// Weighted price for the current period
 Print(Time[0] + &quot; &quot; + Weighted[0]);
 // Weighted price of the bar from 5 periods ago
@@ -1263,7 +1272,7 @@ Weighteds[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_33">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_36">Example</h3>
+<h3 id="example_38">Example</h3>
 <p>See example under <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="time">Time</h2>
 <h3 id="description_43">Description</h3>
@@ -1277,7 +1286,7 @@ Time[int barsAgo]
 
 <h3 id="more-information_34">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_37">Example</h3>
+<h3 id="example_39">Example</h3>
 <pre><code class="cs">// Timestamp of the current period
 Print(Time[0]);
 // Timestamp of the bar from 5 periods ago
@@ -1305,7 +1314,7 @@ Times[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_35">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_38">Example</h3>
+<h3 id="example_40">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="volume">Volume</h2>
 <h3 id="description_45">Description</h3>
@@ -1319,7 +1328,7 @@ Times[int barSeriesIndex][int barsAgo]
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>The value returned by the <a href="#vol"><em>VOL()</em></a> indicator is identical with the volume described here;
 for example, Vol()[3] will have the same value as Volume[3].</p>
-<h3 id="example_39">Example</h3>
+<h3 id="example_41">Example</h3>
 <pre><code class="cs">// Volume for the current period
 Print(Time[0] + &quot; &quot; + Volume[0]);
 // Volume of the bar from 5 periods ago
@@ -1349,7 +1358,7 @@ Volumes[int barSeriesIndex][int barsAgo]
 
 <h3 id="more-information_37">More Information</h3>
 <p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
-<h3 id="example_40">Example</h3>
+<h3 id="example_42">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="timeframe">TimeFrame</h2>
 <h3 id="description_47">Description</h3>
@@ -1375,7 +1384,7 @@ TimeFrames [2] <strong>Print</strong>(TimeFrames[2]); // returns "1 Week"</p>
 <pre><code class="cs">TimeFrames [int barSeriesIndex]
 </code></pre>
 
-<h3 id="example_41">Example</h3>
+<h3 id="example_43">Example</h3>
 <pre><code class="cs">if (ProcessingBarSeriesIndex == 0 &amp;&amp; ProcessingBarIndex == 0)
 for (int i = BarsArray.Count-1; i &gt;= 0; i--)
 Print(&quot;The Indicator &quot; + this.Name + &quot; uses Bars of the Timeframe &quot; + TimeFrames[i]);
@@ -1424,7 +1433,7 @@ double value2</p>
 Compare(2, 2.000001) a 0, meaning the values are equal
 Compare(2, 1.999999) a 0, meaning the values are equal
 Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001</p>
-<h3 id="example_42">Example</h3>
+<h3 id="example_44">Example</h3>
 <pre><code class="cs">Print(Instrument.Compare(2, 1.999999));
 </code></pre>
 
@@ -1439,7 +1448,7 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001</p>
 <p>Instrument.Currency</p>
 <h3 id="more-information_39">More Information</h3>
 <p>The common currencies are: AUD, CAD, EUR, GBP, JPY or USD.</p>
-<h3 id="example_43">Example</h3>
+<h3 id="example_45">Example</h3>
 <pre><code class="cs">Print(Instrument.Name + &quot; is traded in &quot; + Instrument.Currency);
 </code></pre>
 
@@ -1456,7 +1465,7 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001</p>
 <p>Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.</p>
 <p>This function is especially useful when formatting the output of various instruments that need rounding. Also see <a href="#ticksize"><em>TickSize</em></a> and <a href="../instrumentround2ticks"><em>Instrument.Round2Ticks</em></a>, <a href="#instrumentround2ticksize"><em>Instrument.Round2TickSize</em></a>.</p>
 <p>More information can be found here: <em>Formatting of Numbers</em>.</p>
-<h3 id="example_44">Example</h3>
+<h3 id="example_46">Example</h3>
 <pre><code class="cs">Print(&quot;The value of &quot; +Instrument.Name + &quot; is noted with a precision of &quot; + Instrument.Digits +&quot; Decimal points.&quot;);
 </code></pre>
 
@@ -1472,7 +1481,7 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001</p>
 <h3 id="more-information_41">More Information</h3>
 <p>What is an ETF?</p>
 <p>Wikipedia: <a href="http://de.wikipedia.org/wiki/Exchange-traded_fund*"><em>http://de.wikipedia.org/wiki/Exchange-traded_fund</em></a></p>
-<h3 id="example_45">Example</h3>
+<h3 id="example_47">Example</h3>
 <pre><code class="cs">if (Instrument.InstrumentType == InstrumentType.Stock)
 if (Instrument.ETF)
 Print(&quot;The value is an ETF.&quot;);
@@ -1491,7 +1500,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Instrument.Exchange</p>
 <h3 id="more-information_42">More Information</h3>
 <p>An overview of various exchange: <em>https://en.wikipedia.org/wiki/List_of_stock_exchanges</em></p>
-<h3 id="example_46">Example</h3>
+<h3 id="example_48">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument &quot; + Instrument.Name +&quot; is traded on the &quot; + Instrument.Exchange + &quot; exchange.&quot;);
 </code></pre>
 
@@ -1508,7 +1517,7 @@ Print(&quot;The value is a stock.&quot;);
 <h3 id="more-information_43">More Information</h3>
 <p>The expiry date (expiry) can also be seen within the Instrument Escort:</p>
 <p><img alt="Instrument.Expiry" src="../media/image5.png" /></p>
-<h3 id="example_47">Example</h3>
+<h3 id="example_49">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument &quot; + Instrument.Name +&quot; will expire on &quot; + Instrument.Expiry);
 </code></pre>
 
@@ -1523,7 +1532,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Instrument.GetCurrencyFactor(Currencies)</p>
 <h3 id="more-information_44">More Information</h3>
 <p>Common currencies are.B. AUD, CAD, EUR, GBP, JPY oder USD.</p>
-<h3 id="example_48">Example</h3>
+<h3 id="example_50">Example</h3>
 <pre><code class="cs">Protected override void OnCalculate()
 {
    double currFactor = Instrument.GetCurrencyFactor(Account.Currency);
@@ -1545,7 +1554,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>There is no ETF type. ETFs are considered to be of the type "stock" – see <a href="#instrumentetf"><em>Instrument.ETF</em></a>.</p>
 <p>The instrument type can also be viewed within the Instrument Escort:</p>
 <p><img alt="Instrument.InstrumentType" src="../media/image6.png" /></p>
-<h3 id="example_49">Example</h3>
+<h3 id="example_51">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument &quot; + Instrument.Name + &quot; is of the type &quot; + Instrument.InstrumentType);
 </code></pre>
 
@@ -1561,7 +1570,7 @@ Print(&quot;The value is a stock.&quot;);
 <h3 id="more-information_46">More Information</h3>
 <p>The main sector is also visible in the instrument escort:
 <img alt="Instrument.InstrumentType" src="../media/image6.png" /></p>
-<h3 id="example_50">Example</h3>
+<h3 id="example_52">Example</h3>
 <pre><code class="cs">Print(&quot;Das Instrument &quot; + Instrument.Name + &quot; ist im Sektor &quot; + Instrument.MainSector + &quot; tätig.&quot;);
 </code></pre>
 
@@ -1577,7 +1586,7 @@ Print(&quot;The value is a stock.&quot;);
 <h3 id="more-information_47">More Information</h3>
 <p>Margin is also visible in the instrument escort:
 <img alt="Instrument.InstrumentType" src="../media/image6.png" /></p>
-<h3 id="example_51">Example</h3>
+<h3 id="example_53">Example</h3>
 <pre><code class="cs">Print(&quot;Das Instrument &quot; + Instrument.Name + &quot; has a margin of &quot; + Instrument.Margin);
 </code></pre>
 
@@ -1593,7 +1602,7 @@ Print(&quot;The value is a stock.&quot;);
 <h3 id="more-information_48">More Information</h3>
 <p>The instrument name can also be seen within the Instrument Escort:</p>
 <p><img alt="Instrument.Name" src="../media/image7.png" /></p>
-<h3 id="example_52">Example</h3>
+<h3 id="example_54">Example</h3>
 <pre><code class="cs">Print(&quot;The currently loaded instrument inside the chart is named &quot; + Instrument.Name);
 </code></pre>
 
@@ -1617,7 +1626,7 @@ DAX future: 25.00 Euro</p>
 Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.</p>
 <p>The point value can also be viewed within the Instrument Escort:</p>
 <p><img alt="Instrument.PointValue" src="../media/image8.png" /></p>
-<h3 id="example_53">Example</h3>
+<h3 id="example_55">Example</h3>
 <pre><code class="cs">Print(&quot;When &quot; + Instrument.Name + &quot; rises for one full point then this is equal to &quot; + Instrument.PointValue + &quot; &quot; + Instrument.Currency);
 </code></pre>
 
@@ -1637,7 +1646,7 @@ Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.</p>
 If, for example, an instrument is a stock, then the rounding will be performed to 2 decimal places. For a Forex instrument, it may be carried out to 4 or 5 decimal places.</p>
 <p>See <a href="#ticksize"><em>TickSize</em></a> and <a href="#instrumentdigits"><em>Instrument.Digits</em></a>.</p>
 <p>Example of professional <a href="#formatting"><em>Formatting</em></a>, <em>Formatting of Numbers</em>.</p>
-<h3 id="example_54">Example</h3>
+<h3 id="example_56">Example</h3>
 <pre><code class="cs">double Price = 12.3456789;
 Print(Price + &quot; rounded for a &quot; + Instrument.Name + &quot; valid value is &quot; + Instrument.Round2TickSize(Price));
 </code></pre>
@@ -1655,7 +1664,7 @@ Print(Price + &quot; rounded for a &quot; + Instrument.Name + &quot; valid value
 <p>By using symbols, identical stocks being traded on different exchanges can be identified and separated from each other. The symbol BMW.DE is the BMW stock on the XETRA exchange. BMW.CFG is the CFD for the BMW stock.</p>
 <p>The instrument symbol can also be viewed within the Instrument Escort:</p>
 <p><img alt="Instrument.Symbol" src="../media/image9.png" /></p>
-<h3 id="example_55">Example</h3>
+<h3 id="example_57">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument currently loaded within the chart has the symbol: &quot; + Instrument.Symbol);
 </code></pre>
 
@@ -1670,13 +1679,13 @@ Print(Price + &quot; rounded for a &quot; + Instrument.Name + &quot; valid value
 <p>Instrument.TickSize or simply TickSize</p>
 <h3 id="more-information_52">More Information</h3>
 <p>The keyword <a href="#ticksize"><em>TickSize</em></a> is equivalent to Instrument.TickSize. Both information requests will produce the same value and are thus interchangeable.</p>
-<h3 id="example_56">Example</h3>
+<h3 id="example_58">Example</h3>
 <p>Stock: 0.01
 ES future: 0.25
 EUR/USD: 0.00001</p>
 <p>See <a href="../instrumentpointvalue"><em>Instrument.PointValue</em></a> and <a href="#instrumentdigits"><em>Instrument.Digits</em></a>.</p>
 <p>Examples of professional <a href="#formatting"><em>Formatting</em></a>, <em>Formatting of Numbers</em>.</p>
-<h3 id="example_57">Example</h3>
+<h3 id="example_59">Example</h3>
 <pre><code class="cs">Print(&quot;The value of &quot; + Instrument.Name + &quot; can change for a minimum of &quot; + Instrument.TickSize + &quot; Tick(s).&quot;);
 </code></pre>
 
@@ -1687,7 +1696,7 @@ EUR/USD: 0.00001</p>
 The index for ChartDrawings is the explicit name for the drawing object (string tag).</p>
 <h3 id="usage_62">Usage</h3>
 <p>ChartDrawings [string tag]</p>
-<h3 id="example_58">Example</h3>
+<h3 id="example_60">Example</h3>
 <p><strong>Note:</strong> To be able to use the interface definitions you must use the using method.</p>
 <pre><code class="cs">using AgenaTrader.Plugins;
 // Output number of drawing objects within the chart and their tags
@@ -1726,7 +1735,7 @@ InSeries[0] = SMA(20)[0].</p>
 InSeries[int barsAgo]
 </code></pre>
 
-<h3 id="example_59">Example</h3>
+<h3 id="example_61">Example</h3>
 <pre><code class="cs">Print(&quot;The input data for the indicators are &quot; + Input[0]);
 </code></pre>
 
@@ -1740,7 +1749,7 @@ InSeries[int barsAgo]
 <pre><code class="cs">Lines[int index]
 </code></pre>
 
-<h3 id="example_60">Example</h3>
+<h3 id="example_62">Example</h3>
 <pre><code class="cs">// Add &quot;using System.Drawing.Drawing2D;&quot; for DashStyle
 protected override void OnInit()
 {
@@ -1777,7 +1786,7 @@ Lines[0].DashStyle = DashStyle.Solid;
 <h3 id="more-information_53">More Information</h3>
 <p>More information regarding the collection class:
 <a href="http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx</em></a></p>
-<h3 id="example_61">Example</h3>
+<h3 id="example_63">Example</h3>
 <pre><code class="cs">using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1842,7 +1851,7 @@ PlotColors[2][0] = Color.DarkGray;
 <pre><code class="cs">Plots[int index]
 </code></pre>
 
-<h3 id="example_62">Example</h3>
+<h3 id="example_64">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Blue, &quot;MySMA 20&quot;)); // saved to Plots[0]
@@ -1873,7 +1882,7 @@ Outputs[int index][int barsAgo]
 <p>The methods known for a collection, Set() Reset() and Count(), are applicable for values.</p>
 <p>Information on the class collection:
 <a href="http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx</em></a></p>
-<h3 id="example_63">Example</h3>
+<h3 id="example_65">Example</h3>
 <pre><code class="cs">// Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
 if (Outputs[1][1] &lt; High[0] - Low[0])
 Value.Set(High[0] - Low[0]);
@@ -1886,7 +1895,7 @@ Value.Set(High[0] - Close[0]);
 <p>An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
 The same method applies for your self-programmed indicators. A 5 minute chart will call up the <a href="#oncalculate"><em>OnCalculate()</em></a> for each 5 minute bar.
 If you want your self-created indicator to use a different timeframe, this is possible using multibars.</p>
-<h3 id="example_64">Example</h3>
+<h3 id="example_66">Example</h3>
 <pre><code class="cs">using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1965,7 +1974,7 @@ ProcessingBarIndexes[2] Current bar for the weekly bars</p>
 <pre><code class="cs">ProcessingBarIndexes[int barSeriesIndex]
 </code></pre>
 
-<h3 id="example_65">Example</h3>
+<h3 id="example_67">Example</h3>
 <pre><code class="cs">//Ensure that a minimum of 20 bars is loaded
 for (int i=0; i&lt;ProcessingBarIndexes.Count; i++)
 if (ProcessingBarIndexes[i] &lt; 20) return;
@@ -1985,7 +1994,7 @@ With <strong>[TimeFrameRequirements("1 Day", "1 Week")]</strong> two timeframes 
 <p>ProcessingBarSeriesIndex</p>
 <h3 id="more-information_55">More Information</h3>
 <p>Within a script that only works with primary timeframes, the value will always equal zero.</p>
-<h3 id="example_66">Example</h3>
+<h3 id="example_68">Example</h3>
 <pre><code class="cs">// To demonstrate the methodology
 // set CalculateOnClosedBar=false
 Print(Time[0] + &quot; &quot; + ProcessingBarSeriesIndex);

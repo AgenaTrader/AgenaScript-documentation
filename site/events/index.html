@@ -80,17 +80,17 @@
             
                 <li class="toctree-l3"><a href="#events">Events</a></li>
                 
-                    <li><a class="toctree-l4" href="#oncalculate">OnCalculate()</a></li>
-                
                     <li><a class="toctree-l4" href="#onbrokerconnect">OnBrokerConnect()</a></li>
                 
                     <li><a class="toctree-l4" href="#onbrokerdisconnect">OnBrokerDisconnect()</a></li>
                 
-                    <li><a class="toctree-l4" href="#onchartpanelmousemove">OnChartPanelMouseMove()</a></li>
+                    <li><a class="toctree-l4" href="#oncalculate">OnCalculate()</a></li>
                 
                     <li><a class="toctree-l4" href="#onchartpanelmousedown">OnChartPanelMouseDown()</a></li>
                 
-                    <li><a class="toctree-l4" href="#onorderexecution">OnOrderExecution()</a></li>
+                    <li><a class="toctree-l4" href="#onchartpanelmousemove">OnChartPanelMouseMove()</a></li>
+                
+                    <li><a class="toctree-l4" href="#ondispose">OnDispose()</a></li>
                 
                     <li><a class="toctree-l4" href="#onlevel1">OnLevel1()</a></li>
                 
@@ -98,9 +98,9 @@
                 
                     <li><a class="toctree-l4" href="#onorderchanged">OnOrderChanged()</a></li>
                 
-                    <li><a class="toctree-l4" href="#onstart">OnStart()</a></li>
+                    <li><a class="toctree-l4" href="#onorderexecution">OnOrderExecution()</a></li>
                 
-                    <li><a class="toctree-l4" href="#ondispose">OnDispose()</a></li>
+                    <li><a class="toctree-l4" href="#onstart">OnStart()</a></li>
                 
             
             </ul>
@@ -176,54 +176,31 @@
 <p>Programming in AgenaTrader using the various application programming interface (<em>API</em>) methods is based initially on the <em>Overwriting</em> of routines predefined for event handling.</p>
 <p>The following methods can be used and therefore overwritten:</p>
 <ul>
-<li><a href="#oncalculate"><em>OnCalculate()</em></a></li>
 <li><a href="#onbrokerconnect"><em>OnBrokerConnect()</em></a></li>
 <li><a href="#onbrokerdisconnect"><em>OnBrokerDisconnect()</em></a></li>
-<li><a href="#onchartpanelmousemove"><em>OnChartPanelMouseMove()</em></a></li>
+<li><a href="#oncalculate"><em>OnCalculate()</em></a></li>
 <li><a href="#onchartpanelmousedown"><em>OnChartPanelMouseDown()</em></a></li>
-<li><a href="#onorderexecution"><em>OnOrderExecution()</em></a></li>
+<li><a href="#onchartpanelmousemove"><em>OnChartPanelMouseMove()</em></a></li>
+<li><a href="#ondispose"><em>OnDispose()</em></a></li>
 <li><a href="#onlevel1"><em>OnLevel1()</em></a></li>
 <li><a href="#onlevel2"><em>OnLevel2()</em></a></li>
 <li><a href="#onorderupdate"><em>OnOrderChanged()</em></a></li>
+<li><a href="#onorderexecution"><em>OnOrderExecution()</em></a></li>
 <li><a href="#onstartop"><em>OnStart()</em></a></li>
-<li><a href="#ondispose"><em>OnDispose()</em></a></li>
 </ul>
-<h2 id="oncalculate">OnCalculate()</h2>
+<h2 id="onbrokerconnect">OnBrokerConnect()</h2>
 <h3 id="description">Description</h3>
-<p>The OnCalculate() method is called up whenever a bar changes; depending on the variables of <a href="#CalculateOnClosedBar"><em>CalculateOnClosedBar</em></a>, this will happen upon every incoming tick or when the bar has completed/closed.
-OnCalculate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
-The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.</p>
-<p><strong>Caution:</strong>
-<strong>the numbering/indexing is different from the bar index – see <a href="#Bars"><em>Bars</em></a>.</strong></p>
+<p>OnBrokerConnect() method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect(), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.</p>
 <p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter">Parameter</h3>
 <p>none</p>
 <h3 id="return-value">Return Value</h3>
 <p>none</p>
 <h3 id="usage">Usage</h3>
-<pre><code class="cs">protected override void OnCalculate()
-</code></pre>
-
-<h3 id="example">Example</h3>
-<pre><code class="cs">protected override void OnCalculate()
-{
-    Print(&quot;Calling of OnCalculate for the bar number &quot; + ProcessingBarIndex + &quot; from &quot; +Time[0]);
-}
-</code></pre>
-
-<h2 id="onbrokerconnect">OnBrokerConnect()</h2>
-<h3 id="description_1">Description</h3>
-<p>OnBrokerConnect() method is invoked each time the connection to the broker is established.  With the help of OnBrokerConnect(), it is possible to reassign the existing or still open orders to the strategy in the event of a connection abort with the broker and thus allow it to be managed again.</p>
-<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
-<h3 id="parameter_1">Parameter</h3>
-<p>none</p>
-<h3 id="return-value_1">Return Value</h3>
-<p>none</p>
-<h3 id="usage_1">Usage</h3>
 <pre><code class="cs">protected override void OnBrokerConnect()
 </code></pre>
 
-<h3 id="example_1">Example</h3>
+<h3 id="example">Example</h3>
 <pre><code class="cs">private IOrder _takeProfit = null;
 private IOrder _trailingStop = null;
 
@@ -240,18 +217,18 @@ protected override void OnBrokerConnect()
 </code></pre>
 
 <h2 id="onbrokerdisconnect">OnBrokerDisconnect()</h2>
-<h3 id="description_2">Description</h3>
+<h3 id="description_1">Description</h3>
 <p>OnBrokerDisconnect() method is invoked each time the connection to the broker is interrupted.</p>
 <p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
-<h3 id="parameter_2">Parameter</h3>
+<h3 id="parameter_1">Parameter</h3>
 <p>An object from <em>TradingDatafeedChangedEventArgs</em></p>
-<h3 id="return-value_2">Return Value</h3>
+<h3 id="return-value_1">Return Value</h3>
 <p>none</p>
-<h3 id="usage_2">Usage</h3>
+<h3 id="usage_1">Usage</h3>
 <pre><code class="cs">protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
 </code></pre>
 
-<h3 id="example_2">Example</h3>
+<h3 id="example_1">Example</h3>
 <pre><code class="cs">protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
 {
    if (e.Connected)
@@ -261,63 +238,35 @@ protected override void OnBrokerConnect()
 }
 </code></pre>
 
-<h2 id="onchartpanelmousemove">OnChartPanelMouseMove()</h2>
-<h3 id="description_3">Description</h3>
-<p>In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the Chart.ChartPanelMouseMove event.</p>
-<h3 id="attention">Attention!</h3>
-<p>It is important to remove the EventHandler from the OnDispose() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.</p>
-<h3 id="example_3">Example</h3>
-<pre><code class="cs">using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
-using AgenaTrader.API;
-using AgenaTrader.Custom;
-using AgenaTrader.Plugins;
-using AgenaTrader.Helper;
+<h2 id="oncalculate">OnCalculate()</h2>
+<h3 id="description_2">Description</h3>
+<p>The OnCalculate() method is called up whenever a bar changes; depending on the variables of <a href="#CalculateOnClosedBar"><em>CalculateOnClosedBar</em></a>, this will happen upon every incoming tick or when the bar has completed/closed.
+OnCalculate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
+The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.</p>
+<p><strong>Caution:</strong>
+<strong>the numbering/indexing is different from the bar index – see <a href="#Bars"><em>Bars</em></a>.</strong></p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
+<h3 id="parameter_2">Parameter</h3>
+<p>none</p>
+<h3 id="return-value_2">Return Value</h3>
+<p>none</p>
+<h3 id="usage_2">Usage</h3>
+<pre><code class="cs">protected override void OnCalculate()
+</code></pre>
 
-
-namespace AgenaTrader.UserCode
+<h3 id="example_2">Example</h3>
+<pre><code class="cs">protected override void OnCalculate()
 {
-    public class ChartPanelMouseMove : UserIndicator
-    {
-        protected override void OnInit()
-        {
-            IsOverlay = true;
-        }
-
-        protected override void OnStart()
-        {
-            // Add event listener
-            if (Chart != null)
-                Chart.ChartPanelMouseMove += OnChartPanelMouseMove;
-        }
-
-        protected override void OnDispose()
-        {
-            // Remove event listener
-            if (Chart != null)
-                Chart.ChartPanelMouseMove -= OnChartPanelMouseMove;
-        }
-
-        private void OnChartPanelMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            Print(&quot;X = {0}, Y = {1}&quot;, Chart.GetDateTimeByX(e.X), Chart.GetPriceByY(e.Y));
-        }
-    }
+    Print(&quot;Calling of OnCalculate for the bar number &quot; + ProcessingBarIndex + &quot; from &quot; +Time[0]);
 }
 </code></pre>
 
 <h2 id="onchartpanelmousedown">OnChartPanelMouseDown()</h2>
-<h3 id="description_4">Description</h3>
+<h3 id="description_3">Description</h3>
 <p>In an indicator, or strategy, the click event of the mouse can be processed. For this, it is necessary to program an EventHandler as a method and add this method to the Chart.ChartPanelMouseDown event.</p>
-<h3 id="attention_1">Attention!</h3>
+<h3 id="attention">Attention!</h3>
 <p>It is important to remove the EventHandler from the OnDispose() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.</p>
-<h3 id="example_4">Example</h3>
+<h3 id="example_3">Example</h3>
 <pre><code class="cs">using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -365,34 +314,80 @@ namespace AgenaTrader.UserCode
 }
 </code></pre>
 
-<h2 id="onorderexecution">OnOrderExecution()</h2>
+<h2 id="onchartpanelmousemove">OnChartPanelMouseMove()</h2>
+<h3 id="description_4">Description</h3>
+<p>In an indicator, or strategy, the current position of the mouse can be evaluated and processed. For this, it is necessary to program an EventHandler as a method and add this method to the Chart.ChartPanelMouseMove event.</p>
+<h3 id="attention_1">Attention!</h3>
+<p>It is important to remove the EventHandler from the OnDispose() method, otherwise the EventHandler will still be executed even if the indicator has been removed from the chart.</p>
+<h3 id="example_4">Example</h3>
+<pre><code class="cs">using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+using AgenaTrader.Helper;
+
+
+namespace AgenaTrader.UserCode
+{
+    public class ChartPanelMouseMove : UserIndicator
+    {
+        protected override void OnInit()
+        {
+            IsOverlay = true;
+        }
+
+        protected override void OnStart()
+        {
+            // Add event listener
+            if (Chart != null)
+                Chart.ChartPanelMouseMove += OnChartPanelMouseMove;
+        }
+
+        protected override void OnDispose()
+        {
+            // Remove event listener
+            if (Chart != null)
+                Chart.ChartPanelMouseMove -= OnChartPanelMouseMove;
+        }
+
+        private void OnChartPanelMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Print(&quot;X = {0}, Y = {1}&quot;, Chart.GetDateTimeByX(e.X), Chart.GetPriceByY(e.Y));
+        }
+    }
+}
+</code></pre>
+
+<h2 id="ondispose">OnDispose()</h2>
 <h3 id="description_5">Description</h3>
-<p>The OnOrderExecution() method is called up when an order is executed (filled).
-The status of a strategy can be changed by a strategy-managed order. This status change can be initiated by the changing of a volume, price or the status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for all events.</p>
-<p>OnOrderExecution() will always be executed AFTER <a href="#onorderchanged"><em>OnOrderChanged()</em></a>.</p>
+<p>The OnDispose() method can also be overridden in order to once again free up all the resources used in the script.</p>
+<p>See <a href="#oninit"><em>OnInit()</em></a> and <a href="#onstart"><em>OnStart()</em></a>.</p>
 <p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
 <h3 id="parameter_3">Parameter</h3>
-<p>An execution object of the type <em>IExecution</em></p>
+<p>none</p>
 <h3 id="return-value_3">Return Value</h3>
 <p>none</p>
 <h3 id="usage_3">Usage</h3>
-<pre><code class="cs">protected override void OnOrderExecution(IExecution execution)
+<pre><code class="cs">protected override void OnDispose()
 </code></pre>
 
+<h3 id="more-information">More Information</h3>
+<p><strong>Caution:</strong>
+<strong>Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.</strong></p>
 <h3 id="example_5">Example</h3>
-<pre><code class="cs">private IOrder entry = null;
-protected override void OnCalculate()
+<pre><code class="cs">protected override void OnDispose()
 {
-    if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
-            entry = OpenLong(&quot;EMACrossesSMA&quot;);
-}
-protected override void OnOrderExecution(IExecution execution)
-{
-    // Example
-    if (entry != null &amp;&amp; execution.Order == entry)
+    if (Window != null)
     {
-        Print(execution.Price.ToString());
-    Print(execution.Order.OrderState.ToString());
+        Window.Dispose();
+        Window = null;
     }
 }
 </code></pre>
@@ -493,21 +488,53 @@ protected override void OnOrderChanged(IOrder order)
 }
 </code></pre>
 
-<h2 id="onstart">OnStart()</h2>
+<h2 id="onorderexecution">OnOrderExecution()</h2>
 <h3 id="description_9">Description</h3>
+<p>The OnOrderExecution() method is called up when an order is executed (filled).
+The status of a strategy can be changed by a strategy-managed order. This status change can be initiated by the changing of a volume, price or the status of the exchange (from “working” to “filled”). It is guaranteed that this method will be called up in the correct order for all events.</p>
+<p>OnOrderExecution() will always be executed AFTER <a href="#onorderchanged"><em>OnOrderChanged()</em></a>.</p>
+<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
+<h3 id="parameter_7">Parameter</h3>
+<p>An execution object of the type <em>IExecution</em></p>
+<h3 id="return-value_7">Return Value</h3>
+<p>none</p>
+<h3 id="usage_7">Usage</h3>
+<pre><code class="cs">protected override void OnOrderExecution(IExecution execution)
+</code></pre>
+
+<h3 id="example_9">Example</h3>
+<pre><code class="cs">private IOrder entry = null;
+protected override void OnCalculate()
+{
+    if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
+            entry = OpenLong(&quot;EMACrossesSMA&quot;);
+}
+protected override void OnOrderExecution(IExecution execution)
+{
+    // Example
+    if (entry != null &amp;&amp; execution.Order == entry)
+    {
+        Print(execution.Price.ToString());
+    Print(execution.Order.OrderState.ToString());
+    }
+}
+</code></pre>
+
+<h2 id="onstart">OnStart()</h2>
+<h3 id="description_10">Description</h3>
 <p>The OnStart() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
 OnStart() is only called up once at the beginning of the script, after <a href="#oninit"><em>OnInit()</em></a> and before <a href="#oncalculate"><em>OnCalculate()</em></a> are called up.</p>
 <p>See <a href="#ondispose"><em>OnDispose()</em></a>.</p>
 <p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
-<h3 id="parameter_7">Parameter</h3>
+<h3 id="parameter_8">Parameter</h3>
 <p>none</p>
-<h3 id="return-value_7">Return Value</h3>
+<h3 id="return-value_8">Return Value</h3>
 <p>none</p>
-<h3 id="usage_7">Usage</h3>
+<h3 id="usage_8">Usage</h3>
 <pre><code class="cs">protected override void OnStart()
 </code></pre>
 
-<h3 id="example_9">Example</h3>
+<h3 id="example_10">Example</h3>
 <pre><code class="cs">private myForm Window;
 protected override void OnStart()
 {
@@ -515,33 +542,6 @@ protected override void OnStart()
     {
     Window = new myForm();
     Window.Show();
-    }
-}
-</code></pre>
-
-<h2 id="ondispose">OnDispose()</h2>
-<h3 id="description_10">Description</h3>
-<p>The OnDispose() method can also be overridden in order to once again free up all the resources used in the script.</p>
-<p>See <a href="#oninit"><em>OnInit()</em></a> and <a href="#onstart"><em>OnStart()</em></a>.</p>
-<p>More information can be found here: <a href="#events"><em>Events</em></a>.</p>
-<h3 id="parameter_8">Parameter</h3>
-<p>none</p>
-<h3 id="return-value_8">Return Value</h3>
-<p>none</p>
-<h3 id="usage_8">Usage</h3>
-<pre><code class="cs">protected override void OnDispose()
-</code></pre>
-
-<h3 id="more-information">More Information</h3>
-<p><strong>Caution:</strong>
-<strong>Please do not override the Dispose() method since this can only be used much later within the script. This would lead to resources being used and held for an extended period and thus potentially causing unexpected consequences for the entire application.</strong></p>
-<h3 id="example_10">Example</h3>
-<pre><code class="cs">protected override void OnDispose()
-{
-    if (Window != null)
-    {
-        Window.Dispose();
-        Window = null;
     }
 }
 </code></pre>
