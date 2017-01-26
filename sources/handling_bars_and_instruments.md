@@ -2021,6 +2021,79 @@ Lines[0].DashStyle = DashStyle.Solid;
 }
 ```
 
+## Multibars
+### Description
+An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
+The same method applies for your self-programmed indicators. A 5 minute chart will call up the [*OnCalculate()*](#oncalculate) for each 5 minute bar.
+If you want your self-created indicator to use a different timeframe, this is possible using multibars.
+
+### Example
+```cs
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
+using AgenaTrader.API;
+using AgenaTrader.Custom;
+using AgenaTrader.Plugins;
+using AgenaTrader.Helper;
+namespace AgenaTrader.UserCode
+{
+    [Description("Multibar Demo")]
+    // The indicator requires daily and weekly data
+    [TimeFrameRequirements("1 Day", "1 Week")]
+    public class MultiBarDemo : UserIndicator
+    {
+        private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
+        private static readonly TimeFrame TF_Week = new TimeFrame(DatafeedHistoryPeriodicity.Week, 1);
+
+        protected override void OnBarsRequirements()
+        {
+            Add(TF_Day);
+            Add(TF_Week);
+        }
+
+        protected override void OnInit()
+        {
+            CalculateOnClosedBar = true;
+        }
+        protected override void OnCalculate()
+        {
+            // The current value for the SMA 14 in the timeframe of the chart
+            Print("TF0: " + SMA(Closes[0], 14)[0]);
+            // The current value for the SMA 14 in a daily timeframe
+            Print("TF1: " + SMA(Closes[1], 14)[0]);
+            // Current value for the SMA 14 in a weekly timeframe
+            Print("TF2: " + SMA(Closes[2], 14)[0]);
+        }
+    }
+}
+```
+
+### Additional Notes
+When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*](#opens), [*Highs*](#highs), [*Lows*](#lows), [*Closes*](#closes), [*Medians*](#medians), [*Typicals*](#typicals), [*Weighteds*](#weighteds), [*Times*](#times) and [*Volumes*](#volumes). The indexing will occur in the order of the addition of the new timeframes.
+Closes\[0\]\[0\] is equivalent to Close\[0\].
+Closes\[1\]\[0\] equals the current closing price for the daily data series
+Closes\[2\]\[0\] equals the current closing price for the weekly data series
+
+"Closes" is, of course, interchangeable with Opens, Highs, Lows etc.
+
+See [*ProcessingBarIndexes*](#processingbarindexes), [*ProcessingBarSeriesIndex*](#processingbarseriesindex), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](timeframerequirements).
+
+Additional syntax methods are available for multibars:
+```cs
+// Declare the variable TF_DAY and define it
+private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
+private static readonly TimeFrame TF_Week = new TimeFrame(DatafeedHistoryPeriodicity.Week, 1);
+// The following instruction is identical to double d = Closes[1][0];
+double d = MultiBars.GetBarsItem(TF_Day).Close[0];
+// The following instruction is identical to double w = Closes[2][0];
+double w = MultiBars.GetBarsItem(TF_Week).Close[0];
+```
+
 ## PlotColors
 ### Description
 PlotColors is a collection that contains all color series of all plot objects.
@@ -2126,110 +2199,6 @@ else
 }
 ```
 
-## Values
-### Description
-Values is a collection that contains the data series objects of an indicator.
-
-When a plot is added to an indicator using the Add() method, a value object is automatically created and added to the "values" collection.
-
-The order of the add commands determines how the values are sorted. The first information request will create Values\[0\], the next information request will create Values\[1\] etc.
-
-**Value** is always identical to Values\[0\].
-
-### Usage
-```cs
-Outputs[int index]
-Outputs[int index][int barsAgo]
-```
-
-### More Information
-The methods known for a collection, Set() Reset() and Count(), are applicable for values.
-
-Information on the class collection:
-[*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*](http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx)
-
-### Example
-```cs
-// Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
-if (Outputs[1][1] < High[0] - Low[0])
-Value.Set(High[0] - Low[0]);
-else
-Value.Set(High[0] - Close[0]);
-```
-
-## Multibars
-### Description
-An indicator or a strategy will always have the same underlying timeframe-units as those units being displayed within the chart. The values of an SMA(14) indicator displayed in a 5 minute chart will be calculated based on the last fourteen 5 minute bars. A daily chart, on the other hand, would use the closing prices of the past 14 days in order to calculate this value.
-The same method applies for your self-programmed indicators. A 5 minute chart will call up the [*OnCalculate()*](#oncalculate) for each 5 minute bar.
-If you want your self-created indicator to use a different timeframe, this is possible using multibars.
-
-### Example
-```cs
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
-using AgenaTrader.API;
-using AgenaTrader.Custom;
-using AgenaTrader.Plugins;
-using AgenaTrader.Helper;
-namespace AgenaTrader.UserCode
-{
-    [Description("Multibar Demo")]
-    // The indicator requires daily and weekly data
-    [TimeFrameRequirements("1 Day", "1 Week")]
-    public class MultiBarDemo : UserIndicator
-    {
-        private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
-        private static readonly TimeFrame TF_Week = new TimeFrame(DatafeedHistoryPeriodicity.Week, 1);
-
-        protected override void OnBarsRequirements()
-        {
-            Add(TF_Day);
-            Add(TF_Week);
-        }
-
-        protected override void OnInit()
-        {
-            CalculateOnClosedBar = true;
-        }
-        protected override void OnCalculate()
-        {
-            // The current value for the SMA 14 in the timeframe of the chart
-            Print("TF0: " + SMA(Closes[0], 14)[0]);
-            // The current value for the SMA 14 in a daily timeframe
-            Print("TF1: " + SMA(Closes[1], 14)[0]);
-            // Current value for the SMA 14 in a weekly timeframe
-            Print("TF2: " + SMA(Closes[2], 14)[0]);
-        }
-    }
-}
-```
-
-### Additional Notes
-When using additional timeframes, a further entry with the respective data series for the bars of the new timeframe will be added to the arrays [*Opens*](#opens), [*Highs*](#highs), [*Lows*](#lows), [*Closes*](#closes), [*Medians*](#medians), [*Typicals*](#typicals), [*Weighteds*](#weighteds), [*Times*](#times) and [*Volumes*](#volumes). The indexing will occur in the order of the addition of the new timeframes.
-Closes\[0\]\[0\] is equivalent to Close\[0\].
-Closes\[1\]\[0\] equals the current closing price for the daily data series
-Closes\[2\]\[0\] equals the current closing price for the weekly data series
-
-"Closes" is, of course, interchangeable with Opens, Highs, Lows etc.
-
-See [*ProcessingBarIndexes*](#processingbarindexes), [*ProcessingBarSeriesIndex*](#processingbarseriesindex), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](timeframerequirements).
-
-Additional syntax methods are available for multibars:
-```cs
-// Declare the variable TF_DAY and define it
-private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
-private static readonly TimeFrame TF_Week = new TimeFrame(DatafeedHistoryPeriodicity.Week, 1);
-// The following instruction is identical to double d = Closes[1][0];
-double d = MultiBars.GetBarsItem(TF_Day).Close[0];
-// The following instruction is identical to double w = Closes[2][0];
-double w = MultiBars.GetBarsItem(TF_Week).Close[0];
-```
-
 ## ProcessingBarIndexes
 ### Description
 ProcessingBarIndexes is an array of int values that contains the number of [*ProcessingBarIndex*](#processingbarindex) for each bar.
@@ -2296,3 +2265,35 @@ if (ProcessingBarSeriesIndex > 0) return;
 // Logic for the primary data series
 }
 ```
+
+## Values
+### Description
+Values is a collection that contains the data series objects of an indicator.
+
+When a plot is added to an indicator using the Add() method, a value object is automatically created and added to the "values" collection.
+
+The order of the add commands determines how the values are sorted. The first information request will create Values\[0\], the next information request will create Values\[1\] etc.
+
+**Value** is always identical to Values\[0\].
+
+### Usage
+```cs
+Outputs[int index]
+Outputs[int index][int barsAgo]
+```
+
+### More Information
+The methods known for a collection, Set() Reset() and Count(), are applicable for values.
+
+Information on the class collection:
+[*http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx*](http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx)
+
+### Example
+```cs
+// Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
+if (Outputs[1][1] < High[0] - Low[0])
+Value.Set(High[0] - Low[0]);
+else
+Value.Set(High[0] - Close[0]);
+```
+
