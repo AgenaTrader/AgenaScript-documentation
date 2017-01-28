@@ -596,7 +596,7 @@ Bars.IsSessionBreak
 ```cs
 if (Bars.IsSessionBreak)
 {
-Print("The stock exchange Xetra has just a trade pause");
+Print("The stock exchange Xetra has just a trade pause.");
 }
 ```
 
@@ -1109,15 +1109,15 @@ The following are available:
 
 [*High*](#high) [*Highs*](#highs)
 
-[*Low*](#low)(#low) [*Lows*](#lows)
+[*Low*](#low) [*Lows*](#lows)
 
 [*Close*](#close) [*Closes*](#closes)
 
 [*Median*](#median) [*Medians*](#medians)
 
-[*Typical*](#typical)(#Typical) [*Typicals*](#typicals)
+[*Typical*](#typical)  [*Typicals*](#typicals)
 
-[*Weighted*](#weighted)(#weighted) [*Weighteds*](#weighteds)
+[*Weighted*](#weighted) [*Weighteds*](#weighteds)
 
 [*Time*](#time) [*Times*](#times)
 
