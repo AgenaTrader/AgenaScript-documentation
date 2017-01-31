@@ -2508,7 +2508,6 @@ RequiredBarsCount
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
 //The indicator requires a minimum of 50 bars loaded into the history
 RequiredBarsCount = 50;
 }
@@ -2688,4 +2687,3 @@ The methods known for a collection, Set(), Reset(), and Count(), can be used for
 
 ### Example
 See [*Values*](#values).
-
