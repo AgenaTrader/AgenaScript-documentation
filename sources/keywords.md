@@ -1724,7 +1724,6 @@ AddChartVerticalLine("MyVerticalLine", 5, Color.Black);
 ```
 
 ## IsAutoAdjustableScale
-
 ### Description
 IsAutoAdjustableScale is a property of indicators that can be set within the OnInit() method.
 
@@ -1749,7 +1748,6 @@ IsAutoAdjustableScale
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
 //Scale the chart so that all drawing objects are visible
 IsAutoAdjustableScale = true;
 }
