@@ -552,9 +552,7 @@ OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
 |---------------------|----------------------------------------------------------------------|
 | strategyName          | An unambiguous name                                                  |
 | quantity            | Amount of stocks/contracts etc.                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies
-Index of the data series for which the entry order is to be executed
-See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).     |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).     |
 
 ### Return Value
 an order object of the type "IOrder"
@@ -673,9 +671,7 @@ OpenShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantit
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | strategyName          | An unambiguous name      |
 | quantity   | Amount to be ordered       |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.
-Index of the data series for which an entry order is to be placed.
-See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).       |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which an entry order is to be placed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).       |
 | stopPrice           | A double value for the stop price                                                                                                                            |
 | limitPrice          | A double value for the limit price                                                                                                                           |
 | liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
@@ -1538,15 +1534,13 @@ SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 ```
 
 ### Parameter
-|    |           |
-|------------------|------------------------------------|
-| currency         | Sets the profit target in a currency, for example 500€.  |
-| mode             | Possible values are:
--   CalculationMode.Percent (display in percent)
--   CalculationMode.Price (display as price value)
--   CalculationMode.Ticks (display in ticks or pips)      |
-| value  | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks. |
-| fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.   |
+|                  |                                                                                             |
+|------------------|---------------------------------------------------------------------------------------------|
+| currency         | Sets the profit target in a currency, for example 500€.                                     |
+| mode             | Possible values are: CalculationMode.Percent (display in percent); CalculationMode.Price (display as price value);
+ CalculationMode.Ticks (display in ticks or pips)                                                                |
+| value  | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                                                         |
+| fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                                                                                |
 
 ### Example
 ```cs
@@ -1575,16 +1569,13 @@ SetUpStopLoss(string fromEntry signal, CalculationMode mode, double value, bool 
 ```
 
 ### Parameter
-|      |      |
-|------------------|---------------------------------------|
+|                  |                                                                                                  |
+|------------------|--------------------------------------------------------------------------------------------------|
 | currency         | The difference between the stop loss and the entry price (=risk) in a currency, such as 500€     |
-| mode             | Potential values can be:
--   CalculationMode.Percent (display in percent)
--   CalculationMode.Price (display as price value)
--   CalculationMode.Ticks (display in ticks or pips)    |
-| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
-| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
-| fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
+| mode             | Potential values can be: CalculationMode.Percent (display in percent); CalculationMode.Price (display as price value); CalculationMode.Ticks (display in ticks or pips)                                                              |
+| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions).                            |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                                                     |
+| fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                                                           |
 
 ### Example
 ```cs
@@ -1638,15 +1629,13 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 ```
 
 ### Parameter
-|           |      |
-|------------------|---------------------------------------------------|
-| currency         | The distance between the stop loss and the entry price      |
-| mode             | Possible values are:  
--   CalculationMode.Percent
--   CalculationMode.Ticks   |
-| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions). |
-| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                            |
-| fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                              |
+|                  |                                                                                            |
+|------------------|--------------------------------------------------------------------------------------------|
+| currency         | The distance between the stop loss and the entry price                                     |
+| mode             | Possible values are:   CalculationMode.Percent; CalculationMode.Ticks                      |
+| simulated        | When set to "true," the stop order does not go live (as a market order) until the price has „touched" it for the first time (meaning that it is executed just as it would be under real market conditions).                      |
+| value            | The distance between stop price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                                               |
+| fromEntry signal | The name of the entry signal for which the stop order is to be generated. The amount is taken from the entry order referenced.                                                                                                     |
 
 ### Example
 ```cs
@@ -1671,27 +1660,14 @@ SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderTyp
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
-| multibarSeriesIndex | For multi-bar strategies.
-Index of the data series for which the order is to be executed.
-See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                                                 |
-| orderAction         | Possible values are:
-OrderAction.Buy
-Buy order for a long entry
-
-OrderAction.Sell
-Sell order for closing a long position
-
-OrderAction.SellShort
-Sell order for a short entry
-
-OrderAction.BuyToCover
-Buy order for closing a short position                              |
-| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                                 |
+| multibarSeriesIndex | For multi-bar strategies. Index of the data series for which the order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                                   |
+| orderAction         | Possible values are: **OrderAction.Buy** (Buy order for a long entry); **OrderAction.Sell** (Sell order for closing a long position) **OrderAction.SellShort** (Sell order for a short entry); **OrderAction.BuyToCover**(Buy order for closing a short position )                                                                            |
+| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                               |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
 | ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
-| strategyName          | An unambiguous signal name (string)                                |
+| strategyName         | An unambiguous signal name (string)                                |
 
 ### Return Value
 an order object of the type "IOrder"
