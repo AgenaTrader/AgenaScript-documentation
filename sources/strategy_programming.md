@@ -893,12 +893,12 @@ CloseShort(int multibarSeriesIndex, int quantity, string strategyName, string fr
 ```
 
 ### Parameter
-|                     |                                                                      |
-|---------------------|----------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                  |
-| Quantity            | Order quantity to be bought                                          |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
-| fromEntry signal    | The name of the associated entry signal                              |
+|                     |                                                                                              |
+|---------------------|----------------------------------------------------------------------------------------------|
+| strategyName        | An unambiguous name                                                                          |
+| Quantity            | Order quantity to be bought                                                                  |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                                |
+| fromEntry signal    | The name of the associated entry signal                                                      |
 
 ### Return Value
 An order object of the type "IOrder"
@@ -1537,9 +1537,8 @@ SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 |                  |                                                                                             |
 |------------------|---------------------------------------------------------------------------------------------|
 | currency         | Sets the profit target in a currency, for example 500€.                                     |
-| mode             | Possible values are: CalculationMode.Percent (display in percent); CalculationMode.Price (display as price value);
- CalculationMode.Ticks (display in ticks or pips)                                                                |
-| value  | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                                                         |
+| mode             | Potential values can be: CalculationMode.Percent (display in percent); CalculationMode.Price (display as price value); CalculationMode.Ticks (display in ticks or pips)                                                         |
+| value            | The distance between entry price and profit target. This is dependent upon the „mode" but generally refers to a monetary value, a percentage or a value in ticks.                                                                |
 | fromEntry signal | The name of the entry signal for which the profit target is to be generated. The amount is taken from the entry order referenced.                                                                                                |
 
 ### Example
