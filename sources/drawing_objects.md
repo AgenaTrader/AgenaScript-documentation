@@ -34,11 +34,15 @@ A drawing object of the type IAndrewsPitchfork (interface)
 | start3Time     | Date/time for start point 3 (x-axis)                                                    |
 | start3Y        | y-value for start point 3                                                               |
 | color          | Color of the object                                                                     |
-| dashStyle      | LevelLine styles:                                                                            |
-|                |  DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot DashStyle.Solid |
-|                | You need to integrate:                                                                  |
-|                | using System.Drawing.Drawing2D;.                                                        |
-| width          | LevelLine strength in points                                                                 |
+| dashStyle      | LevelLine styles:                                                                       |
+|                |  DashStyle.Dash                                                                         |  
+|                |  DashStyle.DashDot                                                                      |  
+|                |  DashStyle.DashDotDot                                                                   |  
+|                |  DashStyle.Dot                                                                          |  
+|                |  DashStyle.Solid                                                                        |  
+|                |                                                                                         |  
+|                |  You may have to integrate: using System.Drawing.Drawing2D;                             |  
+| width          | LevelLine strength in points                                                            |
 
 ### Example
 ```cs
@@ -72,16 +76,15 @@ A drawing object of the type IArc (interface)
 | endTime      | Date/time for the end point                                                             |
 | endY         | y-value for the end point                                                               |
 | color        | Color of the drawing object                                                             |
-| dashStyle    | LevelLine style                                                                              |                                                                                           
+| dashStyle    | LevelLine style:                                                                        |                           
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
 |              |  DashStyle.Dot                                                                          |  
 |              |  DashStyle.Solid                                                                        |  
 |              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
-| width        | LevelLine strength in points                                                                 |
+|              |  You may have to integrate: using System.Drawing.Drawing2D;                             |  
+| width        | LevelLine strength in points                                                            |
 
 ### Example
 ```cs
@@ -153,16 +156,15 @@ A drawing object of the type IArrowLine (interface)
 | endTime      | Date/time at which the arrow should end                                                 |
 | endY         | y-value at which the arrow should end                                                   |
 | color        | Color of the drawing object                                                             |
-| dashStyle    | LevelLine style                                                                              |                                                                                           
+| dashStyle    | LevelLine style:                                                                        |                             
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
 |              |  DashStyle.Dot                                                                          |  
 |              |  DashStyle.Solid                                                                        |  
 |              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
-| width        | LevelLine strength in points                                                                 |
+|              |  You may have to integrate:  using System.Drawing.Drawing2D;                            |  
+| width        | LevelLine strength in points                                                            |
 
 ### Example
 ```cs
@@ -331,16 +333,15 @@ A drawing object of the type IExtendedLine (interface)
 | endTime      | Date/time for the end point                                                                             |
 | endY         | y-value for the end point                                                                               |
 | color        | Color of the drawing object                                                                             |
-| dashStyle    | LevelLine style                                                                               |                                                                                           
+| dashStyle    | LevelLine styl :                                                                                       |             
 |              |  DashStyle.Dash                                                                                         |  
 |              |  DashStyle.DashDot                                                                                      |  
 |              |  DashStyle.DashDotDot                                                                                   |  
 |              |  DashStyle.Dot                                                                                          |  
 |              |  DashStyle.Solid                                                                                        |  
 |              |                                                                                                         |  
-|              |  You may have to integrate:                                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                                        |
-| width        | LevelLine strength in points                                                                                 |
+|              |  You may have to integrate:   using System.Drawing.Drawing2D;                                           |  
+| width        | LevelLine strength in points                                                                            |
 
 ### Example
 ```cs
@@ -553,17 +554,16 @@ A drawing object of the type IHorizontalLine (interface)
 | name      | A clearly identifiable name for the drawing object                                      |
 | autoScale | Adjusts the scale of the y-axis so that drawing objects can be viewed in their entirety |
 | y         | Any double value of your choice                                                         |
-| color     | LevelLine color                                                                              |
-| dashStyle | LevelLine style                                                                              |                                                                                           
+| color     | LevelLine color                                                                         |
+| dashStyle | LevelLine style:                                                                        |                                 
 |           |  DashStyle.Dash                                                                         |  
 |           |  DashStyle.DashDot                                                                      |  
 |           |  DashStyle.DashDotDot                                                                   |  
 |           |  DashStyle.Dot                                                                          |  
 |           |  DashStyle.Solid                                                                        |  
 |           |                                                                                         |  
-|           |  You may have to integrate:                                                             |  
-|           |  using System.Drawing.Drawing2D;                                                        |
-| width     | LevelLine strength                                                                           |
+|           |  You may have to integrate:  using System.Drawing.Drawing2D;                           |  
+| width     | LevelLine strength                                                                      |
 
 ### Example
 ```cs
@@ -599,16 +599,15 @@ A drawing object of the type ITrendLine (interface).
 | endTime      | Date/time for the end point                                                             |
 | endY         | y-value for the end point                                                               |
 | color        | Color of the drawing object                                                             |
-| dashStyle    | LevelLine style                                                                              |                                                                                           
+| dashStyle    | LevelLine style:                                                                        |                             
 |              |  DashStyle.Dash                                                                         |  
 |              |  DashStyle.DashDot                                                                      |  
 |              |  DashStyle.DashDotDot                                                                   |  
 |              |  DashStyle.Dot                                                                          |  
 |              |  DashStyle.Solid                                                                        |  
 |              |                                                                                         |  
-|              |  You may have to integrate:                                                             |  
-|              |  using System.Drawing.Drawing2D;                                                        |
-| width        | LevelLine strength in points                                                                 |
+|              |  You may have to integrate: using System.Drawing.Drawing2D;                             |  
+| width        | LevelLine strength in points                                                            |
 
 ### Example
 ```cs
@@ -644,16 +643,15 @@ A drawing object of the type IRay (interface)
 | start2Time     | Date/time for start point 2                                                             |
 | start2Y        | y-value for start point 2                                                               |
 | color          | Color of the drawing object                                                             |
-| dashStyle      | LevelLine style                                                                              |                                                                                           
+| dashStyle      | LevelLine style                                                                         |                           
 |                |  DashStyle.Dash                                                                         |  
 |                |  DashStyle.DashDot                                                                      |  
 |                |  DashStyle.DashDotDot                                                                   |  
 |                |  DashStyle.Dot                                                                          |  
 |                |  DashStyle.Solid                                                                        |  
 |                |                                                                                         |  
-|                |  You may have to integrate:                                                             |  
-|                |  using System.Drawing.Drawing2D;                                                        |
-| width          | LevelLine strength                                                                           |
+|                |  You may have to integrate:  using System.Drawing.Drawing2D;                            |  
+| width          | LevelLine strength                                                                      |
 
 ### Example
 ```cs
@@ -761,18 +759,18 @@ A drawing object of the type IRegressionChannel (interface)
 | barsBackEnd      | Sets the preceding bar at which the regression channel should end (0 = current bar)     |
 | endTime          | End time for the regression channel                                                     |
 | color            | Color of the drawing object                                                             |
-| upperDashStyle, middleDashStyle, lowerDashStyle    |                                                                              
-| dashStyle        | LevelLine style                                                                              |                                                                                           
+| upperDashStyle, middleDashStyle, lowerDashStyle         | LevelLine style:                                 |                         
 |                  |  DashStyle.Dash                                                                         |  
 |                  |  DashStyle.DashDot                                                                      |  
 |                  |  DashStyle.DashDotDot                                                                   |  
 |                  |  DashStyle.Dot                                                                          |  
 |                  |  DashStyle.Solid                                                                        |  
 |                  |                                                                                         |  
-|                  |  You may have to integrate:                                                             |  
-|                  |  using System.Drawing.Drawing2D;                                                        |
-| upperColor,  middleColor,    lowerColor        | LevelLine color                                                                              |
-| upperWidth,   middleWidth,  lowerWidth        | LevelLine strength                                                                           |
+|                  |  You may have to integrate: using System.Drawing.Drawing2D;                             |  
+| upperColor,  middleColor,    lowerColor       | LevelLine color                                         
+                                |
+| upperWidth,   middleWidth,  lowerWidth        | LevelLine strength                                      
+                                 |
 
 ### Example
 ```cs
@@ -858,8 +856,7 @@ A drawing object of the type IText (interface)
 | VAlign       | Possible values are: VerticalAlign.Top, VerticalAlign.Center, VerticalAlign.Bottom   |
 | outlineColor | Border color around the text (for no border, select Color.Empty)  |
 | areaColor    | Fill color for the text box    |
-| areaOpacity  | Transparency of the fill color
-Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)    |
+| areaOpacity  | Transparency of the fill color. Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)    |
 
 ### Example
 ```cs
@@ -989,10 +986,7 @@ A drawing object of the type ITriangle (interface)
 | start3Y        | y-value for start point 3                                                               |
 | color          | Color of the drawing object                                                             |
 | areaColor      | Fill color of the drawing object                                                        |
-| areaOpacity    | Transparency of the fill color
-Value between 0 and 255
-                  0 = completely transparent
-                  255 = completely opaque                                                                   |
+| areaOpacity    | Transparency of the fill color. Value between 0 and 255 (0 = completely transparent, 255 = completely opaque)  |
 
 ### Example
 ```cs
@@ -1088,11 +1082,15 @@ A drawing object of the type IVerticalLine (interface)
 | name      | A clearly identifiable name for the drawing object                         |
 | barsAgo   | Sets how many bars ago the vertical line should be drawn (0 = current bar) |
 | time      | Date/time of the bar at which the vertical line should be drawn            |
-| color     | LevelLine color                                                                 |
-| dashStyle | LevelLine style: DashStyle.Dash, DashStyle.DashDot, DashStyle.DashDotDot, DashStyle.Dot, DashStyle.Solid
-You may have to integrate:
-using System.Drawing.Drawing2D;                                             |
-| width     | LevelLine strength                                                              |
+| color     | LevelLine color                                                            |
+| dashStyle | LevelLine style                                                            |
+|           |  DashStyle.Dash                                                            |  
+|           |  DashStyle.DashDot                                                         |  
+|           |  DashStyle.DashDotDot                                                      |  
+|           |  DashStyle.Dot                                                             |  
+|           |  DashStyle.Solid                                                           |  
+| width     | LevelLine strength                                                         |
+
 
 ### Example
 ```cs
