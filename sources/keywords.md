@@ -1970,8 +1970,7 @@ The data type Level2Args represents a change in the level 2 data (market depth) 
 | MarketDataType | Potential values are: MarketDataType.Ask, MarketDataType.Bid                                              |
 | MarketMaker    | A string value containing the market maker ID                  |
 | Position       | An int value that defines the position within the market depth |
-| Operation      | Represents the action caused by a change in the order book.                                                                  
-                  Values can be: Operation.Insert, Operation.Remove, Operation.Update                                                |
+| Operation      | Represents the action caused by a change in the order book.   Values can be: Operation.Insert, Operation.Remove, Operation.Update                                                |
 | Price          | A double value that displays the bid/ask price                 |
 | Time           | A date-time value containing the timestamp of the change       |
 | Volume         | A long value that shows the volume                             |
