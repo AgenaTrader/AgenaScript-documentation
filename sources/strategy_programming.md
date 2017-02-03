@@ -980,13 +980,14 @@ CloseShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, d
 ```
 
 ### Parameter
-|  |                                                                                                                                                              |  |---------------------|---------------------------------------------------------------|
-| strategyName          | An unambiguous name    |
-| fromEntry signal    | The name of the associated entry signal    |
-| quantity            | Order quantity to be bought    |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
-| stopPrice           | A double value for the stop price    |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
+|                     |                                                                                        |  
+|---------------------|----------------------------------------------------------------------------------------|
+| strategyName        | An unambiguous name                                                                    |
+| fromEntry signal    | The name of the associated entry signal                                                |
+| quantity            | Order quantity to be bought                                                            |
+| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the exit order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                          |
+| stopPrice           | A double value for the stop price                                                      |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.                                                                   |
 
 ### Return Value
 An order object of the type "IOrder"
