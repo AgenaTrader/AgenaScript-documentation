@@ -873,15 +873,7 @@ OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies</td>
-</tr>
-<tr>
-<td>Index of the data series for which the entry order is to be executed</td>
-<td></td>
-</tr>
-<tr>
-<td>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
-<td></td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the entry order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -1040,15 +1032,7 @@ OpenShortStopLimit(int quantity, double limitPrice, double stopPrice, string str
 </tr>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies.</td>
-</tr>
-<tr>
-<td>Index of the data series for which an entry order is to be placed.</td>
-<td></td>
-</tr>
-<tr>
-<td>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
-<td></td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which an entry order is to be placed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>stopPrice</td>
@@ -1463,13 +1447,40 @@ CloseShortStop(int quantity, double stopPrice, string strategyName, string fromE
 </code></pre>
 
 <h3 id="parameter_23">Parameter</h3>
-<p>|  |                                                                                                                                                              |  |---------------------|---------------------------------------------------------------|
-| strategyName          | An unambiguous name    |
-| fromEntry signal    | The name of the associated entry signal    |
-| quantity            | Order quantity to be bought    |
-| multibarSeriesIndex | For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>. |
-| stopPrice           | A double value for the stop price    |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strategyName</td>
+<td>An unambiguous name</td>
+</tr>
+<tr>
+<td>fromEntry signal</td>
+<td>The name of the associated entry signal</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Order quantity to be bought</td>
+</tr>
+<tr>
+<td>multibarSeriesIndex</td>
+<td>For <a href="#multibar"><em>Multibar</em></a>, <a href="#multibars"><em>MultiBars</em></a> strategies. Index of the data series for which the exit order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>A double value for the stop price</td>
+</tr>
+<tr>
+<td>liveUntilCancelled</td>
+<td>The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="return-value_14">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
 <h3 id="example_25">Example</h3>
@@ -2051,19 +2062,7 @@ SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 </tr>
 <tr>
 <td>mode</td>
-<td>Possible values are:</td>
-</tr>
-<tr>
-<td>-   CalculationMode.Percent (display in percent)</td>
-<td></td>
-</tr>
-<tr>
-<td>-   CalculationMode.Price (display as price value)</td>
-<td></td>
-</tr>
-<tr>
-<td>-   CalculationMode.Ticks (display in ticks or pips)</td>
-<td></td>
+<td>Potential values can be: CalculationMode.Percent (display in percent); CalculationMode.Price (display as price value); CalculationMode.Ticks (display in ticks or pips)</td>
 </tr>
 <tr>
 <td>value</td>
@@ -2110,19 +2109,7 @@ SetUpStopLoss(string fromEntry signal, CalculationMode mode, double value, bool 
 </tr>
 <tr>
 <td>mode</td>
-<td>Potential values can be:</td>
-</tr>
-<tr>
-<td>-   CalculationMode.Percent (display in percent)</td>
-<td></td>
-</tr>
-<tr>
-<td>-   CalculationMode.Price (display as price value)</td>
-<td></td>
-</tr>
-<tr>
-<td>-   CalculationMode.Ticks (display in ticks or pips)</td>
-<td></td>
+<td>Potential values can be: CalculationMode.Percent (display in percent); CalculationMode.Price (display as price value); CalculationMode.Ticks (display in ticks or pips)</td>
 </tr>
 <tr>
 <td>simulated</td>
@@ -2186,15 +2173,7 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 </tr>
 <tr>
 <td>mode</td>
-<td>Possible values are:</td>
-</tr>
-<tr>
-<td>-   CalculationMode.Percent</td>
-<td></td>
-</tr>
-<tr>
-<td>-   CalculationMode.Ticks</td>
-<td></td>
+<td>Possible values are:   CalculationMode.Percent; CalculationMode.Ticks</td>
 </tr>
 <tr>
 <td>simulated</td>
@@ -2237,42 +2216,38 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 <tbody>
 <tr>
 <td>multibarSeriesIndex</td>
-<td>For multi-bar strategies.</td>
-</tr>
-<tr>
-<td>Index of the data series for which the order is to be executed.</td>
-<td></td>
-</tr>
-<tr>
-<td>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
-<td></td>
+<td>For multi-bar strategies. Index of the data series for which the order is to be executed. See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</td>
 </tr>
 <tr>
 <td>orderAction</td>
-<td>Possible values are:</td>
+<td>Possible values are: <strong>OrderAction.Buy</strong> (Buy order for a long entry); <strong>OrderAction.Sell</strong> (Sell order for closing a long position) <strong>OrderAction.SellShort</strong> (Sell order for a short entry); <strong>OrderAction.BuyToCover</strong>(Buy order for closing a short position )</td>
 </tr>
 <tr>
-<td>OrderAction.Buy</td>
-<td></td>
+<td>orderType</td>
+<td>Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit</td>
 </tr>
 <tr>
-<td>Buy order for a long entry</td>
-<td></td>
+<td>quantity</td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>Limit value. Inputting a 0 makes this parameter irrelevant</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>Stop value. Inputting a 0 makes this parameter irrelevant</td>
+</tr>
+<tr>
+<td>ocoId</td>
+<td>A unique ID (string) for linking multiple orders into an OCO group</td>
+</tr>
+<tr>
+<td>strategyName</td>
+<td>An unambiguous signal name (string)</td>
 </tr>
 </tbody>
 </table>
-<p>OrderAction.Sell
-Sell order for closing a long position</p>
-<p>OrderAction.SellShort
-Sell order for a short entry</p>
-<p>OrderAction.BuyToCover
-Buy order for closing a short position                              |
-| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                                 |
-| quantity            | Amount                                                             |
-| limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
-| stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
-| ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
-| strategyName          | An unambiguous signal name (string)                                |</p>
 <h3 id="return-value_22">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
 <h3 id="example_40">Example</h3>
