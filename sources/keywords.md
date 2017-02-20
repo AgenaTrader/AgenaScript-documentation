@@ -2049,7 +2049,7 @@ Note: If the log tab is not viewable, it can be displayed using the tools log.
 Log("This is information.", InfoLogLevel.Info); //white
 Log("This is a message.", InfoLogLevel.Message); // white
 Log("This is a warning.", InfoLogLevel.Warning); // blue
-Log("This is an alarm.", InfoLogLevel. AlertLog); //green
+Log("This is an alarm.", InfoLogLevel. ShowAlert); //green
 Log("This is a mistake.", InfoLogLevel.Error); // red
 //Tab messags
 Log("This is a message (messages).", InfoLogLevel.Message); //white
