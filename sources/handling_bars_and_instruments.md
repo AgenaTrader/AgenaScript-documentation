@@ -74,7 +74,7 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.GetNextSessionTimeSpan*](#getnextsessiontimespan)
 
-[*Bars.GetOpen*](barsgetopen)
+[*Bars.GetOpen*](#barsgetopen)
 
 [*Bars.GetSessionBegin*](#getsessionbegin)
 
