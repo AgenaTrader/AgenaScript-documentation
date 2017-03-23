@@ -422,10 +422,10 @@ Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionBegin(new DateT
 ```
 
 ## Bars.GetTime
-Bars.GetTime(int index) – see [*Bars.GetOpen*](barsgetopen).
+Bars.GetTime(int index) – see [*Bars.GetOpen*](#barsgetopen).
 
 ## Bars.GetVolume
-Bars.GetVolume(int index) – see [*Bars.GetOpen*](barsgetopen).
+Bars.GetVolume(int index) – see [*Bars.GetOpen*](#barsgetopen).
 
 ## Bars.Instrument
 ### Description
