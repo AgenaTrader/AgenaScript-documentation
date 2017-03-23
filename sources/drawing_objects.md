@@ -98,7 +98,7 @@ AddChartArrowDown() draws an arrow pointing downwards:
 
 ![AddChartArrowDown()](./media/image21.png)
 
-See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)).
 
 ### Usage
 ```cs   
@@ -178,7 +178,7 @@ AddChartArowUp() draws an arrow pointing upwards:
 
 ![AddChartArrowUp()](./media/image23.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -211,7 +211,7 @@ AddChartDiamond() draws a diamond:
 
 ![AddChartDiamond()](./media/image24.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -244,7 +244,7 @@ AddChartDot() draws a dot:
 
 ![AddChartDot()](./media/image25.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown)(#drawarrowdown), [*AddChartDiamond()*](#addchartdiamond)(#drawdiamond), [*AddChartDot()*](#addchartdot)(#drawdot), [*AddChartSquare()*](#addchartsquare)(#drawsquare), [*AddChartTriangleUp()*](#addcharttriangleup)(#drawtriangleup), [*AddChartTriangleDown()*](#addcharttriangledown)(#drawtriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -309,7 +309,7 @@ AddChartEllipse("MyEllipse-" + ProcessingBarIndex, true, 5, High[5], 0, Close[0]
 ### Description
 AddChartExtendedLine() draws a line with an infinite end point.
 
-See [*AddChartLine()*](#drawline), [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartRay()*](#drawray).
+See [*AddChartLine()*](#addchartline), [*AddChartHorizontalLine()*](#addcharthorizontalline), [*AddChartVerticalLine()*](#addchartverticalline), [*AddChartRay()*](#addchartray).
 
 ### Usage
 ```cs
@@ -537,7 +537,7 @@ AddChartGannFan("MyGannFan-" + ProcessingBarIndex, true, 10, Low[10]);
 ### Description
 AddChartHorizontalLine() draws a horizontal line in the chart.
 
-See [*AddChartLine()*](#drawline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
+See [*AddChartLine()*](#addchartline), [*AddChartVerticalLine()*](#addchartverticalline), [*AddChartExtendedLine()*](#addchartextendedline), [*AddChartRay()*](#addchartray).
 
 ### Usage
 ```cs
@@ -575,7 +575,7 @@ AddChartHorizontalLine("MyHorizontalLine-" + ProcessingBarIndex, 10, Color.Black
 ### Description
 AddChartLine() draws a (trend) line.
 
-See [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
+See [*AddChartHorizontalLine()*](#addcharthorizontalline), [*AddChartVerticalLine()*](#addchartverticalline), [*AddChartExtendedLine()*](#addchartextendedline), [*AddChartRay()*](#addchartray).
 
 ### Usage
 ```cs
@@ -619,7 +619,7 @@ AddChartLine("MyLine-" + ProcessingBarIndex, false, 10, Close[10], 0, Close[0], 
 ### Description
 AddChartRay() draws a (trend) line and extends it to infinity.
 
-See [*AddChartLine()*](#drawline), [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartVerticalLine()*](#drawverticalline), [*AddChartExtendedLine()*](#drawextendedline).
+See [*AddChartLine()*](#addchartline), [*AddChartHorizontalLine()*](#addcharthorizontalline), [*AddChartVerticalLine()*](#addchartverticalline), [*AddChartExtendedLine()*](#addchartextendedline).
 
 ### Usage
 ```cs
@@ -784,7 +784,7 @@ AddChartSquare() draws a square:
 
 ![AddChartSquare()](./media/image26.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartTriangleUp()*](#addcharttriangleup), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -1000,7 +1000,7 @@ AddChartTriangleDown() draws a small downwards-pointing triangle:
 
 ![AddChartTriangleDown()](./media/image29.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleUp()*](#addcharttriangleup).
 
 ### Usage
 ```cs
@@ -1033,7 +1033,7 @@ AddChartTriangleUp() draws a small upwards-pointing triangle:
 
 ![AddChartTriangleUp()](./media/image28.png)
 
-See [*AddChartArrowUp()*](#drawarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleDown()*](#addcharttriangledown).
+See [*AddChartArrowUp()*](#addchartarrowup), [*AddChartArrowDown()*](#addchartarrowdown), [*AddChartDiamond()*](#addchartdiamond), [*AddChartDot()*](#addchartdot), [*AddChartSquare()*](#addchartsquare), [*AddChartTriangleDown()*](#addcharttriangledown).
 
 ### Usage
 ```cs
@@ -1064,7 +1064,7 @@ AddChartTriangleUp("MyTriangleUp-" + ProcessingBarIndex, true, 0, Low[0] - 10*Ti
 ### Description
 AddChartVerticalLine() draws a vertical line in the chart.
 
-See [*AddChartLine()*](#drawline), [*AddChartHorizontalLine()*](#drawhorizontalline), [*AddChartExtendedLine()*](#drawextendedline), [*AddChartRay()*](#drawray).
+See [*AddChartLine()*](#addchartline), [*AddChartHorizontalLine()*](#addcharthorizontalline), [*AddChartExtendedLine()*](#addchartextendedline), [*AddChartRay()*](#addchartray).
 
 ### Usage
 ```cs
