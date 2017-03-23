@@ -311,14 +311,14 @@ For indexing of bars see [*Functionality*](#functionality), [*Bars*](#bars)
 Print(Close[0] + " and " + Bars.GetByIndex(ProcessingBarIndex).Close + " are equal in this example.");
 ```
 ## Bars.GetClose
-Bars.GetClose(int index) – see [*Bars.GetOpen*](barsgetopen).
+Bars.GetClose(int index) – see [*Bars.GetOpen*](#barsgetopen).
 
 ## Bars.GetHigh
-Bars.GetHigh(int index) – see [*Bars.GetOpen*](barsgetopen).
+Bars.GetHigh(int index) – see [*Bars.GetOpen*](#barsgetopen).
 
 
 ## Bars.GetLow
-Bars.GetLow(int index) – see [*Bars.GetOpen*](barsgetopen).
+Bars.GetLow(int index) – see [*Bars.GetOpen*](#barsgetopen).
 
 ## Bars.GetNextSessionTimeSpan
 ### Description
@@ -1843,7 +1843,7 @@ Instrument.Digits
 ### More Information
 Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.
 
-This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*](#ticksize) and [*Instrument.Round2Ticks*](instrumentround2ticks), [*Instrument.Round2TickSize*](#instrumentround2ticksize).
+This function is especially useful when formatting the output of various instruments that need rounding. Also see [*TickSize*](#ticksize) and [*Instrument.Round2Ticks*](#instrumentround2ticks), [*Instrument.Round2TickSize*](#instrumentround2ticksize).
 
 More information can be found here: *Formatting of Numbers*.
 
@@ -2151,7 +2151,7 @@ Stock: 0.01
 ES future: 0.25
 EUR/USD: 0.00001
 
-See [*Instrument.PointValue*](instrumentpointvalue) and [*Instrument.Digits*](#instrumentdigits).
+See [*Instrument.PointValue*](#instrumentpointvalue) and [*Instrument.Digits*](#instrumentdigits).
 
 Examples of professional [*Formatting*](#formatting), *Formatting of Numbers*.
 
@@ -2230,7 +2230,7 @@ Closes\[2\]\[0\] equals the current closing price for the weekly data series
 
 "Closes" is, of course, interchangeable with Opens, Highs, Lows etc.
 
-See [*ProcessingBarIndexes*](#processingbarindexes), [*ProcessingBarSeriesIndex*](#processingbarseriesindex), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](timeframerequirements).
+See [*ProcessingBarIndexes*](#processingbarindexes), [*ProcessingBarSeriesIndex*](#processingbarseriesindex), [*TimeFrames*](#timeframes), [*TimeFrameRequirements*](#timeframerequirements).
 
 Additional syntax methods are available for multibars:
 ```cs
