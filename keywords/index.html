@@ -2064,7 +2064,7 @@ Add(new LevelLine(new Pen(Color.Red, 1), 10, &quot;MyLine&quot;));
 Log(&quot;This is information.&quot;, InfoLogLevel.Info); //white
 Log(&quot;This is a message.&quot;, InfoLogLevel.Message); // white
 Log(&quot;This is a warning.&quot;, InfoLogLevel.Warning); // blue
-Log(&quot;This is an alarm.&quot;, InfoLogLevel. AlertLog); //green
+Log(&quot;This is an alarm.&quot;, InfoLogLevel. ShowAlert); //green
 Log(&quot;This is a mistake.&quot;, InfoLogLevel.Error); // red
 //Tab messags
 Log(&quot;This is a message (messages).&quot;, InfoLogLevel.Message); //white
@@ -2143,7 +2143,7 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 <li><a href="#requiredbarscount"><em>RequiredBarsCount</em></a></li>
 <li><a href="../calculateonclosedbar"><em>CalculateOnClosedBar</em></a></li>
 <li><a href="#clearoutputwindows"><em>ClearOutputWindow()</em></a></li>
-<li><a href="../displacement"><em>Displacement</em></a></li>
+<li><a href="#displacement"><em>Displacement</em></a></li>
 <li><a href="#isshowindatabox"><em>IsShowInDataBox</em></a></li>
 <li><a href="#isadddrawingstopricepanel"><em>IsAddDrawingsToPricePanel</em></a></li>
 <li><a href="#inputpricetype"><em>InputPriceType</em></a></li>
@@ -2565,7 +2565,7 @@ After 17-317 comes 18.</p>
 Eurex (FDAX): <a href="http://www.eurexchange.com/exchange-en/products/idx/dax/17206/"><em>http://www.eurexchange.com/exchange-en/products/idx/dax/17206/</em></a></p>
 <p>See <a href="#instrumentticksize"><em>Instrument.TickSize</em></a>.</p>
 <h2 id="timeframe">TimeFrame</h2>
-<p>See <a href="../barstimeframe"><em>Bars.TimeFrame</em></a>.</p>
+<p>See <a href="#barstimeframe"><em>Bars.TimeFrame</em></a>.</p>
 <p>When using multiple timeframes (<a href="#multibars"><em>Multibars</em></a>) in an indicator, please see <a href="#timeframes"><em>TimeFrames</em></a>.</p>
 <h2 id="update">Update()</h2>
 <h3 id="description_70">Description</h3>

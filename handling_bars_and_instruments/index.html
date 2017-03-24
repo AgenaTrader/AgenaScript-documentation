@@ -357,7 +357,7 @@ The last closing price is thus <em>Close [0]</em>; the closing price previous to
 <p><a href="#barsgethigh"><em>Bars.GetHigh</em></a></p>
 <p><a href="#barsgetlow"><em>Bars.GetLow</em></a></p>
 <p><a href="#getnextsessiontimespan"><em>Bars.GetNextSessionTimeSpan</em></a></p>
-<p><a href="../barsgetopen"><em>Bars.GetOpen</em></a></p>
+<p><a href="#barsgetopen"><em>Bars.GetOpen</em></a></p>
 <p><a href="#getsessionbegin"><em>Bars.GetSessionBegin</em></a></p>
 <p><a href="#barsgettime"><em>Bars.GetTime</em></a></p>
 <p><a href="#barsgetvolume"><em>Bars.GetVolume</em></a></p>
@@ -515,11 +515,11 @@ With a timestamp newer than the youngest bar: index of the last bar</p>
 </code></pre>
 
 <h2 id="barsgetclose">Bars.GetClose</h2>
-<p>Bars.GetClose(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
+<p>Bars.GetClose(int index) – see <a href="#barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgethigh">Bars.GetHigh</h2>
-<p>Bars.GetHigh(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
+<p>Bars.GetHigh(int index) – see <a href="#barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgetlow">Bars.GetLow</h2>
-<p>Bars.GetLow(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
+<p>Bars.GetLow(int index) – see <a href="#barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgetnextsessiontimespan">Bars.GetNextSessionTimeSpan</h2>
 <h3 id="description_7">Description</h3>
 <p>Bars.GetNextSessionTimeSpan outputs the date and time for the beginning and end of a trading session.</p>
@@ -620,9 +620,9 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 </code></pre>
 
 <h2 id="barsgettime">Bars.GetTime</h2>
-<p>Bars.GetTime(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
+<p>Bars.GetTime(int index) – see <a href="#barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsgetvolume">Bars.GetVolume</h2>
-<p>Bars.GetVolume(int index) – see <a href="../barsgetopen"><em>Bars.GetOpen</em></a>.</p>
+<p>Bars.GetVolume(int index) – see <a href="#barsgetopen"><em>Bars.GetOpen</em></a>.</p>
 <h2 id="barsinstrument">Bars.Instrument</h2>
 <h3 id="description_10">Description</h3>
 <p>Bars.Instrument outputs an instrument object for the trading instrument displayed within the chart.</p>
@@ -1666,7 +1666,7 @@ Compare(2, 2.00001) a -1, meaning 2 is smaller than 2.00001</p>
 <p>Instrument.Digits</p>
 <h3 id="more-information_42">More Information</h3>
 <p>Stocks are usually traded to two decimal points. Forex can be traded (depending on the data provider) with 4 or 5 decimal places.</p>
-<p>This function is especially useful when formatting the output of various instruments that need rounding. Also see <a href="#ticksize"><em>TickSize</em></a> and <a href="../instrumentround2ticks"><em>Instrument.Round2Ticks</em></a>, <a href="#instrumentround2ticksize"><em>Instrument.Round2TickSize</em></a>.</p>
+<p>This function is especially useful when formatting the output of various instruments that need rounding. Also see <a href="#ticksize"><em>TickSize</em></a> and <a href="#instrumentround2ticks"><em>Instrument.Round2Ticks</em></a>, <a href="#instrumentround2ticksize"><em>Instrument.Round2TickSize</em></a>.</p>
 <p>More information can be found here: <em>Formatting of Numbers</em>.</p>
 <h3 id="example_52">Example</h3>
 <pre><code class="cs">Print(&quot;The value of &quot; +Instrument.Name + &quot; is noted with a precision of &quot; + Instrument.Digits +&quot; Decimal points.&quot;);
@@ -1886,7 +1886,7 @@ Print(Price + &quot; rounded for a &quot; + Instrument.Name + &quot; valid value
 <p>Stock: 0.01
 ES future: 0.25
 EUR/USD: 0.00001</p>
-<p>See <a href="../instrumentpointvalue"><em>Instrument.PointValue</em></a> and <a href="#instrumentdigits"><em>Instrument.Digits</em></a>.</p>
+<p>See <a href="#instrumentpointvalue"><em>Instrument.PointValue</em></a> and <a href="#instrumentdigits"><em>Instrument.Digits</em></a>.</p>
 <p>Examples of professional <a href="#formatting"><em>Formatting</em></a>, <em>Formatting of Numbers</em>.</p>
 <h3 id="example_65">Example</h3>
 <pre><code class="cs">Print(&quot;The value of &quot; + Instrument.Name + &quot; can change for a minimum of &quot; + Instrument.TickSize + &quot; Tick(s).&quot;);
@@ -1948,7 +1948,7 @@ Closes[0][0] is equivalent to Close[0].
 Closes[1][0] equals the current closing price for the daily data series
 Closes[2][0] equals the current closing price for the weekly data series</p>
 <p>"Closes" is, of course, interchangeable with Opens, Highs, Lows etc.</p>
-<p>See <a href="#processingbarindexes"><em>ProcessingBarIndexes</em></a>, <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>, <a href="#timeframes"><em>TimeFrames</em></a>, <a href="../timeframerequirements"><em>TimeFrameRequirements</em></a>.</p>
+<p>See <a href="#processingbarindexes"><em>ProcessingBarIndexes</em></a>, <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>, <a href="#timeframes"><em>TimeFrames</em></a>, <a href="#timeframerequirements"><em>TimeFrameRequirements</em></a>.</p>
 <p>Additional syntax methods are available for multibars:</p>
 <pre><code class="cs">// Declare the variable TF_DAY and define it
 private static readonly TimeFrame TF_Day = new TimeFrame(DatafeedHistoryPeriodicity.Day, 1);
