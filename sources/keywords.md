@@ -2140,7 +2140,7 @@ protected override void OnInit()
 -   [*IsAutoScale*](#isautoscale)
 -   [*RequiredBarsCount*](#requiredbarscount)
 -   [*CalculateOnClosedBar*](calculateonclosedbar)
--   [*ClearOutputWindow()*](#clearoutputwindows)
+-   [*ClearOutputWindow()*](#clearoutputwindow)
 -   [*Displacement*](#displacement)
 -   [*IsShowInDataBox*](#isshowindatabox)
 -   [*IsAddDrawingsToPricePanel*](#isadddrawingstopricepanel)
@@ -2374,7 +2374,7 @@ graphics.DrawString("Here is bottom left!", font, brush, r.X + 10, r.Y + r.Heigh
 ### Description
 Price type describes a form of price data.
 
-See [*InputPriceType*](#inputpricetypes)
+See [*InputPriceType*](#inputpricetype)
 
 Following variables are available:
 -   PriceType.Close
