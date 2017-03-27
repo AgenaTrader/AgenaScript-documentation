@@ -14,7 +14,7 @@ Further detailed information can be found using the appropriate shortcuts:
 
 [Multibars](#multibars)
 
-##Bars (Candles)
+## Bars (Candles)
 ### Functionality
 A classical indicator calculates one or multiple values using an existing data series.
 
