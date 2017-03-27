@@ -1,10 +1,10 @@
-#Handling bars and instruments
+# Handling bars and instruments
 
 Data is understood as information that is retrieved externally and uploaded to AgenaTrader, or as data series that are created by AgenaScripts.
 
 Further detailed information can be found using the appropriate shortcuts:
 
-[Bars (Candles)](#bars-candles)
+[Bars (Candles)](#bars)
 
 [Collections](#collections)
 
