@@ -121,7 +121,7 @@ Print("The last entry was " + BarsCountFromTradeOpen() + " bars ago.");
 ### Description
 CancelAllOrders deletes all oders (cancel) managed by the strategy.
 A cancel request is sent to the broker. Whether an or there is really deleted, can not be guaranteed. It may happen that an order has received a partial execution before it is deleted.
-Therefore we recommend that you check the status of the order with [*OnOrderChanged()*](#onorderupdate).
+Therefore we recommend that you check the status of the order with [*OnOrderChanged()*](#onorderchanged).
 
 ### Usage
 ```cs
@@ -143,7 +143,7 @@ protected override void OnCalculate()
 ### Description
 Cancel order deletes an order.
 
-A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderChanged()*](#onorderupdate).
+A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with [*OnOrderChanged()*](#onorderchanged).
 
 ### Usage
 ```cs
