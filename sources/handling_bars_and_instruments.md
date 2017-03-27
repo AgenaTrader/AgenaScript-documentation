@@ -230,7 +230,7 @@ Print ("The closing price for 01.03.2012 at 18:00:00 was " + Bars.GetBar(new Dat
 ### Description
 Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.
 
-See [*Bars.GetBar*](#barsgetbar)(#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex)(#barsgetbyindex).
+See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetByIndex*](#barsgetbyindex).
 
 ### Parameter
 Type IBar bar
@@ -290,7 +290,7 @@ Print("The bar for 01.03.2012 at 18:00:00 O’clock has an index of " + Bars.Get
 ### Description
 Bars.GetByIndex outputs the index for the specified bar object
 
-See [*Bars.GetBar*](#barsgetbar)(#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago)(#barsgetbarsago), [*Bars.GetBarIndex*](#barsgetbarindex)(#barsgetindex).
+See [*Bars.GetBar*](#barsgetbar), [*Bars.GetBarsAgo*](#barsgetbarsago), [*Bars.GetBarIndex*](#barsgetbarindex).
 
 ### Parameter
 Type int Index
