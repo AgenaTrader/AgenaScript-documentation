@@ -46,7 +46,7 @@ With close \[0\] you would receive the most recent value of the last price that 
 
 ## Properties
 ### Properties of Bars
-"Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#functionality)(#functionality)[*Bars*](#bars)).
+"Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#functionality)[*Bars*](#bars)).
 
 Bars (**public** IBars Bars) can be used directly in a script and equates to BarsArray \[0\] (see Bars.GetNextSessionTimeSpan for more information).
 
