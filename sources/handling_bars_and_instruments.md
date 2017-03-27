@@ -4,7 +4,7 @@ Data is understood as information that is retrieved externally and uploaded to A
 
 Further detailed information can be found using the appropriate shortcuts:
 
-[Bars (Candles)](#bars)
+[Bars](#bars)
 
 [Collections](#collections)
 
@@ -14,7 +14,7 @@ Further detailed information can be found using the appropriate shortcuts:
 
 [Multibars](#multibars)
 
-## Bars (Candles)
+## Bars
 ### Functionality
 A classical indicator calculates one or multiple values using an existing data series.
 
