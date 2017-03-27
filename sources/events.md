@@ -14,9 +14,9 @@ The following methods can be used and therefore overwritten:
 -   [*OnDispose()*](#ondispose)
 -   [*OnLevel1()*](#onlevel1)
 -   [*OnLevel2()*](#onlevel2)
--   [*OnOrderChanged()*](#onorderupdate)
+-   [*OnOrderChanged()*](#onorderchanged)
 -   [*OnOrderExecution()*](#onorderexecution)
--   [*OnStart()*](#onstartop)
+-   [*OnStart()*](#onstart)
 
 
 ## OnBrokerConnect()
@@ -83,7 +83,7 @@ protected override void OnBrokerDisconnect(TradingDatafeedChangedEventArgs e)
 
 ## OnCalculate()
 ### Description
-The OnCalculate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnClosedBar*](#CalculateOnClosedBar), this will happen upon every incoming tick or when the bar has completed/closed.
+The OnCalculate() method is called up whenever a bar changes; depending on the variables of [*CalculateOnClosedBar*](#calculateonclosedbar), this will happen upon every incoming tick or when the bar has completed/closed.
 OnCalculate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.
 
