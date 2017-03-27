@@ -38,7 +38,7 @@ The previous examples all assume that the calculations will occur at the end of 
 
 If you wish to use the values of the currently forming candle then you will need to set the value of
 
-[*CalculateOnClosedBar*](#CalculateOnClosedBar) to „false".
+[*CalculateOnClosedBar*](#calculateonclosedbar) to „false".
 
 In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.
 
@@ -54,9 +54,9 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.Count*](#barscount)
 
-[*Bars.CurrentSessionBeginTime*](#currentsessionbegintime)
+[*Bars.CurrentSessionBeginTime*](#barscurrentsessionbegintime)
 
-[*Bars.CurrentSessionEndTime*](#currentsessionendtime)
+[*Bars.CurrentSessionEndTime*](#barscurrentsessionendtime)
 
 [*Bars.GetBar*](#barsgetbar)
 
@@ -72,11 +72,11 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.GetLow*](#barsgetlow)
 
-[*Bars.GetNextSessionTimeSpan*](#getnextsessiontimespan)
+[*Bars.GetNextSessionTimeSpan*](#barsgetnextsessiontimespan)
 
 [*Bars.GetOpen*](#barsgetopen)
 
-[*Bars.GetSessionBegin*](#getsessionbegin)
+[*Bars.GetSessionBegin*](#barsgetsessionbegin)
 
 [*Bars.GetTime*](#barsgettime)
 
@@ -100,15 +100,15 @@ The list of bars itself has many properties that can be used in AgenaScript. Pro
 
 [*Bars.LastBarCompleteness*](#barslastbarcompleteness)
 
-[*Bars.NextSessionBeginTime*](#nextsessionbegintime)
+[*Bars.NextSessionBeginTime*](#barsnextsessionbegintime)
 
-[*Bars.NextSessionEndTime*](#nextsessionendtime)
+[*Bars.NextSessionEndTime*](#barsnextsessionendtime)
 
 [*Bars.TailBottom*](#barstailbottom)
 
 [*Bars.TailTop*](#barstailtop)
 
-[*Bars.TicksCountForLastBar*](#tickscountforlastbar)
+[*Bars.TicksCountForLastBar*](#barstickscountforlastbar)
 
 [*Bars.TicksCountInTotal*](#barstickscountintotal)
 
@@ -324,7 +324,7 @@ Bars.GetLow(int index) – see [*Bars.GetOpen*](#barsgetopen).
 ### Description
 Bars.GetNextSessionTimeSpan outputs the date and time for the beginning and end of a trading session.
 
-See [*Bars.CurrentSessionBeginTime*](#barssessionbegin), [*Bars.CurrentSessionEndTime*](#barssessionend), [*Bars.NextSessionBeginTime*](#barssessionnextbegin), [*Bars.NextSessionEndTime*](#barssessionnextend).
+See [*Bars.CurrentSessionBeginTime*](#barscurrentsessionbegintime), [*Bars.CurrentSessionEndTime*](#barscurrentsessionendtime), [*Bars.NextSessionBeginTime*](#barsnextsessionbegintime), [*Bars.NextSessionEndTime*](#barsnextsessionendtime).
 
 ### Parameter
 |          |         |                                                                                            |
@@ -1139,7 +1139,7 @@ Open[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 ```cs
@@ -1179,7 +1179,7 @@ Opens[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example: [*Multibars*](#multibars).
@@ -1198,7 +1198,7 @@ High[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 ```cs
@@ -1239,7 +1239,7 @@ Highs[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 Please see examples under [*Multibars*](#multibars).
@@ -1258,7 +1258,7 @@ Low[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property of [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 ```cs
@@ -1299,7 +1299,7 @@ Lows[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example [*Multibars*](#multibars).
@@ -1318,7 +1318,7 @@ Close[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 Indicators are usually calculated using the closing prices.
 
@@ -1363,7 +1363,7 @@ Closes[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example [*Multibars*](#multibars).
@@ -1386,7 +1386,7 @@ Median[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 Further information about median, typical und weighted:
 [*http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html*](http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html)
@@ -1430,7 +1430,7 @@ Medians[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 Further information on median: [http://www.investopedia.com/terms/m/median.asp](http://www.investopedia.com/terms/m/median.asp)
 
@@ -1455,7 +1455,7 @@ Typical[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 Further information on typical: [*https://technicianapp.com/resources/typical-price/*](https://technicianapp.com/resources/typical-price/)
 
@@ -1498,7 +1498,7 @@ Typicals[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example [*Multibars*](#multibars).
@@ -1521,7 +1521,7 @@ Weighted[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 Information regarding weighted: [*http://www.stock-trading-infocentre.com/pivot-points.html*](http://www.stock-trading-infocentre.com/pivot-points.html)
 
@@ -1564,14 +1564,14 @@ Weighteds[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example under [*Multibars*](#multibars).
 
 ## Time
 ### Description
-Time is a [*DataSeries*](#dataseries) of the type [*DateTimeSeries*](#datatimeseries), in which the timestamps of the individual bars are saved.
+Time is a [*DataSeries*](#dataseries) of the type [*DateTimeSeries*](#datetimeseries), in which the timestamps of the individual bars are saved.
 
 ### Parameter
 barsAgo Index value (see [*Bars*](#bars))
@@ -1583,7 +1583,7 @@ Time[int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 ```cs
@@ -1621,7 +1621,7 @@ Times[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example [*Multibars*](#multibars).
@@ -1639,7 +1639,7 @@ Volume
 Volume\[**int** barsAgo\]
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 The value returned by the [*VOL()*](#vol) indicator is identical with the volume described here;
 for example, Vol()\[3\] will have the same value as Volume\[3\].
@@ -1684,7 +1684,7 @@ Volumes[int barSeriesIndex][int barsAgo]
 ```
 
 ### More Information
-The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosebar).
+The returned value is dependent upon the property [*CalculateOnClosedBar*](#calculateonclosedbar).
 
 ### Example
 See example [*Multibars*](#multibars).
