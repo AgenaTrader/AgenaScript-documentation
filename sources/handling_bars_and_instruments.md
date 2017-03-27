@@ -44,7 +44,7 @@ In this case the currently running bar will have the value 0, the bar next to th
 
 With close \[0\] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high \[0\], low \[0\]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open \[0\] value will not change.
 
-## Properties of Bars
+## Properties
 ### Properties of Bars
 "Bars" represents a list of all bars (candles) within a chart (see [*Functionality*](#functionality)(#functionality)[*Bars*](#bars)).
 
