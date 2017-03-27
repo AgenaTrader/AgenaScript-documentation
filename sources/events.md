@@ -1,5 +1,6 @@
 
-#Events
+# Events
+
 AgenaTrader is an *event-oriented* application by definition.
 
 Programming in AgenaTrader using the various application programming interface (*API*) methods is based initially on the *Overwriting* of routines predefined for event handling.
