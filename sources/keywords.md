@@ -770,6 +770,8 @@ In the table below you will find 4 newly created data series (highlighted). Each
 
 [*StringSeries*](#stringseries)
 
+[*DoubleSeries*](#doubleseries)
+
 In addition, there are also data series such as ColorSeries, although these are only used for internal purposes and should not be used directly.
 To change the color of plots, please use [*PlotColors*](#plotcolors).
 
