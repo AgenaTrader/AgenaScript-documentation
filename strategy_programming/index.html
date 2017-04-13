@@ -415,7 +415,7 @@ BarsCountFromTradeOpen(string strategyName)
 <h3 id="description_3">Description</h3>
 <p>CancelAllOrders deletes all oders (cancel) managed by the strategy.
 A cancel request is sent to the broker. Whether an or there is really deleted, can not be guaranteed. It may happen that an order has received a partial execution before it is deleted.
-Therefore we recommend that you check the status of the order with <a href="#onorderupdate"><em>OnOrderChanged()</em></a>.</p>
+Therefore we recommend that you check the status of the order with <a href="#onorderchanged"><em>OnOrderChanged()</em></a>.</p>
 <h3 id="usage_2">Usage</h3>
 <pre><code class="cs">CancelAllOrders()
 </code></pre>
@@ -433,7 +433,7 @@ Therefore we recommend that you check the status of the order with <a href="#ono
 <h2 id="cancelorder">CancelOrder()</h2>
 <h3 id="description_4">Description</h3>
 <p>Cancel order deletes an order.</p>
-<p>A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with <a href="#onorderupdate"><em>OnOrderChanged()</em></a>.</p>
+<p>A cancel request is sent to the broker. There is no guarantee that the order will actually be deleted there. It may occur that the order receives a partial execution before it is deleted. Therefore we recommend that you check the status of the order with <a href="#onorderchanged"><em>OnOrderChanged()</em></a>.</p>
 <h3 id="usage_3">Usage</h3>
 <pre><code class="cs">CancelOrder(IOrder order)
 </code></pre>

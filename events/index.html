@@ -184,9 +184,9 @@
 <li><a href="#ondispose"><em>OnDispose()</em></a></li>
 <li><a href="#onlevel1"><em>OnLevel1()</em></a></li>
 <li><a href="#onlevel2"><em>OnLevel2()</em></a></li>
-<li><a href="#onorderupdate"><em>OnOrderChanged()</em></a></li>
+<li><a href="#onorderchanged"><em>OnOrderChanged()</em></a></li>
 <li><a href="#onorderexecution"><em>OnOrderExecution()</em></a></li>
-<li><a href="#onstartop"><em>OnStart()</em></a></li>
+<li><a href="#onstart"><em>OnStart()</em></a></li>
 </ul>
 <h2 id="onbrokerconnect">OnBrokerConnect()</h2>
 <h3 id="description">Description</h3>
@@ -240,7 +240,7 @@ protected override void OnBrokerConnect()
 
 <h2 id="oncalculate">OnCalculate()</h2>
 <h3 id="description_2">Description</h3>
-<p>The OnCalculate() method is called up whenever a bar changes; depending on the variables of <a href="#CalculateOnClosedBar"><em>CalculateOnClosedBar</em></a>, this will happen upon every incoming tick or when the bar has completed/closed.
+<p>The OnCalculate() method is called up whenever a bar changes; depending on the variables of <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>, this will happen upon every incoming tick or when the bar has completed/closed.
 OnCalculate is the most important method and also, in most cases, contains the largest chunk of code for your self-created indicators or strategies.
 The editing begins with the oldest bar and goes up to the newest bar within the chart. The oldest bar has the number 0. The indexing and numbering will continue to happen; in order to obtain the numbering of the bars you can use the current bar variable. You can see an example illustrating this below.</p>
 <p><strong>Caution:</strong>

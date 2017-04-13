@@ -73,9 +73,9 @@
             
                 <li class="toctree-l3"><a href="#handling-bars-and-instruments">Handling bars and instruments</a></li>
                 
-                    <li><a class="toctree-l4" href="#bars-candles">Bars (Candles)</a></li>
+                    <li><a class="toctree-l4" href="#bars">Bars</a></li>
                 
-                    <li><a class="toctree-l4" href="#properties-of-bars">Properties of Bars</a></li>
+                    <li><a class="toctree-l4" href="#properties">Properties</a></li>
                 
                     <li><a class="toctree-l4" href="#barscount">Bars.Count</a></li>
                 
@@ -318,12 +318,12 @@
                 <h1 id="handling-bars-and-instruments">Handling bars and instruments</h1>
 <p>Data is understood as information that is retrieved externally and uploaded to AgenaTrader, or as data series that are created by AgenaScripts.</p>
 <p>Further detailed information can be found using the appropriate shortcuts:</p>
-<p><a href="#bars-candles">Bars (Candles)</a></p>
+<p><a href="#bars">Bars</a></p>
 <p><a href="#collections">Collections</a></p>
 <p><a href="#data-series">Data series</a></p>
 <p><a href="#instruments">Instruments</a></p>
 <p><a href="#multibars">Multibars</a></p>
-<h2 id="bars-candles">Bars (Candles)</h2>
+<h2 id="bars">Bars</h2>
 <h3 id="functionality">Functionality</h3>
 <p>A classical indicator calculates one or multiple values using an existing data series.</p>
 <p>Data series can be anything from closing prices to daily lows or values of an hourly period etc.</p>
@@ -338,17 +338,17 @@ The last closing price is thus <em>Close [0]</em>; the closing price previous to
 <p><strong>Important tip:</strong></p>
 <p>The previous examples all assume that the calculations will occur at the end of a period. The value of the currently running index is not being taken into consideration.</p>
 <p>If you wish to use the values of the currently forming candle then you will need to set the value of</p>
-<p><a href="#CalculateOnClosedBar"><em>CalculateOnClosedBar</em></a> to „false".</p>
+<p><a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a> to „false".</p>
 <p>In this case the currently running bar will have the value 0, the bar next to the current bar will have the value 1 and so on. The oldest bar (as in the example above) would now have the value 502.</p>
 <p>With close [0] you would receive the most recent value of the last price that your data provider transmitted to AgenaTrader. All values of the bar (high [0], low [0]…) may still change as long as the bar is not yet finished/closed and a new bar has not yet started. Only the open [0] value will not change.</p>
-<h2 id="properties-of-bars">Properties of Bars</h2>
-<h3 id="properties-of-bars_1">Properties of Bars</h3>
-<p>"Bars" represents a list of all bars (candles) within a chart (see <a href="#functionality"><em>Functionality</em></a>(#functionality)<a href="#bars"><em>Bars</em></a>).</p>
+<h2 id="properties">Properties</h2>
+<h3 id="properties-of-bars">Properties of Bars</h3>
+<p>"Bars" represents a list of all bars (candles) within a chart (see <a href="#functionality"><em>Functionality</em></a>, <a href="#bars"><em>Bars</em></a>).</p>
 <p>Bars (<strong>public</strong> IBars Bars) can be used directly in a script and equates to BarsArray [0] (see Bars.GetNextSessionTimeSpan for more information).</p>
 <p>The list of bars itself has many properties that can be used in AgenaScript. Properties are always indicated by a dot before the objects (in this case bars, list of candles).</p>
 <p><a href="#barscount"><em>Bars.Count</em></a></p>
-<p><a href="#currentsessionbegintime"><em>Bars.CurrentSessionBeginTime</em></a></p>
-<p><a href="#currentsessionendtime"><em>Bars.CurrentSessionEndTime</em></a></p>
+<p><a href="#barscurrentsessionbegintime"><em>Bars.CurrentSessionBeginTime</em></a></p>
+<p><a href="#barscurrentsessionendtime"><em>Bars.CurrentSessionEndTime</em></a></p>
 <p><a href="#barsgetbar"><em>Bars.GetBar</em></a></p>
 <p><a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a></p>
 <p><a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a></p>
@@ -356,9 +356,9 @@ The last closing price is thus <em>Close [0]</em>; the closing price previous to
 <p><a href="#barsgetclose"><em>Bars.GetClose</em></a></p>
 <p><a href="#barsgethigh"><em>Bars.GetHigh</em></a></p>
 <p><a href="#barsgetlow"><em>Bars.GetLow</em></a></p>
-<p><a href="#getnextsessiontimespan"><em>Bars.GetNextSessionTimeSpan</em></a></p>
+<p><a href="#barsgetnextsessiontimespan"><em>Bars.GetNextSessionTimeSpan</em></a></p>
 <p><a href="#barsgetopen"><em>Bars.GetOpen</em></a></p>
-<p><a href="#getsessionbegin"><em>Bars.GetSessionBegin</em></a></p>
+<p><a href="#barsgetsessionbegin"><em>Bars.GetSessionBegin</em></a></p>
 <p><a href="#barsgettime"><em>Bars.GetTime</em></a></p>
 <p><a href="#barsgetvolume"><em>Bars.GetVolume</em></a></p>
 <p><a href="#barsinstrument"><em>Bars.Instrument</em></a></p>
@@ -370,11 +370,11 @@ The last closing price is thus <em>Close [0]</em>; the closing price previous to
 <p><a href="#barsisntb"><em>Bars.IsNtb</em></a></p>
 <p><a href="#barssessionbreak"><em>Bars.SessionBreak</em></a></p>
 <p><a href="#barslastbarcompleteness"><em>Bars.LastBarCompleteness</em></a></p>
-<p><a href="#nextsessionbegintime"><em>Bars.NextSessionBeginTime</em></a></p>
-<p><a href="#nextsessionendtime"><em>Bars.NextSessionEndTime</em></a></p>
+<p><a href="#barsnextsessionbegintime"><em>Bars.NextSessionBeginTime</em></a></p>
+<p><a href="#barsnextsessionendtime"><em>Bars.NextSessionEndTime</em></a></p>
 <p><a href="#barstailbottom"><em>Bars.TailBottom</em></a></p>
 <p><a href="#barstailtop"><em>Bars.TailTop</em></a></p>
-<p><a href="#tickscountforlastbar"><em>Bars.TicksCountForLastBar</em></a></p>
+<p><a href="#barstickscountforlastbar"><em>Bars.TicksCountForLastBar</em></a></p>
 <p><a href="#barstickscountintotal"><em>Bars.TicksCountInTotal</em></a></p>
 <p><a href="#barstimeframe"><em>Bars.TimeFrame</em></a></p>
 <p><a href="#barscountforsession"><em>BarsCountForSession</em></a></p>
@@ -455,7 +455,7 @@ For a timestamp younger than the newest bar: index of the last bar</p>
 <h2 id="barsgetbarindex">Bars.GetBarIndex</h2>
 <h3 id="description_4">Description</h3>
 <p>Bars.GetBarIndex outputs the index of a bar – you can input either a bar object or a date-time object using this method.</p>
-<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>(#barsgetbar), <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>(#barsgetbarsago), <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>(#barsgetbyindex).</p>
+<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>, <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>, <a href="#barsgetbyindex"><em>Bars.GetByIndex</em></a>.</p>
 <h3 id="parameter_3">Parameter</h3>
 <p>Type IBar bar
 or
@@ -499,7 +499,7 @@ With a timestamp newer than the youngest bar: index of the last bar</p>
 <h2 id="barsgetbyindex">Bars.GetByIndex</h2>
 <h3 id="description_6">Description</h3>
 <p>Bars.GetByIndex outputs the index for the specified bar object</p>
-<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>(#barsgetbar), <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>(#barsgetbarsago), <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>(#barsgetindex).</p>
+<p>See <a href="#barsgetbar"><em>Bars.GetBar</em></a>, <a href="#barsgetbarsago"><em>Bars.GetBarsAgo</em></a>, <a href="#barsgetbarindex"><em>Bars.GetBarIndex</em></a>.</p>
 <h3 id="parameter_5">Parameter</h3>
 <p>Type int Index</p>
 <h3 id="return-value_6">Return Value</h3>
@@ -523,7 +523,7 @@ With a timestamp newer than the youngest bar: index of the last bar</p>
 <h2 id="barsgetnextsessiontimespan">Bars.GetNextSessionTimeSpan</h2>
 <h3 id="description_7">Description</h3>
 <p>Bars.GetNextSessionTimeSpan outputs the date and time for the beginning and end of a trading session.</p>
-<p>See <a href="#barssessionbegin"><em>Bars.CurrentSessionBeginTime</em></a>, <a href="#barssessionend"><em>Bars.CurrentSessionEndTime</em></a>, <a href="#barssessionnextbegin"><em>Bars.NextSessionBeginTime</em></a>, <a href="#barssessionnextend"><em>Bars.NextSessionEndTime</em></a>.</p>
+<p>See <a href="#barscurrentsessionbegintime"><em>Bars.CurrentSessionBeginTime</em></a>, <a href="#barscurrentsessionendtime"><em>Bars.CurrentSessionEndTime</em></a>, <a href="#barsnextsessionbegintime"><em>Bars.NextSessionBeginTime</em></a>, <a href="#barsnextsessionendtime"><em>Bars.NextSessionEndTime</em></a>.</p>
 <h3 id="parameter_6">Parameter</h3>
 <table>
 <thead>
@@ -1166,7 +1166,7 @@ Open[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_22">More Information</h3>
-<p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property of <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_31">Example</h3>
 <pre><code class="cs">// Opening price for the current period
 Print(Time[0] + &quot; &quot; + Open[0]);
@@ -1196,7 +1196,7 @@ Opens[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_23">More Information</h3>
-<p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property of <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_32">Example</h3>
 <p>See example: <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="high">High</h2>
@@ -1210,7 +1210,7 @@ High[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_24">More Information</h3>
-<p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property of <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_33">Example</h3>
 <pre><code class="cs">// High values of the current period
 Print(Time[0] + &quot; &quot; + High[0]);
@@ -1240,7 +1240,7 @@ Highs[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_25">More Information</h3>
-<p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property of <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_34">Example</h3>
 <p>Please see examples under <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="low">Low</h2>
@@ -1254,7 +1254,7 @@ Low[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_26">More Information</h3>
-<p>The returned value is dependent upon the property of <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property of <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_35">Example</h3>
 <pre><code class="cs">// Lowest value of the current period
 Print(Time[0] + &quot; &quot; + Low[0]);
@@ -1284,7 +1284,7 @@ Lows[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_27">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_36">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="close">Close</h2>
@@ -1298,7 +1298,7 @@ Close[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_28">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Indicators are usually calculated using the closing prices.</p>
 <h3 id="example_37">Example</h3>
 <pre><code class="cs">// Closing price of the current period
@@ -1331,7 +1331,7 @@ Closes[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_29">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_38">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="median">Median</h2>
@@ -1347,7 +1347,7 @@ Median[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_30">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Further information about median, typical und weighted:
 <a href="http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html"><em>http://blog.nobletrading.com/2009/12/median-price-typical-price-weighted.html</em></a></p>
 <h3 id="example_39">Example</h3>
@@ -1379,7 +1379,7 @@ Medians[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_31">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Further information on median: <a href="http://www.investopedia.com/terms/m/median.asp">http://www.investopedia.com/terms/m/median.asp</a></p>
 <h3 id="example_40">Example</h3>
 <p>See example in <a href="#multibars"><em>Multibars</em></a>.</p>
@@ -1396,7 +1396,7 @@ Typical[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_32">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Further information on typical: <a href="https://technicianapp.com/resources/typical-price/"><em>https://technicianapp.com/resources/typical-price/</em></a></p>
 <h3 id="example_41">Example</h3>
 <pre><code class="cs">// Typical price for the current period
@@ -1427,7 +1427,7 @@ Typicals[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_33">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_42">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="weighted">Weighted</h2>
@@ -1443,7 +1443,7 @@ Typicals[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_34">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>Information regarding weighted: <a href="http://www.stock-trading-infocentre.com/pivot-points.html"><em>http://www.stock-trading-infocentre.com/pivot-points.html</em></a></p>
 <h3 id="example_43">Example</h3>
 <pre><code class="cs">// Weighted price for the current period
@@ -1474,12 +1474,12 @@ Weighteds[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_35">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_44">Example</h3>
 <p>See example under <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="time">Time</h2>
 <h3 id="description_49">Description</h3>
-<p>Time is a <a href="#dataseries"><em>DataSeries</em></a> of the type <a href="#datatimeseries"><em>DateTimeSeries</em></a>, in which the timestamps of the individual bars are saved.</p>
+<p>Time is a <a href="#dataseries"><em>DataSeries</em></a> of the type <a href="#datetimeseries"><em>DateTimeSeries</em></a>, in which the timestamps of the individual bars are saved.</p>
 <h3 id="parameter_37">Parameter</h3>
 <p>barsAgo Index value (see <a href="#bars"><em>Bars</em></a>)</p>
 <h3 id="usage_47">Usage</h3>
@@ -1488,7 +1488,7 @@ Time[int barsAgo]
 </code></pre>
 
 <h3 id="more-information_36">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_45">Example</h3>
 <pre><code class="cs">// Timestamp of the current period
 Print(Time[0]);
@@ -1516,7 +1516,7 @@ Times[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_37">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_46">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="volume">Volume</h2>
@@ -1528,7 +1528,7 @@ Times[int barSeriesIndex][int barsAgo]
 <p>Volume</p>
 <p>Volume[<strong>int</strong> barsAgo]</p>
 <h3 id="more-information_38">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <p>The value returned by the <a href="#vol"><em>VOL()</em></a> indicator is identical with the volume described here;
 for example, Vol()[3] will have the same value as Volume[3].</p>
 <h3 id="example_47">Example</h3>
@@ -1560,7 +1560,7 @@ Volumes[int barSeriesIndex][int barsAgo]
 </code></pre>
 
 <h3 id="more-information_39">More Information</h3>
-<p>The returned value is dependent upon the property <a href="#calculateonclosebar"><em>CalculateOnClosedBar</em></a>.</p>
+<p>The returned value is dependent upon the property <a href="#calculateonclosedbar"><em>CalculateOnClosedBar</em></a>.</p>
 <h3 id="example_48">Example</h3>
 <p>See example <a href="#multibars"><em>Multibars</em></a>.</p>
 <h2 id="timeframe">TimeFrame</h2>
