@@ -443,7 +443,7 @@ Type Instrument
 Bars.Instrument
 
 ### More Information
-For more information regarding the trading instruments please see [*Instrument*](#instrument).
+For more information regarding the trading instruments please see [*Instruments*](#instruments).
 
 ### Example
 ```cs
