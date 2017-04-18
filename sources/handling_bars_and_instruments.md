@@ -1186,7 +1186,7 @@ See example: [*Multibars*](#multibars).
 
 ## High
 ### Description
-High is a [*DataSeries*](#dataseries) of the type [*DataSeries*](#dataseries), in which the historical high prices are saved.
+High is a [*Data Series*](#dataseries) of the type [*Data Series*](#dataseries), in which the historical high prices are saved.
 
 ### Parameter
 barsAgo IndexValue (see [*Bars*](#bars))
