@@ -770,7 +770,6 @@ In the table below you will find 4 newly created data series (highlighted). Each
 
 [*StringSeries*](#stringseries)
 
-[*DoubleSeries*](#doubleseries)
 
 In addition, there are also data series such as ColorSeries, although these are only used for internal purposes and should not be used directly.
 To change the color of plots, please use [*PlotColors*](#plotcolors).
@@ -1152,63 +1151,6 @@ Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeri
 ```cs
 //Saves the span of ticks between high and low for each bar
 myDataSeries.Set((long) ((High[0] - Low[0]) / TickSize));
-```
-
-
-## DoubleSeries
-### Description
-DoubleSeries is a data series that can include an double value for each bar. The number of elements in this series corresponds to the number of bars within the chart.
-
-### Create a New DoubleSeries
-Create a new variable in the declaration area:
-```cs
-//Variable declaration
-private DoubleSeries myDoubleSeries;
-```
-Assign a new instance of the DoubleSeries to the variable with the OnInit() method:
-```cs
-protected override void OnInit()
-{
-myDoubleSeries = new DoubleSeries(this);
-CalculateOnClosedBar = true;
-}
-```
-
-### Assign Values
-Assigning a value to the current position of the DoubleSeries:
-```cs
-myDoubleSeries.Set(double Value);
-```
-
-Writing a value from the past into the DoubleSeries:
-```cs
-myDoubleSeries.Set(int barsAgo, double Value);
-```
-
-### Delete Values
-Removing the current value from the DoubleSeries:
-```cs
-myDoubleSeries.Reset();
-```
-
-Removing a value located in the past from the DoubleSeries:
-```cs
-myDoubleSeries.Reset(int barsAgo);
-```
-
-### Check Values for their Validity
-```cs
-myDoubleSeries.ContainsValue(int barsAgo);
-```
-
-### Read Value
-```cs
-Print ("For the bar from " + Time[0] + " the value of the double series is: "+ myDoubleSeries[0]);
-```
-
-### Example
-```cs
-myDoubleSeries.Set((double) High[0]);
 ```
 
 ## StringSeries
