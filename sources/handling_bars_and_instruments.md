@@ -832,7 +832,7 @@ If this property is used outside of OnCalculate() then you should test for a nul
 Print ("Since the start of the last trading session there have been" + Bars.BarsCountForSession + "bars.");
 ```
 
-## ProcessingBarSeriesIndex
+## ProcessingBarIndexLast
 ### Description
 Indicates if current bar is last in calculation.
 
@@ -843,7 +843,7 @@ none
 Type bool
 
 ### Usage
-ProcessingBarSeriesIndex
+ProcessingBarIndexLast
 
 ### More Information
 used for complicated calculation on a last bar
