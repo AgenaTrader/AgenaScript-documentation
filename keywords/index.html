@@ -3,30 +3,33 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <title>Keywords - AgenaScript Documentation</title>
   
+
   <link rel="shortcut icon" href="../favicon.ico">
   
-  <title>Keywords - AgenaScript Documentation</title>
+
+  
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
   <link href="../custom.css" rel="stylesheet">
+
   
   <script>
     // Current page data
     var mkdocs_page_name = "Keywords";
-    var mkdocs_page_input_path = "keywords.md";
-    var mkdocs_page_url = "/keywords/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -56,7 +59,7 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
+        <ul class="current">
           
             <li>
     <li class="toctree-l1 ">
@@ -157,8 +160,6 @@
                     <li><a class="toctree-l4" href="#intseries">IntSeries</a></li>
                 
                     <li><a class="toctree-l4" href="#longseries">LongSeries</a></li>
-                
-                    <li><a class="toctree-l4" href="#doubleseries">DoubleSeries</a></li>
                 
                     <li><a class="toctree-l4" href="#stringseries">StringSeries</a></li>
                 
@@ -307,8 +308,9 @@
     <li>Keywords</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/AgenaTrader/AgenaScript-documentation/edit/master/sources/keywords.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+          <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="icon icon-github"> Edit on GitHub</a>
+        
       
     </li>
   </ul>
@@ -956,7 +958,6 @@ In the table below you will find 4 newly created data series (highlighted). Each
 <p><a href="#intseries"><em>IntSeries</em></a></p>
 <p><a href="#longseries"><em>LongSeries</em></a></p>
 <p><a href="#stringseries"><em>StringSeries</em></a></p>
-<p><a href="#doubleseries"><em>DoubleSeries</em></a></p>
 <p>In addition, there are also data series such as ColorSeries, although these are only used for internal purposes and should not be used directly.
 To change the color of plots, please use <a href="#plotcolors"><em>PlotColors</em></a>.</p>
 <h3 id="set-reset-und-containsvalue">Set(), Reset() und ContainsValue()</h3>
@@ -1261,55 +1262,8 @@ CalculateOnClosedBar = true;
 myDataSeries.Set((long) ((High[0] - Low[0]) / TickSize));
 </code></pre>
 
-<h2 id="doubleseries">DoubleSeries</h2>
-<h3 id="description_23">Description</h3>
-<p>DoubleSeries is a data series that can include an double value for each bar. The number of elements in this series corresponds to the number of bars within the chart.</p>
-<h3 id="create-a-new-doubleseries">Create a New DoubleSeries</h3>
-<p>Create a new variable in the declaration area:</p>
-<pre><code class="cs">//Variable declaration
-private DoubleSeries myDoubleSeries;
-</code></pre>
-
-<p>Assign a new instance of the DoubleSeries to the variable with the OnInit() method:</p>
-<pre><code class="cs">protected override void OnInit()
-{
-myDoubleSeries = new DoubleSeries(this);
-CalculateOnClosedBar = true;
-}
-</code></pre>
-
-<h3 id="assign-values_6">Assign Values</h3>
-<p>Assigning a value to the current position of the DoubleSeries:</p>
-<pre><code class="cs">myDoubleSeries.Set(double Value);
-</code></pre>
-
-<p>Writing a value from the past into the DoubleSeries:</p>
-<pre><code class="cs">myDoubleSeries.Set(int barsAgo, double Value);
-</code></pre>
-
-<h3 id="delete-values_6">Delete Values</h3>
-<p>Removing the current value from the DoubleSeries:</p>
-<pre><code class="cs">myDoubleSeries.Reset();
-</code></pre>
-
-<p>Removing a value located in the past from the DoubleSeries:</p>
-<pre><code class="cs">myDoubleSeries.Reset(int barsAgo);
-</code></pre>
-
-<h3 id="check-values-for-their-validity_6">Check Values for their Validity</h3>
-<pre><code class="cs">myDoubleSeries.ContainsValue(int barsAgo);
-</code></pre>
-
-<h3 id="read-value_6">Read Value</h3>
-<pre><code class="cs">Print (&quot;For the bar from &quot; + Time[0] + &quot; the value of the double series is: &quot;+ myDoubleSeries[0]);
-</code></pre>
-
-<h3 id="example_20">Example</h3>
-<pre><code class="cs">myDoubleSeries.Set((double) High[0]);
-</code></pre>
-
 <h2 id="stringseries">StringSeries</h2>
-<h3 id="description_24">Description</h3>
+<h3 id="description_23">Description</h3>
 <p>String series is a data series for string values that are saved for each bar. The number of elements in this series corresponds to the number of bars within the chart.</p>
 <h3 id="create-a-new-data-series_5">Create a New Data Series</h3>
 <p>Create a new variable in the declaration area:</p>
@@ -1325,7 +1279,7 @@ CalculateOnClosedBar = true;
 }
 </code></pre>
 
-<h3 id="assign-values_7">Assign Values</h3>
+<h3 id="assign-values_6">Assign Values</h3>
 <p>Assigning a value to the current position of the data series:</p>
 <pre><code class="cs">myDataSeries.Set(string Value);
 </code></pre>
@@ -1334,7 +1288,7 @@ CalculateOnClosedBar = true;
 <pre><code class="cs">myDataSeries.Set(int barsAgo, string Value);
 </code></pre>
 
-<h3 id="delete-values_7">Delete Values</h3>
+<h3 id="delete-values_6">Delete Values</h3>
 <p>Remove the current value from the data series:</p>
 <pre><code class="cs">myDataSeries.Reset();
 </code></pre>
@@ -1343,21 +1297,21 @@ CalculateOnClosedBar = true;
 <pre><code class="cs">myDataSeries.Reset(int barsAgo);
 </code></pre>
 
-<h3 id="check-values-for-their-validity_7">Check Values for their Validity</h3>
+<h3 id="check-values-for-their-validity_6">Check Values for their Validity</h3>
 <pre><code class="cs">myDataSeries.ContainsValue(int barsAgo);
 </code></pre>
 
-<h3 id="read-value_7">Read Value</h3>
+<h3 id="read-value_6">Read Value</h3>
 <pre><code class="cs">Print (For the bar from + Time[0] + the value of the data series is:+ myDataSeries[0]);
 </code></pre>
 
-<h3 id="example_21">Example</h3>
+<h3 id="example_20">Example</h3>
 <pre><code class="cs">//Save the current calendar day for each bar (Monday… Tuesday etc.)
 myDataSeries.Set(string.Format(&quot;{0:dddd}&quot;, Time[0]));
 </code></pre>
 
 <h2 id="dayofweek">DayOfWeek</h2>
-<h3 id="description_25">Description</h3>
+<h3 id="description_24">Description</h3>
 <p>"DayOfWeek" outputs the date-time value (such as a timestamp) for each bar.</p>
 <p>Of course, all other methods defined within the C# language for usage of date-time objects are also available, such as day, month, year, hour, minute, second, day of week etc.</p>
 <p>See <a href="http://msdn.microsoft.com/de-de/library/03ybds8y.aspx"><em>http://msdn.microsoft.com/de-de/library/03ybds8y.aspx</em></a></p>
@@ -1371,7 +1325,7 @@ myDataSeries.Set(string.Format(&quot;{0:dddd}&quot;, Time[0]));
 -   DayOfWeek.Friday
 -   DayOfWeek.Saturday
 -   DayOfWeek.Sunday</p>
-<h3 id="example_22">Example</h3>
+<h3 id="example_21">Example</h3>
 <pre><code class="cs">//Outputs the weekday for each bar
 Print(Time[0].DayOfWeek);
 //Do not execute trades on a Friday
@@ -1380,7 +1334,7 @@ return;
 </code></pre>
 
 <h2 id="displacement">Displacement</h2>
-<h3 id="description_26">Description</h3>
+<h3 id="description_25">Description</h3>
 <p>By implementing "Displacement", you can shift a drawn indicator line right or left along the x-axis.
 This property can be queried within the script and will return an int value.</p>
 <p>Blue line: Displacement = 0 (Original)
@@ -1391,7 +1345,7 @@ Green line: Displacement = +5</p>
 <p>Displacement</p>
 <h3 id="parameter_12">Parameter</h3>
 <p>int Offset Number of bars by which the indicator is to be moved.</p>
-<h3 id="example_23">Example</h3>
+<h3 id="example_22">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
@@ -1401,7 +1355,7 @@ Displacement = 1;
 </code></pre>
 
 <h2 id="email-function">Email function</h2>
-<h3 id="description_27">Description</h3>
+<h3 id="description_26">Description</h3>
 <p>Override method which allows to send mail.</p>
 <h3 id="parameter_13">Parameter</h3>
 <p>None</p>
@@ -1409,7 +1363,7 @@ Displacement = 1;
 <p>string</p>
 <h3 id="usage_15">Usage</h3>
 <p>used for complicated calculation on a last bar</p>
-<h3 id="example_24">Example</h3>
+<h3 id="example_23">Example</h3>
 <pre><code class="cs">protected override void OnOrderExecution(IExecution execution)
 {
 if (execution.Order != null &amp;&amp; execution.Order.OrderState == OrderState.Filled)
@@ -1432,7 +1386,7 @@ execution.Instrument.Symbol +&quot; order &quot; + execution.Name + &quot; execu
 </code></pre>
 
 <h2 id="firsttickofbar">FirstTickOfBar</h2>
-<h3 id="description_28">Description</h3>
+<h3 id="description_27">Description</h3>
 <p>FirstTickOfBar is a property of the type "bool" that returns "true" if the currently incoming tick is associated with a new bar. This means that this tick is the first tick of a new bar.
 This property can only be meaningfully applied when the indicator or strategy is running in the tick-by-tick mode, meaning that CalculateOnClosedBar = false and the data feed is able to output real-time values.
 When using end-of-day data in a daily chart, the "FirstTickOfBar" is always true for the last bar.
@@ -1440,7 +1394,7 @@ FirstTickOfBar should not be used outside of the OnCalculate() method.
 See <a href="#barstickscountforlastbar"><em>Bars.TicksCountForLastBar</em></a>.</p>
 <h3 id="usage_16">Usage</h3>
 <p>FirstTickOfBar</p>
-<h3 id="example_25">Example</h3>
+<h3 id="example_24">Example</h3>
 <pre><code class="cs">// Within a tick-by-tick strategy, execute one part bar-by-bar only
 if (FirstTickOfBar)
 {
@@ -1451,7 +1405,7 @@ return;
 </code></pre>
 
 <h2 id="firsttickofbarmtf">FirstTickOfBarMtf</h2>
-<h3 id="description_29">Description</h3>
+<h3 id="description_28">Description</h3>
 <p>FirstTickOfBarMtf is the <strong>multi-time frame</strong> variant of the <a href="#firsttickofbar"><em>FirstTickOfBar</em></a> property.</p>
 <p>The setting of CalculateOnClosedBar only affects the primary timeframe (chart timeframe). When working with multi-bars, the ticks of the secondary timeframes are provided on a tick-by-tick basis independently of the CalculateOnClosedBar setting.
 With the help of FirstTickOfBarMtf, it is possible to determine when a new bar has begun in a secondary timeframe.</p>
@@ -1460,13 +1414,13 @@ With the help of FirstTickOfBarMtf, it is possible to determine when a new bar h
 <h3 id="parameter_14">Parameter</h3>
 <p>FirstTickOfBarMtf(ProcessingBarSeriesIndex).</p>
 <p>See <a href="#processingbarseriesindex"><em>ProcessingBarSeriesIndex</em></a>.</p>
-<h3 id="example_26">Example</h3>
+<h3 id="example_25">Example</h3>
 <pre><code class="cs">if (FirstTickOfBarMtf(ProcessingBarSeriesIndex))
 Print(&quot;A new bar has begun.&quot;);
 </code></pre>
 
 <h2 id="getcurrentask">GetCurrentAsk()</h2>
-<h3 id="description_30">Description</h3>
+<h3 id="description_29">Description</h3>
 <p>The GetCurrentAsk() method returns the current value of the ask side of the order book. If no level 1 data is available to AgenaTrader, then this function simply outputs the last trade value.</p>
 <p>See <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h3 id="usage_18">Usage</h3>
@@ -1475,7 +1429,7 @@ Print(&quot;A new bar has begun.&quot;);
 <p>double value</p>
 <h3 id="parameter_15">Parameter</h3>
 <p>none</p>
-<h3 id="example_27">Example</h3>
+<h3 id="example_26">Example</h3>
 <pre><code class="cs">If an entry condition is fulfilled, then 1 contract should be sold at the current ask price:
 private IOrder entryOrder = null;
 protected override void OnCalculate()
@@ -1488,7 +1442,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 </code></pre>
 
 <h2 id="getcurrentaskvolume">GetCurrentAskVolume()</h2>
-<h3 id="description_31">Description</h3>
+<h3 id="description_30">Description</h3>
 <p>The GetCurrentAskVolume () method returns the current volume on the Ask page of the order book. This function is only executable if the data provider provides level 2 data.</p>
 <p>See <a href="#getcurrentbidvolume"><em>GetCurrentBidVolume()</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h3 id="usage_19">Usage</h3>
@@ -1497,7 +1451,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 <p>Long  value</p>
 <h3 id="parameter_16">Parameter</h3>
 <p>none</p>
-<h3 id="example_28">Example</h3>
+<h3 id="example_27">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
 {
    if (GetCurrentAskVolume() &lt; GetCurrentBidVolume())
@@ -1506,7 +1460,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 </code></pre>
 
 <h2 id="getcurrentbid">GetCurrentBid()</h2>
-<h3 id="description_32">Description</h3>
+<h3 id="description_31">Description</h3>
 <p>The GetCurrentBid() method returns the current value of the bid side of the order book. If no level 1 data is available to AgenaTrader, then the function outputs the last traded price.</p>
 <p>See <a href="#getcurrentask"><em>GetCurrentAsk()</em></a> and <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h3 id="usage_20">Usage</h3>
@@ -1515,7 +1469,7 @@ entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurren
 <p>double value</p>
 <h3 id="parameter_17">Parameter</h3>
 <p>none</p>
-<h3 id="example_29">Example</h3>
+<h3 id="example_28">Example</h3>
 <p>If an entry condition is fulfilled, then 1 contract should be sold at the current bid price:</p>
 <pre><code class="cs">private IOrder entryOrder = null;
 protected override void OnCalculate()
@@ -1528,7 +1482,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 </code></pre>
 
 <h2 id="getcurrentbidvolume">GetCurrentBidVolume()</h2>
-<h3 id="description_33">Description</h3>
+<h3 id="description_32">Description</h3>
 <p>The GetCurrentBidVolume () method returns the current volume on the Bid page of the order book. This function is only executable if the data provider provides level 2 data.</p>
 <p>See <a href="#getcurrentaskvolume"><em>GetCurrentAskVolume</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h3 id="usage_21">Usage</h3>
@@ -1537,7 +1491,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 <p>Long value</p>
 <h3 id="parameter_18">Parameter</h3>
 <p>none</p>
-<h3 id="example_30">Example</h3>
+<h3 id="example_29">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
 {
    if (GetCurrentAskVolume() &lt; GetCurrentBidVolume())
@@ -1546,7 +1500,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 </code></pre>
 
 <h2 id="getcurrentprice">GetCurrentPrice()</h2>
-<h3 id="description_34">Description</h3>
+<h3 id="description_33">Description</h3>
 <p>The GetCurrentPrice() method returns the current price (Latest). If AgenaTrader does not have Level1 data, the function returns the price of the last sales</p>
 <p>See <a href="#getcurrentask"><em>GetCurrentAsk</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h3 id="usage_22">Usage</h3>
@@ -1555,7 +1509,7 @@ entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid()
 <p>none</p>
 <h3 id="parameter_19">Parameter</h3>
 <p>double</p>
-<h3 id="example_31">Example</h3>
+<h3 id="example_30">Example</h3>
 <p>If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.</p>
 <pre><code class="cs">private IOrder entryOrder = null;
 
@@ -1569,7 +1523,7 @@ protected override void OnCalculate()
 </code></pre>
 
 <h2 id="getcurrentspread">GetCurrentSpread()</h2>
-<h3 id="description_35">Description</h3>
+<h3 id="description_34">Description</h3>
 <p>The GetCurrentSpare () method returns the current spread.</p>
 <p>See <a href="#getcurrentask"><em>GetCurrentAsk</em></a>, <a href="#getcurrentbid"><em>GetCurrentBid()</em></a> and <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h3 id="usage_23">Usage</h3>
@@ -1578,7 +1532,7 @@ protected override void OnCalculate()
 <p>none</p>
 <h3 id="parameter_20">Parameter</h3>
 <p>double</p>
-<h3 id="example_32">Example</h3>
+<h3 id="example_31">Example</h3>
 <p>If an initial condition is fulfilled, 1 contract should be purchased at the current exchange rate.</p>
 <pre><code class="cs">protected override void OnCalculate()
 {
@@ -1587,7 +1541,7 @@ protected override void OnCalculate()
 </code></pre>
 
 <h2 id="getdayasint">GetDayAsInt()</h2>
-<h3 id="description_36">Description</h3>
+<h3 id="description_35">Description</h3>
 <p>To day is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C#.
 Experienced programmers can continue using the date-time function directly.</p>
 <p>To day outputs an int representation in the format of yyyymmdd.
@@ -1597,14 +1551,14 @@ Experienced programmers can continue using the date-time function directly.</p>
 <p>Help with date-time: <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx"><em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em></a></p>
 <h3 id="usage_24">Usage</h3>
 <p>GetDayAsInt(DateTime time)</p>
-<h3 id="example_33">Example</h3>
+<h3 id="example_32">Example</h3>
 <pre><code class="cs">// Do not trade on the 11&lt;sup&gt;th&lt;/sup&gt; of September
 if (GetDayAsInt(Time[0]) = 20130911)
 return;
 </code></pre>
 
 <h2 id="getserieshighestvalue">GetSeriesHighestValue</h2>
-<h3 id="description_37">Description</h3>
+<h3 id="description_36">Description</h3>
 <p>The GetSeriesHighestValue() method searches within a predetermined number of periods for the highest bar and outputs how many bars ago it can be found.</p>
 <p>See <a href="#getserieslowestvalue"><em>GetSeriesLowestValue()</em></a>.</p>
 <h3 id="parameter_21">Parameter</h3>
@@ -1618,7 +1572,7 @@ return;
 <pre><code class="cs">GetSeriesHighestValue(IDataSeries series, int period)
 </code></pre>
 
-<h3 id="example_34">Example</h3>
+<h3 id="example_33">Example</h3>
 <pre><code class="cs">// How many bars ago was the highest high for the current session?
 Print(GetSeriesHighestValue(High, Bars.BarsCountForSession - 1));
 // What value did the market price have at the highest high of the session?
@@ -1626,7 +1580,7 @@ Print(&quot;The highest price for the session was: &quot; + Open[GetSeriesHighes
 </code></pre>
 
 <h2 id="getserieslowestvalue">GetSeriesLowestValue</h2>
-<h3 id="description_38">Description</h3>
+<h3 id="description_37">Description</h3>
 <p>The GetSeriesLowestValue() method attempts to find the lowest bar within a predefined number of periods.</p>
 <p>See <a href="#getserieshighestvalue"><em>GetSeriesHighestValue()</em></a>.</p>
 <h3 id="parameter_22">Parameter</h3>
@@ -1638,7 +1592,7 @@ Print(&quot;The highest price for the session was: &quot; + Open[GetSeriesHighes
 <pre><code class="cs">GetSeriesLowestValue(IDataSeries series, int period)
 </code></pre>
 
-<h3 id="example_35">Example</h3>
+<h3 id="example_34">Example</h3>
 <pre><code class="cs">// How many bars ago was the lowest low of the session?
 Print(GetSeriesLowestValue(Low, Bars.BarsCountForSession - 1));
 // Which price did the lowest open of the current session have?
@@ -1646,7 +1600,7 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[GetS
 </code></pre>
 
 <h2 id="gettimeasint">GetTimeAsInt()</h2>
-<h3 id="description_39">Description</h3>
+<h3 id="description_38">Description</h3>
 <p>To time is a method specifically suited for inexperienced programmers who have problems with the potentially complex .net date-time structure of C#.</p>
 <p>To time outputs an int representation in the format hhmmss.
 (hh = hour, mm = minute, ss = seconds)</p>
@@ -1655,7 +1609,7 @@ Print(&quot;The lowest open price of the current session was: &quot; + Open[GetS
 <p>Help with date-time: <a href="http://msdn.microsoft.com/de-de/library/system.datetime.aspx"><em>http://msdn.microsoft.com/de-de/library/system.datetime.aspx</em></a></p>
 <h3 id="usage_27">Usage</h3>
 <p>GetTimeAsInt(DateTime time)</p>
-<h3 id="example_36">Example</h3>
+<h3 id="example_35">Example</h3>
 <pre><code class="cs">// Only enter trades between 08:15 and 16:35
 if (GetTimeAsInt(Time[0]) &gt;= 81500 &amp;&amp; GetTimeAsInt(Time[0]) &lt;= 163500)
 {
@@ -1664,7 +1618,7 @@ if (GetTimeAsInt(Time[0]) &gt;= 81500 &amp;&amp; GetTimeAsInt(Time[0]) &lt;= 163
 </code></pre>
 
 <h2 id="historical">Historical</h2>
-<h3 id="description_40">Description</h3>
+<h3 id="description_39">Description</h3>
 <p>Historical allows you to check whether AgenaScript is working with historical or real-time data.
 As long as OnCalculate() is called up for historical data, then historical = true. As soon as live data is being used, then historical = false.
 During a backtest, historical is always true.</p>
@@ -1673,7 +1627,7 @@ During a backtest, historical is always true.</p>
 <h3 id="return-value_12">Return Value</h3>
 <p><strong>true</strong> when using historical data
 <strong>false</strong> when using real-time data</p>
-<h3 id="example_37">Example</h3>
+<h3 id="example_36">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
 {
 // only execute for real-time data
@@ -1683,7 +1637,7 @@ if (IsHistoricalMode) return;
 </code></pre>
 
 <h2 id="inputpricetype">InputPriceType</h2>
-<h3 id="description_41">Description</h3>
+<h3 id="description_40">Description</h3>
 <p>The input price type property determines which price series is used by default when calculating an indicator, if no other data series is explicitly stated.
 InputPriceType can be set with the OnInit() method; this specification is then valid for all further calculations.
 If InputPriceType is in OnCalculate(), these changes are only valid starting with the next instruction.
@@ -1723,11 +1677,11 @@ InputPriceType = PriceType.High;
 </code></pre>
 
 <h2 id="instrument">Instrument</h2>
-<h3 id="description_42">Description</h3>
+<h3 id="description_41">Description</h3>
 <p>With "instrument", information concerning the trading instrument (stock, future etc.) is made available.</p>
 <p>Detailed information can be found here: <em>Instruments</em>.</p>
 <h2 id="isadddrawingstopricepanel">IsAddDrawingsToPricePanel</h2>
-<h3 id="description_43">Description</h3>
+<h3 id="description_42">Description</h3>
 <p>The property "IsAddDrawingsToPricePanel" determines the panel in which the drawing objects are drawn.</p>
 <pre><code class="cs">IsAddDrawingsToPricePanel = true (default)
 </code></pre>
@@ -1741,7 +1695,7 @@ InputPriceType = PriceType.High;
 The property can be queried within the script and returns a Boolean value.</p>
 <h3 id="usage_30">Usage</h3>
 <p>IsAddDrawingsToPricePanel</p>
-<h3 id="example_38">Example</h3>
+<h3 id="example_37">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 // Indicator is drawn in a new subchart
@@ -1758,7 +1712,7 @@ AddChartVerticalLine(&quot;MyVerticalLine&quot;, 5, Color.Black);
 </code></pre>
 
 <h2 id="isautoadjustablescale">IsAutoAdjustableScale</h2>
-<h3 id="description_44">Description</h3>
+<h3 id="description_43">Description</h3>
 <p>IsAutoAdjustableScale is a property of indicators that can be set within the OnInit() method.</p>
 <pre><code class="cs">IsAutoAdjustableScale = true (default)
 </code></pre>
@@ -1771,7 +1725,7 @@ AddChartVerticalLine(&quot;MyVerticalLine&quot;, 5, Color.Black);
 <p>This property can be queried and will return either "true" or "false".</p>
 <h3 id="usage_31">Usage</h3>
 <p>IsAutoAdjustableScale</p>
-<h3 id="example_39">Example</h3>
+<h3 id="example_38">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 //Scale the chart so that all drawing objects are visible
@@ -1780,7 +1734,7 @@ IsAutoAdjustableScale = true;
 </code></pre>
 
 <h2 id="isoverlay">IsOverlay</h2>
-<h3 id="description_45">Description</h3>
+<h3 id="description_44">Description</h3>
 <p>The overlay property defines whether the indicator outputs are displayed in the price chart above the bars or whether a separate chart window is opened below the charting area.</p>
 <pre><code class="cs">IsOverlay = true
 </code></pre>
@@ -1793,7 +1747,7 @@ IsAutoAdjustableScale = true;
 <p>This property can be queried within the script and outputs a value of the type Boolean (true or false).</p>
 <h3 id="usage_32">Usage</h3>
 <p>IsOverlay</p>
-<h3 id="example_40">Example</h3>
+<h3 id="example_39">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
@@ -1803,7 +1757,7 @@ IsOverlay = false;
 </code></pre>
 
 <h2 id="isprocessingbarindexlast">IsProcessingBarIndexLast</h2>
-<h3 id="description_46">Description</h3>
+<h3 id="description_45">Description</h3>
 <p>Indicates if current bar is last in calculation.</p>
 <h3 id="parameter_23">Parameter</h3>
 <p>None</p>
@@ -1811,7 +1765,7 @@ IsOverlay = false;
 <p>Type bool</p>
 <h3 id="usage_33">Usage</h3>
 <p>used for complicated calculation on a last bar</p>
-<h3 id="example_41">Example</h3>
+<h3 id="example_40">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
 {
             base.OnCalculate();
@@ -1822,7 +1776,7 @@ IsOverlay = false;
 </code></pre>
 
 <h2 id="isserierising">IsSerieRising()</h2>
-<h3 id="description_47">Description</h3>
+<h3 id="description_46">Description</h3>
 <p>With this method you can check if an uptrend exists, i.e. if the current value is bigger than the previous bar’s value.</p>
 <p>See <a href="#crossabove"><em>CrossAbove()</em></a>, <a href="#crossbelow"><em>CrossBelow()</em></a>, <a href="#isserierising"><em>IsSerieRising()</em></a>, <a href="#isseriefalling"><em>IsSerieFalling()</em></a>.</p>
 <h3 id="usage_34">Usage</h3>
@@ -1834,14 +1788,14 @@ IsOverlay = false;
 <strong>false</strong> If the data series is not rising</p>
 <h3 id="parameter_24">Parameter</h3>
 <p>series A data series such as an indicator, close, high etc.</p>
-<h3 id="example_42">Example</h3>
+<h3 id="example_41">Example</h3>
 <pre><code class="cs">// Check if SMA(20) is rising
 if (IsSerieRising(SMA(20)))
 Print(&quot;The SMA(20) is currently rising.&quot;);
 </code></pre>
 
 <h2 id="isseriefalling">IsSerieFalling()</h2>
-<h3 id="description_48">Description</h3>
+<h3 id="description_47">Description</h3>
 <p>The IsSerieFalling() method allows you to test whether an "is falling" condition exists, i.e. whether the current value is smaller than the value of the previous bar.</p>
 <p>See <a href="#crossabove"><em>CrossAbove()</em></a>, <a href="#crossbelow"><em>CrossBelow()</em></a>, <a href="#isserierising"><em>IsSerieRising()</em></a>, <a href="#isseriefalling"><em>IsSerieFalling()</em></a>.</p>
 <h3 id="usage_35">Usage</h3>
@@ -1853,14 +1807,14 @@ Print(&quot;The SMA(20) is currently rising.&quot;);
 <strong>false</strong> If the data series is not falling</p>
 <h3 id="parameter_25">Parameter</h3>
 <p>series a data series such as an indicator, close, high etc.</p>
-<h3 id="example_43">Example</h3>
+<h3 id="example_42">Example</h3>
 <pre><code class="cs">// Check whether SMA(20) is falling
 if (IsSerieFalling(SMA(20)))
 Print(&quot;The SMA(20) is currently falling.&quot;);
 </code></pre>
 
 <h2 id="isshowchartverticalgrid">IsShowChartVerticalGrid</h2>
-<h3 id="description_49">Description</h3>
+<h3 id="description_48">Description</h3>
 <p>The property IsShowChartVerticalGrid defines whether or not the regularly spaced vertical lines (the so-called grid) are shown within the charting area.</p>
 <p><strong>IsShowChartVerticalGrid = true (default)</strong></p>
 <p>Vertical grid lines are shown</p>
@@ -1869,7 +1823,7 @@ Print(&quot;The SMA(20) is currently falling.&quot;);
 <p>This property can be queried within the script and returns a value of the type Boolean (true or false).</p>
 <h3 id="usage_36">Usage</h3>
 <p>IsShowChartVerticalGrid</p>
-<h3 id="example_44">Example</h3>
+<h3 id="example_43">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
@@ -1879,7 +1833,7 @@ IsShowChartVerticalGrid = false;
 </code></pre>
 
 <h2 id="isshowindatabox">IsShowInDataBox</h2>
-<h3 id="description_50">Description</h3>
+<h3 id="description_49">Description</h3>
 <p>The property "IsShowInDataBox" states whether the value of an indicator is contained in the data box of the chart or not.</p>
 <p>The property can be queried in the script and returns a value of the type Boolean (true or false).</p>
 <pre><code class="cs">IsShowInDataBox = true (default)
@@ -1894,7 +1848,7 @@ IsShowChartVerticalGrid = false;
 <p><img alt="IsShowInDataBox" src="../media/image14.png" /></p>
 <h3 id="usage_37">Usage</h3>
 <p>IsShowInDataBox</p>
-<h3 id="example_45">Example</h3>
+<h3 id="example_44">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
@@ -1904,7 +1858,7 @@ IsShowInDataBox = false;
 </code></pre>
 
 <h2 id="isshowpricemarkers">IsShowPriceMarkers</h2>
-<h3 id="description_51">Description</h3>
+<h3 id="description_50">Description</h3>
 <p>The paint price markers property defines whether the so-called price markers for the indicator outputs are displayed on the right-hand chart border (in the price axis) or not. In some cases it makes sense to switch these off for a better overview in the chart.
 <strong>IsShowPriceMarkers = true (default)</strong></p>
 <p>Price markers are shown in the price axis</p>
@@ -1913,7 +1867,7 @@ IsShowInDataBox = false;
 <p>This property can be queried within the script and returns a value of the type Boolean (true or false).</p>
 <h3 id="usage_38">Usage</h3>
 <p>IsShowPriceMarkers</p>
-<h3 id="example_46">Example</h3>
+<h3 id="example_45">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
@@ -1923,7 +1877,7 @@ IsShowPriceMarkers = false;
 </code></pre>
 
 <h2 id="level1args">Level1Args</h2>
-<h3 id="description_52">Description</h3>
+<h3 id="description_51">Description</h3>
 <p>The data type Level1Args represents a change in the level 1 data and is used as a parameter of the OnLevel1() function.</p>
 <table>
 <thead>
@@ -1975,10 +1929,10 @@ IsShowPriceMarkers = false;
 </tr>
 </tbody>
 </table>
-<h3 id="example_47">Example</h3>
+<h3 id="example_46">Example</h3>
 <p>See <a href="#onlevel1"><em>OnLevel1()</em></a>.</p>
 <h2 id="level2args">Level2Args</h2>
-<h3 id="description_53">Description</h3>
+<h3 id="description_52">Description</h3>
 <p>The data type Level2Args represents a change in the level 2 data (market depth) and is used as a parameter within OnLevel2().</p>
 <table>
 <thead>
@@ -2018,10 +1972,10 @@ IsShowPriceMarkers = false;
 </tr>
 </tbody>
 </table>
-<h3 id="example_48">Example</h3>
+<h3 id="example_47">Example</h3>
 <p>See <a href="#onlevel2"><em>OnLevel2()</em></a>.</p>
 <h2 id="levelline">LevelLine()</h2>
-<h3 id="description_54">Description</h3>
+<h3 id="description_53">Description</h3>
 <p>A line object is used for drawing a horizontal line in the chart. Usually, these are upper and lower trigger lines for indicators such as the RSI (70 and 30).
 The lines described here are not to be confused with lines from the drawing objects (see "AddChartHorizontalLine").
 LevelLine objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.</p>
@@ -2060,7 +2014,7 @@ LevelLine(Pen pen, double value, string name)
 
 <h3 id="more-information_1">More Information</h3>
 <p>Information on the pen class: <a href="http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx"><em>http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx</em></a></p>
-<h3 id="example_49">Example</h3>
+<h3 id="example_48">Example</h3>
 <pre><code class="cs">// Example 1
 // A new line with standard values drawn at the value of 70
 Add(new LevelLine(Color.Black, 70, &quot;Upper&quot;));
@@ -2083,7 +2037,7 @@ Add(new LevelLine(new Pen(Color.Red, 1), 10, &quot;MyLine&quot;));
 </code></pre>
 
 <h2 id="log">Log()</h2>
-<h3 id="description_55">Description</h3>
+<h3 id="description_54">Description</h3>
 <p>Log() allows you to write outputs in the AgenaTrader log file (log tab). 5 different log levels are supported.</p>
 <p>Note: If the log tab is not viewable, it can be displayed using the tools log.</p>
 <h3 id="usage_40">Usage</h3>
@@ -2109,7 +2063,7 @@ Add(new LevelLine(new Pen(Color.Red, 1), 10, &quot;MyLine&quot;));
 </tr>
 </tbody>
 </table>
-<h3 id="example_50">Example</h3>
+<h3 id="example_49">Example</h3>
 <pre><code class="cs">//Tab protocol
 Log(&quot;This is information.&quot;, InfoLogLevel.Info); //white
 Log(&quot;This is a message.&quot;, InfoLogLevel.Message); // white
@@ -2138,7 +2092,7 @@ Summary: * - InfoLogLevel.ShowAlert Color: green Tab: Log Action: modeless Messa
 <p>Crossreference:
 a crossreference to Print() and ShowAlert()</p>
 <h2 id="occurred">Occurred</h2>
-<h3 id="description_56">Description</h3>
+<h3 id="description_55">Description</h3>
 <p>This DataSeries is used in conditions and indicates if signal occurred (1-long, -1 short, 0- no signal )</p>
 <h3 id="parameter_28">Parameter</h3>
 <p>None</p>
@@ -2146,7 +2100,7 @@ a crossreference to Print() and ShowAlert()</p>
 <p>Int</p>
 <h3 id="usage_41">Usage</h3>
 <p>In scripted condition for short, long, none signal indication</p>
-<h3 id="example_51">Example</h3>
+<h3 id="example_50">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
 {
 if ( ProcessingBarIndex %2 == 0 )
@@ -2159,14 +2113,14 @@ Occurred.Set(0);
 </code></pre>
 
 <h2 id="onbarsrequirements">OnBarsRequirements()</h2>
-<h3 id="description_57">Description</h3>
+<h3 id="description_56">Description</h3>
 <p>The OnBarsRequirements() method is called up once at the beginning of an indicator and/or strategy calculation. This method is only necessary when using multi-bars.
 Within OnBarsRequirements, no other programming commands are executed. For initializing, the OnInit() or OnStart() method should be used.</p>
 <h3 id="parameter_29">Parameter</h3>
 <p>none</p>
 <h3 id="return-value_17">Return Value</h3>
 <p>none</p>
-<h3 id="example_52">Example</h3>
+<h3 id="example_51">Example</h3>
 <pre><code class="cs">protected override void OnBarsRequirements()
 {
 Add(DatafeedHistoryPeriodicity.Day, 1);
@@ -2175,7 +2129,7 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 </code></pre>
 
 <h2 id="oninit">OnInit()</h2>
-<h3 id="description_58">Description</h3>
+<h3 id="description_57">Description</h3>
 <p>The OnInit() method is called up once at the beginning of an indicator or strategy calculation. This method can be used to set indicator properties, initialize your own variables, or add plots.</p>
 <h3 id="parameter_30">Parameter</h3>
 <p>none</p>
@@ -2217,7 +2171,7 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 <p><strong>Caution:</strong>
 The OnInit() method is not only called up at the beginning of an indicator or strategy calculation, but also if the chart is reloaded unexpectedly or if the properties dialog of indicators is opened and so on.
 Developers of custom AgenaScripts should NOT use this method for running their own routines, opening forms, performing license checks, etc. The OnStart() method should be used for these kind of tasks.</p>
-<h3 id="example_53">Example</h3>
+<h3 id="example_52">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Blue, &quot;myPlot&quot;));
@@ -2231,7 +2185,7 @@ CalculateOnClosedBar = true;
 </code></pre>
 
 <h2 id="onpaint">OnPaint()</h2>
-<h3 id="description_59">Description</h3>
+<h3 id="description_58">Description</h3>
 <p>A plot (drawing) is used to visually display indicators in a chart. OnPaint objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
 See <a href="#levelline"><em>LevelLine</em></a>.</p>
 <h3 id="parameter_31">Parameter</h3>
@@ -2270,7 +2224,7 @@ OnPaint(Pen pen, PlotStyle plotStyle, string name)
 
 <h3 id="more-information_3">More Information</h3>
 <p>Information on the pen class: <a href="http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx"><em>http://msdn.microsoft.com/de-de/library/system.drawing.pen.aspx</em></a></p>
-<h3 id="example_54">Example</h3>
+<h3 id="example_53">Example</h3>
 <pre><code class="cs">// Example 1
 // OnPaint with standard values (line with line strength 1)
 Add(new OnPaint(Color.Green, &quot;MyPlot&quot;));
@@ -2296,13 +2250,13 @@ Add(new OnPaint(new Pen(Color.Blue, 6), PlotStyle.Dot, &quot;MyPlot&quot;));
 </code></pre>
 
 <h2 id="parameter_32">Parameter()</h2>
-<h3 id="description_60">Description</h3>
+<h3 id="description_59">Description</h3>
 <p>Attribute which used for indicator customization</p>
 <h3 id="return-value_19">Return Value</h3>
 <p>None</p>
 <h3 id="parameter_33">Parameter</h3>
 <p>None</p>
-<h3 id="example_55">Example</h3>
+<h3 id="example_54">Example</h3>
 <pre><code class="cs">[Description(&quot;Period for the medium mean average&quot;)]
 [Category(&quot;Parameters&quot;)]
 [DisplayName(&quot;MA Medium&quot;)]
@@ -2317,7 +2271,7 @@ _ma_medium = value;
 </code></pre>
 
 <h2 id="playsound">PlaySound()</h2>
-<h3 id="description_61">Description</h3>
+<h3 id="description_60">Description</h3>
 <p>This method allows you to play a wav file.</p>
 <h3 id="usage_44">Usage</h3>
 <p><strong>PlaySound</strong>(wavFile)</p>
@@ -2325,7 +2279,7 @@ _ma_medium = value;
 <p>none</p>
 <h3 id="parameter_34">Parameter</h3>
 <p>wavFile File name of the wav file to be played</p>
-<h3 id="example_56">Example</h3>
+<h3 id="example_55">Example</h3>
 <pre><code class="cs">using System.IO;
 string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string file = &quot;\\\\AgenaTrader\\\\Sounds\\\\Alert1.wav&quot;;
@@ -2333,7 +2287,7 @@ PlaySound(path + file);
 </code></pre>
 
 <h2 id="plotmethod">PlotMethod</h2>
-<h3 id="description_62">Description</h3>
+<h3 id="description_61">Description</h3>
 <p>In each indicator, the plot method can be overridden in order to add your own graphics (GDI+) to the price chart with the help of the graphics class (System.Drawing).</p>
 <p>See <a href="http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx"><em>http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx</em></a>.</p>
 <p>The <em>Chart</em> object offers several parameters.</p>
@@ -2349,7 +2303,7 @@ PlaySound(path + file);
 <pre><code class="cs">public override void OnPaint(Graphics graphics, Rectangle r, double min, double max)
 </code></pre>
 
-<h3 id="example_57">Example</h3>
+<h3 id="example_56">Example</h3>
 <pre><code class="cs">using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -2416,7 +2370,7 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 </code></pre>
 
 <h2 id="pricetype">PriceType</h2>
-<h3 id="description_63">Description</h3>
+<h3 id="description_62">Description</h3>
 <p>Price type describes a form of price data.</p>
 <p>See <a href="#inputpricetype"><em>InputPriceType</em></a></p>
 <p>Following variables are available:
@@ -2430,10 +2384,10 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 -   PriceType.Weighted</p>
 <h3 id="usage_46">Usage</h3>
 <p>PriceType</p>
-<h3 id="example_58">Example</h3>
+<h3 id="example_57">Example</h3>
 <p>See <a href="#inputpricetype"><em>InputPriceType</em></a></p>
 <h2 id="print">Print()</h2>
-<h3 id="description_64">Description</h3>
+<h3 id="description_63">Description</h3>
 <p>The Print() method writes outputs in the AgenaTrader output window.
 See <a href="#clearoutputwindow"><em>ClearOutputWindow()</em></a>.</p>
 <h3 id="usage_47">Usage</h3>
@@ -2452,7 +2406,7 @@ Print(string format, string message)
 <h3 id="more-information_4">More Information</h3>
 <p>Information regarding output formatting: <em>Formatting numbers</em>.</p>
 <p>Hints about the String.Format() method: <a href="http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/de-de/library/fht0f5be%28v=vs.80%29.aspx</em></a></p>
-<h3 id="example_59">Example</h3>
+<h3 id="example_58">Example</h3>
 <pre><code class="cs">// &quot;Quick&amp;Dirty&quot; formatting of a number with 2 decimal points
 Print(Close[0].ToString(&quot;0.00&quot;));
 // Output day of the week from the timestamp for the bar
@@ -2462,7 +2416,7 @@ Print(&quot;One empty row afterwards \\n&quot;);
 </code></pre>
 
 <h2 id="processingbarindex">ProcessingBarIndex</h2>
-<h3 id="description_65">Description</h3>
+<h3 id="description_64">Description</h3>
 <p>Current bar is a method of indexing bars used in the OnCalculate() method. If a chart contains 500 bars and an indicator is to be calculated on the basis of these, then AgenaTrader will begin calculating from the oldest bar. The oldest bar receives the number 0. Once the calculation for this bar has been completed, the OnCalculate() method is called up for the next bar, which in turn receives the number 1. This continues until the last bar, which receives a value of 500.</p>
 <h3 id="parameter_37">Parameter</h3>
 <p>none</p>
@@ -2474,7 +2428,7 @@ Print(&quot;One empty row afterwards \\n&quot;);
 <p>The OnCalculate() method uses numbering different from that of ProcessingBarIndex in terms of the <a href="#barindex"><em>Barindex</em></a> and <a href="#bars"><em>Bars</em></a>. Understanding this difference is of great importance, which is why we ask you to please read the following paragraph carefully:</p>
 <p>ProcessingBarIndex numbers continuously from the oldest to youngest bar starting with 0. The BarIndex for the youngest bar is always 0. In the example referenced below this paragraph, Time[0] stands for the timestamp of the current bar. The index of the oldest bar always has 1 added to it. Thus a logical numbering of barsAgo is possible. The timestamp for the bar of 5 periods ago is Time[5].
 For using multiple timeframes (multi-bars) in an indicator, see ProcessingBarIndexes.</p>
-<h3 id="example_60">Example</h3>
+<h3 id="example_59">Example</h3>
 <pre><code class="cs">protected override void OnCalculate()
 {
 Print(&quot;Call of OnCalculate for bar nr. &quot; + ProcessingBarIndex + &quot; of &quot; + Time[0]);
@@ -2482,7 +2436,7 @@ Print(&quot;Call of OnCalculate for bar nr. &quot; + ProcessingBarIndex + &quot;
 </code></pre>
 
 <h2 id="removechartdrawing">RemoveChartDrawing()</h2>
-<h3 id="description_66">Description</h3>
+<h3 id="description_65">Description</h3>
 <p>The RemoveChartDrawing() method removes a specific drawing object from the chart based on a unique identifier (tag).
 See <a href="#removechartdrawings"><em>RemoveChartDrawings()</em></a>.</p>
 <h3 id="usage_49">Usage</h3>
@@ -2491,32 +2445,32 @@ See <a href="#removechartdrawings"><em>RemoveChartDrawings()</em></a>.</p>
 <p>none</p>
 <h3 id="parameter_38">Parameter</h3>
 <p>string tag The clearly identifiable name for the drawing object</p>
-<h3 id="example_61">Example</h3>
+<h3 id="example_60">Example</h3>
 <pre><code class="cs">RemoveChartDrawings(&quot;My line&quot;);
 </code></pre>
 
 <h2 id="removechartdrawings">RemoveChartDrawings()</h2>
-<h3 id="description_67">Description</h3>
+<h3 id="description_66">Description</h3>
 <p>This method removes all drawings from the chart
 See <a href="#removechartdrawings"><em>RemoveChartDrawings()</em></a>.</p>
 <h3 id="usage_50">Usage</h3>
 <p>RemoveChartDrawings()</p>
 <h3 id="return-value_25">Return Value</h3>
 <p>none</p>
-<h3 id="example_62">Example</h3>
+<h3 id="example_61">Example</h3>
 <pre><code class="cs">//Delete all drawings from the chart
 RemoveChartDrawings();
 </code></pre>
 
 <h2 id="requiredbarscount">RequiredBarsCount</h2>
-<h3 id="description_68">Description</h3>
+<h3 id="description_67">Description</h3>
 <p>The property "RequiredBarsCount" determines how many historical bars are required for an indicator or a strategy to call up the OnCalculate() method for the first time and thus begin the calculations. Bars required should be set within the OnInit() method.
 The setting should be chosen carefully. If you require 100 days for the calculation of a moving average, then you should ensure that at least 100 days of historical data are loaded.
 The property can be queried in the script and will return an int value.</p>
 <p>When OnCalculate is called up for the first time, the ProcessingBarIndex property is 0 regardless of the value of RequiredBarsCount.</p>
 <h3 id="usage_51">Usage</h3>
 <p>RequiredBarsCount</p>
-<h3 id="example_63">Example</h3>
+<h3 id="example_62">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 //The indicator requires a minimum of 50 bars loaded into the history
@@ -2525,7 +2479,7 @@ RequiredBarsCount = 50;
 </code></pre>
 
 <h2 id="sessionbreaklines">SessionBreakLines</h2>
-<h3 id="description_69">Description</h3>
+<h3 id="description_68">Description</h3>
 <p>The property SessionBreakLines defines whether the vertical lines that represent a trading session stop are displayed within the chart.
 This may be useful for stocks and other instruments if you wish to display session breaks/trading stops.
 <strong>SessionBreakLines = true (default)</strong></p>
@@ -2535,7 +2489,7 @@ This may be useful for stocks and other instruments if you wish to display sessi
 <p>This property can be queried within the script and outputs a value of the type Boolean (true or false).</p>
 <h3 id="usage_52">Usage</h3>
 <p>SessionBreakLines</p>
-<h3 id="example_64">Example</h3>
+<h3 id="example_63">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
@@ -2545,7 +2499,7 @@ SessionBreakLines = false;
 </code></pre>
 
 <h2 id="showalert">ShowAlert()</h2>
-<h3 id="description_70">Description</h3>
+<h3 id="description_69">Description</h3>
 <p>The ShowAlert method creates an acoustic and/or visual alarm.</p>
 <h3 id="usage_53">Usage</h3>
 <pre><code class="cs">ShowAlert(string message, bool showMessageBox, string soundLocation);
@@ -2578,7 +2532,7 @@ ShowAlert(string id, AlertPriority priority, string message, string soundLocatio
 </tr>
 </tbody>
 </table>
-<h3 id="example_65">Example</h3>
+<h3 id="example_64">Example</h3>
 <pre><code class="cs">// Message will be outputted if the SMA(20) crosses below the SMA(50)
 if (CrossBelow(SMA(20), SMA(50), 1))
 Alert(&quot;Check short signal!&quot;, true, &quot;Alert4.wav&quot;);
@@ -2618,7 +2572,7 @@ Eurex (FDAX): <a href="http://www.eurexchange.com/exchange-en/products/idx/dax/1
 <p>See <a href="#barstimeframe"><em>Bars.TimeFrame</em></a>.</p>
 <p>When using multiple timeframes (<a href="#multibars"><em>Multibars</em></a>) in an indicator, please see <a href="#timeframes"><em>TimeFrames</em></a>.</p>
 <h2 id="update">Update()</h2>
-<h3 id="description_71">Description</h3>
+<h3 id="description_70">Description</h3>
 <p>The Update() method calls up the OnCalculate method in order to recalculate the indicator values.</p>
 <p>Update() is to be used with caution and is intended for use by experienced programmers.</p>
 <h3 id="usage_54">Usage</h3>
@@ -2629,7 +2583,7 @@ Eurex (FDAX): <a href="http://www.eurexchange.com/exchange-en/products/idx/dax/1
 <p>none</p>
 <h3 id="parameter_40">Parameter</h3>
 <p>none</p>
-<h3 id="example_66">Example</h3>
+<h3 id="example_65">Example</h3>
 <p>The effect of update can be illustrated with the help of 2 indicators.
 The first indicator, Ind1, uses a public variable from the indicator Ind2.</p>
 <p><strong>Code from Ind1:</strong></p>
@@ -2663,7 +2617,7 @@ If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in
 <p><strong>With Update() - Correct</strong>
 By calling up Update(), OnCalculate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.</p>
 <h2 id="value">Value</h2>
-<h3 id="description_72">Description</h3>
+<h3 id="description_71">Description</h3>
 <p>Value is a data series object containing the first data series of an indicator.</p>
 <p>When the Add() method is called up, a value object is automatically created and added to the values collection.</p>
 <p>Value is identical to Values[0].</p>
@@ -2672,7 +2626,7 @@ By calling up Update(), OnCalculate() is initially executed by Ind2. This sets M
 <p>Value[<strong>int</strong> barsAgo]</p>
 <h3 id="more-information_6">More Information</h3>
 <p>The methods known for a collection, Set(), Reset(), and Count(), can be used for values.</p>
-<h3 id="example_67">Example</h3>
+<h3 id="example_66">Example</h3>
 <p>See <a href="#values"><em>Values</em></a>.</p>
               
             </div>
@@ -2681,7 +2635,7 @@ By calling up Update(), OnCalculate() is initially executed by Ind2. This sets M
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../drawing_objects/" class="btn btn-neutral float-right" title="Drawing objects">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../drawing_objects/" class="btn btn-neutral float-right" title="Drawing objects"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../strategy_programming/" class="btn btn-neutral" title="Strategy programming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -2703,13 +2657,13 @@ By calling up Update(), OnCalculate() is initially executed by Ind2. This sets M
       </div>
 
     </section>
-    
+
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+<div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../strategy_programming/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -2719,7 +2673,6 @@ By calling up Update(), OnCalculate() is initially executed by Ind2. This sets M
       
     </span>
 </div>
-    <script src="../js/theme.js"></script>
 
 </body>
 </html>
