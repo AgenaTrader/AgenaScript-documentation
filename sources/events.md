@@ -18,7 +18,7 @@ The following methods can be used and therefore overwritten:
 -   [*OnOrderChanged()*](#onorderchanged)
 -   [*OnOrderExecution()*](#onorderexecution)
 -   [*OnStart()*](#onstart)
--   [*OnStop()*](#onstop)]
+-   [*OnStop()*](#onstop)
 
 
 ## OnBrokerConnect()
