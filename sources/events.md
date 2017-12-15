@@ -18,6 +18,7 @@ The following methods can be used and therefore overwritten:
 -   [*OnOrderChanged()*](#onorderchanged)
 -   [*OnOrderExecution()*](#onorderexecution)
 -   [*OnStart()*](#onstart)
+-   [*OnStop()*](#onstop)]
 
 
 ## OnBrokerConnect()
@@ -29,8 +30,7 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 none
 
-### Return Value
-none
+
 
 ### Usage
 ```cs
@@ -63,8 +63,6 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 An object from *TradingDatafeedChangedEventArgs*
 
-### Return Value
-none
 
 ### Usage
 ```cs
@@ -96,8 +94,6 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 none
 
-### Return Value
-none
 
 ### Usage
 ```cs
@@ -233,8 +229,6 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 none
 
-### Return Value
-none
 
 ### Usage
 ```cs
@@ -277,8 +271,6 @@ The fields "Volume", "BidSize" and "AskSize" are always 0.
 protected override void OnLevel1(Level1Args e)
 ```
 
-### Return Value
-none
 
 ### Parameter
 ```cs
@@ -315,8 +307,6 @@ More information can be found here: [*Events*](#events).
 protected override void OnLevel2(Level2Args e)
 ```
 
-### Return Value
-none
 
 ### Parameter
 An object from *Level2Args*
@@ -344,8 +334,6 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 An order object of the type IOrder
 
-### Return Value
-None
 
 ### Usage
 ```cs
@@ -387,8 +375,6 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 An execution object of the type *IExecution*
 
-### Return Value
-none
 
 ### Usage
 ```cs
@@ -426,8 +412,6 @@ More information can be found here: [*Events*](#events).
 ### Parameter
 none
 
-### Return Value
-none
 
 ### Usage
 ```cs
@@ -447,4 +431,29 @@ protected override void OnStart()
 }
 ```
 
+## OnStop()
+### Description
+The OnStop() method is called up once a script is terminated. This can be when e.g. an indicator was removed from the chart or a column with an indicator / a scripted condition was removed from the scanner. 
+
+See [*OnDispose()*](#ondispose).
+
+More information can be found here: [*Events*](#events).
+
+### Parameter
+none
+
+
+### Usage
+```cs
+protected override void OnStop()
+```
+
+### Example
+```cs
+protected override void OnStop()
+{
+    Log("Stop: " + this.ToString() + " | " + Instrument.Symbol, InfoLogLevel.Info); 
+}
+
+```
 
