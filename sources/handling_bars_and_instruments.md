@@ -1691,7 +1691,7 @@ See example [*Multibars*](#multibars).
 
 ## TimeFrame
 ### Description
-TimeFrame is a timeframe object.
+TimeFrame is a timeframe object. This property is used to read the current TimeFrame and not to set it.
 
 ### Usage
 ```cs
