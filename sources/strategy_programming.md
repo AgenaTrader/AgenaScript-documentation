@@ -1158,7 +1158,7 @@ public class MyTestEntry : UserScriptedCondition
 ### Description
 Get profit loss outputs the currently unrealized profit or loss for a running position.
 
-See [*Account.GetValue()*](#Account.GetValue).
+See [*Account.GetValue()*](#accountgetvalue).
 
 ### Usage
 ```cs
@@ -1189,7 +1189,7 @@ Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ### Description
 GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.
 
-See [*Account.GetValue()*](#Account.GetValue).
+See [*Account.GetValue()*](#accountgetvalue).
 
 ### Usage
 ```cs
@@ -1211,7 +1211,7 @@ Print("the current P&L " + this.Name + " is " + GetProfitLossAmount(Position.Ope
 ### Description
 GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.
 
-See [*Account.GetValue()*](#Account.GetValue).
+See [*Account.GetValue()*](#accountgetvalue).
 
 ### Usage
 ```cs
