@@ -1376,7 +1376,7 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] < SMA(20)[0] && entryOrder == null)
 // Sell 1 contract at the current ask price
-entryOrder = SubmitOrder(0, OrderDirection.SellShort, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
+entryOrder = SubmitOrder(0, OrderDirection.Sell, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
 }
 ```
 
