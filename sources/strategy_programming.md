@@ -193,7 +193,7 @@ private IOrder osubmitbuy = null;
 
 protected override void OnInit()
 {
-   IsAutomated = false;
+   IsAutoConfirmOrder = false;
 }
 
 
@@ -228,7 +228,7 @@ private IOrder oSubmitSell = null;
 
 protected override void OnInit()
 {
-   IsAutomated = false;
+   IsAutoConfirmOrder = false;
   
 }
 
@@ -264,7 +264,7 @@ private IOrder oLimitLong = null;
 
 protected override void OnInit()
 {
-   IsAutomated = false;
+   IsAutoConfirmOrder = false;
 }
 
 
@@ -1324,7 +1324,7 @@ Possible Methods:
     Delete the Order
 
 -   **order.ConfirmOrder()**
-    Confirm the order. This method have to be executed if IsAutomated is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
+    Confirm the order. This method have to be executed if IsAutoConfirmOrder is set to false and you want to run the order automatically. This is, for example, the case when an OCO or IfDone fabrication is to be produced.
 
 ## Performance
 ### Description
