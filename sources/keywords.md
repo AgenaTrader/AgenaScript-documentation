@@ -132,7 +132,7 @@ By default, browsable is set to true. Therefore, within a variable containing an
 The parameter should be displayed and queried in the properties window. Therefore browsable should be set to true.
 ```cs
 [Description("Numbers of bars used for calculations")]
-[Category("Parameters")]
+[Category("InputParameter")]
 public int Period
 {
 get { return period; }
@@ -157,9 +157,9 @@ Category is an [Attribute](#attribute) in AgenaScript and can be used on propert
 The category attribute on properties defines under which category in the properties dialog the parameter is shown.
 If this attribute is missing, the parameters category is accepted as the standard.
 
-The following example shows how to create the new category "My Parameters" in the properties dialog:
+The following example shows how to create the new category "My InputParameter" in the properties dialog:
 ```cs
-[Category("My Parameters")]
+[Category("My InputParameter")]
 [DisplayName("Period number")]
 public double _period
 {
@@ -2190,15 +2190,15 @@ See [*LevelLine*](#levelline).
 |-----------|------------------------|
 | Color     | Drawing color          |
 | Pen       | Pen object             |
-| PlotStyle | LevelLine type: PlotStyle.Bar, PlotStyle.Block, PlotStyle.Cross, PlotStyle.Dot, PlotStyle.Hash, PlotStyle.LevelLine, PlotStyle.Square, PlotStyle.TriangleDown, PlotStyle.TriangleUp  |
+| OutputSeriesDisplayStyle | LevelLine type: OutputSeriesDisplayStyle.Bar, OutputSeriesDisplayStyle.Block, OutputSeriesDisplayStyle.Cross, OutputSeriesDisplayStyle.Dot, OutputSeriesDisplayStyle.Hash, OutputSeriesDisplayStyle.LevelLine, OutputSeriesDisplayStyle.Square, OutputSeriesDisplayStyle.TriangleDown, OutputSeriesDisplayStyle.TriangleUp  |
 | Name      | Description            |
 
 ### Usage
 ```cs
 OnPaint(Color color, string name)
 OnPaint(Pen pen, string name)
-OnPaint(Color color, PlotStyle plotStyle, string name)
-OnPaint(Pen pen, PlotStyle plotStyle, string name)
+OnPaint(Color color, OutputSeriesDisplayStyle plotStyle, string name)
+OnPaint(Pen pen, OutputSeriesDisplayStyle plotStyle, string name)
 ```
 
 ### More Information
@@ -2218,7 +2218,7 @@ protected override void OnInit()
 // a red pen with the line strength of 6 is defined
 pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-plot = new OnPaint(pen, PlotStyle.Dot, "MyPlot");
+plot = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, "MyPlot");
 // The defined plot is to be used as a representation for an indicator
 Add(plot);
 }
@@ -2226,11 +2226,11 @@ Add(plot);
 // Abbreviation of example 2
 protected override void OnInit()
 {
-Add(new OnPaint(new Pen(Color.Blue, 6), PlotStyle.Dot, "MyPlot"));
+Add(new OnPaint(new Pen(Color.Blue, 6), OutputSeriesDisplayStyle.Dot, "MyPlot"));
 }
 ```
 
-## Parameter()
+## InputParameter()
 ### Description
 Attribute which used for indicator customization
 
@@ -2243,7 +2243,7 @@ None
 ### Example
 ```cs
 [Description("Period for the medium mean average")]
-[Category("Parameters")]
+[Category("InputParameter")]
 [DisplayName("MA Medium")]
 public int MA_Medium
 {
