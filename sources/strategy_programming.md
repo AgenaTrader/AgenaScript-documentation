@@ -1457,7 +1457,7 @@ none
 ```cs
 protected override void OnInit()
 {
-ClearOutputWindow();
+ClearTraceWindow();
 TraceOrders = true;
 }
 ```
