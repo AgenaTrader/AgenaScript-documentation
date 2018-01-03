@@ -384,15 +384,15 @@ LastBarPainted would be larger than Bars.Count.
 
 LastBarVisible would be Bars.Count -1.
 
-## ClearOutputWindow()
+## ClearTraceWindow()
 ### Description
-The ClearOutputWindow() method empties the output window. The method can be used within OnInit() as well as within OnCalculate().
+The ClearTraceWindow() method empties the output window. The method can be used within OnInit() as well as within OnCalculate().
 The output window contains all outputs that have been created with the [*Print()*](#print) command.
 Using the output window is a great method for code debugging.
 
 ### Usage
 ```cs
-ClearOutputWindow()
+ClearTraceWindow()
 ```
 
 ### Parameter
@@ -406,7 +406,7 @@ none
 protected override void OnInit()
 {
 // Delete the content of the output window
-ClearOutputWindow();
+ClearTraceWindow();
 }
 ```
 
@@ -1654,7 +1654,7 @@ InputPriceType
 ```cs
 protected override void OnInit()
 {
-ClearOutputWindow();
+ClearTraceWindow();
 InputPriceType = PriceType.Low;
 }
 protected override void OnCalculate()
@@ -2170,7 +2170,7 @@ Developers of custom AgenaScripts should NOT use this method for running their o
 protected override void OnInit()
 {
 Add(new OnPaint(Color.Blue, "myPlot"));
-ClearOutputWindow();
+ClearTraceWindow();
 IsAutoScale = false;
 IsOverlay = true;
 IsShowPriceMarkers = false;
@@ -2394,7 +2394,7 @@ See [*InputPriceType*](#inputpricetype)
 ## Print()
 ### Description
 The Print() method writes outputs in the AgenaTrader output window.
-See [*ClearOutputWindow()*](#clearoutputwindow).
+See [*ClearTraceWindow()*](#cleartracewindow).
 
 ### Usage
 ```cs
