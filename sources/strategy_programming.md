@@ -139,7 +139,7 @@ protected override void OnCalculate()
 }
 ```
 
-## CancelOrder()
+## Order.Cancel()
 ### Description
 Cancel order deletes an order.
 
@@ -147,7 +147,7 @@ A cancel request is sent to the broker. There is no guarantee that the order wil
 
 ### Usage
 ```cs
-CancelOrder(IOrder order)
+Order.Cancel(IOrder order)
 ```
 
 ### Parameter
@@ -168,7 +168,7 @@ protected override void OnCalculate()
     // Delete the order after 3 bars
     if (Position.PositionType == PositionType.Flat &&
     ProcessingBarIndex > barNumber + 3)
-        CancelOrder(entryOrder);
+        Order.Cancel(entryOrder);
 }
 ```
 
@@ -199,8 +199,8 @@ protected override void OnInit()
 
 protected override void OnCalculate()
 {
-   oopenlong = SubmitOrder(0, OrderAction.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, "ocoId","strategyName");
-   oenterlong = SubmitOrder(0, OrderAction.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
+   oopenlong = SubmitOrder(0, orderDirection.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, "ocoId","strategyName");
+   oenterlong = SubmitOrder(0, orderDirection.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
 
    CreateIfDoneGroup(new List<IOrder> { oopenlong, oenterlong });
 
@@ -223,24 +223,25 @@ An order object of type IOrder as a list
 ### Example
 ```cs
 private IOrder oopenlong = null;
-private IOrder oEnterShort = null;
+private IOrder oSubmitSell = null;
 
 
 protected override void OnInit()
 {
    IsAutomated = false;
+  
 }
 
 
 protected override void OnCalculate()
 {
-   oopenlong = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
-   oEnterShort = SubmitOrder(0, OrderAction.SellShort, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
+   oopenlong = SubmitOrder(0, orderDirection.Buy, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
+   oSubmitSell = SubmitOrder(0, orderDirection.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
 
-   CreateOCOGroup(new List<IOrder> { oopenlong, oEnterShort });
+   CreateOCOGroup(new List<IOrder> { oopenlong, oSubmitSell });
 
    oopenlong.ConfirmOrder();
-   oEnterShort.ConfirmOrder();
+   oSubmitSell.ConfirmOrder();
 }
 ```
 
@@ -269,8 +270,8 @@ protected override void OnInit()
 
 protected override void OnCalculate()
 {
-   oStopLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
-   oLimitLong = SubmitOrder(0, OrderAction.BuyToCover, OrderType.Limit, (int)(DefaultOrderQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "strategyName");
+   oStopLong = SubmitOrder(0,  OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * -1.1,"ocoId", "strategyName");
+   oLimitLong = SubmitOrder(0,  OrderType.Limit, (int)(DefaultOrderQuantity * 0.5), Close[0] * 1.1, 0, "ocoId", "strategyName");
 
    CreateOROGroup(new List<IOrder> { oLimitLong, oStopLong });
 }
@@ -304,7 +305,7 @@ DefaultOrderQuantity = 100;
 ### Description
 Entries per direction defines the maximum number of entries permitted in one direction (long or short).
 
-Whether the name of the entry signal is taken into consideration or not is defined within [*EntryHandling*](#entryhandling).
+Whether the name of the entry signal is taken into consideration or not is defined.
 
 Entries per direction is defined with the [*OnInit()*](#oninit) method.
 
@@ -321,7 +322,7 @@ An int value for the maximum entries permitted in one direction.
 protected override void OnInit()
 {
 EntriesPerDirection = 1;
-EntryHandling = EntryHandling.AllEntries;
+
 }
 
 protected override void OnCalculate()
@@ -342,28 +343,6 @@ protected override void OnCalculate()
 }
 ```
 
-## EntryHandling
-### Description
-Entry handling decides how the maximum number of entries permitted in one direction is interpreted ([*EntriesPerDirection*](#entriesperdirection)).
-
-Entry handling is defined with the [*OnInit()*](#oninit) method.
-
-**EntryHandling.AllEntries**
-
-AgenaTrader continues to create entry orders until the maximum number of entries permitted (defined in [*EntriesPerDirection*](#entriesperdirection)) per direction (long or short) is reached, regardless of how the entry signals are named.
-
-If entries per direction = 2, then enter long ("SMA crossover") and enter long ("range breakout") combined will reach the maximum number of long entries permitted.
-
-**EntryHandling.UniqueEntries**
-
-AgenaTrader continues to generate entry orders until the maximum number of entries (defined in entries per direction) in one direction (long or short) for the differently named entry signals has been reached.
-If entries per direction = 2, then it is possible for two signals for enter long ("SMA crossover") *and* 2 signals for enter long ("range breakout") to be traded.
-
-### Usage
-**EntryHandling**
-
-### Example
-See [*EntriesPerDirection*](#entriesperdirection).
 
 ## OpenLong()
 ### Description
@@ -1047,7 +1026,7 @@ if (CrossAbove(EMA(15), SMA(50), 2))
     CloseShortStopLimit(High[0] + ( TickSize * 2 ), High[0]);
 ```
 
-## GetAccountValue()
+## Account.GetValue()
 ### Description
 Get account value outputs information regarding the account for which the current strategy is being carried out.
 
@@ -1055,7 +1034,7 @@ See [*GetProfitLoss()*](#getprofitloss).
 
 ### Usage
 ```cs
-GetAccountValue(AccountItem accountItem)
+Account.GetValue(AccountItem accountItem)
 ```
 
 ### Parameter
@@ -1072,9 +1051,9 @@ A double value for the account item for historical bars, a zero (0) is returned
 
 ### Example
 ```cs
-Print("The current account cash value is " + GetAccountValue(AccountItem.CashValue));
-Print("The current account cash value with the leverage provided by the broker is " + GetAccountValue(AccountItem.BuyingPower));
-Print("The current P/L already realized is " + GetAccountValue(AccountItem.RealizedProfitLoss));
+Print("The current account cash value is " + Account.GetValue(AccountItem.CashValue));
+Print("The current account cash value with the leverage provided by the broker is " + Account.GetValue(AccountItem.BuyingPower));
+Print("The current P/L already realized is " + Account.GetValue(AccountItem.RealizedProfitLoss));
 ```
 
 ## GetEntries()
@@ -1179,7 +1158,7 @@ public class MyTestEntry : UserScriptedCondition
 ### Description
 Get profit loss outputs the currently unrealized profit or loss for a running position.
 
-See [*GetAccountValue()*](#getaccountvalue).
+See [*Account.GetValue()*](#Account.GetValue).
 
 ### Usage
 ```cs
@@ -1210,7 +1189,7 @@ Print("This equals "+ string.Format( "{0:F1} R.", GetProfitLoss(3)));
 ### Description
 GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.
 
-See [*GetAccountValue()*](#getaccountvalue).
+See [*Account.GetValue()*](#Account.GetValue).
 
 ### Usage
 ```cs
@@ -1232,7 +1211,7 @@ Print("the current P&L " + this.Name + " is " + GetProfitLossAmount(Position.Ope
 ### Description
 GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.
 
-See [*GetAccountValue()*](#getaccountvalue).
+See [*Account.GetValue()*](#Account.GetValue).
 
 ### Usage
 ```cs
@@ -1255,11 +1234,11 @@ This method allows user to communicate between scripts.
 
 
 
-## IsAutomated
+## IsAutoConfirmOrder
 ### Description
-IsAutomated determines whether orders are activated automatically. IsAutomated is specified in the [*OnInit()*](#oninit) method.
+IsAutoConfirmOrder determines whether orders are activated automatically. IsAutoConfirmOrder is specified in the [*OnInit()*](#oninit) method.
 
-If IsAutomated = true, then orders are automatically activated (default). If IsAutomated is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*](#confirmorder).
+If IsAutoConfirmOrder = true, then orders are automatically activated (default). If IsAutoConfirmOrder is assigned the value false, the corresponding order must be activated with order.[*ConfirmOrder()*](#confirmorder).
 
 ### Parameter
 Bool value
@@ -1268,7 +1247,7 @@ Bool value
 ```cs
 protected override void OnInit()
 {
-   IsAutomated = false;
+   IsAutoConfirmOrder = false;
 }
 ```
 
@@ -1281,19 +1260,14 @@ The individual properties are:
 
 -   Action
     **One of four possible positions in the market:**
-    -   OrderAction.Buy
-    -   OrderAction.BuyToCover
-    -   OrderAction.Sell
-    -   OrderAction.SellShort
+    -   OrderDirection.Buy
+    -   OrderDirection.Sell
 
--   **AvgFillPrice**
+-   **AveragePrice**
     **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry price.**
 
--   **Filled**
+-   **FilledQuantity**
     For partial versions, Filled is less than Quantity
-
--   **FromEntrySignal**
-    The trading instrument in which the position exists... See *Instruments*.
 
 -   **LimitPrice**
 
@@ -1336,7 +1310,7 @@ The individual properties are:
 
 -   **StopPrice**
 
--   **Time**
+-   **Timestamp**
     Time stamp
 
 -   **TimeFrame**
@@ -1451,12 +1425,12 @@ Print("Pieces " + Position.Quantity);
 ## PositionType
 See [*Position.PositionType*](#positionpositiontype).
 
-## PrintOrders
+## TraceOrders
 ### Description
 The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
 Trace orders can be specified with the [*OnInit()*](#oninit) method.
 
-When PrintOrders is activated, each order will display the following values in the output window:
+When TraceOrders is activated, each order will display the following values in the output window:
 
 -   Instrument
 -   Time frame
@@ -1470,7 +1444,7 @@ When PrintOrders is activated, each order will display the following values in t
 This information is useful when creating and debugging strategies.
 
 ### Usage
-PrintOrders
+TraceOrders
 
 ### Parameter
 none
@@ -1484,7 +1458,7 @@ none
 protected override void OnInit()
 {
 ClearOutputWindow();
-PrintOrders = true;
+TraceOrders = true;
 }
 ```
 
@@ -1654,14 +1628,14 @@ See [*OnOrderChanged()*](#onorderchanged), [*OnOrderExecution()*](#onorderexecut
 
 ### Usage
 ```cs
-SubmitOrder(int multibarSeriesIndex, OrderAction orderAction, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string strategyName)
+SubmitOrder(int multibarSeriesIndex, OrderDirection  orderDirection, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string strategyName)
 ```
 
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
 | multibarSeriesIndex | For multi-bar strategies. Index of the data series for which the order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                                   |
-| orderAction         | Possible values are: **OrderAction.Buy** (Buy order for a long entry); **OrderAction.Sell** (Sell order for closing a long position) **OrderAction.SellShort** (Sell order for a short entry); **OrderAction.BuyToCover**(Buy order for closing a short position )                                                                            |
+| orderDirection         | Possible values are: **orderDirection.Buy** (Buy order for a long entry); **orderDirection.Sell** (Sell order for closing a long position)                |
 | orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                               |
 | quantity            | Amount                                                             |
 | limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
@@ -1679,7 +1653,7 @@ protected override void OnCalculate()
 {
 
 if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-    entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Stop, 1, 0, High[0], "", "LongEntry");
+    entryOrder = SubmitOrder(0, orderDirection.Buy, OrderType.Stop, 1, 0, High[0], "", "LongEntry");
 }
 ```
 
