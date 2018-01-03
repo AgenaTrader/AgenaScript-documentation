@@ -1376,7 +1376,7 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] < SMA(20)[0] && entryOrder == null)
 // Sell 1 contract at the current ask price
-entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
+entryOrder = SubmitOrder(0, OrderDirection.SellShort, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
 }
 ```
 
@@ -1429,7 +1429,7 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] > SMA(20)[0] && entryOrder == null)
 // Sell 1 contract at the current bid price
-entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, "", "Enter long");
+entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, "", "Enter long");
 }
 ```
 
@@ -1482,7 +1482,7 @@ protected override void OnCalculate()
    // Einstiegsbedingung
    if (Close[0] > SMA(20)[0] && entryOrder == null)
        // Kauf 1 Kontrakt zum aktuellen BidKurs
-       entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,"", "Enter Long");
+       entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,"", "Enter Long");
 }
 ```
 
@@ -2155,7 +2155,6 @@ protected override void OnInit()
 
 -   [*DefaultOrderQuantity*](#defaultorderquantity)
 -   [*EntriesPerDirection*](#entriesperdirection)
--   [*EntryHandling*](#entryhandling)
 -   [*SetUpStopLoss()*](#setupstoploss)
 -   [*SetUpProfitTarget()*](#setupprofittarget)
 -   [*SetUpTrailStop()*](#setuptrailstop)
