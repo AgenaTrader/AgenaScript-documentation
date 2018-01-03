@@ -188,7 +188,7 @@ An order object of type IOrder as a list
 ### Example
 ```cs
 private IOrder oopenlong = null;
-private IOrder oenterlong = null;
+private IOrder osubmitbuy = null;
 
 
 protected override void OnInit()
@@ -200,9 +200,9 @@ protected override void OnInit()
 protected override void OnCalculate()
 {
    oopenlong = SubmitOrder(0, orderDirection.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, "ocoId","strategyName");
-   oenterlong = SubmitOrder(0, orderDirection.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
+   osubmitbuy = SubmitOrder(0, orderDirection.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
 
-   CreateIfDoneGroup(new List<IOrder> { oopenlong, oenterlong });
+   CreateIfDoneGroup(new List<IOrder> { oopenlong, osubmitbuy });
 
    oopenlong.ConfirmOrder();
 }
@@ -514,7 +514,7 @@ Enter short creates a market order for entering a short position (naked sell).
 
 If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
 
-See [*OpenShortLimit()*](#openshortlimit), [*OpenShortStop()*](#openshortstop)(entershortstop), [*OpenShortStopLimit()*](#openshortstoplimit)..
+See [*OpenShortLimit()*](#openshortlimit), [*OpenShortStop()*](#openshortstop), [*OpenShortStopLimit()*](#openshortstoplimit)..
 
 ### Usage
 ```cs
