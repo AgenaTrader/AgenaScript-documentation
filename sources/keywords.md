@@ -2148,7 +2148,6 @@ protected override void OnInit()
 -   [*InputPriceType*](#inputpricetype)
 -   [*IsOverlay*](#isoverlay)
 -   [*IsShowPriceMarkers*](#isshowpricemarkers)
--   [*SessionBreakLines*](#sessionbreaklines)
 -   [*IsShowChartVerticalGrid*](#isshowchartverticalgrid)
 
 **Additional Keywords for Strategies**
@@ -2507,33 +2506,6 @@ protected override void OnInit()
 {
 //The indicator requires a minimum of 50 bars loaded into the history
 RequiredBarsCount = 50;
-}
-```
-
-## SessionBreakLines
-### Description
-The property SessionBreakLines defines whether the vertical lines that represent a trading session stop are displayed within the chart.
-This may be useful for stocks and other instruments if you wish to display session breaks/trading stops.
-**SessionBreakLines = true (default)**
-
-Session break lines are shown
-
-**SessionBreakLines = false**
-
-Session break lines are not shown
-
-This property can be queried within the script and outputs a value of the type Boolean (true or false).
-
-### Usage
-SessionBreakLines
-
-### Example
-```cs
-protected override void OnInit()
-{
-Add(new OnPaint(Color.Red, "MyPlot1"));
-//Session break lines should not be shown
-SessionBreakLines = false;
 }
 ```
 
