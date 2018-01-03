@@ -2159,7 +2159,7 @@ protected override void OnInit()
 -   [*SetUpProfitTarget()*](#setupprofittarget)
 -   [*SetUpTrailStop()*](#setuptrailstop)
 -   [*TimeInForce*](#timeinforce)
--   [*PrintOrders*](#printorders)
+-   [*TraceOrders*](#traceorders)
 
 ### More Information
 **Caution:**
