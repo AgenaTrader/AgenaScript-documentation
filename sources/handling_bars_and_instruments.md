@@ -930,7 +930,7 @@ When a line object is added to the indicator using the [*Add()*](#add) method, t
 
 The order of the add commands determines how these lines are sorted. The first information request of Add() will create Lines\[0\], the next information request will be Lines\[1\] etc.
 
-See [*Plots*](#plots).
+See [*OutputSeriesDescription*](#outputseriesdescription).
 
 ### Usage
 ```cs
@@ -1001,9 +1001,9 @@ protected override void OnInit()
 // Set line strength (width) to 4
 pen = new Pen(Color.Empty, 4);
 // Add three plots with the defined line strength to the chart
-Add(new OnPaint(pen, PlotStyle.LevelLine, "SMA20" )); //attached to PlotColors[0]
-Add(new OnPaint(pen, PlotStyle.LevelLine, "SMA50" )); //attached to PlotColors[1]
-Add(new OnPaint(pen, PlotStyle.LevelLine, "SMA100")); //attached to PlotColors[2]
+Add(new OnPaint(pen, OutputSeriesDisplayStyle.LevelLine, "SMA20" )); //attached to PlotColors[0]
+Add(new OnPaint(pen, OutputSeriesDisplayStyle.LevelLine, "SMA50" )); //attached to PlotColors[1]
+Add(new OnPaint(pen, OutputSeriesDisplayStyle.LevelLine, "SMA100")); //attached to PlotColors[2]
 IsOverlay = true;
 }
 protected override void OnCalculate()
@@ -1036,35 +1036,35 @@ PlotColors[2][0] = Color.DarkGray;
 }
 ```
 
-## Plots
+## OutputSeriesDescription
 ### Description
-Plots is a collection that contains the plot objects of an indicator.
+OutputSeriesDescription is a collection that contains the plot objects of an indicator.
 
 When a plot object is added to an indicator using the Add() method, it is also automatically added to the "plots" collection.
 
-The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots\[0\], the following information request will create Plots\[1\] etc.
+The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots\[0\], the following information request will create OutputSeriesDescription\[1\] etc.
 
 See [*Lines*](#lines).
 
 ### Usage
 ```cs
-Plots[int index]
+OutputSeriesDescription[int index]
 ```
 
 ### Example
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Blue, "MySMA 20")); // saved to Plots[0]
+Add(new OnPaint(Color.Blue, "MySMA 20")); // saved to OutputSeriesDescription[0]
 }
 protected override void OnCalculate()
 {
 Value.Set(SMA(20)[0]);
 // If the market price is above the SMA colorize it green, otherwise red
 if (Close[0] > SMA(20)[0])
-	Plots[0].PlotColor = Color.Green;
+	OutputSeriesDescription[0].PlotColor = Color.Green;
 else
-	Plots[0].PlotColor = Color.Red;
+	OutputSeriesDescription[0].PlotColor = Color.Red;
 }
 ```
 
