@@ -1290,7 +1290,7 @@ used for complicated calculation on a last bar
 ```cs
 protected override void OnOrderExecution(IExecution execution)
 {
-if (execution.Order != null && execution.Order.OrderState == OrderState.Filled)
+if (execution.Order != null && execution.Order.OrderState == OrderState.FilledQuantity)
 {
 if (oEnter != null && execution.Name == oEnter.Name)
 {
