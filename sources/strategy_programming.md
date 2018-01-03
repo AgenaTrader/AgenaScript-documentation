@@ -1267,7 +1267,7 @@ The individual properties are:
     **The average purchase or selling price of a position.For positions without partial executions, this corresponds to the entry price.**
 
 -   **FilledQuantity**
-    For partial versions, Filled is less than Quantity
+    For partial versions
 
 -   **LimitPrice**
 
@@ -1288,7 +1288,7 @@ The individual properties are:
     -   OrderState.Accepted
     -   OrderState.Cancelled
     -   OrderState.CancelRejected
-    -   OrderState.Filled
+    -   OrderState.FilledQuantity
     -   OrderState.PartFilled
     -   OrderState.PendingCancel
     -   OrderState.PendingReplace
