@@ -343,330 +343,6 @@ protected override void OnCalculate()
 }
 ```
 
-
-## OpenLong()
-### Description
-Enter long creates a long position (buy).
-
-If a signature not containing an amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenLongLimit()*](#openlonglimit), [*OpenLongStop()*](#openlongstop), [*OpenLongStopLimit()*](#openlongstoplimit).
-
-### Usage
-```cs
-OpenLong()
-OpenLong(string strategyName)
-OpenLong(int quantity)
-OpenLong(int quantity, string strategyName)
-
-//For multi-bar strategies
-OpenLong(int multibarSeriesIndex, int quantity, string strategyName)
-```
-
-### Parameter
-|                     |                                                                                               |
-|---------------------|-----------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                                           |
-| quantity            | The amount of stocks/contracts                                                                |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies.  Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
-
-### Return Value
-an order object of the type "IOrder"
-
-### Example
-```cs
-
-// if the EMA14 crosses the SMA50 from below to above
-// the ADX is rising its values
-if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-    OpenLong("SMACrossesEMA");
-
-```
-
-## OpenLongLimit()
-### Description
-Enter long limit creates a limit order for entering a long position (buy).
-
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenLong()*](#openlong), [*OpenLongStop()*](#openlongstop), [*OpenLongStopLimit()*](#openlongstoplimit).
-
-### Usage
-```cs
-OpenLongLimit(double limitPrice)
-OpenLongLimit(double limitPrice, string strategyName)
-OpenLongLimit(int quantity, double limitPrice)
-OpenLongLimit(int quantity, double limitPrice, string strategyName)
-```
-
-For Multibar-Strategies
-```cs
-OpenLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
-```
-
-### Parameter
-|             |                  |     
-|---------------------|-------------|
-| strategyName          | An unambiguous name |
-| quantity            | Amount of stocks/contracts/etc.  |
-| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
-| limitPrice          | A double value for the limit price |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*Order.Cancel*](#ordercancel) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
-
-### Return Value
-An order object of the type "IOrder"
-
-### Example
-```cs
-// if the EMA14 crosses the SMA50 from below to above
-// the ADX is rising its values
-if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-    OpenLongLimit("SMACrossesEMA");
-```
-
-## OpenLongStop()
-### Description
-Enter long stop creates a limit order for entering a long position (buy).
-
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenLong()*](#openlong), [*OpenLongLimit()*](#openlonglimit), [*OpenLongStopLimit()*](#openlongstoplimit).
-
-### Usage
-```cs
-OpenLongStop(double stopPrice)
-OpenLongStop(double stopPrice, string strategyName)
-OpenLongStop(int quantity, double stopPrice)
-OpenLongStop(int quantity, double stopPrice, string strategyName)
-```
-
-For multi-bar strategies
-```cs
-OpenLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
-```
-
-### Parameter
-| |   |
-|---------------------|-------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name    |
-| quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
-| multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
-| stopPrice           | A double value for the stop price                                                                                                                                                     |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*Order.Cancel*](#ordercancel) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
-
-### Return Value
-An order object of the type "IOrder"
-
-### Example
-```cs
-private IOrder stopOrder = null;
-// Place an entry order at the high of the current bar
-if (stopOrder == null)
-    stopOrder = OpenLongStop(Low[0], "Stop Long");
-```
-
-## OpenLongStopLimit()
-### Description
-Enter long stop limit creates a buy stop limit order for entering a long position.
-
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenLong()*](#openlong), [*OpenLongLimit()*](#openlonglimit), [*OpenLongStop()*](#openlongstop).
-
-### Usage
-```cs
-OpenLongStopLimit(double limitPrice, double stopPrice)
-OpenLongStopLimit(double limitPrice, double stopPrice, string strategyName)
-OpenLongStopLimit(int quantity, double limitPrice, double stopPrice)
-OpenLongStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
-```
-
-For multi-bar strategies
-```cs
-OpenLongStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
-```
-
-### Parameter
-|    |     |
-|--------------|-------------------------|
-| strategyName          | An unambiguous name       |
-| quantity            | Amount of stocks or contracts to be ordered   |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed.  See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
-| stopPrice           | A double value for the stop price |
-| limitPrice          | A double value for the limit price |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until canceled with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
-
-### Return Value
-An order object of the type "IOrder"
-
-### Example
-```cs
-private IOrder stopOrder = null;
-// Place an entry stop at the high of the current bar
-// if the high  is reached, at 5 ticks above the high.
-if (stopOrder == null)
-    stopOrder = OpenLongStopLimit(High[0]+ (5*TickSize), High[0], "Stop Long Limit");
-```
-
-## OpenShort()
-### Description
-Enter short creates a market order for entering a short position (naked sell).
-
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenShortLimit()*](#openshortlimit), [*OpenShortStop()*](#openshortstop), [*OpenShortStopLimit()*](#openshortstoplimit)..
-
-### Usage
-```cs
-OpenShort()
-OpenShort(string strategyName)
-OpenShort(int quantity)
-OpenShort(int quantity, string strategyName)
-For multi-bar strategies
-OpenShort(int multibarSeriesIndex, int quantity, string strategyName)
-```
-
-### Parameter
-|                     |                                                                      |
-|---------------------|----------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                  |
-| quantity            | Amount of stocks/contracts etc.                                      |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).     |
-
-### Return Value
-an order object of the type "IOrder"
-
-### Example
-```cs
-// if the EMA14 crosses the SMA50 from above to below
-// the ADX is rising its values
-if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-    OpenShort("'EMACrossesSMA");
-```
-
-## OpenShortLimit()
-### Description
-Enter short limit creates a limit order for entering a short position (naked short).
-
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenShort()*](#openshort), [*OpenShortStop()*](#openshortstop), [*OpenShortStopLimit()*](#openshortstoplimit)..
-
-### Usage
-```cs
-OpenShortLimit(double limitPrice)
-OpenShortLimit(double limitPrice, string strategyName)
-OpenShortLimit(int quantity, double limitPrice)
-OpenShortLimit(int quantity, double limitPrice, string strategyName)
-```
-
-For Multibar-Strategies
-```cs
-OpenShortLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, string strategyName)
-```
-
-### Parameter
-|    |  |
-|---------------------|-------------------------------------------------|
-| strategyName          | An unambiguous name     |
-| quantity            | Amount to be ordered   |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).   |
-| limitPrice          | A double value for the limit price   |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the CancelOrder command or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
-
-### Return Value
-an order object of the type "IOrder"
-
-### Example
-```cs
-// Enter a short position if the last entry is 10 bars in the past and two SMAs have crossed each other
-if (BarsCountFromTradeOpen() > 10 && CrossBelow(SMA(10), SMA(20), 1))
-OpenShortLimit("SMA cross entry");
-```
-
-## OpenShortStop()
-### Description
-Enter short stop creates a limit order for entering a short position.
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-See [*OpenShort()*](#openshort), [*OpenShortLimit()*](#openshortlimit), [*OpenShortStopLimit()*](#openshortstoplimit)..
-
-### Usage
-```cs
-OpenShortStop(double stopPrice)
-OpenShortStop(double stopPrice, string strategyName)
-OpenShortStop(int quantity, double stopPrice)
-OpenShortStop(int quantity, double stopPrice, string strategyName)
-```
-
-For multi-bar strategies
-```cs
-OpenShortStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double stopPrice, string strategyName)
-```
-
-### Parameter
-|                     |                                                                                                               |
-|---------------------|---------------------------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name                                                                                           |
-| quantity            | Amount to be ordered                                                                                          |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
-| stopPrice           | A double value for the stop price                                                                             |
-| liveUntilCancelled  | The order will remain active until canceled using the CancelOrder command or until it reaches its expiry time |
-
-### Return Value
-An order object of the type "IOrder"
-
-### Example
-```cs
-private IOrder stopOrder = null;
-// Place an entry stop at the High of the current bar
-if (stopOrder == null)
-    stopOrder = OpenShortStop(High[0], "stop short");
-```
-
-## OpenShortStopLimit()
-### Description
-Enter short stop limit creates a sell stop limit order for entering a short position.
-
-If a signature not containing a set amount is used, the amount is set by the [*DefaultOrderQuantity*](#defaultorderquantity) or taken from the strategy dialog window.
-
-See [*OpenShort()*](#openshort), [*OpenShortLimit()*](#openshortlimit), [*OpenShortStop()*](#openshortstop).
-
-### Usage
-```cs
-OpenShortStopLimit(double limitPrice, double stopPrice)
-OpenShortStopLimit(double limitPrice, double stopPrice, string strategyName)
-OpenShortStopLimit(int quantity, double limitPrice, double stopPrice)
-OpenShortStopLimit(int quantity, double limitPrice, double stopPrice, string strategyName)
-```
-
-For multi-bar strategies
-
-```cs
-OpenShortStopLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, double limitPrice, double stopPrice, string strategyName)
-```
-
-### Parameter
-|                     |                                                                                                                                                              |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| strategyName          | An unambiguous name      |
-| quantity   | Amount to be ordered       |
-| multibarSeriesIndex | For [*Multibar*](#multibar), [*MultiBars*](#multibars) strategies. Index of the data series for which an entry order is to be placed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).       |
-| stopPrice           | A double value for the stop price                                                                                                                            |
-| limitPrice          | A double value for the limit price                                                                                                                           |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted using the CancelOrder command or until it reaches its expiry time. |
-
-### Return Value
-An order object of the type "IOrder"
-
-### Example
-```cs
-private IOrder stopOrder = null;
-// Place an entry stop at the low of the current bar; if the low is reached then place a limit order 2 ticks below the low
-if (stopOrder == null)
-    stopOrder = OpenShortStopLimit(High[0] + (2*TickSize), High[0], "stop short");
-```
-
-
 ## ExcludeTradeHistoryInBacktest
 ## CloseLong()
 ### Description
@@ -1619,12 +1295,11 @@ protected override void OnInit()
     SetUpTrailStop(CalculationMode.Price, Low[0]);
 }
 ```
+## StrategyOrderParameters
+## Description
+This class aggregates all properties needed to submit the order.
 
-## SubmitOrder()
-### Description
-Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
-
-See [*OnOrderChanged()*](#onorderchanged), [*OnOrderExecution()*](#onorderexecution).
+See [*SubmitOrder()*](#submitorder), [*CloseLongTrade()*](#closelongtrade), [*CloseShortTrade()*](#closeshorttrade).
 
 ### Usage
 ```cs
@@ -1643,7 +1318,6 @@ public class StrategyOrderParameters
         public string FromEntrySignal { get; set; } = String.Empty;
     }
 ```
-
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
@@ -1652,13 +1326,25 @@ public class StrategyOrderParameters
 | OrderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                               |
 | LiveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*Order.Cancel*](#ordercancel) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)).         | 
 | Quantity            | Amount                                                             |
-| Price          | Limit value. Inputting a 0 makes this parameter irrelevant         |
+| Price               | Limit value. Inputting a 0 makes this parameter irrelevant         |
 | StopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
-| SignalName           | An unambiguous signal name (string)                               |
-| Instrument           | The trading instrument in which the position exists.              |
-| TimeFrame           | The TimeFrame, which is valid for the order.                      |
-| FromEntrySignal        | The name of the attached entry signal                            |
+| SignalName          | An unambiguous signal name (string)                                |
+| Instrument          | The trading instrument in which the position exists.               |
+| TimeFrame           | The TimeFrame, which is valid for the order.                       |
+| FromEntrySignal     | The name of the attached entry signal                              |
 
+
+## SubmitOrder()
+### Description
+Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.
+
+See [*OnOrderChanged()*](#onorderchanged), [*OnOrderExecution()*](#onorderexecution).
+
+### Usage
+See [*StrategyOrderParameters()*](#strategyorderparameters)
+
+### Parameter
+See [*StrategyOrderParameters()*](#strategyorderparameters)
 
 
 ### Return Value
