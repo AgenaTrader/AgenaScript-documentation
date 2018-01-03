@@ -1628,33 +1628,71 @@ See [*OnOrderChanged()*](#onorderchanged), [*OnOrderExecution()*](#onorderexecut
 
 ### Usage
 ```cs
-SubmitOrder(int multibarSeriesIndex, OrderDirection  orderDirection, OrderType orderType, int quantity, double limitPrice, double stopPrice, string ocoId, string strategyName)
+public class StrategyOrderParameters
+    {
+        public OrderDirection Direction { get; set; }
+        public OrderMode Mode { get; set; } = OrderMode.Direct;
+        public OrderType Type { get; set; }
+        public bool LiveUntilCancelled { get; set; }
+        public int Quantity { get; set; }
+        public double Price { get; set; }
+        public double StopPrice { get; set; }
+        public string SignalName { get; set; } = String.Empty;
+        public IInstrument Instrument { get; set; }
+        public ITimeFrame TimeFrame { get; set; }
+        public string FromEntrySignal { get; set; } = String.Empty;
+    }
 ```
 
 ### Parameter
 |                     |                                                                    |
 |---------------------|--------------------------------------------------------------------|
-| multibarSeriesIndex | For multi-bar strategies. Index of the data series for which the order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).                                   |
-| orderDirection         | Possible values are: **orderDirection.Buy** (Buy order for a long entry); **orderDirection.Sell** (Sell order for closing a long position)                |
-| orderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                               |
-| quantity            | Amount                                                             |
-| limitPrice          | Limit value. Inputting a 0 makes this parameter irrelevant         |
-| stopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
-| ocoId               | A unique ID (string) for linking multiple orders into an OCO group |
-| strategyName         | An unambiguous signal name (string)                                |
+| OrderDirection         | Possible values are: **orderDirection.Buy** (Buy order for a long entry); **orderDirection.Sell** (Sell order for closing a long position)                |
+|OrderMode            | One of three possible positions in the market: Direct, Dynamic, Synthetic  |
+| OrderType           | Possible values: OrderType.Limit, OrderType.Market, OrderType.Stop, OrderType.StopLimit                                               |
+| LiveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*Order.Cancel*](#ordercancel) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)).         | 
+| Quantity            | Amount                                                             |
+| Price          | Limit value. Inputting a 0 makes this parameter irrelevant         |
+| StopPrice           | Stop value. Inputting a 0 makes this parameter irrelevant          |
+| SignalName           | An unambiguous signal name (string)                               |
+| Instrument           | The trading instrument in which the position exists.              |
+| TimeFrame           | The TimeFrame, which is valid for the order.                      |
+| FromEntrySignal        | The name of the attached entry signal                            |
+
+
 
 ### Return Value
 an order object of the type "IOrder"
 
 ### Example
 ```cs
-private IOrder entryOrder = null;
-protected override void OnCalculate()
-{
+// Limit Long order
+Submit Limit Buy
+var order = SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Limit,
+                    Mode = orderMode,
+                    Price = limitPrice,
+                    Quantity = quantity,
+                    SignalName = entryName,
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 
-if (CrossBelow(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-    entryOrder = SubmitOrder(0, orderDirection.Buy, OrderType.Stop, 1, 0, High[0], "", "LongEntry");
-}
+// Short Market order
+Submit Sell Market
+var order = SubmitOrder(new StrategyOrderParameters
+            {
+                Direction = OrderDirection.Sell,
+                Type = OrderType.Market,
+                Mode = ordermode,
+                Quantity = quantity,
+                SignalName = entryName,
+                Instrument = Instrument,
+                TimeFrame = TimeFrame
+            });
 ```
 
 ## TimeInForce
