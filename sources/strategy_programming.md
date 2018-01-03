@@ -411,7 +411,7 @@ OpenLongLimit(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, do
 | quantity            | Amount of stocks/contracts/etc.  |
 | multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies. Index of the data series for which the entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex). |
 | limitPrice          | A double value for the limit price |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*CancelOrder*](#cancelorder) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until removed with [*Order.Cancel*](#order.cancel) or until it reaches its expiry (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
 An order object of the type "IOrder"
@@ -452,7 +452,7 @@ OpenLongStop(int multibarSeriesIndex, bool liveUntilCancelled, int quantity, dou
 | quantity            | Amount of stocks or contracts etc.                                                                                                                                                    |
 | multibarSeriesIndex | For [*Multibar*](#multibar) and [*MultiBars*](#multibars) strategies Index of the data series for which an entry order is to be executed. See [*ProcessingBarSeriesIndex*](#processingbarseriesindex).  |
 | stopPrice           | A double value for the stop price                                                                                                                                                     |
-| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*CancelOrder*](#cancelorder) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
+| liveUntilCancelled  | The order will not be deleted at the end of the bar, but will remain active until deleted with the [*Order.Cancel*](#order.cancel) command or until it reaches its expiry time (see [*TimeInForce*](#timeinforce)). |
 
 ### Return Value
 An order object of the type "IOrder"
@@ -1320,7 +1320,7 @@ The individual properties are:
 
 Possible Methods:
 
--   **order CancelOrder()**
+-   **order Order.Cancel()**
     Delete the Order
 
 -   **order.ConfirmOrder()**
