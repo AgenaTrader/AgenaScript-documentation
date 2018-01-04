@@ -112,7 +112,7 @@
         
             <li><a class="toctree-l3" href="#chart">Chart</a></li>
         
-            <li><a class="toctree-l3" href="#clearoutputwindow">ClearOutputWindow()</a></li>
+            <li><a class="toctree-l3" href="#cleartracewindow">ClearTraceWindow()</a></li>
         
             <li><a class="toctree-l3" href="#colors">Colors</a></li>
         
@@ -224,7 +224,7 @@
         
             <li><a class="toctree-l3" href="#onpaint">OnPaint()</a></li>
         
-            <li><a class="toctree-l3" href="#parameter_32">Parameter()</a></li>
+            <li><a class="toctree-l3" href="#inputparameter">InputParameter()</a></li>
         
             <li><a class="toctree-l3" href="#playsound">PlaySound()</a></li>
         
@@ -241,8 +241,6 @@
             <li><a class="toctree-l3" href="#removechartdrawings">RemoveChartDrawings()</a></li>
         
             <li><a class="toctree-l3" href="#requiredbarscount">RequiredBarsCount</a></li>
-        
-            <li><a class="toctree-l3" href="#sessionbreaklines">SessionBreakLines</a></li>
         
             <li><a class="toctree-l3" href="#showalert">ShowAlert()</a></li>
         
@@ -419,7 +417,7 @@ Public variables with the browsable attribute set to false are not displayed wit
 <p><strong>Example for a parameter:</strong></p>
 <p>The parameter should be displayed and queried in the properties window. Therefore browsable should be set to true.</p>
 <pre><code class="cs">[Description(&quot;Numbers of bars used for calculations&quot;)]
-[Category(&quot;Parameters&quot;)]
+[Category(&quot;InputParameter&quot;)]
 public int Period
 {
 get { return period; }
@@ -441,8 +439,8 @@ get { return Outputs[0]; }
 <p>Category is an <a href="#attribute">Attribute</a> in AgenaScript and can be used on properties and classes.</p>
 <p>The category attribute on properties defines under which category in the properties dialog the parameter is shown.
 If this attribute is missing, the parameters category is accepted as the standard.</p>
-<p>The following example shows how to create the new category "My Parameters" in the properties dialog:</p>
-<pre><code class="cs">[Category(&quot;My Parameters&quot;)]
+<p>The following example shows how to create the new category "My InputParameter" in the properties dialog:</p>
+<pre><code class="cs">[Category(&quot;My InputParameter&quot;)]
 [DisplayName(&quot;Period number&quot;)]
 public double _period
 {
@@ -622,13 +620,13 @@ BarsVisible contains the number of bars actually visible.</p>
 <p>Example: the chart has been moved so that the last bar of the chart is displayed in the middle section.</p>
 <p>LastBarPainted would be larger than Bars.Count.</p>
 <p>LastBarVisible would be Bars.Count -1.</p>
-<h2 id="clearoutputwindow">ClearOutputWindow()</h2>
+<h2 id="cleartracewindow">ClearTraceWindow()</h2>
 <h3 id="description_4">Description</h3>
-<p>The ClearOutputWindow() method empties the output window. The method can be used within OnInit() as well as within OnCalculate().
+<p>The ClearTraceWindow() method empties the output window. The method can be used within OnInit() as well as within OnCalculate().
 The output window contains all outputs that have been created with the <a href="#print"><em>Print()</em></a> command.
 Using the output window is a great method for code debugging.</p>
 <h3 id="usage_3">Usage</h3>
-<pre><code class="cs">ClearOutputWindow()
+<pre><code class="cs">ClearTraceWindow()
 </code></pre>
 
 <h3 id="parameter_1">Parameter</h3>
@@ -639,7 +637,7 @@ Using the output window is a great method for code debugging.</p>
 <pre><code class="cs">protected override void OnInit()
 {
 // Delete the content of the output window
-ClearOutputWindow();
+ClearTraceWindow();
 }
 </code></pre>
 
@@ -1352,7 +1350,7 @@ Displacement = 1;
 <h3 id="example_23">Example</h3>
 <pre><code class="cs">protected override void OnOrderExecution(IExecution execution)
 {
-if (execution.Order != null &amp;&amp; execution.Order.OrderState == OrderState.Filled)
+if (execution.Order != null &amp;&amp; execution.Order.OrderState == OrderState.FilledQuantity)
 {
 if (oEnter != null &amp;&amp; execution.Name == oEnter.Name)
 {
@@ -1423,7 +1421,7 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] &lt; SMA(20)[0] &amp;&amp; entryOrder == null)
 // Sell 1 contract at the current ask price
-entryOrder = SubmitOrder(0, OrderAction.SellShort, OrderType.Limit, 1, GetCurrentAsk(), 0, &quot;&quot;, &quot;Enter short&quot;);
+entryOrder = SubmitOrder(0, OrderDirection.Sell, OrderType.Limit, 1, GetCurrentAsk(), 0, &quot;&quot;, &quot;Enter short&quot;);
 }
 </code></pre>
 
@@ -1463,7 +1461,7 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] &gt; SMA(20)[0] &amp;&amp; entryOrder == null)
 // Sell 1 contract at the current bid price
-entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, &quot;&quot;, &quot;Enter long&quot;);
+entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, &quot;&quot;, &quot;Enter long&quot;);
 }
 </code></pre>
 
@@ -1504,7 +1502,7 @@ protected override void OnCalculate()
    // Einstiegsbedingung
    if (Close[0] &gt; SMA(20)[0] &amp;&amp; entryOrder == null)
        // Kauf 1 Kontrakt zum aktuellen BidKurs
-       entryOrder = SubmitOrder(0, OrderAction.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,&quot;&quot;, &quot;Enter Long&quot;);
+       entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,&quot;&quot;, &quot;Enter Long&quot;);
 }
 </code></pre>
 
@@ -1636,7 +1634,7 @@ Every further appearance of InputPriceType will be ignored!</p>
 <h3 id="example1">Example1</h3>
 <pre><code class="cs">protected override void OnInit()
 {
-ClearOutputWindow();
+ClearTraceWindow();
 InputPriceType = PriceType.Low;
 }
 protected override void OnCalculate()
@@ -2132,26 +2130,24 @@ Add(DatafeedHistoryPeriodicity.Week, 1);
 <li><a href="#isautoscale"><em>IsAutoScale</em></a></li>
 <li><a href="#requiredbarscount"><em>RequiredBarsCount</em></a></li>
 <li><a href="../calculateonclosedbar"><em>CalculateOnClosedBar</em></a></li>
-<li><a href="#clearoutputwindow"><em>ClearOutputWindow()</em></a></li>
+<li><a href="#cleartracewindow"><em>ClearTraceWindow()</em></a></li>
 <li><a href="#displacement"><em>Displacement</em></a></li>
 <li><a href="#isshowindatabox"><em>IsShowInDataBox</em></a></li>
 <li><a href="#isadddrawingstopricepanel"><em>IsAddDrawingsToPricePanel</em></a></li>
 <li><a href="#inputpricetype"><em>InputPriceType</em></a></li>
 <li><a href="#isoverlay"><em>IsOverlay</em></a></li>
 <li><a href="#isshowpricemarkers"><em>IsShowPriceMarkers</em></a></li>
-<li><a href="#sessionbreaklines"><em>SessionBreakLines</em></a></li>
 <li><a href="#isshowchartverticalgrid"><em>IsShowChartVerticalGrid</em></a></li>
 </ul>
 <p><strong>Additional Keywords for Strategies</strong></p>
 <ul>
 <li><a href="#defaultorderquantity"><em>DefaultOrderQuantity</em></a></li>
 <li><a href="#entriesperdirection"><em>EntriesPerDirection</em></a></li>
-<li><a href="#entryhandling"><em>EntryHandling</em></a></li>
 <li><a href="#setupstoploss"><em>SetUpStopLoss()</em></a></li>
 <li><a href="#setupprofittarget"><em>SetUpProfitTarget()</em></a></li>
 <li><a href="#setuptrailstop"><em>SetUpTrailStop()</em></a></li>
 <li><a href="#timeinforce"><em>TimeInForce</em></a></li>
-<li><a href="#printorders"><em>PrintOrders</em></a></li>
+<li><a href="#traceorders"><em>TraceOrders</em></a></li>
 </ul>
 <h3 id="more-information_2">More Information</h3>
 <p><strong>Caution:</strong>
@@ -2161,7 +2157,7 @@ Developers of custom AgenaScripts should NOT use this method for running their o
 <pre><code class="cs">protected override void OnInit()
 {
 Add(new OnPaint(Color.Blue, &quot;myPlot&quot;));
-ClearOutputWindow();
+ClearTraceWindow();
 IsAutoScale = false;
 IsOverlay = true;
 IsShowPriceMarkers = false;
@@ -2192,8 +2188,8 @@ See <a href="#levelline"><em>LevelLine</em></a>.</p>
 <td>Pen object</td>
 </tr>
 <tr>
-<td>PlotStyle</td>
-<td>LevelLine type: PlotStyle.Bar, PlotStyle.Block, PlotStyle.Cross, PlotStyle.Dot, PlotStyle.Hash, PlotStyle.LevelLine, PlotStyle.Square, PlotStyle.TriangleDown, PlotStyle.TriangleUp</td>
+<td>OutputSeriesDisplayStyle</td>
+<td>LevelLine type: OutputSeriesDisplayStyle.Bar, OutputSeriesDisplayStyle.Block, OutputSeriesDisplayStyle.Cross, OutputSeriesDisplayStyle.Dot, OutputSeriesDisplayStyle.Hash, OutputSeriesDisplayStyle.LevelLine, OutputSeriesDisplayStyle.Square, OutputSeriesDisplayStyle.TriangleDown, OutputSeriesDisplayStyle.TriangleUp</td>
 </tr>
 <tr>
 <td>Name</td>
@@ -2204,8 +2200,8 @@ See <a href="#levelline"><em>LevelLine</em></a>.</p>
 <h3 id="usage_43">Usage</h3>
 <pre><code class="cs">OnPaint(Color color, string name)
 OnPaint(Pen pen, string name)
-OnPaint(Color color, PlotStyle plotStyle, string name)
-OnPaint(Pen pen, PlotStyle plotStyle, string name)
+OnPaint(Color color, OutputSeriesDisplayStyle plotStyle, string name)
+OnPaint(Pen pen, OutputSeriesDisplayStyle plotStyle, string name)
 </code></pre>
 
 <h3 id="more-information_3">More Information</h3>
@@ -2223,7 +2219,7 @@ protected override void OnInit()
 // a red pen with the line strength of 6 is defined
 pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-plot = new OnPaint(pen, PlotStyle.Dot, &quot;MyPlot&quot;);
+plot = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, &quot;MyPlot&quot;);
 // The defined plot is to be used as a representation for an indicator
 Add(plot);
 }
@@ -2231,20 +2227,20 @@ Add(plot);
 // Abbreviation of example 2
 protected override void OnInit()
 {
-Add(new OnPaint(new Pen(Color.Blue, 6), PlotStyle.Dot, &quot;MyPlot&quot;));
+Add(new OnPaint(new Pen(Color.Blue, 6), OutputSeriesDisplayStyle.Dot, &quot;MyPlot&quot;));
 }
 </code></pre>
 
-<h2 id="parameter_32">Parameter()</h2>
+<h2 id="inputparameter">InputParameter()</h2>
 <h3 id="description_59">Description</h3>
 <p>Attribute which used for indicator customization</p>
 <h3 id="return-value_19">Return Value</h3>
 <p>None</p>
-<h3 id="parameter_33">Parameter</h3>
+<h3 id="parameter_32">Parameter</h3>
 <p>None</p>
 <h3 id="example_54">Example</h3>
 <pre><code class="cs">[Description(&quot;Period for the medium mean average&quot;)]
-[Category(&quot;Parameters&quot;)]
+[Category(&quot;InputParameter&quot;)]
 [DisplayName(&quot;MA Medium&quot;)]
 public int MA_Medium
 {
@@ -2263,7 +2259,7 @@ _ma_medium = value;
 <p><strong>PlaySound</strong>(wavFile)</p>
 <h3 id="return-value_20">Return Value</h3>
 <p>none</p>
-<h3 id="parameter_34">Parameter</h3>
+<h3 id="parameter_33">Parameter</h3>
 <p>wavFile File name of the wav file to be played</p>
 <h3 id="example_55">Example</h3>
 <pre><code class="cs">using System.IO;
@@ -2278,7 +2274,7 @@ PlaySound(path + file);
 <p>See <a href="http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx"><em>http://msdn.microsoft.com/de-de/library/system.drawing.graphics.aspx</em></a>.</p>
 <p>The <em>Chart</em> object offers several parameters.</p>
 <p>More examples: <em>Bar Numbering</em>, <em>PlotSample</em>, <em>Chart Background Image</em>.</p>
-<h3 id="parameter_35">Parameter</h3>
+<h3 id="parameter_34">Parameter</h3>
 <p>graphics The graphics object of the price chart (context)</p>
 <p>rectangle The size of the drawing area (type "public struct rectangle")</p>
 <p>double min The smallest price in the y-axis</p>
@@ -2375,7 +2371,7 @@ graphics.DrawString(&quot;Here is bottom left!&quot;, font, brush, r.X + 10, r.Y
 <h2 id="print">Print()</h2>
 <h3 id="description_63">Description</h3>
 <p>The Print() method writes outputs in the AgenaTrader output window.
-See <a href="#clearoutputwindow"><em>ClearOutputWindow()</em></a>.</p>
+See <a href="#cleartracewindow"><em>ClearTraceWindow()</em></a>.</p>
 <h3 id="usage_47">Usage</h3>
 <pre><code class="cs">Print(string message)
 Print(bool value)
@@ -2385,7 +2381,7 @@ Print(DateTime value)
 Print(string format, string message)
 </code></pre>
 
-<h3 id="parameter_36">Parameter</h3>
+<h3 id="parameter_35">Parameter</h3>
 <p>string Text an individual message text</p>
 <h3 id="return-value_22">Return Value</h3>
 <p>none</p>
@@ -2404,7 +2400,7 @@ Print(&quot;One empty row afterwards \\n&quot;);
 <h2 id="processingbarindex">ProcessingBarIndex</h2>
 <h3 id="description_64">Description</h3>
 <p>Current bar is a method of indexing bars used in the OnCalculate() method. If a chart contains 500 bars and an indicator is to be calculated on the basis of these, then AgenaTrader will begin calculating from the oldest bar. The oldest bar receives the number 0. Once the calculation for this bar has been completed, the OnCalculate() method is called up for the next bar, which in turn receives the number 1. This continues until the last bar, which receives a value of 500.</p>
-<h3 id="parameter_37">Parameter</h3>
+<h3 id="parameter_36">Parameter</h3>
 <p>none</p>
 <h3 id="return-value_23">Return Value</h3>
 <p>Current bar is a variable of the type int, which always contains the number of the bar currently being used.</p>
@@ -2429,7 +2425,7 @@ See <a href="#removechartdrawings"><em>RemoveChartDrawings()</em></a>.</p>
 <p>RemoveChartDrawings(string tag)</p>
 <h3 id="return-value_24">Return Value</h3>
 <p>none</p>
-<h3 id="parameter_38">Parameter</h3>
+<h3 id="parameter_37">Parameter</h3>
 <p>string tag The clearly identifiable name for the drawing object</p>
 <h3 id="example_60">Example</h3>
 <pre><code class="cs">RemoveChartDrawings(&quot;My line&quot;);
@@ -2464,30 +2460,10 @@ RequiredBarsCount = 50;
 }
 </code></pre>
 
-<h2 id="sessionbreaklines">SessionBreakLines</h2>
-<h3 id="description_68">Description</h3>
-<p>The property SessionBreakLines defines whether the vertical lines that represent a trading session stop are displayed within the chart.
-This may be useful for stocks and other instruments if you wish to display session breaks/trading stops.
-<strong>SessionBreakLines = true (default)</strong></p>
-<p>Session break lines are shown</p>
-<p><strong>SessionBreakLines = false</strong></p>
-<p>Session break lines are not shown</p>
-<p>This property can be queried within the script and outputs a value of the type Boolean (true or false).</p>
-<h3 id="usage_52">Usage</h3>
-<p>SessionBreakLines</p>
-<h3 id="example_63">Example</h3>
-<pre><code class="cs">protected override void OnInit()
-{
-Add(new OnPaint(Color.Red, &quot;MyPlot1&quot;));
-//Session break lines should not be shown
-SessionBreakLines = false;
-}
-</code></pre>
-
 <h2 id="showalert">ShowAlert()</h2>
-<h3 id="description_69">Description</h3>
+<h3 id="description_68">Description</h3>
 <p>The ShowAlert method creates an acoustic and/or visual alarm.</p>
-<h3 id="usage_53">Usage</h3>
+<h3 id="usage_52">Usage</h3>
 <pre><code class="cs">ShowAlert(string message, bool showMessageBox, string soundLocation);
 //Due to compatability reasons, an old signature is still used here. When using this method, the color settings and the &quot;re-arm seconds&quot; parameter are ignored.
 ShowAlert(string id, AlertPriority priority, string message, string soundLocation, int rearmSeconds, Color backColor, Color forColor);
@@ -2495,7 +2471,7 @@ ShowAlert(string id, AlertPriority priority, string message, string soundLocatio
 
 <h3 id="return-value_26">Return Value</h3>
 <p>None</p>
-<h3 id="parameter_39">Parameter</h3>
+<h3 id="parameter_38">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -2518,7 +2494,7 @@ ShowAlert(string id, AlertPriority priority, string message, string soundLocatio
 </tr>
 </tbody>
 </table>
-<h3 id="example_64">Example</h3>
+<h3 id="example_63">Example</h3>
 <pre><code class="cs">// Message will be outputted if the SMA(20) crosses below the SMA(50)
 if (CrossBelow(SMA(20), SMA(50), 1))
 Alert(&quot;Check short signal!&quot;, true, &quot;Alert4.wav&quot;);
@@ -2558,18 +2534,18 @@ Eurex (FDAX): <a href="http://www.eurexchange.com/exchange-en/products/idx/dax/1
 <p>See <a href="#barstimeframe"><em>Bars.TimeFrame</em></a>.</p>
 <p>When using multiple timeframes (<a href="#multibars"><em>Multibars</em></a>) in an indicator, please see <a href="#timeframes"><em>TimeFrames</em></a>.</p>
 <h2 id="update">Update()</h2>
-<h3 id="description_70">Description</h3>
+<h3 id="description_69">Description</h3>
 <p>The Update() method calls up the OnCalculate method in order to recalculate the indicator values.</p>
 <p>Update() is to be used with caution and is intended for use by experienced programmers.</p>
-<h3 id="usage_54">Usage</h3>
+<h3 id="usage_53">Usage</h3>
 <pre><code class="cs">Update()
 </code></pre>
 
 <h3 id="return-value_27">Return Value</h3>
 <p>none</p>
-<h3 id="parameter_40">Parameter</h3>
+<h3 id="parameter_39">Parameter</h3>
 <p>none</p>
-<h3 id="example_65">Example</h3>
+<h3 id="example_64">Example</h3>
 <p>The effect of update can be illustrated with the help of 2 indicators.
 The first indicator, Ind1, uses a public variable from the indicator Ind2.</p>
 <p><strong>Code from Ind1:</strong></p>
@@ -2603,16 +2579,16 @@ If Ind2 is called up by Ind1, the get-method of MyPublicVariable is called up in
 <p><strong>With Update() - Correct</strong>
 By calling up Update(), OnCalculate() is initially executed by Ind2. This sets MyPublicVariable to 1. Lastly, the value 1 is passed on to the requesting indicator.</p>
 <h2 id="value">Value</h2>
-<h3 id="description_71">Description</h3>
+<h3 id="description_70">Description</h3>
 <p>Value is a data series object containing the first data series of an indicator.</p>
 <p>When the Add() method is called up, a value object is automatically created and added to the values collection.</p>
 <p>Value is identical to Values[0].</p>
-<h3 id="usage_55">Usage</h3>
+<h3 id="usage_54">Usage</h3>
 <p>Value</p>
 <p>Value[<strong>int</strong> barsAgo]</p>
 <h3 id="more-information_6">More Information</h3>
 <p>The methods known for a collection, Set(), Reset(), and Count(), can be used for values.</p>
-<h3 id="example_66">Example</h3>
+<h3 id="example_65">Example</h3>
 <p>See <a href="#values"><em>Values</em></a>.</p>
               
             </div>
