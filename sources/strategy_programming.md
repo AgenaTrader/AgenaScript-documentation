@@ -199,12 +199,28 @@ protected override void OnInit()
 
 protected override void OnCalculate()
 {
-   oopenlong = SubmitOrder(0, orderDirection.Buy, OrderType.Market, DefaultOrderQuantity, 0, 0, "ocoId","strategyName");
-   osubmitbuy = SubmitOrder(0, orderDirection.Sell, OrderType.Stop, DefaultOrderQuantity, 0, Close[0] * 1.1, "ocoId","strategyName");
-
+ 
+ oopenlong =  SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = "strategyName",
+                });
+   
+osubmitbuy =  SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Sell,
+                    Type = OrderType.Stop,
+                    Quantity = DefaultOrderQuantity,
+		    StopPrice = Close[0] * 1.1,
+                    SignalName = "strategyName",
+                });
+				
    CreateIfDoneGroup(new List<IOrder> { oopenlong, osubmitbuy });
 
    oopenlong.ConfirmOrder();
+}
 }
 ```
 
