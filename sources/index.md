@@ -1,6 +1,6 @@
 ![AgenaTrader](./images/logo_100.png)
 
-**The following API documentation requires AgenaTrader in version 1.9.0.563**
+**The following API documentation requires AgenaTrader in version 2.0.1.x**
 
 #Welcome to the official AgenaScript documentation!
 
