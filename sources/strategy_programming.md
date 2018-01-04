@@ -366,12 +366,15 @@ var order = CloseLongTrade(new StrategyOrderParameters
 });
 ```
 
-## CloseShortTrade ()
+## ExitOnClose
+## ExitOnCloseSeconds
+
+## CloseShortTrade()
 ### Description
 CloseShortTradecreates a buy-to-cover order for closing a short position (buy).
 
 
-See: [*SubmitOrder()](#submitorder), [*CloselongTrade()](#closelongtrade)
+See: [*SubmitOrder()*](#submitorder), [*CloselongTrade()*](#closelongtrade)
 ### Usage
 See [*StrategyOrderParameters*](#strategyorderparameters)
 
