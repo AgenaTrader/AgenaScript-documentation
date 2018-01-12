@@ -717,7 +717,8 @@ if (CrossBelow(SMA(20), 40, 1))
 Print("SMA(20) has fallen below 40!");
 // Puts out a notice for a short entry if a crossing of the SMA(20) below the SMA(50) has occurred within the last 5 bars.
 .
-if (CrossBelow(SMA(20), SMA(50), 1) && Close[1] > Close[0])
+if (CrossBelow(SMA(20), SMA(50), 1) 
+&& Instrument.Compare(Close[1], Close[0]) > 1)
 Print("Short entry !!!");
 ```
 
@@ -1377,7 +1378,19 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] < SMA(20)[0] && entryOrder == null)
 // Sell 1 contract at the current ask price
-entryOrder = SubmitOrder(0, OrderDirection.Sell, OrderType.Limit, 1, GetCurrentAsk(), 0, "", "Enter short");
+  
+    SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Sell,
+                    Type = OrderType.Limit,
+                    Mode = OrderMode.Direct,
+                    Price = GetCurrentAsk(),
+                    Quantity = 1,
+                    SignalName = "Enter short",
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 }
 ```
 
@@ -1428,9 +1441,21 @@ private IOrder entryOrder = null;
 protected override void OnCalculate()
 {
 // Entry condition
-if (Close[0] > SMA(20)[0] && entryOrder == null)
+if (Instrument.Compare(Close[0], SMA(20)[0]) > 0 && entryOrder == null)
 // Sell 1 contract at the current bid price
-entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, "", "Enter long");
+
+  SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Limit,
+                    Mode = OrderMode.Direct,
+                    Price = GetCurrentBid(),
+                    Quantity = 1,
+                    SignalName = "Enter long",
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 }
 ```
 
@@ -1480,10 +1505,24 @@ private IOrder entryOrder = null;
 
 protected override void OnCalculate()
 {
+   
+   .....
+   
    // Einstiegsbedingung
-   if (Close[0] > SMA(20)[0] && entryOrder == null)
+   if (Instrument.Compare(Close[0], SMA(20)[0]) > 0 && entryOrder == null)
        // Kauf 1 Kontrakt zum aktuellen BidKurs
-       entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,"", "Enter Long");
+       entryOrder = SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Limit,
+                    Mode = OrderMode.Direct,
+                    Price = GetCurrentBid(),
+                    Quantity = 1,
+                    SignalName = "EntryLong",
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 }
 ```
 
@@ -2170,7 +2209,7 @@ Developers of custom AgenaScripts should NOT use this method for running their o
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Blue, "myPlot"));
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Orange), "Output1"));
 ClearTraceWindow();
 IsAutoScale = false;
 IsOverlay = true;
@@ -2208,7 +2247,7 @@ Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.d
 ```cs
 // Example 1
 // OnPaint with standard values (line with line strength 1)
-Add(new OnPaint(Color.Green, "MyPlot"));
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Orange), "Output1"));
 // Example 2
 // user-defined values for pen and plot style
 private OnPaint plot;
@@ -2218,9 +2257,9 @@ protected override void OnInit()
 // a red pen with the line strength of 6 is defined
 pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-plot = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, "MyPlot");
+paint = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, "MyPlot");
 // The defined plot is to be used as a representation for an indicator
-Add(plot);
+Add(paint);
 }
 // Example 3
 // Abbreviation of example 2
