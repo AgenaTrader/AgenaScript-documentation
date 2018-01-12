@@ -1,10 +1,11 @@
 
 #Keywords
 
-## Add()
+## AddOutput()
+## AddLine()
 ### Description
 The add method allows you to add plots or line objects to the chart. When a new plot object is added using Add(), this automatically creates a data series of the type DataSeries, which is attached to this object. The value collection allows you to reference and access this data series.
-Add() can be used with the OnInit() and the OnCalculate() methods.
+Add<xxx>() can be used with the OnInit() and the OnCalculate() methods.
 
 ### Parameter
 plot – a *OnPaint* object
@@ -39,12 +40,12 @@ namespace AgenaTrader.UserCode
     protected override void OnInit()
     {
     // Two blue lines will be placed into the chart, one at 70 and the other at 30
-    Add(new LevelLine(Color.Blue, 70, "UpperLine"));
-    Add(new LevelLine(Color.Blue, 30, "LowerLine"));
+    AddLine(new LevelLine(Color.Blue, 70, "UpperLine"));
+    AddLine(new LevelLine(Color.Blue, 30, "LowerLine"));
 
     // Add 2 plots
-    Add(new OnPaint(Color.Red, "myFastSMA"));
-    Add(new OnPaint(Color.Blue, "mySlowSMA"));
+    AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Red), "FastSMA"));
+    AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Blue), "SlowSMA"));
     }
 
     protected override void OnCalculate()
