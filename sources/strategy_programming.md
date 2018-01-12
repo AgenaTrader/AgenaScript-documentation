@@ -381,7 +381,13 @@ EntriesPerDirection = 1;
 protected override void OnCalculate()
 {
     if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-        OpenLong("SMA cross entry");
+    	SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = "SMA cross entry",
+                });
 }
 
 // Example 2
@@ -390,9 +396,25 @@ protected override void OnCalculate()
 protected override void OnCalculate()
 {
     if (CrossAbove(EMA(14), SMA(50), 1) && IsSerieRising(ADX(20)))
-        OpenLong("EMACrossesSMA");
+    {
+    	SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = "EMACrossesSMA",
+                });
+    }
     else if (CrossAbove (MACD(2,2,5), 0, 1))
-        OpenLong("MACDCross");
+    {
+    	SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = "MACDCross",
+                });
+    }
 }
 ```
 
