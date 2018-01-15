@@ -165,7 +165,7 @@ Bars.GetSessionBegin
 ### More Information
 The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function [*Instrument.Exchange*](#instrumentexchange) .
 
-![Bars.CurrentSessionBeginTime](./media/image3.png)
+![Bars.CurrentSessionBeginTime](./media/TradingHour_TSE.jpg)
 
 ### Example
 ```cs
