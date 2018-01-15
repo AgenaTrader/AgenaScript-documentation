@@ -611,7 +611,13 @@ EntriesPerDirection = 1;
 protected override void OnCalculate()
 {
     if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
-        OpenLong(&quot;SMA cross entry&quot;);
+        SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = &quot;SMA cross entry&quot;,
+                });
 }
 
 // Example 2
@@ -620,9 +626,25 @@ protected override void OnCalculate()
 protected override void OnCalculate()
 {
     if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
-        OpenLong(&quot;EMACrossesSMA&quot;);
+    {
+        SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = &quot;EMACrossesSMA&quot;,
+                });
+    }
     else if (CrossAbove (MACD(2,2,5), 0, 1))
-        OpenLong(&quot;MACDCross&quot;);
+    {
+        SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Market,
+                    Quantity = DefaultOrderQuantity,
+                    SignalName = &quot;MACDCross&quot;,
+                });
+    }
 }
 </code></pre>
 
@@ -706,10 +728,10 @@ Print(&quot;The current P/L already realized is &quot; + Account.GetValue(Accoun
             IsEntry = true;
             IsStop = false;
             IsTarget= false;
-            Add(new OutputSeriesDescription(Color.FromKnownColor(KnownColor.Black), &quot;Occurred&quot;));
-            Add(new OutputSeriesDescription(Color.FromArgb(255, 118, 222, 90), &quot;Entry1&quot;));
-            Add(new OutputSeriesDescription(Color.FromArgb(255, 118, 222, 90), &quot;Entry2&quot;));
-            Add(new OutputSeriesDescription(Color.FromArgb(255, 118, 222, 90), &quot;Entry3&quot;));
+            Add(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), &quot;Occurred&quot;));
+            Add(new OutputDescriptor(Color.FromArgb(255, 118, 222, 90), &quot;Entry1&quot;));
+            Add(new OutputDescriptor(Color.FromArgb(255, 118, 222, 90), &quot;Entry2&quot;));
+            Add(new OutputDescriptor(Color.FromArgb(255, 118, 222, 90), &quot;Entry3&quot;));
             Overlay = true;
             CalculateOnBarClose = true;
         }

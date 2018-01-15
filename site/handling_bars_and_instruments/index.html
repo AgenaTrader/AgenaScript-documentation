@@ -153,7 +153,7 @@
         
             <li><a class="toctree-l3" href="#plotcolors">PlotColors</a></li>
         
-            <li><a class="toctree-l3" href="#outputseriesdescription">OutputSeriesDescription</a></li>
+            <li><a class="toctree-l3" href="#outputdescriptor">OutputDescriptor</a></li>
         
             <li><a class="toctree-l3" href="#values">Values</a></li>
         
@@ -984,7 +984,7 @@ InSeries[int barsAgo]
 <p>Lines is a collection that contains all <a href="#levelline"><em>LevelLine</em></a> objects of an indicator.</p>
 <p>When a line object is added to the indicator using the <a href="#add"><em>Add()</em></a> method, this line is automatically added to the "lines" collection.</p>
 <p>The order of the add commands determines how these lines are sorted. The first information request of Add() will create Lines[0], the next information request will be Lines[1] etc.</p>
-<p>See <a href="#outputseriesdescription"><em>OutputSeriesDescription</em></a>.</p>
+<p>See <a href="#outputdescriptor"><em>OutputDescriptor</em></a>.</p>
 <h3 id="usage_29">Usage</h3>
 <pre><code class="cs">Lines[int index]
 </code></pre>
@@ -1081,29 +1081,29 @@ PlotColors[2][0] = Color.DarkGray;
 }
 </code></pre>
 
-<h2 id="outputseriesdescription">OutputSeriesDescription</h2>
+<h2 id="outputdescriptor">OutputDescriptor</h2>
 <h3 id="description_32">Description</h3>
-<p>OutputSeriesDescription is a collection that contains the plot objects of an indicator.</p>
+<p>OutputDescriptor is a collection that contains the plot objects of an indicator.</p>
 <p>When a plot object is added to an indicator using the Add() method, it is also automatically added to the "plots" collection.</p>
-<p>The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots[0], the following information request will create OutputSeriesDescription[1] etc.</p>
+<p>The order of the add commands determines how the plots are sorted. The first Add() information request will create Plots[0], the following information request will create OutputDescriptor[1] etc.</p>
 <p>See <a href="#lines"><em>Lines</em></a>.</p>
 <h3 id="usage_31">Usage</h3>
-<pre><code class="cs">OutputSeriesDescription[int index]
+<pre><code class="cs">OutputDescriptor[int index]
 </code></pre>
 
 <h3 id="example_29">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
-Add(new OnPaint(Color.Blue, &quot;MySMA 20&quot;)); // saved to OutputSeriesDescription[0]
+Add(new OnPaint(Color.Blue, &quot;MySMA 20&quot;)); // saved to OutputDescriptor[0]
 }
 protected override void OnCalculate()
 {
 Value.Set(SMA(20)[0]);
 // If the market price is above the SMA colorize it green, otherwise red
 if (Close[0] &gt; SMA(20)[0])
-    OutputSeriesDescription[0].PlotColor = Color.Green;
+    OutputDescriptor[0].PlotColor = Color.Green;
 else
-    OutputSeriesDescription[0].PlotColor = Color.Red;
+    OutputDescriptor[0].PlotColor = Color.Red;
 }
 </code></pre>
 

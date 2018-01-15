@@ -88,7 +88,9 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#add">Add()</a></li>
+            <li><a class="toctree-l3" href="#addoutput">AddOutput()</a></li>
+        
+            <li><a class="toctree-l3" href="#addline">AddLine()</a></li>
         
             <li><a class="toctree-l3" href="#allowremovalofchartdrawings">AllowRemovalOfChartDrawings</a></li>
         
@@ -304,10 +306,11 @@
             <div class="section">
               
                 <h1 id="keywords">Keywords</h1>
-<h2 id="add">Add()</h2>
+<h2 id="addoutput">AddOutput()</h2>
+<h2 id="addline">AddLine()</h2>
 <h3 id="description">Description</h3>
 <p>The add method allows you to add plots or line objects to the chart. When a new plot object is added using Add(), this automatically creates a data series of the type DataSeries, which is attached to this object. The value collection allows you to reference and access this data series.
-Add() can be used with the OnInit() and the OnCalculate() methods.</p>
+Add<xxx>() can be used with the OnInit() and the OnCalculate() methods.</p>
 <h3 id="parameter">Parameter</h3>
 <p>plot – a <em>OnPaint</em> object
 line – a <em>LevelLine</em> object</p>
@@ -338,12 +341,12 @@ namespace AgenaTrader.UserCode
     protected override void OnInit()
     {
     // Two blue lines will be placed into the chart, one at 70 and the other at 30
-    Add(new LevelLine(Color.Blue, 70, &quot;UpperLine&quot;));
-    Add(new LevelLine(Color.Blue, 30, &quot;LowerLine&quot;));
+    AddLine(new LevelLine(Color.Blue, 70, &quot;UpperLine&quot;));
+    AddLine(new LevelLine(Color.Blue, 30, &quot;LowerLine&quot;));
 
     // Add 2 plots
-    Add(new OnPaint(Color.Red, &quot;myFastSMA&quot;));
-    Add(new OnPaint(Color.Blue, &quot;mySlowSMA&quot;));
+    AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Red), &quot;FastSMA&quot;));
+    AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Blue), &quot;SlowSMA&quot;));
     }
 
     protected override void OnCalculate()
@@ -900,7 +903,8 @@ if (CrossBelow(SMA(20), 40, 1))
 Print(&quot;SMA(20) has fallen below 40!&quot;);
 // Puts out a notice for a short entry if a crossing of the SMA(20) below the SMA(50) has occurred within the last 5 bars.
 .
-if (CrossBelow(SMA(20), SMA(50), 1) &amp;&amp; Close[1] &gt; Close[0])
+if (CrossBelow(SMA(20), SMA(50), 1) 
+&amp;&amp; Instrument.Compare(Close[1], Close[0]) &gt; 1)
 Print(&quot;Short entry !!!&quot;);
 </code></pre>
 
@@ -1421,7 +1425,19 @@ protected override void OnCalculate()
 // Entry condition
 if (Close[0] &lt; SMA(20)[0] &amp;&amp; entryOrder == null)
 // Sell 1 contract at the current ask price
-entryOrder = SubmitOrder(0, OrderDirection.Sell, OrderType.Limit, 1, GetCurrentAsk(), 0, &quot;&quot;, &quot;Enter short&quot;);
+
+    SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Sell,
+                    Type = OrderType.Limit,
+                    Mode = OrderMode.Direct,
+                    Price = GetCurrentAsk(),
+                    Quantity = 1,
+                    SignalName = &quot;Enter short&quot;,
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 }
 </code></pre>
 
@@ -1459,9 +1475,21 @@ entryOrder = SubmitOrder(0, OrderDirection.Sell, OrderType.Limit, 1, GetCurrentA
 protected override void OnCalculate()
 {
 // Entry condition
-if (Close[0] &gt; SMA(20)[0] &amp;&amp; entryOrder == null)
+if (Instrument.Compare(Close[0], SMA(20)[0]) &gt; 0 &amp;&amp; entryOrder == null)
 // Sell 1 contract at the current bid price
-entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentBid(), 0, &quot;&quot;, &quot;Enter long&quot;);
+
+  SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Limit,
+                    Mode = OrderMode.Direct,
+                    Price = GetCurrentBid(),
+                    Quantity = 1,
+                    SignalName = &quot;Enter long&quot;,
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 }
 </code></pre>
 
@@ -1499,10 +1527,24 @@ entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentBi
 
 protected override void OnCalculate()
 {
+
+   .....
+
    // Einstiegsbedingung
-   if (Close[0] &gt; SMA(20)[0] &amp;&amp; entryOrder == null)
+   if (Instrument.Compare(Close[0], SMA(20)[0]) &gt; 0 &amp;&amp; entryOrder == null)
        // Kauf 1 Kontrakt zum aktuellen BidKurs
-       entryOrder = SubmitOrder(0, OrderDirection.Buy, OrderType.Limit, 1, GetCurrentPrice(), 0,&quot;&quot;, &quot;Enter Long&quot;);
+       entryOrder = SubmitOrder(new StrategyOrderParameters
+                {
+                    Direction = OrderDirection.Buy,
+                    Type = OrderType.Limit,
+                    Mode = OrderMode.Direct,
+                    Price = GetCurrentBid(),
+                    Quantity = 1,
+                    SignalName = &quot;EntryLong&quot;,
+                    Instrument = Instrument,
+                    TimeFrame = TimeFrame,
+                    LiveUntilCancelled = true
+                });
 }
 </code></pre>
 
@@ -2156,7 +2198,7 @@ Developers of custom AgenaScripts should NOT use this method for running their o
 <h3 id="example_52">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
-Add(new OnPaint(Color.Blue, &quot;myPlot&quot;));
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Orange), &quot;Output1&quot;));
 ClearTraceWindow();
 IsAutoScale = false;
 IsOverlay = true;
@@ -2209,7 +2251,7 @@ OnPaint(Pen pen, OutputSeriesDisplayStyle plotStyle, string name)
 <h3 id="example_53">Example</h3>
 <pre><code class="cs">// Example 1
 // OnPaint with standard values (line with line strength 1)
-Add(new OnPaint(Color.Green, &quot;MyPlot&quot;));
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Orange), &quot;Output1&quot;));
 // Example 2
 // user-defined values for pen and plot style
 private OnPaint plot;
@@ -2219,9 +2261,9 @@ protected override void OnInit()
 // a red pen with the line strength of 6 is defined
 pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-plot = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, &quot;MyPlot&quot;);
+paint = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, &quot;MyPlot&quot;);
 // The defined plot is to be used as a representation for an indicator
-Add(plot);
+Add(paint);
 }
 // Example 3
 // Abbreviation of example 2
