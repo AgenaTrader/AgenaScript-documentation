@@ -399,7 +399,7 @@ As soon as the function <strong>OnCalculate()</strong> is called up by AgenaScri
 <p>Bars.GetSessionBegin</p>
 <h3 id="more-information_1">More Information</h3>
 <p>The time for the returned value will equal the starting time defined in the Market Escort for the specified exchange. The value itself is set within the Instrument Escort and can be called up in AgenaScript using the function <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> .</p>
-<p><img alt="Bars.CurrentSessionBeginTime" src="../media/image3.png" /></p>
+<p><img alt="Bars.CurrentSessionBeginTime" src="../media/TradingHour_TSE.jpg" /></p>
 <h3 id="example_1">Example</h3>
 <pre><code class="cs">Print(&quot;The currently running trading session started at &quot; + Bars.CurrentSessionBeginTime );
 </code></pre>
@@ -416,7 +416,7 @@ Date and time for the end of the current trading session will, in this case, als
 <p>Bars.GetSessionEnd</p>
 <h3 id="more-information_2">More Information</h3>
 <p>The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
-<p><img alt="Bars.CurrentSessionEndTime" src="../media/image4.png" /></p>
+<p><img alt="Bars.CurrentSessionEndTime" src="../media/TradingHour_Nashdaq.jpg" /></p>
 <h3 id="example_2">Example</h3>
 <pre><code class="cs">Print(&quot;The current trading session will end at &quot; + Bars.CurrentSessionEndTime);
 </code></pre>
@@ -603,7 +603,7 @@ return Math.Max(0,Bars.Count-idx-1-(CalculateOnClosedBar?1:0));
 <p>Bars.GetSessionBegin(DateTime dt)</p>
 <h3 id="further-information">Further Information</h3>
 <p>The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.</p>
-<p><img alt="Bars.CurrentSessionBeginTime" src="../media/image3.png" /></p>
+<p><img alt="Bars.CurrentSessionBeginTime" src="../media/TradingHour_TSE.jpg" /></p>
 <h3 id="example_8">Example</h3>
 <pre><code class="cs">Print(&quot;Die Handelssitzung am 25.03.2015 hat um &quot;+ Bars.GetSessionBegin(new DateTime(2015, 03, 25)) + &quot; begonnen.&quot;);
 }
@@ -734,7 +734,7 @@ Print (&quot;The current trading session started at&quot; + Time [0]);
 <h3 id="usage_16">Usage</h3>
 <p>Bars.IsSessionBreak</p>
 <h3 id="more-information_12">More Information</h3>
-<p><img alt="Bars.CurrentSessionEndTime" src="../media/image4.png" /></p>
+<p><img alt="Bars.CurrentSessionEndTime" src="../media/TradingHour_Nashdaq.jpg" /></p>
 <h3 id="example_14">Example</h3>
 <pre><code class="cs">if (Bars.IsSessionBreak)
 {
@@ -783,7 +783,7 @@ Date and time for the next session will be correctly outputted when the function
 <p>Bars.GetSessionNextBegin</p>
 <h3 id="more-information_14">More Information</h3>
 <p>The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
-<p><img alt="Bars.NextSessionBeginTime" src="../media/image3.png" /></p>
+<p><img alt="Bars.NextSessionBeginTime" src="../media/TradingHour_TSE.jpg" /></p>
 <h3 id="example_16">Example</h3>
 <pre><code class="cs">Print(&quot;The next trading session starts at &quot; + Bars.NextSessionBeginTime);
 </code></pre>
@@ -800,7 +800,7 @@ See <a href="#properties"><em>Properties</em></a> for more information.</p>
 <p>Bars.GetSessionNextEnd</p>
 <h3 id="more-information_15">More Information</h3>
 <p>The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the <a href="#instrumentexchange"><em>Instrument.Exchange</em></a> function.</p>
-<p><img alt="Bars.NextSessionEndTime" src="../media/image4.png" /></p>
+<p><img alt="Bars.NextSessionEndTime" src="../media/TradingHour_Nashdaq.jpg" /></p>
 <h3 id="example_17">Example</h3>
 <pre><code class="cs">Print(&quot;The next trading session ends at &quot; + Bars.NextSessionEndTime);
 </code></pre>
@@ -1709,7 +1709,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Instrument.Expiry</p>
 <h3 id="more-information_45">More Information</h3>
 <p>The expiry date (expiry) can also be seen within the Instrument Escort:</p>
-<p><img alt="Instrument.Expiry" src="../media/image5.png" /></p>
+<p><img alt="Instrument.Expiry" src="../media/Expiry.jpg" /></p>
 <h3 id="example_55">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument &quot; + Instrument.Name +&quot; will expire on &quot; + Instrument.Expiry);
 </code></pre>
@@ -1746,7 +1746,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Potential values are: future, stock, index, currency, option, CFD and unknown.</p>
 <p>There is no ETF type. ETFs are considered to be of the type "stock" – see <a href="#instrumentetf"><em>Instrument.ETF</em></a>.</p>
 <p>The instrument type can also be viewed within the Instrument Escort:</p>
-<p><img alt="Instrument.InstrumentType" src="../media/image6.png" /></p>
+<p><img alt="Instrument.InstrumentType" src="../media/InstrumentTypeFGBL.jpg" /></p>
 <h3 id="example_57">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument &quot; + Instrument.Name + &quot; is of the type &quot; + Instrument.InstrumentType);
 </code></pre>
@@ -1762,7 +1762,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Instrument.MainSector</p>
 <h3 id="more-information_48">More Information</h3>
 <p>The main sector is also visible in the instrument escort:
-<img alt="Instrument.InstrumentType" src="../media/image6.png" /></p>
+<img alt="Instrument.InstrumentType" src="../media//InstrumentTypeFGBL.jpg" /></p>
 <h3 id="example_58">Example</h3>
 <pre><code class="cs">Print(&quot;Das Instrument &quot; + Instrument.Name + &quot; ist im Sektor &quot; + Instrument.MainSector + &quot; tätig.&quot;);
 </code></pre>
@@ -1778,7 +1778,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Instrument.Margin</p>
 <h3 id="more-information_49">More Information</h3>
 <p>Margin is also visible in the instrument escort:
-<img alt="Instrument.InstrumentType" src="../media/image6.png" /></p>
+<img alt="Instrument.InstrumentType" src="../media/MarginFGBL.jpg" /></p>
 <h3 id="example_59">Example</h3>
 <pre><code class="cs">Print(&quot;Das Instrument &quot; + Instrument.Name + &quot; has a margin of &quot; + Instrument.Margin);
 </code></pre>
@@ -1794,7 +1794,7 @@ Print(&quot;The value is a stock.&quot;);
 <p>Instrument.Name</p>
 <h3 id="more-information_50">More Information</h3>
 <p>The instrument name can also be seen within the Instrument Escort:</p>
-<p><img alt="Instrument.Name" src="../media/image7.png" /></p>
+<p><img alt="Instrument.Name" src="../media/Name_Fdax.jpg" /></p>
 <h3 id="example_60">Example</h3>
 <pre><code class="cs">Print(&quot;The currently loaded instrument inside the chart is named &quot; + Instrument.Name);
 </code></pre>
@@ -1818,7 +1818,7 @@ DAX future: 25.00 Euro</p>
 <p>For example, the E-mini S&amp;P 500 has a point value of $50. The tick size equals 0.25. This means that there are 4 ticks in one full point for the E-mini S&amp;P 500.
 Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.</p>
 <p>The point value can also be viewed within the Instrument Escort:</p>
-<p><img alt="Instrument.PointValue" src="../media/image8.png" /></p>
+<p><img alt="Instrument.PointValue" src="../media/Fdax_PointValue.jpg" /></p>
 <h3 id="example_61">Example</h3>
 <pre><code class="cs">Print(&quot;When &quot; + Instrument.Name + &quot; rises for one full point then this is equal to &quot; + Instrument.PointValue + &quot; &quot; + Instrument.Currency);
 </code></pre>
@@ -1856,7 +1856,7 @@ Print(Price + &quot; rounded for a &quot; + Instrument.Name + &quot; valid value
 <h3 id="more-information_53">More Information</h3>
 <p>By using symbols, identical stocks being traded on different exchanges can be identified and separated from each other. The symbol BMW.DE is the BMW stock on the XETRA exchange. BMW.CFG is the CFD for the BMW stock.</p>
 <p>The instrument symbol can also be viewed within the Instrument Escort:</p>
-<p><img alt="Instrument.Symbol" src="../media/image9.png" /></p>
+<p><img alt="Instrument.Symbol" src="../media/Fdax_Symbol.jpg" /></p>
 <h3 id="example_63">Example</h3>
 <pre><code class="cs">Print(&quot;The instrument currently loaded within the chart has the symbol: &quot; + Instrument.Symbol);
 </code></pre>
