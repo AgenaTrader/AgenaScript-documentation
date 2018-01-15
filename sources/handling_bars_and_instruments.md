@@ -596,7 +596,7 @@ Bars.IsSessionBreak
 ```cs
 if (Bars.IsSessionBreak)
 {
-Print("The stock exchange Xetra has just a trade pause.");
+	Print("The stock exchange Xetra has just a trade pause.");
 }
 ```
 
@@ -629,11 +629,11 @@ bool remind = false;
 protected override void OnCalculate()
 {
 if (FirstTickOfBar) remind = true;
-if (remind && Bars.LastBarCompleteness >= 0.92)
-{
-remind = false;
-PlaySound("Alert1");
-}
+	if (remind && Bars.LastBarCompleteness >= 0.92)
+	{
+	remind = false;
+	PlaySound("Alert1");
+	}
 }
 ```
 
@@ -948,17 +948,17 @@ Add(new LevelLine(Color.Blue, 30, "Lower")); // saves into Lines[1]
 protected override void OnCalculate()
 {
 // When the RSI is above 70, properties of the lines will be changed
-if (RSI(14 ,3) >= 70)
+if (RSI(14 ,3)[0] >= 70)
 {
-Lines[0].Width = 3;
-Lines[0].Color = Color.Red;
-Lines[0].DashStyle = DashStyle.Dot;
+	Lines[0].Width = 3;
+	Lines[0].Color = Color.Red;
+	Lines[0].DashStyle = DashStyle.Dot;
 }
 else
 {
-Lines[0].Width = 1;
-Lines[0].Color = Color.Blue;
-Lines[0].DashStyle = DashStyle.Solid;
+	Lines[0].Width = 1;
+	Lines[0].Color = Color.Blue;
+	Lines[0].DashStyle = DashStyle.Solid;
 }
 }
 ```
@@ -1015,21 +1015,21 @@ SMA100.Set(SMA(100)[0]);
 // Change colors depending on the trend
 if (IsSerieRising(Close))
 {
-PlotColors[0][0] = Color.LightGreen;
-PlotColors[1][0] = Color.Green;
-PlotColors[2][0] = Color.DarkGreen;
+	PlotColors[0][0] = Color.LightGreen;
+	PlotColors[1][0] = Color.Green;
+	PlotColors[2][0] = Color.DarkGreen;
 }
 else if (IsSerieFalling(Close))
 {
-PlotColors[0][0] = Color.LightSalmon;
-PlotColors[1][0] = Color.Red;
-PlotColors[2][0] = Color.DarkRed;
+	PlotColors[0][0] = Color.LightSalmon;
+	PlotColors[1][0] = Color.Red;
+	PlotColors[2][0] = Color.DarkRed;
 }
 else
 {
-PlotColors[0][0] = Color.LightGray;
-PlotColors[1][0] = Color.Gray;
-PlotColors[2][0] = Color.DarkGray;
+	PlotColors[0][0] = Color.LightGray;
+	PlotColors[1][0] = Color.Gray;
+	PlotColors[2][0] = Color.DarkGray;
 }
 }
 }
@@ -1055,7 +1055,7 @@ OutputDescriptor[int index]
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Blue, "MySMA 20")); // saved to OutputDescriptor[0]
+	Add(new OnPaint(Color.Blue, "MySMA 20")); // saved to OutputDescriptor[0]
 }
 protected override void OnCalculate()
 {
@@ -1093,10 +1093,10 @@ Information on the class collection:
 ### Example
 ```cs
 // Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
-if (Outputs[1][1] < High[0] - Low[0])
-Value.Set(High[0] - Low[0]);
+if (Instrument.Compare(Outputs[1][1], High[0] - Low[0]) < 0)
+	Value.Set(High[0] - Low[0]);
 else
-Value.Set(High[0] - Close[0]);
+	Value.Set(High[0] - Close[0]);
 ```
 
 ## Data Series
