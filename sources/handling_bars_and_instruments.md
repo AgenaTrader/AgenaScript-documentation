@@ -189,7 +189,7 @@ Bars.GetSessionEnd
 ### More Information
 The time for the returned value will correlate with the end time of the trading session defined in the Market Escort for the exchange. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrumentexchange) function.
 
-![Bars.CurrentSessionEndTime](./media/image4.png)
+![Bars.CurrentSessionEndTime](./media/TradingHour_Nashdaq.jpg)
 
 ### Example
 ```cs
@@ -414,7 +414,7 @@ Bars.GetSessionBegin(DateTime dt)
 ### Further Information
 The time of the returned value corresponds to the start time of the trading session.  The relevant trading center which is specified in the MarketEscort. The trading place used for the value is set in the Instrumet Escort and can be determined in AgenaSript with the Instrument.Exchange function.
 
-![Bars.CurrentSessionBeginTime](./media/image3.png)
+![Bars.CurrentSessionBeginTime](./media/TradingHour_TSE.jpg)
 ### Example
 ```cs
 Print("Die Handelssitzung am 25.03.2015 hat um "+ Bars.GetSessionBegin(new DateTime(2015, 03, 25)) + " begonnen.");
@@ -591,7 +591,7 @@ Type bool
 Bars.IsSessionBreak
 
 ### More Information
-![Bars.CurrentSessionEndTime](./media/image4.png)
+![Bars.CurrentSessionEndTime](./media/TradingHour_Nashdaq.jpg)
 ### Example
 ```cs
 if (Bars.IsSessionBreak)
@@ -654,7 +654,7 @@ Bars.GetSessionNextBegin
 ### More Information
 The time for the returned value will correlate to the value displayed in the MarketEscort. The value can be set within the Instrument Escort and can be called up using the [*Instrument.Exchange*](#instrumentexchange) function.
 
-![Bars.NextSessionBeginTime](./media/image3.png)
+![Bars.NextSessionBeginTime](./media/TradingHour_TSE.jpg)
 
 ### Example
 ```cs
@@ -678,7 +678,7 @@ Bars.GetSessionNextEnd
 ### More Information
 The time for the returned value will correlate with the value specified within the MarketEscort. The value itself can be set within the Instrument Escort and can be called up with AgenaScript using the [*Instrument.Exchange*](#instrumentexchange) function.
 
-![Bars.NextSessionEndTime](./media/image4.png)
+![Bars.NextSessionEndTime](./media/TradingHour_Nashdaq.jpg)
 
 ### Example
 ```cs
@@ -1918,7 +1918,7 @@ Instrument.Expiry
 ### More Information
 The expiry date (expiry) can also be seen within the Instrument Escort:
 
-![Instrument.Expiry](./media/image5.png)
+![Instrument.Expiry](./media/Expiry.jpg)
 
 ### Example
 ```cs
@@ -1970,7 +1970,7 @@ There is no ETF type. ETFs are considered to be of the type "stock" – see [*In
 
 The instrument type can also be viewed within the Instrument Escort:
 
-![Instrument.InstrumentType](./media/image6.png)
+![Instrument.InstrumentType](./media/InstrumentTypeFGBL.jpg)
 
 ### Example
 ```cs
@@ -1991,7 +1991,7 @@ Instrument.MainSector
 
 ### More Information
 The main sector is also visible in the instrument escort:
-![Instrument.InstrumentType](./media/image6.png)
+![Instrument.InstrumentType](./media//InstrumentTypeFGBL.jpg)
 ### Example
 ```cs
 Print("Das Instrument " + Instrument.Name + " ist im Sektor " + Instrument.MainSector + " tätig.");
@@ -2012,7 +2012,7 @@ Instrument.Margin
 
 ### More Information
 Margin is also visible in the instrument escort:
-![Instrument.InstrumentType](./media/image6.png)
+![Instrument.InstrumentType](./media/MarginFGBL.jpg)
 ### Example
 ```cs
 Print("Das Instrument " + Instrument.Name + " has a margin of " + Instrument.Margin);
@@ -2033,7 +2033,7 @@ Instrument.Name
 ### More Information
 The instrument name can also be seen within the Instrument Escort:
 
-![Instrument.Name](./media/image7.png)
+![Instrument.Name](./media/Name_Fdax.jpg)
 
 ### Example
 ```cs
@@ -2069,7 +2069,7 @@ Since 50 * 0.25 = 50/4 this means that the tick value is $12.50.
 
 The point value can also be viewed within the Instrument Escort:
 
-![Instrument.PointValue](./media/image8.png)
+![Instrument.PointValue](./media/Fdax_PointValue.jpg)
 
 ### Example
 ```cs
@@ -2123,7 +2123,7 @@ By using symbols, identical stocks being traded on different exchanges can be id
 
 The instrument symbol can also be viewed within the Instrument Escort:
 
-![Instrument.Symbol](./media/image9.png)
+![Instrument.Symbol](./media/Fdax_Symbol.jpg)
 
 ### Example
 ```cs
