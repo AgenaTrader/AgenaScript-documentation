@@ -738,7 +738,7 @@ Print (&quot;The current trading session started at&quot; + Time [0]);
 <h3 id="example_14">Example</h3>
 <pre><code class="cs">if (Bars.IsSessionBreak)
 {
-Print(&quot;The stock exchange Xetra has just a trade pause.&quot;);
+    Print(&quot;The stock exchange Xetra has just a trade pause.&quot;);
 }
 </code></pre>
 
@@ -763,11 +763,11 @@ bool remind = false;
 protected override void OnCalculate()
 {
 if (FirstTickOfBar) remind = true;
-if (remind &amp;&amp; Bars.LastBarCompleteness &gt;= 0.92)
-{
-remind = false;
-PlaySound(&quot;Alert1&quot;);
-}
+    if (remind &amp;&amp; Bars.LastBarCompleteness &gt;= 0.92)
+    {
+    remind = false;
+    PlaySound(&quot;Alert1&quot;);
+    }
 }
 </code></pre>
 
@@ -999,17 +999,17 @@ Add(new LevelLine(Color.Blue, 30, &quot;Lower&quot;)); // saves into Lines[1]
 protected override void OnCalculate()
 {
 // When the RSI is above 70, properties of the lines will be changed
-if (RSI(14 ,3) &gt;= 70)
+if (RSI(14 ,3)[0] &gt;= 70)
 {
-Lines[0].Width = 3;
-Lines[0].Color = Color.Red;
-Lines[0].DashStyle = DashStyle.Dot;
+    Lines[0].Width = 3;
+    Lines[0].Color = Color.Red;
+    Lines[0].DashStyle = DashStyle.Dot;
 }
 else
 {
-Lines[0].Width = 1;
-Lines[0].Color = Color.Blue;
-Lines[0].DashStyle = DashStyle.Solid;
+    Lines[0].Width = 1;
+    Lines[0].Color = Color.Blue;
+    Lines[0].DashStyle = DashStyle.Solid;
 }
 }
 </code></pre>
@@ -1060,21 +1060,21 @@ SMA100.Set(SMA(100)[0]);
 // Change colors depending on the trend
 if (IsSerieRising(Close))
 {
-PlotColors[0][0] = Color.LightGreen;
-PlotColors[1][0] = Color.Green;
-PlotColors[2][0] = Color.DarkGreen;
+    PlotColors[0][0] = Color.LightGreen;
+    PlotColors[1][0] = Color.Green;
+    PlotColors[2][0] = Color.DarkGreen;
 }
 else if (IsSerieFalling(Close))
 {
-PlotColors[0][0] = Color.LightSalmon;
-PlotColors[1][0] = Color.Red;
-PlotColors[2][0] = Color.DarkRed;
+    PlotColors[0][0] = Color.LightSalmon;
+    PlotColors[1][0] = Color.Red;
+    PlotColors[2][0] = Color.DarkRed;
 }
 else
 {
-PlotColors[0][0] = Color.LightGray;
-PlotColors[1][0] = Color.Gray;
-PlotColors[2][0] = Color.DarkGray;
+    PlotColors[0][0] = Color.LightGray;
+    PlotColors[1][0] = Color.Gray;
+    PlotColors[2][0] = Color.DarkGray;
 }
 }
 }
@@ -1094,7 +1094,7 @@ PlotColors[2][0] = Color.DarkGray;
 <h3 id="example_29">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
-Add(new OnPaint(Color.Blue, &quot;MySMA 20&quot;)); // saved to OutputDescriptor[0]
+    Add(new OnPaint(Color.Blue, &quot;MySMA 20&quot;)); // saved to OutputDescriptor[0]
 }
 protected override void OnCalculate()
 {
@@ -1124,10 +1124,10 @@ Outputs[int index][int barsAgo]
 <a href="http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx"><em>http://msdn.microsoft.com/en-us/library/ybcx56wz%28v=vs.80%29.aspx</em></a></p>
 <h3 id="example_30">Example</h3>
 <pre><code class="cs">// Check the second indicator value of one bar ago and set the value of the current indicator value based on it.
-if (Outputs[1][1] &lt; High[0] - Low[0])
-Value.Set(High[0] - Low[0]);
+if (Instrument.Compare(Outputs[1][1], High[0] - Low[0]) &lt; 0)
+    Value.Set(High[0] - Low[0]);
 else
-Value.Set(High[0] - Close[0]);
+    Value.Set(High[0] - Close[0]);
 </code></pre>
 
 <h2 id="data-series">Data Series</h2>
