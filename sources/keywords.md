@@ -1,6 +1,5 @@
 
 #Keywords
-
 ## AddOutput()
 ## AddLine()
 ### Description
@@ -8,12 +7,12 @@ The add method allows you to add plots or line objects to the chart. When a new 
 Add<xxx>() can be used with the OnInit() and the OnCalculate() methods.
 
 ### Parameter
-plot – a *OnPaint* object
+plot – a *OutputDescriptor* object
 line – a *LevelLine* object
 
 ### Usage
-```cs
-Add(OnPaint plot)
+```cs 
+ AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 Add(LevelLine line)
 ```
 
@@ -97,7 +96,7 @@ AllowRemovalOfChartDrawings
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 //Drawing objects can be manually removed from the chart
 AllowRemovalOfChartDrawings = true;
 }
@@ -1269,7 +1268,7 @@ int Offset Number of bars by which the indicator is to be moved.
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 //Displacement of the plot by one bar to the right
 Displacement = 1;
 }
@@ -1753,7 +1752,7 @@ protected override void OnInit()
 {
 // Indicator is drawn in a new subchart
 IsOverlay = false;
-Add(new OnPaint(Color.Red, "MyPlot1"));
+       AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 // Drawing object is drawn in the price chart
 IsAddDrawingsToPricePanel = true;
 }
@@ -1819,7 +1818,7 @@ IsOverlay
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
+       AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 //The indicator should be displayed within a separate window
 IsOverlay = false;
 }
@@ -1918,7 +1917,7 @@ IsShowChartVerticalGrid
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
+       AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 // Vertical grid lines shall not be shown within the chart
 IsShowChartVerticalGrid = false;
 }
@@ -1950,7 +1949,7 @@ IsShowInDataBox
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
+ AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 //Values will not be shown in the data box
 IsShowInDataBox = false;
 }
@@ -1976,7 +1975,8 @@ IsShowPriceMarkers
 ```cs
 protected override void OnInit()
 {
-Add(new OnPaint(Color.Red, "MyPlot1"));
+ 
+AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Black), "MyPlot1"));
 //Do not show price markers in the price axis
 IsShowPriceMarkers = false;
 }
@@ -2025,7 +2025,7 @@ A line object is used for drawing a horizontal line in the chart. Usually, these
 The lines described here are not to be confused with lines from the drawing objects (see "AddChartHorizontalLine").
 LevelLine objects can be added to an indicator with the help of the Add() method, and with this, added to the lines collection.
 
-See [*OnPaint*](#onpaint).
+See [*OutputDescriptor*](#outputdescriptor).
 
 ### Parameter
 |       |                                                              |
@@ -2219,9 +2219,9 @@ CalculateOnClosedBar = true;
 }
 ```
 
-## OnPaint()
+## OutputDescriptor()
 ### Description
-A plot (drawing) is used to visually display indicators in a chart. OnPaint objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
+A plot (drawing) is used to visually display indicators in a chart. OutputDescriptor objects are assigned to an indicator with the help of the Add() method and attached to the plots collection.
 See [*LevelLine*](#levelline).
 
 ### Parameter
@@ -2234,10 +2234,10 @@ See [*LevelLine*](#levelline).
 
 ### Usage
 ```cs
-OnPaint(Color color, string name)
-OnPaint(Pen pen, string name)
-OnPaint(Color color, OutputSeriesDisplayStyle plotStyle, string name)
-OnPaint(Pen pen, OutputSeriesDisplayStyle plotStyle, string name)
+OutputDescriptor(Color color, string name)
+OnPOutputDescriptoraint(Pen pen, string name)
+OutputDescriptor(Color color, OutputSeriesDisplayStyle plotStyle, string name)
+OutputDescriptor(Pen pen, OutputSeriesDisplayStyle plotStyle, string name)
 ```
 
 ### More Information
@@ -2246,18 +2246,18 @@ Information on the pen class: [*http://msdn.microsoft.com/de-de/library/system.d
 ### Example
 ```cs
 // Example 1
-// OnPaint with standard values (line with line strength 1)
+// OutputDescriptor with standard values (line with line strength 1)
 AddOutput(new OutputDescriptor(Color.FromKnownColor(KnownColor.Orange), "Output1"));
 // Example 2
 // user-defined values for pen and plot style
-private OnPaint plot;
+private OutputDescriptor plot;
 private Pen pen;
 protected override void OnInit()
 {
 // a red pen with the line strength of 6 is defined
 pen = new Pen(Color.Blue, 6);
 // a point line with a thick red pen from above is defined
-paint = new OnPaint(pen, OutputSeriesDisplayStyle.Dot, "MyPlot");
+paint = new OutputDescriptor(pen, OutputSeriesDisplayStyle.Dot, "MyPlot");
 // The defined plot is to be used as a representation for an indicator
 Add(paint);
 }
@@ -2265,7 +2265,7 @@ Add(paint);
 // Abbreviation of example 2
 protected override void OnInit()
 {
-Add(new OnPaint(new Pen(Color.Blue, 6), OutputSeriesDisplayStyle.Dot, "MyPlot"));
+Add(new OutputDescriptor(new Pen(Color.Blue, 6), OutputSeriesDisplayStyle.Dot, "MyPlot"));
 }
 ```
 
@@ -2342,7 +2342,7 @@ none
 
 ### Usage
 ```cs
-public override void OnPaint(Graphics graphics, Rectangle r, double min, double max)
+public override void OutputDescriptor(Graphics graphics, Rectangle r, double min, double max)
 ```
 
 ### Example
@@ -2375,7 +2375,7 @@ protected override void OnDispose()
 brush.Dispose();
 stringFormat.Dispose();
 }
-public override void OnPaint(Graphics graphics, Rectangle r, double min, double max)
+public override void OutputDescriptor(Graphics graphics, Rectangle r, double min, double max)
 {
 // Fill a rectangle
 SolidBrush tmpBrush = new SolidBrush(Color.LightGray);
