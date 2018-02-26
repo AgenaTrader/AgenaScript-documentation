@@ -1046,9 +1046,9 @@ protected override void OnInit()
 // Set line strength (width) to 4
 pen = new Pen(Color.Empty, 4);
 // Add three plots with the defined line strength to the chart
-Add(new OnPaint(pen, OutputSeriesDisplayStyle.LevelLine, &quot;SMA20&quot; )); //attached to PlotColors[0]
-Add(new OnPaint(pen, OutputSeriesDisplayStyle.LevelLine, &quot;SMA50&quot; )); //attached to PlotColors[1]
-Add(new OnPaint(pen, OutputSeriesDisplayStyle.LevelLine, &quot;SMA100&quot;)); //attached to PlotColors[2]
+Add(new OutputDescriptor(pen, OutputSeriesDisplayStyle.LevelLine, &quot;SMA20&quot; )); //attached to PlotColors[0]
+Add(new OutputDescriptor(pen, OutputSeriesDisplayStyle.LevelLine, &quot;SMA50&quot; )); //attached to PlotColors[1]
+Add(new OutputDescriptor(pen, OutputSeriesDisplayStyle.LevelLine, &quot;SMA100&quot;)); //attached to PlotColors[2]
 IsOverlay = true;
 }
 protected override void OnCalculate()
@@ -1094,7 +1094,7 @@ else
 <h3 id="example_29">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
-    Add(new OnPaint(Color.Blue, &quot;MySMA 20&quot;)); // saved to OutputDescriptor[0]
+    Add(new OutputDescriptor(Color.FromKnownColor(KnownColor.Blue), &quot;MySMA 20&quot;)); // saved to OutputDescriptor[0]
 }
 protected override void OnCalculate()
 {
