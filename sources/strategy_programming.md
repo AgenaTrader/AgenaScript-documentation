@@ -1181,9 +1181,12 @@ The individual properties are:
 ```cs
 protected override void OnDispose()
 {
-  if (Performance.AllTrades.Count < 1) return;
-  foreach (ITrade trade in Performance.AllTrades)
+
+  foreach (ITradeState tradeState in Performance.AllTrades)
   {
+  ITrade trade = tradeState.Trade;
+  if (trade == null) continue;
+  
     Print("Trade #"+trade.Id);
     Print("--------------------------------------------");
     Print("Average price " + trade.AvgPrice);
