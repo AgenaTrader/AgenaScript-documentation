@@ -7,32 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="../favicon.ico">
-  
+  <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Strategy programming - AgenaScript Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="../custom.css" rel="stylesheet">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Strategy programming";
     var mkdocs_page_input_path = "strategy_programming.md";
-    var mkdocs_page_url = "/strategy_programming/";
+    var mkdocs_page_url = "/AgenaScript-documentation/index.html/strategy_programming/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-74646070-1', 'agenatrader.github.io');
       ga('send', 'pageview');
@@ -50,7 +50,7 @@
         <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -103,8 +103,6 @@
         
             <li><a class="toctree-l3" href="#defaultorderquantity">DefaultOrderQuantity</a></li>
         
-            <li><a class="toctree-l3" href="#entriesperdirection">EntriesPerDirection</a></li>
-        
             <li><a class="toctree-l3" href="#excludetradehistoryinbacktest">ExcludeTradeHistoryInBacktest</a></li>
         
             <li><a class="toctree-l3" href="#closelongtrade">CloseLongTrade ()</a></li>
@@ -151,7 +149,7 @@
         
             <li><a class="toctree-l3" href="#strategyorderparameters">StrategyOrderParameters</a></li>
         
-            <li><a class="toctree-l3" href="#description_27">Description</a></li>
+            <li><a class="toctree-l3" href="#description_26">Description</a></li>
         
             <li><a class="toctree-l3" href="#submitorder">SubmitOrder()</a></li>
         
@@ -590,76 +588,18 @@ DefaultOrderQuantity = 100;
 }
 </code></pre>
 
-<h2 id="entriesperdirection">EntriesPerDirection</h2>
-<h3 id="description_9">Description</h3>
-<p>Entries per direction defines the maximum number of entries permitted in one direction (long or short).</p>
-<p>Whether the name of the entry signal is taken into consideration or not is defined.</p>
-<p>Entries per direction is defined with the <a href="#oninit"><em>OnInit()</em></a> method.</p>
-<h3 id="usage_8">Usage</h3>
-<p><strong>EntriesPerDirection</strong></p>
-<h3 id="parameter_8">Parameter</h3>
-<p>An int value for the maximum entries permitted in one direction.</p>
-<h3 id="example_9">Example</h3>
-<pre><code class="cs">// Example 1
-// If one of the two entry conditions is true and a long position is opened, then the other entry signal will be ignored
-protected override void OnInit()
-{
-EntriesPerDirection = 1;
-
-}
-
-protected override void OnCalculate()
-{
-    if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
-        SubmitOrder(new StrategyOrderParameters
-                {
-                    Direction = OrderDirection.Buy,
-                    Type = OrderType.Market,
-                    Quantity = DefaultOrderQuantity,
-                    SignalName = &quot;SMA cross entry&quot;,
-                });
-}
-
-// Example 2
-
-
-protected override void OnCalculate()
-{
-    if (CrossAbove(EMA(14), SMA(50), 1) &amp;&amp; IsSerieRising(ADX(20)))
-    {
-        SubmitOrder(new StrategyOrderParameters
-                {
-                    Direction = OrderDirection.Buy,
-                    Type = OrderType.Market,
-                    Quantity = DefaultOrderQuantity,
-                    SignalName = &quot;EMACrossesSMA&quot;,
-                });
-    }
-    else if (CrossAbove (MACD(2,2,5), 0, 1))
-    {
-        SubmitOrder(new StrategyOrderParameters
-                {
-                    Direction = OrderDirection.Buy,
-                    Type = OrderType.Market,
-                    Quantity = DefaultOrderQuantity,
-                    SignalName = &quot;MACDCross&quot;,
-                });
-    }
-}
-</code></pre>
-
 <h2 id="excludetradehistoryinbacktest">ExcludeTradeHistoryInBacktest</h2>
 <h2 id="closelongtrade">CloseLongTrade ()</h2>
-<h3 id="description_10">Description</h3>
+<h3 id="description_9">Description</h3>
 <p>CloseLongTrade creates a sell order for closing a long position (sell).</p>
 <p>See: <a href="#submitorder">*SubmitOrder()</a>, <a href="#closeshorttrade">*CloseShortTrade()</a></p>
-<h3 id="usage_9">Usage</h3>
+<h3 id="usage_8">Usage</h3>
 <p>See <a href="#strategyorderparameters"><em>StrategyOrderParameters</em></a></p>
-<h3 id="parameter_9">Parameter</h3>
+<h3 id="parameter_8">Parameter</h3>
 <p>See <a href="#strategyorderparameters"><em>StrategyOrderParameters</em></a></p>
 <h3 id="return-value">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
-<h3 id="example_10">Example</h3>
+<h3 id="example_9">Example</h3>
 <pre><code class="cs">var order = CloseLongTrade(new StrategyOrderParameters
 {
     Type = OrderType.Market
@@ -669,16 +609,16 @@ protected override void OnCalculate()
 <h2 id="exitonclose">ExitOnClose</h2>
 <h2 id="exitoncloseseconds">ExitOnCloseSeconds</h2>
 <h2 id="closeshorttrade">CloseShortTrade()</h2>
-<h3 id="description_11">Description</h3>
+<h3 id="description_10">Description</h3>
 <p>CloseShortTradecreates a buy-to-cover order for closing a short position (buy).</p>
 <p>See: <a href="#submitorder"><em>SubmitOrder()</em></a>, <a href="#closelongtrade"><em>CloselongTrade()</em></a></p>
-<h3 id="usage_10">Usage</h3>
+<h3 id="usage_9">Usage</h3>
 <p>See <a href="#strategyorderparameters"><em>StrategyOrderParameters</em></a></p>
-<h3 id="parameter_10">Parameter</h3>
+<h3 id="parameter_9">Parameter</h3>
 <p>See <a href="#strategyorderparameters"><em>StrategyOrderParameters</em></a></p>
 <h3 id="return-value_1">Return Value</h3>
 <p>An order object of the type "IOrder"</p>
-<h3 id="example_11">Example</h3>
+<h3 id="example_10">Example</h3>
 <pre><code class="cs">var order = CloseShortTrade(new StrategyOrderParameters
 {
     Type = OrderType.Stop,
@@ -688,36 +628,36 @@ protected override void OnCalculate()
 </code></pre>
 
 <h2 id="accountgetvalue">Account.GetValue()</h2>
-<h3 id="description_12">Description</h3>
+<h3 id="description_11">Description</h3>
 <p>Get account value outputs information regarding the account for which the current strategy is being carried out.</p>
 <p>See <a href="#getprofitloss"><em>GetProfitLoss()</em></a>.</p>
-<h3 id="usage_11">Usage</h3>
+<h3 id="usage_10">Usage</h3>
 <pre><code class="cs">Account.GetValue(AccountItem accountItem)
 </code></pre>
 
-<h3 id="parameter_11">Parameter</h3>
+<h3 id="parameter_10">Parameter</h3>
 <p>Possible values for account item are:</p>
 <p>AccountItem.BuyingPower</p>
 <p>AccountItem.CashValue</p>
 <p>AccountItem.RealizedProfitLoss</p>
 <h3 id="return-value_2">Return Value</h3>
 <p>A double value for the account item for historical bars, a zero (0) is returned</p>
-<h3 id="example_12">Example</h3>
+<h3 id="example_11">Example</h3>
 <pre><code class="cs">Print(&quot;The current account cash value is &quot; + Account.GetValue(AccountItem.CashValue));
 Print(&quot;The current account cash value with the leverage provided by the broker is &quot; + Account.GetValue(AccountItem.BuyingPower));
 Print(&quot;The current P/L already realized is &quot; + Account.GetValue(AccountItem.RealizedProfitLoss));
 </code></pre>
 
 <h2 id="getentries">GetEntries()</h2>
-<h3 id="description_13">Description</h3>
+<h3 id="description_12">Description</h3>
 <p>This DataSeries is used in conditions and indicates multiple entry prices for entry orders</p>
-<h3 id="usage_12">Usage</h3>
+<h3 id="usage_11">Usage</h3>
 <p>Overload in scripted condition for short and long signal indication</p>
-<h3 id="parameter_12">Parameter</h3>
+<h3 id="parameter_11">Parameter</h3>
 <p>None</p>
 <h3 id="return-value_3">Return Value</h3>
 <p>int</p>
-<h3 id="example_13">Example</h3>
+<h3 id="example_12">Example</h3>
 <pre><code class="cs">public class MyTestEntry : UserScriptedCondition
     {
 
@@ -802,14 +742,14 @@ Print(&quot;The current P/L already realized is &quot; + Account.GetValue(Accoun
 </code></pre>
 
 <h2 id="getprofitloss">GetProfitLoss()</h2>
-<h3 id="description_14">Description</h3>
+<h3 id="description_13">Description</h3>
 <p>Get profit loss outputs the currently unrealized profit or loss for a running position.</p>
 <p>See <a href="#accountgetvalue"><em>Account.GetValue()</em></a>.</p>
-<h3 id="usage_13">Usage</h3>
+<h3 id="usage_12">Usage</h3>
 <pre><code class="cs">GetProfitLoss(int pLType);
 </code></pre>
 
-<h3 id="parameter_13">Parameter</h3>
+<h3 id="parameter_12">Parameter</h3>
 <p>Potential values for the P/L type are:</p>
 <p>0 – Amount: P/L as a currency amount</p>
 <p>1 – Percent: P/L in percent</p>
@@ -817,53 +757,53 @@ Print(&quot;The current P/L already realized is &quot; + Account.GetValue(Accoun
 <p>3 – P/L in ticks</p>
 <h3 id="return-value_4">Return Value</h3>
 <p>A double value for the unrealized profit or loss</p>
-<h3 id="example_14">Example</h3>
+<h3 id="example_13">Example</h3>
 <pre><code class="cs">Print(&quot;The current risk for the strategy &quot; + this.Name + &quot; is &quot; + GetProfitLoss(1) + &quot; &quot; + Instrument.Currency);
 Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitLoss(3)));
 </code></pre>
 
 <h2 id="getprofitlossamount">GetProfitLossAmount()</h2>
-<h3 id="description_15">Description</h3>
+<h3 id="description_14">Description</h3>
 <p>GetProfitLossAmount () provides the current unrealized gain or loss of a current position as the currency amount.</p>
 <p>See <a href="#accountgetvalue"><em>Account.GetValue()</em></a>.</p>
-<h3 id="usage_14">Usage</h3>
+<h3 id="usage_13">Usage</h3>
 <pre><code class="cs">GetProfitLossAmount(double profitLoss);
 </code></pre>
 
-<h3 id="parameter_14">Parameter</h3>
+<h3 id="parameter_13">Parameter</h3>
 <p>Double</p>
 <h3 id="return-value_5">Return Value</h3>
 <p>A double value for the unrealized profit or loss</p>
-<h3 id="example_15">Example</h3>
+<h3 id="example_14">Example</h3>
 <pre><code class="cs">Print(&quot;the current P&amp;L &quot; + this.Name + &quot; is &quot; + GetProfitLossAmount(Position.OpenProfitLoss) + &quot; &quot; + Instrument.Currency);
 </code></pre>
 
 <h2 id="getprofitlossrisk">GetProfitLossRisk()</h2>
-<h3 id="description_16">Description</h3>
+<h3 id="description_15">Description</h3>
 <p>GetProfitLossRisk () returns the current unrealized gain or loss of a current position in R-multiples.</p>
 <p>See <a href="#accountgetvalue"><em>Account.GetValue()</em></a>.</p>
-<h3 id="usage_15">Usage</h3>
+<h3 id="usage_14">Usage</h3>
 <pre><code class="cs">GetProfitLossRisk();
 </code></pre>
 
-<h3 id="parameter_15">Parameter</h3>
+<h3 id="parameter_14">Parameter</h3>
 <p>None</p>
 <h3 id="return-value_6">Return Value</h3>
 <p>A double value for the R-Multiple</p>
-<h3 id="example_16">Example</h3>
+<h3 id="example_15">Example</h3>
 <pre><code class="cs">Print(&quot;the current P&amp;L &quot; + this.Name + &quot; is &quot; + string.Format( &quot;{0:F1} R.&quot;, GetProfitLossRisk()));
 </code></pre>
 
 <h2 id="getscriptedcondition">GetScriptedCondition()</h2>
-<h3 id="description_17">Description</h3>
+<h3 id="description_16">Description</h3>
 <p>This method allows user to communicate between scripts.</p>
 <h2 id="isautoconfirmorder">IsAutoConfirmOrder</h2>
-<h3 id="description_18">Description</h3>
+<h3 id="description_17">Description</h3>
 <p>IsAutoConfirmOrder determines whether orders are activated automatically. IsAutoConfirmOrder is specified in the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <p>If IsAutoConfirmOrder = true, then orders are automatically activated (default). If IsAutoConfirmOrder is assigned the value false, the corresponding order must be activated with order.<a href="#confirmorder"><em>ConfirmOrder()</em></a>.</p>
-<h3 id="parameter_16">Parameter</h3>
+<h3 id="parameter_15">Parameter</h3>
 <p>Bool value</p>
-<h3 id="example_17">Example</h3>
+<h3 id="example_16">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
    IsAutoConfirmOrder = false;
@@ -871,7 +811,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 </code></pre>
 
 <h2 id="order">Order</h2>
-<h3 id="description_19">Description</h3>
+<h3 id="description_18">Description</h3>
 <p>IOrder is an object that contains information about an order that is currently managed by a strategy.</p>
 <p>The individual properties are:</p>
 <ul>
@@ -970,7 +910,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
 </li>
 </ul>
 <h2 id="performance">Performance</h2>
-<h3 id="description_20">Description</h3>
+<h3 id="description_19">Description</h3>
 <p>Performance is an object containing information regarding all trades that have been generated by a strategy.</p>
 <p>The trades are sorted into multiple lists. With the help of these lists it is easier to create a performance evaluation.</p>
 <p>See Performance Characteristics.</p>
@@ -997,7 +937,7 @@ Print(&quot;This equals &quot;+ string.Format( &quot;{0:F1} R.&quot;, GetProfitL
     A <a href="#trade"><em>Trade</em></a> collection object containing all loss trades generated by a strategy.</p>
 </li>
 </ul>
-<h3 id="example_18">Example</h3>
+<h3 id="example_17">Example</h3>
 <pre><code class="cs">// When exiting a strategy, create a performance evaluation
 protected override void OnDispose()
 {
@@ -1013,7 +953,7 @@ Print(&quot;Result: &quot; + Account.RealizedProfitLoss + &quot; &quot; + Accoun
 </code></pre>
 
 <h2 id="position">Position</h2>
-<h3 id="description_21">Description</h3>
+<h3 id="description_20">Description</h3>
 <p>Position is an object containing information regarding the position currently being managed by a strategy.</p>
 <p>The individual properties are:</p>
 <ul>
@@ -1062,7 +1002,7 @@ Print(&quot;Result: &quot; + Account.RealizedProfitLoss + &quot; &quot; + Accoun
     Amount of stocks, contracts, CFDs etc. within a position.</p>
 </li>
 </ul>
-<h3 id="example_19">Example</h3>
+<h3 id="example_18">Example</h3>
 <pre><code class="cs">if (Position.PositionType != PositionType.Flat)
 {
 Print(&quot;Average price &quot; + Position.AvgPrice);
@@ -1080,7 +1020,7 @@ Print(&quot;Pieces &quot; + Position.Quantity);
 <h2 id="positiontype">PositionType</h2>
 <p>See <a href="#positionpositiontype"><em>Position.PositionType</em></a>.</p>
 <h2 id="traceorders">TraceOrders</h2>
-<h3 id="description_22">Description</h3>
+<h3 id="description_21">Description</h3>
 <p>The trace orders property is especially useful for keeping track of orders generated by strategies. It also provides an overview of which orders were generated by which strategies.
 Trace orders can be specified with the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <p>When TraceOrders is activated, each order will display the following values in the output window:</p>
@@ -1095,14 +1035,14 @@ Trace orders can be specified with the <a href="#oninit"><em>OnInit()</em></a> m
 <li>Name</li>
 </ul>
 <p>This information is useful when creating and debugging strategies.</p>
-<h3 id="usage_16">Usage</h3>
+<h3 id="usage_15">Usage</h3>
 <p>TraceOrders</p>
-<h3 id="parameter_17">Parameter</h3>
+<h3 id="parameter_16">Parameter</h3>
 <p>none</p>
 <h3 id="return-value_7">Return Value</h3>
 <p><strong>true</strong> Tracing is currently switched on
 <strong>false</strong> Tracing is switched off</p>
-<h3 id="example_20">Example</h3>
+<h3 id="example_19">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 ClearTraceWindow();
@@ -1113,13 +1053,13 @@ TraceOrders = true;
 <h2 id="quantity">Quantity</h2>
 <p>See <a href="#positionquantity"><em>Position.Quantity</em></a>, <a href="#positionpositiontype"><em>Position.PositionType</em></a>.</p>
 <h2 id="replaceorder">ReplaceOrder()</h2>
-<h3 id="description_23">Description</h3>
+<h3 id="description_22">Description</h3>
 <p>Change order, as the name suggests, changes an order.</p>
-<h3 id="usage_17">Usage</h3>
+<h3 id="usage_16">Usage</h3>
 <pre><code class="cs">ReplaceOrder(IOrder iOrder, int quantity, double limitPrice, double stopPrice)
 </code></pre>
 
-<h3 id="parameter_18">Parameter</h3>
+<h3 id="parameter_17">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1146,7 +1086,7 @@ TraceOrders = true;
 </tr>
 </tbody>
 </table>
-<h3 id="example_21">Example</h3>
+<h3 id="example_20">Example</h3>
 <pre><code class="cs">private IOrder stopOrder = null;
 protected override void OnCalculate()
 {
@@ -1159,17 +1099,17 @@ ReplaceOrder(stopOrder, stopOrder.Quantity, stopOrder.LimitPrice, Position.AvgPr
 </code></pre>
 
 <h2 id="setupprofittarget">SetUpProfitTarget()</h2>
-<h3 id="description_24">Description</h3>
+<h3 id="description_23">Description</h3>
 <p>Set profit target immediately creates a "take profit" order after an entry order is generated. The order is sent directly to the broker and becomes active immediately.
 If the profit target is static, you can also define SetUpProfitTarget() with the OnInit() method.</p>
 <p>See <a href="#setupstoploss"><em>SetUpStopLoss()</em></a>, <a href="#setuptrailstop"><em>SetUpTrailStop()</em></a>.</p>
-<h3 id="usage_18">Usage</h3>
+<h3 id="usage_17">Usage</h3>
 <pre><code class="cs">SetUpProfitTarget(double currency)
 SetUpProfitTarget(CalculationMode mode, double value)
 SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 </code></pre>
 
-<h3 id="parameter_19">Parameter</h3>
+<h3 id="parameter_18">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1196,7 +1136,7 @@ SetUpProfitTarget(string fromEntry signal, CalculationMode mode, double value)
 </tr>
 </tbody>
 </table>
-<h3 id="example_22">Example</h3>
+<h3 id="example_21">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 // Creates a Target Order 20 ticks above the market
@@ -1205,18 +1145,18 @@ SetUpProfitTarget(CalculationMode.Ticks, 20);
 </code></pre>
 
 <h2 id="setupstoploss">SetUpStopLoss()</h2>
-<h3 id="description_25">Description</h3>
+<h3 id="description_24">Description</h3>
 <p>Set stop loss creates a stop loss order after an entry order is placed. The order is sent directly to the broker and becomes effective immediately.</p>
 <p>If the stop loss is static, then SetUpStopLoss() can be defined with the OnInit() method.</p>
 <p>See <a href="#setupprofittarget"><em>SetUpProfitTarget()</em></a>, <a href="#setuptrailstop"><em>SetUpTrailStop()</em></a>.</p>
-<h3 id="usage_19">Usage</h3>
+<h3 id="usage_18">Usage</h3>
 <pre><code class="cs">SetUpStopLoss(double currency)
 SetUpStopLoss(double currency, bool simulated)
 SetUpStopLoss(CalculationMode mode, double value)
 SetUpStopLoss(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 </code></pre>
 
-<h3 id="parameter_20">Parameter</h3>
+<h3 id="parameter_19">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1247,7 +1187,7 @@ SetUpStopLoss(string fromEntry signal, CalculationMode mode, double value, bool 
 </tr>
 </tbody>
 </table>
-<h3 id="example_23">Example</h3>
+<h3 id="example_22">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 // Sets profitTarget 15 Ticks above the market
@@ -1256,7 +1196,7 @@ SetUpStopLoss(&quot;MACDEntry&quot;, CalculationMode.Ticks, 15, true);
 </code></pre>
 
 <h2 id="setuptrailstop">SetUpTrailStop()</h2>
-<h3 id="description_26">Description</h3>
+<h3 id="description_25">Description</h3>
 <p>Set trail stop creates a trail stop order after an entry order is generated. Its purpose is to protect you from losses, and after reaching break-even, to protect your gains.</p>
 <p>The order is sent directly to the broker and becomes effective immediately.</p>
 <p>If the stop loss price and the offset value are static, you can define SetUpTrailStop() with the OnInit() method.</p>
@@ -1273,14 +1213,14 @@ SetUpStopLoss(&quot;MACDEntry&quot;, CalculationMode.Ticks, 15, true);
 <p>It is always a stop market order that is generated, and not a stop limit order.</p>
 <p>If a position is closed by a different exit order within the strategy, then the TrailingStopOrder is automatically deleted.</p>
 <p>See <a href="#setupstoploss"><em>SetUpStopLoss()</em></a>, <a href="#setupprofittarget"><em>SetUpProfitTarget()</em></a>.</p>
-<h3 id="usage_20">Usage</h3>
+<h3 id="usage_19">Usage</h3>
 <pre><code class="cs">SetUpTrailStop(double currency)
 SetUpTrailStop(double currency, bool simulated)
 SetUpTrailStop(CalculationMode mode, double value)
 SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool simulated)
 </code></pre>
 
-<h3 id="parameter_21">Parameter</h3>
+<h3 id="parameter_20">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1311,7 +1251,7 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 </tr>
 </tbody>
 </table>
-<h3 id="example_24">Example</h3>
+<h3 id="example_23">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 // Sets a trailing at the low of the last candle
@@ -1320,10 +1260,10 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 </code></pre>
 
 <h2 id="strategyorderparameters">StrategyOrderParameters</h2>
-<h2 id="description_27">Description</h2>
+<h2 id="description_26">Description</h2>
 <p>This class aggregates all properties needed to submit the order.</p>
 <p>See <a href="#submitorder"><em>SubmitOrder()</em></a>, <a href="#closelongtrade"><em>CloseLongTrade()</em></a>, <a href="#closeshorttrade"><em>CloseShortTrade()</em></a>.</p>
-<h3 id="usage_21">Usage</h3>
+<h3 id="usage_20">Usage</h3>
 <pre><code class="cs">public class StrategyOrderParameters
     {
         public OrderDirection Direction { get; set; }
@@ -1340,7 +1280,7 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
     }
 </code></pre>
 
-<h3 id="parameter_22">Parameter</h3>
+<h3 id="parameter_21">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -1396,16 +1336,16 @@ SetUpTrailStop(string fromEntry signal, CalculationMode mode, double value, bool
 </tbody>
 </table>
 <h2 id="submitorder">SubmitOrder()</h2>
-<h3 id="description_28">Description</h3>
+<h3 id="description_27">Description</h3>
 <p>Submit order creates a user-defined order. For this order, no stop or limit order is placed in the market. All AgenaTrader control mechanisms are switched off for this order type. The user is responsible for managing the various stop and target orders, including partial executions.</p>
 <p>See <a href="#onorderchanged"><em>OnOrderChanged()</em></a>, <a href="#onorderexecution"><em>OnOrderExecution()</em></a>.</p>
-<h3 id="usage_22">Usage</h3>
+<h3 id="usage_21">Usage</h3>
 <p>See <a href="#strategyorderparameters"><em>StrategyOrderParameters()</em></a></p>
-<h3 id="parameter_23">Parameter</h3>
+<h3 id="parameter_22">Parameter</h3>
 <p>See <a href="#strategyorderparameters"><em>StrategyOrderParameters()</em></a></p>
 <h3 id="return-value_8">Return Value</h3>
 <p>an order object of the type "IOrder"</p>
-<h3 id="example_25">Example</h3>
+<h3 id="example_24">Example</h3>
 <pre><code class="cs">// Limit Long order
 Submit Limit Buy
 var order = SubmitOrder(new StrategyOrderParameters
@@ -1436,7 +1376,7 @@ var order = SubmitOrder(new StrategyOrderParameters
 </code></pre>
 
 <h2 id="timeinforce">TimeInForce</h2>
-<h3 id="description_29">Description</h3>
+<h3 id="description_28">Description</h3>
 <p>The time in force property determines how long an order is valid for. The validity period is dependent upon which values are accepted by a broker.</p>
 <p>TimeInForce is specified with the <a href="#oninit"><em>OnInit()</em></a> method.</p>
 <p>Permitted values are:
@@ -1445,9 +1385,9 @@ TimeInForce.loc
 TimeInForce.gtc (GTC = good till canceled)
 TimeInForce.gtd</p>
 <p><strong>Default:</strong> TimeInForce.GTC</p>
-<h3 id="usage_23">Usage</h3>
+<h3 id="usage_22">Usage</h3>
 <p><strong>TimeInForce</strong></p>
-<h3 id="example_26">Example</h3>
+<h3 id="example_25">Example</h3>
 <pre><code class="cs">protected override void OnInit()
 {
 TimeInForce = TimeInForce.Day;
@@ -1455,7 +1395,7 @@ TimeInForce = TimeInForce.Day;
 </code></pre>
 
 <h2 id="trade">Trade</h2>
-<h3 id="description_30">Description</h3>
+<h3 id="description_29">Description</h3>
 <p>Trade is an object containing information about trades that have been executed by a strategy or are currently running.</p>
 <p>The individual properties are:</p>
 <ul>
@@ -1543,12 +1483,15 @@ TimeInForce = TimeInForce.Day;
     URL for the snapshot of the chart at the moment of creation</p>
 </li>
 </ul>
-<h3 id="example_27">Example</h3>
+<h3 id="example_26">Example</h3>
 <pre><code class="cs">protected override void OnDispose()
 {
-  if (Performance.AllTrades.Count &lt; 1) return;
-  foreach (ITrade trade in Performance.AllTrades)
+
+  foreach (ITradeState tradeState in Performance.AllTrades)
   {
+  ITrade trade = tradeState.Trade;
+  if (trade == null) continue;
+
     Print(&quot;Trade #&quot;+trade.Id);
     Print(&quot;--------------------------------------------&quot;);
     Print(&quot;Average price &quot; + trade.AvgPrice);
@@ -1670,18 +1613,18 @@ The total performance (wins/losses) for the month (also in percent)
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/AgenaTrader/AgenaScript-documentation" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/AgenaTrader/AgenaScript-documentation/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../events/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -1691,7 +1634,9 @@ The total performance (wins/losses) for the month (also in percent)
       
     </span>
 </div>
-    <script src="../js/theme.js"></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>
