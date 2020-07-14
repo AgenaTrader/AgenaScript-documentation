@@ -403,19 +403,16 @@ protected override void OnOrderExecution(IExecution execution)
 ## OnStart()
 ### Description
 The OnStart() method can be overridden to initialize your own variables, perform license checks or call up user forms etc.
-OnStart() is only called up once at the beginning of the script, after [*OnInit()*](#oninit) and before [*OnCalculate()*](#oncalculate) are called up.
-
-See [*OnDispose()*](#ondispose).
-
-More information can be found here: [*Events*](#events).
-
-### Further Information
-The OnStart() method can be overridden to initialize your own variables, perform license checks or call up user forms etc. OnStart() is only called up once, after OnInit() and before OnCalculate() are called up, which results in the following execution sequence:
+OnStart() is only called up once at the beginning of the script, after [*OnInit()*](#oninit) and before [*OnCalculate()*](#oncalculate) are called up which results in the following execution sequence:
 
 **OnInit**
 **OnStart**
 **OnStop**
 **OnDispose**
+
+See [*OnDispose()*](#ondispose).
+
+More information can be found here: [*Events*](#events).
 
 ### Parameter
 none
