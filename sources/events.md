@@ -409,6 +409,14 @@ See [*OnDispose()*](#ondispose).
 
 More information can be found here: [*Events*](#events).
 
+### Further Information
+The OnStart() method can be overridden to initialize your own variables, perform license checks or call up user forms etc. OnStart() is only called up once, after OnInit() and before OnCalculate() are called up, which results in the following execution sequence:
+
+**OnInit**
+**OnStart**
+**OnStop**
+**OnDispose**
+
 ### Parameter
 none
 
@@ -433,7 +441,7 @@ protected override void OnStart()
 
 ## OnStop()
 ### Description
-The OnStop() method is called up once a script is terminated. This can be when e.g. an indicator was removed from the chart or a column with an indicator / a scripted condition was removed from the scanner. 
+The OnStop() method is called up once a script is terminated. This can be when e.g. an indicator was removed from the chart or a column with an indicator / a scripted condition was removed from the scanner.
 
 See [*OnDispose()*](#ondispose).
 
@@ -452,8 +460,7 @@ protected override void OnStop()
 ```cs
 protected override void OnStop()
 {
-    Log("Stop: " + this.ToString() + " | " + Instrument.Symbol, InfoLogLevel.Info); 
+    Log("Stop: " + this.ToString() + " | " + Instrument.Symbol, InfoLogLevel.Info);
 }
 
 ```
-
