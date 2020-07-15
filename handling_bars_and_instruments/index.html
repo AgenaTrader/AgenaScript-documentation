@@ -7,14 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  <link rel="canonical" href="https://agenatrader.github.io/AgenaScript-documentation/index.html/handling_bars_and_instruments/">
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Handling bars and instruments - AgenaScript Documentation</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../custom.css" rel="stylesheet" />
   
   <script>
     // Current page data
@@ -25,7 +26,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
@@ -46,6 +47,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> AgenaScript Documentation</a>
         <div role="search">
@@ -56,223 +58,1106 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Lets start</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Handling bars and instruments</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#handling-bars-and-instruments">Handling bars and instruments</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Lets start</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Handling bars and instruments</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#bars">Bars</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#bars">Bars</a></li>
-        
-            <li><a class="toctree-l3" href="#properties">Properties</a></li>
-        
-            <li><a class="toctree-l3" href="#barscount">Bars.Count</a></li>
-        
-            <li><a class="toctree-l3" href="#barscurrentsessionbegintime">Bars.CurrentSessionBeginTime</a></li>
-        
-            <li><a class="toctree-l3" href="#barscurrentsessionendtime">Bars.CurrentSessionEndTime</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetbar">Bars.GetBar</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetbarindex">Bars.GetBarIndex</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetbarsago">Bars.GetBarsAgo</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetbyindex">Bars.GetByIndex</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetclose">Bars.GetClose</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgethigh">Bars.GetHigh</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetlow">Bars.GetLow</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetnextsessiontimespan">Bars.GetNextSessionTimeSpan</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetopen">Bars.GetOpen</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetsessionbegin">Bars.GetSessionBegin</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgettime">Bars.GetTime</a></li>
-        
-            <li><a class="toctree-l3" href="#barsgetvolume">Bars.GetVolume</a></li>
-        
-            <li><a class="toctree-l3" href="#barsinstrument">Bars.Instrument</a></li>
-        
-            <li><a class="toctree-l3" href="#barsiseod">Bars.IsEod</a></li>
-        
-            <li><a class="toctree-l3" href="#barsisfalling">Bars.IsFalling</a></li>
-        
-            <li><a class="toctree-l3" href="#barsisfirstbarinsession">Bars.IsFirstBarInSession</a></li>
-        
-            <li><a class="toctree-l3" href="#barsisgrowing">Bars.isGrowing</a></li>
-        
-            <li><a class="toctree-l3" href="#barsisintraday">Bars.IsIntraday</a></li>
-        
-            <li><a class="toctree-l3" href="#barsisntb">Bars.IsNtb</a></li>
-        
-            <li><a class="toctree-l3" href="#barsissessionbreak">Bars.IsSessionBreak</a></li>
-        
-            <li><a class="toctree-l3" href="#barslastbarcompleteness">Bars.LastBarCompleteness</a></li>
-        
-            <li><a class="toctree-l3" href="#barsnextsessionbegintime">Bars.NextSessionBeginTime</a></li>
-        
-            <li><a class="toctree-l3" href="#barsnextsessionendtime">Bars.NextSessionEndTime</a></li>
-        
-            <li><a class="toctree-l3" href="#barstailbottom">Bars.TailBottom</a></li>
-        
-            <li><a class="toctree-l3" href="#barstailtop">Bars.TailTop</a></li>
-        
-            <li><a class="toctree-l3" href="#barstickscountforlastbar">Bars.TicksCountForLastBar</a></li>
-        
-            <li><a class="toctree-l3" href="#barstickscountintotal">Bars.TicksCountInTotal</a></li>
-        
-            <li><a class="toctree-l3" href="#barstimeframe">Bars.TimeFrame</a></li>
-        
-            <li><a class="toctree-l3" href="#barscountforsession">BarsCountForSession</a></li>
-        
-            <li><a class="toctree-l3" href="#processingbarindexlast">ProcessingBarIndexLast</a></li>
-        
-            <li><a class="toctree-l3" href="#collections">Collections</a></li>
-        
-            <li><a class="toctree-l3" href="#chartdrawings">ChartDrawings</a></li>
-        
-            <li><a class="toctree-l3" href="#inseries">InSeries</a></li>
-        
-            <li><a class="toctree-l3" href="#lines">Lines</a></li>
-        
-            <li><a class="toctree-l3" href="#plotcolors">PlotColors</a></li>
-        
-            <li><a class="toctree-l3" href="#outputdescriptor">OutputDescriptor</a></li>
-        
-            <li><a class="toctree-l3" href="#values">Values</a></li>
-        
-            <li><a class="toctree-l3" href="#data-series">Data Series</a></li>
-        
-            <li><a class="toctree-l3" href="#open">Open</a></li>
-        
-            <li><a class="toctree-l3" href="#opens">Opens</a></li>
-        
-            <li><a class="toctree-l3" href="#high">High</a></li>
-        
-            <li><a class="toctree-l3" href="#highs">Highs</a></li>
-        
-            <li><a class="toctree-l3" href="#low">Low</a></li>
-        
-            <li><a class="toctree-l3" href="#lows">Lows</a></li>
-        
-            <li><a class="toctree-l3" href="#close">Close</a></li>
-        
-            <li><a class="toctree-l3" href="#closes">Closes</a></li>
-        
-            <li><a class="toctree-l3" href="#median">Median</a></li>
-        
-            <li><a class="toctree-l3" href="#medians">Medians</a></li>
-        
-            <li><a class="toctree-l3" href="#typical">Typical</a></li>
-        
-            <li><a class="toctree-l3" href="#typicals">Typicals</a></li>
-        
-            <li><a class="toctree-l3" href="#weighted">Weighted</a></li>
-        
-            <li><a class="toctree-l3" href="#weighted_1">Weighted</a></li>
-        
-            <li><a class="toctree-l3" href="#weighteds">Weighteds</a></li>
-        
-            <li><a class="toctree-l3" href="#time">Time</a></li>
-        
-            <li><a class="toctree-l3" href="#times">Times</a></li>
-        
-            <li><a class="toctree-l3" href="#volume">Volume</a></li>
-        
-            <li><a class="toctree-l3" href="#volumes">Volumes</a></li>
-        
-            <li><a class="toctree-l3" href="#timeframe">TimeFrame</a></li>
-        
-            <li><a class="toctree-l3" href="#timeframes">TimeFrames</a></li>
-        
-            <li><a class="toctree-l3" href="#instruments">Instruments</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentcompare">Instrument.Compare</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentcurrency">Instrument.Currency</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentdigits">Instrument.Digits</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentetf">Instrument.ETF</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentexchange">Instrument.Exchange</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentexpiry">Instrument.Expiry</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentgetcurrencyfactor">Instrument.GetCurrencyFactor</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentinstrumenttype">Instrument.InstrumentType</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentmainsector">Instrument.MainSector</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentmargin">Instrument.Margin</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentname">Instrument.Name</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentpointvalue">Instrument.PointValue</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentround2ticksize">Instrument.Round2TickSize</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentsymbol">Instrument.Symbol</a></li>
-        
-            <li><a class="toctree-l3" href="#instrumentticksize">Instrument.TickSize</a></li>
-        
-            <li><a class="toctree-l3" href="#multibars">Multibars</a></li>
-        
-            <li><a class="toctree-l3" href="#processingbarindexes">ProcessingBarIndexes</a></li>
-        
-            <li><a class="toctree-l3" href="#processingbarseriesindex">ProcessingBarSeriesIndex</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#functionality">Functionality</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#properties">Properties</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#properties-of-bars">Properties of Bars</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barscount">Bars.Count</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barscurrentsessionbegintime">Bars.CurrentSessionBeginTime</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_1">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_1">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_1">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_1">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_1">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barscurrentsessionendtime">Bars.CurrentSessionEndTime</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_2">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_1">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_2">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_2">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_2">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_2">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetbar">Bars.GetBar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_3">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_2">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_3">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_3">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_3">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_3">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetbarindex">Bars.GetBarIndex</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_4">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_3">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_4">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_4">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_4">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_4">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetbarsago">Bars.GetBarsAgo</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_5">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_4">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_5">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_5">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_5">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_5">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetbyindex">Bars.GetByIndex</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_6">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_5">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_6">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_6">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_6">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_6">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetclose">Bars.GetClose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgethigh">Bars.GetHigh</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetlow">Bars.GetLow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetnextsessiontimespan">Bars.GetNextSessionTimeSpan</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_7">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_6">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_7">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_7">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_7">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_7">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetopen">Bars.GetOpen</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_8">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_7">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_8">Return Value</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetsessionbegin">Bars.GetSessionBegin</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_9">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_8">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_9">Return value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_8">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#further-information">Further Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_8">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgettime">Bars.GetTime</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsgetvolume">Bars.GetVolume</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsinstrument">Bars.Instrument</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_10">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_9">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_10">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_9">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_8">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_9">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsiseod">Bars.IsEod</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_11">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_10">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_11">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_10">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_9">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_10">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsisfalling">Bars.IsFalling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_12">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_11">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_12">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_11">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsisfirstbarinsession">Bars.IsFirstBarInSession</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_13">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_13">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_12">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_10">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_11">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsisgrowing">Bars.isGrowing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_14">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_12">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_14">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_13">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsisintraday">Bars.IsIntraday</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_15">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_15">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_14">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_12">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsisntb">Bars.IsNtb</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_16">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_13">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_16">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_15">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_11">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_13">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsissessionbreak">Bars.IsSessionBreak</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_17">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_14">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_17">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_16">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_12">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_14">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barslastbarcompleteness">Bars.LastBarCompleteness</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_18">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_18">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_17">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_13">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_15">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsnextsessionbegintime">Bars.NextSessionBeginTime</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_19">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_15">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_19">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_18">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_14">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_16">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barsnextsessionendtime">Bars.NextSessionEndTime</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_20">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_16">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_20">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_19">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_15">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_17">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barstailbottom">Bars.TailBottom</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_21">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_17">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_21">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_20">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_18">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barstailtop">Bars.TailTop</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_22">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_18">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_22">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_21">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_19">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barstickscountforlastbar">Bars.TicksCountForLastBar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_23">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_19">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_23">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_22">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_16">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_20">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barstickscountintotal">Bars.TicksCountInTotal</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_24">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_20">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_24">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_23">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_17">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_21">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barstimeframe">Bars.TimeFrame</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_25">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_21">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_25">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_24">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_18">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_22">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barscountforsession">BarsCountForSession</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_26">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_26">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_25">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#further-information_1">Further Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_23">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#processingbarindexlast">ProcessingBarIndexLast</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_27">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_22">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_27">Return value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_26">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_19">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_24">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#collections">Collections</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#chartdrawings">ChartDrawings</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_28">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_27">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_25">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inseries">InSeries</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_29">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_28">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_26">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lines">Lines</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_30">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_29">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_27">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plotcolors">PlotColors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_31">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_30">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_20">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_28">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#outputdescriptor">OutputDescriptor</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_32">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_31">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_29">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#values">Values</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_33">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_32">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_21">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_30">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-series">Data Series</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_34">Description</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#open">Open</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_35">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_23">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_33">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_22">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_31">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#opens">Opens</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_36">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_24">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_34">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_23">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_32">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#high">High</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_37">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_25">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_35">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_24">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_33">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#highs">Highs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_38">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_26">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_36">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_25">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_34">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#low">Low</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_39">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_27">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_37">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_26">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_35">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lows">Lows</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_40">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_28">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_38">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_27">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_36">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#close">Close</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_41">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_29">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_39">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_28">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_37">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#closes">Closes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_42">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_30">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_40">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_29">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_38">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#median">Median</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_43">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_31">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_41">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_30">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_39">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#medians">Medians</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_44">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_32">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_42">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_31">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_40">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#typical">Typical</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_45">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_33">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_43">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_32">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_41">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#typicals">Typicals</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_46">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_34">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_44">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_33">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_42">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#weighted">Weighted</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_47">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_35">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_45">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#weighted_1">Weighted</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_34">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_43">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#weighteds">Weighteds</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_48">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_36">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_46">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_35">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_44">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#time">Time</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_49">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_37">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_47">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_36">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_45">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#times">Times</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_50">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_38">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_48">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_37">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_46">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volume">Volume</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_51">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_39">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_49">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_38">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_47">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volumes">Volumes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_52">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_40">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_50">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_39">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_48">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#timeframe">TimeFrame</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_53">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_51">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#timeframes">TimeFrames</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_54">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_41">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_52">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_49">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instruments">Instruments</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentcompare">Instrument.Compare</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_55">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_42">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_28">Return value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_53">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_40">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_50">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentcurrency">Instrument.Currency</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_56">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_43">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_29">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_54">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_41">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_51">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentdigits">Instrument.Digits</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_57">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_44">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_30">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_55">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_42">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_52">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentetf">Instrument.ETF</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_58">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_45">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_31">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_56">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_43">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_53">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentexchange">Instrument.Exchange</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_59">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_46">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_32">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_57">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_44">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_54">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentexpiry">Instrument.Expiry</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_60">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_47">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_33">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_58">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_45">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_55">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentgetcurrencyfactor">Instrument.GetCurrencyFactor</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_61">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_48">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_34">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_59">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_46">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_56">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentinstrumenttype">Instrument.InstrumentType</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_62">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_49">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_35">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_60">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_47">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_57">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentmainsector">Instrument.MainSector</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_63">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_50">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_36">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_61">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_48">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_58">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentmargin">Instrument.Margin</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_64">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_51">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_37">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_62">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_49">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_59">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentname">Instrument.Name</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_65">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_52">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_38">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_63">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_50">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_60">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentpointvalue">Instrument.PointValue</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_66">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_53">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_39">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_64">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_51">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_61">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentround2ticksize">Instrument.Round2TickSize</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_67">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_54">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_40">Return value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_65">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_52">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_62">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentsymbol">Instrument.Symbol</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_68">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_55">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_41">Return value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_66">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_53">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_63">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instrumentticksize">Instrument.TickSize</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_69">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_56">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value_42">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_67">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_54">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_64">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_65">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multibars">Multibars</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_70">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_66">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#additional-notes">Additional Notes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#processingbarindexes">ProcessingBarIndexes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_71">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_57">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_68">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_67">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#processingbarseriesindex">ProcessingBarSeriesIndex</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_72">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameter_58">Parameter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_69">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information_55">More Information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_68">Example</a>
+    </li>
+        </ul>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../events/">Events</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../strategy_programming/">Strategy programming</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../keywords/">Keywords</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../drawing_objects/">Drawing objects</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../hints_and_advice/">Hints and advice</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../events/">Events</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../strategy_programming/">Strategy programming</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../keywords/">Keywords</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../drawing_objects/">Drawing objects</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../hints_and_advice/">Hints and advice</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -300,6 +1185,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -2019,7 +2905,7 @@ if (ProcessingBarSeriesIndex &gt; 0) return;
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -2029,7 +2915,7 @@ if (ProcessingBarSeriesIndex &gt; 0) return;
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/AgenaTrader/AgenaScript-documentation/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -2045,6 +2931,11 @@ if (ProcessingBarSeriesIndex &gt; 0) return;
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
